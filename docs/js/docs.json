@@ -1,0 +1,4 @@
+partials = [
+	"headers",
+	"typography"
+]

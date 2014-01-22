@@ -1,0 +1,38 @@
+{
+  "name": "maxmertkit",
+  "version": "0.0.3",
+  "description": "Maxmertkit webdevelopment framework",
+  "main": "docs/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxmert/maxmertkit-old.git"
+  },
+  "keywords": [
+    "maxmertkit",
+    "maxmert",
+    "framework",
+    "html5",
+    "css",
+    "sass",
+    "coffeescript"
+  ],
+  "author": "maxmert",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/maxmert/maxmertkit-old/issues"
+  },
+  "dependencies": {
+    "coffee-script-brunch": "~1.7.3",
+    "sass-brunch": "~1.7.2",
+    "hoganjs-brunch": "~1.1.1",
+    "javascript-brunch": "~1.7.1",
+    "auto-reload-brunch": "~1.7.1",
+    "express": "~3.4.8"
+  }
+}

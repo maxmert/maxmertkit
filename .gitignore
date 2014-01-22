@@ -1,0 +1,21 @@
+.sass-cache
+.sublime-workspace
+__
+
+**/.DS_Store
+nbproject
+manifest.mf
+build.xml
+*.map
+node_modules
+
+.project
+.settings
+.idea/*
+
+node_modules/*
+npm-debug.log
+
+
+# Bower stuff.
+docs/js/bower/

@@ -1,0 +1,30 @@
+body {
+  display: block; }
+
+body {
+  font-family: "Helvetica"; }
+
+h1, .h1 {
+  font-size: 36px; }
+
+h2, .h2 {
+  font-size: 30px; }
+
+h3, .h3 {
+  font-size: 23px; }
+
+h4, .h4 {
+  font-size: 17px; }
+
+h5, .h5 {
+  font-size: 14px; }
+
+h6, .h6 {
+  font-size: 11px; }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  line-height: 1.1;
+  font-weight: 500; }
+
+
+/*# sourceMappingURL=main.css.map*/
