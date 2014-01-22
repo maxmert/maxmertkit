@@ -1,0 +1,22 @@
+@import "variables"
+
+@for $i from 1 through $column-quantity
+	.#{$column}#{$i}
+		@include span-columns($i)
+
+	.#{$offset}#{$i}
+		@include shift($i)
+
+
+// @include media(new-breakpoint(max-width 992px 12))
+// 	@for $i from 1 through $column-quantity
+// 		.#{$column}#{$i}
+// 			@if $i <= 3
+// 				@include span-columns(3)
+// 				@include omega(4n)
+
+@include media(new-breakpoint(max-width 992px 6))
+	@for $i from 1 through $column-quantity
+		.#{$column}#{$i}
+			@include span-columns(6)
+			@include shift(0)

@@ -18,6 +18,12 @@ h1, h2, h3, h4, h5, h6
 	font-weight: $headings-font-weight
 	font-family: $headings-font-family
 
+	@each $size in $base-sizes-names
+		$i: index($base-sizes-names, $size)
+		.#{$size}
+			font-size: nth($base-sizes-values, $i) * 100%
+
+
 h1, h2, h3
 	margin-top: $base-line-height-comp
 	margin-bottom: $base-line-height-comp / 2

@@ -43,7 +43,7 @@ exports.config =
 
 		sass:
 			mode: 'ruby'
-			# options: ['--version']
+			options: ['-q']
 
 
 		autoReload:

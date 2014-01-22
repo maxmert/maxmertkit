@@ -13,7 +13,7 @@ app.directive 'menu', ->
 		scope.items = window['partials']
 
 
-app.directive 'partials', ->
+app.directive 'partials', ['$timeout', ($timeout) ->
 	templateUrl: "#{paths.tmpl}/common/partials.html"
 	scope: {}
 	link: ( scope ) ->
@@ -29,6 +29,13 @@ app.directive 'partials', ->
 						name: subitem.name
 						path: "#{paths.tmpl}/widgets/#{subitem.path}.html"
 
+		
+		$timeout ->
+			# console.log 123
+			$('pre code').each (i, e) ->
+			 	hljs.highlightBlock(e)
+		,100 ,no
+	]
 
 
 # APP CONFIGURATION

@@ -1,0 +1,21 @@
+@import "variables"
+
+.#{$container}
+	@include outer-container
+
+@include media(new-breakpoint(min-width 1200px 6))
+	$max-width: em(1200)
+	.#{$container}
+		@include outer-container
+
+
+@include media(new-breakpoint(max-width 1199px 6))
+	$max-width: em(768)
+	.#{$container}
+		@include outer-container
+
+@include media(new-breakpoint(max-width 768px 6))
+	$max-width: em(500)
+	.#{$container}
+		@include outer-container
+	
