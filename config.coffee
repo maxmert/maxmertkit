@@ -40,21 +40,17 @@ exports.config =
 	plugins:
 		coffeescript:
 			bare: true
-		
-		# mustache:
-		# 	include:
-		# 		runtime: false
-				# amd: yes
-			# overrides: (handlebars) ->
-			# 	handlebars.JavaScriptCompiler::nameLookup = (parent, name, type) ->
-			# 		console.log parent, name, type
-			# pathReplace: /0^/
 
-		# autoReload:
-		# 	enabled:
-		# 		css: on
-		# 		js: on
-		# 		assets: off
+		sass:
+			mode: 'ruby'
+			# options: ['--version']
+
+
+		autoReload:
+			enabled:
+				css: on
+				js: on
+				assets: off
 
 	# Enable or disable minifying of result js / css files.
-	minify: true
+	minify: no

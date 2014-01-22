@@ -1,4 +1,13 @@
 partials = [
-	"headers",
-	"typography"
+	{
+		"name": "typography",
+		"path": "typography",
+
+		"include": [
+			{
+				"name": "headings",
+				"path": "typography/headings"
+			}
+		]
+	}
 ]

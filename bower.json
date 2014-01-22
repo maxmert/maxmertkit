@@ -1,0 +1,33 @@
+{
+  "name": "maxmertkit",
+  "version": "0.1.0",
+  "authors": [
+    "Maxmert <me@maxmert.com>"
+  ],
+  "description": "Css-framework",
+  "main": "main.css",
+  "keywords": [
+    "css",
+    "sass",
+    "js",
+    "framework",
+    "css-framework",
+    "maxmert",
+    "maxmertkit"
+  ],
+  "license": "MIT",
+  "homepage": "www.maxmert.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "docs/js/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.2.9",
+    "angular": "~1.2.9",
+    "bourbon": "~3.2.0"
+  }
+}
