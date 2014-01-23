@@ -1,5 +1,6 @@
 app = angular.module 'docsApp', [
 	'ngRoute'
+	'hljs'
 ]
 
 paths =
@@ -13,7 +14,7 @@ app.directive 'menu', ->
 		scope.items = window['partials']
 
 
-app.directive 'partials', ['$timeout', ($timeout) ->
+app.directive 'partials', ->
 	templateUrl: "#{paths.tmpl}/common/partials.html"
 	scope: {}
 	link: ( scope ) ->
@@ -28,14 +29,6 @@ app.directive 'partials', ['$timeout', ($timeout) ->
 					scope.items.push
 						name: subitem.name
 						path: "#{paths.tmpl}/widgets/#{subitem.path}.html"
-
-		
-		$timeout ->
-			# console.log 123
-			$('pre code').each (i, e) ->
-			 	hljs.highlightBlock(e)
-		,100 ,no
-	]
 
 
 # APP CONFIGURATION

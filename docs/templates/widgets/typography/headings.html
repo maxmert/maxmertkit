@@ -1,54 +1,114 @@
 <div class="-container">
 	
 	<h2>Headings</h2>
-	Specifies heading. Use <code>h#</code> or class <code>.-h#</code><br>
-	<small># - number 1..6</small>
+	<p>Specifies heading. Use <code>h#</code> or class <code>.-h#</code> <small>(# - number 1..6)</small></p>
+	<p>
+		<b>Global variables:</b><br>
+		<div hljs>
+$headings-class: "-h"
+
+$headings-h1-font-size: floor($base-font-size * 2.6) !global
+$headings-h2-font-size: floor($base-font-size * 2.15) !global
+$headings-h3-font-size: floor($base-font-size * 1.7) !global
+$headings-h4-font-size: floor($base-font-size * 1.25) !global
+$headings-h5-font-size: $base-font-size !global
+$headings-h6-font-size: floor($base-font-size * 0.85) !global
+
+$headings-line-height: 1.1 !global
+
+$headings-font-weight: 500 !global
+$headings-font-weight-small: 500 !global
+$headings-font-family: inherit !global
+$headings-color: inherit !global
+$headings-injection-color: #999 !global</div>
+	</p>
 	<div class="-row example-block">
 		<div class="-col12 view">
-			<h1>Heading 1</h1>
-			<h2>Heading 2</h2>
-			<h3>Heading 3</h3>
-			<h4>Heading 4</h4>
-			<h5>Heading 5</h5>
-			<h6>Heading 6</h6>
+			<div class="-col6">
+				<h1>Heading 1</h1>
+				<h2>Heading 2</h2>
+				<h3>Heading 3</h3>
+				<h4>Heading 4</h4>
+				<h5>Heading 5</h5>
+				<h6>Heading 6</h6>
+			</div>
+			<div class="-col6">
+				<div class="-h1">Heading 1</div>
+				<div class="-h2">Heading 2</div>
+				<div class="-h3">Heading 3</div>
+				<div class="-h4">Heading 4</div>
+				<div class="-h5">Heading 5</div>
+				<div class="-h6">Heading 6</div>
+			</div>
 		</div>
-		<pre class="-col12 example"><code class="html">&lt;h1&gt;Heading 1&lt;/h1&gt;
-&lt;h2&gt;Heading 2&lt;/h2&gt;
-&lt;h3&gt;Heading 3&lt;/h3&gt;
-&lt;h4&gt;>Heading 4&lt;/h4&gt;
-&lt;h5&gt;Heading 5&lt;/h5&gt;
-&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+		<div class="-col12 example">
+			<div hljs class="-col6">
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6></div>
+			<div hljs class="-col6">
+<div class="-h1">Heading 1</div>
+<div class="-h2">Heading 2</div>
+<div class="-h3">Heading 3</div>
+<div class="-h4">Heading 4</div>
+<div class="-h5">Heading 5</div>
+<div class="-h6">Heading 6</div></div></div>
 	</div>
 
 
 
 
 	<h3>Injections inside headings</h3>
+	Use size classes<br>
+	<code>_tiny</code>, 
+	<code>_small</code>, 
+	<code>_minor</code>, 
+	<code>_normal</code>, 
+	<code>_major</code>, 
+	<code>_normal</code>, 
+	<code>_big</code>, 
+	<code>_huge</code>, 
+	<code>_divine</code>
 	<div class="-row example-block">
-		<div class="-col3">
-			Use size classes<br>
-			<code>_tiny</code>, 
-			<code>_small</code>, 
-			<code>_minor</code>, 
-			<code>_normal</code>, 
-			<code>_major</code>, 
-			<code>_normal</code>, 
-			<code>_big</code>, 
-			<code>_huge</code>, 
-			<code>_divine</code>
+		<div class="-col12 view">
+			<div class="-col6">
+				<h4>Heading 4 <small class="_tiny">tiny injection</small></h4>
+				<h4>Heading 4 <small class="_small">small injection</small></h4>
+				<h4>Heading 4 <small class="_minor">minor injection</small></h4>
+				<h4>Heading 4 <small class="_normal">normal injection</small></h4>
+				<h4>Heading 4 <small>no class injection</small></h4>
+				<h4>Heading 4 <small class="_major">major injection</small></h4>
+				<h4>Heading 4 <small class="_big">big injection</small></h4>
+				<h4>Heading 4 <small class="_huge">huge injection</small></h4>
+				<h4>Heading 4 <small class="_divine">divine injection</small></h4>
+			</div>
+			<div class="-col6">
+				<h1>Heading 1 <small class="_tiny">tiny injection</small></h1>
+				<h1>Heading 1 <small class="_normal">normal injection</small></h1>
+				<h1>Heading 1 <small class="_major">major injection</small></h1>
+				<h1>Heading 1 <small class="_huge">huge injection</small></h1>
+			</div>
 		</div>
-		<div class="-col9">
-			Specifies heading injection.
-		</div>
+		<div class="-col12 example">
+			<div hljs class="-col6">
+<h4>Heading 4 <small class="_tiny">tiny injection</small></h4>
+<h4>Heading 4 <small class="_small">small injection</small></h4>
+<h4>Heading 4 <small class="_minor">minor injection</small></h4>
+<h4>Heading 4 <small class="_normal">normal injection</small></h4>
+<h4>Heading 4 <small>no class injection</small></h4>
+<h4>Heading 4 <small class="_major">major injection</small></h4>
+<h4>Heading 4 <small class="_big">big injection</small></h4>
+<h4>Heading 4 <small class="_huge">huge injection</small></h4>
+<h4>Heading 4 <small class="_divine">divine injection</small></h4></div>
+			<div hljs class="-col6">
+<h1>Heading 1 <small class="_tiny">tiny injection</small></h1>
+<h1>Heading 1 <small class="_normal">normal injection</small></h1>
+<h1>Heading 1 <small class="_major">major injection</small></h1>
+<h1>Heading 1 <small class="_huge">huge injection</small></h1></div></div>
 	</div>
 
 
-	<h4 class="-col4">Heading 4 <span class="_tiny">tiny injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_small">small injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_minor">minor injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_normal">normal injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_major">major injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_big">big injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_huge">huge injection</span></h4>
-	<h4 class="-col4">Heading 4 <span class="_divine">divine injection</span></h4>
 </div>

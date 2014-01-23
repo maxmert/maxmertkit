@@ -1,10 +1,8 @@
-@import "variables"
-
 @for $i from 1 through $column-quantity
-	.#{$column}#{$i}
+	.#{$column-class}#{$i}
 		@include span-columns($i)
 
-	.#{$offset}#{$i}
+	.#{$offset-class}#{$i}
 		@include shift($i)
 
 
@@ -17,6 +15,6 @@
 
 @include media(new-breakpoint(max-width 992px 6))
 	@for $i from 1 through $column-quantity
-		.#{$column}#{$i}
+		.#{$column-class}#{$i}
 			@include span-columns(6)
 			@include shift(0)

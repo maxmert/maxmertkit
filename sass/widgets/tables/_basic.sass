@@ -1,0 +1,87 @@
+table, .#{$table-class}
+	max-width: 100%
+
+	th
+		text-align: left
+		font-weight: bold
+
+
+.#{$table-class}
+	width: 100%
+	margin-bottom: $base-line-height-comp
+
+	& > thead, & > tbody, & > tfoot
+		& > tr
+			& > th, & > td
+				padding: $table-cell-padding
+				line-height: $base-line-height
+				vertical-align: top
+
+	
+
+
+
+
+
+	// MODIFIERS
+
+
+	@mixin theme-horizontal-setter($i)
+		& > thead, & > tbody, & > tfoot
+			& > tr
+				& > td
+					border-top: 1px solid nth($themes-border-colors, $i)
+				& > th
+					border-bottom: 2px solid nth($themes-border-colors, $i)
+
+	@mixin theme-vertical-setter($i)
+		& > thead, & > tbody, & > tfoot
+			& > tr
+				& > td, & > th
+					border-right: 1px solid nth($themes-border-colors, $i)
+
+					&:last-child
+						border-right: none
+
+	@mixin theme-wrap-setter($i)
+		& > thead, & > tbody, & > tfoot
+			border: 1px solid nth($themes-border-colors, $i)
+
+
+
+	@mixin theme-striped-setter($i)
+		& > thead, & > tbody, & > tfoot
+			& > tr:nth-child(odd)
+				& > td
+					background-color: nth($themes-background-colors, $i)
+
+
+				
+	&.#{$mod-horizontal}
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include theme-horizontal-setter($i)
+			&.#{$theme}
+				@include theme-horizontal-setter($i)
+
+	&.#{$mod-vertical}
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include theme-vertical-setter($i)
+			&.#{$theme}
+				@include theme-vertical-setter($i)
+
+	&.#{$mod-bordered}
+		@extend .#{$table-class}.#{$mod-horizontal}
+		@extend .#{$table-class}.#{$mod-vertical}
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include theme-wrap-setter($i)
+			&.#{$theme}
+				@include theme-wrap-setter($i)

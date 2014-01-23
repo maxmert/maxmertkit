@@ -1,0 +1,15 @@
+.#{$table-class}
+	@mixin theme-hovered-setter($i)
+		& > thead, & > tbody, & > tfoot
+			& > tr:hover
+				& > td
+					background-color: nth($themes-background-light-colors, $i)
+
+	&.#{$mod-hovered}
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include theme-hovered-setter($i)
+			&.#{$theme}
+				@include theme-hovered-setter($i)

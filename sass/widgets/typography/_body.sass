@@ -1,0 +1,87 @@
+b
+	font-weight: $body-b-font-weight
+
+i
+	font-style: $body-i-font-style
+
+small
+	font-size: $body-small-font-size
+
+p
+	margin: 0 0 $base-line-height-comp / 2
+
+b, i, small, p, span
+	@each $size in $base-sizes-names
+		$i: index($base-sizes-names, $size)
+		&.#{$size}
+			font-size: nth($base-sizes-values, $i) * 100%
+	
+	@each $theme in $themes
+		$i: index($themes, $theme)
+		&.#{$theme}
+			color: nth($themes-colors, $i)
+
+	&.#{$mod-left}
+		text-align: left
+
+	&.#{$mod-center}
+		text-align: center
+
+	&.#{$mod-right}
+		text-align: right
+
+	&.#{$mod-justify}
+		text-align: justify
+
+em
+	@extend i
+
+strong
+	@extend b
+
+abbr[title]
+	cursor: help
+	border-bottom: 1px dotted
+
+	&.#{$abbr-initialism-class}
+		text-transform: uppercase
+		font-size: 80%
+
+address
+	margin-bottom: $base-line-height-comp
+	line-height: $base-line-height
+
+blockquote
+	padding: $base-line-height-comp / 2 $base-line-height-comp
+	margin: 0 0 $base-line-height-comp
+	font-size: $base-font-size * 1.25
+	text-align: left
+	border-left: 5px solid
+
+	small
+		font-size: $blockquote-small-font-size
+		&:before
+			content: '\2014 \00A0'
+
+	&.#{$mod-right}
+		text-align: right
+		border-left: none
+		border-right: 5px solid
+		small
+			&:before
+				content: ''
+			&:after
+				content: '\2014 \00A0'
+
+	@mixin theme-setter($i)
+		border-color: nth($themes-colors, $i)
+		small
+			color: nth($themes-colors, $i)
+	
+	@each $theme in $themes
+		$i: index($themes, $theme)
+		
+		@if $theme == "-default-"
+			@include theme-setter($i)
+		&.#{$theme}
+			@include theme-setter($i)

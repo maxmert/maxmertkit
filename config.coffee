@@ -28,6 +28,7 @@ exports.config =
 			joinTo:
 				'main.css': /^(sass)/
 				'docs/css/main.css': /^(sass)/
+				'docs/css/developer.css': /^docs\/css\/dev/
 			order:
 				before: [
 					'sass/main.sass'

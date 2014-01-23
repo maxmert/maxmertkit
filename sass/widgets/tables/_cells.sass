@@ -1,0 +1,13 @@
+.#{$table-class}
+	@mixin theme-cell-setter($i)
+		background-color: nth($themes-background-light-colors, $i)
+
+
+	& > thead, & > tbody, & > tfoot
+		& > tr
+			& > td
+				@each $theme in $themes
+					$i: index($themes, $theme)
+					
+					&.#{$theme}
+						@include theme-cell-setter($i)

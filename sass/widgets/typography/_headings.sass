@@ -17,6 +17,10 @@ h1, h2, h3, h4, h5, h6
 	line-height: $headings-line-height
 	font-weight: $headings-font-weight
 	font-family: $headings-font-family
+	color: $headings-color
+
+	small
+		color: $headings-injection-color
 
 	@each $size in $base-sizes-names
 		$i: index($base-sizes-names, $size)
