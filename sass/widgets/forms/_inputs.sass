@@ -56,6 +56,12 @@ form
 		@include placeholder
 			font-weight: 200
 
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			&.#{$size}
+				font-size: nth($base-sizes-values, $i) * 100%
+				vertical-align: middle
+
 	
 	input[type="radio"], input[type="checkbox"]
 		margin: 4px 0 0
@@ -88,3 +94,10 @@ form
 		padding-left: 0
 		cursor: $form-label-cursor
 		font-weight: $form-label-font-weight
+
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			&.#{$size}
+				font-size: nth($base-sizes-values, $i) * 100%
+
+		@include text-overflow
