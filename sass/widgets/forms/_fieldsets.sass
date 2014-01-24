@@ -1,8 +1,10 @@
-fieldset
-	@extend .#{$row-class}
-	border: $form-fieldset-border
-	padding: $form-fieldset-padding-vertical / 3 $form-fieldset-padding-horizontal $form-fieldset-padding-vertical
+@include exports("forms/fieldsets")
 
-	legend
-		padding: 6px
-		margin-left: -$form-legend-padding 
+	fieldset
+		@extend .#{$row-class}
+		border: $form-fieldset-border
+		padding: $form-fieldset-padding-vertical / 3 $form-fieldset-padding-horizontal $form-fieldset-padding-vertical
+
+		legend
+			padding: 6px
+			margin-left: -$form-legend-padding 

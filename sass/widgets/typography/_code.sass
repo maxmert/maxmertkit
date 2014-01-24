@@ -1,37 +1,50 @@
-code
-	font-family: $base-font-family-monospace
-	color: $code-color
-	border: $code-border
-	background-color: $code-background
-	font-size: $code-font-size
-	padding: $code-padding
-	border-radius: $code-border-radius
-	white-space: nowrap
+@include exports("typography/code")
 
-pre
-	display: block
-	padding: ($base-line-height-comp - 1) / 2
-	margin: 0 0 $base-line-height-comp / 2
-	font-size: $base-font-size - 1
-	line-height: $base-line-height-comp
-	word-break: break-all
-	word-wrap: break-word
-	color: $pre-color
-	background-color: $pre-bg
-	border: 1px solid $pre-border-color
-	border-radius: $pre-border-radius
+	code
+		font-family: $base-font-family-monospace
+		color: $code-color
+		border: $code-border
+		background-color: $code-background
+		font-size: $code-font-size
+		padding: $code-padding
+		border-radius: $code-border-radius
+		white-space: nowrap
+		
+		// This is for mobile version and very long code content
+		overflow: hidden
+		text-overflow: ellipsis
+		display: inline-block
+		vertical-align: top
+		max-width: 100%
 
-	-moz-tab-size:    4
-	-o-tab-size:      4
-	-webkit-tab-size: 4
-	-ms-tab-size:     4
-	tab-size:         4
+	pre
+		display: block
+		padding: ($base-line-height-comp - 1) / 2
+		margin: 0 0 $base-line-height-comp / 2
+		font-size: $base-font-size - 1
+		line-height: $base-line-height-comp
+		word-break: break-all
+		word-wrap: break-word
+		color: $pre-color
+		background-color: $pre-bg
+		border: 1px solid $pre-border-color
+		border-radius: $pre-border-radius
 
-	// Account for some code outputs that place code tags in pre tags
-	code 
-		padding: 0
-		font-size: inherit
-		color: inherit
-		white-space: pre-wrap
-		background-color: transparent
-		border-radius: 0
+		-moz-tab-size:    4
+		-o-tab-size:      4
+		-webkit-tab-size: 4
+		-ms-tab-size:     4
+		tab-size:         4
+
+		// Account for some code outputs that place code tags in pre tags
+		code 
+			padding: 0
+			font-size: inherit
+			color: inherit
+			white-space: pre-wrap
+			background-color: transparent
+			border-radius: 0
+
+	@include media(new-breakpoint(max-width 768px 6))
+		pre
+			display: none

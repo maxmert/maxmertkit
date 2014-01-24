@@ -1,0 +1,104 @@
+@mixin buttons-theme-button-setter($i)
+	@if nth($themes, $i) == "-default-"
+		background-color: nth($themes-background-light-colors, $i)
+	@else
+		background-color: nth($themes-background-colors, $i)
+		color: nth($themes-white-colors, $i)
+
+	&:hover, &.#{$mod-hovered}
+		box-shadow: 1px 1px 2px rgba(0,0,0,.2), -1px 1px 2px rgba(0,0,0,.2), 0 4px 4px rgba(0,0,0,.05), 0 6px 6px rgba(0,0,0,.1)
+
+	&:active, &.#{$mod-active}
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), inset 0 -15px 15px rgba(0,0,0,.1)
+		@if nth($themes, $i) != "-default-"
+			background-color: nth($themes-background-dark-colors, $i)
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba(nth($themes-white-colors, $i), .65)
+
+	&.#{$mod-unstyled}
+		color: nth($themes-colors, $i)
+
+
+
+@include exports("buttons/basic")
+
+	.#{$button-class}
+
+
+
+		display: inline-block
+		margin: 0 //For input.btn
+		font-weight: $button-font-weight
+		text-align: center
+		vertical-align: middle
+		cursor: pointer
+		background-image: none // Took from bootstrap, Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+		border: 1px solid transparent
+		white-space: nowrap
+		outline: none
+		position: relative
+		z-index: 1
+
+		// Set default size
+		padding: $base-padding-vertical $base-padding-horizontal
+		font-size: $base-font-size
+		line-height: $base-line-height
+		border-radius: $button-border-radius
+
+		@include user-select(none)
+
+		box-shadow: 0px 1px 2px rgba(0,0,0,.2), 0px 1px 2px rgba(0,0,0,.2), 0 4px 4px rgba(0,0,0,.05), 0 6px 6px rgba(0,0,0,.1), inset 0 -4px 4px rgba(0,0,0,.05)
+
+
+
+		&.#{$mod-vertical}
+			display: block
+			width: 100%
+
+			& + .#{$button-class}
+				margin-top: 5px
+
+		&:active, &.#{$mod-active}, &.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+			z-index: 0
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include buttons-theme-button-setter($i)
+				&.#{$theme}
+					@include buttons-theme-button-setter($i)
+			@else
+				&.#{$theme}
+					@include buttons-theme-button-setter($i)
+
+		&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+			cursor: not-allowed
+			pointer-events: none // Future-proof disabling of clicks
+			opacity: .55
+			box-shadow: none
+			opacity: 1 // iOS fix for unreadable disabled content
+
+		&.#{$mod-unstyled}
+			background-color: transparent !important
+			border: 1px solid transparent !important
+			box-shadow: none !important
+
+			text-decoration: underline
+
+			&:hover, &.#{$mod-hovered}, &:active, &.#{$mod-active}, &.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+				text-decoration: none
+
+			.fa
+				padding-right: 4px
+
+
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			&.#{$size}
+				font-size: nth($base-sizes-values, $i) * 100%
+
+
+	a.#{$button-class}
+		font-weight: normal

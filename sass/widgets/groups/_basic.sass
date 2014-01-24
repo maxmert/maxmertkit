@@ -1,0 +1,10 @@
+@include exports("groups/basic")
+	//ok
+
+	.#{$group-class}
+		display: inline-block
+		margin-bottom: $group-justified-margin-bottom
+
+		&.#{$mod-justify}
+			display: table
+			width: 100%

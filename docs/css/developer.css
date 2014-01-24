@@ -107,6 +107,11 @@ pre .diff .change {
 pre .chunk {
   color: #aaaaaa; }
 
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 .example-block {
   margin: 15px 0 35px;
   border: 1px solid #cccccc;
@@ -114,6 +119,8 @@ pre .chunk {
 
 .example-block .example, .example-block .view {
   padding: 15px !important; }
+.example-block .view .-btn {
+  margin: 5px 0; }
 .example-block .example {
   border: none;
   border-radius: 0;
@@ -127,6 +134,9 @@ pre .chunk {
   .example-block .example:first-child {
     border-top: none; }
 
+@media screen and (max-width: 768px) {
+  .example-block .example {
+    display: none; } }
 .row-color {
   background-color: #d5e7f1;
   margin-bottom: 1px;

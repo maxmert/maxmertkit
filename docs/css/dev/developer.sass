@@ -1,4 +1,6 @@
 @import "../../js/bower/highlightjs-scss/styles/github"
+@import "../../js/bower/bourbon/dist/bourbon"
+@import "../../js/bower/neat/app/assets/stylesheets/neat"
 
 
 .example-block
@@ -10,6 +12,10 @@
 .example-block
 	.example, .view
 		padding: 15px!important
+
+	.view
+		.-btn
+			margin: 5px 0
 
 	.example
 		border: none
@@ -25,6 +31,11 @@
 
 		&:first-child
 			border-top: none
+
+@include media(new-breakpoint(max-width 768px 6))
+	.example-block
+		.example
+			display: none
 
 
 .row-color

@@ -1,11 +1,13 @@
-<div class="-container">
-	
-	<h2>Body</h2>
-	<p>All common tags.</p>
+<!-- ============ TYPOGRAPHY BODY -->
+<!-- ====================== -->
 
-	<p>
-		<b>Global variables:</b><br>
-		<div hljs>
+<h2>Body</h2>
+<p>All common tags.</p>
+
+<!-- ============ Variables -->
+<p>
+	<h4>Global variables:</h4>
+	<div hljs>
 $body-b-font-weight: 700 !global
 $body-i-font-style: italic !global
 $body-small-font-size: 85% !global
@@ -13,195 +15,192 @@ $body-small-font-size: 85% !global
 $abbr-initialism-class: "-initialism" !global
 
 $blockquote-small-font-size: 80% !global</div>
-	</p>
+</p>
 
 
-	<h3>Bold</h3>
-	<p>For emphasizing a snippet of text with a heavier font-weight.</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<b>This is bold text</b><br>
-			<strong>This is bold text</strong>
-		</div>
-		<div class="-col12 example">
-			<div hljs class="-col6">
+<h3>Bold</h3>
+<p>For emphasizing a snippet of text with a heavier font-weight.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<b>This is bold text</b><br>
+		<strong>This is bold text</strong>
+	</div>
+	<div class="-col12 example">
+		<div hljs class="-col6">
 <b>This is bold text</b>
 <strong>This is bold text</strong></div>
-		</div>
 	</div>
+</div>
 
-	<h3>Italic</h3>
-	<p>For emphasizing a snippet of text with italics.</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<i>This is italic text</i><br>
-			<em>This is italic text</em>
-		</div>
-		<div class="-col12 example">
-			<div hljs class="-col6">
+<h3>Italic</h3>
+<p>For emphasizing a snippet of text with italics.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<i>This is italic text</i><br>
+		<em>This is italic text</em>
+	</div>
+	<div class="-col12 example">
+		<div hljs class="-col6">
 <i>This is italic text</i>
 <em>This is italic text</em></div>
-		</div>
 	</div>
+</div>
 
-	<h3>Small</h3>
-	<p>For de-emphasizing inline or blocks of text, use the <code>&lt;small&gt;</code> tag to set text at 85% the size of the parent. Heading elements receive their own font-size for nested <code>&lt;small&gt;</code> elements.</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			Normal and <small>small text</small><br>
-		</div>
-		<div hljs class="-col12 example">
+<h3>Small</h3>
+<p>For de-emphasizing inline or blocks of text, use the <code>&lt;small&gt;</code> tag to set text at 85% the size of the parent. Heading elements receive their own font-size for nested <code>&lt;small&gt;</code> elements.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		Normal and <small>small text</small><br>
+	</div>
+	<div hljs class="-col12 example">
 Normal and <small>small text</small></div>
+</div>
+
+
+<h3>Sizes with inline elements</h3>
+<p>
+	Use size classes 
+	<code>_tiny</code>, 
+	<code>_small</code>, 
+	<code>_minor</code>, 
+	<code>_normal</code>, 
+	<code>_major</code>, 
+	<code>_normal</code>, 
+	<code>_big</code>, 
+	<code>_huge</code>, 
+	<code>_divine</code> 
+	with inline elements to set size.
+</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		Normal text with <span class="_minor">_major text</span>, and here is <i class="_big">_big italic text</i>, and <b class="_huge">_huge bold</b>
 	</div>
-
-
-	<h3>Sizes with inline elements</h3>
-	<p>
-		Use size classes 
-		<code>_tiny</code>, 
-		<code>_small</code>, 
-		<code>_minor</code>, 
-		<code>_normal</code>, 
-		<code>_major</code>, 
-		<code>_normal</code>, 
-		<code>_big</code>, 
-		<code>_huge</code>, 
-		<code>_divine</code> 
-		with inline elements to set size.
-	</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			Normal text with <span class="_minor">_major text</span>, and here is <i class="_big">_big italic text</i>, and <b class="_huge">_huge bold</b>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 Normal text with <span class="_minor">_major text</span>, and here is <i class="_big">_big italic text</i>, and <b class="_huge">_huge bold</b></div>
+</div>
+
+
+<h3>Themes with inline elements</h3>
+<p>
+	Use theme classes (you can include any theme, so themes class names can be different) 
+	<code>-primary-</code>, 
+	<code>-error-</code>, 
+	<code>-success-</code>
+	
+	with inline elements to set theme.
+</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		Normal text with <span class="-primary-">-primary- text</span>, <i class="-error-">i -error- text</i>, <b class="-success-">b -success- text</b>
 	</div>
-
-
-	<h3>Themes with inline elements</h3>
-	<p>
-		Use theme classes (you can include any theme, so themes class names can be different) 
-		<code>-primary-</code>, 
-		<code>-error-</code>, 
-		<code>-success-</code>
-		
-		with inline elements to set theme.
-	</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			Normal text with <span class="-primary-">-primary- text</span>, <i class="-error-">i -error- text</i>, <b class="-success-">b -success- text</b>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 Normal text with <span class="-primary-">-primary- text</span>, <i class="-error-">i -error- text</i>, <b class="-success-">b -success- text</b></div>
+</div>
+
+
+<h3>Modifiers with inline elements</h3>
+<p>
+	Use modifier classes <code>_left_</code>, <code>_center_</code>, <code>_right_</code>, <code>_justify_</code> with inline elements to realign text.
+</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<p class="_left_">left</p>
+		<p class="_center_">center</p>
+		<p class="_right_">right</p>
+		<p class="_justify_">Justify is in this block! Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 	</div>
-
-
-	<h3>Modifiers with inline elements</h3>
-	<p>
-		Use modifier classes <code>_left_</code>, <code>_center_</code>, <code>_right_</code>, <code>_justify_</code> with inline elements to realign text.
-	</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<p class="_left_">left</p>
-			<p class="_center_">center</p>
-			<p class="_right_">right</p>
-			<p class="_justify_">Justify is in this block! Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 <p class="_left_">left</p>
 <p class="_center_">center</p>
 <p class="_right_">right</p>
 <p class="_justify_">Justify is in this block! ...</p></div>
+</div>
+
+
+
+
+
+
+
+
+<h3>Abbreviation</h3>
+Abbreviations with a title attribute have a light dotted bottom border and a help cursor on hover, providing additional context on hover. If you use initialism, use <code>-initialism</code> class.
+<div class="-row example-block">
+	<div class="-col12 view">
+		<abbr title="attribute">attr</abbr>, <abbr class="-initialism" title="HyperText Markup Language">HTML</abbr>
 	</div>
-
-
-
-
-
-	
-
-
-	<h3>Abbreviation</h3>
-	Abbreviations with a title attribute have a light dotted bottom border and a help cursor on hover, providing additional context on hover. If you use initialism, use <code>-initialism</code> class.
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<abbr title="attribute">attr</abbr>, <abbr class="-initialism" title="HyperText Markup Language">HTML</abbr>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 <abbr title="attribute">attr</abbr>, <abbr class="-initialism" title="HyperText Markup Language">HTML</abbr></div>
+</div>
+
+
+<h3>Address</h3>
+Abbreviations with a title attribute have a light dotted bottom border and a help cursor on hover, providing additional context on hover. If you use initialism, use <code>-initialism</code> class.
+<div class="-row example-block">
+	<div class="-col12 view">
+		<address>
+			<strong>Twitter, Inc.</strong><br>
+			795 Folsom Ave, Suite 600<br>
+			San Francisco, CA 94107<br>
+			<abbr title="Phone">P:</abbr> (123) 456-7890
+		</address>
+		<address>
+			<strong>Full Name</strong><br>
+			<a href="mailto:#">first.last@example.com</a>
+		</address>
 	</div>
-
-
-	<h3>Address</h3>
-	Abbreviations with a title attribute have a light dotted bottom border and a help cursor on hover, providing additional context on hover. If you use initialism, use <code>-initialism</code> class.
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<address>
-				<strong>Twitter, Inc.</strong><br>
-				795 Folsom Ave, Suite 600<br>
-				San Francisco, CA 94107<br>
-				<abbr title="Phone">P:</abbr> (123) 456-7890
-			</address>
-			<address>
-				<strong>Full Name</strong><br>
-				<a href="mailto:#">first.last@example.com</a>
-			</address>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 <address>
-	<strong>Twitter, Inc.</strong><br>
-	795 Folsom Ave, Suite 600<br>
-	San Francisco, CA 94107<br>
-	<abbr title="Phone">P:</abbr> (123) 456-7890
+<strong>Twitter, Inc.</strong><br>
+795 Folsom Ave, Suite 600<br>
+San Francisco, CA 94107<br>
+<abbr title="Phone">P:</abbr> (123) 456-7890
 </address>
 <address>
-	<strong>Full Name</strong><br>
-	<a href="mailto:#">first.last@example.com</a>
+<strong>Full Name</strong><br>
+<a href="mailto:#">first.last@example.com</a>
 </address></div>
+</div>
+
+
+<h3>Blockquote</h3>
+<p>Style and content changes for simple variations on a standard <code>&lt;blockquote&gt;</code>.</p>
+<p>Use modifier classes <code>_left_</code> and <code>_right_</code> to realign blockquote.<br></p>
+<p>Use theme classes (you can include any theme, so themes class names can be different) <code>-primary-</code>, <code>-error-</code>, <code>-success-</code> with blockquotes to set theme.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<blockquote>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+			<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+		</blockquote>
+		<blockquote class="_right_">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+			<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+		</blockquote>
+		<blockquote class="-primary-">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+			<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+		</blockquote>
+		<blockquote class="-error- _right_">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+			<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+		</blockquote>
 	</div>
-
-
-	<h3>Blockquote</h3>
-	<p>Style and content changes for simple variations on a standard <code>&lt;blockquote&gt;</code>.</p>
-	<p>Use modifier classes <code>_left_</code> and <code>_right_</code> to realign blockquote.<br></p>
-	<p>Use theme classes (you can include any theme, so themes class names can be different) <code>-primary-</code>, <code>-error-</code>, <code>-success-</code> with blockquotes to set theme.</p>
-	<div class="-row example-block">
-		<div class="-col12 view">
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-			<blockquote class="_right_">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-			<blockquote class="-primary-">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-			<blockquote class="-error- _right_">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-			</blockquote>
-		</div>
-		<div hljs class="-col12 example">
+	<div hljs class="-col12 example">
 <blockquote>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 </blockquote>
 <blockquote class="_right_">
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 </blockquote>
 <blockquote class="-primary-">
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 </blockquote>
 <blockquote class="-error- _right_">
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 </blockquote></div>
-	</div>
-
-
 </div>

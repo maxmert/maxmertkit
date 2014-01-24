@@ -7,20 +7,36 @@ paths =
 	tmpl: '/templates'
 
 
-# Menu creating
+# SubMenu creating
 app.directive 'menu', ->
 	templateUrl: "#{paths.tmpl}/common/menu.html"
 	link: ( scope ) ->
-		scope.items = window['partials']
+		scope.items = [
+			{
+				name: 'main',
+				link: '/main'
+			},
+			{
+				name: 'widgets',
+				link: '/widgets'
+			}
+		]
+
+
+# SubMenu MAIN creating
+app.directive 'submenu', ->
+	templateUrl: "#{paths.tmpl}/common/submenu.html"
+	link: ( scope, element, attrs ) ->
+		scope.items = window[attrs.submenu]
 
 
 app.directive 'partials', ->
 	templateUrl: "#{paths.tmpl}/common/partials.html"
 	scope: {}
-	link: ( scope ) ->
+	link: ( scope, element, attrs ) ->
 		scope.items = []
 		
-		for item in window['partials']
+		for item in window[attrs.partials]
 			scope.items.push
 				name: item.name
 				path: "#{paths.tmpl}/widgets/#{item.path}.html"
@@ -36,8 +52,11 @@ app.config ($routeProvider, $locationProvider) ->
 
 	# Init Route provider
 	$routeProvider
-		.when '/',
-			templateUrl: "#{paths.tmpl}/index.html"
+		.when '/main',
+			templateUrl: "#{paths.tmpl}/main.html"
+
+		.when '/widgets',
+			templateUrl: "#{paths.tmpl}/widgets.html"
 
 		.otherwise
 			templateUrl: "#{paths.tmpl}/404.html"

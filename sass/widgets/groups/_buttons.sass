@@ -1,0 +1,20 @@
+@include exports("groups/buttons")
+	
+	.#{$group-class}
+
+		.#{$button-class}
+			
+			border-radius: 0
+			vertical-align: top
+			margin: 0!important
+
+			&:first-child
+				border-radius: $button-border-radius 0 0 $button-border-radius
+
+			&:last-child
+				border-radius: 0 $button-border-radius $button-border-radius 0
+
+		&.#{$mod-justify}
+			.#{$button-class}
+				display: table-cell
+				width: 1%

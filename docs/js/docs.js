@@ -1,4 +1,23 @@
-partials = [
+widgets = [
+	{
+		"name": "groups",
+		"path": "groups",
+
+		"include": [
+			{
+				"name": "buttons",
+				"path": "groups/buttons"
+			},
+			{
+				"name": "inputs",
+				"path": "groups/inputs"
+			}
+		]
+	}
+]
+
+
+main = [
 	{
 		"name": "typography",
 		"path": "typography",
@@ -95,6 +114,33 @@ partials = [
 			{
 				"name": "fields",
 				"path": "forms/fields"
+			}
+		]
+	},
+
+	{
+		"name": "buttons",
+		"path": "buttons",
+
+		"include": [
+			{
+				"name": "themes",
+				"path": "buttons/themes"
+			},
+
+			{
+				"name": "sizes",
+				"path": "buttons/sizes"
+			},
+
+			{
+				"name": "states",
+				"path": "buttons/states"
+			},
+
+			{
+				"name": "blocks",
+				"path": "buttons/blocks"
 			}
 		]
 	}

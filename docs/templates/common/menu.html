@@ -1,10 +1,5 @@
 <ul>
 	<li ng-repeat='item in items'>
-		<a href="#{{item.name}}">{{item.name}}</a>
-		<ul>
-			<li ng-repeat='subitem in item.include'>
-				<a href="#{{subitem.name}}">{{subitem.name}}</a>
-			</li>
-		</ul>
+		<a href="/#{{item.name}}">{{item.name}}</a>
 	</li>
 </ul>

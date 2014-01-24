@@ -1,103 +1,118 @@
-form
+@mixin forms-input-setter
+	font-family: $form-input-font-family
+	font-size: $base-font-size
+	font-size: $base-line-height
+	padding: $base-padding-vertical $base-padding-horizontal
+	margin: 0
+	border-radius: $form-input-border-radius
+	@include box-sizing(border-box)
+	outline: none
 
-	@mixin form-input-setter
-		font-family: $form-input-font-family
-		font-size: $base-font-size
-		font-size: $base-line-height
-		padding: $base-padding-vertical $base-padding-horizontal
-		margin: 0
-		@include box-sizing(border-box)
-		outline: none
-
-		width: 100%
-
-
-	@mixin theme-input-setter($i)
-		border: 1px solid nth($themes-border-colors, $i)
-
-		&:active, &:focus
-			box-shadow: 0 0 10px rgba(nth($themes-background-colors, $i), 0.4)
-
-		@include placeholder
-			color: nth($themes-colors, $i)
+	width: 100%
 
 
+@mixin forms-theme-input-setter($i)
+	border: 1px solid nth($themes-border-colors, $i)
 
-	@mixin theme-select-setter($i)
-		border: 1px solid nth($themes-border-colors, $i)
-		background: rgba(nth($themes-background-light-colors, $i), .3) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat
-		background-position-x: 97%
-		background-position-y: center
-		
-		&:active, &:focus
-			box-shadow: 0 0 10px rgba(nth($themes-background-colors, $i), 0.4)
+	&:active, &:focus
+		box-shadow: 0 0 10px rgba(nth($themes-background-colors, $i), 0.4)
+
+	@include placeholder
+		color: nth($themes-colors, $i)
 
 
 
-
-
-
-	.#{$row-class}
-		margin-bottom: $base-line-height-comp
-
-	select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-		-webkit-appearance: none
-		@include form-input-setter
-		
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include theme-input-setter($i)
-			@else
-				&.#{$theme}
-					@include theme-input-setter($i)
-
-		@include placeholder
-			font-weight: 200
-
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			&.#{$size}
-				font-size: nth($base-sizes-values, $i) * 100%
-				vertical-align: middle
-
+@mixin forms-theme-select-setter($i)
+	border: 1px solid nth($themes-border-colors, $i)
+	background: rgba(nth($themes-background-light-colors, $i), .3) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat
+	background-position-x: 97%
+	background-position-y: center
 	
-	input[type="radio"], input[type="checkbox"]
-		margin: 4px 0 0
-		margin-top: 1px \9
-		line-height: normal
-
-		& + label
-			width: auto
-			display: inline-block
+	&:active, &:focus
+		box-shadow: 0 0 10px rgba(nth($themes-background-colors, $i), 0.4)
 
 
-	select
-		@each $theme in $themes
-			$i: index($themes, $theme)
+
+@include exports("forms/inputs")
+	form
+
+
+
+
+
+
+
+		.#{$row-class}
+			margin-bottom: $base-line-height-comp
+
+
+		select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+			-webkit-appearance: none
+			@include forms-input-setter
 			
-			@if $theme == "-default-"
-				@include theme-select-setter($i)
-				&.#{$theme}
-					@include theme-select-setter($i)
-			@else
-				&.#{$theme}
-					@include theme-select-setter($i)
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
+					@include forms-theme-input-setter($i)
+				@else
+					&.#{$theme}
+						@include forms-theme-input-setter($i)
+
+			@include placeholder
+				font-weight: 200
+
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				&.#{$size}
+					font-size: nth($base-sizes-values, $i) * 100%
+					vertical-align: middle
+
 		
-		border-radius: 0
+		input[type="radio"], input[type="checkbox"]
+			margin: 0
+			margin-top: 1px \9
+			line-height: normal
+			vertical-align: middle
 
-	label
-		display: block
-		@include form-input-setter
-		border: 1px solid transparent
-		padding-left: 0
-		cursor: $form-label-cursor
-		font-weight: $form-label-font-weight
+			& + label
+				width: auto
+				display: inline-block
+				vertical-align: middle
+				padding: 0
 
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			&.#{$size}
-				font-size: nth($base-sizes-values, $i) * 100%
 
-		@include text-overflow
+		select
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
+					@include forms-theme-select-setter($i)
+					&.#{$theme}
+						@include forms-theme-select-setter($i)
+				@else
+					&.#{$theme}
+						@include forms-theme-select-setter($i)
+			
+			border-radius: 0
+
+		label
+			display: block
+			@include forms-input-setter
+			border: 1px solid transparent
+			padding-left: 0
+			cursor: $form-label-cursor
+			font-weight: $form-label-font-weight
+
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				&.#{$size}
+					font-size: nth($base-sizes-values, $i) * 100%
+
+			@include text-overflow
+			white-space: normal
+
+
+	@include media(new-breakpoint(max-width 992px 6))
+		[class^="#{$column-class}"]
+			margin-bottom: $form-column-margin-bottom

@@ -2,3 +2,15 @@
 	overflow: hidden
 	text-overflow: ellipsis
 	white-space: nowrap
+
+
+
+@mixin base-theme-append( $theme-class, $theme-color, $theme-white-color, $theme-border-color, $theme-border-light-color, $theme-background-color, $theme-background-light-color,  $theme-background-dark-color )
+	$themes: append($themes, $theme-class)
+	$themes-colors: append($themes-colors, $theme-color)
+	$themes-white-colors: append($themes-white-colors, $theme-white-color)
+	$themes-border-colors: append($themes-border-colors, $theme-border-color)
+	$themes-border-light-colors: append($themes-border-light-colors, $theme-border-light-color)
+	$themes-background-colors: append($themes-background-colors, $theme-background-color)
+	$themes-background-light-colors: append($themes-background-light-colors, $theme-background-light-color)
+	$themes-background-dark-colors: append($themes-background-dark-colors, $theme-background-dark-color)

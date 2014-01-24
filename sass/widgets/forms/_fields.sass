@@ -1,30 +1,33 @@
-form
-	.#{$form-field-class}
+@mixin forms-theme-field-setter($i)
+	border-color: nth($themes-border-light-colors, $i)
 
-		border-width: $form-field-border-width
-		border-style: solid
-		border-radius: $form-field-border-radius
-
-		@mixin theme-field-setter($i)
-			border-color: nth($themes-border-light-colors, $i)
-
-			select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-				&:active, &:focus
-					box-shadow: 0 0 15px rgba(nth($themes-background-colors, $i), 0.6)
-
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include theme-field-setter($i)
-			@else
-				&.#{$theme}
-					@include theme-field-setter($i)
-
-					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"].#{$theme}
+	select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+		&:active, &:focus
+			box-shadow: 0 0 15px rgba(nth($themes-background-colors, $i), 0.6)
 
 
-	// To align fields and labels
-	label.#{$mod-horizontal}
-		padding: $base-padding-vertical + $form-field-border-width + 1 $base-padding-horizontal
+@include exports("forms/fields")
+	form
+		.#{$form-field-class}
+
+			border-width: $form-field-border-width
+			border-style: solid
+			border-radius: $form-field-border-radius
+
+
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
+					@include forms-theme-field-setter($i)
+				@else
+					&.#{$theme}
+						@include forms-theme-field-setter($i)
+
+						select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+							@extend input[type="text"].#{$theme}
+
+
+		// To align fields and labels
+		label.#{$mod-horizontal}
+			padding: $base-padding-vertical + $form-field-border-width + 1 $base-padding-horizontal
