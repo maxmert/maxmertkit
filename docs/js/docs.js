@@ -11,6 +11,10 @@ widgets = [
 			{
 				"name": "inputs",
 				"path": "groups/inputs"
+			},
+			{
+				"name": "addons",
+				"path": "groups/addons"
 			}
 		]
 	}

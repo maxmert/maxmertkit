@@ -1,7 +1,7 @@
 @mixin forms-input-setter
 	font-family: $form-input-font-family
 	font-size: $base-font-size
-	font-size: $base-line-height
+	line-height: $base-line-height
 	padding: $base-padding-vertical $base-padding-horizontal
 	margin: 0
 	border-radius: $form-input-border-radius
@@ -48,6 +48,7 @@
 
 		select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
 			-webkit-appearance: none
+			vertical-align: middle
 			@include forms-input-setter
 			
 			@each $theme in $themes
@@ -55,18 +56,23 @@
 				
 				@if $theme == "-default-"
 					@include forms-theme-input-setter($i)
-				@else
-					&.#{$theme}
-						@include forms-theme-input-setter($i)
+
+				&.#{$theme}
+					@include forms-theme-input-setter($i)
 
 			@include placeholder
 				font-weight: 200
 
 			@each $size in $base-sizes-names
 				$i: index($base-sizes-names, $size)
+				@if #{$size} == "_normal"
+					font-size: $base-font-size
+
 				&.#{$size}
-					font-size: nth($base-sizes-values, $i) * 100%
-					vertical-align: middle
+					@if #{$size} != "_normal"
+						font-size: nth($base-sizes-values, $i) * $base-font-size
+					@else
+						font-size: $base-font-size
 
 		
 		input[type="radio"], input[type="checkbox"]
@@ -107,7 +113,7 @@
 			@each $size in $base-sizes-names
 				$i: index($base-sizes-names, $size)
 				&.#{$size}
-					font-size: nth($base-sizes-values, $i) * 100%
+					font-size: nth($base-sizes-values, $i) * $base-font-size
 
 			@include text-overflow
 			white-space: normal

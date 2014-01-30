@@ -20,12 +20,24 @@
 				
 				@if $theme == "-default-"
 					@include forms-theme-field-setter($i)
-				@else
-					&.#{$theme}
-						@include forms-theme-field-setter($i)
 
+				&.#{$theme}
+					@include forms-theme-field-setter($i)
+
+					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+						@extend input[type="text"].#{$theme}
+
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				
+				// @if #{$size} == "_normal"
+				// 	select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+				// 		@extend input[type="text"].#{$size}
+					
+				&.#{$size}
+					@if #{$size} != "_normal"
 						select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-							@extend input[type="text"].#{$theme}
+							@extend input[type="text"].#{$size}
 
 
 		// To align fields and labels

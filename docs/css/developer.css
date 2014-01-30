@@ -119,7 +119,7 @@ pre .chunk {
 
 .example-block .example, .example-block .view {
   padding: 15px !important; }
-.example-block .view .-btn {
+.example-block .view .-btn, .example-block .view .-group {
   margin: 5px 0; }
 .example-block .example {
   border: none;
