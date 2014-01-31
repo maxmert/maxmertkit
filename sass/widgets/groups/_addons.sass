@@ -1,6 +1,8 @@
 @mixin buttons-theme-addon-setter($i)
-	background-color: nth($themes-border-light-colors, $i)
+	background-color: lighten(nth($themes-border-light-colors, $i), 8%)
 	// @if nth($themes, $i) != "-default-"
+	// 	background-color: nth($themes-border-light-colors, $i)
+	// @else
 	// 	color: nth($themes-white-colors, $i)
 	// border: 1px solid nth($themes-border-colors, $i)
 	// @else
@@ -31,6 +33,7 @@
 		border: 1px solid transparent
 		white-space: nowrap
 		outline: none
+		@include text-overflow
 
 		// Set default size
 		padding: $base-padding-vertical $base-padding-horizontal
@@ -77,10 +80,11 @@
 				display: table-cell
 				width: 1%
 
-		@include media(new-breakpoint(max-width 992px 6))
-			.#{$group-addon-class}
-				display: table-cell
-				width: 1%
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width 992px 6))
+				.#{$group-addon-class}
+					display: table-cell
+					width: 1%
 
 		@each $size in $base-sizes-names
 			$i: index($base-sizes-names, $size)

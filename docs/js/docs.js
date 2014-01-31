@@ -17,6 +17,22 @@ widgets = [
 				"path": "groups/addons"
 			}
 		]
+	},
+
+	{
+		"name": "nav",
+		"path": "nav",
+
+		"include": [
+			{
+				"name": "tabs",
+				"path": "nav/tabs"
+			},
+			{
+				"name": "pills",
+				"path": "nav/pills"
+			}
+		]
 	}
 ]
 

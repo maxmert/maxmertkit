@@ -4,9 +4,10 @@
 
 		.#{$button-class}
 			
-			// border-radius: 0
 			vertical-align: top
-			margin: 0!important
+
+			&:not(:first-child), &:last-child
+				margin-left: -$button-border-width
 
 			&:not(:first-child):not(:last-child)
 				border-radius: 0
@@ -17,19 +18,16 @@
 			&:last-child:not(:first-child)
 				@include border-left-radius(0)
 
-			&:active, &.#{$mod-active}
-				box-shadow: inset 0 -15px 15px rgba(0,0,0,.1)
-
-
 		&.#{$mod-justify}
 			.#{$button-class}
 				display: table-cell
 				width: 1%
 
-		@include media(new-breakpoint(max-width 992px 6))
-			.#{$button-class}
-				display: table-cell
-				width: 1%
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width 992px 6))
+				.#{$button-class}
+					display: table-cell
+					width: 1%
 
 		@each $theme in $themes
 			$i: index($themes, $theme)

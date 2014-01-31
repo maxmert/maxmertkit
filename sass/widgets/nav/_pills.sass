@@ -1,0 +1,104 @@
+@mixin nav-theme-pills-setter($i)
+	#{$nav-item}
+
+		&:hover, &.#{$mod-hovered}
+			a				
+				background-color: nth($themes-background-light-colors, $i)
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+		
+		&.#{$mod-active}
+			a				
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+					background-color: nth($themes-background-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+					background-color: darken(nth($themes-background-light-colors, $i), 5%)
+
+
+		&.#{$mod-disabled}, &[disabled]
+			a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+				background: transparent
+				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+
+
+@mixin nav-theme-pill-setter($i)
+
+	#{$nav-item}.#{nth($themes, $i)}
+
+		&:hover, &.#{$mod-hovered}
+			a
+				
+				background-color: nth($themes-background-light-colors, $i)
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+		
+		&.#{$mod-active}
+			a
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+					background-color: nth($themes-background-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+					background-color: nth($themes-background-light-colors, $i)
+
+
+		&.#{$mod-disabled}, &[disabled]
+			a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+				background: transparent
+				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+
+
+
+@include exports("nav/pills")
+	.#{$nav-pills-class}
+		border: none
+
+		#{$nav-item}
+			float: left
+			margin-right: $nav-tabs-items-margin
+
+			a
+				padding: $nav-pills-items-padding-vertical $nav-pills-items-padding-horizontal
+				border-radius: $nav-pills-items-border-radius
+				border-width: $nav-pills-border-width
+				border-style: solid
+				border-color: transparent
+				white-space: nowrap
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+
+			&.#{$mod-active}
+				a
+					cursor: inherit
+
+
+		@include nav-setter
+
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include nav-theme-pills-setter($i)
+				&.#{$theme}
+					@include nav-theme-pills-setter($i)
+			@else
+				@include nav-theme-pill-setter($i)
+				&.#{$theme}
+					@include nav-theme-pills-setter($i)
+
+		&.#{$mod-vertical}
+			
+			#{$nav-item}
+				margin-right: 0
+				margin-bottom: $nav-tabs-items-margin
+				float: none

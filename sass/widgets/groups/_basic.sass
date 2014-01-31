@@ -10,8 +10,7 @@
 			display: table
 			width: 100%
 
-	
-	@include media(new-breakpoint(max-width 992px 6))
-		.#{$group-class}
-			display: table
-			width: 100%
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width 992px 6))
+				display: table
+				width: 100%

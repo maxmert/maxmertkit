@@ -28,10 +28,11 @@
 				display: table-cell
 				width: 100%
 
-		@include media(new-breakpoint(max-width 992px 6))
-			.#{$form-field-class}, select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-				display: table-cell
-				width: 100%
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width 992px 6))
+				.#{$form-field-class}, select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+					display: table-cell
+					width: 100%
 
 
 		@each $theme in $themes

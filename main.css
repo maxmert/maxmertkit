@@ -422,9 +422,11 @@ b._divine, strong._divine, i._divine, em._divine, small._divine, p._divine, span
 b.-default-, strong.-default-, i.-default-, em.-default-, small.-default-, p.-default-, span.-default- {
   color: black; }
 b.-primary-, strong.-primary-, i.-primary-, em.-primary-, small.-primary-, p.-primary-, span.-primary- {
-  color: #428bca; }
+  color: #3598db; }
 b.-error-, strong.-error-, i.-error-, em.-error-, small.-error-, p.-error-, span.-error- {
   color: #cd2c24; }
+b.-warning-, strong.-warning-, i.-warning-, em.-warning-, small.-warning-, p.-warning-, span.-warning- {
+  color: #ffc43e; }
 b._left_, strong._left_, i._left_, em._left_, small._left_, p._left_, span._left_ {
   text-align: left; }
 b._center_, strong._center_, i._center_, em._center_, small._center_, p._center_, span._center_ {
@@ -471,13 +473,17 @@ blockquote {
     blockquote.-default- small {
       color: black; }
   blockquote.-primary- {
-    border-color: #428bca; }
+    border-color: #3598db; }
     blockquote.-primary- small {
-      color: #428bca; }
+      color: #3598db; }
   blockquote.-error- {
     border-color: #cd2c24; }
     blockquote.-error- small {
       color: #cd2c24; }
+  blockquote.-warning- {
+    border-color: #ffc43e; }
+    blockquote.-warning- small {
+      color: #ffc43e; }
 
 ul, ol {
   margin-top: 0;
@@ -574,77 +580,95 @@ table, .-table {
     line-height: 1.42857;
     vertical-align: top; }
   .-table._horizontal_ > thead > tr > td, .-table._bordered_ > thead > tr > td, .-table._horizontal_ > tbody > tr > td, .-table._bordered_ > tbody > tr > td, .-table._horizontal_ > tfoot > tr > td, .-table._bordered_ > tfoot > tr > td {
-    border-top: 1px solid #cccccc; }
+    border-top: 1px solid #b3b3b3; }
   .-table._horizontal_ > thead > tr > th, .-table._bordered_ > thead > tr > th, .-table._horizontal_ > tbody > tr > th, .-table._bordered_ > tbody > tr > th, .-table._horizontal_ > tfoot > tr > th, .-table._bordered_ > tfoot > tr > th {
-    border-bottom: 2px solid #cccccc; }
+    border-bottom: 2px solid #b3b3b3; }
   .-table._horizontal_.-default- > thead > tr > td, .-default-.-table._bordered_ > thead > tr > td, .-table._horizontal_.-default- > tbody > tr > td, .-default-.-table._bordered_ > tbody > tr > td, .-table._horizontal_.-default- > tfoot > tr > td, .-default-.-table._bordered_ > tfoot > tr > td {
-    border-top: 1px solid #cccccc; }
+    border-top: 1px solid #b3b3b3; }
   .-table._horizontal_.-default- > thead > tr > th, .-default-.-table._bordered_ > thead > tr > th, .-table._horizontal_.-default- > tbody > tr > th, .-default-.-table._bordered_ > tbody > tr > th, .-table._horizontal_.-default- > tfoot > tr > th, .-default-.-table._bordered_ > tfoot > tr > th {
-    border-bottom: 2px solid #cccccc; }
+    border-bottom: 2px solid #b3b3b3; }
   .-table._horizontal_.-primary- > thead > tr > td, .-primary-.-table._bordered_ > thead > tr > td, .-table._horizontal_.-primary- > tbody > tr > td, .-primary-.-table._bordered_ > tbody > tr > td, .-table._horizontal_.-primary- > tfoot > tr > td, .-primary-.-table._bordered_ > tfoot > tr > td {
-    border-top: 1px solid #a3c8e8; }
+    border-top: 1px solid #3598db; }
   .-table._horizontal_.-primary- > thead > tr > th, .-primary-.-table._bordered_ > thead > tr > th, .-table._horizontal_.-primary- > tbody > tr > th, .-primary-.-table._bordered_ > tbody > tr > th, .-table._horizontal_.-primary- > tfoot > tr > th, .-primary-.-table._bordered_ > tfoot > tr > th {
-    border-bottom: 2px solid #a3c8e8; }
+    border-bottom: 2px solid #3598db; }
   .-table._horizontal_.-error- > thead > tr > td, .-error-.-table._bordered_ > thead > tr > td, .-table._horizontal_.-error- > tbody > tr > td, .-error-.-table._bordered_ > tbody > tr > td, .-table._horizontal_.-error- > tfoot > tr > td, .-error-.-table._bordered_ > tfoot > tr > td {
     border-top: 1px solid #cd2c24; }
   .-table._horizontal_.-error- > thead > tr > th, .-error-.-table._bordered_ > thead > tr > th, .-table._horizontal_.-error- > tbody > tr > th, .-error-.-table._bordered_ > tbody > tr > th, .-table._horizontal_.-error- > tfoot > tr > th, .-error-.-table._bordered_ > tfoot > tr > th {
     border-bottom: 2px solid #cd2c24; }
+  .-table._horizontal_.-warning- > thead > tr > td, .-warning-.-table._bordered_ > thead > tr > td, .-table._horizontal_.-warning- > tbody > tr > td, .-warning-.-table._bordered_ > tbody > tr > td, .-table._horizontal_.-warning- > tfoot > tr > td, .-warning-.-table._bordered_ > tfoot > tr > td {
+    border-top: 1px solid #ffc43e; }
+  .-table._horizontal_.-warning- > thead > tr > th, .-warning-.-table._bordered_ > thead > tr > th, .-table._horizontal_.-warning- > tbody > tr > th, .-warning-.-table._bordered_ > tbody > tr > th, .-table._horizontal_.-warning- > tfoot > tr > th, .-warning-.-table._bordered_ > tfoot > tr > th {
+    border-bottom: 2px solid #ffc43e; }
   .-table._vertical_ > thead > tr > td, .-table._bordered_ > thead > tr > td, .-table._vertical_ > thead > tr > th, .-table._bordered_ > thead > tr > th, .-table._vertical_ > tbody > tr > td, .-table._bordered_ > tbody > tr > td, .-table._vertical_ > tbody > tr > th, .-table._bordered_ > tbody > tr > th, .-table._vertical_ > tfoot > tr > td, .-table._bordered_ > tfoot > tr > td, .-table._vertical_ > tfoot > tr > th, .-table._bordered_ > tfoot > tr > th {
-    border-right: 1px solid #cccccc; }
+    border-right: 1px solid #b3b3b3; }
     .-table._vertical_ > thead > tr > td:last-child, .-table._bordered_ > thead > tr > td:last-child, .-table._vertical_ > thead > tr > th:last-child, .-table._bordered_ > thead > tr > th:last-child, .-table._vertical_ > tbody > tr > td:last-child, .-table._bordered_ > tbody > tr > td:last-child, .-table._vertical_ > tbody > tr > th:last-child, .-table._bordered_ > tbody > tr > th:last-child, .-table._vertical_ > tfoot > tr > td:last-child, .-table._bordered_ > tfoot > tr > td:last-child, .-table._vertical_ > tfoot > tr > th:last-child, .-table._bordered_ > tfoot > tr > th:last-child {
       border-right: none; }
   .-table._vertical_.-default- > thead > tr > td, .-default-.-table._bordered_ > thead > tr > td, .-table._vertical_.-default- > thead > tr > th, .-default-.-table._bordered_ > thead > tr > th, .-table._vertical_.-default- > tbody > tr > td, .-default-.-table._bordered_ > tbody > tr > td, .-table._vertical_.-default- > tbody > tr > th, .-default-.-table._bordered_ > tbody > tr > th, .-table._vertical_.-default- > tfoot > tr > td, .-default-.-table._bordered_ > tfoot > tr > td, .-table._vertical_.-default- > tfoot > tr > th, .-default-.-table._bordered_ > tfoot > tr > th {
-    border-right: 1px solid #cccccc; }
+    border-right: 1px solid #b3b3b3; }
     .-table._vertical_.-default- > thead > tr > td:last-child, .-default-.-table._bordered_ > thead > tr > td:last-child, .-table._vertical_.-default- > thead > tr > th:last-child, .-default-.-table._bordered_ > thead > tr > th:last-child, .-table._vertical_.-default- > tbody > tr > td:last-child, .-default-.-table._bordered_ > tbody > tr > td:last-child, .-table._vertical_.-default- > tbody > tr > th:last-child, .-default-.-table._bordered_ > tbody > tr > th:last-child, .-table._vertical_.-default- > tfoot > tr > td:last-child, .-default-.-table._bordered_ > tfoot > tr > td:last-child, .-table._vertical_.-default- > tfoot > tr > th:last-child, .-default-.-table._bordered_ > tfoot > tr > th:last-child {
       border-right: none; }
   .-table._vertical_.-primary- > thead > tr > td, .-primary-.-table._bordered_ > thead > tr > td, .-table._vertical_.-primary- > thead > tr > th, .-primary-.-table._bordered_ > thead > tr > th, .-table._vertical_.-primary- > tbody > tr > td, .-primary-.-table._bordered_ > tbody > tr > td, .-table._vertical_.-primary- > tbody > tr > th, .-primary-.-table._bordered_ > tbody > tr > th, .-table._vertical_.-primary- > tfoot > tr > td, .-primary-.-table._bordered_ > tfoot > tr > td, .-table._vertical_.-primary- > tfoot > tr > th, .-primary-.-table._bordered_ > tfoot > tr > th {
-    border-right: 1px solid #a3c8e8; }
+    border-right: 1px solid #3598db; }
     .-table._vertical_.-primary- > thead > tr > td:last-child, .-primary-.-table._bordered_ > thead > tr > td:last-child, .-table._vertical_.-primary- > thead > tr > th:last-child, .-primary-.-table._bordered_ > thead > tr > th:last-child, .-table._vertical_.-primary- > tbody > tr > td:last-child, .-primary-.-table._bordered_ > tbody > tr > td:last-child, .-table._vertical_.-primary- > tbody > tr > th:last-child, .-primary-.-table._bordered_ > tbody > tr > th:last-child, .-table._vertical_.-primary- > tfoot > tr > td:last-child, .-primary-.-table._bordered_ > tfoot > tr > td:last-child, .-table._vertical_.-primary- > tfoot > tr > th:last-child, .-primary-.-table._bordered_ > tfoot > tr > th:last-child {
       border-right: none; }
   .-table._vertical_.-error- > thead > tr > td, .-error-.-table._bordered_ > thead > tr > td, .-table._vertical_.-error- > thead > tr > th, .-error-.-table._bordered_ > thead > tr > th, .-table._vertical_.-error- > tbody > tr > td, .-error-.-table._bordered_ > tbody > tr > td, .-table._vertical_.-error- > tbody > tr > th, .-error-.-table._bordered_ > tbody > tr > th, .-table._vertical_.-error- > tfoot > tr > td, .-error-.-table._bordered_ > tfoot > tr > td, .-table._vertical_.-error- > tfoot > tr > th, .-error-.-table._bordered_ > tfoot > tr > th {
     border-right: 1px solid #cd2c24; }
     .-table._vertical_.-error- > thead > tr > td:last-child, .-error-.-table._bordered_ > thead > tr > td:last-child, .-table._vertical_.-error- > thead > tr > th:last-child, .-error-.-table._bordered_ > thead > tr > th:last-child, .-table._vertical_.-error- > tbody > tr > td:last-child, .-error-.-table._bordered_ > tbody > tr > td:last-child, .-table._vertical_.-error- > tbody > tr > th:last-child, .-error-.-table._bordered_ > tbody > tr > th:last-child, .-table._vertical_.-error- > tfoot > tr > td:last-child, .-error-.-table._bordered_ > tfoot > tr > td:last-child, .-table._vertical_.-error- > tfoot > tr > th:last-child, .-error-.-table._bordered_ > tfoot > tr > th:last-child {
       border-right: none; }
+  .-table._vertical_.-warning- > thead > tr > td, .-warning-.-table._bordered_ > thead > tr > td, .-table._vertical_.-warning- > thead > tr > th, .-warning-.-table._bordered_ > thead > tr > th, .-table._vertical_.-warning- > tbody > tr > td, .-warning-.-table._bordered_ > tbody > tr > td, .-table._vertical_.-warning- > tbody > tr > th, .-warning-.-table._bordered_ > tbody > tr > th, .-table._vertical_.-warning- > tfoot > tr > td, .-warning-.-table._bordered_ > tfoot > tr > td, .-table._vertical_.-warning- > tfoot > tr > th, .-warning-.-table._bordered_ > tfoot > tr > th {
+    border-right: 1px solid #ffc43e; }
+    .-table._vertical_.-warning- > thead > tr > td:last-child, .-warning-.-table._bordered_ > thead > tr > td:last-child, .-table._vertical_.-warning- > thead > tr > th:last-child, .-warning-.-table._bordered_ > thead > tr > th:last-child, .-table._vertical_.-warning- > tbody > tr > td:last-child, .-warning-.-table._bordered_ > tbody > tr > td:last-child, .-table._vertical_.-warning- > tbody > tr > th:last-child, .-warning-.-table._bordered_ > tbody > tr > th:last-child, .-table._vertical_.-warning- > tfoot > tr > td:last-child, .-warning-.-table._bordered_ > tfoot > tr > td:last-child, .-table._vertical_.-warning- > tfoot > tr > th:last-child, .-warning-.-table._bordered_ > tfoot > tr > th:last-child {
+      border-right: none; }
   .-table._bordered_ > thead, .-table._bordered_ > tbody, .-table._bordered_ > tfoot {
-    border: 1px solid #cccccc; }
+    border: 1px solid #b3b3b3; }
   .-table._bordered_.-default- > thead, .-table._bordered_.-default- > tbody, .-table._bordered_.-default- > tfoot {
-    border: 1px solid #cccccc; }
+    border: 1px solid #b3b3b3; }
   .-table._bordered_.-primary- > thead, .-table._bordered_.-primary- > tbody, .-table._bordered_.-primary- > tfoot {
-    border: 1px solid #a3c8e8; }
+    border: 1px solid #3598db; }
   .-table._bordered_.-error- > thead, .-table._bordered_.-error- > tbody, .-table._bordered_.-error- > tfoot {
     border: 1px solid #cd2c24; }
+  .-table._bordered_.-warning- > thead, .-table._bordered_.-warning- > tbody, .-table._bordered_.-warning- > tfoot {
+    border: 1px solid #ffc43e; }
 
 .-table._striped_ > thead > tr:nth-child(odd) > td, .-table._striped_ > tbody > tr:nth-child(odd) > td, .-table._striped_ > tfoot > tr:nth-child(odd) > td {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table._striped_.-default- > thead > tr:nth-child(odd) > td, .-table._striped_.-default- > tbody > tr:nth-child(odd) > td, .-table._striped_.-default- > tfoot > tr:nth-child(odd) > td {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table._striped_.-primary- > thead > tr:nth-child(odd) > td, .-table._striped_.-primary- > tbody > tr:nth-child(odd) > td, .-table._striped_.-primary- > tfoot > tr:nth-child(odd) > td {
-  background-color: #b9d5ec; }
+  background-color: #60aee3; }
 .-table._striped_.-error- > thead > tr:nth-child(odd) > td, .-table._striped_.-error- > tbody > tr:nth-child(odd) > td, .-table._striped_.-error- > tfoot > tr:nth-child(odd) > td {
-  background-color: #f2836b; }
+  background-color: #de4d46; }
+.-table._striped_.-warning- > thead > tr:nth-child(odd) > td, .-table._striped_.-warning- > tbody > tr:nth-child(odd) > td, .-table._striped_.-warning- > tfoot > tr:nth-child(odd) > td {
+  background-color: #ffd471; }
 
 .-table._hovered_ > thead > tr:hover > td, .-table._hovered_ > tbody > tr:hover > td, .-table._hovered_ > tfoot > tr:hover > td {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table._hovered_.-default- > thead > tr:hover > td, .-table._hovered_.-default- > tbody > tr:hover > td, .-table._hovered_.-default- > tfoot > tr:hover > td {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table._hovered_.-primary- > thead > tr:hover > td, .-table._hovered_.-primary- > tbody > tr:hover > td, .-table._hovered_.-primary- > tfoot > tr:hover > td {
-  background-color: #b9d5ec; }
+  background-color: #60aee3; }
 .-table._hovered_.-error- > thead > tr:hover > td, .-table._hovered_.-error- > tbody > tr:hover > td, .-table._hovered_.-error- > tfoot > tr:hover > td {
-  background-color: #f2836b; }
+  background-color: #de4d46; }
+.-table._hovered_.-warning- > thead > tr:hover > td, .-table._hovered_.-warning- > tbody > tr:hover > td, .-table._hovered_.-warning- > tfoot > tr:hover > td {
+  background-color: #ffd471; }
 
 .-table > thead > tr.-default- > td, .-table > tbody > tr.-default- > td, .-table > tfoot > tr.-default- > td {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table > thead > tr.-primary- > td, .-table > tbody > tr.-primary- > td, .-table > tfoot > tr.-primary- > td {
-  background-color: #b9d5ec; }
+  background-color: #60aee3; }
 .-table > thead > tr.-error- > td, .-table > tbody > tr.-error- > td, .-table > tfoot > tr.-error- > td {
-  background-color: #f2836b; }
+  background-color: #de4d46; }
+.-table > thead > tr.-warning- > td, .-table > tbody > tr.-warning- > td, .-table > tfoot > tr.-warning- > td {
+  background-color: #ffd471; }
 
 .-table > thead > tr > td.-default-, .-table > tbody > tr > td.-default-, .-table > tfoot > tr > td.-default- {
-  background-color: #f4f4f4; }
+  background-color: #f7f7f7; }
 .-table > thead > tr > td.-primary-, .-table > tbody > tr > td.-primary-, .-table > tfoot > tr > td.-primary- {
-  background-color: #b9d5ec; }
+  background-color: #60aee3; }
 .-table > thead > tr > td.-error-, .-table > tbody > tr > td.-error-, .-table > tfoot > tr > td.-error- {
-  background-color: #f2836b; }
+  background-color: #de4d46; }
+.-table > thead > tr > td.-warning-, .-table > tbody > tr > td.-warning-, .-table > tfoot > tr > td.-warning- {
+  background-color: #ffd471; }
 
 form .-row, form fieldset {
   margin-bottom: 20.0px; }
@@ -662,7 +686,7 @@ form select, form input[type="text"], form input[type="password"], form input[ty
   box-sizing: border-box;
   outline: none;
   width: 100%;
-  border: 1px solid #cccccc;
+  border: 1px solid #b3b3b3;
   font-size: 14px;
   font-size: 14px;
   font-size: 14px;
@@ -673,51 +697,63 @@ form select, form input[type="text"], form input[type="password"], form input[ty
   font-size: 14px;
   font-size: 14px; }
   form select:active, form select:focus, form input[type="text"]:active, form input[type="text"]:focus, form input[type="password"]:active, form input[type="password"]:focus, form input[type="date"]:active, form input[type="date"]:focus, form input[type="datetime"]:active, form input[type="datetime"]:focus, form input[type="datetime-local"]:active, form input[type="datetime-local"]:focus, form input[type="month"]:active, form input[type="month"]:focus, form input[type="week"]:active, form input[type="week"]:focus, form input[type="email"]:active, form input[type="email"]:focus, form input[type="number"]:active, form input[type="number"]:focus, form input[type="search"]:active, form input[type="search"]:focus, form input[type="tel"]:active, form input[type="tel"]:focus, form input[type="time"]:active, form input[type="time"]:focus, form input[type="url"]:active, form input[type="url"]:focus, form textarea:active, form textarea:focus {
-    box-shadow: 0 0 10px rgba(204, 204, 204, 0.4); }
+    box-shadow: 0 0 10px rgba(217, 217, 217, 0.4); }
   form select::-webkit-input-placeholder, form input[type="text"]::-webkit-input-placeholder, form input[type="password"]::-webkit-input-placeholder, form input[type="date"]::-webkit-input-placeholder, form input[type="datetime"]::-webkit-input-placeholder, form input[type="datetime-local"]::-webkit-input-placeholder, form input[type="month"]::-webkit-input-placeholder, form input[type="week"]::-webkit-input-placeholder, form input[type="email"]::-webkit-input-placeholder, form input[type="number"]::-webkit-input-placeholder, form input[type="search"]::-webkit-input-placeholder, form input[type="tel"]::-webkit-input-placeholder, form input[type="time"]::-webkit-input-placeholder, form input[type="url"]::-webkit-input-placeholder, form textarea::-webkit-input-placeholder {
-    color: black; }
+    color: #404040; }
   form select::-moz-placeholder, form input[type="text"]::-moz-placeholder, form input[type="password"]::-moz-placeholder, form input[type="date"]::-moz-placeholder, form input[type="datetime"]::-moz-placeholder, form input[type="datetime-local"]::-moz-placeholder, form input[type="month"]::-moz-placeholder, form input[type="week"]::-moz-placeholder, form input[type="email"]::-moz-placeholder, form input[type="number"]::-moz-placeholder, form input[type="search"]::-moz-placeholder, form input[type="tel"]::-moz-placeholder, form input[type="time"]::-moz-placeholder, form input[type="url"]::-moz-placeholder, form textarea::-moz-placeholder {
-    color: black; }
+    color: #404040; }
   form select:-moz-placeholder, form input[type="text"]:-moz-placeholder, form input[type="password"]:-moz-placeholder, form input[type="date"]:-moz-placeholder, form input[type="datetime"]:-moz-placeholder, form input[type="datetime-local"]:-moz-placeholder, form input[type="month"]:-moz-placeholder, form input[type="week"]:-moz-placeholder, form input[type="email"]:-moz-placeholder, form input[type="number"]:-moz-placeholder, form input[type="search"]:-moz-placeholder, form input[type="tel"]:-moz-placeholder, form input[type="time"]:-moz-placeholder, form input[type="url"]:-moz-placeholder, form textarea:-moz-placeholder {
-    color: black; }
+    color: #404040; }
   form select:-ms-input-placeholder, form input[type="text"]:-ms-input-placeholder, form input[type="password"]:-ms-input-placeholder, form input[type="date"]:-ms-input-placeholder, form input[type="datetime"]:-ms-input-placeholder, form input[type="datetime-local"]:-ms-input-placeholder, form input[type="month"]:-ms-input-placeholder, form input[type="week"]:-ms-input-placeholder, form input[type="email"]:-ms-input-placeholder, form input[type="number"]:-ms-input-placeholder, form input[type="search"]:-ms-input-placeholder, form input[type="tel"]:-ms-input-placeholder, form input[type="time"]:-ms-input-placeholder, form input[type="url"]:-ms-input-placeholder, form textarea:-ms-input-placeholder {
-    color: black; }
+    color: #404040; }
   form select.-default-, form input[type="text"].-default-, form .-field.-default- select, form .-group.-default- .-field select, .-group.-default- form .-field select, form .-field.-default- input[type="text"], form .-field.-default- input[type="password"], form .-field.-default- input[type="date"], form .-field.-default- input[type="datetime"], form .-field.-default- input[type="datetime-local"], form .-field.-default- input[type="month"], form .-field.-default- input[type="week"], form .-field.-default- input[type="email"], form .-field.-default- input[type="number"], form .-field.-default- input[type="search"], form .-field.-default- input[type="tel"], form .-field.-default- input[type="time"], form .-field.-default- input[type="url"], form .-field.-default- textarea, form .-group.-default- .-field textarea, .-group.-default- form .-field textarea, form .-group.-default- select, .-group.-default- form select, form .-group.-default- input[type="text"], .-group.-default- form input[type="text"], form .-group.-default- input[type="password"], .-group.-default- form input[type="password"], form .-group.-default- input[type="date"], .-group.-default- form input[type="date"], form .-group.-default- input[type="datetime"], .-group.-default- form input[type="datetime"], form .-group.-default- input[type="datetime-local"], .-group.-default- form input[type="datetime-local"], form .-group.-default- input[type="month"], .-group.-default- form input[type="month"], form .-group.-default- input[type="week"], .-group.-default- form input[type="week"], form .-group.-default- input[type="email"], .-group.-default- form input[type="email"], form .-group.-default- input[type="number"], .-group.-default- form input[type="number"], form .-group.-default- input[type="search"], .-group.-default- form input[type="search"], form .-group.-default- input[type="tel"], .-group.-default- form input[type="tel"], form .-group.-default- input[type="time"], .-group.-default- form input[type="time"], form .-group.-default- input[type="url"], .-group.-default- form input[type="url"], form .-group.-default- textarea, .-group.-default- form textarea, form input[type="password"].-default-, form input[type="date"].-default-, form input[type="datetime"].-default-, form input[type="datetime-local"].-default-, form input[type="month"].-default-, form input[type="week"].-default-, form input[type="email"].-default-, form input[type="number"].-default-, form input[type="search"].-default-, form input[type="tel"].-default-, form input[type="time"].-default-, form input[type="url"].-default-, form textarea.-default- {
-    border: 1px solid #cccccc; }
+    border: 1px solid #b3b3b3; }
     form select.-default-:active, form select.-default-:focus, form input[type="text"].-default-:active, form .-field.-default- select:active, form .-field.-default- input[type="text"]:active, form .-field.-default- input[type="password"]:active, form .-field.-default- input[type="date"]:active, form .-field.-default- input[type="datetime"]:active, form .-field.-default- input[type="datetime-local"]:active, form .-field.-default- input[type="month"]:active, form .-field.-default- input[type="week"]:active, form .-field.-default- input[type="email"]:active, form .-field.-default- input[type="number"]:active, form .-field.-default- input[type="search"]:active, form .-field.-default- input[type="tel"]:active, form .-field.-default- input[type="time"]:active, form .-field.-default- input[type="url"]:active, form .-field.-default- textarea:active, form .-group.-default- select:active, .-group.-default- form select:active, form .-group.-default- input[type="text"]:active, .-group.-default- form input[type="text"]:active, form .-group.-default- input[type="password"]:active, .-group.-default- form input[type="password"]:active, form .-group.-default- input[type="date"]:active, .-group.-default- form input[type="date"]:active, form .-group.-default- input[type="datetime"]:active, .-group.-default- form input[type="datetime"]:active, form .-group.-default- input[type="datetime-local"]:active, .-group.-default- form input[type="datetime-local"]:active, form .-group.-default- input[type="month"]:active, .-group.-default- form input[type="month"]:active, form .-group.-default- input[type="week"]:active, .-group.-default- form input[type="week"]:active, form .-group.-default- input[type="email"]:active, .-group.-default- form input[type="email"]:active, form .-group.-default- input[type="number"]:active, .-group.-default- form input[type="number"]:active, form .-group.-default- input[type="search"]:active, .-group.-default- form input[type="search"]:active, form .-group.-default- input[type="tel"]:active, .-group.-default- form input[type="tel"]:active, form .-group.-default- input[type="time"]:active, .-group.-default- form input[type="time"]:active, form .-group.-default- input[type="url"]:active, .-group.-default- form input[type="url"]:active, form .-group.-default- textarea:active, .-group.-default- form textarea:active, form input[type="text"].-default-:focus, form .-field.-default- select:focus, form .-field.-default- input[type="text"]:focus, form .-field.-default- input[type="password"]:focus, form .-field.-default- input[type="date"]:focus, form .-field.-default- input[type="datetime"]:focus, form .-field.-default- input[type="datetime-local"]:focus, form .-field.-default- input[type="month"]:focus, form .-field.-default- input[type="week"]:focus, form .-field.-default- input[type="email"]:focus, form .-field.-default- input[type="number"]:focus, form .-field.-default- input[type="search"]:focus, form .-field.-default- input[type="tel"]:focus, form .-field.-default- input[type="time"]:focus, form .-field.-default- input[type="url"]:focus, form .-field.-default- textarea:focus, form .-group.-default- select:focus, .-group.-default- form select:focus, form .-group.-default- input[type="text"]:focus, .-group.-default- form input[type="text"]:focus, form .-group.-default- input[type="password"]:focus, .-group.-default- form input[type="password"]:focus, form .-group.-default- input[type="date"]:focus, .-group.-default- form input[type="date"]:focus, form .-group.-default- input[type="datetime"]:focus, .-group.-default- form input[type="datetime"]:focus, form .-group.-default- input[type="datetime-local"]:focus, .-group.-default- form input[type="datetime-local"]:focus, form .-group.-default- input[type="month"]:focus, .-group.-default- form input[type="month"]:focus, form .-group.-default- input[type="week"]:focus, .-group.-default- form input[type="week"]:focus, form .-group.-default- input[type="email"]:focus, .-group.-default- form input[type="email"]:focus, form .-group.-default- input[type="number"]:focus, .-group.-default- form input[type="number"]:focus, form .-group.-default- input[type="search"]:focus, .-group.-default- form input[type="search"]:focus, form .-group.-default- input[type="tel"]:focus, .-group.-default- form input[type="tel"]:focus, form .-group.-default- input[type="time"]:focus, .-group.-default- form input[type="time"]:focus, form .-group.-default- input[type="url"]:focus, .-group.-default- form input[type="url"]:focus, form .-group.-default- textarea:focus, .-group.-default- form textarea:focus, form input[type="password"].-default-:active, form input[type="password"].-default-:focus, form input[type="date"].-default-:active, form input[type="date"].-default-:focus, form input[type="datetime"].-default-:active, form input[type="datetime"].-default-:focus, form input[type="datetime-local"].-default-:active, form input[type="datetime-local"].-default-:focus, form input[type="month"].-default-:active, form input[type="month"].-default-:focus, form input[type="week"].-default-:active, form input[type="week"].-default-:focus, form input[type="email"].-default-:active, form input[type="email"].-default-:focus, form input[type="number"].-default-:active, form input[type="number"].-default-:focus, form input[type="search"].-default-:active, form input[type="search"].-default-:focus, form input[type="tel"].-default-:active, form input[type="tel"].-default-:focus, form input[type="time"].-default-:active, form input[type="time"].-default-:focus, form input[type="url"].-default-:active, form input[type="url"].-default-:focus, form textarea.-default-:active, form textarea.-default-:focus {
-      box-shadow: 0 0 10px rgba(204, 204, 204, 0.4); }
+      box-shadow: 0 0 10px rgba(217, 217, 217, 0.4); }
     form select.-default-::-webkit-input-placeholder, form input[type="text"].-default-::-webkit-input-placeholder, form .-field.-default- select::-webkit-input-placeholder, form .-group.-default- .-field select::-webkit-input-placeholder, .-group.-default- form .-field select::-webkit-input-placeholder, form .-field.-default- input[type="text"]::-webkit-input-placeholder, form .-field.-default- input[type="password"]::-webkit-input-placeholder, form .-field.-default- input[type="date"]::-webkit-input-placeholder, form .-field.-default- input[type="datetime"]::-webkit-input-placeholder, form .-field.-default- input[type="datetime-local"]::-webkit-input-placeholder, form .-field.-default- input[type="month"]::-webkit-input-placeholder, form .-field.-default- input[type="week"]::-webkit-input-placeholder, form .-field.-default- input[type="email"]::-webkit-input-placeholder, form .-field.-default- input[type="number"]::-webkit-input-placeholder, form .-field.-default- input[type="search"]::-webkit-input-placeholder, form .-field.-default- input[type="tel"]::-webkit-input-placeholder, form .-field.-default- input[type="time"]::-webkit-input-placeholder, form .-field.-default- input[type="url"]::-webkit-input-placeholder, form .-field.-default- textarea::-webkit-input-placeholder, form .-group.-default- .-field textarea::-webkit-input-placeholder, .-group.-default- form .-field textarea::-webkit-input-placeholder, form .-group.-default- select::-webkit-input-placeholder, .-group.-default- form select::-webkit-input-placeholder, form .-group.-default- input[type="text"]::-webkit-input-placeholder, .-group.-default- form input[type="text"]::-webkit-input-placeholder, form .-group.-default- input[type="password"]::-webkit-input-placeholder, .-group.-default- form input[type="password"]::-webkit-input-placeholder, form .-group.-default- input[type="date"]::-webkit-input-placeholder, .-group.-default- form input[type="date"]::-webkit-input-placeholder, form .-group.-default- input[type="datetime"]::-webkit-input-placeholder, .-group.-default- form input[type="datetime"]::-webkit-input-placeholder, form .-group.-default- input[type="datetime-local"]::-webkit-input-placeholder, .-group.-default- form input[type="datetime-local"]::-webkit-input-placeholder, form .-group.-default- input[type="month"]::-webkit-input-placeholder, .-group.-default- form input[type="month"]::-webkit-input-placeholder, form .-group.-default- input[type="week"]::-webkit-input-placeholder, .-group.-default- form input[type="week"]::-webkit-input-placeholder, form .-group.-default- input[type="email"]::-webkit-input-placeholder, .-group.-default- form input[type="email"]::-webkit-input-placeholder, form .-group.-default- input[type="number"]::-webkit-input-placeholder, .-group.-default- form input[type="number"]::-webkit-input-placeholder, form .-group.-default- input[type="search"]::-webkit-input-placeholder, .-group.-default- form input[type="search"]::-webkit-input-placeholder, form .-group.-default- input[type="tel"]::-webkit-input-placeholder, .-group.-default- form input[type="tel"]::-webkit-input-placeholder, form .-group.-default- input[type="time"]::-webkit-input-placeholder, .-group.-default- form input[type="time"]::-webkit-input-placeholder, form .-group.-default- input[type="url"]::-webkit-input-placeholder, .-group.-default- form input[type="url"]::-webkit-input-placeholder, form .-group.-default- textarea::-webkit-input-placeholder, .-group.-default- form textarea::-webkit-input-placeholder, form input[type="password"].-default-::-webkit-input-placeholder, form input[type="date"].-default-::-webkit-input-placeholder, form input[type="datetime"].-default-::-webkit-input-placeholder, form input[type="datetime-local"].-default-::-webkit-input-placeholder, form input[type="month"].-default-::-webkit-input-placeholder, form input[type="week"].-default-::-webkit-input-placeholder, form input[type="email"].-default-::-webkit-input-placeholder, form input[type="number"].-default-::-webkit-input-placeholder, form input[type="search"].-default-::-webkit-input-placeholder, form input[type="tel"].-default-::-webkit-input-placeholder, form input[type="time"].-default-::-webkit-input-placeholder, form input[type="url"].-default-::-webkit-input-placeholder, form textarea.-default-::-webkit-input-placeholder {
-      color: black; }
+      color: #404040; }
     form select.-default-::-moz-placeholder, form input[type="text"].-default-::-moz-placeholder, form .-field.-default- select::-moz-placeholder, form .-group.-default- .-field select::-moz-placeholder, .-group.-default- form .-field select::-moz-placeholder, form .-field.-default- input[type="text"]::-moz-placeholder, form .-field.-default- input[type="password"]::-moz-placeholder, form .-field.-default- input[type="date"]::-moz-placeholder, form .-field.-default- input[type="datetime"]::-moz-placeholder, form .-field.-default- input[type="datetime-local"]::-moz-placeholder, form .-field.-default- input[type="month"]::-moz-placeholder, form .-field.-default- input[type="week"]::-moz-placeholder, form .-field.-default- input[type="email"]::-moz-placeholder, form .-field.-default- input[type="number"]::-moz-placeholder, form .-field.-default- input[type="search"]::-moz-placeholder, form .-field.-default- input[type="tel"]::-moz-placeholder, form .-field.-default- input[type="time"]::-moz-placeholder, form .-field.-default- input[type="url"]::-moz-placeholder, form .-field.-default- textarea::-moz-placeholder, form .-group.-default- .-field textarea::-moz-placeholder, .-group.-default- form .-field textarea::-moz-placeholder, form .-group.-default- select::-moz-placeholder, .-group.-default- form select::-moz-placeholder, form .-group.-default- input[type="text"]::-moz-placeholder, .-group.-default- form input[type="text"]::-moz-placeholder, form .-group.-default- input[type="password"]::-moz-placeholder, .-group.-default- form input[type="password"]::-moz-placeholder, form .-group.-default- input[type="date"]::-moz-placeholder, .-group.-default- form input[type="date"]::-moz-placeholder, form .-group.-default- input[type="datetime"]::-moz-placeholder, .-group.-default- form input[type="datetime"]::-moz-placeholder, form .-group.-default- input[type="datetime-local"]::-moz-placeholder, .-group.-default- form input[type="datetime-local"]::-moz-placeholder, form .-group.-default- input[type="month"]::-moz-placeholder, .-group.-default- form input[type="month"]::-moz-placeholder, form .-group.-default- input[type="week"]::-moz-placeholder, .-group.-default- form input[type="week"]::-moz-placeholder, form .-group.-default- input[type="email"]::-moz-placeholder, .-group.-default- form input[type="email"]::-moz-placeholder, form .-group.-default- input[type="number"]::-moz-placeholder, .-group.-default- form input[type="number"]::-moz-placeholder, form .-group.-default- input[type="search"]::-moz-placeholder, .-group.-default- form input[type="search"]::-moz-placeholder, form .-group.-default- input[type="tel"]::-moz-placeholder, .-group.-default- form input[type="tel"]::-moz-placeholder, form .-group.-default- input[type="time"]::-moz-placeholder, .-group.-default- form input[type="time"]::-moz-placeholder, form .-group.-default- input[type="url"]::-moz-placeholder, .-group.-default- form input[type="url"]::-moz-placeholder, form .-group.-default- textarea::-moz-placeholder, .-group.-default- form textarea::-moz-placeholder, form input[type="password"].-default-::-moz-placeholder, form input[type="date"].-default-::-moz-placeholder, form input[type="datetime"].-default-::-moz-placeholder, form input[type="datetime-local"].-default-::-moz-placeholder, form input[type="month"].-default-::-moz-placeholder, form input[type="week"].-default-::-moz-placeholder, form input[type="email"].-default-::-moz-placeholder, form input[type="number"].-default-::-moz-placeholder, form input[type="search"].-default-::-moz-placeholder, form input[type="tel"].-default-::-moz-placeholder, form input[type="time"].-default-::-moz-placeholder, form input[type="url"].-default-::-moz-placeholder, form textarea.-default-::-moz-placeholder {
-      color: black; }
+      color: #404040; }
     form select.-default-:-moz-placeholder, form input[type="text"].-default-:-moz-placeholder, form .-field.-default- select:-moz-placeholder, form .-field.-default- input[type="text"]:-moz-placeholder, form .-field.-default- input[type="password"]:-moz-placeholder, form .-field.-default- input[type="date"]:-moz-placeholder, form .-field.-default- input[type="datetime"]:-moz-placeholder, form .-field.-default- input[type="datetime-local"]:-moz-placeholder, form .-field.-default- input[type="month"]:-moz-placeholder, form .-field.-default- input[type="week"]:-moz-placeholder, form .-field.-default- input[type="email"]:-moz-placeholder, form .-field.-default- input[type="number"]:-moz-placeholder, form .-field.-default- input[type="search"]:-moz-placeholder, form .-field.-default- input[type="tel"]:-moz-placeholder, form .-field.-default- input[type="time"]:-moz-placeholder, form .-field.-default- input[type="url"]:-moz-placeholder, form .-field.-default- textarea:-moz-placeholder, form .-group.-default- select:-moz-placeholder, .-group.-default- form select:-moz-placeholder, form .-group.-default- input[type="text"]:-moz-placeholder, .-group.-default- form input[type="text"]:-moz-placeholder, form .-group.-default- input[type="password"]:-moz-placeholder, .-group.-default- form input[type="password"]:-moz-placeholder, form .-group.-default- input[type="date"]:-moz-placeholder, .-group.-default- form input[type="date"]:-moz-placeholder, form .-group.-default- input[type="datetime"]:-moz-placeholder, .-group.-default- form input[type="datetime"]:-moz-placeholder, form .-group.-default- input[type="datetime-local"]:-moz-placeholder, .-group.-default- form input[type="datetime-local"]:-moz-placeholder, form .-group.-default- input[type="month"]:-moz-placeholder, .-group.-default- form input[type="month"]:-moz-placeholder, form .-group.-default- input[type="week"]:-moz-placeholder, .-group.-default- form input[type="week"]:-moz-placeholder, form .-group.-default- input[type="email"]:-moz-placeholder, .-group.-default- form input[type="email"]:-moz-placeholder, form .-group.-default- input[type="number"]:-moz-placeholder, .-group.-default- form input[type="number"]:-moz-placeholder, form .-group.-default- input[type="search"]:-moz-placeholder, .-group.-default- form input[type="search"]:-moz-placeholder, form .-group.-default- input[type="tel"]:-moz-placeholder, .-group.-default- form input[type="tel"]:-moz-placeholder, form .-group.-default- input[type="time"]:-moz-placeholder, .-group.-default- form input[type="time"]:-moz-placeholder, form .-group.-default- input[type="url"]:-moz-placeholder, .-group.-default- form input[type="url"]:-moz-placeholder, form .-group.-default- textarea:-moz-placeholder, .-group.-default- form textarea:-moz-placeholder, form input[type="password"].-default-:-moz-placeholder, form input[type="date"].-default-:-moz-placeholder, form input[type="datetime"].-default-:-moz-placeholder, form input[type="datetime-local"].-default-:-moz-placeholder, form input[type="month"].-default-:-moz-placeholder, form input[type="week"].-default-:-moz-placeholder, form input[type="email"].-default-:-moz-placeholder, form input[type="number"].-default-:-moz-placeholder, form input[type="search"].-default-:-moz-placeholder, form input[type="tel"].-default-:-moz-placeholder, form input[type="time"].-default-:-moz-placeholder, form input[type="url"].-default-:-moz-placeholder, form textarea.-default-:-moz-placeholder {
-      color: black; }
+      color: #404040; }
     form select.-default-:-ms-input-placeholder, form input[type="text"].-default-:-ms-input-placeholder, form .-field.-default- select:-ms-input-placeholder, form .-field.-default- input[type="text"]:-ms-input-placeholder, form .-field.-default- input[type="password"]:-ms-input-placeholder, form .-field.-default- input[type="date"]:-ms-input-placeholder, form .-field.-default- input[type="datetime"]:-ms-input-placeholder, form .-field.-default- input[type="datetime-local"]:-ms-input-placeholder, form .-field.-default- input[type="month"]:-ms-input-placeholder, form .-field.-default- input[type="week"]:-ms-input-placeholder, form .-field.-default- input[type="email"]:-ms-input-placeholder, form .-field.-default- input[type="number"]:-ms-input-placeholder, form .-field.-default- input[type="search"]:-ms-input-placeholder, form .-field.-default- input[type="tel"]:-ms-input-placeholder, form .-field.-default- input[type="time"]:-ms-input-placeholder, form .-field.-default- input[type="url"]:-ms-input-placeholder, form .-field.-default- textarea:-ms-input-placeholder, form .-group.-default- select:-ms-input-placeholder, .-group.-default- form select:-ms-input-placeholder, form .-group.-default- input[type="text"]:-ms-input-placeholder, .-group.-default- form input[type="text"]:-ms-input-placeholder, form .-group.-default- input[type="password"]:-ms-input-placeholder, .-group.-default- form input[type="password"]:-ms-input-placeholder, form .-group.-default- input[type="date"]:-ms-input-placeholder, .-group.-default- form input[type="date"]:-ms-input-placeholder, form .-group.-default- input[type="datetime"]:-ms-input-placeholder, .-group.-default- form input[type="datetime"]:-ms-input-placeholder, form .-group.-default- input[type="datetime-local"]:-ms-input-placeholder, .-group.-default- form input[type="datetime-local"]:-ms-input-placeholder, form .-group.-default- input[type="month"]:-ms-input-placeholder, .-group.-default- form input[type="month"]:-ms-input-placeholder, form .-group.-default- input[type="week"]:-ms-input-placeholder, .-group.-default- form input[type="week"]:-ms-input-placeholder, form .-group.-default- input[type="email"]:-ms-input-placeholder, .-group.-default- form input[type="email"]:-ms-input-placeholder, form .-group.-default- input[type="number"]:-ms-input-placeholder, .-group.-default- form input[type="number"]:-ms-input-placeholder, form .-group.-default- input[type="search"]:-ms-input-placeholder, .-group.-default- form input[type="search"]:-ms-input-placeholder, form .-group.-default- input[type="tel"]:-ms-input-placeholder, .-group.-default- form input[type="tel"]:-ms-input-placeholder, form .-group.-default- input[type="time"]:-ms-input-placeholder, .-group.-default- form input[type="time"]:-ms-input-placeholder, form .-group.-default- input[type="url"]:-ms-input-placeholder, .-group.-default- form input[type="url"]:-ms-input-placeholder, form .-group.-default- textarea:-ms-input-placeholder, .-group.-default- form textarea:-ms-input-placeholder, form input[type="password"].-default-:-ms-input-placeholder, form input[type="date"].-default-:-ms-input-placeholder, form input[type="datetime"].-default-:-ms-input-placeholder, form input[type="datetime-local"].-default-:-ms-input-placeholder, form input[type="month"].-default-:-ms-input-placeholder, form input[type="week"].-default-:-ms-input-placeholder, form input[type="email"].-default-:-ms-input-placeholder, form input[type="number"].-default-:-ms-input-placeholder, form input[type="search"].-default-:-ms-input-placeholder, form input[type="tel"].-default-:-ms-input-placeholder, form input[type="time"].-default-:-ms-input-placeholder, form input[type="url"].-default-:-ms-input-placeholder, form textarea.-default-:-ms-input-placeholder {
-      color: black; }
+      color: #404040; }
   form select.-primary-, form input[type="text"].-primary-, form .-field.-primary- select, form .-group.-primary- .-field select, .-group.-primary- form .-field select, form .-field.-primary- input[type="text"], form .-field.-primary- input[type="password"], form .-field.-primary- input[type="date"], form .-field.-primary- input[type="datetime"], form .-field.-primary- input[type="datetime-local"], form .-field.-primary- input[type="month"], form .-field.-primary- input[type="week"], form .-field.-primary- input[type="email"], form .-field.-primary- input[type="number"], form .-field.-primary- input[type="search"], form .-field.-primary- input[type="tel"], form .-field.-primary- input[type="time"], form .-field.-primary- input[type="url"], form .-field.-primary- textarea, form .-group.-primary- .-field textarea, .-group.-primary- form .-field textarea, form .-group.-primary- select, .-group.-primary- form select, form .-group.-primary- input[type="text"], .-group.-primary- form input[type="text"], form .-group.-primary- input[type="password"], .-group.-primary- form input[type="password"], form .-group.-primary- input[type="date"], .-group.-primary- form input[type="date"], form .-group.-primary- input[type="datetime"], .-group.-primary- form input[type="datetime"], form .-group.-primary- input[type="datetime-local"], .-group.-primary- form input[type="datetime-local"], form .-group.-primary- input[type="month"], .-group.-primary- form input[type="month"], form .-group.-primary- input[type="week"], .-group.-primary- form input[type="week"], form .-group.-primary- input[type="email"], .-group.-primary- form input[type="email"], form .-group.-primary- input[type="number"], .-group.-primary- form input[type="number"], form .-group.-primary- input[type="search"], .-group.-primary- form input[type="search"], form .-group.-primary- input[type="tel"], .-group.-primary- form input[type="tel"], form .-group.-primary- input[type="time"], .-group.-primary- form input[type="time"], form .-group.-primary- input[type="url"], .-group.-primary- form input[type="url"], form .-group.-primary- textarea, .-group.-primary- form textarea, form input[type="password"].-primary-, form input[type="date"].-primary-, form input[type="datetime"].-primary-, form input[type="datetime-local"].-primary-, form input[type="month"].-primary-, form input[type="week"].-primary-, form input[type="email"].-primary-, form input[type="number"].-primary-, form input[type="search"].-primary-, form input[type="tel"].-primary-, form input[type="time"].-primary-, form input[type="url"].-primary-, form textarea.-primary- {
-    border: 1px solid #a3c8e8; }
+    border: 1px solid #3598db; }
     form select.-primary-:active, form select.-primary-:focus, form input[type="text"].-primary-:active, form .-field.-primary- select:active, form .-field.-primary- input[type="text"]:active, form .-field.-primary- input[type="password"]:active, form .-field.-primary- input[type="date"]:active, form .-field.-primary- input[type="datetime"]:active, form .-field.-primary- input[type="datetime-local"]:active, form .-field.-primary- input[type="month"]:active, form .-field.-primary- input[type="week"]:active, form .-field.-primary- input[type="email"]:active, form .-field.-primary- input[type="number"]:active, form .-field.-primary- input[type="search"]:active, form .-field.-primary- input[type="tel"]:active, form .-field.-primary- input[type="time"]:active, form .-field.-primary- input[type="url"]:active, form .-field.-primary- textarea:active, form .-group.-primary- select:active, .-group.-primary- form select:active, form .-group.-primary- input[type="text"]:active, .-group.-primary- form input[type="text"]:active, form .-group.-primary- input[type="password"]:active, .-group.-primary- form input[type="password"]:active, form .-group.-primary- input[type="date"]:active, .-group.-primary- form input[type="date"]:active, form .-group.-primary- input[type="datetime"]:active, .-group.-primary- form input[type="datetime"]:active, form .-group.-primary- input[type="datetime-local"]:active, .-group.-primary- form input[type="datetime-local"]:active, form .-group.-primary- input[type="month"]:active, .-group.-primary- form input[type="month"]:active, form .-group.-primary- input[type="week"]:active, .-group.-primary- form input[type="week"]:active, form .-group.-primary- input[type="email"]:active, .-group.-primary- form input[type="email"]:active, form .-group.-primary- input[type="number"]:active, .-group.-primary- form input[type="number"]:active, form .-group.-primary- input[type="search"]:active, .-group.-primary- form input[type="search"]:active, form .-group.-primary- input[type="tel"]:active, .-group.-primary- form input[type="tel"]:active, form .-group.-primary- input[type="time"]:active, .-group.-primary- form input[type="time"]:active, form .-group.-primary- input[type="url"]:active, .-group.-primary- form input[type="url"]:active, form .-group.-primary- textarea:active, .-group.-primary- form textarea:active, form input[type="text"].-primary-:focus, form .-field.-primary- select:focus, form .-field.-primary- input[type="text"]:focus, form .-field.-primary- input[type="password"]:focus, form .-field.-primary- input[type="date"]:focus, form .-field.-primary- input[type="datetime"]:focus, form .-field.-primary- input[type="datetime-local"]:focus, form .-field.-primary- input[type="month"]:focus, form .-field.-primary- input[type="week"]:focus, form .-field.-primary- input[type="email"]:focus, form .-field.-primary- input[type="number"]:focus, form .-field.-primary- input[type="search"]:focus, form .-field.-primary- input[type="tel"]:focus, form .-field.-primary- input[type="time"]:focus, form .-field.-primary- input[type="url"]:focus, form .-field.-primary- textarea:focus, form .-group.-primary- select:focus, .-group.-primary- form select:focus, form .-group.-primary- input[type="text"]:focus, .-group.-primary- form input[type="text"]:focus, form .-group.-primary- input[type="password"]:focus, .-group.-primary- form input[type="password"]:focus, form .-group.-primary- input[type="date"]:focus, .-group.-primary- form input[type="date"]:focus, form .-group.-primary- input[type="datetime"]:focus, .-group.-primary- form input[type="datetime"]:focus, form .-group.-primary- input[type="datetime-local"]:focus, .-group.-primary- form input[type="datetime-local"]:focus, form .-group.-primary- input[type="month"]:focus, .-group.-primary- form input[type="month"]:focus, form .-group.-primary- input[type="week"]:focus, .-group.-primary- form input[type="week"]:focus, form .-group.-primary- input[type="email"]:focus, .-group.-primary- form input[type="email"]:focus, form .-group.-primary- input[type="number"]:focus, .-group.-primary- form input[type="number"]:focus, form .-group.-primary- input[type="search"]:focus, .-group.-primary- form input[type="search"]:focus, form .-group.-primary- input[type="tel"]:focus, .-group.-primary- form input[type="tel"]:focus, form .-group.-primary- input[type="time"]:focus, .-group.-primary- form input[type="time"]:focus, form .-group.-primary- input[type="url"]:focus, .-group.-primary- form input[type="url"]:focus, form .-group.-primary- textarea:focus, .-group.-primary- form textarea:focus, form input[type="password"].-primary-:active, form input[type="password"].-primary-:focus, form input[type="date"].-primary-:active, form input[type="date"].-primary-:focus, form input[type="datetime"].-primary-:active, form input[type="datetime"].-primary-:focus, form input[type="datetime-local"].-primary-:active, form input[type="datetime-local"].-primary-:focus, form input[type="month"].-primary-:active, form input[type="month"].-primary-:focus, form input[type="week"].-primary-:active, form input[type="week"].-primary-:focus, form input[type="email"].-primary-:active, form input[type="email"].-primary-:focus, form input[type="number"].-primary-:active, form input[type="number"].-primary-:focus, form input[type="search"].-primary-:active, form input[type="search"].-primary-:focus, form input[type="tel"].-primary-:active, form input[type="tel"].-primary-:focus, form input[type="time"].-primary-:active, form input[type="time"].-primary-:focus, form input[type="url"].-primary-:active, form input[type="url"].-primary-:focus, form textarea.-primary-:active, form textarea.-primary-:focus {
-      box-shadow: 0 0 10px rgba(66, 139, 202, 0.4); }
+      box-shadow: 0 0 10px rgba(53, 152, 219, 0.4); }
     form select.-primary-::-webkit-input-placeholder, form input[type="text"].-primary-::-webkit-input-placeholder, form .-field.-primary- select::-webkit-input-placeholder, form .-group.-primary- .-field select::-webkit-input-placeholder, .-group.-primary- form .-field select::-webkit-input-placeholder, form .-field.-primary- input[type="text"]::-webkit-input-placeholder, form .-field.-primary- input[type="password"]::-webkit-input-placeholder, form .-field.-primary- input[type="date"]::-webkit-input-placeholder, form .-field.-primary- input[type="datetime"]::-webkit-input-placeholder, form .-field.-primary- input[type="datetime-local"]::-webkit-input-placeholder, form .-field.-primary- input[type="month"]::-webkit-input-placeholder, form .-field.-primary- input[type="week"]::-webkit-input-placeholder, form .-field.-primary- input[type="email"]::-webkit-input-placeholder, form .-field.-primary- input[type="number"]::-webkit-input-placeholder, form .-field.-primary- input[type="search"]::-webkit-input-placeholder, form .-field.-primary- input[type="tel"]::-webkit-input-placeholder, form .-field.-primary- input[type="time"]::-webkit-input-placeholder, form .-field.-primary- input[type="url"]::-webkit-input-placeholder, form .-field.-primary- textarea::-webkit-input-placeholder, form .-group.-primary- .-field textarea::-webkit-input-placeholder, .-group.-primary- form .-field textarea::-webkit-input-placeholder, form .-group.-primary- select::-webkit-input-placeholder, .-group.-primary- form select::-webkit-input-placeholder, form .-group.-primary- input[type="text"]::-webkit-input-placeholder, .-group.-primary- form input[type="text"]::-webkit-input-placeholder, form .-group.-primary- input[type="password"]::-webkit-input-placeholder, .-group.-primary- form input[type="password"]::-webkit-input-placeholder, form .-group.-primary- input[type="date"]::-webkit-input-placeholder, .-group.-primary- form input[type="date"]::-webkit-input-placeholder, form .-group.-primary- input[type="datetime"]::-webkit-input-placeholder, .-group.-primary- form input[type="datetime"]::-webkit-input-placeholder, form .-group.-primary- input[type="datetime-local"]::-webkit-input-placeholder, .-group.-primary- form input[type="datetime-local"]::-webkit-input-placeholder, form .-group.-primary- input[type="month"]::-webkit-input-placeholder, .-group.-primary- form input[type="month"]::-webkit-input-placeholder, form .-group.-primary- input[type="week"]::-webkit-input-placeholder, .-group.-primary- form input[type="week"]::-webkit-input-placeholder, form .-group.-primary- input[type="email"]::-webkit-input-placeholder, .-group.-primary- form input[type="email"]::-webkit-input-placeholder, form .-group.-primary- input[type="number"]::-webkit-input-placeholder, .-group.-primary- form input[type="number"]::-webkit-input-placeholder, form .-group.-primary- input[type="search"]::-webkit-input-placeholder, .-group.-primary- form input[type="search"]::-webkit-input-placeholder, form .-group.-primary- input[type="tel"]::-webkit-input-placeholder, .-group.-primary- form input[type="tel"]::-webkit-input-placeholder, form .-group.-primary- input[type="time"]::-webkit-input-placeholder, .-group.-primary- form input[type="time"]::-webkit-input-placeholder, form .-group.-primary- input[type="url"]::-webkit-input-placeholder, .-group.-primary- form input[type="url"]::-webkit-input-placeholder, form .-group.-primary- textarea::-webkit-input-placeholder, .-group.-primary- form textarea::-webkit-input-placeholder, form input[type="password"].-primary-::-webkit-input-placeholder, form input[type="date"].-primary-::-webkit-input-placeholder, form input[type="datetime"].-primary-::-webkit-input-placeholder, form input[type="datetime-local"].-primary-::-webkit-input-placeholder, form input[type="month"].-primary-::-webkit-input-placeholder, form input[type="week"].-primary-::-webkit-input-placeholder, form input[type="email"].-primary-::-webkit-input-placeholder, form input[type="number"].-primary-::-webkit-input-placeholder, form input[type="search"].-primary-::-webkit-input-placeholder, form input[type="tel"].-primary-::-webkit-input-placeholder, form input[type="time"].-primary-::-webkit-input-placeholder, form input[type="url"].-primary-::-webkit-input-placeholder, form textarea.-primary-::-webkit-input-placeholder {
-      color: #428bca; }
+      color: #a1cfee; }
     form select.-primary-::-moz-placeholder, form input[type="text"].-primary-::-moz-placeholder, form .-field.-primary- select::-moz-placeholder, form .-group.-primary- .-field select::-moz-placeholder, .-group.-primary- form .-field select::-moz-placeholder, form .-field.-primary- input[type="text"]::-moz-placeholder, form .-field.-primary- input[type="password"]::-moz-placeholder, form .-field.-primary- input[type="date"]::-moz-placeholder, form .-field.-primary- input[type="datetime"]::-moz-placeholder, form .-field.-primary- input[type="datetime-local"]::-moz-placeholder, form .-field.-primary- input[type="month"]::-moz-placeholder, form .-field.-primary- input[type="week"]::-moz-placeholder, form .-field.-primary- input[type="email"]::-moz-placeholder, form .-field.-primary- input[type="number"]::-moz-placeholder, form .-field.-primary- input[type="search"]::-moz-placeholder, form .-field.-primary- input[type="tel"]::-moz-placeholder, form .-field.-primary- input[type="time"]::-moz-placeholder, form .-field.-primary- input[type="url"]::-moz-placeholder, form .-field.-primary- textarea::-moz-placeholder, form .-group.-primary- .-field textarea::-moz-placeholder, .-group.-primary- form .-field textarea::-moz-placeholder, form .-group.-primary- select::-moz-placeholder, .-group.-primary- form select::-moz-placeholder, form .-group.-primary- input[type="text"]::-moz-placeholder, .-group.-primary- form input[type="text"]::-moz-placeholder, form .-group.-primary- input[type="password"]::-moz-placeholder, .-group.-primary- form input[type="password"]::-moz-placeholder, form .-group.-primary- input[type="date"]::-moz-placeholder, .-group.-primary- form input[type="date"]::-moz-placeholder, form .-group.-primary- input[type="datetime"]::-moz-placeholder, .-group.-primary- form input[type="datetime"]::-moz-placeholder, form .-group.-primary- input[type="datetime-local"]::-moz-placeholder, .-group.-primary- form input[type="datetime-local"]::-moz-placeholder, form .-group.-primary- input[type="month"]::-moz-placeholder, .-group.-primary- form input[type="month"]::-moz-placeholder, form .-group.-primary- input[type="week"]::-moz-placeholder, .-group.-primary- form input[type="week"]::-moz-placeholder, form .-group.-primary- input[type="email"]::-moz-placeholder, .-group.-primary- form input[type="email"]::-moz-placeholder, form .-group.-primary- input[type="number"]::-moz-placeholder, .-group.-primary- form input[type="number"]::-moz-placeholder, form .-group.-primary- input[type="search"]::-moz-placeholder, .-group.-primary- form input[type="search"]::-moz-placeholder, form .-group.-primary- input[type="tel"]::-moz-placeholder, .-group.-primary- form input[type="tel"]::-moz-placeholder, form .-group.-primary- input[type="time"]::-moz-placeholder, .-group.-primary- form input[type="time"]::-moz-placeholder, form .-group.-primary- input[type="url"]::-moz-placeholder, .-group.-primary- form input[type="url"]::-moz-placeholder, form .-group.-primary- textarea::-moz-placeholder, .-group.-primary- form textarea::-moz-placeholder, form input[type="password"].-primary-::-moz-placeholder, form input[type="date"].-primary-::-moz-placeholder, form input[type="datetime"].-primary-::-moz-placeholder, form input[type="datetime-local"].-primary-::-moz-placeholder, form input[type="month"].-primary-::-moz-placeholder, form input[type="week"].-primary-::-moz-placeholder, form input[type="email"].-primary-::-moz-placeholder, form input[type="number"].-primary-::-moz-placeholder, form input[type="search"].-primary-::-moz-placeholder, form input[type="tel"].-primary-::-moz-placeholder, form input[type="time"].-primary-::-moz-placeholder, form input[type="url"].-primary-::-moz-placeholder, form textarea.-primary-::-moz-placeholder {
-      color: #428bca; }
+      color: #a1cfee; }
     form select.-primary-:-moz-placeholder, form input[type="text"].-primary-:-moz-placeholder, form .-field.-primary- select:-moz-placeholder, form .-field.-primary- input[type="text"]:-moz-placeholder, form .-field.-primary- input[type="password"]:-moz-placeholder, form .-field.-primary- input[type="date"]:-moz-placeholder, form .-field.-primary- input[type="datetime"]:-moz-placeholder, form .-field.-primary- input[type="datetime-local"]:-moz-placeholder, form .-field.-primary- input[type="month"]:-moz-placeholder, form .-field.-primary- input[type="week"]:-moz-placeholder, form .-field.-primary- input[type="email"]:-moz-placeholder, form .-field.-primary- input[type="number"]:-moz-placeholder, form .-field.-primary- input[type="search"]:-moz-placeholder, form .-field.-primary- input[type="tel"]:-moz-placeholder, form .-field.-primary- input[type="time"]:-moz-placeholder, form .-field.-primary- input[type="url"]:-moz-placeholder, form .-field.-primary- textarea:-moz-placeholder, form .-group.-primary- select:-moz-placeholder, .-group.-primary- form select:-moz-placeholder, form .-group.-primary- input[type="text"]:-moz-placeholder, .-group.-primary- form input[type="text"]:-moz-placeholder, form .-group.-primary- input[type="password"]:-moz-placeholder, .-group.-primary- form input[type="password"]:-moz-placeholder, form .-group.-primary- input[type="date"]:-moz-placeholder, .-group.-primary- form input[type="date"]:-moz-placeholder, form .-group.-primary- input[type="datetime"]:-moz-placeholder, .-group.-primary- form input[type="datetime"]:-moz-placeholder, form .-group.-primary- input[type="datetime-local"]:-moz-placeholder, .-group.-primary- form input[type="datetime-local"]:-moz-placeholder, form .-group.-primary- input[type="month"]:-moz-placeholder, .-group.-primary- form input[type="month"]:-moz-placeholder, form .-group.-primary- input[type="week"]:-moz-placeholder, .-group.-primary- form input[type="week"]:-moz-placeholder, form .-group.-primary- input[type="email"]:-moz-placeholder, .-group.-primary- form input[type="email"]:-moz-placeholder, form .-group.-primary- input[type="number"]:-moz-placeholder, .-group.-primary- form input[type="number"]:-moz-placeholder, form .-group.-primary- input[type="search"]:-moz-placeholder, .-group.-primary- form input[type="search"]:-moz-placeholder, form .-group.-primary- input[type="tel"]:-moz-placeholder, .-group.-primary- form input[type="tel"]:-moz-placeholder, form .-group.-primary- input[type="time"]:-moz-placeholder, .-group.-primary- form input[type="time"]:-moz-placeholder, form .-group.-primary- input[type="url"]:-moz-placeholder, .-group.-primary- form input[type="url"]:-moz-placeholder, form .-group.-primary- textarea:-moz-placeholder, .-group.-primary- form textarea:-moz-placeholder, form input[type="password"].-primary-:-moz-placeholder, form input[type="date"].-primary-:-moz-placeholder, form input[type="datetime"].-primary-:-moz-placeholder, form input[type="datetime-local"].-primary-:-moz-placeholder, form input[type="month"].-primary-:-moz-placeholder, form input[type="week"].-primary-:-moz-placeholder, form input[type="email"].-primary-:-moz-placeholder, form input[type="number"].-primary-:-moz-placeholder, form input[type="search"].-primary-:-moz-placeholder, form input[type="tel"].-primary-:-moz-placeholder, form input[type="time"].-primary-:-moz-placeholder, form input[type="url"].-primary-:-moz-placeholder, form textarea.-primary-:-moz-placeholder {
-      color: #428bca; }
+      color: #a1cfee; }
     form select.-primary-:-ms-input-placeholder, form input[type="text"].-primary-:-ms-input-placeholder, form .-field.-primary- select:-ms-input-placeholder, form .-field.-primary- input[type="text"]:-ms-input-placeholder, form .-field.-primary- input[type="password"]:-ms-input-placeholder, form .-field.-primary- input[type="date"]:-ms-input-placeholder, form .-field.-primary- input[type="datetime"]:-ms-input-placeholder, form .-field.-primary- input[type="datetime-local"]:-ms-input-placeholder, form .-field.-primary- input[type="month"]:-ms-input-placeholder, form .-field.-primary- input[type="week"]:-ms-input-placeholder, form .-field.-primary- input[type="email"]:-ms-input-placeholder, form .-field.-primary- input[type="number"]:-ms-input-placeholder, form .-field.-primary- input[type="search"]:-ms-input-placeholder, form .-field.-primary- input[type="tel"]:-ms-input-placeholder, form .-field.-primary- input[type="time"]:-ms-input-placeholder, form .-field.-primary- input[type="url"]:-ms-input-placeholder, form .-field.-primary- textarea:-ms-input-placeholder, form .-group.-primary- select:-ms-input-placeholder, .-group.-primary- form select:-ms-input-placeholder, form .-group.-primary- input[type="text"]:-ms-input-placeholder, .-group.-primary- form input[type="text"]:-ms-input-placeholder, form .-group.-primary- input[type="password"]:-ms-input-placeholder, .-group.-primary- form input[type="password"]:-ms-input-placeholder, form .-group.-primary- input[type="date"]:-ms-input-placeholder, .-group.-primary- form input[type="date"]:-ms-input-placeholder, form .-group.-primary- input[type="datetime"]:-ms-input-placeholder, .-group.-primary- form input[type="datetime"]:-ms-input-placeholder, form .-group.-primary- input[type="datetime-local"]:-ms-input-placeholder, .-group.-primary- form input[type="datetime-local"]:-ms-input-placeholder, form .-group.-primary- input[type="month"]:-ms-input-placeholder, .-group.-primary- form input[type="month"]:-ms-input-placeholder, form .-group.-primary- input[type="week"]:-ms-input-placeholder, .-group.-primary- form input[type="week"]:-ms-input-placeholder, form .-group.-primary- input[type="email"]:-ms-input-placeholder, .-group.-primary- form input[type="email"]:-ms-input-placeholder, form .-group.-primary- input[type="number"]:-ms-input-placeholder, .-group.-primary- form input[type="number"]:-ms-input-placeholder, form .-group.-primary- input[type="search"]:-ms-input-placeholder, .-group.-primary- form input[type="search"]:-ms-input-placeholder, form .-group.-primary- input[type="tel"]:-ms-input-placeholder, .-group.-primary- form input[type="tel"]:-ms-input-placeholder, form .-group.-primary- input[type="time"]:-ms-input-placeholder, .-group.-primary- form input[type="time"]:-ms-input-placeholder, form .-group.-primary- input[type="url"]:-ms-input-placeholder, .-group.-primary- form input[type="url"]:-ms-input-placeholder, form .-group.-primary- textarea:-ms-input-placeholder, .-group.-primary- form textarea:-ms-input-placeholder, form input[type="password"].-primary-:-ms-input-placeholder, form input[type="date"].-primary-:-ms-input-placeholder, form input[type="datetime"].-primary-:-ms-input-placeholder, form input[type="datetime-local"].-primary-:-ms-input-placeholder, form input[type="month"].-primary-:-ms-input-placeholder, form input[type="week"].-primary-:-ms-input-placeholder, form input[type="email"].-primary-:-ms-input-placeholder, form input[type="number"].-primary-:-ms-input-placeholder, form input[type="search"].-primary-:-ms-input-placeholder, form input[type="tel"].-primary-:-ms-input-placeholder, form input[type="time"].-primary-:-ms-input-placeholder, form input[type="url"].-primary-:-ms-input-placeholder, form textarea.-primary-:-ms-input-placeholder {
-      color: #428bca; }
+      color: #a1cfee; }
   form select.-error-, form input[type="text"].-error-, form .-field.-error- select, form .-group.-error- .-field select, .-group.-error- form .-field select, form .-field.-error- input[type="text"], form .-field.-error- input[type="password"], form .-field.-error- input[type="date"], form .-field.-error- input[type="datetime"], form .-field.-error- input[type="datetime-local"], form .-field.-error- input[type="month"], form .-field.-error- input[type="week"], form .-field.-error- input[type="email"], form .-field.-error- input[type="number"], form .-field.-error- input[type="search"], form .-field.-error- input[type="tel"], form .-field.-error- input[type="time"], form .-field.-error- input[type="url"], form .-field.-error- textarea, form .-group.-error- .-field textarea, .-group.-error- form .-field textarea, form .-group.-error- select, .-group.-error- form select, form .-group.-error- input[type="text"], .-group.-error- form input[type="text"], form .-group.-error- input[type="password"], .-group.-error- form input[type="password"], form .-group.-error- input[type="date"], .-group.-error- form input[type="date"], form .-group.-error- input[type="datetime"], .-group.-error- form input[type="datetime"], form .-group.-error- input[type="datetime-local"], .-group.-error- form input[type="datetime-local"], form .-group.-error- input[type="month"], .-group.-error- form input[type="month"], form .-group.-error- input[type="week"], .-group.-error- form input[type="week"], form .-group.-error- input[type="email"], .-group.-error- form input[type="email"], form .-group.-error- input[type="number"], .-group.-error- form input[type="number"], form .-group.-error- input[type="search"], .-group.-error- form input[type="search"], form .-group.-error- input[type="tel"], .-group.-error- form input[type="tel"], form .-group.-error- input[type="time"], .-group.-error- form input[type="time"], form .-group.-error- input[type="url"], .-group.-error- form input[type="url"], form .-group.-error- textarea, .-group.-error- form textarea, form input[type="password"].-error-, form input[type="date"].-error-, form input[type="datetime"].-error-, form input[type="datetime-local"].-error-, form input[type="month"].-error-, form input[type="week"].-error-, form input[type="email"].-error-, form input[type="number"].-error-, form input[type="search"].-error-, form input[type="tel"].-error-, form input[type="time"].-error-, form input[type="url"].-error-, form textarea.-error- {
     border: 1px solid #cd2c24; }
     form select.-error-:active, form select.-error-:focus, form input[type="text"].-error-:active, form .-field.-error- select:active, form .-field.-error- input[type="text"]:active, form .-field.-error- input[type="password"]:active, form .-field.-error- input[type="date"]:active, form .-field.-error- input[type="datetime"]:active, form .-field.-error- input[type="datetime-local"]:active, form .-field.-error- input[type="month"]:active, form .-field.-error- input[type="week"]:active, form .-field.-error- input[type="email"]:active, form .-field.-error- input[type="number"]:active, form .-field.-error- input[type="search"]:active, form .-field.-error- input[type="tel"]:active, form .-field.-error- input[type="time"]:active, form .-field.-error- input[type="url"]:active, form .-field.-error- textarea:active, form .-group.-error- select:active, .-group.-error- form select:active, form .-group.-error- input[type="text"]:active, .-group.-error- form input[type="text"]:active, form .-group.-error- input[type="password"]:active, .-group.-error- form input[type="password"]:active, form .-group.-error- input[type="date"]:active, .-group.-error- form input[type="date"]:active, form .-group.-error- input[type="datetime"]:active, .-group.-error- form input[type="datetime"]:active, form .-group.-error- input[type="datetime-local"]:active, .-group.-error- form input[type="datetime-local"]:active, form .-group.-error- input[type="month"]:active, .-group.-error- form input[type="month"]:active, form .-group.-error- input[type="week"]:active, .-group.-error- form input[type="week"]:active, form .-group.-error- input[type="email"]:active, .-group.-error- form input[type="email"]:active, form .-group.-error- input[type="number"]:active, .-group.-error- form input[type="number"]:active, form .-group.-error- input[type="search"]:active, .-group.-error- form input[type="search"]:active, form .-group.-error- input[type="tel"]:active, .-group.-error- form input[type="tel"]:active, form .-group.-error- input[type="time"]:active, .-group.-error- form input[type="time"]:active, form .-group.-error- input[type="url"]:active, .-group.-error- form input[type="url"]:active, form .-group.-error- textarea:active, .-group.-error- form textarea:active, form input[type="text"].-error-:focus, form .-field.-error- select:focus, form .-field.-error- input[type="text"]:focus, form .-field.-error- input[type="password"]:focus, form .-field.-error- input[type="date"]:focus, form .-field.-error- input[type="datetime"]:focus, form .-field.-error- input[type="datetime-local"]:focus, form .-field.-error- input[type="month"]:focus, form .-field.-error- input[type="week"]:focus, form .-field.-error- input[type="email"]:focus, form .-field.-error- input[type="number"]:focus, form .-field.-error- input[type="search"]:focus, form .-field.-error- input[type="tel"]:focus, form .-field.-error- input[type="time"]:focus, form .-field.-error- input[type="url"]:focus, form .-field.-error- textarea:focus, form .-group.-error- select:focus, .-group.-error- form select:focus, form .-group.-error- input[type="text"]:focus, .-group.-error- form input[type="text"]:focus, form .-group.-error- input[type="password"]:focus, .-group.-error- form input[type="password"]:focus, form .-group.-error- input[type="date"]:focus, .-group.-error- form input[type="date"]:focus, form .-group.-error- input[type="datetime"]:focus, .-group.-error- form input[type="datetime"]:focus, form .-group.-error- input[type="datetime-local"]:focus, .-group.-error- form input[type="datetime-local"]:focus, form .-group.-error- input[type="month"]:focus, .-group.-error- form input[type="month"]:focus, form .-group.-error- input[type="week"]:focus, .-group.-error- form input[type="week"]:focus, form .-group.-error- input[type="email"]:focus, .-group.-error- form input[type="email"]:focus, form .-group.-error- input[type="number"]:focus, .-group.-error- form input[type="number"]:focus, form .-group.-error- input[type="search"]:focus, .-group.-error- form input[type="search"]:focus, form .-group.-error- input[type="tel"]:focus, .-group.-error- form input[type="tel"]:focus, form .-group.-error- input[type="time"]:focus, .-group.-error- form input[type="time"]:focus, form .-group.-error- input[type="url"]:focus, .-group.-error- form input[type="url"]:focus, form .-group.-error- textarea:focus, .-group.-error- form textarea:focus, form input[type="password"].-error-:active, form input[type="password"].-error-:focus, form input[type="date"].-error-:active, form input[type="date"].-error-:focus, form input[type="datetime"].-error-:active, form input[type="datetime"].-error-:focus, form input[type="datetime-local"].-error-:active, form input[type="datetime-local"].-error-:focus, form input[type="month"].-error-:active, form input[type="month"].-error-:focus, form input[type="week"].-error-:active, form input[type="week"].-error-:focus, form input[type="email"].-error-:active, form input[type="email"].-error-:focus, form input[type="number"].-error-:active, form input[type="number"].-error-:focus, form input[type="search"].-error-:active, form input[type="search"].-error-:focus, form input[type="tel"].-error-:active, form input[type="tel"].-error-:focus, form input[type="time"].-error-:active, form input[type="time"].-error-:focus, form input[type="url"].-error-:active, form input[type="url"].-error-:focus, form textarea.-error-:active, form textarea.-error-:focus {
-      box-shadow: 0 0 10px rgba(242, 89, 75, 0.4); }
+      box-shadow: 0 0 10px rgba(205, 44, 36, 0.4); }
     form select.-error-::-webkit-input-placeholder, form input[type="text"].-error-::-webkit-input-placeholder, form .-field.-error- select::-webkit-input-placeholder, form .-group.-error- .-field select::-webkit-input-placeholder, .-group.-error- form .-field select::-webkit-input-placeholder, form .-field.-error- input[type="text"]::-webkit-input-placeholder, form .-field.-error- input[type="password"]::-webkit-input-placeholder, form .-field.-error- input[type="date"]::-webkit-input-placeholder, form .-field.-error- input[type="datetime"]::-webkit-input-placeholder, form .-field.-error- input[type="datetime-local"]::-webkit-input-placeholder, form .-field.-error- input[type="month"]::-webkit-input-placeholder, form .-field.-error- input[type="week"]::-webkit-input-placeholder, form .-field.-error- input[type="email"]::-webkit-input-placeholder, form .-field.-error- input[type="number"]::-webkit-input-placeholder, form .-field.-error- input[type="search"]::-webkit-input-placeholder, form .-field.-error- input[type="tel"]::-webkit-input-placeholder, form .-field.-error- input[type="time"]::-webkit-input-placeholder, form .-field.-error- input[type="url"]::-webkit-input-placeholder, form .-field.-error- textarea::-webkit-input-placeholder, form .-group.-error- .-field textarea::-webkit-input-placeholder, .-group.-error- form .-field textarea::-webkit-input-placeholder, form .-group.-error- select::-webkit-input-placeholder, .-group.-error- form select::-webkit-input-placeholder, form .-group.-error- input[type="text"]::-webkit-input-placeholder, .-group.-error- form input[type="text"]::-webkit-input-placeholder, form .-group.-error- input[type="password"]::-webkit-input-placeholder, .-group.-error- form input[type="password"]::-webkit-input-placeholder, form .-group.-error- input[type="date"]::-webkit-input-placeholder, .-group.-error- form input[type="date"]::-webkit-input-placeholder, form .-group.-error- input[type="datetime"]::-webkit-input-placeholder, .-group.-error- form input[type="datetime"]::-webkit-input-placeholder, form .-group.-error- input[type="datetime-local"]::-webkit-input-placeholder, .-group.-error- form input[type="datetime-local"]::-webkit-input-placeholder, form .-group.-error- input[type="month"]::-webkit-input-placeholder, .-group.-error- form input[type="month"]::-webkit-input-placeholder, form .-group.-error- input[type="week"]::-webkit-input-placeholder, .-group.-error- form input[type="week"]::-webkit-input-placeholder, form .-group.-error- input[type="email"]::-webkit-input-placeholder, .-group.-error- form input[type="email"]::-webkit-input-placeholder, form .-group.-error- input[type="number"]::-webkit-input-placeholder, .-group.-error- form input[type="number"]::-webkit-input-placeholder, form .-group.-error- input[type="search"]::-webkit-input-placeholder, .-group.-error- form input[type="search"]::-webkit-input-placeholder, form .-group.-error- input[type="tel"]::-webkit-input-placeholder, .-group.-error- form input[type="tel"]::-webkit-input-placeholder, form .-group.-error- input[type="time"]::-webkit-input-placeholder, .-group.-error- form input[type="time"]::-webkit-input-placeholder, form .-group.-error- input[type="url"]::-webkit-input-placeholder, .-group.-error- form input[type="url"]::-webkit-input-placeholder, form .-group.-error- textarea::-webkit-input-placeholder, .-group.-error- form textarea::-webkit-input-placeholder, form input[type="password"].-error-::-webkit-input-placeholder, form input[type="date"].-error-::-webkit-input-placeholder, form input[type="datetime"].-error-::-webkit-input-placeholder, form input[type="datetime-local"].-error-::-webkit-input-placeholder, form input[type="month"].-error-::-webkit-input-placeholder, form input[type="week"].-error-::-webkit-input-placeholder, form input[type="email"].-error-::-webkit-input-placeholder, form input[type="number"].-error-::-webkit-input-placeholder, form input[type="search"].-error-::-webkit-input-placeholder, form input[type="tel"].-error-::-webkit-input-placeholder, form input[type="time"].-error-::-webkit-input-placeholder, form input[type="url"].-error-::-webkit-input-placeholder, form textarea.-error-::-webkit-input-placeholder {
-      color: #cd2c24; }
+      color: #ea8b87; }
     form select.-error-::-moz-placeholder, form input[type="text"].-error-::-moz-placeholder, form .-field.-error- select::-moz-placeholder, form .-group.-error- .-field select::-moz-placeholder, .-group.-error- form .-field select::-moz-placeholder, form .-field.-error- input[type="text"]::-moz-placeholder, form .-field.-error- input[type="password"]::-moz-placeholder, form .-field.-error- input[type="date"]::-moz-placeholder, form .-field.-error- input[type="datetime"]::-moz-placeholder, form .-field.-error- input[type="datetime-local"]::-moz-placeholder, form .-field.-error- input[type="month"]::-moz-placeholder, form .-field.-error- input[type="week"]::-moz-placeholder, form .-field.-error- input[type="email"]::-moz-placeholder, form .-field.-error- input[type="number"]::-moz-placeholder, form .-field.-error- input[type="search"]::-moz-placeholder, form .-field.-error- input[type="tel"]::-moz-placeholder, form .-field.-error- input[type="time"]::-moz-placeholder, form .-field.-error- input[type="url"]::-moz-placeholder, form .-field.-error- textarea::-moz-placeholder, form .-group.-error- .-field textarea::-moz-placeholder, .-group.-error- form .-field textarea::-moz-placeholder, form .-group.-error- select::-moz-placeholder, .-group.-error- form select::-moz-placeholder, form .-group.-error- input[type="text"]::-moz-placeholder, .-group.-error- form input[type="text"]::-moz-placeholder, form .-group.-error- input[type="password"]::-moz-placeholder, .-group.-error- form input[type="password"]::-moz-placeholder, form .-group.-error- input[type="date"]::-moz-placeholder, .-group.-error- form input[type="date"]::-moz-placeholder, form .-group.-error- input[type="datetime"]::-moz-placeholder, .-group.-error- form input[type="datetime"]::-moz-placeholder, form .-group.-error- input[type="datetime-local"]::-moz-placeholder, .-group.-error- form input[type="datetime-local"]::-moz-placeholder, form .-group.-error- input[type="month"]::-moz-placeholder, .-group.-error- form input[type="month"]::-moz-placeholder, form .-group.-error- input[type="week"]::-moz-placeholder, .-group.-error- form input[type="week"]::-moz-placeholder, form .-group.-error- input[type="email"]::-moz-placeholder, .-group.-error- form input[type="email"]::-moz-placeholder, form .-group.-error- input[type="number"]::-moz-placeholder, .-group.-error- form input[type="number"]::-moz-placeholder, form .-group.-error- input[type="search"]::-moz-placeholder, .-group.-error- form input[type="search"]::-moz-placeholder, form .-group.-error- input[type="tel"]::-moz-placeholder, .-group.-error- form input[type="tel"]::-moz-placeholder, form .-group.-error- input[type="time"]::-moz-placeholder, .-group.-error- form input[type="time"]::-moz-placeholder, form .-group.-error- input[type="url"]::-moz-placeholder, .-group.-error- form input[type="url"]::-moz-placeholder, form .-group.-error- textarea::-moz-placeholder, .-group.-error- form textarea::-moz-placeholder, form input[type="password"].-error-::-moz-placeholder, form input[type="date"].-error-::-moz-placeholder, form input[type="datetime"].-error-::-moz-placeholder, form input[type="datetime-local"].-error-::-moz-placeholder, form input[type="month"].-error-::-moz-placeholder, form input[type="week"].-error-::-moz-placeholder, form input[type="email"].-error-::-moz-placeholder, form input[type="number"].-error-::-moz-placeholder, form input[type="search"].-error-::-moz-placeholder, form input[type="tel"].-error-::-moz-placeholder, form input[type="time"].-error-::-moz-placeholder, form input[type="url"].-error-::-moz-placeholder, form textarea.-error-::-moz-placeholder {
-      color: #cd2c24; }
+      color: #ea8b87; }
     form select.-error-:-moz-placeholder, form input[type="text"].-error-:-moz-placeholder, form .-field.-error- select:-moz-placeholder, form .-field.-error- input[type="text"]:-moz-placeholder, form .-field.-error- input[type="password"]:-moz-placeholder, form .-field.-error- input[type="date"]:-moz-placeholder, form .-field.-error- input[type="datetime"]:-moz-placeholder, form .-field.-error- input[type="datetime-local"]:-moz-placeholder, form .-field.-error- input[type="month"]:-moz-placeholder, form .-field.-error- input[type="week"]:-moz-placeholder, form .-field.-error- input[type="email"]:-moz-placeholder, form .-field.-error- input[type="number"]:-moz-placeholder, form .-field.-error- input[type="search"]:-moz-placeholder, form .-field.-error- input[type="tel"]:-moz-placeholder, form .-field.-error- input[type="time"]:-moz-placeholder, form .-field.-error- input[type="url"]:-moz-placeholder, form .-field.-error- textarea:-moz-placeholder, form .-group.-error- select:-moz-placeholder, .-group.-error- form select:-moz-placeholder, form .-group.-error- input[type="text"]:-moz-placeholder, .-group.-error- form input[type="text"]:-moz-placeholder, form .-group.-error- input[type="password"]:-moz-placeholder, .-group.-error- form input[type="password"]:-moz-placeholder, form .-group.-error- input[type="date"]:-moz-placeholder, .-group.-error- form input[type="date"]:-moz-placeholder, form .-group.-error- input[type="datetime"]:-moz-placeholder, .-group.-error- form input[type="datetime"]:-moz-placeholder, form .-group.-error- input[type="datetime-local"]:-moz-placeholder, .-group.-error- form input[type="datetime-local"]:-moz-placeholder, form .-group.-error- input[type="month"]:-moz-placeholder, .-group.-error- form input[type="month"]:-moz-placeholder, form .-group.-error- input[type="week"]:-moz-placeholder, .-group.-error- form input[type="week"]:-moz-placeholder, form .-group.-error- input[type="email"]:-moz-placeholder, .-group.-error- form input[type="email"]:-moz-placeholder, form .-group.-error- input[type="number"]:-moz-placeholder, .-group.-error- form input[type="number"]:-moz-placeholder, form .-group.-error- input[type="search"]:-moz-placeholder, .-group.-error- form input[type="search"]:-moz-placeholder, form .-group.-error- input[type="tel"]:-moz-placeholder, .-group.-error- form input[type="tel"]:-moz-placeholder, form .-group.-error- input[type="time"]:-moz-placeholder, .-group.-error- form input[type="time"]:-moz-placeholder, form .-group.-error- input[type="url"]:-moz-placeholder, .-group.-error- form input[type="url"]:-moz-placeholder, form .-group.-error- textarea:-moz-placeholder, .-group.-error- form textarea:-moz-placeholder, form input[type="password"].-error-:-moz-placeholder, form input[type="date"].-error-:-moz-placeholder, form input[type="datetime"].-error-:-moz-placeholder, form input[type="datetime-local"].-error-:-moz-placeholder, form input[type="month"].-error-:-moz-placeholder, form input[type="week"].-error-:-moz-placeholder, form input[type="email"].-error-:-moz-placeholder, form input[type="number"].-error-:-moz-placeholder, form input[type="search"].-error-:-moz-placeholder, form input[type="tel"].-error-:-moz-placeholder, form input[type="time"].-error-:-moz-placeholder, form input[type="url"].-error-:-moz-placeholder, form textarea.-error-:-moz-placeholder {
-      color: #cd2c24; }
+      color: #ea8b87; }
     form select.-error-:-ms-input-placeholder, form input[type="text"].-error-:-ms-input-placeholder, form .-field.-error- select:-ms-input-placeholder, form .-field.-error- input[type="text"]:-ms-input-placeholder, form .-field.-error- input[type="password"]:-ms-input-placeholder, form .-field.-error- input[type="date"]:-ms-input-placeholder, form .-field.-error- input[type="datetime"]:-ms-input-placeholder, form .-field.-error- input[type="datetime-local"]:-ms-input-placeholder, form .-field.-error- input[type="month"]:-ms-input-placeholder, form .-field.-error- input[type="week"]:-ms-input-placeholder, form .-field.-error- input[type="email"]:-ms-input-placeholder, form .-field.-error- input[type="number"]:-ms-input-placeholder, form .-field.-error- input[type="search"]:-ms-input-placeholder, form .-field.-error- input[type="tel"]:-ms-input-placeholder, form .-field.-error- input[type="time"]:-ms-input-placeholder, form .-field.-error- input[type="url"]:-ms-input-placeholder, form .-field.-error- textarea:-ms-input-placeholder, form .-group.-error- select:-ms-input-placeholder, .-group.-error- form select:-ms-input-placeholder, form .-group.-error- input[type="text"]:-ms-input-placeholder, .-group.-error- form input[type="text"]:-ms-input-placeholder, form .-group.-error- input[type="password"]:-ms-input-placeholder, .-group.-error- form input[type="password"]:-ms-input-placeholder, form .-group.-error- input[type="date"]:-ms-input-placeholder, .-group.-error- form input[type="date"]:-ms-input-placeholder, form .-group.-error- input[type="datetime"]:-ms-input-placeholder, .-group.-error- form input[type="datetime"]:-ms-input-placeholder, form .-group.-error- input[type="datetime-local"]:-ms-input-placeholder, .-group.-error- form input[type="datetime-local"]:-ms-input-placeholder, form .-group.-error- input[type="month"]:-ms-input-placeholder, .-group.-error- form input[type="month"]:-ms-input-placeholder, form .-group.-error- input[type="week"]:-ms-input-placeholder, .-group.-error- form input[type="week"]:-ms-input-placeholder, form .-group.-error- input[type="email"]:-ms-input-placeholder, .-group.-error- form input[type="email"]:-ms-input-placeholder, form .-group.-error- input[type="number"]:-ms-input-placeholder, .-group.-error- form input[type="number"]:-ms-input-placeholder, form .-group.-error- input[type="search"]:-ms-input-placeholder, .-group.-error- form input[type="search"]:-ms-input-placeholder, form .-group.-error- input[type="tel"]:-ms-input-placeholder, .-group.-error- form input[type="tel"]:-ms-input-placeholder, form .-group.-error- input[type="time"]:-ms-input-placeholder, .-group.-error- form input[type="time"]:-ms-input-placeholder, form .-group.-error- input[type="url"]:-ms-input-placeholder, .-group.-error- form input[type="url"]:-ms-input-placeholder, form .-group.-error- textarea:-ms-input-placeholder, .-group.-error- form textarea:-ms-input-placeholder, form input[type="password"].-error-:-ms-input-placeholder, form input[type="date"].-error-:-ms-input-placeholder, form input[type="datetime"].-error-:-ms-input-placeholder, form input[type="datetime-local"].-error-:-ms-input-placeholder, form input[type="month"].-error-:-ms-input-placeholder, form input[type="week"].-error-:-ms-input-placeholder, form input[type="email"].-error-:-ms-input-placeholder, form input[type="number"].-error-:-ms-input-placeholder, form input[type="search"].-error-:-ms-input-placeholder, form input[type="tel"].-error-:-ms-input-placeholder, form input[type="time"].-error-:-ms-input-placeholder, form input[type="url"].-error-:-ms-input-placeholder, form textarea.-error-:-ms-input-placeholder {
-      color: #cd2c24; }
+      color: #ea8b87; }
+  form select.-warning-, form input[type="text"].-warning-, form .-field.-warning- select, form .-group.-warning- .-field select, .-group.-warning- form .-field select, form .-field.-warning- input[type="text"], form .-field.-warning- input[type="password"], form .-field.-warning- input[type="date"], form .-field.-warning- input[type="datetime"], form .-field.-warning- input[type="datetime-local"], form .-field.-warning- input[type="month"], form .-field.-warning- input[type="week"], form .-field.-warning- input[type="email"], form .-field.-warning- input[type="number"], form .-field.-warning- input[type="search"], form .-field.-warning- input[type="tel"], form .-field.-warning- input[type="time"], form .-field.-warning- input[type="url"], form .-field.-warning- textarea, form .-group.-warning- .-field textarea, .-group.-warning- form .-field textarea, form .-group.-warning- select, .-group.-warning- form select, form .-group.-warning- input[type="text"], .-group.-warning- form input[type="text"], form .-group.-warning- input[type="password"], .-group.-warning- form input[type="password"], form .-group.-warning- input[type="date"], .-group.-warning- form input[type="date"], form .-group.-warning- input[type="datetime"], .-group.-warning- form input[type="datetime"], form .-group.-warning- input[type="datetime-local"], .-group.-warning- form input[type="datetime-local"], form .-group.-warning- input[type="month"], .-group.-warning- form input[type="month"], form .-group.-warning- input[type="week"], .-group.-warning- form input[type="week"], form .-group.-warning- input[type="email"], .-group.-warning- form input[type="email"], form .-group.-warning- input[type="number"], .-group.-warning- form input[type="number"], form .-group.-warning- input[type="search"], .-group.-warning- form input[type="search"], form .-group.-warning- input[type="tel"], .-group.-warning- form input[type="tel"], form .-group.-warning- input[type="time"], .-group.-warning- form input[type="time"], form .-group.-warning- input[type="url"], .-group.-warning- form input[type="url"], form .-group.-warning- textarea, .-group.-warning- form textarea, form input[type="password"].-warning-, form input[type="date"].-warning-, form input[type="datetime"].-warning-, form input[type="datetime-local"].-warning-, form input[type="month"].-warning-, form input[type="week"].-warning-, form input[type="email"].-warning-, form input[type="number"].-warning-, form input[type="search"].-warning-, form input[type="tel"].-warning-, form input[type="time"].-warning-, form input[type="url"].-warning-, form textarea.-warning- {
+    border: 1px solid #ffc43e; }
+    form select.-warning-:active, form select.-warning-:focus, form input[type="text"].-warning-:active, form .-field.-warning- select:active, form .-field.-warning- input[type="text"]:active, form .-field.-warning- input[type="password"]:active, form .-field.-warning- input[type="date"]:active, form .-field.-warning- input[type="datetime"]:active, form .-field.-warning- input[type="datetime-local"]:active, form .-field.-warning- input[type="month"]:active, form .-field.-warning- input[type="week"]:active, form .-field.-warning- input[type="email"]:active, form .-field.-warning- input[type="number"]:active, form .-field.-warning- input[type="search"]:active, form .-field.-warning- input[type="tel"]:active, form .-field.-warning- input[type="time"]:active, form .-field.-warning- input[type="url"]:active, form .-field.-warning- textarea:active, form .-group.-warning- select:active, .-group.-warning- form select:active, form .-group.-warning- input[type="text"]:active, .-group.-warning- form input[type="text"]:active, form .-group.-warning- input[type="password"]:active, .-group.-warning- form input[type="password"]:active, form .-group.-warning- input[type="date"]:active, .-group.-warning- form input[type="date"]:active, form .-group.-warning- input[type="datetime"]:active, .-group.-warning- form input[type="datetime"]:active, form .-group.-warning- input[type="datetime-local"]:active, .-group.-warning- form input[type="datetime-local"]:active, form .-group.-warning- input[type="month"]:active, .-group.-warning- form input[type="month"]:active, form .-group.-warning- input[type="week"]:active, .-group.-warning- form input[type="week"]:active, form .-group.-warning- input[type="email"]:active, .-group.-warning- form input[type="email"]:active, form .-group.-warning- input[type="number"]:active, .-group.-warning- form input[type="number"]:active, form .-group.-warning- input[type="search"]:active, .-group.-warning- form input[type="search"]:active, form .-group.-warning- input[type="tel"]:active, .-group.-warning- form input[type="tel"]:active, form .-group.-warning- input[type="time"]:active, .-group.-warning- form input[type="time"]:active, form .-group.-warning- input[type="url"]:active, .-group.-warning- form input[type="url"]:active, form .-group.-warning- textarea:active, .-group.-warning- form textarea:active, form input[type="text"].-warning-:focus, form .-field.-warning- select:focus, form .-field.-warning- input[type="text"]:focus, form .-field.-warning- input[type="password"]:focus, form .-field.-warning- input[type="date"]:focus, form .-field.-warning- input[type="datetime"]:focus, form .-field.-warning- input[type="datetime-local"]:focus, form .-field.-warning- input[type="month"]:focus, form .-field.-warning- input[type="week"]:focus, form .-field.-warning- input[type="email"]:focus, form .-field.-warning- input[type="number"]:focus, form .-field.-warning- input[type="search"]:focus, form .-field.-warning- input[type="tel"]:focus, form .-field.-warning- input[type="time"]:focus, form .-field.-warning- input[type="url"]:focus, form .-field.-warning- textarea:focus, form .-group.-warning- select:focus, .-group.-warning- form select:focus, form .-group.-warning- input[type="text"]:focus, .-group.-warning- form input[type="text"]:focus, form .-group.-warning- input[type="password"]:focus, .-group.-warning- form input[type="password"]:focus, form .-group.-warning- input[type="date"]:focus, .-group.-warning- form input[type="date"]:focus, form .-group.-warning- input[type="datetime"]:focus, .-group.-warning- form input[type="datetime"]:focus, form .-group.-warning- input[type="datetime-local"]:focus, .-group.-warning- form input[type="datetime-local"]:focus, form .-group.-warning- input[type="month"]:focus, .-group.-warning- form input[type="month"]:focus, form .-group.-warning- input[type="week"]:focus, .-group.-warning- form input[type="week"]:focus, form .-group.-warning- input[type="email"]:focus, .-group.-warning- form input[type="email"]:focus, form .-group.-warning- input[type="number"]:focus, .-group.-warning- form input[type="number"]:focus, form .-group.-warning- input[type="search"]:focus, .-group.-warning- form input[type="search"]:focus, form .-group.-warning- input[type="tel"]:focus, .-group.-warning- form input[type="tel"]:focus, form .-group.-warning- input[type="time"]:focus, .-group.-warning- form input[type="time"]:focus, form .-group.-warning- input[type="url"]:focus, .-group.-warning- form input[type="url"]:focus, form .-group.-warning- textarea:focus, .-group.-warning- form textarea:focus, form input[type="password"].-warning-:active, form input[type="password"].-warning-:focus, form input[type="date"].-warning-:active, form input[type="date"].-warning-:focus, form input[type="datetime"].-warning-:active, form input[type="datetime"].-warning-:focus, form input[type="datetime-local"].-warning-:active, form input[type="datetime-local"].-warning-:focus, form input[type="month"].-warning-:active, form input[type="month"].-warning-:focus, form input[type="week"].-warning-:active, form input[type="week"].-warning-:focus, form input[type="email"].-warning-:active, form input[type="email"].-warning-:focus, form input[type="number"].-warning-:active, form input[type="number"].-warning-:focus, form input[type="search"].-warning-:active, form input[type="search"].-warning-:focus, form input[type="tel"].-warning-:active, form input[type="tel"].-warning-:focus, form input[type="time"].-warning-:active, form input[type="time"].-warning-:focus, form input[type="url"].-warning-:active, form input[type="url"].-warning-:focus, form textarea.-warning-:active, form textarea.-warning-:focus {
+      box-shadow: 0 0 10px rgba(255, 196, 62, 0.4); }
+    form select.-warning-::-webkit-input-placeholder, form input[type="text"].-warning-::-webkit-input-placeholder, form .-field.-warning- select::-webkit-input-placeholder, form .-group.-warning- .-field select::-webkit-input-placeholder, .-group.-warning- form .-field select::-webkit-input-placeholder, form .-field.-warning- input[type="text"]::-webkit-input-placeholder, form .-field.-warning- input[type="password"]::-webkit-input-placeholder, form .-field.-warning- input[type="date"]::-webkit-input-placeholder, form .-field.-warning- input[type="datetime"]::-webkit-input-placeholder, form .-field.-warning- input[type="datetime-local"]::-webkit-input-placeholder, form .-field.-warning- input[type="month"]::-webkit-input-placeholder, form .-field.-warning- input[type="week"]::-webkit-input-placeholder, form .-field.-warning- input[type="email"]::-webkit-input-placeholder, form .-field.-warning- input[type="number"]::-webkit-input-placeholder, form .-field.-warning- input[type="search"]::-webkit-input-placeholder, form .-field.-warning- input[type="tel"]::-webkit-input-placeholder, form .-field.-warning- input[type="time"]::-webkit-input-placeholder, form .-field.-warning- input[type="url"]::-webkit-input-placeholder, form .-field.-warning- textarea::-webkit-input-placeholder, form .-group.-warning- .-field textarea::-webkit-input-placeholder, .-group.-warning- form .-field textarea::-webkit-input-placeholder, form .-group.-warning- select::-webkit-input-placeholder, .-group.-warning- form select::-webkit-input-placeholder, form .-group.-warning- input[type="text"]::-webkit-input-placeholder, .-group.-warning- form input[type="text"]::-webkit-input-placeholder, form .-group.-warning- input[type="password"]::-webkit-input-placeholder, .-group.-warning- form input[type="password"]::-webkit-input-placeholder, form .-group.-warning- input[type="date"]::-webkit-input-placeholder, .-group.-warning- form input[type="date"]::-webkit-input-placeholder, form .-group.-warning- input[type="datetime"]::-webkit-input-placeholder, .-group.-warning- form input[type="datetime"]::-webkit-input-placeholder, form .-group.-warning- input[type="datetime-local"]::-webkit-input-placeholder, .-group.-warning- form input[type="datetime-local"]::-webkit-input-placeholder, form .-group.-warning- input[type="month"]::-webkit-input-placeholder, .-group.-warning- form input[type="month"]::-webkit-input-placeholder, form .-group.-warning- input[type="week"]::-webkit-input-placeholder, .-group.-warning- form input[type="week"]::-webkit-input-placeholder, form .-group.-warning- input[type="email"]::-webkit-input-placeholder, .-group.-warning- form input[type="email"]::-webkit-input-placeholder, form .-group.-warning- input[type="number"]::-webkit-input-placeholder, .-group.-warning- form input[type="number"]::-webkit-input-placeholder, form .-group.-warning- input[type="search"]::-webkit-input-placeholder, .-group.-warning- form input[type="search"]::-webkit-input-placeholder, form .-group.-warning- input[type="tel"]::-webkit-input-placeholder, .-group.-warning- form input[type="tel"]::-webkit-input-placeholder, form .-group.-warning- input[type="time"]::-webkit-input-placeholder, .-group.-warning- form input[type="time"]::-webkit-input-placeholder, form .-group.-warning- input[type="url"]::-webkit-input-placeholder, .-group.-warning- form input[type="url"]::-webkit-input-placeholder, form .-group.-warning- textarea::-webkit-input-placeholder, .-group.-warning- form textarea::-webkit-input-placeholder, form input[type="password"].-warning-::-webkit-input-placeholder, form input[type="date"].-warning-::-webkit-input-placeholder, form input[type="datetime"].-warning-::-webkit-input-placeholder, form input[type="datetime-local"].-warning-::-webkit-input-placeholder, form input[type="month"].-warning-::-webkit-input-placeholder, form input[type="week"].-warning-::-webkit-input-placeholder, form input[type="email"].-warning-::-webkit-input-placeholder, form input[type="number"].-warning-::-webkit-input-placeholder, form input[type="search"].-warning-::-webkit-input-placeholder, form input[type="tel"].-warning-::-webkit-input-placeholder, form input[type="time"].-warning-::-webkit-input-placeholder, form input[type="url"].-warning-::-webkit-input-placeholder, form textarea.-warning-::-webkit-input-placeholder {
+      color: #ffebbe; }
+    form select.-warning-::-moz-placeholder, form input[type="text"].-warning-::-moz-placeholder, form .-field.-warning- select::-moz-placeholder, form .-group.-warning- .-field select::-moz-placeholder, .-group.-warning- form .-field select::-moz-placeholder, form .-field.-warning- input[type="text"]::-moz-placeholder, form .-field.-warning- input[type="password"]::-moz-placeholder, form .-field.-warning- input[type="date"]::-moz-placeholder, form .-field.-warning- input[type="datetime"]::-moz-placeholder, form .-field.-warning- input[type="datetime-local"]::-moz-placeholder, form .-field.-warning- input[type="month"]::-moz-placeholder, form .-field.-warning- input[type="week"]::-moz-placeholder, form .-field.-warning- input[type="email"]::-moz-placeholder, form .-field.-warning- input[type="number"]::-moz-placeholder, form .-field.-warning- input[type="search"]::-moz-placeholder, form .-field.-warning- input[type="tel"]::-moz-placeholder, form .-field.-warning- input[type="time"]::-moz-placeholder, form .-field.-warning- input[type="url"]::-moz-placeholder, form .-field.-warning- textarea::-moz-placeholder, form .-group.-warning- .-field textarea::-moz-placeholder, .-group.-warning- form .-field textarea::-moz-placeholder, form .-group.-warning- select::-moz-placeholder, .-group.-warning- form select::-moz-placeholder, form .-group.-warning- input[type="text"]::-moz-placeholder, .-group.-warning- form input[type="text"]::-moz-placeholder, form .-group.-warning- input[type="password"]::-moz-placeholder, .-group.-warning- form input[type="password"]::-moz-placeholder, form .-group.-warning- input[type="date"]::-moz-placeholder, .-group.-warning- form input[type="date"]::-moz-placeholder, form .-group.-warning- input[type="datetime"]::-moz-placeholder, .-group.-warning- form input[type="datetime"]::-moz-placeholder, form .-group.-warning- input[type="datetime-local"]::-moz-placeholder, .-group.-warning- form input[type="datetime-local"]::-moz-placeholder, form .-group.-warning- input[type="month"]::-moz-placeholder, .-group.-warning- form input[type="month"]::-moz-placeholder, form .-group.-warning- input[type="week"]::-moz-placeholder, .-group.-warning- form input[type="week"]::-moz-placeholder, form .-group.-warning- input[type="email"]::-moz-placeholder, .-group.-warning- form input[type="email"]::-moz-placeholder, form .-group.-warning- input[type="number"]::-moz-placeholder, .-group.-warning- form input[type="number"]::-moz-placeholder, form .-group.-warning- input[type="search"]::-moz-placeholder, .-group.-warning- form input[type="search"]::-moz-placeholder, form .-group.-warning- input[type="tel"]::-moz-placeholder, .-group.-warning- form input[type="tel"]::-moz-placeholder, form .-group.-warning- input[type="time"]::-moz-placeholder, .-group.-warning- form input[type="time"]::-moz-placeholder, form .-group.-warning- input[type="url"]::-moz-placeholder, .-group.-warning- form input[type="url"]::-moz-placeholder, form .-group.-warning- textarea::-moz-placeholder, .-group.-warning- form textarea::-moz-placeholder, form input[type="password"].-warning-::-moz-placeholder, form input[type="date"].-warning-::-moz-placeholder, form input[type="datetime"].-warning-::-moz-placeholder, form input[type="datetime-local"].-warning-::-moz-placeholder, form input[type="month"].-warning-::-moz-placeholder, form input[type="week"].-warning-::-moz-placeholder, form input[type="email"].-warning-::-moz-placeholder, form input[type="number"].-warning-::-moz-placeholder, form input[type="search"].-warning-::-moz-placeholder, form input[type="tel"].-warning-::-moz-placeholder, form input[type="time"].-warning-::-moz-placeholder, form input[type="url"].-warning-::-moz-placeholder, form textarea.-warning-::-moz-placeholder {
+      color: #ffebbe; }
+    form select.-warning-:-moz-placeholder, form input[type="text"].-warning-:-moz-placeholder, form .-field.-warning- select:-moz-placeholder, form .-field.-warning- input[type="text"]:-moz-placeholder, form .-field.-warning- input[type="password"]:-moz-placeholder, form .-field.-warning- input[type="date"]:-moz-placeholder, form .-field.-warning- input[type="datetime"]:-moz-placeholder, form .-field.-warning- input[type="datetime-local"]:-moz-placeholder, form .-field.-warning- input[type="month"]:-moz-placeholder, form .-field.-warning- input[type="week"]:-moz-placeholder, form .-field.-warning- input[type="email"]:-moz-placeholder, form .-field.-warning- input[type="number"]:-moz-placeholder, form .-field.-warning- input[type="search"]:-moz-placeholder, form .-field.-warning- input[type="tel"]:-moz-placeholder, form .-field.-warning- input[type="time"]:-moz-placeholder, form .-field.-warning- input[type="url"]:-moz-placeholder, form .-field.-warning- textarea:-moz-placeholder, form .-group.-warning- select:-moz-placeholder, .-group.-warning- form select:-moz-placeholder, form .-group.-warning- input[type="text"]:-moz-placeholder, .-group.-warning- form input[type="text"]:-moz-placeholder, form .-group.-warning- input[type="password"]:-moz-placeholder, .-group.-warning- form input[type="password"]:-moz-placeholder, form .-group.-warning- input[type="date"]:-moz-placeholder, .-group.-warning- form input[type="date"]:-moz-placeholder, form .-group.-warning- input[type="datetime"]:-moz-placeholder, .-group.-warning- form input[type="datetime"]:-moz-placeholder, form .-group.-warning- input[type="datetime-local"]:-moz-placeholder, .-group.-warning- form input[type="datetime-local"]:-moz-placeholder, form .-group.-warning- input[type="month"]:-moz-placeholder, .-group.-warning- form input[type="month"]:-moz-placeholder, form .-group.-warning- input[type="week"]:-moz-placeholder, .-group.-warning- form input[type="week"]:-moz-placeholder, form .-group.-warning- input[type="email"]:-moz-placeholder, .-group.-warning- form input[type="email"]:-moz-placeholder, form .-group.-warning- input[type="number"]:-moz-placeholder, .-group.-warning- form input[type="number"]:-moz-placeholder, form .-group.-warning- input[type="search"]:-moz-placeholder, .-group.-warning- form input[type="search"]:-moz-placeholder, form .-group.-warning- input[type="tel"]:-moz-placeholder, .-group.-warning- form input[type="tel"]:-moz-placeholder, form .-group.-warning- input[type="time"]:-moz-placeholder, .-group.-warning- form input[type="time"]:-moz-placeholder, form .-group.-warning- input[type="url"]:-moz-placeholder, .-group.-warning- form input[type="url"]:-moz-placeholder, form .-group.-warning- textarea:-moz-placeholder, .-group.-warning- form textarea:-moz-placeholder, form input[type="password"].-warning-:-moz-placeholder, form input[type="date"].-warning-:-moz-placeholder, form input[type="datetime"].-warning-:-moz-placeholder, form input[type="datetime-local"].-warning-:-moz-placeholder, form input[type="month"].-warning-:-moz-placeholder, form input[type="week"].-warning-:-moz-placeholder, form input[type="email"].-warning-:-moz-placeholder, form input[type="number"].-warning-:-moz-placeholder, form input[type="search"].-warning-:-moz-placeholder, form input[type="tel"].-warning-:-moz-placeholder, form input[type="time"].-warning-:-moz-placeholder, form input[type="url"].-warning-:-moz-placeholder, form textarea.-warning-:-moz-placeholder {
+      color: #ffebbe; }
+    form select.-warning-:-ms-input-placeholder, form input[type="text"].-warning-:-ms-input-placeholder, form .-field.-warning- select:-ms-input-placeholder, form .-field.-warning- input[type="text"]:-ms-input-placeholder, form .-field.-warning- input[type="password"]:-ms-input-placeholder, form .-field.-warning- input[type="date"]:-ms-input-placeholder, form .-field.-warning- input[type="datetime"]:-ms-input-placeholder, form .-field.-warning- input[type="datetime-local"]:-ms-input-placeholder, form .-field.-warning- input[type="month"]:-ms-input-placeholder, form .-field.-warning- input[type="week"]:-ms-input-placeholder, form .-field.-warning- input[type="email"]:-ms-input-placeholder, form .-field.-warning- input[type="number"]:-ms-input-placeholder, form .-field.-warning- input[type="search"]:-ms-input-placeholder, form .-field.-warning- input[type="tel"]:-ms-input-placeholder, form .-field.-warning- input[type="time"]:-ms-input-placeholder, form .-field.-warning- input[type="url"]:-ms-input-placeholder, form .-field.-warning- textarea:-ms-input-placeholder, form .-group.-warning- select:-ms-input-placeholder, .-group.-warning- form select:-ms-input-placeholder, form .-group.-warning- input[type="text"]:-ms-input-placeholder, .-group.-warning- form input[type="text"]:-ms-input-placeholder, form .-group.-warning- input[type="password"]:-ms-input-placeholder, .-group.-warning- form input[type="password"]:-ms-input-placeholder, form .-group.-warning- input[type="date"]:-ms-input-placeholder, .-group.-warning- form input[type="date"]:-ms-input-placeholder, form .-group.-warning- input[type="datetime"]:-ms-input-placeholder, .-group.-warning- form input[type="datetime"]:-ms-input-placeholder, form .-group.-warning- input[type="datetime-local"]:-ms-input-placeholder, .-group.-warning- form input[type="datetime-local"]:-ms-input-placeholder, form .-group.-warning- input[type="month"]:-ms-input-placeholder, .-group.-warning- form input[type="month"]:-ms-input-placeholder, form .-group.-warning- input[type="week"]:-ms-input-placeholder, .-group.-warning- form input[type="week"]:-ms-input-placeholder, form .-group.-warning- input[type="email"]:-ms-input-placeholder, .-group.-warning- form input[type="email"]:-ms-input-placeholder, form .-group.-warning- input[type="number"]:-ms-input-placeholder, .-group.-warning- form input[type="number"]:-ms-input-placeholder, form .-group.-warning- input[type="search"]:-ms-input-placeholder, .-group.-warning- form input[type="search"]:-ms-input-placeholder, form .-group.-warning- input[type="tel"]:-ms-input-placeholder, .-group.-warning- form input[type="tel"]:-ms-input-placeholder, form .-group.-warning- input[type="time"]:-ms-input-placeholder, .-group.-warning- form input[type="time"]:-ms-input-placeholder, form .-group.-warning- input[type="url"]:-ms-input-placeholder, .-group.-warning- form input[type="url"]:-ms-input-placeholder, form .-group.-warning- textarea:-ms-input-placeholder, .-group.-warning- form textarea:-ms-input-placeholder, form input[type="password"].-warning-:-ms-input-placeholder, form input[type="date"].-warning-:-ms-input-placeholder, form input[type="datetime"].-warning-:-ms-input-placeholder, form input[type="datetime-local"].-warning-:-ms-input-placeholder, form input[type="month"].-warning-:-ms-input-placeholder, form input[type="week"].-warning-:-ms-input-placeholder, form input[type="email"].-warning-:-ms-input-placeholder, form input[type="number"].-warning-:-ms-input-placeholder, form input[type="search"].-warning-:-ms-input-placeholder, form input[type="tel"].-warning-:-ms-input-placeholder, form input[type="time"].-warning-:-ms-input-placeholder, form input[type="url"].-warning-:-ms-input-placeholder, form textarea.-warning-:-ms-input-placeholder {
+      color: #ffebbe; }
   form select::-webkit-input-placeholder, form input[type="text"]::-webkit-input-placeholder, form input[type="password"]::-webkit-input-placeholder, form input[type="date"]::-webkit-input-placeholder, form input[type="datetime"]::-webkit-input-placeholder, form input[type="datetime-local"]::-webkit-input-placeholder, form input[type="month"]::-webkit-input-placeholder, form input[type="week"]::-webkit-input-placeholder, form input[type="email"]::-webkit-input-placeholder, form input[type="number"]::-webkit-input-placeholder, form input[type="search"]::-webkit-input-placeholder, form input[type="tel"]::-webkit-input-placeholder, form input[type="time"]::-webkit-input-placeholder, form input[type="url"]::-webkit-input-placeholder, form textarea::-webkit-input-placeholder {
     font-weight: 200; }
   form select::-moz-placeholder, form input[type="text"]::-moz-placeholder, form input[type="password"]::-moz-placeholder, form input[type="date"]::-moz-placeholder, form input[type="datetime"]::-moz-placeholder, form input[type="datetime-local"]::-moz-placeholder, form input[type="month"]::-moz-placeholder, form input[type="week"]::-moz-placeholder, form input[type="email"]::-moz-placeholder, form input[type="number"]::-moz-placeholder, form input[type="search"]::-moz-placeholder, form input[type="tel"]::-moz-placeholder, form input[type="time"]::-moz-placeholder, form input[type="url"]::-moz-placeholder, form textarea::-moz-placeholder {
@@ -755,34 +791,41 @@ form input[type="radio"], form input[type="checkbox"] {
     vertical-align: middle;
     padding: 0; }
 form select {
-  border: 1px solid #cccccc;
-  background: rgba(244, 244, 244, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
+  border: 1px solid #b3b3b3;
+  background: rgba(247, 247, 247, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
   background-position-x: 97%;
   background-position-y: center;
   border-radius: 0; }
   form select:active, form select:focus {
-    box-shadow: 0 0 10px rgba(204, 204, 204, 0.4); }
+    box-shadow: 0 0 10px rgba(217, 217, 217, 0.4); }
   form select.-default- {
-    border: 1px solid #cccccc;
-    background: rgba(244, 244, 244, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
+    border: 1px solid #b3b3b3;
+    background: rgba(247, 247, 247, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
     background-position-x: 97%;
     background-position-y: center; }
     form select.-default-:active, form select.-default-:focus {
-      box-shadow: 0 0 10px rgba(204, 204, 204, 0.4); }
+      box-shadow: 0 0 10px rgba(217, 217, 217, 0.4); }
   form select.-primary- {
-    border: 1px solid #a3c8e8;
-    background: rgba(185, 213, 236, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
+    border: 1px solid #3598db;
+    background: rgba(96, 174, 227, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
     background-position-x: 97%;
     background-position-y: center; }
     form select.-primary-:active, form select.-primary-:focus {
-      box-shadow: 0 0 10px rgba(66, 139, 202, 0.4); }
+      box-shadow: 0 0 10px rgba(53, 152, 219, 0.4); }
   form select.-error- {
     border: 1px solid #cd2c24;
-    background: rgba(242, 131, 107, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
+    background: rgba(222, 77, 70, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
     background-position-x: 97%;
     background-position-y: center; }
     form select.-error-:active, form select.-error-:focus {
-      box-shadow: 0 0 10px rgba(242, 89, 75, 0.4); }
+      box-shadow: 0 0 10px rgba(205, 44, 36, 0.4); }
+  form select.-warning- {
+    border: 1px solid #ffc43e;
+    background: rgba(255, 212, 113, 0.3) url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat;
+    background-position-x: 97%;
+    background-position-y: center; }
+    form select.-warning-:active, form select.-warning-:focus {
+      box-shadow: 0 0 10px rgba(255, 196, 62, 0.4); }
 form label {
   display: block;
   font-family: inherit;
@@ -837,21 +880,25 @@ form .-field {
   border-width: 3px;
   border-style: solid;
   border-radius: 3px;
-  border-color: #e4e4e4; }
+  border-color: #e6e6e6; }
   form .-field select:active, form .-field select:focus, form .-field input[type="text"]:active, form .-field input[type="text"]:focus, form .-field input[type="password"]:active, form .-field input[type="password"]:focus, form .-field input[type="date"]:active, form .-field input[type="date"]:focus, form .-field input[type="datetime"]:active, form .-field input[type="datetime"]:focus, form .-field input[type="datetime-local"]:active, form .-field input[type="datetime-local"]:focus, form .-field input[type="month"]:active, form .-field input[type="month"]:focus, form .-field input[type="week"]:active, form .-field input[type="week"]:focus, form .-field input[type="email"]:active, form .-field input[type="email"]:focus, form .-field input[type="number"]:active, form .-field input[type="number"]:focus, form .-field input[type="search"]:active, form .-field input[type="search"]:focus, form .-field input[type="tel"]:active, form .-field input[type="tel"]:focus, form .-field input[type="time"]:active, form .-field input[type="time"]:focus, form .-field input[type="url"]:active, form .-field input[type="url"]:focus, form .-field textarea:active, form .-field textarea:focus {
-    box-shadow: 0 0 15px rgba(204, 204, 204, 0.6); }
+    box-shadow: 0 0 15px rgba(217, 217, 217, 0.6); }
   form .-field.-default-, form .-group.-default- .-field, .-group.-default- form .-field {
-    border-color: #e4e4e4; }
+    border-color: #e6e6e6; }
     form .-field.-default- select:active, form .-group.-default- .-field select:active, .-group.-default- form .-field select:active, form .-field.-default- select:focus, form .-group.-default- .-field select:focus, .-group.-default- form .-field select:focus, form .-field.-default- input[type="text"]:active, form .-group.-default- .-field input[type="text"]:active, .-group.-default- form .-field input[type="text"]:active, form .-field.-default- input[type="text"]:focus, form .-group.-default- .-field input[type="text"]:focus, .-group.-default- form .-field input[type="text"]:focus, form .-field.-default- input[type="password"]:active, form .-group.-default- .-field input[type="password"]:active, .-group.-default- form .-field input[type="password"]:active, form .-field.-default- input[type="password"]:focus, form .-group.-default- .-field input[type="password"]:focus, .-group.-default- form .-field input[type="password"]:focus, form .-field.-default- input[type="date"]:active, form .-group.-default- .-field input[type="date"]:active, .-group.-default- form .-field input[type="date"]:active, form .-field.-default- input[type="date"]:focus, form .-group.-default- .-field input[type="date"]:focus, .-group.-default- form .-field input[type="date"]:focus, form .-field.-default- input[type="datetime"]:active, form .-group.-default- .-field input[type="datetime"]:active, .-group.-default- form .-field input[type="datetime"]:active, form .-field.-default- input[type="datetime"]:focus, form .-group.-default- .-field input[type="datetime"]:focus, .-group.-default- form .-field input[type="datetime"]:focus, form .-field.-default- input[type="datetime-local"]:active, form .-group.-default- .-field input[type="datetime-local"]:active, .-group.-default- form .-field input[type="datetime-local"]:active, form .-field.-default- input[type="datetime-local"]:focus, form .-group.-default- .-field input[type="datetime-local"]:focus, .-group.-default- form .-field input[type="datetime-local"]:focus, form .-field.-default- input[type="month"]:active, form .-group.-default- .-field input[type="month"]:active, .-group.-default- form .-field input[type="month"]:active, form .-field.-default- input[type="month"]:focus, form .-group.-default- .-field input[type="month"]:focus, .-group.-default- form .-field input[type="month"]:focus, form .-field.-default- input[type="week"]:active, form .-group.-default- .-field input[type="week"]:active, .-group.-default- form .-field input[type="week"]:active, form .-field.-default- input[type="week"]:focus, form .-group.-default- .-field input[type="week"]:focus, .-group.-default- form .-field input[type="week"]:focus, form .-field.-default- input[type="email"]:active, form .-group.-default- .-field input[type="email"]:active, .-group.-default- form .-field input[type="email"]:active, form .-field.-default- input[type="email"]:focus, form .-group.-default- .-field input[type="email"]:focus, .-group.-default- form .-field input[type="email"]:focus, form .-field.-default- input[type="number"]:active, form .-group.-default- .-field input[type="number"]:active, .-group.-default- form .-field input[type="number"]:active, form .-field.-default- input[type="number"]:focus, form .-group.-default- .-field input[type="number"]:focus, .-group.-default- form .-field input[type="number"]:focus, form .-field.-default- input[type="search"]:active, form .-group.-default- .-field input[type="search"]:active, .-group.-default- form .-field input[type="search"]:active, form .-field.-default- input[type="search"]:focus, form .-group.-default- .-field input[type="search"]:focus, .-group.-default- form .-field input[type="search"]:focus, form .-field.-default- input[type="tel"]:active, form .-group.-default- .-field input[type="tel"]:active, .-group.-default- form .-field input[type="tel"]:active, form .-field.-default- input[type="tel"]:focus, form .-group.-default- .-field input[type="tel"]:focus, .-group.-default- form .-field input[type="tel"]:focus, form .-field.-default- input[type="time"]:active, form .-group.-default- .-field input[type="time"]:active, .-group.-default- form .-field input[type="time"]:active, form .-field.-default- input[type="time"]:focus, form .-group.-default- .-field input[type="time"]:focus, .-group.-default- form .-field input[type="time"]:focus, form .-field.-default- input[type="url"]:active, form .-group.-default- .-field input[type="url"]:active, .-group.-default- form .-field input[type="url"]:active, form .-field.-default- input[type="url"]:focus, form .-group.-default- .-field input[type="url"]:focus, .-group.-default- form .-field input[type="url"]:focus, form .-field.-default- textarea:active, form .-group.-default- .-field textarea:active, .-group.-default- form .-field textarea:active, form .-field.-default- textarea:focus, form .-group.-default- .-field textarea:focus, .-group.-default- form .-field textarea:focus {
-      box-shadow: 0 0 15px rgba(204, 204, 204, 0.6); }
+      box-shadow: 0 0 15px rgba(217, 217, 217, 0.6); }
   form .-field.-primary-, form .-group.-primary- .-field, .-group.-primary- form .-field {
-    border-color: #cbe7ff; }
+    border-color: #8cc4ea; }
     form .-field.-primary- select:active, form .-group.-primary- .-field select:active, .-group.-primary- form .-field select:active, form .-field.-primary- select:focus, form .-group.-primary- .-field select:focus, .-group.-primary- form .-field select:focus, form .-field.-primary- input[type="text"]:active, form .-group.-primary- .-field input[type="text"]:active, .-group.-primary- form .-field input[type="text"]:active, form .-field.-primary- input[type="text"]:focus, form .-group.-primary- .-field input[type="text"]:focus, .-group.-primary- form .-field input[type="text"]:focus, form .-field.-primary- input[type="password"]:active, form .-group.-primary- .-field input[type="password"]:active, .-group.-primary- form .-field input[type="password"]:active, form .-field.-primary- input[type="password"]:focus, form .-group.-primary- .-field input[type="password"]:focus, .-group.-primary- form .-field input[type="password"]:focus, form .-field.-primary- input[type="date"]:active, form .-group.-primary- .-field input[type="date"]:active, .-group.-primary- form .-field input[type="date"]:active, form .-field.-primary- input[type="date"]:focus, form .-group.-primary- .-field input[type="date"]:focus, .-group.-primary- form .-field input[type="date"]:focus, form .-field.-primary- input[type="datetime"]:active, form .-group.-primary- .-field input[type="datetime"]:active, .-group.-primary- form .-field input[type="datetime"]:active, form .-field.-primary- input[type="datetime"]:focus, form .-group.-primary- .-field input[type="datetime"]:focus, .-group.-primary- form .-field input[type="datetime"]:focus, form .-field.-primary- input[type="datetime-local"]:active, form .-group.-primary- .-field input[type="datetime-local"]:active, .-group.-primary- form .-field input[type="datetime-local"]:active, form .-field.-primary- input[type="datetime-local"]:focus, form .-group.-primary- .-field input[type="datetime-local"]:focus, .-group.-primary- form .-field input[type="datetime-local"]:focus, form .-field.-primary- input[type="month"]:active, form .-group.-primary- .-field input[type="month"]:active, .-group.-primary- form .-field input[type="month"]:active, form .-field.-primary- input[type="month"]:focus, form .-group.-primary- .-field input[type="month"]:focus, .-group.-primary- form .-field input[type="month"]:focus, form .-field.-primary- input[type="week"]:active, form .-group.-primary- .-field input[type="week"]:active, .-group.-primary- form .-field input[type="week"]:active, form .-field.-primary- input[type="week"]:focus, form .-group.-primary- .-field input[type="week"]:focus, .-group.-primary- form .-field input[type="week"]:focus, form .-field.-primary- input[type="email"]:active, form .-group.-primary- .-field input[type="email"]:active, .-group.-primary- form .-field input[type="email"]:active, form .-field.-primary- input[type="email"]:focus, form .-group.-primary- .-field input[type="email"]:focus, .-group.-primary- form .-field input[type="email"]:focus, form .-field.-primary- input[type="number"]:active, form .-group.-primary- .-field input[type="number"]:active, .-group.-primary- form .-field input[type="number"]:active, form .-field.-primary- input[type="number"]:focus, form .-group.-primary- .-field input[type="number"]:focus, .-group.-primary- form .-field input[type="number"]:focus, form .-field.-primary- input[type="search"]:active, form .-group.-primary- .-field input[type="search"]:active, .-group.-primary- form .-field input[type="search"]:active, form .-field.-primary- input[type="search"]:focus, form .-group.-primary- .-field input[type="search"]:focus, .-group.-primary- form .-field input[type="search"]:focus, form .-field.-primary- input[type="tel"]:active, form .-group.-primary- .-field input[type="tel"]:active, .-group.-primary- form .-field input[type="tel"]:active, form .-field.-primary- input[type="tel"]:focus, form .-group.-primary- .-field input[type="tel"]:focus, .-group.-primary- form .-field input[type="tel"]:focus, form .-field.-primary- input[type="time"]:active, form .-group.-primary- .-field input[type="time"]:active, .-group.-primary- form .-field input[type="time"]:active, form .-field.-primary- input[type="time"]:focus, form .-group.-primary- .-field input[type="time"]:focus, .-group.-primary- form .-field input[type="time"]:focus, form .-field.-primary- input[type="url"]:active, form .-group.-primary- .-field input[type="url"]:active, .-group.-primary- form .-field input[type="url"]:active, form .-field.-primary- input[type="url"]:focus, form .-group.-primary- .-field input[type="url"]:focus, .-group.-primary- form .-field input[type="url"]:focus, form .-field.-primary- textarea:active, form .-group.-primary- .-field textarea:active, .-group.-primary- form .-field textarea:active, form .-field.-primary- textarea:focus, form .-group.-primary- .-field textarea:focus, .-group.-primary- form .-field textarea:focus {
-      box-shadow: 0 0 15px rgba(66, 139, 202, 0.6); }
+      box-shadow: 0 0 15px rgba(53, 152, 219, 0.6); }
   form .-field.-error-, form .-group.-error- .-field, .-group.-error- form .-field {
-    border-color: #ff827c; }
+    border-color: #e67671; }
     form .-field.-error- select:active, form .-group.-error- .-field select:active, .-group.-error- form .-field select:active, form .-field.-error- select:focus, form .-group.-error- .-field select:focus, .-group.-error- form .-field select:focus, form .-field.-error- input[type="text"]:active, form .-group.-error- .-field input[type="text"]:active, .-group.-error- form .-field input[type="text"]:active, form .-field.-error- input[type="text"]:focus, form .-group.-error- .-field input[type="text"]:focus, .-group.-error- form .-field input[type="text"]:focus, form .-field.-error- input[type="password"]:active, form .-group.-error- .-field input[type="password"]:active, .-group.-error- form .-field input[type="password"]:active, form .-field.-error- input[type="password"]:focus, form .-group.-error- .-field input[type="password"]:focus, .-group.-error- form .-field input[type="password"]:focus, form .-field.-error- input[type="date"]:active, form .-group.-error- .-field input[type="date"]:active, .-group.-error- form .-field input[type="date"]:active, form .-field.-error- input[type="date"]:focus, form .-group.-error- .-field input[type="date"]:focus, .-group.-error- form .-field input[type="date"]:focus, form .-field.-error- input[type="datetime"]:active, form .-group.-error- .-field input[type="datetime"]:active, .-group.-error- form .-field input[type="datetime"]:active, form .-field.-error- input[type="datetime"]:focus, form .-group.-error- .-field input[type="datetime"]:focus, .-group.-error- form .-field input[type="datetime"]:focus, form .-field.-error- input[type="datetime-local"]:active, form .-group.-error- .-field input[type="datetime-local"]:active, .-group.-error- form .-field input[type="datetime-local"]:active, form .-field.-error- input[type="datetime-local"]:focus, form .-group.-error- .-field input[type="datetime-local"]:focus, .-group.-error- form .-field input[type="datetime-local"]:focus, form .-field.-error- input[type="month"]:active, form .-group.-error- .-field input[type="month"]:active, .-group.-error- form .-field input[type="month"]:active, form .-field.-error- input[type="month"]:focus, form .-group.-error- .-field input[type="month"]:focus, .-group.-error- form .-field input[type="month"]:focus, form .-field.-error- input[type="week"]:active, form .-group.-error- .-field input[type="week"]:active, .-group.-error- form .-field input[type="week"]:active, form .-field.-error- input[type="week"]:focus, form .-group.-error- .-field input[type="week"]:focus, .-group.-error- form .-field input[type="week"]:focus, form .-field.-error- input[type="email"]:active, form .-group.-error- .-field input[type="email"]:active, .-group.-error- form .-field input[type="email"]:active, form .-field.-error- input[type="email"]:focus, form .-group.-error- .-field input[type="email"]:focus, .-group.-error- form .-field input[type="email"]:focus, form .-field.-error- input[type="number"]:active, form .-group.-error- .-field input[type="number"]:active, .-group.-error- form .-field input[type="number"]:active, form .-field.-error- input[type="number"]:focus, form .-group.-error- .-field input[type="number"]:focus, .-group.-error- form .-field input[type="number"]:focus, form .-field.-error- input[type="search"]:active, form .-group.-error- .-field input[type="search"]:active, .-group.-error- form .-field input[type="search"]:active, form .-field.-error- input[type="search"]:focus, form .-group.-error- .-field input[type="search"]:focus, .-group.-error- form .-field input[type="search"]:focus, form .-field.-error- input[type="tel"]:active, form .-group.-error- .-field input[type="tel"]:active, .-group.-error- form .-field input[type="tel"]:active, form .-field.-error- input[type="tel"]:focus, form .-group.-error- .-field input[type="tel"]:focus, .-group.-error- form .-field input[type="tel"]:focus, form .-field.-error- input[type="time"]:active, form .-group.-error- .-field input[type="time"]:active, .-group.-error- form .-field input[type="time"]:active, form .-field.-error- input[type="time"]:focus, form .-group.-error- .-field input[type="time"]:focus, .-group.-error- form .-field input[type="time"]:focus, form .-field.-error- input[type="url"]:active, form .-group.-error- .-field input[type="url"]:active, .-group.-error- form .-field input[type="url"]:active, form .-field.-error- input[type="url"]:focus, form .-group.-error- .-field input[type="url"]:focus, .-group.-error- form .-field input[type="url"]:focus, form .-field.-error- textarea:active, form .-group.-error- .-field textarea:active, .-group.-error- form .-field textarea:active, form .-field.-error- textarea:focus, form .-group.-error- .-field textarea:focus, .-group.-error- form .-field textarea:focus {
-      box-shadow: 0 0 15px rgba(242, 89, 75, 0.6); }
+      box-shadow: 0 0 15px rgba(205, 44, 36, 0.6); }
+  form .-field.-warning-, form .-group.-warning- .-field, .-group.-warning- form .-field {
+    border-color: #ffe3a4; }
+    form .-field.-warning- select:active, form .-group.-warning- .-field select:active, .-group.-warning- form .-field select:active, form .-field.-warning- select:focus, form .-group.-warning- .-field select:focus, .-group.-warning- form .-field select:focus, form .-field.-warning- input[type="text"]:active, form .-group.-warning- .-field input[type="text"]:active, .-group.-warning- form .-field input[type="text"]:active, form .-field.-warning- input[type="text"]:focus, form .-group.-warning- .-field input[type="text"]:focus, .-group.-warning- form .-field input[type="text"]:focus, form .-field.-warning- input[type="password"]:active, form .-group.-warning- .-field input[type="password"]:active, .-group.-warning- form .-field input[type="password"]:active, form .-field.-warning- input[type="password"]:focus, form .-group.-warning- .-field input[type="password"]:focus, .-group.-warning- form .-field input[type="password"]:focus, form .-field.-warning- input[type="date"]:active, form .-group.-warning- .-field input[type="date"]:active, .-group.-warning- form .-field input[type="date"]:active, form .-field.-warning- input[type="date"]:focus, form .-group.-warning- .-field input[type="date"]:focus, .-group.-warning- form .-field input[type="date"]:focus, form .-field.-warning- input[type="datetime"]:active, form .-group.-warning- .-field input[type="datetime"]:active, .-group.-warning- form .-field input[type="datetime"]:active, form .-field.-warning- input[type="datetime"]:focus, form .-group.-warning- .-field input[type="datetime"]:focus, .-group.-warning- form .-field input[type="datetime"]:focus, form .-field.-warning- input[type="datetime-local"]:active, form .-group.-warning- .-field input[type="datetime-local"]:active, .-group.-warning- form .-field input[type="datetime-local"]:active, form .-field.-warning- input[type="datetime-local"]:focus, form .-group.-warning- .-field input[type="datetime-local"]:focus, .-group.-warning- form .-field input[type="datetime-local"]:focus, form .-field.-warning- input[type="month"]:active, form .-group.-warning- .-field input[type="month"]:active, .-group.-warning- form .-field input[type="month"]:active, form .-field.-warning- input[type="month"]:focus, form .-group.-warning- .-field input[type="month"]:focus, .-group.-warning- form .-field input[type="month"]:focus, form .-field.-warning- input[type="week"]:active, form .-group.-warning- .-field input[type="week"]:active, .-group.-warning- form .-field input[type="week"]:active, form .-field.-warning- input[type="week"]:focus, form .-group.-warning- .-field input[type="week"]:focus, .-group.-warning- form .-field input[type="week"]:focus, form .-field.-warning- input[type="email"]:active, form .-group.-warning- .-field input[type="email"]:active, .-group.-warning- form .-field input[type="email"]:active, form .-field.-warning- input[type="email"]:focus, form .-group.-warning- .-field input[type="email"]:focus, .-group.-warning- form .-field input[type="email"]:focus, form .-field.-warning- input[type="number"]:active, form .-group.-warning- .-field input[type="number"]:active, .-group.-warning- form .-field input[type="number"]:active, form .-field.-warning- input[type="number"]:focus, form .-group.-warning- .-field input[type="number"]:focus, .-group.-warning- form .-field input[type="number"]:focus, form .-field.-warning- input[type="search"]:active, form .-group.-warning- .-field input[type="search"]:active, .-group.-warning- form .-field input[type="search"]:active, form .-field.-warning- input[type="search"]:focus, form .-group.-warning- .-field input[type="search"]:focus, .-group.-warning- form .-field input[type="search"]:focus, form .-field.-warning- input[type="tel"]:active, form .-group.-warning- .-field input[type="tel"]:active, .-group.-warning- form .-field input[type="tel"]:active, form .-field.-warning- input[type="tel"]:focus, form .-group.-warning- .-field input[type="tel"]:focus, .-group.-warning- form .-field input[type="tel"]:focus, form .-field.-warning- input[type="time"]:active, form .-group.-warning- .-field input[type="time"]:active, .-group.-warning- form .-field input[type="time"]:active, form .-field.-warning- input[type="time"]:focus, form .-group.-warning- .-field input[type="time"]:focus, .-group.-warning- form .-field input[type="time"]:focus, form .-field.-warning- input[type="url"]:active, form .-group.-warning- .-field input[type="url"]:active, .-group.-warning- form .-field input[type="url"]:active, form .-field.-warning- input[type="url"]:focus, form .-group.-warning- .-field input[type="url"]:focus, .-group.-warning- form .-field input[type="url"]:focus, form .-field.-warning- textarea:active, form .-group.-warning- .-field textarea:active, .-group.-warning- form .-field textarea:active, form .-field.-warning- textarea:focus, form .-group.-warning- .-field textarea:focus, .-group.-warning- form .-field textarea:focus {
+      box-shadow: 0 0 15px rgba(255, 196, 62, 0.6); }
 form label._horizontal_ {
   padding: 10px 12px; }
 
@@ -863,11 +910,12 @@ form label._horizontal_ {
   vertical-align: middle;
   cursor: pointer;
   background-image: none;
-  border: 1px solid transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
   white-space: nowrap;
   outline: none;
   position: relative;
-  z-index: 1;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857;
@@ -876,8 +924,11 @@ form label._horizontal_ {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 2px rgba(0, 0, 0, 0.2), 0 4px 4px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.05);
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
+  border-top-color: #e6e6e6;
+  border-left-color: #e6e6e6;
+  border-right-color: #e6e6e6;
+  border-bottom-color: #e0e0e0;
   font-size: 1.75px;
   font-size: 3.5px;
   font-size: 5.25px;
@@ -892,50 +943,74 @@ form label._horizontal_ {
     width: 100%; }
     .-btn._vertical_ + .-btn {
       margin-top: 5px; }
-  .-btn:active, .-btn._active_, .-btn._disabled_, .-btn[disabled], fieldset[disabled] .-btn {
-    z-index: 0; }
   .-btn:hover, .-btn._hovered_ {
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2), 0 4px 4px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1); }
+    background-color: #fcfcfc; }
   .-btn:active, .-btn._active_ {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+    border-color: #d9d9d9;
+    background-color: #f2f2f2; }
   .-btn._disabled_, .-btn[disabled], fieldset[disabled] .-btn {
     color: rgba(204, 204, 204, 0.65); }
   .-btn._unstyled_ {
     color: black; }
   .-btn.-default-, .-group.-default- .-btn {
-    background-color: #f4f4f4; }
+    background-color: #f7f7f7;
+    border-top-color: #e6e6e6;
+    border-left-color: #e6e6e6;
+    border-right-color: #e6e6e6;
+    border-bottom-color: #e0e0e0; }
     .-btn.-default-:hover, .-group.-default- .-btn:hover, .-btn.-default-._hovered_, .-group.-default- ._hovered_.-btn {
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2), 0 4px 4px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1); }
+      background-color: #fcfcfc; }
     .-btn.-default-:active, .-group.-default- .-btn:active, .-btn.-default-._active_, .-group.-default- ._active_.-btn {
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+      border-color: #d9d9d9;
+      background-color: #f2f2f2; }
     .-btn.-default-._disabled_, .-group.-default- ._disabled_.-btn, .-btn.-default-[disabled], .-group.-default- [disabled].-btn, fieldset[disabled] .-btn.-default-, fieldset[disabled] .-group.-default- .-btn, .-group.-default- fieldset[disabled] .-btn {
       color: rgba(204, 204, 204, 0.65); }
     .-btn.-default-._unstyled_, .-group.-default- ._unstyled_.-btn {
       color: black; }
   .-btn.-primary-, .-group.-primary- .-btn {
-    background-color: #428bca;
+    background-color: #3598db;
+    border-color: #2486c9;
     color: white; }
     .-btn.-primary-:hover, .-group.-primary- .-btn:hover, .-btn.-primary-._hovered_, .-group.-primary- ._hovered_.-btn {
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2), 0 4px 4px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1); }
+      background-color: #4ba3df; }
     .-btn.-primary-:active, .-group.-primary- .-btn:active, .-btn.-primary-._active_, .-group.-primary- ._active_.-btn {
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 -15px 15px rgba(0, 0, 0, 0.1);
-      background-color: #3571a4; }
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+      background-color: #217dbc;
+      border-color: #217dbc; }
     .-btn.-primary-._disabled_, .-group.-primary- ._disabled_.-btn, .-btn.-primary-[disabled], .-group.-primary- [disabled].-btn, fieldset[disabled] .-btn.-primary-, fieldset[disabled] .-group.-primary- .-btn, .-group.-primary- fieldset[disabled] .-btn {
       color: rgba(255, 255, 255, 0.65); }
     .-btn.-primary-._unstyled_, .-group.-primary- ._unstyled_.-btn {
-      color: #428bca; }
+      color: #3598db; }
   .-btn.-error-, .-group.-error- .-btn {
-    background-color: #f2594b;
+    background-color: #cd2c24;
+    border-color: #af251f;
     color: white; }
     .-btn.-error-:hover, .-group.-error- .-btn:hover, .-btn.-error-._hovered_, .-group.-error- ._hovered_.-btn {
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2), 0 4px 4px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1); }
+      background-color: #db3830; }
     .-btn.-error-:active, .-group.-error- .-btn:active, .-btn.-error-._active_, .-group.-error- ._active_.-btn {
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 -15px 15px rgba(0, 0, 0, 0.1);
-      background-color: #cd2c24; }
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+      background-color: #a2231c;
+      border-color: #a2231c; }
     .-btn.-error-._disabled_, .-group.-error- ._disabled_.-btn, .-btn.-error-[disabled], .-group.-error- [disabled].-btn, fieldset[disabled] .-btn.-error-, fieldset[disabled] .-group.-error- .-btn, .-group.-error- fieldset[disabled] .-btn {
       color: rgba(255, 255, 255, 0.65); }
     .-btn.-error-._unstyled_, .-group.-error- ._unstyled_.-btn {
       color: #cd2c24; }
+  .-btn.-warning-, .-group.-warning- .-btn {
+    background-color: #ffc43e;
+    border-color: #ffb91a;
+    color: white; }
+    .-btn.-warning-:hover, .-group.-warning- .-btn:hover, .-btn.-warning-._hovered_, .-group.-warning- ._hovered_.-btn {
+      background-color: #ffcc58; }
+    .-btn.-warning-:active, .-group.-warning- .-btn:active, .-btn.-warning-._active_, .-group.-warning- ._active_.-btn {
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+      background-color: #ffb40b;
+      border-color: #ffb40b; }
+    .-btn.-warning-._disabled_, .-group.-warning- ._disabled_.-btn, .-btn.-warning-[disabled], .-group.-warning- [disabled].-btn, fieldset[disabled] .-btn.-warning-, fieldset[disabled] .-group.-warning- .-btn, .-group.-warning- fieldset[disabled] .-btn {
+      color: rgba(255, 255, 255, 0.65); }
+    .-btn.-warning-._unstyled_, .-group.-warning- ._unstyled_.-btn {
+      color: #ffc43e; }
   .-btn._disabled_, .-btn[disabled], fieldset[disabled] .-btn {
     cursor: not-allowed;
     pointer-events: none;
@@ -979,14 +1054,15 @@ a.-btn {
   .-group._justify_ {
     display: table;
     width: 100%; }
+  @media screen and (max-width: 992px) {
+    .-group._responsive_ {
+      display: table;
+      width: 100%; } }
 
-@media screen and (max-width: 992px) {
-  .-group {
-    display: table;
-    width: 100%; } }
 .-group .-btn {
-  vertical-align: top;
-  margin: 0 !important; }
+  vertical-align: top; }
+  .-group .-btn:not(:first-child), .-group .-btn:last-child {
+    margin-left: -1px; }
   .-group .-btn:not(:first-child):not(:last-child) {
     border-radius: 0; }
   .-group .-btn:first-child:not(:last-child) {
@@ -995,13 +1071,11 @@ a.-btn {
   .-group .-btn:last-child:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
-  .-group .-btn:active, .-group .-btn._active_ {
-    box-shadow: inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
 .-group._justify_ .-btn {
   display: table-cell;
   width: 1%; }
 @media screen and (max-width: 992px) {
-  .-group .-btn {
+  .-group._responsive_ .-btn {
     display: table-cell;
     width: 1%; } }
 .-group.-default- .-btn:active, .-group.-default- .-btn._active_ {
@@ -1009,6 +1083,8 @@ a.-btn {
 .-group.-primary- .-btn:active, .-group.-primary- .-btn._active_ {
   box-shadow: inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
 .-group.-error- .-btn:active, .-group.-error- .-btn._active_ {
+  box-shadow: inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
+.-group.-warning- .-btn:active, .-group.-warning- .-btn._active_ {
   box-shadow: inset 0 -15px 15px rgba(0, 0, 0, 0.1); }
 
 .-group {
@@ -1032,7 +1108,7 @@ a.-btn {
     display: table-cell;
     width: 100%; }
   @media screen and (max-width: 992px) {
-    .-group .-field, .-group select, .-group input[type="text"], .-group input[type="password"], .-group input[type="date"], .-group input[type="datetime"], .-group input[type="datetime-local"], .-group input[type="month"], .-group input[type="week"], .-group input[type="email"], .-group input[type="number"], .-group input[type="search"], .-group input[type="tel"], .-group input[type="time"], .-group input[type="url"], .-group textarea {
+    .-group._responsive_ .-field, .-group._responsive_ select, .-group._responsive_ input[type="text"], .-group._responsive_ input[type="password"], .-group._responsive_ input[type="date"], .-group._responsive_ input[type="datetime"], .-group._responsive_ input[type="datetime-local"], .-group._responsive_ input[type="month"], .-group._responsive_ input[type="week"], .-group._responsive_ input[type="email"], .-group._responsive_ input[type="number"], .-group._responsive_ input[type="search"], .-group._responsive_ input[type="tel"], .-group._responsive_ input[type="time"], .-group._responsive_ input[type="url"], .-group._responsive_ textarea {
       display: table-cell;
       width: 100%; } }
 
@@ -1043,6 +1119,9 @@ a.-btn {
   border: 1px solid transparent;
   white-space: nowrap;
   outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857;
@@ -1056,7 +1135,7 @@ a.-btn {
   font-size: 12.25px;
   font-size: 13.3px;
   font-size: 14px;
-  background-color: #e4e4e4; }
+  background-color: #fafafa; }
   .-addon:not(:first-child):not(:last-child) {
     border-radius: 0; }
   .-addon:first-child:not(:last-child) {
@@ -1086,25 +1165,381 @@ a.-btn {
   .-addon._unstyled_ {
     color: black; }
   .-addon.-default-, .-group.-default- .-addon {
-    background-color: #e4e4e4; }
+    background-color: #fafafa; }
     .-addon.-default-._unstyled_, .-group.-default- ._unstyled_.-addon {
       color: black; }
   .-addon.-primary-, .-group.-primary- .-addon {
-    background-color: #cbe7ff; }
+    background-color: #aed6f1; }
     .-addon.-primary-._unstyled_, .-group.-primary- ._unstyled_.-addon {
-      color: #428bca; }
+      color: #3598db; }
   .-addon.-error-, .-group.-error- .-addon {
-    background-color: #ff827c; }
+    background-color: #ec9894; }
     .-addon.-error-._unstyled_, .-group.-error- ._unstyled_.-addon {
       color: #cd2c24; }
+  .-addon.-warning-, .-group.-warning- .-addon {
+    background-color: #fff0cd; }
+    .-addon.-warning-._unstyled_, .-group.-warning- ._unstyled_.-addon {
+      color: #ffc43e; }
 
 .-group._justify_ .-addon {
   display: table-cell;
   width: 1%; }
 @media screen and (max-width: 992px) {
-  .-group .-addon {
+  .-group._responsive_ .-addon {
     display: table-cell;
     width: 1%; } }
+
+.-tabs {
+  border-bottom-width: 1px;
+  border-style: solid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-color: #d9d9d9; }
+  .-tabs li {
+    float: left;
+    margin-right: 1px;
+    bottom: -1px; }
+    .-tabs li a {
+      padding: 6px 12px;
+      border-radius: 3px 3px 0 0;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      white-space: nowrap;
+      outline: none;
+      font-size: 14px;
+      line-height: 1.42857;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer; }
+    .-tabs li._active_ a {
+      border-bottom-color: transparent;
+      cursor: inherit; }
+  .-tabs:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .-tabs._justify_ {
+    width: 100%; }
+    .-tabs._justify_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; }
+  @media screen and (max-width: 992px) {
+    .-tabs._responsive_ {
+      width: 100%; } }
+  @media screen and (max-width: 992px) {
+    .-tabs._responsive_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; } }
+  .-tabs._vertical_ li {
+    width: 100%; }
+  .-tabs li {
+    display: block;
+    position: relative; }
+    .-tabs li a {
+      display: block;
+      position: relative; }
+    .-tabs li._disabled_ a, .-tabs li[disabled] a {
+      cursor: not-allowed; }
+  .-tabs li:hover a, .-tabs li._hovered_ a {
+    border-color: #f7f7f7;
+    border-bottom-color: #d9d9d9;
+    background-color: #f7f7f7;
+    color: black; }
+  .-tabs li._active_ a {
+    border-color: #d9d9d9;
+    color: black;
+    background-color: #f7f7f7; }
+  .-tabs li._disabled_ a, :active .-tabs li._disabled_, ._active_ .-tabs li._disabled_, :hover .-tabs li._disabled_, ._hovered_ .-tabs li._disabled_, .-tabs li[disabled] a, :active .-tabs li[disabled], ._active_ .-tabs li[disabled], :hover .-tabs li[disabled], ._hovered_ .-tabs li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    border-color: transparent; }
+  .-tabs._vertical_ li:hover:not([class^="_active_"]) a, .-tabs._vertical_ li._hovered_:not([class^="_active_"]) a {
+    border-bottom-color: transparent;
+    border-right-color: #d9d9d9; }
+  .-tabs._vertical_._right_ li:hover:not([class^="_active_"]) a, .-tabs._vertical_._right_ li._hovered_:not([class^="_active_"]) a {
+    border-right-color: transparent;
+    border-left-color: #d9d9d9; }
+  .-tabs.-default- {
+    border-color: #d9d9d9; }
+    .-tabs.-default- li:hover a, .-tabs.-default- li._hovered_ a {
+      border-color: #f7f7f7;
+      border-bottom-color: #d9d9d9;
+      background-color: #f7f7f7;
+      color: black; }
+    .-tabs.-default- li._active_ a {
+      border-color: #d9d9d9;
+      color: black;
+      background-color: #f7f7f7; }
+    .-tabs.-default- li._disabled_ a, :active .-tabs.-default- li._disabled_, ._active_ .-tabs.-default- li._disabled_, :hover .-tabs.-default- li._disabled_, ._hovered_ .-tabs.-default- li._disabled_, .-tabs.-default- li[disabled] a, :active .-tabs.-default- li[disabled], ._active_ .-tabs.-default- li[disabled], :hover .-tabs.-default- li[disabled], ._hovered_ .-tabs.-default- li[disabled] {
+      background: transparent;
+      color: rgba(0, 0, 0, 0.3);
+      border-color: transparent; }
+    .-tabs.-default-._vertical_ li:hover:not([class^="_active_"]) a, .-tabs.-default-._vertical_ li._hovered_:not([class^="_active_"]) a {
+      border-bottom-color: transparent;
+      border-right-color: #d9d9d9; }
+    .-tabs.-default-._vertical_._right_ li:hover:not([class^="_active_"]) a, .-tabs.-default-._vertical_._right_ li._hovered_:not([class^="_active_"]) a {
+      border-right-color: transparent;
+      border-left-color: #d9d9d9; }
+  .-tabs li.-primary-:hover a, .-tabs li.-primary-._hovered_ a {
+    border-color: #60aee3;
+    border-bottom-color: #3598db;
+    background-color: #60aee3;
+    color: white; }
+  .-tabs li.-primary-._active_ a {
+    border-color: #3598db;
+    border-bottom-color: transparent;
+    color: white;
+    background-color: #3598db; }
+  .-tabs li.-primary-._disabled_ a, :active .-tabs li.-primary-._disabled_, ._active_ .-tabs li.-primary-._disabled_, :hover .-tabs li.-primary-._disabled_, ._hovered_ .-tabs li.-primary-._disabled_, .-tabs li.-primary-[disabled] a, :active .-tabs li.-primary-[disabled], ._active_ .-tabs li.-primary-[disabled], :hover .-tabs li.-primary-[disabled], ._hovered_ .-tabs li.-primary-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    border-color: transparent; }
+  .-tabs.-primary- {
+    border-color: #3598db; }
+    .-tabs.-primary- li:hover a, .-tabs.-primary- li._hovered_ a {
+      border-color: #60aee3;
+      border-bottom-color: #3598db;
+      background-color: #60aee3;
+      color: white; }
+    .-tabs.-primary- li._active_ a {
+      border-color: #3598db;
+      color: white;
+      background-color: #3598db; }
+    .-tabs.-primary- li._disabled_ a, :active .-tabs.-primary- li._disabled_, ._active_ .-tabs.-primary- li._disabled_, :hover .-tabs.-primary- li._disabled_, ._hovered_ .-tabs.-primary- li._disabled_, .-tabs.-primary- li[disabled] a, :active .-tabs.-primary- li[disabled], ._active_ .-tabs.-primary- li[disabled], :hover .-tabs.-primary- li[disabled], ._hovered_ .-tabs.-primary- li[disabled] {
+      background: transparent;
+      color: rgba(0, 0, 0, 0.3);
+      border-color: transparent; }
+    .-tabs.-primary-._vertical_ li:hover:not([class^="_active_"]) a, .-tabs.-primary-._vertical_ li._hovered_:not([class^="_active_"]) a {
+      border-bottom-color: transparent;
+      border-right-color: #3598db; }
+    .-tabs.-primary-._vertical_._right_ li:hover:not([class^="_active_"]) a, .-tabs.-primary-._vertical_._right_ li._hovered_:not([class^="_active_"]) a {
+      border-right-color: transparent;
+      border-left-color: #3598db; }
+  .-tabs li.-error-:hover a, .-tabs li.-error-._hovered_ a {
+    border-color: #de4d46;
+    border-bottom-color: #cd2c24;
+    background-color: #de4d46;
+    color: white; }
+  .-tabs li.-error-._active_ a {
+    border-color: #cd2c24;
+    border-bottom-color: transparent;
+    color: white;
+    background-color: #cd2c24; }
+  .-tabs li.-error-._disabled_ a, :active .-tabs li.-error-._disabled_, ._active_ .-tabs li.-error-._disabled_, :hover .-tabs li.-error-._disabled_, ._hovered_ .-tabs li.-error-._disabled_, .-tabs li.-error-[disabled] a, :active .-tabs li.-error-[disabled], ._active_ .-tabs li.-error-[disabled], :hover .-tabs li.-error-[disabled], ._hovered_ .-tabs li.-error-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    border-color: transparent; }
+  .-tabs.-error- {
+    border-color: #cd2c24; }
+    .-tabs.-error- li:hover a, .-tabs.-error- li._hovered_ a {
+      border-color: #de4d46;
+      border-bottom-color: #cd2c24;
+      background-color: #de4d46;
+      color: white; }
+    .-tabs.-error- li._active_ a {
+      border-color: #cd2c24;
+      color: white;
+      background-color: #cd2c24; }
+    .-tabs.-error- li._disabled_ a, :active .-tabs.-error- li._disabled_, ._active_ .-tabs.-error- li._disabled_, :hover .-tabs.-error- li._disabled_, ._hovered_ .-tabs.-error- li._disabled_, .-tabs.-error- li[disabled] a, :active .-tabs.-error- li[disabled], ._active_ .-tabs.-error- li[disabled], :hover .-tabs.-error- li[disabled], ._hovered_ .-tabs.-error- li[disabled] {
+      background: transparent;
+      color: rgba(0, 0, 0, 0.3);
+      border-color: transparent; }
+    .-tabs.-error-._vertical_ li:hover:not([class^="_active_"]) a, .-tabs.-error-._vertical_ li._hovered_:not([class^="_active_"]) a {
+      border-bottom-color: transparent;
+      border-right-color: #cd2c24; }
+    .-tabs.-error-._vertical_._right_ li:hover:not([class^="_active_"]) a, .-tabs.-error-._vertical_._right_ li._hovered_:not([class^="_active_"]) a {
+      border-right-color: transparent;
+      border-left-color: #cd2c24; }
+  .-tabs li.-warning-:hover a, .-tabs li.-warning-._hovered_ a {
+    border-color: #ffd471;
+    border-bottom-color: #ffc43e;
+    background-color: #ffd471;
+    color: white; }
+  .-tabs li.-warning-._active_ a {
+    border-color: #ffc43e;
+    border-bottom-color: transparent;
+    color: white;
+    background-color: #ffc43e; }
+  .-tabs li.-warning-._disabled_ a, :active .-tabs li.-warning-._disabled_, ._active_ .-tabs li.-warning-._disabled_, :hover .-tabs li.-warning-._disabled_, ._hovered_ .-tabs li.-warning-._disabled_, .-tabs li.-warning-[disabled] a, :active .-tabs li.-warning-[disabled], ._active_ .-tabs li.-warning-[disabled], :hover .-tabs li.-warning-[disabled], ._hovered_ .-tabs li.-warning-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    border-color: transparent; }
+  .-tabs.-warning- {
+    border-color: #ffc43e; }
+    .-tabs.-warning- li:hover a, .-tabs.-warning- li._hovered_ a {
+      border-color: #ffd471;
+      border-bottom-color: #ffc43e;
+      background-color: #ffd471;
+      color: white; }
+    .-tabs.-warning- li._active_ a {
+      border-color: #ffc43e;
+      color: white;
+      background-color: #ffc43e; }
+    .-tabs.-warning- li._disabled_ a, :active .-tabs.-warning- li._disabled_, ._active_ .-tabs.-warning- li._disabled_, :hover .-tabs.-warning- li._disabled_, ._hovered_ .-tabs.-warning- li._disabled_, .-tabs.-warning- li[disabled] a, :active .-tabs.-warning- li[disabled], ._active_ .-tabs.-warning- li[disabled], :hover .-tabs.-warning- li[disabled], ._hovered_ .-tabs.-warning- li[disabled] {
+      background: transparent;
+      color: rgba(0, 0, 0, 0.3);
+      border-color: transparent; }
+    .-tabs.-warning-._vertical_ li:hover:not([class^="_active_"]) a, .-tabs.-warning-._vertical_ li._hovered_:not([class^="_active_"]) a {
+      border-bottom-color: transparent;
+      border-right-color: #ffc43e; }
+    .-tabs.-warning-._vertical_._right_ li:hover:not([class^="_active_"]) a, .-tabs.-warning-._vertical_._right_ li._hovered_:not([class^="_active_"]) a {
+      border-right-color: transparent;
+      border-left-color: #ffc43e; }
+  .-tabs._vertical_ {
+    border-bottom-width: 0;
+    border-right-width: 1px; }
+    .-tabs._vertical_ li {
+      right: -1px;
+      margin-right: 0;
+      margin-bottom: 1px; }
+      .-tabs._vertical_ li a {
+        border-radius: 3px 0 0 3px; }
+    .-tabs._vertical_._right_ {
+      border-left-width: 1px;
+      border-right-width: 0; }
+      .-tabs._vertical_._right_ li {
+        right: inherit;
+        left: -1px; }
+        .-tabs._vertical_._right_ li a {
+          border-radius: 0 3px 3px 0; }
+    .-tabs._vertical_ li {
+      float: none; }
+
+.-pills {
+  border: none;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .-pills li {
+    float: left;
+    margin-right: 1px; }
+    .-pills li a {
+      padding: 6px 12px;
+      border-radius: 3px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      white-space: nowrap;
+      outline: none;
+      font-size: 14px;
+      line-height: 1.42857;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer; }
+    .-pills li._active_ a {
+      cursor: inherit; }
+  .-pills:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .-pills._justify_ {
+    width: 100%; }
+    .-pills._justify_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; }
+  @media screen and (max-width: 992px) {
+    .-pills._responsive_ {
+      width: 100%; } }
+  @media screen and (max-width: 992px) {
+    .-pills._responsive_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; } }
+  .-pills._vertical_ li {
+    width: 100%; }
+  .-pills li {
+    display: block;
+    position: relative; }
+    .-pills li a {
+      display: block;
+      position: relative; }
+    .-pills li._disabled_ a, .-pills li[disabled] a {
+      cursor: not-allowed; }
+  .-pills li:hover a, .-pills li._hovered_ a {
+    background-color: #f7f7f7;
+    color: black; }
+  .-pills li._active_ a {
+    color: black;
+    background-color: #ebebeb; }
+  .-pills li._disabled_ a, :active .-pills li._disabled_, ._active_ .-pills li._disabled_, :hover .-pills li._disabled_, ._hovered_ .-pills li._disabled_, .-pills li[disabled] a, :active .-pills li[disabled], ._active_ .-pills li[disabled], :hover .-pills li[disabled], ._hovered_ .-pills li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills.-default- li:hover a, .-pills.-default- li._hovered_ a {
+    background-color: #f7f7f7;
+    color: black; }
+  .-pills.-default- li._active_ a {
+    color: black;
+    background-color: #ebebeb; }
+  .-pills.-default- li._disabled_ a, :active .-pills.-default- li._disabled_, ._active_ .-pills.-default- li._disabled_, :hover .-pills.-default- li._disabled_, ._hovered_ .-pills.-default- li._disabled_, .-pills.-default- li[disabled] a, :active .-pills.-default- li[disabled], ._active_ .-pills.-default- li[disabled], :hover .-pills.-default- li[disabled], ._hovered_ .-pills.-default- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills li.-primary-:hover a, .-pills li.-primary-._hovered_ a {
+    background-color: #60aee3;
+    color: white; }
+  .-pills li.-primary-._active_ a {
+    color: white;
+    background-color: #3598db; }
+  .-pills li.-primary-._disabled_ a, :active .-pills li.-primary-._disabled_, ._active_ .-pills li.-primary-._disabled_, :hover .-pills li.-primary-._disabled_, ._hovered_ .-pills li.-primary-._disabled_, .-pills li.-primary-[disabled] a, :active .-pills li.-primary-[disabled], ._active_ .-pills li.-primary-[disabled], :hover .-pills li.-primary-[disabled], ._hovered_ .-pills li.-primary-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills.-primary- li:hover a, .-pills.-primary- li._hovered_ a {
+    background-color: #60aee3;
+    color: white; }
+  .-pills.-primary- li._active_ a {
+    color: white;
+    background-color: #3598db; }
+  .-pills.-primary- li._disabled_ a, :active .-pills.-primary- li._disabled_, ._active_ .-pills.-primary- li._disabled_, :hover .-pills.-primary- li._disabled_, ._hovered_ .-pills.-primary- li._disabled_, .-pills.-primary- li[disabled] a, :active .-pills.-primary- li[disabled], ._active_ .-pills.-primary- li[disabled], :hover .-pills.-primary- li[disabled], ._hovered_ .-pills.-primary- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills li.-error-:hover a, .-pills li.-error-._hovered_ a {
+    background-color: #de4d46;
+    color: white; }
+  .-pills li.-error-._active_ a {
+    color: white;
+    background-color: #cd2c24; }
+  .-pills li.-error-._disabled_ a, :active .-pills li.-error-._disabled_, ._active_ .-pills li.-error-._disabled_, :hover .-pills li.-error-._disabled_, ._hovered_ .-pills li.-error-._disabled_, .-pills li.-error-[disabled] a, :active .-pills li.-error-[disabled], ._active_ .-pills li.-error-[disabled], :hover .-pills li.-error-[disabled], ._hovered_ .-pills li.-error-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills.-error- li:hover a, .-pills.-error- li._hovered_ a {
+    background-color: #de4d46;
+    color: white; }
+  .-pills.-error- li._active_ a {
+    color: white;
+    background-color: #cd2c24; }
+  .-pills.-error- li._disabled_ a, :active .-pills.-error- li._disabled_, ._active_ .-pills.-error- li._disabled_, :hover .-pills.-error- li._disabled_, ._hovered_ .-pills.-error- li._disabled_, .-pills.-error- li[disabled] a, :active .-pills.-error- li[disabled], ._active_ .-pills.-error- li[disabled], :hover .-pills.-error- li[disabled], ._hovered_ .-pills.-error- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills li.-warning-:hover a, .-pills li.-warning-._hovered_ a {
+    background-color: #ffd471;
+    color: white; }
+  .-pills li.-warning-._active_ a {
+    color: white;
+    background-color: #ffc43e; }
+  .-pills li.-warning-._disabled_ a, :active .-pills li.-warning-._disabled_, ._active_ .-pills li.-warning-._disabled_, :hover .-pills li.-warning-._disabled_, ._hovered_ .-pills li.-warning-._disabled_, .-pills li.-warning-[disabled] a, :active .-pills li.-warning-[disabled], ._active_ .-pills li.-warning-[disabled], :hover .-pills li.-warning-[disabled], ._hovered_ .-pills li.-warning-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills.-warning- li:hover a, .-pills.-warning- li._hovered_ a {
+    background-color: #ffd471;
+    color: white; }
+  .-pills.-warning- li._active_ a {
+    color: white;
+    background-color: #ffc43e; }
+  .-pills.-warning- li._disabled_ a, :active .-pills.-warning- li._disabled_, ._active_ .-pills.-warning- li._disabled_, :hover .-pills.-warning- li._disabled_, ._hovered_ .-pills.-warning- li._disabled_, .-pills.-warning- li[disabled] a, :active .-pills.-warning- li[disabled], ._active_ .-pills.-warning- li[disabled], :hover .-pills.-warning- li[disabled], ._hovered_ .-pills.-warning- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3); }
+  .-pills._vertical_ li {
+    margin-right: 0;
+    margin-bottom: 1px;
+    float: none; }
 
 
 /*# sourceMappingURL=main.css.map*/

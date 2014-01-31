@@ -1,0 +1,39 @@
+@mixin nav-setter
+	margin: 0
+	padding: 0
+	list-style: none
+	@include clearfix
+
+	&.#{$mod-justify}
+		width: 100%
+
+		#{$nav-item}
+			display: table-cell
+			width: 1%
+			float: none
+
+	&.#{$mod-responsive}
+		@include media(new-breakpoint(max-width 992px 6))
+			width: 100%
+
+		@include media(new-breakpoint(max-width 992px 6))
+			#{$nav-item}
+				display: table-cell
+				width: 1%
+				float: none
+
+	&.#{$mod-vertical}
+		#{$nav-item}
+			width: 100%
+
+	#{$nav-item}
+		display: block
+		position: relative
+
+		a
+			display: block
+			position: relative
+
+		&.#{$mod-disabled}, &[disabled]
+			a
+				cursor: not-allowed
