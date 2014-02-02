@@ -34,6 +34,37 @@
 			display: block
 			position: relative
 
+			.#{$addon-class}
+				margin-left: $nav-addon-margin
+				opacity: .3
+				line-height: $base-line-height
+
+		.#{$dropdown-class}
+			display: none
+
+
+		&.#{$mod-active}
+			.#{$dropdown-class}
+				display: block
+
 		&.#{$mod-disabled}, &[disabled]
 			a
 				cursor: not-allowed
+
+	&.#{$mod-hovered}
+		#{$nav-item}
+			&.#{$mod-hovered}, &:hover
+				& > .#{$dropdown-class}
+					display: block
+
+	@each $size in $base-sizes-names
+		$i: index($base-sizes-names, $size)
+		@if #{$size} == "_normal"
+			#{$nav-item}
+				a
+					font-size: nth($base-sizes-values, $i) * $base-font-size / 2
+		
+		&.#{$size}
+			#{$nav-item}
+				a
+					font-size: nth($base-sizes-values, $i) * $base-font-size

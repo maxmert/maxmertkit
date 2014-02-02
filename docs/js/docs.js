@@ -1,5 +1,10 @@
 widgets = [
 	{
+		"name": "dropdowns",
+		"path": "dropdowns"
+	},
+
+	{
 		"name": "groups",
 		"path": "groups",
 
@@ -31,6 +36,36 @@ widgets = [
 			{
 				"name": "pills",
 				"path": "nav/pills"
+			},
+			{
+				"name": "menu",
+				"path": "nav/menu"
+			},
+			{
+				"name": "bar",
+				"path": "nav/bar"
+			}
+		]
+	},
+
+	{
+		"name": "labels",
+		"path": "labels"
+	},
+
+	{
+		"name": "badges",
+		"path": "badges"
+	},
+
+	{
+		"name": "thumbnails",
+		"path": "thumbnails",
+
+		"include": [
+			{
+				"name": "captions",
+				"path": "thumbnails/captions"
 			}
 		]
 	}

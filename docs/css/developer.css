@@ -118,13 +118,23 @@ pre .chunk {
   border-radius: 5px; }
 
 .example-block .example, .example-block .view {
-  padding: 15px !important; }
-.example-block .view .-btn, .example-block .view .-group {
+  padding: 15px !important;
+  position: relative; }
+.example-block .view > .-btn, .example-block .view > .-group {
   margin-top: 5px;
   margin-bottom: 5px; }
-.example-block .view .-group .-btn {
+.example-block .view > .-group .-btn {
   margin-top: 0;
   margin-bottom: 0; }
+.example-block .view ._dev-clear_ {
+  position: relative;
+  top: inherit;
+  left: inherit;
+  right: inherit; }
+  .example-block .view ._dev-clear_:after {
+    content: "";
+    display: table;
+    clear: both; }
 .example-block .example {
   border: none;
   border-radius: 0;

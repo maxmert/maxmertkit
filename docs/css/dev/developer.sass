@@ -12,16 +12,24 @@
 .example-block
 	.example, .view
 		padding: 15px!important
+		position: relative
 
 	.view
-		.-btn, .-group
+		& > .-btn, & > .-group
 			margin-top: 5px
 			margin-bottom: 5px
 
-		.-group
+		& > .-group
 			.-btn
 				margin-top: 0
 				margin-bottom: 0
+
+		._dev-clear_
+			@include clearfix
+			position: relative
+			top: inherit
+			left: inherit
+			right: inherit
 
 	.example
 		border: none

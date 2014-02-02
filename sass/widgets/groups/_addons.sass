@@ -25,51 +25,51 @@
 
 
 @include exports("groups/addons")
+	.#{$group-class}
+		.#{$group-addon-class}
+			display: inline-block
+			text-align: center
+			vertical-align: middle
+			border: 1px solid transparent
+			white-space: nowrap
+			outline: none
+			@include text-overflow
 
-	.#{$group-addon-class}
-		display: inline-block
-		text-align: center
-		vertical-align: middle
-		border: 1px solid transparent
-		white-space: nowrap
-		outline: none
-		@include text-overflow
+			// Set default size
+			padding: $base-padding-vertical $base-padding-horizontal
+			font-size: $base-font-size
+			line-height: $base-line-height
+			border-radius: $button-border-radius
 
-		// Set default size
-		padding: $base-padding-vertical $base-padding-horizontal
-		font-size: $base-font-size
-		line-height: $base-line-height
-		border-radius: $button-border-radius
+			&:not(:first-child):not(:last-child)
+				border-radius: 0
 
-		&:not(:first-child):not(:last-child)
-			border-radius: 0
+			&:first-child:not(:last-child)
+				@include border-right-radius(0)
 
-		&:first-child:not(:last-child)
-			@include border-right-radius(0)
+			&:last-child:not(:first-child)
+				@include border-left-radius(0)
 
-		&:last-child:not(:first-child)
-			@include border-left-radius(0)
-
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			@if #{$size} == "_normal"
-				font-size: nth($base-sizes-values, $i) * $base-font-size / 2
-			
-			&.#{$size}
-				font-size: nth($base-sizes-values, $i) * $base-font-size
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				@if #{$size} == "_normal"
+					font-size: nth($base-sizes-values, $i) * $base-font-size / 2
+				
+				&.#{$size}
+					font-size: nth($base-sizes-values, $i) * $base-font-size
 
 
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include buttons-theme-addon-setter($i)
-				&.#{$theme}
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
 					@include buttons-theme-addon-setter($i)
-			@else
-				&.#{$theme}
-					@include buttons-theme-addon-setter($i)
+					&.#{$theme}
+						@include buttons-theme-addon-setter($i)
+				@else
+					&.#{$theme}
+						@include buttons-theme-addon-setter($i)
 
 	
 
