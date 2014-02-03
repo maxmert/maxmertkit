@@ -1,5 +1,5 @@
 @mixin theme-cell-setter($i)
-	background-color: nth($themes-background-light-colors, $i)
+	background-color: lighten(nth($themes-background-light-colors, $i), 25%)
 
 
 @include exports("tables/cells")
@@ -14,3 +14,6 @@
 						
 						&.#{$theme}
 							@include theme-cell-setter($i)
+
+					&[disabled]
+						opacity: 0.5

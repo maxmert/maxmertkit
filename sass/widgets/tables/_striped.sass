@@ -2,7 +2,10 @@
 	& > thead, & > tbody, & > tfoot
 		& > tr:nth-child(odd)
 			& > td
-				background-color: nth($themes-background-light-colors, $i)
+				@if nth($themes, $i) == "-default-"
+					background-color: nth($themes-background-light-colors, $i)
+				@else
+					background-color: lighten(nth($themes-background-light-colors, $i), 25%)
 
 @include exports("tables/striped")
 
@@ -16,3 +19,4 @@
 					@include theme-striped-setter($i)
 				&.#{$theme}
 					@include theme-striped-setter($i)
+

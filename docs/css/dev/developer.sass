@@ -46,6 +46,21 @@
 		&:first-child
 			border-top: none
 
+._dev-invisibility_, ._dev-visibility_
+	padding: 10px 15px
+	border-radius: 5px
+
+._dev-invisibility_
+	background-color: #eeeeee
+	position: relative
+
+._dev-visibility_
+	position: absolute
+	background-color: #ffc43e
+	top: 0
+	left: 0
+	width: 100%
+
 @include media(new-breakpoint(max-width 768px 6))
 	.example-block
 		.example

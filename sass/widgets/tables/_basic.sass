@@ -4,22 +4,35 @@
 	& > thead, & > tbody, & > tfoot
 		& > tr
 			& > td
-				border-top: 1px solid nth($themes-border-colors, $i)
+				border-top: 1px solid lighten(nth($themes-border-colors, $i), 20%)
 			& > th
-				border-bottom: 2px solid nth($themes-border-colors, $i)
+				border-bottom: 2px solid lighten(nth($themes-border-colors, $i), 20%)
+	& > tbody + tbody
+		border-top: 2px solid lighten(nth($themes-border-colors, $i), 20%)
+
+	& > thead + tbody
+		border-top: 2px solid lighten(nth($themes-border-colors, $i), 20%)
+		
 
 @mixin tables-theme-vertical-setter($i)
 	& > thead, & > tbody, & > tfoot
 		& > tr
 			& > td, & > th
-				border-right: 1px solid nth($themes-border-colors, $i)
+				border-right: 1px solid lighten(nth($themes-border-colors, $i), 20%)
 
 				&:last-child
 					border-right: none
+	& > tbody + tbody
+		border-top: 2px solid lighten(nth($themes-border-colors, $i), 20%)
+
+	& > thead + tbody
+		border-top: 2px solid lighten(nth($themes-border-colors, $i), 20%)
+
+
 
 @mixin tables-theme-wrap-setter($i)
 	& > thead, & > tbody, & > tfoot
-		border: 1px solid nth($themes-border-colors, $i)
+		border: 1px solid lighten(nth($themes-border-colors, $i), 20%)
 
 
 
@@ -27,7 +40,7 @@
 	& > thead, & > tbody, & > tfoot
 		& > tr:nth-child(odd)
 			& > td
-				background-color: nth($themes-background-colors, $i)
+				background-color: lighten(nth($themes-background-colors, $i), 25%)
 
 
 
@@ -82,3 +95,6 @@
 					@include tables-theme-wrap-setter($i)
 				&.#{$theme}
 					@include tables-theme-wrap-setter($i)
+
+		&[disabled]
+			opacity: 0.5

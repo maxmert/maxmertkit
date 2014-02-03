@@ -68,6 +68,11 @@ widgets = [
 				"path": "thumbnails/captions"
 			}
 		]
+	},
+
+	{
+		"name": "alerts",
+		"path": "alerts"
 	}
 ]
 
@@ -198,5 +203,10 @@ main = [
 				"path": "buttons/blocks"
 			}
 		]
+	},
+
+	{
+		"name": "responsive",
+		"path": "../utilities/responsive"
 	}
 ]

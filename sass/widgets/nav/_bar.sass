@@ -39,6 +39,7 @@
 		border-color: transparent
 		border-radius: $nav-bar-border-radius
 		padding: 0 $nav-bar-padding-horizontal
+		position: relative
 
 		&:first-child
 			border-radius: $nav-bar-border-radius $nav-bar-border-radius 0 0
@@ -60,6 +61,12 @@
 			display: inline-block
 
 		
+		.#{$header-class-name}
+			$delta: $nav-bar-height - $nav-menu-items-padding-vertical * 2 - $base-line-height-comp
+			padding: $nav-menu-items-padding-vertical + $delta / 2 $nav-menu-items-padding-horizontal
+			line-height: $base-line-height-comp
+			font-weight: bold
+
 		.#{$nav-menu-class}
 			#{$nav-item}
 				a
@@ -85,6 +92,11 @@
 			.#{$button-class}
 				margin-top: 0
 				margin-bottom: 0
+
+		.#{$nav-bar-toggle-class}
+			position: absolute
+			right: $nav-bar-padding-horizontal
+			top: 1px
 
 		
 		&.#{$mod-top}, &.#{$mod-bottom}

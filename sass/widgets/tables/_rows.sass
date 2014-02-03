@@ -1,6 +1,9 @@
 @mixin theme-row-setter($i)
 	& > td
-		background-color: nth($themes-background-light-colors, $i)
+		@if nth($themes, $i) == "-default-"
+			background-color: nth($themes-background-light-colors, $i)
+		@else
+			background-color: lighten(nth($themes-background-light-colors, $i), 25%)
 
 
 @include exports("tables/rows")
@@ -15,3 +18,6 @@
 					
 					&.#{$theme}
 						@include theme-row-setter($i)
+
+				&[disabled]
+					opacity: 0.5
