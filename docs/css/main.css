@@ -118,7 +118,7 @@ body {
   font-size: 100%;
   font-family: "Helvetica"; }
 
-[class^="-shadow"] {
+[class*="-shadow"] {
   position: relative; }
 
 .-shadow-lifted-:before, .-shadow-lifted-:after {
@@ -145,7 +145,7 @@ body {
   -o-transform: rotate(2deg);
   transform: rotate(2deg); }
 
-[class^="-shadow"] {
+[class*="-shadow"] {
   position: relative; }
 
 .-shadow-curve-:before {
@@ -160,7 +160,7 @@ body {
   border-radius: 100px/10px;
   box-shadow: 0 9px 10px rgba(0, 0, 0, 0.5), 0 15px 15px rgba(0, 0, 0, 0.2); }
 
-[class^="-shadow"] {
+[class*="-shadow"] {
   position: relative; }
 
 .-shadow-curve-double-:before, .-shadow-curve-double-:after {
@@ -2604,6 +2604,153 @@ a.-btn {
     font-size: 28px; }
   .-alert:empty {
     display: none; }
+
+.-progress {
+  display: block;
+  border-radius: 4px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  background-color: white; }
+  .-progress .-bar {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: transparent;
+    outline: none;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 -2px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 2px 8px;
+    font-size: 14px;
+    line-height: 1.42857; }
+    .-progress .-bar:first-child:not(:last-child) {
+      border-radius: 4px 0 0 4px; }
+    .-progress .-bar:last-child:not(:first-child) {
+      border-radius: 0 4px 4px 0; }
+    .-progress .-bar:not(:last-child):not(:first-child) {
+      border-radius: 0; }
+  .-progress .-bar {
+    background-color: #f7f7f7;
+    border-color: #f7f7f7;
+    color: black; }
+  .-progress._disabled_ .-bar, .-progress[disabled] .-bar, fieldset[disabled] .-progress .-bar {
+    color: rgba(204, 204, 204, 0.65); }
+  .-progress._unstyled_ .-bar {
+    color: black; }
+  .-progress.-default- .-bar {
+    background-color: #f7f7f7;
+    border-color: #f7f7f7;
+    color: black; }
+  .-progress.-default-._disabled_ .-bar, .-progress.-default-[disabled] .-bar, fieldset[disabled] .-progress.-default- .-bar {
+    color: rgba(204, 204, 204, 0.65); }
+  .-progress.-default-._unstyled_ .-bar {
+    color: black; }
+  .-progress.-primary- .-bar {
+    background-color: #3598db;
+    border-color: #3598db;
+    color: white; }
+  .-progress.-primary-._disabled_ .-bar, .-progress.-primary-[disabled] .-bar, fieldset[disabled] .-progress.-primary- .-bar {
+    color: rgba(255, 255, 255, 0.65); }
+  .-progress.-primary-._unstyled_ .-bar {
+    color: #3598db; }
+  .-progress.-error- .-bar {
+    background-color: #cd2c24;
+    border-color: #cd2c24;
+    color: white; }
+  .-progress.-error-._disabled_ .-bar, .-progress.-error-[disabled] .-bar, fieldset[disabled] .-progress.-error- .-bar {
+    color: rgba(255, 255, 255, 0.65); }
+  .-progress.-error-._unstyled_ .-bar {
+    color: #cd2c24; }
+  .-progress.-warning- .-bar {
+    background-color: #ffc43e;
+    border-color: #ffc43e;
+    color: white; }
+  .-progress.-warning-._disabled_ .-bar, .-progress.-warning-[disabled] .-bar, fieldset[disabled] .-progress.-warning- .-bar {
+    color: rgba(255, 255, 255, 0.65); }
+  .-progress.-warning-._unstyled_ .-bar {
+    color: #ffc43e; }
+  .-progress .-bar {
+    font-size: 1px; }
+  .-progress._tiny .-bar {
+    font-size: 2px; }
+  .-progress .-bar {
+    font-size: 2px; }
+  .-progress._small .-bar {
+    font-size: 5px; }
+  .-progress .-bar {
+    font-size: 3px; }
+  .-progress._minor .-bar {
+    font-size: 7px; }
+  .-progress .-bar {
+    font-size: 5px; }
+  .-progress._normal .-bar {
+    font-size: 10px; }
+  .-progress .-bar {
+    font-size: 6px; }
+  .-progress._major .-bar {
+    font-size: 13px; }
+  .-progress .-bar {
+    font-size: 7px; }
+  .-progress._big .-bar {
+    font-size: 15px; }
+  .-progress .-bar {
+    font-size: 9px; }
+  .-progress._huge .-bar {
+    font-size: 18px; }
+  .-progress .-bar {
+    font-size: 9px; }
+  .-progress._giant .-bar {
+    font-size: 19px; }
+  .-progress .-bar {
+    font-size: 10px; }
+  .-progress._divine .-bar {
+    font-size: 21px; }
+  .-progress .-bar {
+    background-color: #f7f7f7;
+    border-color: #f7f7f7;
+    color: black; }
+    .-progress .-bar._disabled_, .-progress .-bar[disabled], fieldset[disabled] .-progress .-bar {
+      color: rgba(204, 204, 204, 0.65); }
+    .-progress .-bar._unstyled_ {
+      color: black; }
+    .-progress .-bar.-default- {
+      background-color: #f7f7f7;
+      border-color: #f7f7f7;
+      color: black; }
+      .-progress .-bar.-default-._disabled_, .-progress .-bar.-default-[disabled], fieldset[disabled] .-progress .-bar.-default- {
+        color: rgba(204, 204, 204, 0.65); }
+      .-progress .-bar.-default-._unstyled_ {
+        color: black; }
+    .-progress .-bar.-primary- {
+      background-color: #3598db;
+      border-color: #3598db;
+      color: white; }
+      .-progress .-bar.-primary-._disabled_, .-progress .-bar.-primary-[disabled], fieldset[disabled] .-progress .-bar.-primary- {
+        color: rgba(255, 255, 255, 0.65); }
+      .-progress .-bar.-primary-._unstyled_ {
+        color: #3598db; }
+    .-progress .-bar.-error- {
+      background-color: #cd2c24;
+      border-color: #cd2c24;
+      color: white; }
+      .-progress .-bar.-error-._disabled_, .-progress .-bar.-error-[disabled], fieldset[disabled] .-progress .-bar.-error- {
+        color: rgba(255, 255, 255, 0.65); }
+      .-progress .-bar.-error-._unstyled_ {
+        color: #cd2c24; }
+    .-progress .-bar.-warning- {
+      background-color: #ffc43e;
+      border-color: #ffc43e;
+      color: white; }
+      .-progress .-bar.-warning-._disabled_, .-progress .-bar.-warning-[disabled], fieldset[disabled] .-progress .-bar.-warning- {
+        color: rgba(255, 255, 255, 0.65); }
+      .-progress .-bar.-warning-._unstyled_ {
+        color: #ffc43e; }
 
 
 /*# sourceMappingURL=main.css.map*/

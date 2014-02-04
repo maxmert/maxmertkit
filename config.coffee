@@ -5,10 +5,11 @@ exports.config =
 
 	paths:
 		public:  '.'
-		watched: ['sass','docs','vendor']
+		watched: ['sass','docs','vendor', 'commercial']
 	
 	server:
-		path: 'docs/server/app.coffee'
+		# path: 'docs/server/app.coffee'
+		path: 'commercial/server/app.coffee'
 		port: 3333
 		base: '/'
 		run: yes
@@ -19,6 +20,10 @@ exports.config =
 			joinTo:
 				'docs/js/vendor.js': /^docs\/js\/bower/
 				'docs/js/app.js': /^docs\/js\/app/
+				
+				'commercial/app/vendor.js': /^docs\/js\/bower/
+				'commercial/app/app.js': /^commercial\/app.coffee/
+				'commercial/maxmertkit.js': /^commercial\/coffee/
 			order:
 				before: [
 					'docs/js/bower/angular/angular.min.js'
@@ -29,6 +34,8 @@ exports.config =
 				'main.css': /^(sass)/
 				'docs/css/main.css': /^(sass)/
 				'docs/css/developer.css': /^docs\/css\/dev/
+				'commercial/main.css': /^(sass)/
+				'commercial/commercial.css': /^commercial\/sass/
 			order:
 				before: [
 					'sass/main.sass'

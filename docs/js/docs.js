@@ -1,3 +1,10 @@
+commercial = [
+	{
+		"name": "tiltimage",
+		"path": "tiltimage"
+	}
+]
+
 widgets = [
 	{
 		"name": "dropdowns",
@@ -73,6 +80,11 @@ widgets = [
 	{
 		"name": "alerts",
 		"path": "alerts"
+	},
+
+	{
+		"name": "progress",
+		"path": "progress"
 	}
 ]
 

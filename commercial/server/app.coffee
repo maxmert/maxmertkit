@@ -6,10 +6,7 @@ exports.startServer = (port, path, callback) ->
 	
 	app.use express.static "#{__dirname}/../"
 	
-	app.get '/', (req, res) ->
-		res.sendfile "docs/index.html"
-
-	app.get '/commercial', (req, res) ->
+	app.get '*', (req, res) ->
 		res.sendfile "commercial/index.html"
 
 	app.listen port
