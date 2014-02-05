@@ -1,7 +1,7 @@
 class Tiltimage
 	
-	constructor: (@name) ->
-
+	constructor: (@name, @options) ->
+		console.log 123
 
 _name = 'tiltimage'
 $.fn[_name] = (options_) ->
@@ -12,7 +12,7 @@ $.fn[_name] = (options_) ->
 			if typeof options_ is "object"
 				$.data(this, "kit-" + _name)._setOptions options_
 			else
-				(if typeof options_ is "string" and options_.charAt(0) isnt "_" then $.data(this, "kit-" + _name)[options_] else $.error("What do you want to do?"))
+				(if typeof options_ is "string" and options_.charAt(0) isnt "_" then $.data(this, "kit-" + _name)[options_] else console.log("Maxmertkit error. You passed into the #{_name} something wrong."))
 		return
 
 

@@ -19,6 +19,10 @@ app.directive 'menu', ->
 			{
 				name: 'widgets',
 				link: '/widgets'
+			},
+			{
+				name: 'components',
+				link: '/components'
 			}
 		]
 
@@ -47,6 +51,13 @@ app.directive 'partials', ->
 						path: "#{paths.tmpl}/widgets/#{subitem.path}.html"
 
 
+
+app.directive "modal", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$('.-btn-modal').modal()
+
+
 # APP CONFIGURATION
 app.config ($routeProvider, $locationProvider) ->
 
@@ -57,6 +68,9 @@ app.config ($routeProvider, $locationProvider) ->
 
 		.when '/widgets',
 			templateUrl: "#{paths.tmpl}/widgets.html"
+
+		.when '/components',
+			templateUrl: "#{paths.tmpl}/components.html"
 
 		.otherwise
 			templateUrl: "#{paths.tmpl}/404.html"

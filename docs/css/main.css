@@ -179,6 +179,128 @@ body {
   bottom: 10px;
   box-shadow: 0 9px 10px rgba(0, 0, 0, 0.5), 0 15px 15px rgba(0, 0, 0, 0.2); }
 
+.-fadein-- {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  animation-play-state: paused; }
+  .-fadein--.-start--, .-modal._active_ .-fadein--.-dialog {
+    -webkit-animation-play-state: running;
+    -moz-animation-play-state: running;
+    animation-play-state: running;
+    visibility: visible;
+    opacity: 1; }
+
+.-scalein-- {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  -o-transform: scale(0.7);
+  transform: scale(0.7); }
+  .-scalein--.-start--, .-modal._active_ .-scalein--.-dialog {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
+
+.-slidein-- {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-transform: translateY(20%);
+  -moz-transform: translateY(20%);
+  -ms-transform: translateY(20%);
+  -o-transform: translateY(20%);
+  transform: translateY(20%); }
+  .-slidein--.mod-right {
+    -webkit-transform: translateX(20%);
+    -moz-transform: translateX(20%);
+    -ms-transform: translateX(20%);
+    -o-transform: translateX(20%);
+    transform: translateX(20%);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0); }
+  .-slidein--.mod-left {
+    -webkit-transform: translateX(-20%);
+    -moz-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    -o-transform: translateX(-20%);
+    transform: translateX(-20%);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0); }
+  .-slidein--.mod-bottom {
+    -webkit-transform: translateY(-20%);
+    -moz-transform: translateY(-20%);
+    -ms-transform: translateY(-20%);
+    -o-transform: translateY(-20%);
+    transform: translateY(-20%); }
+  .-slidein--.-start--, .-modal._active_ .-slidein--.-dialog {
+    -webkit-animation-play-state: running;
+    -moz-animation-play-state: running;
+    animation-play-state: running;
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0); }
+
 .-container {
   max-width: 68em;
   margin-left: auto;
@@ -526,7 +648,8 @@ small {
   font-size: 85%; }
 
 p {
-  margin: 0 0 10.0px; }
+  margin: 0 0 10.0px;
+  line-height: 20.0px; }
 
 b._tiny, strong._tiny, i._tiny, em._tiny, small._tiny, p._tiny, span._tiny {
   font-size: 25%; }
@@ -2751,6 +2874,191 @@ a.-btn {
         color: rgba(255, 255, 255, 0.65); }
       .-progress .-bar.-warning-._unstyled_ {
         color: #ffc43e; }
+
+.-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1004;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  animation-play-state: paused;
+  background-color: rgba(0, 0, 0, 0.8); }
+  .-modal .-dialog, .-modal .-holder {
+    top: 50%;
+    left: 50%;
+    float: none;
+    height: auto;
+    border-radius: 7px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    background-color: #d9d9d9;
+    color: black; }
+    .-modal .-dialog.-col1, .-modal .-holder.-col1 {
+      margin-left: -3.08608%; }
+    .-modal .-dialog.-col2, .-modal .-holder.-col2 {
+      margin-left: -7.35098%; }
+    .-modal .-dialog.-col3, .-modal dl._horizontal_ dt.-dialog, dl._horizontal_ .-modal dt.-dialog, .-modal .-holder.-col3, .-modal dl._horizontal_ dt.-holder, dl._horizontal_ .-modal dt.-holder {
+      margin-left: -11.61588%; }
+    .-modal .-dialog.-col4, .-modal .-holder.-col4 {
+      margin-left: -15.88078%; }
+    .-modal .-dialog.-col5, .-modal .-holder.-col5 {
+      margin-left: -20.14568%; }
+    .-modal .-dialog.-col6, .-modal .-holder.-col6 {
+      margin-left: -24.41059%; }
+    .-modal .-dialog.-col7, .-modal .-holder.-col7 {
+      margin-left: -28.67549%; }
+    .-modal .-dialog.-col8, .-modal .-holder.-col8 {
+      margin-left: -32.94039%; }
+    .-modal .-dialog.-col9, .-modal dl._horizontal_ dd.-dialog, dl._horizontal_ .-modal dd.-dialog, .-modal .-holder.-col9, .-modal dl._horizontal_ dd.-holder, dl._horizontal_ .-modal dd.-holder {
+      margin-left: -37.20529%; }
+    .-modal .-dialog.-col10, .-modal .-holder.-col10 {
+      margin-left: -41.4702%; }
+    .-modal .-dialog.-col11, .-modal .-holder.-col11 {
+      margin-left: -45.7351%; }
+    .-modal .-dialog.-col12, .-modal .-holder.-col12 {
+      margin-left: -50%; }
+    .-modal .-dialog .-header, .-modal .-holder .-header {
+      padding: 20px 20px;
+      border-radius: 7px 7px 0 0;
+      position: relative;
+      font-size: 115%;
+      font-weight: bold;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent; }
+      .-modal .-dialog .-header .-close, .-modal .-holder .-header .-close {
+        width: 38px;
+        height: 38px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        margin-top: -19px;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0) scale(1, 1);
+        cursor: pointer;
+        -webkit-transition-property: -webkit-transform;
+        -moz-transition-property: -moz-transform;
+        transition-property: transform;
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        -webkit-transition-timing-function: ease-out;
+        -moz-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+        -webkit-transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        transition-delay: 0s;
+        -webkit-transform: rotate(-270deg);
+        -moz-transform: rotate(-270deg);
+        -ms-transform: rotate(-270deg);
+        -o-transform: rotate(-270deg);
+        transform: rotate(-270deg); }
+        .-modal .-dialog .-header .-close polygon, .-modal .-dialog .-header .-close path, .-modal .-holder .-header .-close polygon, .-modal .-holder .-header .-close path {
+          opacity: 0.4;
+          -webkit-transition: opacity 0.3s ease-out 0;
+          -moz-transition: opacity 0.3s ease-out 0;
+          transition: opacity 0.3s ease-out 0; }
+        .-modal .-dialog .-header .-close circle, .-modal .-holder .-header .-close circle {
+          stroke-width: 0;
+          fill: transparent;
+          -webkit-transition: stroke-width 0.3s ease-out 0;
+          -moz-transition: stroke-width 0.3s ease-out 0;
+          transition: stroke-width 0.3s ease-out 0; }
+        .-modal .-dialog .-header .-close:hover, .-modal .-holder .-header .-close:hover {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg); }
+          .-modal .-dialog .-header .-close:hover circle, .-modal .-holder .-header .-close:hover circle {
+            stroke-width: 50; }
+          .-modal .-dialog .-header .-close:hover polygon, .-modal .-dialog .-header .-close:hover path, .-modal .-holder .-header .-close:hover polygon, .-modal .-holder .-header .-close:hover path {
+            opacity: 1; }
+    .-modal .-dialog .-content, .-modal .-holder .-content {
+      padding: 20px 20px; }
+    .-modal .-dialog .-close polygon, .-modal .-dialog .-close path, .-modal .-holder .-close polygon, .-modal .-holder .-close path {
+      fill: black; }
+    .-modal .-dialog .-close circle, .-modal .-holder .-close circle {
+      stroke: black; }
+    .-modal .-dialog .-header, .-modal .-holder .-header {
+      background-color: #d9d9d9;
+      border-bottom-color: #c7c7c7; }
+    .-modal .-dialog.-default-, .-modal .-holder.-default- {
+      background-color: #d9d9d9;
+      color: black; }
+      .-modal .-dialog.-default- .-close polygon, .-modal .-dialog.-default- .-close path, .-modal .-holder.-default- .-close polygon, .-modal .-holder.-default- .-close path {
+        fill: black; }
+      .-modal .-dialog.-default- .-close circle, .-modal .-holder.-default- .-close circle {
+        stroke: black; }
+      .-modal .-dialog.-default- .-header, .-modal .-holder.-default- .-header {
+        background-color: #d9d9d9;
+        border-bottom-color: #c7c7c7; }
+    .-modal .-dialog.-primary-, .-modal .-holder.-primary- {
+      background-color: #3598db;
+      color: white; }
+      .-modal .-dialog.-primary- .-close polygon, .-modal .-dialog.-primary- .-close path, .-modal .-holder.-primary- .-close polygon, .-modal .-holder.-primary- .-close path {
+        fill: white; }
+      .-modal .-dialog.-primary- .-close circle, .-modal .-holder.-primary- .-close circle {
+        stroke: white; }
+      .-modal .-dialog.-primary- .-header, .-modal .-holder.-primary- .-header {
+        background-color: #3598db;
+        border-bottom-color: #2486c9; }
+    .-modal .-dialog.-error-, .-modal .-holder.-error- {
+      background-color: #cd2c24;
+      color: white; }
+      .-modal .-dialog.-error- .-close polygon, .-modal .-dialog.-error- .-close path, .-modal .-holder.-error- .-close polygon, .-modal .-holder.-error- .-close path {
+        fill: white; }
+      .-modal .-dialog.-error- .-close circle, .-modal .-holder.-error- .-close circle {
+        stroke: white; }
+      .-modal .-dialog.-error- .-header, .-modal .-holder.-error- .-header {
+        background-color: #cd2c24;
+        border-bottom-color: #af251f; }
+    .-modal .-dialog.-warning-, .-modal .-holder.-warning- {
+      background-color: #ffc43e;
+      color: white; }
+      .-modal .-dialog.-warning- .-close polygon, .-modal .-dialog.-warning- .-close path, .-modal .-holder.-warning- .-close polygon, .-modal .-holder.-warning- .-close path {
+        fill: white; }
+      .-modal .-dialog.-warning- .-close circle, .-modal .-holder.-warning- .-close circle {
+        stroke: white; }
+      .-modal .-dialog.-warning- .-header, .-modal .-holder.-warning- .-header {
+        background-color: #ffc43e;
+        border-bottom-color: #ffb91a; }
+  .-modal .-holder {
+    position: inherit;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  .-modal.-default- {
+    background-color: rgba(0, 0, 0, 0.8); }
+  .-modal.-primary- {
+    background-color: rgba(53, 152, 219, 0.8); }
+  .-modal.-error- {
+    background-color: rgba(205, 44, 36, 0.8); }
+  .-modal.-warning- {
+    background-color: rgba(255, 196, 62, 0.8); }
+  .-modal._active_ {
+    opacity: 1;
+    visibility: visible; }
 
 
 /*# sourceMappingURL=main.css.map*/

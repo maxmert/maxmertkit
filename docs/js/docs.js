@@ -5,6 +5,13 @@ commercial = [
 	}
 ]
 
+components = [
+	{
+		"name": "modal",
+		"path": "../components/modal"
+	}
+]
+
 widgets = [
 	{
 		"name": "dropdowns",

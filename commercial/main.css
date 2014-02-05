@@ -526,7 +526,8 @@ small {
   font-size: 85%; }
 
 p {
-  margin: 0 0 10.0px; }
+  margin: 0 0 10.0px;
+  line-height: 20.0px; }
 
 b._tiny, strong._tiny, i._tiny, em._tiny, small._tiny, p._tiny, span._tiny {
   font-size: 25%; }
@@ -2751,6 +2752,70 @@ a.-btn {
         color: rgba(255, 255, 255, 0.65); }
       .-progress .-bar.-warning-._unstyled_ {
         color: #ffc43e; }
+
+.-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1004;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.8); }
+  .-modal .-dialog {
+    margin: 30px auto;
+    float: none;
+    border-radius: 7px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    background-color: #d9d9d9;
+    color: black; }
+    .-modal .-dialog .-header {
+      padding: 20px 20px;
+      border-radius: 7px 7px 0 0;
+      position: relative;
+      font-size: 115%;
+      font-weight: bold;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent; }
+    .-modal .-dialog .-content {
+      padding: 20px 20px; }
+    .-modal .-dialog .-header {
+      background-color: #d9d9d9;
+      border-bottom-color: #c7c7c7; }
+    .-modal .-dialog.-default- {
+      background-color: #d9d9d9;
+      color: black; }
+      .-modal .-dialog.-default- .-header {
+        background-color: #d9d9d9;
+        border-bottom-color: #c7c7c7; }
+    .-modal .-dialog.-primary- {
+      background-color: #3598db;
+      color: white; }
+      .-modal .-dialog.-primary- .-header {
+        background-color: #3598db;
+        border-bottom-color: #2486c9; }
+    .-modal .-dialog.-error- {
+      background-color: #cd2c24;
+      color: white; }
+      .-modal .-dialog.-error- .-header {
+        background-color: #cd2c24;
+        border-bottom-color: #af251f; }
+    .-modal .-dialog.-warning- {
+      background-color: #ffc43e;
+      color: white; }
+      .-modal .-dialog.-warning- .-header {
+        background-color: #ffc43e;
+        border-bottom-color: #ffb91a; }
+  .-modal.-default- {
+    background-color: rgba(0, 0, 0, 0.8); }
+  .-modal.-primary- {
+    background-color: rgba(53, 152, 219, 0.8); }
+  .-modal.-error- {
+    background-color: rgba(205, 44, 36, 0.8); }
+  .-modal.-warning- {
+    background-color: rgba(255, 196, 62, 0.8); }
 
 
 /*# sourceMappingURL=main.css.map*/

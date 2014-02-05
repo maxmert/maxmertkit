@@ -1,0 +1,27 @@
+$animations-scalein-class: "-scalein--" !global
+
+$animations-scalein-duration: 0.3s !global
+$animations-scalein-timing-function: ease-out !global
+$animations-scalein-delay: 0s !global
+
+
+
+@include exports("animations/scalein")
+	
+	.#{$animations-scalein-class}
+		opacity: 0
+		visibility: hidden
+		@include transition-property (transform, opacity)
+		@include transition-duration($animations-scalein-duration)
+		@include transition-timing-function($animations-scalein-timing-function)
+		@include transition-delay($animations-scalein-delay)
+		// @include animation-play-state(paused)
+
+		@include transform(scale(0.7))
+		
+
+		&.#{$animation-start-class}
+			// @include animation-play-state(running)
+			visibility: visible
+			opacity: 1
+			@include transform(scale(1))

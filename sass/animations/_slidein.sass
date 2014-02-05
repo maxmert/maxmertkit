@@ -1,0 +1,40 @@
+$animations-slidein-right-class: "-slidein--" !global
+
+$animations-slidein-right-duration: 0.2s !global
+$animations-slidein-right-timing-function: ease-out !global
+$animations-slidein-right-delay: 0s !global
+
+
+
+@include exports("animations/slidein-right")
+	
+	.#{$animations-slidein-right-class}
+		opacity: 0
+		visibility: hidden
+		@include transition-property (transform, opacity)
+		@include transition-duration($animations-slidein-right-duration)
+		@include transition-timing-function($animations-slidein-right-timing-function)
+		@include transition-delay($animations-slidein-right-delay)
+		@include animation-play-state(paused)
+
+
+		@include transform(translateY(20%))
+
+		&.#{mod-right}
+			@include transform(translateX(20%))
+			@include transform(translateY(0))
+
+		&.#{mod-left}
+			@include transform(translateX(-20%))
+			@include transform(translateY(0))
+
+		&.#{mod-bottom}
+			@include transform(translateY(-20%))
+		
+
+		&.#{$animation-start-class}
+			@include animation-play-state(running)
+			visibility: visible
+			opacity: 1
+			@include transform(translateX(0))
+			@include transform(translateY(0))
