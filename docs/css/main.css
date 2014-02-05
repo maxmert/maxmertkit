@@ -2909,6 +2909,7 @@ a.-btn {
     border-radius: 7px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
     visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
     background-color: #d9d9d9;
     color: black; }
     .-modal .-dialog.-col1, .-modal .-holder.-col1 {
