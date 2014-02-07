@@ -55,14 +55,7 @@ app.directive 'partials', ->
 app.directive "modal", ->
 	(scope, element, attrs) ->
 		scope.$watch "partials", (value) ->
-			$('.-btn-modal').modal
-				beforeopen: ->
-					@addClass '_active_'
-					d = $.Deferred()
-					setTimeout ->
-						d.resolve()
-					, 3000
-					d.promise()
+			$('.-btn-modal').modal()
 
 
 # APP CONFIGURATION

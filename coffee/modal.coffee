@@ -4,72 +4,127 @@ class Modal extends MaxmertkitHelpers
 	
 	_name: _name
 	
+	# =============== Public methods
+
 	constructor: ( @btn, @options ) ->
 		@$btn = $(@btn)
 		
 		_options =
 			target: @$btn.data('target')				# Targeted modal windows
 			toggle: @$btn.data('toggle') or 'modal'		# To automatically find elements which toggle modal windows
-			event: "click.#{@_name}"						# Event on button to toggle modal
+			event: "click.#{@_name}"					# Event on button to open modal
+			eventClose: "click.#{@_name}"				# Event on close elements to close modal
 			backdrop: no								# Close modal on click on backdrop
 		
 		@options = @_merge _options, @options
 		
 
-		# Reset default functions
-		if @options.beforeopen? and typeof @options.beforeopen is 'function'
-			@beforeopen = @options.beforeopen
+		# Reset default event functions 
+		@beforeopen = @options.beforeopen
+		@onopen = @options.onopen
+		@beforeclose = @options.beforeclose
+		@onclose = @options.onclose
 
-
-
+		# Set modal window element
 		@$el = $(document).find @options.target
 		
+		# Set event on button to show modal window
 		@$btn.on @options.event, =>
-			@_open()
+			@open()
 
+		# Set close on backdrop event
 		if @options.backdrop
 			@$el.on "click.#{@_name}", ( event ) =>
 				if $(event.target).hasClass '-modal _active_'
-					@_toggle()
+					@close()
 
+		# Find dismiss buttons inside modal window
 		@$el.find("*[data-dismiss='modal']").on @options.event, =>
-			@_toggle()
+			@close()
 
 		super @$btn, @options
 
+	
 	destroy: ->
 		@$btn.off ".#{@_name}"
 		super
 
-	# Toggle modal window
-	_toggle: ->
-		@$el.toggleClass '_active_'
+	open: ->
+		_beforeopen.call @
 
-	# Close modal
-	_close: ->
-		# TODO: Add beforeclose
-		@$el.removeClass '_active_'
-
-		@$el.trigger "closed.#{@_name}"
+	close: ->
+		_beforeclose.call @
 
 
-	# Open modal
-	_open: ->
-		if @beforeopen?
-			try
-				deferred = @beforeopen.call @$btn
-				deferred
-					.done =>
-						@$el.addClass '_active_'
-						@$el.trigger "opened.#{@_name}"
 
-					.fail =>
-						@$el.trigger "fail.#{@_name}"
 
-			catch
-				@$el.addClass '_active_'
-				@$el.trigger "opened.#{@_name}"
 
+
+# =============== Private methods
+
+
+# If you have beforeopen function
+# 	it will be called here
+# if you don't
+# 	just open modal window
+_beforeopen = ->
+	if @beforeopen?
+		try
+			deferred = @beforeopen.call @$btn
+			deferred
+				.done =>
+					_open.call @
+					
+				.fail =>
+					@$el.trigger "fail.#{@_name}"
+
+		catch
+			_open.call @
+
+	else
+		_open.call @
+
+# Opens modal
+# and triggers onopen
+_open = ->
+	@$el.addClass '_active_'
+	@$el.trigger "opened.#{@_name}"
+	if @onopen?
+		try
+			@onopen.call @$btn
+
+
+# If you have beforeclose function
+# 	it will be called here
+# if you don't
+# 	just close modal window
+_beforeclose = ->
+	if @beforeclose?
+		try
+			deferred = @beforeclose.call @$btn
+			deferred
+				.done =>
+					_close.call @
+					
+				.fail =>
+					@$el.trigger "fail.#{@_name}"
+
+		catch
+			_close.call @
+
+	else
+		_close.call @
+
+# Closes modal
+# and triggers onclose
+_close = ->
+	@$el.removeClass '_active_'
+	@$el.trigger "closed.#{@_name}"
+	if @onclose?
+		try
+			@onclose.call @$btn
+
+			
 
 
 

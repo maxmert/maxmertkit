@@ -29,3 +29,5 @@ class MaxmertkitHelpers
 			if instance._id is @_id
 				@_instances.splice index, 1
 			delete @
+
+window['MaxmertkitHelpers'] = MaxmertkitHelpers

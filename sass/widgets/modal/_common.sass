@@ -77,13 +77,13 @@
 		@include animation-play-state(paused)
 
 
-		.#{$modal-dialog-class}, .-holder
+		.#{$modal-dialog-class}
 			// margin: $modal-padding-vertical auto
 			// position: absolute
-			top: 50%
-			left: 50%
+			display: inline-block
 			float: none
 			height: auto
+			// margin-left: 50%
 			border-radius: $modal-dialog-border-radius
 			box-shadow: $modal-dialog-shadow
 			visibility: hidden
@@ -93,7 +93,7 @@
 			@for $i from 1 through $column-quantity
 				&.#{$column-class}#{$i}
 					// $padding: get-padding-for-table-layout($columns, $container-columns)
-					margin-left: -1 * flex-grid($i,$column-quantity) / 2
+					margin-left: flex-grid($i,$column-quantity) / 2
 
 			.#{$header-class-name}
 				padding: $modal-dialog-padding-vertical $modal-dialog-padding-horizontal
@@ -163,7 +163,12 @@
 
 		.-holder
 			position: inherit
-			@include transform(translateY(-50%))
+			top: 50%
+			left: 50%
+			width: 50%
+			@include transform(translateY(-50%) translateX(-50%))
+			@include perspective(1300px)
+			@include perspective-origin(50% 50%)
 
 
 

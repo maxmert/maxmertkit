@@ -49,8 +49,8 @@ exports.config =
 		# 		'docs/js/templates.js'
 
 	plugins:
-		# coffeescript:
-		# 	bare: true
+		coffeescript:
+			bare: false
 
 		sass:
 			mode: 'ruby'

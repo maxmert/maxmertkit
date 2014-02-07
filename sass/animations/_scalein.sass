@@ -1,8 +1,8 @@
 $animations-scalein-class: "-scalein--" !global
 
 $animations-scalein-duration: 0.2s !global
-$animations-scalein-elastic-duration: 1s !global
-$animations-scalein-timing-function: linear !global
+$animations-scalein-elastic-duration: 0.8s !global
+$animations-scalein-timing-function: ease-out !global
 $animations-scalein-delay: 0s !global
 
 
@@ -625,12 +625,6 @@ $animations-scalein-delay: 0s !global
 			transform: scale(1)
 
 
-	.slide-keyframes
-		-webkit-animation: slide-keyframes 3s forwards linear
-		-moz-animation: slide-keyframes 3s forwards linear
-		animation: slide-keyframes 3s forwards linear
-
-
 	
 	.#{$animations-scalein-class}
 		opacity: 0
@@ -644,6 +638,7 @@ $animations-scalein-delay: 0s !global
 		@include transform(scale(0.7))
 		
 
+
 		&.#{$animation-start-class}
 			// @include animation-play-state(running)
 			visibility: visible
@@ -651,4 +646,4 @@ $animations-scalein-delay: 0s !global
 			@include transform(scale(1))
 
 			&.#{$animation-elastic-class}
-				@include animation(slide-keyframes $animations-scalein-elastic-duration forwards $animations-scalein-timing-function)
+				@include animation(slide-keyframes $animations-scalein-elastic-duration forwards $animations-scalein-timing-function $animations-scalein-delay)
