@@ -56,6 +56,11 @@ app.directive "modal", ->
 	(scope, element, attrs) ->
 		scope.$watch "partials", (value) ->
 			$('.-btn-modal').modal()
+				# onopen: ->
+				# 	$('#main-content').addClass '-blur-- -start--'
+				
+				# onclose: ->
+				# 	$('#main-content').removeClass '-blur-- -start--'
 
 
 # APP CONFIGURATION

@@ -1,40 +1,645 @@
-$animations-slidein-right-class: "-slidein--" !global
+$animations-slidein-class: "-slidein--" !global
 
-$animations-slidein-right-duration: 0.2s !global
-$animations-slidein-right-timing-function: ease-out !global
-$animations-slidein-right-delay: 0s !global
+$animations-slidein-duration: 0.2s !global
+$animations-slidein-timing-function: ease-out !global
+$animations-slidein-delay: 0s !global
 
 
 
-@include exports("animations/slidein-right")
+@include exports("animations/slidein")
 	
-	.#{$animations-slidein-right-class}
+
+		
+	@-webkit-keyframes slidein-keyframes
+		0%
+			-webkit-transform: translateY(200px)
+		1%
+			-webkit-transform: translateY(182.53px)
+		2%
+			-webkit-transform: translateY(159.06px)
+		3%
+			-webkit-transform: translateY(131.43px)
+		4%
+			-webkit-transform: translateY(101.42px)
+		5%
+			-webkit-transform: translateY(70.71px)
+		6%
+			-webkit-transform: translateY(40.78px)
+		7%
+			-webkit-transform: translateY(12.87px)
+		8%
+			-webkit-transform: translateY(-12.01px)
+		9%
+			-webkit-transform: translateY(-33.12px)
+		10%
+			-webkit-transform: translateY(-50px)
+		11%
+			-webkit-transform: translateY(-62.43px)
+		12%
+			-webkit-transform: translateY(-70.43px)
+		13%
+			-webkit-transform: translateY(-74.2px)
+		14%
+			-webkit-transform: translateY(-74.13px)
+		15%
+			-webkit-transform: translateY(-70.71px)
+		16%
+			-webkit-transform: translateY(-64.53px)
+		17%
+			-webkit-transform: translateY(-56.24px)
+		18%
+			-webkit-transform: translateY(-46.47px)
+		19%
+			-webkit-transform: translateY(-35.86px)
+		20%
+			-webkit-transform: translateY(-25px)
+		21%
+			-webkit-transform: translateY(-14.42px)
+		22%
+			-webkit-transform: translateY(-4.55px)
+		23%
+			-webkit-transform: translateY(4.25px)
+		24%
+			-webkit-transform: translateY(11.71px)
+		25%
+			-webkit-transform: translateY(17.68px)
+		26%
+			-webkit-transform: translateY(22.07px)
+		27%
+			-webkit-transform: translateY(24.9px)
+		28%
+			-webkit-transform: translateY(26.23px)
+		29%
+			-webkit-transform: translateY(26.21px)
+		30%
+			-webkit-transform: translateY(25px)
+		31%
+			-webkit-transform: translateY(22.82px)
+		32%
+			-webkit-transform: translateY(19.88px)
+		33%
+			-webkit-transform: translateY(16.43px)
+		34%
+			-webkit-transform: translateY(12.68px)
+		35%
+			-webkit-transform: translateY(8.84px)
+		36%
+			-webkit-transform: translateY(5.1px)
+		37%
+			-webkit-transform: translateY(1.61px)
+		38%
+			-webkit-transform: translateY(-1.5px)
+		39%
+			-webkit-transform: translateY(-4.14px)
+		40%
+			-webkit-transform: translateY(-6.25px)
+		41%
+			-webkit-transform: translateY(-7.8px)
+		42%
+			-webkit-transform: translateY(-8.8px)
+		43%
+			-webkit-transform: translateY(-9.28px)
+		44%
+			-webkit-transform: translateY(-9.27px)
+		45%
+			-webkit-transform: translateY(-8.84px)
+		46%
+			-webkit-transform: translateY(-8.07px)
+		47%
+			-webkit-transform: translateY(-7.03px)
+		48%
+			-webkit-transform: translateY(-5.81px)
+		49%
+			-webkit-transform: translateY(-4.48px)
+		50%
+			-webkit-transform: translateY(-3.12px)
+		51%
+			-webkit-transform: translateY(-1.8px)
+		52%
+			-webkit-transform: translateY(-0.57px)
+		53%
+			-webkit-transform: translateY(0.53px)
+		54%
+			-webkit-transform: translateY(1.46px)
+		55%
+			-webkit-transform: translateY(2.21px)
+		56%
+			-webkit-transform: translateY(2.76px)
+		57%
+			-webkit-transform: translateY(3.11px)
+		58%
+			-webkit-transform: translateY(3.28px)
+		59%
+			-webkit-transform: translateY(3.28px)
+		60%
+			-webkit-transform: translateY(3.13px)
+		61%
+			-webkit-transform: translateY(2.85px)
+		62%
+			-webkit-transform: translateY(2.49px)
+		63%
+			-webkit-transform: translateY(2.05px)
+		64%
+			-webkit-transform: translateY(1.58px)
+		65%
+			-webkit-transform: translateY(1.1px)
+		66%
+			-webkit-transform: translateY(0.64px)
+		67%
+			-webkit-transform: translateY(0.2px)
+		68%
+			-webkit-transform: translateY(-0.19px)
+		69%
+			-webkit-transform: translateY(-0.52px)
+		70%
+			-webkit-transform: translateY(-0.78px)
+		71%
+			-webkit-transform: translateY(-0.98px)
+		72%
+			-webkit-transform: translateY(-1.1px)
+		73%
+			-webkit-transform: translateY(-1.16px)
+		74%
+			-webkit-transform: translateY(-1.16px)
+		75%
+			-webkit-transform: translateY(-1.1px)
+		76%
+			-webkit-transform: translateY(-1.01px)
+		77%
+			-webkit-transform: translateY(-0.88px)
+		78%
+			-webkit-transform: translateY(-0.73px)
+		79%
+			-webkit-transform: translateY(-0.56px)
+		80%
+			-webkit-transform: translateY(-0.39px)
+		81%
+			-webkit-transform: translateY(-0.23px)
+		82%
+			-webkit-transform: translateY(-0.07px)
+		83%
+			-webkit-transform: translateY(0.07px)
+		84%
+			-webkit-transform: translateY(0.18px)
+		85%
+			-webkit-transform: translateY(0.28px)
+		86%
+			-webkit-transform: translateY(0.34px)
+		87%
+			-webkit-transform: translateY(0.39px)
+		88%
+			-webkit-transform: translateY(0.41px)
+		89%
+			-webkit-transform: translateY(0.41px)
+		90%
+			-webkit-transform: translateY(0.39px)
+		91%
+			-webkit-transform: translateY(0.36px)
+		92%
+			-webkit-transform: translateY(0.31px)
+		93%
+			-webkit-transform: translateY(0.26px)
+		94%
+			-webkit-transform: translateY(0.2px)
+		95%
+			-webkit-transform: translateY(0.14px)
+		96%
+			-webkit-transform: translateY(0.08px)
+		97%
+			-webkit-transform: translateY(0.03px)
+		98%
+			-webkit-transform: translateY(-0.02px)
+		99%
+			-webkit-transform: translateY(-0.06px)
+		100%
+			-webkit-transform: translateY(0px)
+
+
+	@-moz-keyframes slidein-keyframes
+		0%
+			-moz-transform: translateY(200px)
+		1%
+			-moz-transform: translateY(182.53px)
+		2%
+			-moz-transform: translateY(159.06px)
+		3%
+			-moz-transform: translateY(131.43px)
+		4%
+			-moz-transform: translateY(101.42px)
+		5%
+			-moz-transform: translateY(70.71px)
+		6%
+			-moz-transform: translateY(40.78px)
+		7%
+			-moz-transform: translateY(12.87px)
+		8%
+			-moz-transform: translateY(-12.01px)
+		9%
+			-moz-transform: translateY(-33.12px)
+		10%
+			-moz-transform: translateY(-50px)
+		11%
+			-moz-transform: translateY(-62.43px)
+		12%
+			-moz-transform: translateY(-70.43px)
+		13%
+			-moz-transform: translateY(-74.2px)
+		14%
+			-moz-transform: translateY(-74.13px)
+		15%
+			-moz-transform: translateY(-70.71px)
+		16%
+			-moz-transform: translateY(-64.53px)
+		17%
+			-moz-transform: translateY(-56.24px)
+		18%
+			-moz-transform: translateY(-46.47px)
+		19%
+			-moz-transform: translateY(-35.86px)
+		20%
+			-moz-transform: translateY(-25px)
+		21%
+			-moz-transform: translateY(-14.42px)
+		22%
+			-moz-transform: translateY(-4.55px)
+		23%
+			-moz-transform: translateY(4.25px)
+		24%
+			-moz-transform: translateY(11.71px)
+		25%
+			-moz-transform: translateY(17.68px)
+		26%
+			-moz-transform: translateY(22.07px)
+		27%
+			-moz-transform: translateY(24.9px)
+		28%
+			-moz-transform: translateY(26.23px)
+		29%
+			-moz-transform: translateY(26.21px)
+		30%
+			-moz-transform: translateY(25px)
+		31%
+			-moz-transform: translateY(22.82px)
+		32%
+			-moz-transform: translateY(19.88px)
+		33%
+			-moz-transform: translateY(16.43px)
+		34%
+			-moz-transform: translateY(12.68px)
+		35%
+			-moz-transform: translateY(8.84px)
+		36%
+			-moz-transform: translateY(5.1px)
+		37%
+			-moz-transform: translateY(1.61px)
+		38%
+			-moz-transform: translateY(-1.5px)
+		39%
+			-moz-transform: translateY(-4.14px)
+		40%
+			-moz-transform: translateY(-6.25px)
+		41%
+			-moz-transform: translateY(-7.8px)
+		42%
+			-moz-transform: translateY(-8.8px)
+		43%
+			-moz-transform: translateY(-9.28px)
+		44%
+			-moz-transform: translateY(-9.27px)
+		45%
+			-moz-transform: translateY(-8.84px)
+		46%
+			-moz-transform: translateY(-8.07px)
+		47%
+			-moz-transform: translateY(-7.03px)
+		48%
+			-moz-transform: translateY(-5.81px)
+		49%
+			-moz-transform: translateY(-4.48px)
+		50%
+			-moz-transform: translateY(-3.12px)
+		51%
+			-moz-transform: translateY(-1.8px)
+		52%
+			-moz-transform: translateY(-0.57px)
+		53%
+			-moz-transform: translateY(0.53px)
+		54%
+			-moz-transform: translateY(1.46px)
+		55%
+			-moz-transform: translateY(2.21px)
+		56%
+			-moz-transform: translateY(2.76px)
+		57%
+			-moz-transform: translateY(3.11px)
+		58%
+			-moz-transform: translateY(3.28px)
+		59%
+			-moz-transform: translateY(3.28px)
+		60%
+			-moz-transform: translateY(3.13px)
+		61%
+			-moz-transform: translateY(2.85px)
+		62%
+			-moz-transform: translateY(2.49px)
+		63%
+			-moz-transform: translateY(2.05px)
+		64%
+			-moz-transform: translateY(1.58px)
+		65%
+			-moz-transform: translateY(1.1px)
+		66%
+			-moz-transform: translateY(0.64px)
+		67%
+			-moz-transform: translateY(0.2px)
+		68%
+			-moz-transform: translateY(-0.19px)
+		69%
+			-moz-transform: translateY(-0.52px)
+		70%
+			-moz-transform: translateY(-0.78px)
+		71%
+			-moz-transform: translateY(-0.98px)
+		72%
+			-moz-transform: translateY(-1.1px)
+		73%
+			-moz-transform: translateY(-1.16px)
+		74%
+			-moz-transform: translateY(-1.16px)
+		75%
+			-moz-transform: translateY(-1.1px)
+		76%
+			-moz-transform: translateY(-1.01px)
+		77%
+			-moz-transform: translateY(-0.88px)
+		78%
+			-moz-transform: translateY(-0.73px)
+		79%
+			-moz-transform: translateY(-0.56px)
+		80%
+			-moz-transform: translateY(-0.39px)
+		81%
+			-moz-transform: translateY(-0.23px)
+		82%
+			-moz-transform: translateY(-0.07px)
+		83%
+			-moz-transform: translateY(0.07px)
+		84%
+			-moz-transform: translateY(0.18px)
+		85%
+			-moz-transform: translateY(0.28px)
+		86%
+			-moz-transform: translateY(0.34px)
+		87%
+			-moz-transform: translateY(0.39px)
+		88%
+			-moz-transform: translateY(0.41px)
+		89%
+			-moz-transform: translateY(0.41px)
+		90%
+			-moz-transform: translateY(0.39px)
+		91%
+			-moz-transform: translateY(0.36px)
+		92%
+			-moz-transform: translateY(0.31px)
+		93%
+			-moz-transform: translateY(0.26px)
+		94%
+			-moz-transform: translateY(0.2px)
+		95%
+			-moz-transform: translateY(0.14px)
+		96%
+			-moz-transform: translateY(0.08px)
+		97%
+			-moz-transform: translateY(0.03px)
+		98%
+			-moz-transform: translateY(-0.02px)
+		99%
+			-moz-transform: translateY(-0.06px)
+		100%
+			-moz-transform: translateY(0px)
+
+
+	@keyframes slidein-keyframes
+		0%
+			transform: translateY(200px)
+		1%
+			transform: translateY(182.53px)
+		2%
+			transform: translateY(159.06px)
+		3%
+			transform: translateY(131.43px)
+		4%
+			transform: translateY(101.42px)
+		5%
+			transform: translateY(70.71px)
+		6%
+			transform: translateY(40.78px)
+		7%
+			transform: translateY(12.87px)
+		8%
+			transform: translateY(-12.01px)
+		9%
+			transform: translateY(-33.12px)
+		10%
+			transform: translateY(-50px)
+		11%
+			transform: translateY(-62.43px)
+		12%
+			transform: translateY(-70.43px)
+		13%
+			transform: translateY(-74.2px)
+		14%
+			transform: translateY(-74.13px)
+		15%
+			transform: translateY(-70.71px)
+		16%
+			transform: translateY(-64.53px)
+		17%
+			transform: translateY(-56.24px)
+		18%
+			transform: translateY(-46.47px)
+		19%
+			transform: translateY(-35.86px)
+		20%
+			transform: translateY(-25px)
+		21%
+			transform: translateY(-14.42px)
+		22%
+			transform: translateY(-4.55px)
+		23%
+			transform: translateY(4.25px)
+		24%
+			transform: translateY(11.71px)
+		25%
+			transform: translateY(17.68px)
+		26%
+			transform: translateY(22.07px)
+		27%
+			transform: translateY(24.9px)
+		28%
+			transform: translateY(26.23px)
+		29%
+			transform: translateY(26.21px)
+		30%
+			transform: translateY(25px)
+		31%
+			transform: translateY(22.82px)
+		32%
+			transform: translateY(19.88px)
+		33%
+			transform: translateY(16.43px)
+		34%
+			transform: translateY(12.68px)
+		35%
+			transform: translateY(8.84px)
+		36%
+			transform: translateY(5.1px)
+		37%
+			transform: translateY(1.61px)
+		38%
+			transform: translateY(-1.5px)
+		39%
+			transform: translateY(-4.14px)
+		40%
+			transform: translateY(-6.25px)
+		41%
+			transform: translateY(-7.8px)
+		42%
+			transform: translateY(-8.8px)
+		43%
+			transform: translateY(-9.28px)
+		44%
+			transform: translateY(-9.27px)
+		45%
+			transform: translateY(-8.84px)
+		46%
+			transform: translateY(-8.07px)
+		47%
+			transform: translateY(-7.03px)
+		48%
+			transform: translateY(-5.81px)
+		49%
+			transform: translateY(-4.48px)
+		50%
+			transform: translateY(-3.12px)
+		51%
+			transform: translateY(-1.8px)
+		52%
+			transform: translateY(-0.57px)
+		53%
+			transform: translateY(0.53px)
+		54%
+			transform: translateY(1.46px)
+		55%
+			transform: translateY(2.21px)
+		56%
+			transform: translateY(2.76px)
+		57%
+			transform: translateY(3.11px)
+		58%
+			transform: translateY(3.28px)
+		59%
+			transform: translateY(3.28px)
+		60%
+			transform: translateY(3.13px)
+		61%
+			transform: translateY(2.85px)
+		62%
+			transform: translateY(2.49px)
+		63%
+			transform: translateY(2.05px)
+		64%
+			transform: translateY(1.58px)
+		65%
+			transform: translateY(1.1px)
+		66%
+			transform: translateY(0.64px)
+		67%
+			transform: translateY(0.2px)
+		68%
+			transform: translateY(-0.19px)
+		69%
+			transform: translateY(-0.52px)
+		70%
+			transform: translateY(-0.78px)
+		71%
+			transform: translateY(-0.98px)
+		72%
+			transform: translateY(-1.1px)
+		73%
+			transform: translateY(-1.16px)
+		74%
+			transform: translateY(-1.16px)
+		75%
+			transform: translateY(-1.1px)
+		76%
+			transform: translateY(-1.01px)
+		77%
+			transform: translateY(-0.88px)
+		78%
+			transform: translateY(-0.73px)
+		79%
+			transform: translateY(-0.56px)
+		80%
+			transform: translateY(-0.39px)
+		81%
+			transform: translateY(-0.23px)
+		82%
+			transform: translateY(-0.07px)
+		83%
+			transform: translateY(0.07px)
+		84%
+			transform: translateY(0.18px)
+		85%
+			transform: translateY(0.28px)
+		86%
+			transform: translateY(0.34px)
+		87%
+			transform: translateY(0.39px)
+		88%
+			transform: translateY(0.41px)
+		89%
+			transform: translateY(0.41px)
+		90%
+			transform: translateY(0.39px)
+		91%
+			transform: translateY(0.36px)
+		92%
+			transform: translateY(0.31px)
+		93%
+			transform: translateY(0.26px)
+		94%
+			transform: translateY(0.2px)
+		95%
+			transform: translateY(0.14px)
+		96%
+			transform: translateY(0.08px)
+		97%
+			transform: translateY(0.03px)
+		98%
+			transform: translateY(-0.02px)
+		99%
+			transform: translateY(-0.06px)
+		100%
+			transform: translateY(0px)
+
+
+	.#{$animations-slidein-class}
 		opacity: 0
 		visibility: hidden
-		@include transition-property (transform, opacity)
-		@include transition-duration($animations-slidein-right-duration)
-		@include transition-timing-function($animations-slidein-right-timing-function)
-		@include transition-delay($animations-slidein-right-delay)
-		@include animation-play-state(paused)
-
+		@include transition-property (transform, opacity, visibility)
+		@include transition-duration($animations-slidein-duration)
+		@include transition-timing-function($animations-slidein-timing-function)
+		@include transition-delay($animations-slidein-delay)
 
 		@include transform(translateY(20%))
 
-		&.#{mod-right}
-			@include transform(translateX(20%))
-			@include transform(translateY(0))
-
-		&.#{mod-left}
-			@include transform(translateX(-20%))
-			@include transform(translateY(0))
-
-		&.#{mod-bottom}
-			@include transform(translateY(-20%))
-		
 
 		&.#{$animation-start-class}
-			@include animation-play-state(running)
 			visibility: visible
 			opacity: 1
-			@include transform(translateX(0))
-			@include transform(translateY(0))
+			@include transform(translateX(0) translateY(0))
+
+			&.#{$animation-elastic-class}
+				@include animation(slidein-keyframes $animations-scalein-elastic-duration forwards $animations-scalein-timing-function $animations-slidein-delay)
