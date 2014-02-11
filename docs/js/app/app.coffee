@@ -55,7 +55,29 @@ app.directive 'partials', ->
 app.directive "modal", ->
 	(scope, element, attrs) ->
 		scope.$watch "partials", (value) ->
-			$('.-btn-modal').modal()
+			$('.btn-modal-fast').modal()
+			$('.btn-modal123').modal
+				beforeopen: ->
+					d = $.Deferred()
+
+					setTimeout ->
+						d.resolve()
+					, 2000
+
+					d.promise()
+				# onopen: ->
+				# 	$('#main-content').addClass '-blur-- -start--'
+				
+				# onclose: ->
+				# 	$('#main-content').removeClass '-blur-- -start--'
+				#  
+
+app.directive "popup", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$('.btn-popup-demo').popup()
+
+
 
 
 # APP CONFIGURATION

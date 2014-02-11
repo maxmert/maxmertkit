@@ -10,13 +10,11 @@ $animations-fadein-delay: 0s !global
 	.#{$animations-fadein-class}
 		opacity: 0
 		visibility: hidden
-		@include transition-property (opacity)
+		@include transition-property (opacity, visibility)
 		@include transition-duration($animations-fadein-duration)
 		@include transition-timing-function($animations-fadein-timing-function)
 		@include transition-delay($animations-fadein-delay)
-		@include animation-play-state(paused)
 
 		&.#{$animation-start-class}
-			@include animation-play-state(running)
 			visibility: visible
 			opacity: 1

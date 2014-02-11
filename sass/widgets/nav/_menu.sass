@@ -78,6 +78,17 @@
 				cursor: pointer
 
 			.#{$dropdown-class}
+				&.#{$mod-top}
+					top: inherit
+					bottom: 100%
+				&.#{$mod-left}
+					left: inherit
+					right: 100%
+					top: 0
+				&.#{$mod-right}
+					right: inherit
+					left: 100%
+					top: 0
 				.#{$nav-menu-class}
 					#{$nav-item}
 						a

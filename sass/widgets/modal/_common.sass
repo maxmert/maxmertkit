@@ -87,7 +87,9 @@
 			border-radius: $modal-dialog-border-radius
 			box-shadow: $modal-dialog-shadow
 			visibility: hidden
-			-webkit-font-smoothing: subpixel-antialiased
+			// -webkit-font-smoothing: subpixel-antialiased
+			-webkit-backface-visibility: hidden
+			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
 
 
 			@for $i from 1 through $column-quantity
@@ -109,11 +111,10 @@
 					width: $modal-dialog-close-size
 					height: $modal-dialog-close-size
 					position: absolute
+					z-index: 1
 					top: 50%
 					right: $modal-dialog-padding-horizontal
 					margin-top: - $modal-dialog-close-size / 2
-					-webkit-backface-visibility: hidden
-					-webkit-transform: translateZ(0) scale(1.0, 1.0)
 					cursor: pointer
 
 					@include transition-property(transform)

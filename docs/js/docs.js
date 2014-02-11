@@ -9,6 +9,10 @@ components = [
 	{
 		"name": "modal",
 		"path": "../components/modal"
+	},
+	{
+		"name": "popup",
+		"path": "../components/popup"
 	}
 ]
 

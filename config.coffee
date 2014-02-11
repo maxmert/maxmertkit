@@ -18,7 +18,7 @@ exports.config =
 	files:
 		javascripts:
 			joinTo:
-				'docs/js/vendor.js': /^docs\/js\/bower/
+				'docs/js/vendor.js': /^docs\/js\/(bower|libs)/
 				'docs/js/app.js': /^docs\/js\/app/
 				'js/maxmertkit.js': /^coffee/
 				'docs/js/maxmertkit.js': /^coffee/
@@ -28,6 +28,7 @@ exports.config =
 				'commercial/maxmertkit.js': /^commercial\/coffee/
 			order:
 				before: [
+					'docs/js/bower/highlight-scss/highlight.pack.js'
 					'docs/js/bower/jquery/jquery.min.js'
 					'docs/js/bower/angular/angular.min.js'
 				]
