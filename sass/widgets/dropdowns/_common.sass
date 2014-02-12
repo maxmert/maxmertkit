@@ -35,8 +35,7 @@
 @include exports("dropdowns/common")
 
 	.#{$dropdown-class}
-
-		display: inline-block
+		display: none
 		position: absolute
 		top: 100%
 		left: 0
@@ -73,37 +72,11 @@
 			height: $dropdown-border-width
 			width: 100%
 
-		&.#{$mod-bottom}
-			&:before
-				bottom: 100%
-				top: auto
-				height: $dropdown-border-width
-				width: 100%
-
-		
-		&.#{$mod-top}
-			// top: inherit
-			// bottom: 100%
-			
-			&:before
-				content: " "
-				display: block
-				position: absolute
-				top: 100%
-				height: $dropdown-border-width
-				width: 100%
-
-			.#{$arrow-class-name}
-				top: 100%
-				left: 50%
-				margin-left: -$dropdown-arrow-size / 2
-
-
 		&.#{$mod-left}
 			// left: inherit
 			// right: 100%
 			// top: 0
-
+			@include transform-origin(right center)
 			&:before
 				content: " "
 				display: block
@@ -126,7 +99,7 @@
 			// right: inherit
 			// left: 100%
 			// top: 0
-
+			@include transform-origin(left center)
 			&:before
 				content: " "
 				display: block
@@ -144,6 +117,96 @@
 				right: 100%
 				margin-top: -$dropdown-arrow-size / 2
 				margin-left: 0
+
+		
+
+
+		&.#{$mod-bottom}
+			@include transform-origin(center top)
+			&:before
+				bottom: 100%
+				top: auto
+				height: $dropdown-border-width
+				width: 100%
+
+			&.#{$mod-left}
+				@include transform-origin(right top)
+				&:before
+					display: none
+				.#{$arrow-class-name}
+					top: auto
+					bottom: 100%
+					left: 100%
+					@include transform(rotate(-45deg))
+					margin-bottom: -$dropdown-arrow-size / 2
+					margin-left: -$dropdown-arrow-size / 2
+
+			&.#{$mod-right}
+				@include transform-origin(left top)
+				&:before
+					display: none
+				.#{$arrow-class-name}
+					top: auto
+					bottom: 100%
+					left: auto
+					right: 100%
+					@include transform(rotate(45deg))
+					margin-top: auto
+					margin-bottom: -$dropdown-arrow-size / 2
+					margin-left: auto
+					margin-right: -$dropdown-arrow-size / 2
+
+		
+		&.#{$mod-top}
+			// top: inherit
+			// bottom: 100%
+			@include transform-origin(center bottom)
+			&:before
+				content: " "
+				display: block
+				position: absolute
+				top: 100%
+				height: $dropdown-border-width
+				width: 100%
+
+			.#{$arrow-class-name}
+				top: 100%
+				left: 50%
+				margin-left: -$dropdown-arrow-size / 2
+
+
+			&.#{$mod-left}
+				@include transform-origin(right bottom)
+				&:before
+					display: none
+				.#{$arrow-class-name}
+					top: 100%
+					left: 100%
+					@include transform(rotate(45deg))
+					margin-top: -$dropdown-arrow-size / 2
+					margin-left: -$dropdown-arrow-size / 2
+
+			&.#{$mod-right}
+				@include transform-origin(left bottom)
+				&:before
+					display: none
+				.#{$arrow-class-name}
+					top: 100%
+					left: auto
+					right: 100%
+					@include transform(rotate(-45deg))
+					margin-top: -$dropdown-arrow-size / 2
+					margin-left: auto
+					margin-right: -$dropdown-arrow-size / 2
+
+
+		&.#{$mod-active}
+			display: inline-block
+			@extend .#{$animation-start-class}
+
+
+
+
 
 		@each $theme in $themes
 			$i: index($themes, $theme)

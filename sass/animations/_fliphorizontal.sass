@@ -1,4 +1,4 @@
-$animations-flip-horizontal-class: "-flip-horizontal--" !global
+$animations-flip-horizontal-class: "-fliphorizontal--" !global
 
 $animations-flip-horizontal-duration: 0.2s !global
 $animations-flip-horizontal-elastic-duration: 2s !global
@@ -631,7 +631,7 @@ $animations-flip-horizontal-delay: 0.1s !global
 	.#{$animations-flip-horizontal-class}
 		opacity: 0
 		visibility: hidden
-		@include transition-property(all)
+		@include transition-property(transform, opacity, visibility)
 		@include transition-duration($animations-flip-horizontal-duration)
 		@include transition-timing-function($animations-flip-horizontal-timing-function)
 		@include transition-delay($animations-flip-horizontal-delay)

@@ -247,8 +247,8 @@
         toggle: this.$btn.data('toggle') || 'popup',
         event: "click." + this._name,
         eventClose: "click." + this._name,
-        positionVertical: 'top',
-        positionHorizontal: 'center',
+        positionVertical: 'bottom',
+        positionHorizontal: 'right',
         offset: {
           horizontal: 5,
           vertical: 5
@@ -261,7 +261,11 @@
       this.onclose = this.options.onclose;
       this.$el = $(document).find(this.options.target);
       this.$btn.on(this.options.event, function() {
-        return _this.open();
+        if (!_this.$el.is(':visible')) {
+          return _this.open();
+        } else {
+          return _this.close();
+        }
       });
       this.$el.find("*[data-dismiss='popup']").on(this.options.event, function() {
         return _this.close();
@@ -296,11 +300,11 @@
     position = this.$el.offset();
     sizeBtn = {
       width: this.$btn.outerWidth(),
-      height: this.$btn.height()
+      height: this.$btn.outerHeight()
     };
     size = {
       width: this.$el.outerWidth(),
-      height: this.$btn.height()
+      height: this.$el.outerHeight()
     };
     newTop = newLeft = 0;
     switch (this.options.positionVertical) {
@@ -310,11 +314,11 @@
       case 'bottom':
         newTop = positionBtn.top + sizeBtn.height + this.options.offset.vertical;
         break;
-      case 'middle':
-        newTop = positionBtn.top - sizeBtn.height / 2 + size.height / 2;
+      case 'middle' || 'center':
+        newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2;
     }
     switch (this.options.positionHorizontal) {
-      case 'center':
+      case 'center' || 'middle':
         newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2;
         break;
       case 'left':

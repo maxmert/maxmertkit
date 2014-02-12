@@ -14,8 +14,8 @@ class Popup extends MaxmertkitHelpers
 			toggle: @$btn.data('toggle') or 'popup'		# To automatically find elements which toggle popup windows
 			event: "click.#{@_name}"					# Event on button to open popup
 			eventClose: "click.#{@_name}"				# Event on close elements to close popup
-			positionVertical: 'top' 
-			positionHorizontal: 'center'
+			positionVertical: 'bottom' 
+			positionHorizontal: 'right'
 			offset:
 				horizontal: 5
 				vertical: 5
@@ -35,7 +35,10 @@ class Popup extends MaxmertkitHelpers
 		
 		# Set event on button to show popup window
 		@$btn.on @options.event, =>
-			@open()
+			if not @$el.is ':visible'
+				@open()
+			else
+				@close()
 
 		# Find dismiss buttons inside popup window
 		@$el.find("*[data-dismiss='popup']").on @options.event, =>
@@ -78,11 +81,11 @@ _position = ->
 
 	sizeBtn =
 		width: @$btn.outerWidth()
-		height: @$btn.height()
+		height: @$btn.outerHeight()
 
 	size =
 		width: @$el.outerWidth()
-		height: @$btn.height()
+		height: @$el.outerHeight()
 
 	newTop = newLeft = 0
 	
@@ -94,12 +97,12 @@ _position = ->
 		when 'bottom'
 			newTop = positionBtn.top + sizeBtn.height + @options.offset.vertical
 
-		when 'middle'
-			newTop = positionBtn.top - sizeBtn.height / 2 + size.height / 2
+		when 'middle' or 'center'
+			newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2
 
 	switch @options.positionHorizontal
 		
-		when 'center'
+		when 'center' or 'middle'
 			newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2
 
 		when 'left'
