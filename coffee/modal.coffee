@@ -1,8 +1,10 @@
 _name = "modal"
+_instances = []
 
 class Modal extends MaxmertkitHelpers
 	
 	_name: _name
+	_instances: _instances
 	
 	# =============== Public methods
 

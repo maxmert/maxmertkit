@@ -4,7 +4,7 @@
   MaxmertkitHelpers = (function() {
     MaxmertkitHelpers.prototype._id = 0;
 
-    MaxmertkitHelpers.prototype._instances = [];
+    MaxmertkitHelpers.prototype._instances = new Array();
 
     function MaxmertkitHelpers($btn, options) {
       this.$btn = $btn;
@@ -31,7 +31,7 @@
     };
 
     MaxmertkitHelpers.prototype._setOptions = function(options) {
-      return console.log(options);
+      return console.warning("Maxmertkit Helpers. There is no standart setOptions function.");
     };
 
     MaxmertkitHelpers.prototype._pushInstance = function() {
@@ -49,6 +49,21 @@
           this._instances.splice(index, 1);
         }
         _results.push(delete this);
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._selfish = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        instance = _ref[index];
+        if (this._id !== instance._id) {
+          _results.push(instance.close());
+        } else {
+          _results.push(void 0);
+        }
       }
       return _results;
     };
@@ -84,16 +99,20 @@
 
 }).call(this);
 ;(function() {
-  var Modal, _beforeclose, _beforeopen, _close, _name, _open,
+  var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   _name = "modal";
 
+  _instances = [];
+
   Modal = (function(_super) {
     __extends(Modal, _super);
 
     Modal.prototype._name = _name;
+
+    Modal.prototype._instances = _instances;
 
     function Modal(btn, options) {
       var _options,
@@ -225,16 +244,22 @@
 
 }).call(this);
 ;(function() {
-  var Popup, _beforeclose, _beforeopen, _close, _name, _open, _position,
+  var Popup, _beforeclose, _beforeopen, _close, _id, _instances, _name, _open, _position,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   _name = "popup";
 
+  _instances = [];
+
+  _id = 0;
+
   Popup = (function(_super) {
     __extends(Popup, _super);
 
     Popup.prototype._name = _name;
+
+    Popup.prototype._instances = _instances;
 
     function Popup(btn, options) {
       var _options,
@@ -242,17 +267,20 @@
       this.btn = btn;
       this.options = options;
       this.$btn = $(this.btn);
+      this._id = _id++;
       _options = {
         target: this.$btn.data('target'),
         toggle: this.$btn.data('toggle') || 'popup',
-        event: "click." + this._name,
-        eventClose: "click." + this._name,
-        positionVertical: 'bottom',
-        positionHorizontal: 'right',
+        event: "click",
+        eventClose: "click",
+        positionVertical: 'top',
+        positionHorizontal: 'center',
         offset: {
           horizontal: 5,
           vertical: 5
-        }
+        },
+        closeUnfocus: false,
+        selfish: true
       };
       this.options = this._merge(_options, this.options);
       this.beforeopen = this.options.beforeopen;
@@ -267,13 +295,92 @@
           return _this.close();
         }
       });
+      this.$btn.on(this.options.eventClose, function() {
+        if (_this.options.event !== _this.options.eventClose) {
+          return _this.close();
+        }
+      });
       this.$el.find("*[data-dismiss='popup']").on(this.options.event, function() {
         return _this.close();
       });
+      if (this.options.closeUnfocus) {
+        $(document).on('click', function(event) {
+          var classes;
+          classes = '.' + _this.$el[0].className.split(' ').join('.');
+          if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+            return _this.close();
+          }
+        });
+      }
       this.$el.removeClass('_top_ _bottom_ _left_ _right_');
       this.$el.addClass("_" + this.options.positionVertical + "_ _" + this.options.positionHorizontal + "_");
       Popup.__super__.constructor.call(this, this.$btn, this.options);
     }
+
+    Popup.prototype._setOptions = function(options) {
+      var key, value,
+        _this = this;
+      console.log(options);
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Popup. You're trying to set unpropriate option.");
+        }
+        switch (key) {
+          case 'target':
+            this.$el = $(document).find(this.options.target);
+            this.$el.find("*[data-dismiss='popup']").on(this.options.event, function() {
+              return _this.close();
+            });
+            break;
+          case 'event':
+            this.$btn.off("" + this.options.event + "." + this._name);
+            this.options.event = value;
+            this.$btn.on("" + this.options.event + "." + this._name, function() {
+              if (!_this.$el.is(':visible')) {
+                return _this.open();
+              } else {
+                return _this.close();
+              }
+            });
+            break;
+          case 'eventClose':
+            this.$btn.off("" + this.options.eventClose + "." + this._name);
+            this.options.eventClose = value;
+            this.$btn.on("" + this.options.eventClose + "." + this._name, function() {
+              if (_this.options.event !== _this.options.eventClose) {
+                return _this.close();
+              }
+            });
+            break;
+          case 'closeUnfocus':
+            this.options.closeUnfocus = value;
+            $(document).off("click." + this._name);
+            if (this.options.closeUnfocus) {
+              $(document).on("click." + this._name, function(event) {
+                var classes;
+                classes = '.' + _this.$el[0].className.split(' ').join('.');
+                if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+                  return _this.close();
+                }
+              });
+            }
+            break;
+          case 'positionVertical':
+            this.$el.removeClass("_" + this.options.positionVertical + "_");
+            this.options.positionVertical = value;
+            this.$el.addClass("_" + this.options.positionVertical + "_");
+            break;
+          case 'positionHorizontal':
+            this.$el.removeClass("_" + this.options.positionHorizontal + "_");
+            this.options.positionHorizontal = value;
+            this.$el.addClass("_" + this.options.positionHorizontal + "_");
+            break;
+          default:
+            this.options[key] = value;
+        }
+      }
+    };
 
     Popup.prototype.destroy = function() {
       this.$btn.off("." + this._name);
@@ -336,6 +443,9 @@
   _beforeopen = function() {
     var deferred,
       _this = this;
+    if (this.options.selfish) {
+      this._selfish();
+    }
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$btn);
@@ -403,7 +513,7 @@
           if (typeof options === "string" && options.charAt(0) !== "_") {
             $.data(this, "kit-" + _name)[options];
           } else {
-            console.error("Maxmertkit error. You passed into the " + _name + " something wrong.");
+            console.error("Maxmertkit Popup. You passed into the " + _name + " something wrong.");
           }
         }
       }

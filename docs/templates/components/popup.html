@@ -6,24 +6,62 @@
 	
 	<div class="-col12 view">
 		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
+		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">Open popup</a>
 	</div>
 
 
 	<div hljs class="-col12 example">
-<a class="-btn -primary- btn-modal123" data-toggle="modal" data-target="#modal1">Open modal with 2s delay</a>
-<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal1">Open modal immediately</a>
+<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
+<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">Open popup</a>
 </div>
 
-
-</div>
-
-
-</div>
-
-
-<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--" popup>
+<div hljs class="-col12 example">
+<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
 	<i class="-arrow"></i>
 	<div class="-content">
-		Top
+		Flip horizontal popup
+	</div>
+</div>
+
+<div id="popup-demo2" class="-drop _top_ -error- -scalein-- -elastic--">
+	<i class="-arrow"></i>
+	<div class="-content">
+		Fall popup
+	</div>
+</div>
+</div>
+
+<div hljs class="-col12 example">
+$('.btn-popup-demo').popup
+	beforeopen: ->
+		popup = @data('kit-popup')
+		content = popup.$el.find '.-content'
+		content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+	onopen: ->
+		@addClass '_active_'
+
+	onclose: ->
+		@removeClass '_active_'
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
+	<i class="-arrow"></i>
+	<div class="-content">
+		Flip horizontal popup
+	</div>
+</div>
+
+<div id="popup-demo2" class="-drop _top_ -error- -scalein-- -elastic--" popup>
+	<i class="-arrow"></i>
+	<div class="-content">
+		Fall popup
 	</div>
 </div>

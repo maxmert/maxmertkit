@@ -1,6 +1,6 @@
 class MaxmertkitHelpers
 	_id: 0
-	_instances: []
+	_instances: new Array()
 
 	constructor: ( @$btn, @options ) ->
 		@_pushInstance()
@@ -18,7 +18,7 @@ class MaxmertkitHelpers
 		@_extend (@_extend {}, options), overrides
 
 	_setOptions: ( options ) ->
-		console.log options
+		console.warning "Maxmertkit Helpers. There is no standart setOptions function."
 
 	_pushInstance: ->
 		@_id++
@@ -29,6 +29,11 @@ class MaxmertkitHelpers
 			if instance._id is @_id
 				@_instances.splice index, 1
 			delete @
+
+	_selfish: ->
+		for instance, index in @_instances
+			if @_id isnt instance._id
+				instance.close()
 
 
 

@@ -75,7 +75,17 @@ app.directive "modal", ->
 app.directive "popup", ->
 	(scope, element, attrs) ->
 		scope.$watch "partials", (value) ->
-			$('.btn-popup-demo').popup()
+			$('.btn-popup-demo').popup
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
 
 
 
