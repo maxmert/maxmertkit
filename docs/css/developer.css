@@ -126,6 +126,8 @@ pre .chunk {
 .example-block .view > .-group .-btn {
   margin-top: 0;
   margin-bottom: 0; }
+.example-block .view > .-drop {
+  display: inline-block; }
 .example-block .view ._dev-clear_ {
   position: relative;
   top: inherit;
@@ -173,6 +175,14 @@ pre .chunk {
   .row-color .column-color {
     background-color: #baddf1;
     padding: 10px; }
+
+#popup .popups-block {
+  -webkit-perspective: 1300px;
+  -moz-perspective: 1300px;
+  perspective: 1300px;
+  -webkit-perspective-origin: 50% 50%;
+  -moz-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%; }
 
 
 /*# sourceMappingURL=developer.css.map*/

@@ -24,6 +24,9 @@
 				margin-top: 0
 				margin-bottom: 0
 
+		& > .-drop
+			display: inline-block
+
 		._dev-clear_
 			@include clearfix
 			position: relative
@@ -75,3 +78,8 @@
 	.column-color
 		background-color: #baddf1
 		padding: 10px
+
+#popup
+	.popups-block
+		@include perspective(1300px)
+		@include perspective-origin(50% 50%)

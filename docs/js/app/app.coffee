@@ -33,6 +33,9 @@ app.directive 'submenu', ->
 	link: ( scope, element, attrs ) ->
 		scope.items = window[attrs.submenu]
 
+		scope.$watch "partials", (value) ->
+			$('[submenu="widgets"]').affix()
+
 
 app.directive 'partials', ->
 	templateUrl: "#{paths.tmpl}/common/partials.html"
@@ -76,6 +79,75 @@ app.directive "popup", ->
 	(scope, element, attrs) ->
 		scope.$watch "partials", (value) ->
 			$('.btn-popup-demo').popup
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
+
+			$('.btn-popup-demo-bottom').popup
+				positionVertical: 'bottom'
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
+
+			$('.btn-popup-demo-left').popup
+				positionVertical: 'middle'
+				positionHorizontal: 'left'
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
+
+			$('.btn-popup-demo-right').popup
+				positionVertical: 'middle'
+				positionHorizontal: 'right'
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
+
+			$('.btn-popup-demo-bottom-right').popup
+				positionVertical: 'bottom'
+				positionHorizontal: 'right'
+				beforeopen: ->
+					popup = @data('kit-popup')
+					content = popup.$el.find '.-content'
+					content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+
+				onopen: ->
+					@addClass '_active_'
+
+				onclose: ->
+					@removeClass '_active_'
+
+			$('.btn-popup-demo-top-left').popup
+				positionVertical: 'top'
+				positionHorizontal: 'left'
 				beforeopen: ->
 					popup = @data('kit-popup')
 					content = popup.$el.find '.-content'

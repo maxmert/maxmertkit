@@ -43,6 +43,21 @@ class MaxmertkitHelpers
 
 
 	# POSITIONING
+	
+	_getContainer: (el) ->
+		parent = el[0] or el
+		
+		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
+		while parent = parent.parentNode
+			try
+				style = getComputedStyle parent
+			
+			return $(parent) if not style?
+
+			if /(relative)/.test(style['position'])
+				return parent
+
+		return document.body
 
 	_getScrollParent: ( el ) ->
 		parent = el[0] or el
@@ -54,6 +69,8 @@ class MaxmertkitHelpers
 			
 			return $(parent) if not style?
 
+			if ( style.webkitPerspective? and style.webkitPerspective isnt 'none' ) or ( style.mozPerspective? and style.mozPerspective isnt 'none' ) or ( style.perspective? and style.perspective isnt 'none' )
+				return parent
 			if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x'])
 				if position isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
 					return parent

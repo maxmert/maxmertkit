@@ -75,7 +75,7 @@ class Popup extends MaxmertkitHelpers
 
 	
 	_setOptions: ( options ) ->
-		console.log options
+		
 		for key, value of options
 			if not @options[key]?
 				return console.error "Maxmertkit Popup. You're trying to set unpropriate option."
@@ -126,7 +126,7 @@ class Popup extends MaxmertkitHelpers
 
 				when 'positionVertical'
 					# set position classes
-					@$el.removeClass "_#{@options.positionVertical}_"
+					@$el.removeClass "_top_ _middle_ _bottom_"
 
 					@options.positionVertical = value
 
@@ -134,7 +134,7 @@ class Popup extends MaxmertkitHelpers
 
 				when'positionHorizontal'
 					# set position classes
-					@$el.removeClass "_#{@options.positionHorizontal}_"
+					@$el.removeClass "_left_ _center_ _right_"
 
 					@options.positionHorizontal = value
 
@@ -173,6 +173,11 @@ _position = ->
 	# if @_equalNodes scrollParent, scrollParentBtn
 	positionBtn = @$btn.offset()
 	position = @$el.offset()
+
+	if scrollParent? and not scrollParent[0]? or scrollParent[0].activeElement.nodeName isnt 'BODY'
+		positionBtn.top = positionBtn.top - $(scrollParent).offset().top
+		positionBtn.left = positionBtn.left - $(scrollParent).offset().left
+	# scrollParent
 
 	sizeBtn =
 		width: @$btn.outerWidth()

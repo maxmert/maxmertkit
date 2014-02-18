@@ -28,6 +28,7 @@ exports.config =
 				'commercial/maxmertkit.js': /^commercial\/coffee/
 			order:
 				before: [
+					'coffee/maxmertkit.coffee'
 					'docs/js/bower/highlight-scss/highlight.pack.js'
 					'docs/js/bower/jquery/jquery.min.js'
 					'docs/js/bower/angular/angular.min.js'
