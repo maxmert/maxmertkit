@@ -35,7 +35,7 @@ class Affix extends MaxmertkitHelpers
 
 		# _position.call @
 
-		@open()
+		@start()
 
 		super @$btn, @options
 
@@ -60,11 +60,11 @@ class Affix extends MaxmertkitHelpers
 		# @$btn.off ".#{@_name}"
 		super
 
-	open: ->
-		_beforeopen.call @
+	start: ->
+		_beforestart.call @
 
-	close: ->
-		_beforeclose.call @
+	stop: ->
+		_beforestop.call @
 
 
 
@@ -104,67 +104,68 @@ _position = ->
 # 	it will be called here
 # if you don't
 # 	just open modal window
-_beforeopen = ->
+_beforestart = ->
 	# If we need to close all other instances on Affix
 	# if @options.selfish
 	# 	@_selfish()
 
 	if @beforeopen?
 		try
-			deferred = @beforeopen.call @$btn
+			deferred = @beforeopen.call @$el
 			deferred
 				.done =>
-					_open.call @
+					_start.call @
 					
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
 		catch
-			_open.call @
+			_start.call @
 
 	else
-		_open.call @
+		_start.call @
 
 # Opens modal
 # and triggers onopen
-_open = ->
+_start = ->
 	_position.call @
 	@$el.addClass '_active_'
-	@$el.trigger "opened.#{@_name}"
+	@$el.trigger "started.#{@_name}"
 	if @onopen?
 		try
-			@onopen.call @$btn
+			@onopen.call @$el
 
 
 # If you have beforeclose function
 # 	it will be called here
 # if you don't
 # 	just close modal window
-_beforeclose = ->
+_beforestop = ->
 	if @beforeclose?
 		try
-			deferred = @beforeclose.call @$btn
+			deferred = @beforeclose.call @$el
 			deferred
 				.done =>
-					_close.call @
+					_stop.call @
 					
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
 		catch
-			_close.call @
+			_stop.call @
 
 	else
-		_close.call @
+		_stop.call @
 
 # Closes modal
 # and triggers onclose
-_close = ->
+_stop = ->
 	@$el.removeClass '_active_'
-	@$el.trigger "closed.#{@_name}"
+	$(document).off "scroll.#{@_name}.#{@_id}"
+	@$el.trigger "stopped.#{@_name}"
 	if @onclose?
 		try
-			@onclose.call @$btn
+			@onclose.call @$el
 
 			
 

@@ -119,7 +119,7 @@
 
 }).call(this);
 ;(function() {
-  var Affix, _beforeclose, _beforeopen, _close, _id, _instances, _name, _open, _position,
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -152,7 +152,7 @@
       this.onopen = this.options.onopen;
       this.beforeclose = this.options.beforeclose;
       this.onclose = this.options.onclose;
-      this.open();
+      this.start();
       Affix.__super__.constructor.call(this, this.$btn, this.options);
     }
 
@@ -170,12 +170,12 @@
       return Affix.__super__.destroy.apply(this, arguments);
     };
 
-    Affix.prototype.open = function() {
-      return _beforeopen.call(this);
+    Affix.prototype.start = function() {
+      return _beforestart.call(this);
     };
 
-    Affix.prototype.close = function() {
-      return _beforeclose.call(this);
+    Affix.prototype.stop = function() {
+      return _beforestop.call(this);
     };
 
     return Affix;
@@ -216,61 +216,62 @@
     });
   };
 
-  _beforeopen = function() {
+  _beforestart = function() {
     var deferred,
       _this = this;
     if (this.beforeopen != null) {
       try {
-        deferred = this.beforeopen.call(this.$btn);
+        deferred = this.beforeopen.call(this.$el);
         return deferred.done(function() {
-          return _open.call(_this);
+          return _start.call(_this);
         }).fail(function() {
           return _this.$el.trigger("fail." + _this._name);
         });
       } catch (_error) {
-        return _open.call(this);
+        return _start.call(this);
       }
     } else {
-      return _open.call(this);
+      return _start.call(this);
     }
   };
 
-  _open = function() {
+  _start = function() {
     _position.call(this);
     this.$el.addClass('_active_');
-    this.$el.trigger("opened." + this._name);
+    this.$el.trigger("started." + this._name);
     if (this.onopen != null) {
       try {
-        return this.onopen.call(this.$btn);
+        return this.onopen.call(this.$el);
       } catch (_error) {}
     }
   };
 
-  _beforeclose = function() {
+  _beforestop = function() {
     var deferred,
       _this = this;
     if (this.beforeclose != null) {
       try {
-        deferred = this.beforeclose.call(this.$btn);
+        deferred = this.beforeclose.call(this.$el);
         return deferred.done(function() {
-          return _close.call(_this);
+          return _stop.call(_this);
         }).fail(function() {
           return _this.$el.trigger("fail." + _this._name);
         });
       } catch (_error) {
-        return _close.call(this);
+        return _stop.call(this);
       }
     } else {
-      return _close.call(this);
+      return _stop.call(this);
     }
   };
 
-  _close = function() {
+  _stop = function() {
     this.$el.removeClass('_active_');
-    this.$el.trigger("closed." + this._name);
+    $(document).off("scroll." + this._name + "." + this._id);
+    this.$el.trigger("stopped." + this._name);
     if (this.onclose != null) {
       try {
-        return this.onclose.call(this.$btn);
+        return this.onclose.call(this.$el);
       } catch (_error) {}
     }
   };

@@ -13,6 +13,10 @@ components = [
 	{
 		"name": "popup",
 		"path": "../components/popup"
+	},
+	{
+		"name": "affix",
+		"path": "../components/affix"
 	}
 ]
 
