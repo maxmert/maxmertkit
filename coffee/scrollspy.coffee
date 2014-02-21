@@ -61,6 +61,9 @@ class Scrollspy extends MaxmertkitHelpers
 	destroy: ->
 		super
 
+	refresh: ->
+		_refresh.call @
+
 	start: ->
 		_beforestart.call @
 
@@ -75,6 +78,11 @@ class Scrollspy extends MaxmertkitHelpers
 # =============== Private methods
 
 
+#TODO: Add no-pointer-events while scrolling
+
+_refresh = ->
+	console.log 'refresh'
+
 _activate = ->
 	$(@options.target).on "scroll.#{@_name}.#{@_id}", =>
 		console.log 'scroll'
@@ -88,6 +96,7 @@ _beforestart = ->
 	# If we need to close all other instances on Affix
 	# if @options.selfish
 	# 	@_selfish()
+	@refresh()
 
 	if @beforeopen?
 		try

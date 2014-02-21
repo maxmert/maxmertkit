@@ -924,7 +924,7 @@
 
 }).call(this);
 ;(function() {
-  var Scrollspy, _activate, _beforestart, _beforestop, _id, _instances, _name, _start, _stop,
+  var Scrollspy, _activate, _beforestart, _beforestop, _id, _instances, _name, _refresh, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -980,6 +980,10 @@
       return Scrollspy.__super__.destroy.apply(this, arguments);
     };
 
+    Scrollspy.prototype.refresh = function() {
+      return _refresh.call(this);
+    };
+
     Scrollspy.prototype.start = function() {
       return _beforestart.call(this);
     };
@@ -992,6 +996,10 @@
 
   })(MaxmertkitHelpers);
 
+  _refresh = function() {
+    return console.log('refresh');
+  };
+
   _activate = function() {
     var _this = this;
     return $(this.options.target).on("scroll." + this._name + "." + this._id, function() {
@@ -1002,6 +1010,7 @@
   _beforestart = function() {
     var deferred,
       _this = this;
+    this.refresh();
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$el);
