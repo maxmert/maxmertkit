@@ -1,0 +1,20 @@
+@mixin theme-hovered-setter($i)
+	& > thead, & > tbody, & > tfoot
+		& > tr:hover
+			& > td
+				@if nth($themes, $i) == "-default-"
+					background-color: nth($themes-background-light-colors, $i)
+				@else
+					background-color: lighten(nth($themes-background-light-colors, $i), 25%)
+
+@include exports("tables/hovered")
+	.#{$table-class}
+
+		&.#{$mod-hovered}
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
+					@include theme-hovered-setter($i)
+				&.#{$theme}
+					@include theme-hovered-setter($i)

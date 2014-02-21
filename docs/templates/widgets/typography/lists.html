@@ -1,0 +1,230 @@
+<!-- ============ LISTS -->
+<!-- ====================== -->
+
+<h2>Lists</h2>
+
+<!-- ============ Variables -->
+<p>
+	<h4>Global variables:</h4>
+	<div hljs>
+$list-item-inline-padding: 5px</div>
+</p>
+
+
+
+<h3>Unordered</h3>
+<p>A list of items in which the order does not explicitly matter.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<ul>
+		<li>Lorem ipsum dolor sit amet</li>
+		<li>Consectetur adipiscing elit</li>
+		<li>Integer molestie lorem at massa</li>
+		<li>Facilisis in pretium nisl aliquet</li>
+		<li>Nulla volutpat aliquam velit
+			<ul>
+				<li>Phasellus iaculis neque</li>
+				<li>Purus sodales ultricies</li>
+				<li>Vestibulum laoreet porttitor sem</li>
+				<li>Vestibulum laoreet porttitor sem
+					<ul>
+						<li>Phasellus iaculis neque</li>
+						<li>Purus sodales ultricies</li>
+						<li>Vestibulum laoreet porttitor sem</li>
+						<li>Ac tristique libero volutpat at</li>
+					</ul>
+				</li>
+				<li>Ac tristique libero volutpat at</li>
+			</ul>
+		</li>
+		<li>Faucibus porta lacus fringilla vel</li>
+		<li>Aenean sit amet erat nunc</li>
+		<li>Eget porttitor lorem</li>
+		</ul>
+	</div>
+	<div hljs class="-col12 example">
+<ul>
+<li>...</li>
+<li>...
+	<ul>
+		<li>...</li>
+	</ul>
+</li>
+</ul></div>
+</div>
+
+
+<h3>Ordered</h3>
+<p>A list of items in which the order does explicitly matter.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<ol>
+			<li>Lorem ipsum dolor sit amet</li>
+			<li>Consectetur adipiscing elit</li>
+			<li>Integer molestie lorem at massa</li>
+			<li>Facilisis in pretium nisl aliquet</li>
+			<li>Nulla volutpat aliquam velit
+				<ol>
+					<li>Phasellus iaculis neque</li>
+					<li>Purus sodales ultricies</li>
+					<li>Vestibulum laoreet porttitor sem</li>
+					<li>Vestibulum laoreet porttitor sem
+						<ul>
+							<li>Phasellus iaculis neque</li>
+							<li>Purus sodales ultricies</li>
+							<li>Vestibulum laoreet porttitor sem</li>
+							<li>Ac tristique libero volutpat at</li>
+						</ul>
+					</li>
+					<li>Ac tristique libero volutpat at</li>
+				</ol>
+			</li>
+			<li>Faucibus porta lacus fringilla vel</li>
+			<li>Aenean sit amet erat nunc</li>
+			<li>Eget porttitor lorem</li>
+		</ol>
+	</div>
+	<div hljs class="-col12 example">
+<ol>
+<li>...</li>
+<li>...
+	<ol>
+		<li>...</li>
+	</ol>
+</li>
+</ol></div>
+</div>
+
+
+
+
+<h3>Unstyled</h3>
+<p>Use modifier class <code>_unstyled_</code> to remove the default <code>list-style</code> and left margin on list items (immediate children only). <b>This only applies to immediate children list items</b>, meaning you will need to add the class for any nested lists as well.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<ol class="_unstyled_">
+			<li>Lorem ipsum dolor sit amet</li>
+			<li>Consectetur adipiscing elit</li>
+			<li>Integer molestie lorem at massa</li>
+			<li>Facilisis in pretium nisl aliquet</li>
+			<li>Nulla volutpat aliquam velit
+				<ol>
+					<li>Phasellus iaculis neque</li>
+					<li>Purus sodales ultricies</li>
+					<li>Vestibulum laoreet porttitor sem</li>
+					<li>Vestibulum laoreet porttitor sem
+						<ul>
+							<li>Phasellus iaculis neque</li>
+							<li>Purus sodales ultricies</li>
+							<li>Vestibulum laoreet porttitor sem</li>
+							<li>Ac tristique libero volutpat at</li>
+						</ul>
+					</li>
+					<li>Ac tristique libero volutpat at</li>
+				</ol>
+			</li>
+			<li>Faucibus porta lacus fringilla vel</li>
+			<li>Aenean sit amet erat nunc</li>
+			<li>Eget porttitor lorem</li>
+		</ol>
+	</div>
+	<div hljs class="-col12 example">
+<ol class="_unstyled_">
+<li>...</li>
+<li>...
+	<ol>
+		<li>...</li>
+	</ol>
+</li>
+</ol></div>
+</div>
+
+
+
+<h3>Horizontal</h3>
+<p>Use modifier class <code>_horizontal_</code> to place all list items on a single line with <code>display: inline-block</code> and some light padding.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<ol class="_horizontal_">
+			<li>Lorem</li>
+			<li>Consectetur</li>
+			<li>Integer</li>
+			<li>Facilisis</li>
+			<li>Nulla</li>
+			<li>Faucibus</li>
+			<li>Aenean</li>
+			<li>Eget</li>
+		</ol>
+	</div>
+	<div hljs class="-col12 example">
+<ol class="_horizontal_">
+<li>Lorem</li>
+<li>Consectetur</li>
+<li>Integer</li>
+<li>Facilisis</li>
+<li>Nulla</li>
+<li>Faucibus</li>
+<li>Aenean</li>
+<li>Eget</li>
+</ol></div>
+</div>
+
+
+
+
+
+
+
+
+<h2>Description</h2>
+<p>A list of terms with their associated descriptions.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<dl>
+			<dt>Description lists</dt>
+			<dd>A description list is perfect for defining terms.</dd>
+		</dl>
+		<dl>
+			<dt>Description lists</dt>
+			<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+			<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+		</dl>
+	</div>
+	<div hljs class="-col12 example">
+<dl>
+<dt>Description lists</dt>
+<dd>A description list is perfect for defining terms.</dd>
+</dl>
+<dl>
+<dt>Description lists</dt>
+<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+</dl></div>
+</div>
+
+
+<h3>Horizontal</h3>
+<p>Use modifier class <code>_horizontal_</code>  to make terms and descriptions in  <code>&lt;dl&gt;</code> line up side-by-side. Responsive.</p>
+<div class="-row example-block">
+	<div class="-col12 view">
+		<dl class="_horizontal_">
+			<dt>Description lists</dt>
+			<dd>A description list is perfect for defining terms.</dd>
+		</dl>
+		<dl class="_horizontal_">
+			<dt title="Description lists with very-very-very long title">Description lists with very-very-very long title</dt>
+			<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+			<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+		</dl>
+	</div>
+	<div hljs class="-col12 example">
+<dl class="_horizontal_">
+<dt>Description lists</dt>
+<dd>A description list is perfect for defining terms.</dd>
+</dl>
+<dl class="_horizontal_">
+<dt title="Description lists with very-very-very long title">Description lists with very-very-very long title</dt>
+<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+</dl></div>
+</div>

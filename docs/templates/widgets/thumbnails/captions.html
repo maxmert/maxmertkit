@@ -1,0 +1,194 @@
+<!-- ============================== CAPTIONS ============================== -->
+
+<h2>Caption</h2>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div hljs>
+$thumbnail-caption-class: #{$thumbnail-class}#{$caption-class}
+$thumbnail-caption-padding: $base-padding-vertical * 2
+$thumbnail-caption-font-size: 80%</div>
+</p>
+
+
+<!-- ============ DESCRIPTION -->
+<!-- ====================== -->
+<p>
+	Add widget <code>-thumbnail-caption</code> to add caption to image. Don't forget about themes and sizes.
+</p>
+
+<blockquote class="-primary-">
+	Use semantic elements <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>!
+</blockquote>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<div class="-row">
+			
+			<div class="-col4">
+				<figure class="-thumbnail">
+					<div class="-shadow-lifted-">
+						<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+					</div>
+					<figcaption class="-thumbnail-caption">
+						<h4>Geisha <small>Kyoto, Japan</small></h4>
+						<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="-col4">
+				<figure class="-thumbnail">
+					<div class="-shadow-lifted-">
+						<img src="http://farm4.staticflickr.com/3279/2824620279_4efda6b8cf_b.jpg">
+					</div>
+					<figcaption class="-thumbnail-caption -primary-">
+						<h4>Geisha <small>Kyoto, Japan</small></h4>
+						<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="-col4">
+				<figure class="-thumbnail">
+					<div class="-shadow-lifted-">
+						<img src="http://farm3.staticflickr.com/2651/3743922119_f7140f01c8_z.jpg">
+					</div>
+					<figcaption class="-thumbnail-caption -error-">
+						<h4>Geisha <small>Kyoto, Japan</small></h4>
+						<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+					</figcaption>
+				</figure>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div hljs class="-col12 example">
+<div class="-row">
+			
+	<div class="-col4">
+		<figure class="-thumbnail">
+			<div class="-shadow-lifted-">
+				<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+			</div>
+			<figcaption class="-thumbnail-caption">
+				<h4>Geisha <small>Kyoto, Japan</small></h4>
+				<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+			</figcaption>
+		</figure>
+	</div>
+	<div class="-col4">
+		<figure class="-thumbnail">
+			<div class="-shadow-lifted-">
+				<img src="http://farm4.staticflickr.com/3279/2824620279_4efda6b8cf_b.jpg">
+			</div>
+			<figcaption class="-thumbnail-caption -primary-">
+				<h4>Geisha <small>Kyoto, Japan</small></h4>
+				<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+			</figcaption>
+		</figure>
+	</div>
+	<div class="-col4">
+		<figure class="-thumbnail">
+			<div class="-shadow-lifted-">
+				<img src="http://farm3.staticflickr.com/2651/3743922119_f7140f01c8_z.jpg">
+			</div>
+			<figcaption class="-thumbnail-caption -error-">
+				<h4>Geisha <small>Kyoto, Japan</small></h4>
+				<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers who act as hostesses and whose skills include performing various Japanese arts such as classical music, dance and games.</p>
+			</figcaption>
+		</figure>
+	</div>
+
+</div></div>
+
+</div>
+
+
+
+
+
+
+
+<h3>Caption position</h3>
+
+<p>
+	To change it just add modifiers <code>_left_</code> and <code>_right_</code>. Captions are responsive, try to change window width.
+</p>
+
+<blockquote class="-primary-">Left and right captions are absolute positioned. So it looks great if there is nothing on left or right side of the thumbnail.</blockquote>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<div class="-row">
+			
+			<div class="-col8 -offset4" style="position: relative">
+				<figure class="-thumbnail">
+					<div class="-shadow-curve-">
+						<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+					</div>
+					<figcaption class="-thumbnail-caption _left_">
+						<h4>Geisha <small>Kyoto, Japan</small></h4>
+						<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers.</p>
+					</figcaption>
+				</figure>
+			</div>
+
+		</div>
+		<br>
+		<div class="-row">
+			
+			<div class="-col8" style="position: relative">
+				<figure class="-thumbnail">
+					<div class="-shadow-curve-">
+						<img src="http://farm4.staticflickr.com/3279/2824620279_4efda6b8cf_b.jpg">
+					</div>
+					<figcaption class="-thumbnail-caption _right_ -error-">
+						<h4>Geisha <small>Kyoto, Japan</small></h4>
+						<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers.</p>
+					</figcaption>
+				</figure>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div hljs class="-col12 example">
+<div class="-row">
+			
+	<div class="-col8 -offset4" style="position: relative">
+		<figure class="-thumbnail">
+			<div class="-shadow-curve-">
+				<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+			</div>
+			<figcaption class="-thumbnail-caption _left_">
+				<h4>Geisha <small>Kyoto, Japan</small></h4>
+				<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers.</p>
+			</figcaption>
+		</figure>
+	</div>
+
+</div>
+
+<div class="-row">
+	
+	<div class="-col8" style="position: relative">
+		<figure class="-thumbnail">
+			<div class="-shadow-curve-">
+				<img src="http://farm4.staticflickr.com/3279/2824620279_4efda6b8cf_b.jpg">
+			</div>
+			<figcaption class="-thumbnail-caption _right_ -error-">
+				<h4>Geisha <small>Kyoto, Japan</small></h4>
+				<p>Geisha (芸者?), geiko (芸子) or geigi (芸妓) are traditional Japanese female entertainers.</p>
+			</figcaption>
+		</figure>
+	</div>
+
+</div></div>
+
+</div>

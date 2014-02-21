@@ -1,0 +1,116 @@
+<div id="main-content" class="-container">
+	<h1>Affix</h1>
+
+	<p>The subnavigation on the left is a live demo of the affix plugin.</p>
+
+	<blockquote class="-primary-">
+		To move your affix block inside some parent, just add <code>position: relative</code> to that parent.
+	</blockquote>
+
+
+
+	
+	<div class="-row example-block">
+<div hljs class="-col12 example">
+$('.affix-selector').affix()
+</div>
+
+</div>
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>offset</td>
+			<td><i>5</i></td>
+			<td>
+				In <code>px</code>. Affix's block offset from top.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data('kit-modal')</code> or <code>this.data('kit-modal')</code> in js. To get modal window element do <code>@data('kit-modal').$el</code>.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforestart</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before start affix. If it returns <code>deferred.promise()</code>, then affix will not start till <code>deferred.resolve()</code>, and woun't start at all if <code>deferred.reject()</code>. You can just get data with $.ajax() for your affix block.</p>
+				<p hljs language="coffeescript">
+$('.affix').affix
+	beforestart: ->
+		d = $.Deferred()
+
+		console.log @
+		# The affix dom element will be in the log
+		# so you can add something like
+		@addClass '_do_something_'
+
+		console.log @data 'kit-affix'
+		# The instance of Affix class will in log
+
+		# Do something here before start affix
+		# in this case it will start after 2 seconds
+		setTimeout ->
+			d.resolve()
+		, 2000
+		# End of your code
+
+		d.promise()
+</p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onstart</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after affix started.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforestop</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before affix stopped.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onstop</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after affix stopped.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

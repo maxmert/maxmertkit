@@ -1,0 +1,22 @@
+@mixin theme-striped-setter($i)
+	& > thead, & > tbody, & > tfoot
+		& > tr:nth-child(odd)
+			& > td
+				@if nth($themes, $i) == "-default-"
+					background-color: nth($themes-background-light-colors, $i)
+				@else
+					background-color: lighten(nth($themes-background-light-colors, $i), 25%)
+
+@include exports("tables/striped")
+
+	.#{$table-class}
+
+		&.#{$mod-striped}
+			@each $theme in $themes
+				$i: index($themes, $theme)
+				
+				@if $theme == "-default-"
+					@include theme-striped-setter($i)
+				&.#{$theme}
+					@include theme-striped-setter($i)
+

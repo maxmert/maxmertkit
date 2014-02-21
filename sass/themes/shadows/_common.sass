@@ -1,0 +1,14 @@
+@mixin shadow-double
+	&:before, &:after
+		content: " "
+		position: absolute
+		z-index: -2
+
+@mixin shadow-single
+	&:before
+		content: " "
+		position: absolute
+		z-index: -2
+
+[class*="#{$shadow-class}"]
+	position: relative

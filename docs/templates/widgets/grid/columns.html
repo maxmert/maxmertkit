@@ -1,0 +1,168 @@
+<!-- ============ GRID -->
+<!-- ====================== -->
+
+<h3>Columns</h3>
+
+<!-- ============ Variables -->
+<p>
+	<b>Global variables</b>
+	<div hljs>
+$row-class: -row !global
+
+$offset-class: -offset !global</div>
+</p>
+
+<p>Use class <code>.-col#</code> <small>(# - number 1..$column-quantity)</small>. Specifies columns of the grid.</p>
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<div class="-row row-color">
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+			<div class="-col1 column-color">-col1</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col3 column-color">-col3</div>
+			<div class="-col3 column-color">-col3</div>
+			<div class="-col3 column-color">-col3</div>
+			<div class="-col3 column-color">-col3</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col4 column-color">-col4</div>
+			<div class="-col4 column-color">-col4</div>
+			<div class="-col4 column-color">-col4</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col5 column-color">-col5</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col5 column-color">-col5</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col6 column-color">-col6</div>
+			<div class="-col6 column-color">-col6</div>
+		</div>
+
+		<div class="-row row-color">
+			<div class="-col8 column-color">-col8</div>
+			<div class="-col4 column-color">-col4</div>
+		</div>
+	</div>
+
+
+	<div hljs class="-col12 example">
+<div class="-row">
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+<div class="-col1">-col1</div>
+</div>
+
+<div class="-row">
+<div class="-col2">-col2</div>
+<div class="-col2">-col2</div>
+<div class="-col2">-col2</div>
+<div class="-col2">-col2</div>
+<div class="-col2">-col2</div>
+<div class="-col2">-col2</div>
+</div>
+
+<div class="-row">
+<div class="-col3">-col3</div>
+<div class="-col3">-col3</div>
+<div class="-col3">-col3</div>
+<div class="-col3">-col3</div>
+</div>
+
+<div class="-row">
+<div class="-col4">-col4</div>
+<div class="-col4">-col4</div>
+<div class="-col4">-col4</div>
+</div>
+
+<div class="-row">
+<div class="-col5">-col5</div>
+<div class="-col2">-col2</div>
+<div class="-col5">-col5</div>
+</div>
+
+<div class="-row">
+<div class="-col6">-col6</div>
+<div class="-col6">-col6</div>
+</div>
+
+<div class="-row">
+<div class="-col8">-col8</div>
+<div class="-col4">-col4</div>
+</div></div>
+
+
+</div>
+
+
+
+
+
+
+<h3>Offsets</h3>
+<p>Use class <code>.-offset#</code>. These classes increase the left margin of a column by <code>#</code> columns. 
+<div class="-row example-block">
+	<div class="-col12 view">
+		<div class="-row row-color">
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 -offset2 column-color">-col2 -offset2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+			<div class="-col2 column-color">-col2</div>
+		</div>
+		<div class="-row row-color">
+			<div class="-col6 -offset6 column-color">-col6 -offset6</div>
+		</div>
+		<div class="-row row-color">
+			<div class="-col6 -offset3 column-color">-col6 -offset3</div>
+		</div>
+	</div>
+	<div hljs class="-col12 example">
+<div class="-row">
+<div class="-col2">-col2</div>
+<div class="-col2 -offset2">-col2 -offset2</div>
+<div class="-col2">-col2</div>
+<div class="-col2r">-col2</div>
+<div class="-col2r">-col2</div>
+</div>
+<div class="-row">
+<div class="-col6 -offset6">-col6 -offset6</div>
+</div>
+<div class="-row">
+<div class="-col6 -offset3">-col6 -offset3</div>
+</div></div>
+</div>

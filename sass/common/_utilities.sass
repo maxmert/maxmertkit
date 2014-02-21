@@ -1,0 +1,42 @@
+@include exports("common/utilities")
+
+	@-ms-viewport
+		width: device-width
+
+	._visible-phones_
+		@include responsive-invisibility()
+		@include media(new-breakpoint(max-width 768px 6))
+			@include responsive-visibility()
+	
+	._visible-tablets_
+		@include responsive-invisibility()
+		@include media(new-breakpoint(min-width 768px max-width 992px 6))
+			@include responsive-visibility()
+
+	._visible-desktops_
+		@include responsive-invisibility()
+		@include media(new-breakpoint(min-width 992px max-width 1200px 6))
+			@include responsive-visibility()
+
+	._visible-large-desktops_
+		@include responsive-invisibility()
+		@include media(new-breakpoint(min-width 1200px 6))
+			@include responsive-visibility()
+
+
+
+	._hidden-phones_
+		@include media(new-breakpoint(max-width 768px 6))
+			@include responsive-invisibility()
+	
+	._hidden-tablets_
+		@include media(new-breakpoint(min-width 768px max-width 992px 6))
+			@include responsive-invisibility()
+
+	._hidden-desktops_
+		@include media(new-breakpoint(min-width 992px max-width 1200px 6))
+			@include responsive-invisibility()
+
+	._hidden-large-desktops_
+		@include media(new-breakpoint(min-width 1200px 6))
+			@include responsive-invisibility()

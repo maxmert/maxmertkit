@@ -1,0 +1,440 @@
+<!-- ============ GRID FORM -->
+<!-- ====================== -->
+
+<h3>Build form grid</h3>
+
+<!-- ============ Variables -->
+<p>
+	<h4>Global variables</h4>
+	<div hljs>
+$form-input-font-family: inherit !global
+$form-input-border-radius: 0 !global
+$form-label-cursor: pointer !global
+$form-label-font-weight: 200 !global</div>
+</p>
+
+<!-- ============ Description -->
+<p>Dont't forget to use <code>for="#id-input-name"</code> with <code>&lt;label&gt;</code>, it isn't necessary, but it's a good practice.</p>
+
+<p>
+	Creating a form is designed to be easy and flexible. Forms are built with a combination of standard form elements, as well as the Grid (<code>-row</code> and <code>-col#</code>). Form elements in Foundation are styled based on their type attribute rather than a class, and can be sized in a couple of ways:
+	<ul>
+		<li>You can size inputs using column sizes <code>-col#</code></li>
+		<li>You can create row elements inside your form and use columns for the form, including inputs, labels and more. Rows inside a form inherit some special padding to even up input spacing.</li>
+	</ul>
+	To understand how to use Grid, please look at <a href="#grid">grid section</a>.
+</p>
+
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		
+		<form>
+			<div class="-row">
+				<div class="-col1">
+					<label for="input-label1">Login</label>
+				</div>
+				<div class="-col4">
+					<input id="input-label1" type="text"/>
+				</div>
+				<div class="-col1 -offset1">
+					<label for="input-label2">Passwords</label>
+				</div>
+				<div class="-col3">
+					<input id="input-label2" type="password"/>
+				</div>
+				<div class="-col2">
+					<input id="input-label3" type="password"/>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+	<div hljs class="-col12 example">
+<form>
+<div class="-row">
+	<div class="-col1">
+		<label for="input-label3">Login</label>
+	</div>
+	<div class="-col4">
+		<input id="input-label3" type="text"/>
+	</div>
+	<div class="-col1 -offset1">
+		<label for="input-label4">Passwords</label>
+	</div>
+	<div class="-col3">
+		<input id="input-label4" type="password"/>
+	</div>
+	<div class="-col2">
+		<input id="input-label5" type="password"/>
+	</div>
+</div>
+</form></div>
+
+
+</div>
+
+
+
+
+
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		
+		<form>
+			<div class="-row">
+				<div class="-col4">
+					<label for="input-label6">Input label</label>
+					<input id="input-label6" type="text"/>
+				</div>
+				<div class="-col3 -offset1">
+					<label for="input-label7">Input label</label>
+					<input id="input-label7" type="text"/>
+				</div>
+				<div class="-col2">
+					<label for="input-label8">&nbsp;</label>
+					<input id="input-label8" type="text"/>
+				</div>
+				<div class="-col2">
+					<label for="input-label9">Input label</label>
+					<input id="input-label9" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label for="input-label10">Select label</label>
+					<select class="-primary-" id="input-label10">
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</div>
+				<div class="-col2">
+					<label for="input-label11">Select label</label>
+					<select id="input-label11">
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</div>
+				<div class="-col5 -offset1">
+					<label for="input-label12">Input label</label>
+					<input id="input-label12" type="text"/>
+				</div>
+				<div class="-col2">
+					<label for="input-label13">Input label</label>
+					<input id="input-label13" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label for="input-label10">Select label</label>
+					<select class="-primary-" id="input-label10">
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</div>
+				<div class="-col2">
+					<label for="input-label11">Select label</label>
+					<select id="input-label11">
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</div>
+				<div class="-col3 -offset1">
+					<label>Check radiobutton</label>
+
+					<input type="radio" name="inputradio" value="1234" id="input-radio1">
+					<label for="input-radio1">Radio 1</label>
+
+					<input type="radio" name="inputradio" value="12345" id="input-radio2">
+					<label for="input-radio2">Radio 2</label>
+				</div>
+				<div class="-col4">
+					<label>Check checkbox</label>
+
+					<input type="checkbox" name="inputcheckbox" value="Red" id="input-checkbox1">
+					<label for="input-checkbox1">Checkbox 1</label>
+
+					<input type="checkbox" name="inputcheckbox" value="Red" id="input-checkbox2">
+					<label for="input-checkbox2">Checkbox 2</label>
+				</div>
+			</div>
+
+			<div class="-row">
+				<div class="-col12">
+					<label for="textarea1">Label for textarea</label>
+					<textarea id="textarea1"></textarea>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+	<div hljs class="-col12 example">
+<form>
+<div class="-row">
+	<div class="-col4">
+		<label for="input-label6">Input label</label>
+		<input id="input-label6" type="text"/>
+	</div>
+	<div class="-col3 -offset1">
+		<label for="input-label7">Input label</label>
+		<input id="input-label7" type="text"/>
+	</div>
+	<div class="-col2">
+		<label for="input-label8">&nbsp;</label>
+		<input id="input-label8" type="text"/>
+	</div>
+	<div class="-col2">
+		<label for="input-label9">Input label</label>
+		<input id="input-label9" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label for="input-label10">Select label</label>
+		<select class="-primary-" id="input-label10">
+			<option>Option 1</option>
+			<option>Option 2</option>
+		</select>
+	</div>
+	<div class="-col2">
+		<label for="input-label11">Select label</label>
+		<select id="input-label11">
+			<option>Option 1</option>
+			<option>Option 2</option>
+		</select>
+	</div>
+	<div class="-col5 -offset1">
+		<label for="input-label12">Input label</label>
+		<input id="input-label12" type="text"/>
+	</div>
+	<div class="-col2">
+		<label for="input-label13">Input label</label>
+		<input id="input-label13" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label for="input-label10">Select label</label>
+		<select class="-primary-" id="input-label10">
+			<option>Option 1</option>
+			<option>Option 2</option>
+		</select>
+	</div>
+	<div class="-col2">
+		<label for="input-label11">Select label</label>
+		<select id="input-label11">
+			<option>Option 1</option>
+			<option>Option 2</option>
+		</select>
+	</div>
+	<div class="-col3 -offset1">
+		<label>Check radiobutton</label>
+
+		<input type="radio" name="inputradio" value="1234" id="input-radio1">
+		<label for="input-radio1">Radio 1</label>
+
+		<input type="radio" name="inputradio" value="12345" id="input-radio2">
+		<label for="input-radio2">Radio 2</label>
+	</div>
+	<div class="-col4">
+		<label>Check checkbox</label>
+
+		<input type="checkbox" name="inputcheckbox" value="Red" id="input-checkbox1">
+		<label for="input-checkbox1">Checkbox 1</label>
+
+		<input type="checkbox" name="inputcheckbox" value="Red" id="input-checkbox2">
+		<label for="input-checkbox2">Checkbox 2</label>
+	</div>
+</div>
+
+<div class="-row">
+	<div class="-col12">
+		<label for="textarea1">Label for textarea</label>
+		<textarea id="textarea1"></textarea>
+	</div>
+</div>
+</form></div>
+
+
+</div>
+
+
+
+
+
+<p>Use theme classes (you can include any theme, so themes class names can be different) <code>-primary-</code>, <code>-error-</code>, <code>-success-</code>, etc. with <code>&lt;input&gt;</code> to set theme.</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		
+		<form>
+			<div class="-row">
+				<div class="-col1">
+					<label for="input-label14">Login</label>
+				</div>
+				<div class="-col4">
+					<input class="-primary-" placeholder="-primary-" id="input-label14" type="text"/>
+				</div>
+				<div class="-col1 -offset1">
+					<label for="input-label15">Passwords</label>
+				</div>
+				<div class="-col3">
+					<input class="-error-" placeholder="-error-" id="input-label15" type="password"/>
+				</div>
+				<div class="-col2">
+					<input id="input-label16" type="password"/>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+	<div hljs class="-col12 example">
+<form>
+<div class="-row">
+	<div class="-col1">
+		<label for="input-label14">Login</label>
+	</div>
+	<div class="-col4">
+		<input class="-primary-" placeholder="-primary-" id="input-label14" type="text"/>
+	</div>
+	<div class="-col1 -offset1">
+		<label for="input-label15">Passwords</label>
+	</div>
+	<div class="-col3">
+		<input class="-error-" placeholder="-error-" id="input-label15" type="password"/>
+	</div>
+	<div class="-col2">
+		<input id="input-label16" type="password"/>
+	</div>
+</div>
+</form></div>
+
+
+</div>
+
+
+
+<p>Use size classes Use size classes <code>_tiny</code>, <code>_small</code>, <code>_minor</code>, <code>_normal</code>, <code>_major</code>, <code>_normal</code>, <code>_big</code>, <code>_huge</code>, <code>_divine</code> with <code>&lt;input&gt;</code> to set size.</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		
+		<form>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_minor" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_minor" placeholder="_minor" id="input-label14" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_normal" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_normal" placeholder="_normal" id="input-label14" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_major" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_major" placeholder="_major" id="input-label14" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_big" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_big" placeholder="_big" id="input-label14" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_huge" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_huge" placeholder="_huge" id="input-label14" type="text"/>
+				</div>
+			</div>
+			<div class="-row">
+				<div class="-col2">
+					<label class="_divine" for="input-label14">Login</label>
+				</div>
+				<div class="-col8">
+					<input class="_divine" placeholder="_divine" id="input-label14" type="text"/>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+	<div hljs class="-col12 example">
+<form>
+<div class="-row">
+	<div class="-col2">
+		<label class="_minor" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_minor" placeholder="_minor" id="input-label14" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label class="_normal" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_normal" placeholder="_normal" id="input-label14" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label class="_major" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_major" placeholder="_major" id="input-label14" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label class="_big" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_big" placeholder="_big" id="input-label14" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label class="_huge" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_huge" placeholder="_huge" id="input-label14" type="text"/>
+	</div>
+</div>
+<div class="-row">
+	<div class="-col2">
+		<label class="_divine" for="input-label14">Login</label>
+	</div>
+	<div class="-col8">
+		<input class="_divine" placeholder="_divine" id="input-label14" type="text"/>
+	</div>
+</div>
+</form></div>
+
+
+</div>
