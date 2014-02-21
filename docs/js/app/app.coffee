@@ -54,6 +54,66 @@ app.directive 'partials', ->
 						path: "#{paths.tmpl}/widgets/#{subitem.path}.html"
 
 
+app.directive "button", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-toggle='button']").button()
+			$('.btn-with-before').button
+				beforeactive: ->
+					d = $.Deferred()
+					@html 'Loading...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,2000
+					d.promise()
+				
+				onactive: ->
+					@removeClass '_disabled_'
+					@html 'Checked'
+
+				onunactive: ->
+					@html 'Checkbox'
+
+			$('.radio-with-before').button
+				beforeactive: ->
+					d = $.Deferred()
+					@html 'Loading...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,2000
+					d.promise()
+				
+				onactive: ->
+					@removeClass '_disabled_'
+					@html 'Checked'
+
+				beforeunactive: ->
+					d = $.Deferred()
+					@html 'Unchecking...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,3000
+					d.promise()
+
+				onunactive: ->
+					@removeClass '_disabled_'
+					@html 'Radio'
+
+
+app.directive "tabs", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-toggle='tabs']").tabs()
+
+
+app.directive "scrollspy", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-spy='scroll']").scrollspy()
+
 
 app.directive "modal", ->
 	(scope, element, attrs) ->

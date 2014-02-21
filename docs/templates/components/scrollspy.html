@@ -1,0 +1,216 @@
+<div id="main-content" class="-container">
+	<h1>Scrollspy</h1>
+
+
+	<div class="-row">
+		<div class="-col4">
+			
+		</div>
+		<div class="-col4">
+			
+		</div>
+		<div class="-col4">
+			
+		</div>
+	</div>
+
+
+
+	<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<ul class="-menu" data-spy="scroll" data-target="#scrollspy-target" scrollspy>
+			<li><a>Menu 1</a></li>
+			<li><a>Menu 2</a></li>
+			<li><a>Menu 3</a></li>
+		</ul>
+		<div id="scrollspy-target" style="height: 200px; overflow-y: scroll">
+			<div style="height: 1000px">
+				123
+			</div>
+		</div>
+	</div>
+
+
+
+	<div hljs class="-col12 example">
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>target</td>
+			<td><i>@$btn.data('target')</i></td>
+			<td>
+				Find element with this selector and work with it as a popup window. Changes button's data attributes
+			</td>
+		</tr>
+		<tr>
+			<td>toggle</td>
+			<td><i>@$btn.data('toggle') or 'popup'</i></td>
+			<td>
+				To automatically initialize this plugin without any javascript initialization. Changes button's data attributes. Just in case.
+			</td>
+		</tr>
+		<tr>
+			<td>event</td>
+			<td><i>click.#{@_name}</i></td>
+			<td>
+				This event will be used to open popup window; use namespaced events, for example <code>hover.popup</code> or <code>click.popup</code>
+			</td>
+		</tr>
+		<tr>
+			<td>eventClose</td>
+			<td><i>click.#{@_name}</i></td>
+			<td>
+				This event will be used to close window; use namespaced events, will be bind on elements with <code>data-dismiss="popup"</code> inside this popup window
+			</td>
+		</tr>
+		<tr>
+			<td>positionVertical</td>
+			<td><i>'top'</i></td>
+			<td>
+				Popup position relative to the button.<br>
+				<code>'top'</code> / <code>'middle'</code> / <code>'bottom'</code>
+			</td>
+		</tr>
+		<tr>
+			<td>positionHorizontal</td>
+			<td><i>'center'</i></td>
+			<td>
+				Popup position relative to the button.<br>
+				<code>'left'</code> / <code>'center'</code> / <code>'right'</code>
+			</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>
+				<i>
+					{horizontal:5, vertical:5}
+				</i>
+			</td>
+			<td>
+				In <code>px</code>. Offset relative to <code>positionVertical</code> and <code>positionHorizontal</code>
+			</td>
+		</tr>
+		<tr>
+			<td>closeUnfocus</td>
+			<td>
+				<i>
+					false
+				</i>
+			</td>
+			<td>
+				Close popup if click outside of it.
+			</td>
+		</tr>
+		<tr>
+			<td>selfish</td>
+			<td>
+				<i>
+					true
+				</i>
+			</td>
+			<td>
+				Close all popup windows when open this one.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data('kit-popup')</code> or <code>this.data('kit-popup')</code> in js. To get popup window element do <code>@data('kit-popup').$el</code>.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforeopen</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then popup window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for popup window.</p>
+				<p hljs language="coffeescript">
+$('.btn-modal123').popup
+	beforeopen: ->
+		d = $.Deferred()
+
+		console.log @
+		# The button will be in the log
+		# so you can add something like
+		@addClass '_disabled_'
+		# to disable button while getting data for popup window
+
+		console.log @data 'kit-popup'
+		# The instance of Modal class will in log
+		# so to get popup window element you need to do
+		@data('kit-popup').$el.addClass '_disabled_'
+
+		# Do something here before open window
+		# in this case it will open popup window after 2 seconds
+		setTimeout ->
+			d.resolve()
+		, 2000
+		# End of your code
+
+		d.promise()
+</p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onopen</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after popup window opens.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeclose</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before popup window closes.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onclose</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after popup window closes.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

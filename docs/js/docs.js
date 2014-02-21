@@ -17,6 +17,18 @@ components = [
 	{
 		"name": "affix",
 		"path": "../components/affix"
+	},
+	{
+		"name": "button",
+		"path": "../components/button"
+	},
+	{
+		"name": "tabs",
+		"path": "../components/tabs"
+	},
+	{
+		"name": "scrollspy",
+		"path": "../components/scrollspy"
 	}
 ]
 

@@ -1,9 +1,9 @@
-_name = "affix"
+_name = "scrollspy"
 _instances = []
 _id = 0
 
-class Affix extends MaxmertkitHelpers
-	
+class Scrollspy extends MaxmertkitHelpers
+
 	_name: _name
 	_instances: _instances
 	
@@ -11,24 +11,26 @@ class Affix extends MaxmertkitHelpers
 
 	constructor: ( @el, @options ) ->
 		@$el = $(@el)
-		@$el.parent().append '&nbsp;'	# To keep width
 
 		@_id = _id++
 		
 		_options =
-			# target: @$btn.data('target')				# Targeted affix windows
-			spy: @$el.data('spy') or 'affix'			# To automatically find affix elements and make them active
-			# positionVertical: 'top'						# 'top' or 'bottom'
+			spy: @$el.data('spy') or 'scroll'			# To automatically find affix elements and make them active
+			target: @$el.data('target') or 'document'	# Selector of the scrolling block
 			offset:	5									# Vertical offset in pixels
+			beforeactive: ->
+			onactive: ->
+			beforeunactive: ->
+			onunactive: ->
 		
 		@options = @_merge _options, @options
 
 
 		# Reset default event functions 
-		@beforeopen = @options.beforeopen
-		@onopen = @options.onopen
-		@beforeclose = @options.beforeclose
-		@onclose = @options.onclose
+		@beforeactive = @options.beforeactive
+		@onactive = @options.onactive
+		@beforeunactive = @options.beforeunactive
+		@onunactive = @options.onunactive
 
 		# Set affix window element
 		# @$el = $(document).find @options.target
@@ -57,7 +59,6 @@ class Affix extends MaxmertkitHelpers
 
 
 	destroy: ->
-		# @$btn.off ".#{@_name}"
 		super
 
 	start: ->
@@ -74,30 +75,9 @@ class Affix extends MaxmertkitHelpers
 # =============== Private methods
 
 
-
-_position = ->
-	scrollParent = @_getContainer @$el
-	$scrollParent = $(scrollParent)
-	
-	if $scrollParent[0].firstElementChild.nodeName is "HTML" then offset = 0 else offset = $scrollParent.offset().top
-
-	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-			if offset + $scrollParent.height() - @$el.outerHeight() >= $(document).scrollTop()
-				@$el.css
-					width: @$el.width()
-					position: 'fixed'
-					top: "#{@options.offset}px"
-					bottom: 'auto'
-			else
-				@$el.css
-					position: 'absolute'
-					top: 'auto'
-					bottom: 0
-					width: @$el.width()
-		else
-			@$el.css 'position', 'relative'
-			@$el.css 'top', 'inherit'
+_activate = ->
+	$(@options.target).on "scroll.#{@_name}.#{@_id}", =>
+		console.log 'scroll'
 
 
 # If you have beforeopen function
@@ -128,7 +108,7 @@ _beforestart = ->
 # Opens modal
 # and triggers onopen
 _start = ->
-	_position.call @
+	_activate.call @
 	@$el.addClass '_active_'
 	@$el.trigger "started.#{@_name}"
 	if @onopen?
@@ -160,7 +140,6 @@ _beforestop = ->
 # Closes modal
 # and triggers onstop
 _stop = ->
-	@$el.removeClass '_active_'
 	$(document).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
 	if @onstop?
@@ -175,7 +154,7 @@ _stop = ->
 $.fn[_name] = (options) ->
 	@each ->
 		unless $.data(@, "kit-" + _name)
-			$.data @, "kit-" + _name, new Affix(@, options)
+			$.data @, "kit-" + _name, new Scrollspy(@, options)
 		else
 			if typeof options is "object"
 				$.data(@, "kit-" + _name)._setOptions options
