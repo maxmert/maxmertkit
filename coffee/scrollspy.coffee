@@ -17,7 +17,9 @@ class Scrollspy extends MaxmertkitHelpers
 		_options =
 			spy: @$el.data('spy') or 'scroll'			# To automatically find affix elements and make them active
 			target: @$el.data('target') or 'document'	# Selector of the scrolling block
-			offset:	5									# Vertical offset in pixels
+			offset:	10									# Vertical offset in pixels
+			elements: 'li a'							# Elements to spy inside @$el
+			elementsAttr: 'href'						# attribute of each element with ID of the target
 			beforeactive: ->
 			onactive: ->
 			beforeunactive: ->
@@ -80,13 +82,45 @@ class Scrollspy extends MaxmertkitHelpers
 
 #TODO: Add no-pointer-events while scrolling
 
+_activateItem = ( itemNumber ) ->
+	for element in @elements
+		element.menu.removeClass '_active_'
+	
+	@elements[itemNumber].menu.addClass '_active_'
+
+
 _refresh = ->
-	console.log 'refresh'
+	@elements = []
+	@$el.find(@options.elements).each (index, el) =>
+		link = $(el).attr @options.elementsAttr
+		if link?
+			item = $(@options.target).find(link)
+			if item.length
+				@elements.push
+					menu: $(el).parent()
+					item: item.parent()
+					offsetTop: item.position().top
+
+
+_spy = ->
+	i = 0
+	while i + 1 < @elements.length
+		if @elements[i].offsetTop <= event.currentTarget.scrollTop + @options.offset <= @elements[i+1].offsetTop
+			_activateItem.call @, i
+		else
+			if event.currentTarget.scrollTop + @options.offset > @elements[i+1].offsetTop
+				_activateItem.call @, i + 1
+		i++
+	# for element, index in @elements
+	# 	if element.offsetTop - @options.offset <= event.currentTarget.scrollTop <= element.offsetTop + @options.offset
+	# 		_activateItem.call @, index
+
 
 _activate = ->
-	$(@options.target).on "scroll.#{@_name}.#{@_id}", =>
-		console.log 'scroll'
-
+	# $(@options.target).on 'change', =>
+	# 	_refresh.call @
+	$(@options.target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		_spy.call @
 
 # If you have beforeopen function
 # 	it will be called here

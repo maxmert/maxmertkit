@@ -34,7 +34,10 @@ app.directive 'submenu', ->
 		scope.items = window[attrs.submenu]
 
 		scope.$watch "partials", (value) ->
-			$('[submenu="widgets"]').affix()
+			setTimeout =>
+				$('[submenu="widgets"]').affix()
+				$('[submenu="widgets"]').scrollspy()
+			,1
 
 
 app.directive 'partials', ->

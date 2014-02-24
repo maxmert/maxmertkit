@@ -924,7 +924,7 @@
 
 }).call(this);
 ;(function() {
-  var Scrollspy, _activate, _beforestart, _beforestop, _id, _instances, _name, _refresh, _start, _stop,
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -950,7 +950,9 @@
       _options = {
         spy: this.$el.data('spy') || 'scroll',
         target: this.$el.data('target') || 'document',
-        offset: 5,
+        offset: 10,
+        elements: 'li a',
+        elementsAttr: 'href',
         beforeactive: function() {},
         onactive: function() {},
         beforeunactive: function() {},
@@ -996,14 +998,56 @@
 
   })(MaxmertkitHelpers);
 
+  _activateItem = function(itemNumber) {
+    var element, _i, _len, _ref;
+    _ref = this.elements;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      element = _ref[_i];
+      element.menu.removeClass('_active_');
+    }
+    return this.elements[itemNumber].menu.addClass('_active_');
+  };
+
   _refresh = function() {
-    return console.log('refresh');
+    var _this = this;
+    this.elements = [];
+    return this.$el.find(this.options.elements).each(function(index, el) {
+      var item, link;
+      link = $(el).attr(_this.options.elementsAttr);
+      if (link != null) {
+        item = $(_this.options.target).find(link);
+        if (item.length) {
+          return _this.elements.push({
+            menu: $(el).parent(),
+            item: item.parent(),
+            offsetTop: item.position().top
+          });
+        }
+      }
+    });
+  };
+
+  _spy = function() {
+    var i, _ref, _results;
+    i = 0;
+    _results = [];
+    while (i + 1 < this.elements.length) {
+      if ((this.elements[i].offsetTop <= (_ref = event.currentTarget.scrollTop + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) {
+        _activateItem.call(this, i);
+      } else {
+        if (event.currentTarget.scrollTop + this.options.offset > this.elements[i + 1].offsetTop) {
+          _activateItem.call(this, i + 1);
+        }
+      }
+      _results.push(i++);
+    }
+    return _results;
   };
 
   _activate = function() {
     var _this = this;
-    return $(this.options.target).on("scroll." + this._name + "." + this._id, function() {
-      return console.log('scroll');
+    return $(this.options.target).on("scroll." + this._name + "." + this._id, function(event) {
+      return _spy.call(_this);
     });
   };
 
