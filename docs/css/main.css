@@ -8293,6 +8293,208 @@ a.-btn {
     background-color: #ffdb8b;
     border-color: #ffd471; }
 
+.-list-group {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .-list-group li {
+    margin-right: 0;
+    margin-bottom: 1px;
+    float: none;
+    display: block; }
+    .-list-group li a {
+      padding: 3px 12px;
+      border-left-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      outline: none;
+      font-size: 14px;
+      line-height: 1.42857;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: black;
+      text-decoration: none; }
+      .-list-group li a .-addon {
+        position: absolute;
+        right: 12px; }
+    .-list-group li._active_ > a {
+      cursor: inherit;
+      font-weight: bold;
+      padding: 3px 12px 3px 10px;
+      border-left-width: 2px; }
+    .-list-group li li a {
+      padding: 1.5px 12px 1.5px 24px;
+      font-size: 80%; }
+    .-list-group li li._active_ a {
+      padding: 1.5px 12px 1.5px 22px; }
+  .-list-group._right_ li a {
+    border-left-width: 0;
+    border-right-width: 1px; }
+  .-list-group._right_ li._active_ > a {
+    border-left-width: 0;
+    border-right-width: 2px; }
+  .-list-group:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .-list-group._justify_ {
+    width: 100%; }
+    .-list-group._justify_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; }
+  @media screen and (max-width: 992px) {
+    .-list-group._responsive_ {
+      width: 100%; } }
+  @media screen and (max-width: 992px) {
+    .-list-group._responsive_ li {
+      display: table-cell;
+      width: 1%;
+      float: none; } }
+  .-list-group._vertical_ li {
+    width: 100%; }
+  .-list-group li {
+    display: block;
+    position: relative; }
+    .-list-group li a {
+      display: block;
+      position: relative; }
+      .-list-group li a .-addon {
+        margin-left: 4px;
+        opacity: 0.3;
+        line-height: 1.42857; }
+    .-list-group li .-drop {
+      display: none; }
+    .-list-group li._active_ .-drop {
+      display: block; }
+    .-list-group li._disabled_ a, .-list-group li[disabled] a {
+      cursor: not-allowed; }
+  .-list-group._hovered_ li._hovered_ > .-drop, .-list-group._hovered_ li:hover > .-drop {
+    display: block; }
+  .-list-group li a {
+    font-size: 1.75px; }
+  .-list-group._tiny li a {
+    font-size: 3.5px; }
+  .-list-group li a {
+    font-size: 3.5px; }
+  .-list-group._small li a {
+    font-size: 7px; }
+  .-list-group li a {
+    font-size: 5.25px; }
+  .-list-group._minor li a {
+    font-size: 10.5px; }
+  .-list-group li a {
+    font-size: 7px; }
+  .-list-group._normal li a {
+    font-size: 14px; }
+  .-list-group li a {
+    font-size: 8.75px; }
+  .-list-group._major li a {
+    font-size: 17.5px; }
+  .-list-group li a {
+    font-size: 10.5px; }
+  .-list-group._big li a {
+    font-size: 21px; }
+  .-list-group li a {
+    font-size: 12.25px; }
+  .-list-group._huge li a {
+    font-size: 24.5px; }
+  .-list-group li a {
+    font-size: 13.3px; }
+  .-list-group._giant li a {
+    font-size: 26.6px; }
+  .-list-group li a {
+    font-size: 14px; }
+  .-list-group._divine li a {
+    font-size: 28px; }
+  .-list-group li:hover > a, .-list-group li._hovered_ > a {
+    border-color: #b3b3b3; }
+  .-list-group li._active_ > a {
+    border-color: #b3b3b3;
+    color: black; }
+  .-list-group li._disabled_ a, :active .-list-group li._disabled_, ._active_ .-list-group li._disabled_, :hover .-list-group li._disabled_, ._hovered_ .-list-group li._disabled_, .-list-group li[disabled] a, :active .-list-group li[disabled], ._active_ .-list-group li[disabled], :hover .-list-group li[disabled], ._hovered_ .-list-group li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group.-default- li:hover > a, .-list-group.-default- li._hovered_ > a {
+    border-color: #b3b3b3; }
+  .-list-group.-default- li._active_ > a {
+    border-color: #b3b3b3;
+    color: black; }
+  .-list-group.-default- li._disabled_ a, :active .-list-group.-default- li._disabled_, ._active_ .-list-group.-default- li._disabled_, :hover .-list-group.-default- li._disabled_, ._hovered_ .-list-group.-default- li._disabled_, .-list-group.-default- li[disabled] a, :active .-list-group.-default- li[disabled], ._active_ .-list-group.-default- li[disabled], :hover .-list-group.-default- li[disabled], ._hovered_ .-list-group.-default- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group li.-primary-:hover > a, .-list-group li.-primary-._hovered_ > a {
+    border-color: #3598db;
+    color: #3598db; }
+  .-list-group li.-primary-._active_ > a {
+    border-color: #3598db;
+    color: #3598db; }
+  .-list-group li.-primary-._disabled_ a, :active .-list-group li.-primary-._disabled_, ._active_ .-list-group li.-primary-._disabled_, :hover .-list-group li.-primary-._disabled_, ._hovered_ .-list-group li.-primary-._disabled_, .-list-group li.-primary-[disabled] a, :active .-list-group li.-primary-[disabled], ._active_ .-list-group li.-primary-[disabled], :hover .-list-group li.-primary-[disabled], ._hovered_ .-list-group li.-primary-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group.-primary- li:hover > a, .-list-group.-primary- li._hovered_ > a {
+    border-color: #3598db; }
+  .-list-group.-primary- li._active_ > a {
+    border-color: #3598db;
+    color: #3598db; }
+  .-list-group.-primary- li._disabled_ a, :active .-list-group.-primary- li._disabled_, ._active_ .-list-group.-primary- li._disabled_, :hover .-list-group.-primary- li._disabled_, ._hovered_ .-list-group.-primary- li._disabled_, .-list-group.-primary- li[disabled] a, :active .-list-group.-primary- li[disabled], ._active_ .-list-group.-primary- li[disabled], :hover .-list-group.-primary- li[disabled], ._hovered_ .-list-group.-primary- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group li.-error-:hover > a, .-list-group li.-error-._hovered_ > a {
+    border-color: #cd2c24;
+    color: #cd2c24; }
+  .-list-group li.-error-._active_ > a {
+    border-color: #cd2c24;
+    color: #cd2c24; }
+  .-list-group li.-error-._disabled_ a, :active .-list-group li.-error-._disabled_, ._active_ .-list-group li.-error-._disabled_, :hover .-list-group li.-error-._disabled_, ._hovered_ .-list-group li.-error-._disabled_, .-list-group li.-error-[disabled] a, :active .-list-group li.-error-[disabled], ._active_ .-list-group li.-error-[disabled], :hover .-list-group li.-error-[disabled], ._hovered_ .-list-group li.-error-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group.-error- li:hover > a, .-list-group.-error- li._hovered_ > a {
+    border-color: #cd2c24; }
+  .-list-group.-error- li._active_ > a {
+    border-color: #cd2c24;
+    color: #cd2c24; }
+  .-list-group.-error- li._disabled_ a, :active .-list-group.-error- li._disabled_, ._active_ .-list-group.-error- li._disabled_, :hover .-list-group.-error- li._disabled_, ._hovered_ .-list-group.-error- li._disabled_, .-list-group.-error- li[disabled] a, :active .-list-group.-error- li[disabled], ._active_ .-list-group.-error- li[disabled], :hover .-list-group.-error- li[disabled], ._hovered_ .-list-group.-error- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group li.-warning-:hover > a, .-list-group li.-warning-._hovered_ > a {
+    border-color: #ffc43e;
+    color: #ffc43e; }
+  .-list-group li.-warning-._active_ > a {
+    border-color: #ffc43e;
+    color: #ffc43e; }
+  .-list-group li.-warning-._disabled_ a, :active .-list-group li.-warning-._disabled_, ._active_ .-list-group li.-warning-._disabled_, :hover .-list-group li.-warning-._disabled_, ._hovered_ .-list-group li.-warning-._disabled_, .-list-group li.-warning-[disabled] a, :active .-list-group li.-warning-[disabled], ._active_ .-list-group li.-warning-[disabled], :hover .-list-group li.-warning-[disabled], ._hovered_ .-list-group li.-warning-[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+  .-list-group.-warning- li:hover > a, .-list-group.-warning- li._hovered_ > a {
+    border-color: #ffc43e; }
+  .-list-group.-warning- li._active_ > a {
+    border-color: #ffc43e;
+    color: #ffc43e; }
+  .-list-group.-warning- li._disabled_ a, :active .-list-group.-warning- li._disabled_, ._active_ .-list-group.-warning- li._disabled_, :hover .-list-group.-warning- li._disabled_, ._hovered_ .-list-group.-warning- li._disabled_, .-list-group.-warning- li[disabled] a, :active .-list-group.-warning- li[disabled], ._active_ .-list-group.-warning- li[disabled], :hover .-list-group.-warning- li[disabled], ._hovered_ .-list-group.-warning- li[disabled] {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    border-color: transparent; }
+
 .-thumbnail {
   position: relative; }
   .-thumbnail img {

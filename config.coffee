@@ -23,9 +23,9 @@ exports.config =
 				'js/maxmertkit.js': /^coffee/
 				'docs/js/maxmertkit.js': /^coffee/
 				
-				'commercial/app/vendor.js': /^docs\/js\/bower/
-				'commercial/app/app.js': /^commercial\/app.coffee/
-				'commercial/maxmertkit.js': /^commercial\/coffee/
+				# 'commercial/app/vendor.js': /^docs\/js\/bower/
+				# 'commercial/app/app.js': /^commercial\/app.coffee/
+				# 'commercial/maxmertkit.js': /^commercial\/coffee/
 			order:
 				before: [
 					'coffee/maxmertkit.coffee'

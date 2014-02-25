@@ -76,6 +76,10 @@ widgets = [
 				"path": "nav/menu"
 			},
 			{
+				"name": "list-group",
+				"path": "nav/list-group"
+			},
+			{
 				"name": "bar",
 				"path": "nav/bar"
 			}
@@ -201,7 +205,7 @@ main = [
 
 		"include": [
 			{
-				"name": "grid",
+				"name": "formgrid",
 				"path": "forms/grid"
 			},
 

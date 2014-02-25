@@ -1,3 +1,58 @@
+(->
+	special = jQuery.event.special
+	uid1 = "D" + (+new Date())
+	uid2 = "D" + (+new Date() + 1)
+	special.scrollstart =
+		setup: ->
+			timer = undefined
+			handler = (evt) ->
+				_self = this
+				_args = arguments_
+				if timer
+					clearTimeout timer
+				else
+					evt.type = "scrollstart"
+					jQuery.event.handle.apply _self, _args
+				timer = setTimeout(->
+					timer = null
+					return
+				, special.scrollstop.latency)
+				return
+
+			jQuery(this).bind("scroll", handler).data uid1, handler
+			return
+
+		teardown: ->
+			jQuery(this).unbind "scroll", jQuery(this).data(uid1)
+			return
+
+	special.scrollstop =
+		latency: 300
+		setup: ->
+			timer = undefined
+			handler = (evt) ->
+				_self = @
+				_args = arguments
+				# console.log jQuery.event
+				clearTimeout timer  if timer
+				timer = setTimeout(->
+					timer = null
+					evt.type = "scrollstop"
+					# jQuery.event.handler.apply _self, _args
+					return
+				, special.scrollstop.latency)
+				return
+
+			jQuery(this).bind("scroll", handler).data uid2, handler
+			return
+
+		teardown: ->
+			jQuery(this).unbind "scroll", jQuery(this).data(uid2)
+			return
+
+	return
+)()
+
 _name = "scrollspy"
 _instances = []
 _id = 0
@@ -16,7 +71,7 @@ class Scrollspy extends MaxmertkitHelpers
 		
 		_options =
 			spy: @$el.data('spy') or 'scroll'			# To automatically find affix elements and make them active
-			target: @$el.data('target') or 'document'	# Selector of the scrolling block
+			target: @$el.data('target') or 'body'	# Selector of the scrolling block
 			offset:	10									# Vertical offset in pixels
 			elements: 'li a'							# Elements to spy inside @$el
 			elementsAttr: 'href'						# attribute of each element with ID of the target
@@ -86,7 +141,10 @@ _activateItem = ( itemNumber ) ->
 	for element in @elements
 		element.menu.removeClass '_active_'
 	
-	@elements[itemNumber].menu.addClass '_active_'
+	@elements[itemNumber].menu
+		.addClass( '_active_')
+		.parents('li')
+			.addClass( '_active_')
 
 
 _refresh = ->
@@ -102,13 +160,13 @@ _refresh = ->
 					offsetTop: item.position().top
 
 
-_spy = ->
+_spy = ( event ) ->
 	i = 0
 	while i + 1 < @elements.length
-		if @elements[i].offsetTop <= event.currentTarget.scrollTop + @options.offset <= @elements[i+1].offsetTop
+		if @elements[i].offsetTop <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i+1].offsetTop
 			_activateItem.call @, i
 		else
-			if event.currentTarget.scrollTop + @options.offset > @elements[i+1].offsetTop
+			if (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset > @elements[i+1].offsetTop
 				_activateItem.call @, i + 1
 		i++
 	# for element, index in @elements
@@ -119,8 +177,16 @@ _spy = ->
 _activate = ->
 	# $(@options.target).on 'change', =>
 	# 	_refresh.call @
-	$(@options.target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-		_spy.call @
+	if @options.target is 'body'
+		target = window
+	else
+		target = @options.target
+	
+	$(target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		_spy.call @, event
+
+	$(target).on "scrollstop.#{@_name}.#{@_id}", ( event ) =>
+		alert 1
 
 # If you have beforeopen function
 # 	it will be called here

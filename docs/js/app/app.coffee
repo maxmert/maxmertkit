@@ -1,6 +1,7 @@
 app = angular.module 'docsApp', [
 	'ngRoute'
 	'hljs'
+	'ngScrollTo'
 ]
 
 paths =
@@ -36,8 +37,12 @@ app.directive 'submenu', ->
 		scope.$watch "partials", (value) ->
 			setTimeout =>
 				$('[submenu="widgets"]').affix()
-				$('[submenu="widgets"]').scrollspy()
-			,1
+				$('[submenu="widgets"]').scrollspy
+					elementsAttr: 'menu-name'
+				$('[submenu="main"]').affix()
+				$('[submenu="main"]').scrollspy
+					elementsAttr: 'menu-name'
+			,1000
 
 
 app.directive 'partials', ->
@@ -221,7 +226,6 @@ app.directive "popup", ->
 
 				onclose: ->
 					@removeClass '_active_'
-
 
 
 

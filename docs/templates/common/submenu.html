@@ -1,12 +1,10 @@
-<ul class="-menu _vertical_">
+<ul class="-list-group -primary-">
 	<li ng-repeat='item in items'>
-		<a href="#{{item.name}}" target="_self">{{item.name}}</a>
-		<div class="-drop">
-			<ul class="-menu _vertical_">
+		<a menu-name="#{{item.name}}" scroll-to="{{item.name}}">{{item.name}}</a>
+			<ul class="-list-group">
 				<li ng-repeat='subitem in item.include'>
-					<a href="#{{subitem.name}}" target="_self">{{subitem.name}}</a>
+					<a menu-name="#{{subitem.name}}" scroll-to="{{subitem.name}}">{{subitem.name}}</a>
 				</li>
 			</ul>
-		</div>
 	</li>
 </ul>

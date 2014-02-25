@@ -928,6 +928,60 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+  (function() {
+    var special, uid1, uid2;
+    special = jQuery.event.special;
+    uid1 = "D" + (+new Date());
+    uid2 = "D" + (+new Date() + 1);
+    special.scrollstart = {
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args, _self;
+          _self = this;
+          _args = arguments_;
+          if (timer) {
+            clearTimeout(timer);
+          } else {
+            evt.type = "scrollstart";
+            jQuery.event.handle.apply(_self, _args);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid1, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid1));
+      }
+    };
+    special.scrollstop = {
+      latency: 300,
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args, _self;
+          _self = this;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+            evt.type = "scrollstop";
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid2, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid2));
+      }
+    };
+  })();
+
   _name = "scrollspy";
 
   _instances = [];
@@ -949,7 +1003,7 @@
       this._id = _id++;
       _options = {
         spy: this.$el.data('spy') || 'scroll',
-        target: this.$el.data('target') || 'document',
+        target: this.$el.data('target') || 'body',
         offset: 10,
         elements: 'li a',
         elementsAttr: 'href',
@@ -1005,7 +1059,7 @@
       element = _ref[_i];
       element.menu.removeClass('_active_');
     }
-    return this.elements[itemNumber].menu.addClass('_active_');
+    return this.elements[itemNumber].menu.addClass('_active_').parents('li').addClass('_active_');
   };
 
   _refresh = function() {
@@ -1027,15 +1081,15 @@
     });
   };
 
-  _spy = function() {
+  _spy = function(event) {
     var i, _ref, _results;
     i = 0;
     _results = [];
     while (i + 1 < this.elements.length) {
-      if ((this.elements[i].offsetTop <= (_ref = event.currentTarget.scrollTop + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) {
+      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) {
         _activateItem.call(this, i);
       } else {
-        if (event.currentTarget.scrollTop + this.options.offset > this.elements[i + 1].offsetTop) {
+        if ((event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset > this.elements[i + 1].offsetTop) {
           _activateItem.call(this, i + 1);
         }
       }
@@ -1045,9 +1099,18 @@
   };
 
   _activate = function() {
-    var _this = this;
-    return $(this.options.target).on("scroll." + this._name + "." + this._id, function(event) {
-      return _spy.call(_this);
+    var target,
+      _this = this;
+    if (this.options.target === 'body') {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    $(target).on("scroll." + this._name + "." + this._id, function(event) {
+      return _spy.call(_this, event);
+    });
+    return $(target).on("scrollstop." + this._name + "." + this._id, function(event) {
+      return alert(1);
     });
   };
 
