@@ -1,69 +1,52 @@
-(function(){
- 
-    var special = jQuery.event.special,
-        uid1 = 'D' + (+new Date()),
-        uid2 = 'D' + (+new Date() + 1);
- 
-    special.scrollstart = {
-        setup: function() {
- 
-            var timer,
-                handler =  function(evt) {
- 
-                    var _self = this,
-                        _args = arguments;
- 
-                    if (timer) {
-                        clearTimeout(timer);
-                    } else {
-                        evt.type = 'scrollstart';
-                        jQuery.event.handle.apply(_self, _args);
-                    }
- 
-                    timer = setTimeout( function(){
-                        timer = null;
-                    }, special.scrollstop.latency);
- 
-                };
- 
-            jQuery(this).bind('scroll', handler).data(uid1, handler);
- 
-        },
-        teardown: function(){
-            jQuery(this).unbind( 'scroll', jQuery(this).data(uid1) );
+// Version 0.0.2
+// AngularJS simple hash-tag scroll alternative
+// this directive uses click event to scroll to the target element
+//
+// <div ng-app="app">
+//   <div ng-controller="myCtrl">
+//     <a scroll-to="section1">Section 1</a>
+//   </div>
+//   ...
+//   <div id="section1">
+//      <h2>Section1</h2>
+//      <a scroll-to="">Back to Top</a>
+//   </div>
+// </div>
+//
+//  angular.module('app', ['ngScrollTo']);
+
+angular.module("ngScrollTo",[])
+  .directive("scrollTo", ["$window", function($window){
+    return {
+      restrict : "AC",
+      compile : function(){
+
+        var document = $window.document;
+        
+        function scrollInto(idOrName) {//find element with the give id of name and scroll to the first element it finds
+          if(!idOrName)
+            $window.scrollTo(0, 0);
+          //check if an element can be found with id attribute
+          var el = document.getElementById(idOrName);
+          if(!el) {//check if an element can be found with name attribute if there is no such id
+            el = document.getElementsByName(idOrName);
+
+            if(el && el.length)
+              el = el[0];
+            else
+              el = null;
+          }
+
+          if(el) //if an element is found, scroll to the element
+            el.scrollIntoView();
+          //otherwise, ignore
         }
+
+        return function(scope, element, attr) {
+          element.bind("click", function(event){
+            scrollInto(attr.scrollTo);
+          });
+        };
+      }
     };
- 
-    special.scrollstop = {
-        latency: 300,
-        setup: function() {
- 
-            var timer,
-                    handler = function(evt) {
- 
-                    var _self = this,
-                        _args = arguments;
- 
-                    if (timer) {
-                        clearTimeout(timer);
-                    }
- 
-                    timer = setTimeout( function(){
- 
-                        timer = null;
-                        evt.type = 'scrollstop';
-                        jQuery.event.handle.apply(_self, _args);
- 
-                    }, special.scrollstop.latency);
- 
-                };
- 
-            jQuery(this).bind('scroll', handler).data(uid2, handler);
- 
-        },
-        teardown: function() {
-            jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );
-        }
-    };
- 
-})();
+}]);

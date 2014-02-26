@@ -1,0 +1,130 @@
+@import "../dropdowns/common"
+
+@mixin nav-theme-menu-setter($i)
+	#{$nav-item}
+
+		&:hover, &.#{$mod-hovered}
+			& > a
+				background-color: darken(nth($themes-background-light-colors, $i), 2%)
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+		
+		&.#{$mod-active}
+			& > a				
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+					background-color: nth($themes-background-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+					background-color: darken(nth($themes-background-light-colors, $i), 5%)
+
+
+		&.#{$mod-disabled}, &[disabled]
+			a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+				background: transparent
+				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+				pointer-events: none
+
+@mixin nav-theme-menu-item-setter($i)
+	#{$nav-item}.#{nth($themes, $i)}
+
+		&:hover, &.#{$mod-hovered}
+			& > a
+				background-color: darken(nth($themes-background-light-colors, $i), 2%)
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+		
+		&.#{$mod-active}
+			& > a				
+				@if nth($themes, $i) != "-default-"
+					color: nth($themes-white-colors, $i)
+					background-color: nth($themes-background-colors, $i)
+				@else
+					color: nth($themes-colors, $i)
+					background-color: darken(nth($themes-background-light-colors, $i), 5%)
+
+
+		&.#{$mod-disabled}, &[disabled]
+			a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+				background: transparent
+				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+				pointer-events: none
+
+
+@include exports("nav/menu")
+	
+	.#{$nav-menu-class}
+		display: block
+
+		#{$nav-item}
+			float: left
+			margin-right: $nav-tabs-items-margin
+
+			a
+				padding: $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
+				border-radius: $nav-menu-items-border-radius
+				border-width: $nav-menu-items-border-width
+				border-style: solid
+				border-color: transparent
+				white-space: nowrap
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+
+			.#{$dropdown-class}
+				&.#{$mod-top}
+					top: inherit
+					bottom: 100%
+				&.#{$mod-left}
+					left: inherit
+					right: 100%
+					top: 0
+				&.#{$mod-right}
+					right: inherit
+					left: 100%
+					top: 0
+				.#{$nav-menu-class}
+					#{$nav-item}
+						a
+							padding: $base-padding-vertical $nav-menu-items-padding-horizontal + $nav-addon-size $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
+
+							.#{$addon-class}
+								position: absolute
+								right: $base-padding-horizontal
+
+
+
+			&.#{$mod-active}
+				
+				& > a
+					cursor: inherit
+
+
+
+		@include nav-setter
+
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include nav-theme-menu-setter($i)
+				&.#{$theme}
+					@include nav-theme-menu-setter($i)
+			@else
+				@include nav-theme-menu-item-setter($i)
+				&.#{$theme}
+					@include nav-theme-menu-setter($i)
+
+		&.#{$mod-vertical}
+			
+			#{$nav-item}
+				margin-right: 0
+				margin-bottom: $nav-tabs-items-margin
+				float: none

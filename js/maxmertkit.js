@@ -121,7 +121,8 @@
   window['MaxmertkitHelpers'] = MaxmertkitHelpers;
 
 }).call(this);
-;(function() {
+
+(function() {
   var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -187,8 +188,7 @@
   })(MaxmertkitHelpers);
 
   _position = function() {
-    var $scrollParent, offset, scrollParent,
-      _this = this;
+    var $scrollParent, offset, scrollParent;
     scrollParent = this._getContainer(this.$el);
     $scrollParent = $(scrollParent);
     if ($scrollParent[0].firstElementChild.nodeName === "HTML") {
@@ -196,41 +196,46 @@
     } else {
       offset = $scrollParent.offset().top;
     }
-    return $(document).on("scroll." + this._name + "." + this._id, function(event) {
-      if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
-        if (offset + $scrollParent.height() - _this.$el.outerHeight() >= $(document).scrollTop()) {
-          return _this.$el.css({
-            width: _this.$el.width(),
-            position: 'fixed',
-            top: "" + _this.options.offset + "px",
-            bottom: 'auto'
-          });
+    return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
+          if (offset + $scrollParent.height() - _this.$el.outerHeight() >= $(document).scrollTop()) {
+            return _this.$el.css({
+              width: _this.$el.width(),
+              position: 'fixed',
+              top: "" + _this.options.offset + "px",
+              bottom: 'auto'
+            });
+          } else {
+            return _this.$el.css({
+              position: 'absolute',
+              top: 'auto',
+              bottom: 0,
+              width: _this.$el.width()
+            });
+          }
         } else {
-          return _this.$el.css({
-            position: 'absolute',
-            top: 'auto',
-            bottom: 0,
-            width: _this.$el.width()
-          });
+          _this.$el.css('position', 'relative');
+          return _this.$el.css('top', 'inherit');
         }
-      } else {
-        _this.$el.css('position', 'relative');
-        return _this.$el.css('top', 'inherit');
-      }
-    });
+      };
+    })(this));
   };
 
   _beforestart = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$el);
-        return deferred.done(function() {
-          return _start.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _start.call(this);
       }
@@ -251,16 +256,19 @@
   };
 
   _beforestop = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeclose != null) {
       try {
         deferred = this.beforeclose.call(this.$el);
-        return deferred.done(function() {
-          return _stop.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _stop.call(this);
       }
@@ -299,7 +307,8 @@
   };
 
 }).call(this);
-;(function() {
+
+(function() {
   var Button, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -318,8 +327,7 @@
     Button.prototype._instances = _instances;
 
     function Button(btn, options) {
-      var _options,
-        _this = this;
+      var _options;
       this.btn = btn;
       this.options = options;
       this.$btn = $(this.btn);
@@ -339,25 +347,28 @@
       this.onactive = this.options.onactive;
       this.beforeunactive = this.options.beforeunactive;
       this.onunactive = this.options.onunactive;
-      this.$btn.on(this.options.event, function() {
-        if (!_this.$btn.hasClass('_active_')) {
-          return _this.activate();
-        } else {
-          return _this.deactivate();
-        }
-      });
-      this.$btn.on(this.options.eventClose, function() {
-        if (_this.options.event !== _this.options.eventClose) {
-          return _this.deactivate();
-        }
-      });
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$btn.hasClass('_active_')) {
+            return _this.activate();
+          } else {
+            return _this.deactivate();
+          }
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.deactivate();
+          }
+        };
+      })(this));
       this.$btn.removeClass('_active_ _disabled_ _loading_');
       Button.__super__.constructor.call(this, this.$btn, this.options);
     }
 
     Button.prototype._setOptions = function(options) {
-      var key, value,
-        _this = this;
+      var key, value;
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
@@ -367,13 +378,15 @@
           case 'event':
             this.$btn.off("" + this.options.event + "." + this._name);
             this.options.event = value;
-            this.$btn.on("" + this.options.event + "." + this._name, function() {
-              if (_this.$btn.hasClass('_active_')) {
-                return _this.deactivate();
-              } else {
-                return _this.activate();
-              }
-            });
+            this.$btn.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.$btn.hasClass('_active_')) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
             break;
           default:
             this.options[key] = value;
@@ -408,19 +421,22 @@
   })(MaxmertkitHelpers);
 
   _beforeactive = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.options.selfish) {
       this._selfish();
     }
     if (this.beforeactive != null) {
       try {
         deferred = this.beforeactive.call(this.$btn);
-        return deferred.done(function() {
-          return _activate.call(_this);
-        }).fail(function() {
-          return _this.$btn.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _activate.call(this);
       }
@@ -450,16 +466,19 @@
   };
 
   _beforeunactive = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeunactive != null) {
       try {
         deferred = this.beforeunactive.call(this.$btn);
-        return deferred.done(function() {
-          return _deactivate.call(_this);
-        }).fail(function() {
-          return _this.$btn.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _deactivate.call(this);
       }
@@ -497,7 +516,8 @@
   };
 
 }).call(this);
-;(function() {
+
+(function() {
   var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -514,8 +534,7 @@
     Modal.prototype._instances = _instances;
 
     function Modal(btn, options) {
-      var _options,
-        _this = this;
+      var _options;
       this.btn = btn;
       this.options = options;
       this.$btn = $(this.btn);
@@ -532,19 +551,25 @@
       this.beforeclose = this.options.beforeclose;
       this.onclose = this.options.onclose;
       this.$el = $(document).find(this.options.target);
-      this.$btn.on(this.options.event, function() {
-        return _this.open();
-      });
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          return _this.open();
+        };
+      })(this));
       if (this.options.backdrop) {
-        this.$el.on("click." + this._name, function(event) {
-          if ($(event.target).hasClass('-modal _active_')) {
-            return _this.close();
-          }
-        });
+        this.$el.on("click." + this._name, (function(_this) {
+          return function(event) {
+            if ($(event.target).hasClass('-modal _active_')) {
+              return _this.close();
+            }
+          };
+        })(this));
       }
-      this.$el.find("*[data-dismiss='modal']").on(this.options.event, function() {
-        return _this.close();
-      });
+      this.$el.find("*[data-dismiss='modal']").on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
       Modal.__super__.constructor.call(this, this.$btn, this.options);
     }
 
@@ -566,16 +591,19 @@
   })(MaxmertkitHelpers);
 
   _beforeopen = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$btn);
-        return deferred.done(function() {
-          return _open.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _open.call(this);
       }
@@ -595,16 +623,19 @@
   };
 
   _beforeclose = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeclose != null) {
       try {
         deferred = this.beforeclose.call(this.$btn);
-        return deferred.done(function() {
-          return _close.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _close.call(this);
       }
@@ -642,7 +673,8 @@
   };
 
 }).call(this);
-;(function() {
+
+(function() {
   var Popup, _beforeclose, _beforeopen, _close, _id, _instances, _name, _open, _position,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -661,8 +693,7 @@
     Popup.prototype._instances = _instances;
 
     function Popup(btn, options) {
-      var _options,
-        _this = this;
+      var _options;
       this.btn = btn;
       this.options = options;
       this.$btn = $(this.btn);
@@ -687,29 +718,37 @@
       this.beforeclose = this.options.beforeclose;
       this.onclose = this.options.onclose;
       this.$el = $(document).find(this.options.target);
-      this.$btn.on(this.options.event, function() {
-        if (!_this.$el.is(':visible')) {
-          return _this.open();
-        } else {
-          return _this.close();
-        }
-      });
-      this.$btn.on(this.options.eventClose, function() {
-        if (_this.options.event !== _this.options.eventClose) {
-          return _this.close();
-        }
-      });
-      this.$el.find("*[data-dismiss='popup']").on(this.options.event, function() {
-        return _this.close();
-      });
-      if (this.options.closeUnfocus) {
-        $(document).on('click', function(event) {
-          var classes;
-          classes = '.' + _this.$el[0].className.split(' ').join('.');
-          if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$el.is(':visible')) {
+            return _this.open();
+          } else {
             return _this.close();
           }
-        });
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.close();
+          }
+        };
+      })(this));
+      this.$el.find("*[data-dismiss='popup']").on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      if (this.options.closeUnfocus) {
+        $(document).on('click', (function(_this) {
+          return function(event) {
+            var classes;
+            classes = '.' + _this.$el[0].className.split(' ').join('.');
+            if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+              return _this.close();
+            }
+          };
+        })(this));
       }
       this.$el.removeClass('_top_ _bottom_ _left_ _right_');
       this.$el.addClass("_" + this.options.positionVertical + "_ _" + this.options.positionHorizontal + "_");
@@ -717,8 +756,7 @@
     }
 
     Popup.prototype._setOptions = function(options) {
-      var key, value,
-        _this = this;
+      var key, value;
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
@@ -727,41 +765,49 @@
         switch (key) {
           case 'target':
             this.$el = $(document).find(this.options.target);
-            this.$el.find("*[data-dismiss='popup']").on(this.options.event, function() {
-              return _this.close();
-            });
+            this.$el.find("*[data-dismiss='popup']").on(this.options.event, (function(_this) {
+              return function() {
+                return _this.close();
+              };
+            })(this));
             break;
           case 'event':
             this.$btn.off("" + this.options.event + "." + this._name);
             this.options.event = value;
-            this.$btn.on("" + this.options.event + "." + this._name, function() {
-              if (!_this.$el.is(':visible')) {
-                return _this.open();
-              } else {
-                return _this.close();
-              }
-            });
+            this.$btn.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (!_this.$el.is(':visible')) {
+                  return _this.open();
+                } else {
+                  return _this.close();
+                }
+              };
+            })(this));
             break;
           case 'eventClose':
             this.$btn.off("" + this.options.eventClose + "." + this._name);
             this.options.eventClose = value;
-            this.$btn.on("" + this.options.eventClose + "." + this._name, function() {
-              if (_this.options.event !== _this.options.eventClose) {
-                return _this.close();
-              }
-            });
+            this.$btn.on("" + this.options.eventClose + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.options.event !== _this.options.eventClose) {
+                  return _this.close();
+                }
+              };
+            })(this));
             break;
           case 'closeUnfocus':
             this.options.closeUnfocus = value;
             $(document).off("click." + this._name);
             if (this.options.closeUnfocus) {
-              $(document).on("click." + this._name, function(event) {
-                var classes;
-                classes = '.' + _this.$el[0].className.split(' ').join('.');
-                if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
-                  return _this.close();
-                }
-              });
+              $(document).on("click." + this._name, (function(_this) {
+                return function(event) {
+                  var classes;
+                  classes = '.' + _this.$el[0].className.split(' ').join('.');
+                  if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+                    return _this.close();
+                  }
+                };
+              })(this));
             }
             break;
           case 'positionVertical':
@@ -843,19 +889,22 @@
   };
 
   _beforeopen = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.options.selfish) {
       this._selfish();
     }
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$btn);
-        return deferred.done(function() {
-          return _open.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _open.call(this);
       }
@@ -876,16 +925,19 @@
   };
 
   _beforeclose = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeclose != null) {
       try {
         deferred = this.beforeclose.call(this.$btn);
-        return deferred.done(function() {
-          return _close.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _close.call(this);
       }
@@ -923,64 +975,11 @@
   };
 
 }).call(this);
-;(function() {
+
+(function() {
   var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  (function() {
-    var special, uid1, uid2;
-    special = jQuery.event.special;
-    uid1 = "D" + (+new Date());
-    uid2 = "D" + (+new Date() + 1);
-    special.scrollstart = {
-      setup: function() {
-        var handler, timer;
-        timer = void 0;
-        handler = function(evt) {
-          var _args, _self;
-          _self = this;
-          _args = arguments_;
-          if (timer) {
-            clearTimeout(timer);
-          } else {
-            evt.type = "scrollstart";
-            jQuery.event.handle.apply(_self, _args);
-          }
-          timer = setTimeout(function() {
-            timer = null;
-          }, special.scrollstop.latency);
-        };
-        jQuery(this).bind("scroll", handler).data(uid1, handler);
-      },
-      teardown: function() {
-        jQuery(this).unbind("scroll", jQuery(this).data(uid1));
-      }
-    };
-    special.scrollstop = {
-      latency: 300,
-      setup: function() {
-        var handler, timer;
-        timer = void 0;
-        handler = function(evt) {
-          var _args, _self;
-          _self = this;
-          _args = arguments;
-          if (timer) {
-            clearTimeout(timer);
-          }
-          timer = setTimeout(function() {
-            timer = null;
-            evt.type = "scrollstop";
-          }, special.scrollstop.latency);
-        };
-        jQuery(this).bind("scroll", handler).data(uid2, handler);
-      },
-      teardown: function() {
-        jQuery(this).unbind("scroll", jQuery(this).data(uid2));
-      }
-    };
-  })();
 
   _name = "scrollspy";
 
@@ -1063,22 +1062,23 @@
   };
 
   _refresh = function() {
-    var _this = this;
     this.elements = [];
-    return this.$el.find(this.options.elements).each(function(index, el) {
-      var item, link;
-      link = $(el).attr(_this.options.elementsAttr);
-      if (link != null) {
-        item = $(_this.options.target).find(link);
-        if (item.length) {
-          return _this.elements.push({
-            menu: $(el).parent(),
-            item: item.parent(),
-            offsetTop: item.position().top
-          });
+    return this.$el.find(this.options.elements).each((function(_this) {
+      return function(index, el) {
+        var item, link;
+        link = $(el).attr(_this.options.elementsAttr);
+        if (link != null) {
+          item = $(_this.options.target).find(link);
+          if (item.length) {
+            return _this.elements.push({
+              menu: $(el).parent(),
+              item: item.parent(),
+              offsetTop: item.position().top
+            });
+          }
         }
-      }
-    });
+      };
+    })(this));
   };
 
   _spy = function(event) {
@@ -1099,33 +1099,34 @@
   };
 
   _activate = function() {
-    var target,
-      _this = this;
+    var target;
     if (this.options.target === 'body') {
       target = window;
     } else {
       target = this.options.target;
     }
-    $(target).on("scroll." + this._name + "." + this._id, function(event) {
-      return _spy.call(_this, event);
-    });
-    return $(target).on("scrollstop." + this._name + "." + this._id, function(event) {
-      return alert(1);
-    });
+    return $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        return _spy.call(_this, event);
+      };
+    })(this));
   };
 
   _beforestart = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     this.refresh();
     if (this.beforeopen != null) {
       try {
         deferred = this.beforeopen.call(this.$el);
-        return deferred.done(function() {
-          return _start.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _start.call(this);
       }
@@ -1146,16 +1147,19 @@
   };
 
   _beforestop = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeclose != null) {
       try {
         deferred = this.beforeclose.call(this.$el);
-        return deferred.done(function() {
-          return _stop.call(_this);
-        }).fail(function() {
-          return _this.$el.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _stop.call(this);
       }
@@ -1193,7 +1197,8 @@
   };
 
 }).call(this);
-;(function() {
+
+(function() {
   var Tabs, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -1212,8 +1217,7 @@
     Tabs.prototype._instances = _instances;
 
     function Tabs(tab, options) {
-      var _options,
-        _this = this;
+      var _options;
       this.tab = tab;
       this.options = options;
       this.$tab = $(this.tab);
@@ -1234,19 +1238,20 @@
       this.onactive = this.options.onactive;
       this.beforeunactive = this.options.beforeunactive;
       this.onunactive = this.options.onunactive;
-      this.$tab.on(this.options.event, function() {
-        if (!_this.$tab.hasClass('_active_')) {
-          return _this.activate();
-        }
-      });
+      this.$tab.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$tab.hasClass('_active_')) {
+            return _this.activate();
+          }
+        };
+      })(this));
       this.$content = $(document).find(this.options.target);
       this.$content.hide();
       Tabs.__super__.constructor.call(this, this.$tab, this.options);
     }
 
     Tabs.prototype._setOptions = function(options) {
-      var key, value,
-        _this = this;
+      var key, value;
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
@@ -1256,13 +1261,15 @@
           case 'event':
             this.$tab.off("" + this.options.event + "." + this._name);
             this.options.event = value;
-            this.$tab.on("" + this.options.event + "." + this._name, function() {
-              if (_this.$tab.hasClass('_active_')) {
-                return _this.deactivate();
-              } else {
-                return _this.activate();
-              }
-            });
+            this.$tab.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.$tab.hasClass('_active_')) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
             break;
           case 'target':
             this.options.target = value;
@@ -1310,19 +1317,22 @@
   })(MaxmertkitHelpers);
 
   _beforeactive = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.options.selfish) {
       this._selfish();
     }
     if (this.beforeactive != null) {
       try {
         deferred = this.beforeactive.call(this.$tab);
-        return deferred.done(function() {
-          return _activate.call(_this);
-        }).fail(function() {
-          return _this.$tab.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _activate.call(this);
       }
@@ -1351,16 +1361,19 @@
   };
 
   _beforeunactive = function() {
-    var deferred,
-      _this = this;
+    var deferred;
     if (this.beforeunactive != null) {
       try {
         deferred = this.beforeunactive.call(this.$tab);
-        return deferred.done(function() {
-          return _deactivate.call(_this);
-        }).fail(function() {
-          return _this.$tab.trigger("fail." + _this._name);
-        });
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger("fail." + _this._name);
+          };
+        })(this));
       } catch (_error) {
         return _deactivate.call(this);
       }
@@ -1399,5 +1412,3 @@
   };
 
 }).call(this);
-;
-//# sourceMappingURL=maxmertkit.js.map

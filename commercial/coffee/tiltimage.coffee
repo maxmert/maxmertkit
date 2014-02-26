@@ -1,33 +1,119 @@
-class Tiltimage
-	
-	constructor: (@name, @options) ->
-		console.log 123
+_name = "wall"
+_instances = []
+_id = 0
 
-_name = 'tiltimage'
-$.fn[_name] = (options_) ->
+class Wall extends MaxmertkitHelpers
+	
+	_name: _name
+	_instances: _instances
+	
+	# =============== Public methods
+
+	constructor: ( @el, @options ) ->
+		@$el = $(@el)
+
+		@_id = _id++
+		
+		_options =
+			toggle: @$el.data('toggle') or 'wall'
+			video: @$el.data('video') or no
+			poster: @$el.data('poster') or no
+			image: @$el.data('image') or no
+			
+			beforeactive: ->
+			onactive: ->
+			beforeunactive: ->
+			onunactive: ->
+		
+		@options = @_merge _options, @options
+
+		super @$el, @options
+
+		@_setOptions @options
+
+	
+	_setOptions: ( options ) ->
+		
+		for key, value of options
+			
+			if not @options[key]?
+				return console.error "Maxmertkit Wall. You're trying to set unpropriate option."
+
+			switch key
+				when 'video'
+					@video.remove() if @video?
+					if value
+						urls = value.split(',')
+						
+
+						video = "<video preload autoplay loop muted volume='0'>"
+						for url in urls
+							video += "<source src='#{url}' type='video/#{_parseUrl(url).ext}'>"
+						video += "</video>"
+
+						@video = $( video )
+						@$el.append @video
+
+
+					# @options.event = value
+
+					# # Set event on wall to show wall window
+					# @$btn.on "#{@options.event}.#{@_name}", =>
+					# 	if @$btn.hasClass '_active_'
+					# 		@deactivate()
+					# 	else
+					# 		@activate()
+
+				else
+					@options[key] = value
+					if typeof value is 'function'
+						@[key] = @options[key]
+
+
+
+	destroy: ->
+		@$ell.off ".#{@_name}"
+		super
+
+	activate: ->
+		_beforeactive.call @
+
+	deactivate: ->
+		if @$ell.hasClass '_active_'
+			_beforeunactive.call @
+
+	disable: ->
+		@$ell.toggellleClass '_disabled_'
+
+
+
+
+
+
+# =============== Private methods
+
+_parseUrl = (url) ->
+	m = url.match(/(.*)[\/\\]([^\/\\]+)\.(\w+)$/)
+
+	path: m[1],
+	file: m[2],
+	ext: m[3]
+
+
+$.fn[_name] = (options) ->
 	@each ->
-		unless $.data(this, "kit-" + _name)
-			$.data this, "kit-" + _name, new Tiltimage(this, options_)
+		unless $.data(@, "kit-" + _name)
+			$.data @, "kit-" + _name, new Wall(@, options)
 		else
-			if typeof options_ is "object"
-				$.data(this, "kit-" + _name)._setOptions options_
+			if typeof options is "object"
+				$.data(@, "kit-" + _name)._setOptions options
+
+
 			else
-				(if typeof options_ is "string" and options_.charAt(0) isnt "_" then $.data(this, "kit-" + _name)[options_] else console.log("Maxmertkit error. You passed into the #{_name} something wrong."))
+				(if typeof options is "string" and options.charAt(0) isnt "_" then $.data(@, "kit-" + _name)[options] else console.error("Maxmertkit Wall. You passed into the #{_name} something wrong."))
 		return
 
-
-# $.fn[_name] = function( options_ ) {
-# 		return this.each(function() {
-# 			if( ! $.data( this, 'kit-' + _name ) ) {
-# 				$.data( this, 'kit-' + _name, new Affix( this, options_ ) );
-# 			}
-# 			else {
-# 				if( typeof options_ === 'object' )
-# 					$.data( this, 'kit-' + _name )._setOptions( options_ )
-# 				else
-# 				{
-# 					typeof options_ === 'string' && options_.charAt(0) !== '_' ? $.data( this, 'kit-' + _name )[ options_ ] : $.error( 'What do you want to do?' );
-# 				}
-# 			}
-# 		});
-# 	}
+$(window).on 'load', ->
+	$('[data-toggle="wall"]').each ->
+		$wall = $(@)
+		$wall.wall($wall.data())

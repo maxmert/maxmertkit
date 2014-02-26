@@ -1,58 +1,3 @@
-(->
-	special = jQuery.event.special
-	uid1 = "D" + (+new Date())
-	uid2 = "D" + (+new Date() + 1)
-	special.scrollstart =
-		setup: ->
-			timer = undefined
-			handler = (evt) ->
-				_self = this
-				_args = arguments_
-				if timer
-					clearTimeout timer
-				else
-					evt.type = "scrollstart"
-					jQuery.event.handle.apply _self, _args
-				timer = setTimeout(->
-					timer = null
-					return
-				, special.scrollstop.latency)
-				return
-
-			jQuery(this).bind("scroll", handler).data uid1, handler
-			return
-
-		teardown: ->
-			jQuery(this).unbind "scroll", jQuery(this).data(uid1)
-			return
-
-	special.scrollstop =
-		latency: 300
-		setup: ->
-			timer = undefined
-			handler = (evt) ->
-				_self = @
-				_args = arguments
-				# console.log jQuery.event
-				clearTimeout timer  if timer
-				timer = setTimeout(->
-					timer = null
-					evt.type = "scrollstop"
-					# jQuery.event.handler.apply _self, _args
-					return
-				, special.scrollstop.latency)
-				return
-
-			jQuery(this).bind("scroll", handler).data uid2, handler
-			return
-
-		teardown: ->
-			jQuery(this).unbind "scroll", jQuery(this).data(uid2)
-			return
-
-	return
-)()
-
 _name = "scrollspy"
 _instances = []
 _id = 0
@@ -184,9 +129,6 @@ _activate = ->
 	
 	$(target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		_spy.call @, event
-
-	$(target).on "scrollstop.#{@_name}.#{@_id}", ( event ) =>
-		alert 1
 
 # If you have beforeopen function
 # 	it will be called here

@@ -230,7 +230,7 @@ app.directive "popup", ->
 
 
 # APP CONFIGURATION
-app.config ($routeProvider, $locationProvider) ->
+app.config ($routeProvider) ->
 
 	# Init Route provider
 	$routeProvider
@@ -246,4 +246,4 @@ app.config ($routeProvider, $locationProvider) ->
 		.otherwise
 			templateUrl: "#{paths.tmpl}/404.html"
 
-	$locationProvider.html5Mode yes
+	# $locationProvider.html5Mode yes

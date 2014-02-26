@@ -1,0 +1,47 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, body {
+  font-size: 100%;
+  font-family: "Helvetica";
+  height: 100%; }
+
+.-wall {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: table; }
+  .-wall .-content {
+    display: table-cell;
+    vertical-align: middle; }
+    .-wall .-content h1 {
+      font-size: 72px; }
+    .-wall .-content h2 {
+      font-size: 60px; }
+    .-wall .-content h3 {
+      font-size: 46px; }
+    .-wall .-content h4 {
+      font-size: 34px; }
+    .-wall .-content h5 {
+      font-size: 28px; }
+    .-wall .-content h6 {
+      font-size: 22px; }
+  .-wall video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover; }
+
+@media screen and (max-width: 768px) {
+  .-wall video {
+    display: none; } }
+
+/*# sourceMappingURL=main.sass.map */
