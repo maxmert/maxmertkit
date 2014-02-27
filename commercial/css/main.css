@@ -11,26 +11,28 @@ html, body {
 .-wall {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-size: cover;
-  display: table; }
-  .-wall .-content {
-    display: table-cell;
-    vertical-align: middle; }
-    .-wall .-content h1 {
-      font-size: 72px; }
-    .-wall .-content h2 {
-      font-size: 60px; }
-    .-wall .-content h3 {
-      font-size: 46px; }
-    .-wall .-content h4 {
-      font-size: 34px; }
-    .-wall .-content h5 {
-      font-size: 28px; }
-    .-wall .-content h6 {
-      font-size: 22px; }
+  overflow: hidden; }
+  .-wall .-header, .-wall header {
+    position: absolute;
+    width: 100%;
+    display: none; }
+    .-wall .-header .-content, .-wall header .-content {
+      display: table;
+      height: 100%;
+      width: 100%; }
+      .-wall .-header .-content h1, .-wall .-header .-content h2, .-wall .-header .-content h3, .-wall .-header .-content h4, .-wall .-header .-content h5, .-wall .-header .-content h6, .-wall header .-content h1, .-wall header .-content h2, .-wall header .-content h3, .-wall header .-content h4, .-wall header .-content h5, .-wall header .-content h6 {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle; }
+  .-wall .-caption {
+    position: relative;
+    margin: 55% 0 30px;
+    font-size: 120%; }
   .-wall video {
     position: absolute;
+    top: 0;
     right: 0;
     bottom: 0;
     min-width: 100%;
@@ -39,9 +41,115 @@ html, body {
     height: auto;
     z-index: -100;
     background-size: cover; }
+  .-wall._shaded_ {
+    color: white; }
+    .-wall._shaded_:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -99; }
 
 @media screen and (max-width: 768px) {
   .-wall video {
     display: none; } }
+.-play {
+  cursor: pointer;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin-bottom: -23.33333px; }
+  .-play circle {
+    fill: transparent;
+    stroke-width: 3;
+    -webkit-transition: stroke-width 0.2s ease-out 0s, fill 0.2s ease-out 0s;
+    -moz-transition: stroke-width 0.2s ease-out 0s, fill 0.2s ease-out 0s;
+    transition: stroke-width 0.2s ease-out 0s, fill 0.2s ease-out 0s; }
+  .-play path {
+    -webkit-transition: fill 0.2s ease-out 0s;
+    -moz-transition: fill 0.2s ease-out 0s;
+    transition: fill 0.2s ease-out 0s; }
+  .-play:hover circle {
+    stroke-width: 10; }
+  .-play._tiny {
+    width: 17.5px;
+    height: 17.5px;
+    margin-bottom: -5.83333px; }
+  .-play._small {
+    width: 35px;
+    height: 35px;
+    margin-bottom: -11.66667px; }
+  .-play._minor {
+    width: 52.5px;
+    height: 52.5px;
+    margin-bottom: -17.5px; }
+  .-play._normal {
+    width: 70px;
+    height: 70px;
+    margin-bottom: -23.33333px; }
+  .-play._major {
+    width: 87.5px;
+    height: 87.5px;
+    margin-bottom: -29.16667px; }
+  .-play._big {
+    width: 105px;
+    height: 105px;
+    margin-bottom: -35px; }
+  .-play._huge {
+    width: 122.5px;
+    height: 122.5px;
+    margin-bottom: -40.83333px; }
+  .-play._giant {
+    width: 133px;
+    height: 133px;
+    margin-bottom: -44.33333px; }
+  .-play._divine {
+    width: 140px;
+    height: 140px;
+    margin-bottom: -46.66667px; }
+  .-play circle {
+    stroke: #d9d9d9; }
+  .-play path {
+    fill: #d9d9d9; }
+  .-play:hover circle {
+    fill: #d9d9d9; }
+  .-play:hover path {
+    fill: black; }
+  .-play.-default- circle {
+    stroke: #d9d9d9; }
+  .-play.-default- path {
+    fill: #d9d9d9; }
+  .-play.-default-:hover circle {
+    fill: #d9d9d9; }
+  .-play.-default-:hover path {
+    fill: black; }
+  .-play.-primary- circle {
+    stroke: #3598db; }
+  .-play.-primary- path {
+    fill: #3598db; }
+  .-play.-primary-:hover circle {
+    fill: #3598db; }
+  .-play.-primary-:hover path {
+    fill: white; }
+  .-play.-error- circle {
+    stroke: #cd2c24; }
+  .-play.-error- path {
+    fill: #cd2c24; }
+  .-play.-error-:hover circle {
+    fill: #cd2c24; }
+  .-play.-error-:hover path {
+    fill: white; }
+  .-play.-warning- circle {
+    stroke: #ffc43e; }
+  .-play.-warning- path {
+    fill: #ffc43e; }
+  .-play.-warning-:hover circle {
+    fill: #ffc43e; }
+  .-play.-warning-:hover path {
+    fill: white; }
 
 /*# sourceMappingURL=main.sass.map */

@@ -114,9 +114,10 @@ table {
   ._hidden-large-desktops_, tr ._hidden-large-desktops_, th ._hidden-large-desktops_, td ._hidden-large-desktops_ {
     display: none !important; } }
 
-body {
+html, body {
   font-size: 100%;
-  font-family: "Helvetica"; }
+  font-family: "Helvetica";
+  height: 100%; }
 
 [class*="-shadow"] {
   position: relative; }

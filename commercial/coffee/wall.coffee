@@ -31,6 +31,10 @@ class Wall extends MaxmertkitHelpers
 
 		@_setOptions @options
 
+		@header = @$el.find('.-header, header')
+
+		@activate()
+
 	
 	_setOptions: ( options ) ->
 		
@@ -76,7 +80,14 @@ class Wall extends MaxmertkitHelpers
 		super
 
 	activate: ->
-		_beforeactive.call @
+		$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+			@video.css top: event.currentTarget.body.scrollTop / 2
+			# @header.css top: -event.currentTarget.body.scrollTop
+		
+		@header
+			.css( height: $(window).height() )
+			.delay(500)
+			.fadeIn('slow')
 
 	deactivate: ->
 		if @$ell.hasClass '_active_'

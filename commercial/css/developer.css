@@ -2,10 +2,11 @@
   font-family: "Lobster Two", cursive; }
 
 .-font-raleway {
-  font-family: "Raleway"; }
+  font-family: "Raleway";
+  font-weight: 50; }
 
-.-play {
-  width: 100px;
-  height: 100px; }
+body {
+  font-family: "Proxima Nova";
+  height: 100%; }
 
 /*# sourceMappingURL=developer.sass.map */
