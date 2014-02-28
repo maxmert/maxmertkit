@@ -64,6 +64,7 @@ gulp.task  'maxmertkitCss', ->
 		.pipe sass( sourcemap: yes, quiet: yes )
 		.pipe( gulp.dest path.docsCss )
 		.pipe( gulp.dest '.' )
+		.pipe( gulp.dest 'commercial/css' )
 
 
 gulp.task 'nodemon', ->

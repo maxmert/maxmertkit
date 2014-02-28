@@ -1,3 +1,6 @@
+@mixin filter($type)
+	@include prefixer(filter, $type, webkit moz spec)
+
 @mixin wall-theme-setter($i)
 	// @if nth($themes, $i) == "-default-"
 	// 	background-color: nth($themes-background-light-colors, $i)
@@ -14,29 +17,67 @@
 		min-height: 100%
 		background-size: cover
 		overflow: hidden
+		color: #fff
+		background-color: #000
+		
+		hr
+			background-color: #fff
+
 
 		.#{$header-class-name}, header
-			position: absolute
+			position: relative
 			width: 100%
-			display: none
+			opacity: 0
+			z-index: 2
+			@include transition (opacity 1s ease-out 1s)
+			display: table
 
 			.#{$content-class-name}
-				display: table
 				height: 100%
 				width: 100%
-
+				display: table-cell
+				vertical-align: middle
+				
 				h1, h2, h3, h4, h5, h6
-					display: table-cell
 					text-align: center
-					vertical-align: middle
+					font-weight: 200
+
+					&.subtitle
+						opacity: 0.7
+
+				h1
+					font-size: $headings-h1-font-size * 1.5
+				
+				h2
+					font-size: $headings-h2-font-size * 1.5
+				
+				h3
+					font-size: $headings-h3-font-size * 1.5
+
+				h4
+					font-size: $headings-h4-font-size * 1.5
+
+				h5
+					font-size: $headings-h5-font-size * 1.5
+
+				h6
+					font-size: $headings-h6-font-size * 1.5
+
 
 		.#{$caption-class}
 			position: relative
-			margin: 55% 0 30px
+			margin: 30px 0
 			font-size: 120%
-		// 	min-height: 100%
+			font-weight: 100
+			top: 100%
+			opacity: 0
+			z-index: 2
+			@include transition (opacity 1s ease-out 1s)
+			line-height: 1.5em!important
+
+
 			
-		video
+		video, figure, figure img
 			position: absolute
 			top: 0
 			right: 0
@@ -45,24 +86,18 @@
 			min-height: 100%
 			width: auto
 			height: auto
-			z-index: -100
 			background-size: cover
+			@include transition (filter 1s ease-out 0s)
 
 
-		&.#{$mod-shaded}
-			color: #fff
 
-			&:before
-				content: ' '
-				display: block
-				position: absolute
-				top: 0
-				bottom: 0
-				left: 0
-				right: 0
-				background-color: rgba(#000, .5)
-				z-index: -99
+		&.#{$mod-active}
+			.#{$header-class-name}, header, .#{$caption-class}
+				opacity: 1
 
+		&._blur_
+			figure img
+				@include filter( blur(5px) )
 
 
 		@each $theme in $themes

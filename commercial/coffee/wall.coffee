@@ -19,6 +19,7 @@ class Wall extends MaxmertkitHelpers
 			video: @$el.data('video') or no
 			poster: @$el.data('poster') or no
 			image: @$el.data('image') or no
+			caption: @$el.data('caption') or no
 			
 			beforeactive: ->
 			onactive: ->
@@ -32,6 +33,7 @@ class Wall extends MaxmertkitHelpers
 		@_setOptions @options
 
 		@header = @$el.find('.-header, header')
+		@scroll = @_getScrollParent @el
 
 		@activate()
 
@@ -58,7 +60,15 @@ class Wall extends MaxmertkitHelpers
 						@video = $( video )
 						@$el.append @video
 
+				when 'image'
+					@image.remove() if @image?
+					if value
+						image = "<figure><img src='#{value}'/>"
+						if @options.caption then image += "<caption>#{@options.caption}</caption>"
+						image += "</figure>"
 
+						@image = $(image)
+						@$el.append @image
 					# @options.event = value
 
 					# # Set event on wall to show wall window
@@ -80,14 +90,39 @@ class Wall extends MaxmertkitHelpers
 		super
 
 	activate: ->
+		$(window).on "resize.#{@_name}.#{@_id}", =>
+			_refresh.call @
+
 		$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-			@video.css top: event.currentTarget.body.scrollTop / 2
-			# @header.css top: -event.currentTarget.body.scrollTop
+			min = @$el.offset().top - $(window).height()
+			max = @$el.offset().top + @$el.height() + $(window).height()
+			current = @scroll.scrollTop() + $(window).height()
+			
+			if current > min
+				percent = 1 - current / max
+			else
+				percent = 0
+
+			if  1 - percent >= 0.5 and 1 - percent <= 1
+				if @video? then @video.css opacity: (percent + 0.5)
+				if @image?
+					@image.css opacity: (percent + 0.5)
+					# if 1 - percent >= 0.8
+					# 	@$el.addClass '_blur_'
+					# else
+					# 	@$el.removeClass '_blur_'
+					# else
+					# 	if @image.find('img')[0].style["-webkit-filter"]
+					# 		@image.find('img')[0].style["-webkit-filter"] = @image.find('img')[0].style["-moz-filter"] = @image.find('img')[0].style["filter"] = null
+
+
+			if @video? then @video.css top: (@scroll.scrollTop() - @$el.offset().top ) * percent
+			if @image? then @image.css top: (@scroll.scrollTop() - @$el.offset().top ) * percent
+				
 		
-		@header
-			.css( height: $(window).height() )
-			.delay(500)
-			.fadeIn('slow')
+		_refresh.call @
+			
+		@$el.addClass '_active_'
 
 	deactivate: ->
 		if @$ell.hasClass '_active_'
@@ -102,6 +137,10 @@ class Wall extends MaxmertkitHelpers
 
 
 # =============== Private methods
+
+_refresh = ->
+	@header
+		.css( height: $(window).height() )
 
 _parseUrl = (url) ->
 	m = url.match(/(.*)[\/\\]([^\/\\]+)\.(\w+)$/)

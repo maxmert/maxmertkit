@@ -25,7 +25,7 @@ path =
 		'../coffee/maxmertkit.coffee'
 		'coffee/**/*.coffee'
 	]
-	sass: ['sass/main.sass', 'sass/developer.sass']
+	sass: ['sass/commercial.sass', 'sass/developer.sass']
 	server: 'server/app.coffee'
 
 	dest:

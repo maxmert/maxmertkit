@@ -3,6 +3,9 @@
 	small
 		color: nth($themes-colors, $i)
 
+@mixin hr-theme-setter($i)
+	background-color: nth($themes-colors, $i)
+
 
 
 @include exports("typography/body")
@@ -18,7 +21,7 @@
 
 	p
 		margin: 0 0 $base-line-height-comp / 2
-		line-height: $base-line-height-comp
+		line-height: $base-line-height
 
 	b, i, small, p, span
 		@each $size in $base-sizes-names
@@ -92,3 +95,19 @@
 				@include typography-theme-setter($i)
 			&.#{$theme}
 				@include typography-theme-setter($i)
+
+	hr
+		display: block
+		height: 1px
+		width: $hr-width
+		margin: $hr-margin-vertical $hr-margin-horizontal
+		border: none
+
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include hr-theme-setter($i)
+			&.#{$theme}
+				@include hr-theme-setter($i)

@@ -6264,7 +6264,7 @@ small {
 
 p {
   margin: 0 0 10.0px;
-  line-height: 20.0px; }
+  line-height: 1.42857; }
 
 b._tiny, strong._tiny, i._tiny, em._tiny, small._tiny, p._tiny, span._tiny {
   font-size: 25%; }
@@ -6350,6 +6350,22 @@ blockquote {
     border-color: #ffc43e; }
     blockquote.-warning- small {
       color: #ffc43e; }
+
+hr {
+  display: block;
+  height: 1px;
+  width: 50%;
+  margin: 35px 25%;
+  border: none;
+  background-color: black; }
+  hr.-default- {
+    background-color: black; }
+  hr.-primary- {
+    background-color: #3598db; }
+  hr.-error- {
+    background-color: #cd2c24; }
+  hr.-warning- {
+    background-color: #ffc43e; }
 
 ul, ol {
   margin-top: 0;
