@@ -1,0 +1,103 @@
+@mixin nav-bullets-theme-setter($i)
+	#{$nav-bullets-item}
+		border-color: nth($themes-background-light-colors, $i)
+
+		&.#{$mod-active}
+			background-color: nth($themes-background-light-colors, $i)
+
+		color: nth($themes-white-colors, $i)
+
+
+
+@include exports("nav/bullets")
+	.#{$nav-bullets-class}
+		position: fixed
+		top: 50%
+		left: 20px
+		z-index: 4
+		@include user-select(none)
+
+		#{$nav-bullets-item}
+			display: block
+			margin-bottom: 10px
+			border-width: 1px
+			border-style: solid
+			cursor: pointer
+			opacity: .5
+			@include transition (all 0.2s ease-out 0s)
+			@include transform(rotate(-45deg))
+			position: relative
+
+			span
+				@include transition (all 0.2s ease-out 0s)
+				position: absolute
+				pointer-events: none
+				opacity: 0
+				left: 100%
+				font-weight: 100
+				margin-left: 5px
+				margin-top: -1px
+				top: 0
+				white-space: nowrap
+				font-style: normal
+
+			&:hover
+				span
+					opacity: 1
+
+			&.#{$mod-active}
+				@include transform(rotate(0deg))
+				opacity: 1
+
+		&.#{$mod-right}
+			left: auto
+			right: 20px
+
+			#{$nav-bullets-item}
+				@include transform(rotate(45deg))
+				span
+					right: 100%
+					left: auto
+					margin-left: auto
+					margin-right: 5px
+				&.#{$mod-active}
+					@include transform(rotate(0deg))
+
+		// Set sizes
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			$pixels: nth($base-sizes-values, $i) * $base-font-size - 3
+			@if $size == "_normal"
+				font-size: $pixels
+				#{$nav-bullets-item}
+					@include size( $nav-bullets-item-size * nth($base-sizes-values, $i) )
+					margin-bottom: $nav-bullets-item-size * nth($base-sizes-values, $i)
+			&.#{$size}
+				font-size: $pixels
+				#{$nav-bullets-item}
+					@include size( $nav-bullets-item-size * nth($base-sizes-values, $i) )
+					margin-bottom: $nav-bullets-item-size * nth($base-sizes-values, $i)
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include nav-bullets-theme-setter($i)
+				
+			&.#{$theme}
+				@include nav-bullets-theme-setter($i)
+
+
+	.#{$nav-bullets-class}-round
+		@extend .#{$nav-bullets-class}
+
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			$pixels: nth($base-sizes-values, $i) * $base-font-size - 3
+			@if $size == "_normal"
+				#{$nav-bullets-item}
+					border-radius: $nav-bullets-item-size * nth($base-sizes-values, $i)
+
+			&.#{$size}
+				#{$nav-bullets-item}
+					border-radius: $nav-bullets-item-size * nth($base-sizes-values, $i)

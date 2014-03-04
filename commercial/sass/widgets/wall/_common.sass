@@ -1,13 +1,6 @@
 @mixin filter($type)
 	@include prefixer(filter, $type, webkit moz spec)
 
-@mixin wall-theme-setter($i)
-	// @if nth($themes, $i) == "-default-"
-	// 	background-color: nth($themes-background-light-colors, $i)
-	// @else
-	// 	background-color: lighten(nth($themes-background-light-colors, $i), 25%)
-
-	// color: nth($themes-white-colors, $i)
 
 
 @include exports("wall/common")
@@ -24,11 +17,30 @@
 			background-color: #fff
 
 
+		.#{$scroller-class}
+			position: absolute
+			top: 100%
+			left: 50%
+
+			// Set margins for each size
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				$pixels: nth($base-sizes-values, $i) * $base-font-size * 2
+				@if $size == "_normal"
+					// @include size( $pixels )
+					margin-top: -$pixels - 10px
+					margin-left: -$pixels / 2
+				
+				&.#{$size}
+					margin-top: -$pixels - 10px
+					margin-left: -$pixels / 2
+
+
 		.#{$header-class-name}, header
 			position: relative
 			width: 100%
 			opacity: 0
-			z-index: 2
+			z-index: 3
 			@include transition (opacity 1s ease-out 1s)
 			display: table
 
@@ -71,7 +83,7 @@
 			font-weight: 100
 			top: 100%
 			opacity: 0
-			z-index: 2
+			z-index: 3
 			@include transition (opacity 1s ease-out 1s)
 			line-height: 1.5em!important
 
@@ -80,14 +92,19 @@
 		video, figure, figure img
 			position: absolute
 			top: 0
-			right: 0
-			bottom: 0
+			left: 0
 			min-width: 100%
 			min-height: 100%
 			width: auto
 			height: auto
 			background-size: cover
 			@include transition (filter 1s ease-out 0s)
+
+		video
+			z-index: 2
+
+		figure
+			z-index: 1
 
 
 
@@ -100,17 +117,34 @@
 				@include filter( blur(5px) )
 
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
+		// @each $theme in $themes
+		// 	$i: index($themes, $theme)
 			
-			@if $theme == "-default-"
-				@include wall-theme-setter($i)
+		// 	@if $theme == "-default-"
+		// 		@include wall-theme-setter($i)
 				
-			&.#{$theme}
-				@include wall-theme-setter($i)
+		// 	&.#{$theme}
+		// 		@include wall-theme-setter($i)
+
 
 
 	@include media(new-breakpoint(max-width 768px 6))
 		.#{$wall-class}
-			video
+			min-height: 0
+			.#{$scroller-class}
 				display: none
+			.#{$header-class-name}, header
+				height: auto!important
+			video, figure, figure img
+				position: relative
+
+			video
+				min-height: 0
+
+			figure, figure img
+				min-height: 100%
+				height: 100%
+				display: block
+
+			figure img
+				position: absolute

@@ -43,6 +43,9 @@ class MaxmertkitHelpers
 	_equalNodes: ( node1, node2 ) ->
 		node1.get(0) is node2.get(0)
 
+	_deviceMobile: ->
+		@$el.width() < 768
+
 
 	# POSITIONING
 	
@@ -77,7 +80,7 @@ class MaxmertkitHelpers
 				if position isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
 					return parent
 
-		return document.body
+		return $(document)
 
 
 
