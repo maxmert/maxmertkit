@@ -75,6 +75,10 @@
       return node1.get(0) === node2.get(0);
     };
 
+    MaxmertkitHelpers.prototype._deviceMobile = function() {
+      return this.$el.width() < 768;
+    };
+
     MaxmertkitHelpers.prototype._getContainer = function(el) {
       var parent, style;
       parent = el[0] || el;
@@ -111,7 +115,7 @@
           }
         }
       }
-      return document.body;
+      return $(document);
     };
 
     return MaxmertkitHelpers;
