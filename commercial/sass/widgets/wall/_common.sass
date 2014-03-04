@@ -1,0 +1,116 @@
+@mixin filter($type)
+	@include prefixer(filter, $type, webkit moz spec)
+
+@mixin wall-theme-setter($i)
+	// @if nth($themes, $i) == "-default-"
+	// 	background-color: nth($themes-background-light-colors, $i)
+	// @else
+	// 	background-color: lighten(nth($themes-background-light-colors, $i), 25%)
+
+	// color: nth($themes-white-colors, $i)
+
+
+@include exports("wall/common")
+	.#{$wall-class}
+		position: relative
+		width: 100%
+		min-height: 100%
+		background-size: cover
+		overflow: hidden
+		color: #fff
+		background-color: #000
+		
+		hr
+			background-color: #fff
+
+
+		.#{$header-class-name}, header
+			position: relative
+			width: 100%
+			opacity: 0
+			z-index: 2
+			@include transition (opacity 1s ease-out 1s)
+			display: table
+
+			.#{$content-class-name}
+				height: 100%
+				width: 100%
+				display: table-cell
+				vertical-align: middle
+				
+				h1, h2, h3, h4, h5, h6
+					text-align: center
+					font-weight: 200
+
+					&.subtitle
+						opacity: 0.7
+
+				h1
+					font-size: $headings-h1-font-size * 1.5
+				
+				h2
+					font-size: $headings-h2-font-size * 1.5
+				
+				h3
+					font-size: $headings-h3-font-size * 1.5
+
+				h4
+					font-size: $headings-h4-font-size * 1.5
+
+				h5
+					font-size: $headings-h5-font-size * 1.5
+
+				h6
+					font-size: $headings-h6-font-size * 1.5
+
+
+		.#{$caption-class}
+			position: relative
+			margin: 30px 0
+			font-size: 120%
+			font-weight: 100
+			top: 100%
+			opacity: 0
+			z-index: 2
+			@include transition (opacity 1s ease-out 1s)
+			line-height: 1.5em!important
+
+
+			
+		video, figure, figure img
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			min-width: 100%
+			min-height: 100%
+			width: auto
+			height: auto
+			background-size: cover
+			@include transition (filter 1s ease-out 0s)
+
+
+
+		&.#{$mod-active}
+			.#{$header-class-name}, header, .#{$caption-class}
+				opacity: 1
+
+		&._blur_
+			figure img
+				@include filter( blur(5px) )
+
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include wall-theme-setter($i)
+				
+			&.#{$theme}
+				@include wall-theme-setter($i)
+
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$wall-class}
+			video
+				display: none

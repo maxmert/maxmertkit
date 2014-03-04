@@ -52,7 +52,7 @@ class Affix extends MaxmertkitHelpers
 				# 	@$el = $(document).find @options.target
 
 				# else
-					# @options[key] = value
+			@options[key] = value
 
 
 
@@ -158,14 +158,14 @@ _beforestop = ->
 		_stop.call @
 
 # Closes modal
-# and triggers onclose
+# and triggers onstop
 _stop = ->
 	@$el.removeClass '_active_'
 	$(document).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
-	if @onclose?
+	if @onstop?
 		try
-			@onclose.call @$el
+			@onstop.call @$el
 
 			
 

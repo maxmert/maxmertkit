@@ -1,6 +1,7 @@
 app = angular.module 'docsApp', [
 	'ngRoute'
 	'hljs'
+	'ngScrollTo'
 ]
 
 paths =
@@ -34,7 +35,14 @@ app.directive 'submenu', ->
 		scope.items = window[attrs.submenu]
 
 		scope.$watch "partials", (value) ->
-			$('[submenu="widgets"]').affix()
+			setTimeout =>
+				$('[submenu="widgets"]').affix()
+				$('[submenu="widgets"]').scrollspy
+					elementsAttr: 'menu-name'
+				$('[submenu="main"]').affix()
+				$('[submenu="main"]').scrollspy
+					elementsAttr: 'menu-name'
+			,1000
 
 
 app.directive 'partials', ->
@@ -53,6 +61,66 @@ app.directive 'partials', ->
 						name: subitem.name
 						path: "#{paths.tmpl}/widgets/#{subitem.path}.html"
 
+
+app.directive "button", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-toggle='button']").button()
+			$('.btn-with-before').button
+				beforeactive: ->
+					d = $.Deferred()
+					@html 'Loading...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,2000
+					d.promise()
+				
+				onactive: ->
+					@removeClass '_disabled_'
+					@html 'Checked'
+
+				onunactive: ->
+					@html 'Checkbox'
+
+			$('.radio-with-before').button
+				beforeactive: ->
+					d = $.Deferred()
+					@html 'Loading...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,2000
+					d.promise()
+				
+				onactive: ->
+					@removeClass '_disabled_'
+					@html 'Checked'
+
+				beforeunactive: ->
+					d = $.Deferred()
+					@html 'Unchecking...'
+					@addClass '_disabled_'
+					setTimeout ->
+						d.resolve()
+					,3000
+					d.promise()
+
+				onunactive: ->
+					@removeClass '_disabled_'
+					@html 'Radio'
+
+
+app.directive "tabs", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-toggle='tabs']").tabs()
+
+
+app.directive "scrollspy", ->
+	(scope, element, attrs) ->
+		scope.$watch "partials", (value) ->
+			$(document).find("[data-spy='scroll']").scrollspy()
 
 
 app.directive "modal", ->
@@ -161,9 +229,8 @@ app.directive "popup", ->
 
 
 
-
 # APP CONFIGURATION
-app.config ($routeProvider, $locationProvider) ->
+app.config ($routeProvider) ->
 
 	# Init Route provider
 	$routeProvider
@@ -179,4 +246,4 @@ app.config ($routeProvider, $locationProvider) ->
 		.otherwise
 			templateUrl: "#{paths.tmpl}/404.html"
 
-	$locationProvider.html5Mode yes
+	# $locationProvider.html5Mode yes

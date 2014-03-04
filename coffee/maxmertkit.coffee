@@ -4,6 +4,8 @@ class MaxmertkitHelpers
 
 	constructor: ( @$btn, @options ) ->
 		@_pushInstance()
+		if @_afterConstruct?
+			@_afterConstruct()
 
 	destroy: ->
 		@$el.off ".#{@_name}"

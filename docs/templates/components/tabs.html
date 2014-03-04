@@ -1,0 +1,174 @@
+<div id="main-content" class="-container">
+	<h1>Tabs</h1>
+
+
+	<blockquote class="-primary-">
+		Tabs buttons and tabs content may be anywhere in the dom, you <b>don't need to collect them in one dom element</b>. It is an analog of button plugin with <code>data-type="radio"</code>.
+	</blockquote>
+
+
+	<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<ul class="-tabs -primary-">
+			<li data-toggle="tabs" data-group="tabs1" data-target="#content1"><a>Tab 1</a></li>
+			<li data-toggle="tabs" data-group="tabs1" data-target="#content2"><a>Tab 2</a></li>
+			<li data-toggle="tabs" data-group="tabs1" data-target="#content3"><a>Tab 3</a></li>
+			<li data-toggle="tabs" data-group="tabs1" data-target="#content4"><a>Tab 4</a></li>
+		</ul>
+		<div class="-row" style="padding: 15px" tabs>
+			<div id="content1" class="-col12">Content for tab 1</div>
+			<div id="content2" class="-col12">Content for tab 2</div>
+			<div id="content3" class="-col12">Content for tab 3</div>
+			<div id="content4" class="-col12">Content for tab 4</div>
+		</div>	
+	</div>
+
+
+	<div hljs class="-col12 example">
+<ul class="-tabs -primary-">
+	<li data-toggle="tabs" data-group="tabs1" data-target="#content1"><a>Tab 1</a></li>
+	<li data-toggle="tabs" data-group="tabs1" data-target="#content2"><a>Tab 2</a></li>
+	<li data-toggle="tabs" data-group="tabs1" data-target="#content3"><a>Tab 3</a></li>
+	<li data-toggle="tabs" data-group="tabs1" data-target="#content4"><a>Tab 4</a></li>
+</ul>
+<div class="-row">
+	<div id="content1" class="-col12">Content for tab 1</div>
+	<div id="content2" class="-col12">Content for tab 2</div>
+	<div id="content3" class="-col12">Content for tab 3</div>
+	<div id="content4" class="-col12">Content for tab 4</div>
+</div>
+</div>
+	
+<div hljs class="-col12 example">
+$(document).find("[data-toggle='tabs']").tabs()
+</div>
+
+</div>
+
+
+
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>toggle</td>
+			<td><i>@$btn.data('toggle') or 'tabs'</i></td>
+			<td>
+				To find all tab buttons in the DOM and initialize them.
+			</td>
+		</tr>
+		<tr>
+			<td>target</td>
+			<td><i>@$btn.data('target') or null</i></td>
+			<td>
+				Selector to find the content of that tab button.
+			</td>
+		</tr>
+		<tr>
+			<td>group</td>
+			<td><i>none</i></td>
+			<td>
+				<code>String</code>. Name of the tabs group. Uses to deactivate other tabs in the group, when one tab was activated.
+			</td>
+		</tr>
+		<tr>
+			<td>event</td>
+			<td><i>"click"</i></td>
+			<td>
+				This event will be used to activate/deactivate button.
+			</td>
+		</tr>
+		<tr>
+			<td>active</td>
+			<td><i>0</i></td>
+			<td>
+				Number of the tab to activate after initialization.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get tab use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the tab element <code>@data('kit-tab')</code> or <code>this.data('kit-tab')</code> in js.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before activate tab. If it returns <code>deferred.promise()</code>, then tab will not activate till <code>deferred.resolve()</code>, and woun't activate at all if <code>deferred.reject()</code>. You can just get data with $.ajax() instead of using deferred.</p>
+				<p hljs language="coffeescript">
+$('.btn-with-before').tabs
+	beforeactive: ->
+		d = $.Deferred()
+		@find('a').html 'Loading...'
+		@addClass '_disabled_'
+		setTimeout ->
+			d.resolve()
+		,2000
+		d.promise()
+	
+	onactive: ->
+		@removeClass '_disabled_'
+		@find('a').html 'Checked'
+
+	onunactive: ->
+		@find('a').html 'Checkbox'
+</p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after tab activation.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before deactivate tab.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onunactivate</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after deactivate tab.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+</div>

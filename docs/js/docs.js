@@ -17,6 +17,18 @@ components = [
 	{
 		"name": "affix",
 		"path": "../components/affix"
+	},
+	{
+		"name": "button",
+		"path": "../components/button"
+	},
+	{
+		"name": "tabs",
+		"path": "../components/tabs"
+	},
+	{
+		"name": "scrollspy",
+		"path": "../components/scrollspy"
 	}
 ]
 
@@ -62,6 +74,10 @@ widgets = [
 			{
 				"name": "menu",
 				"path": "nav/menu"
+			},
+			{
+				"name": "list-group",
+				"path": "nav/list-group"
 			},
 			{
 				"name": "bar",
@@ -189,7 +205,7 @@ main = [
 
 		"include": [
 			{
-				"name": "grid",
+				"name": "formgrid",
 				"path": "forms/grid"
 			},
 

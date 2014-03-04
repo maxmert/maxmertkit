@@ -28,11 +28,19 @@
     "url": "https://github.com/maxmert/maxmertkit-old/issues"
   },
   "dependencies": {
-    "coffee-script-brunch": "~1.7.3",
-    "sass-brunch": "~1.7.2",
-    "hoganjs-brunch": "~1.1.1",
-    "javascript-brunch": "~1.7.1",
-    "auto-reload-brunch": "~1.7.1",
     "express": "~3.4.8"
+  },
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "coffee-script": "~1.7.1",
+    "gulp-coffee": "~1.4.1",
+    "gulp-util": "~2.2.14",
+    "gulp-concat": "~2.1.7",
+    "gulp-coffeelint": "~0.3.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-watch": "~0.5.0",
+    "gulp-livereload": "~1.2.0",
+    "gulp-nodemon": "~1.0.0",
+    "gulp-ruby-sass": "~0.3.1"
   }
 }

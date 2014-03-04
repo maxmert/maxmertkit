@@ -1,0 +1,50 @@
+@include exports("typography/lists")
+
+	ul, ol
+		margin-top: 0
+		margin-bottom: $base-line-height-comp / 2
+		margin-left: $base-line-height-comp
+
+		li
+			line-height: $base-line-height
+		
+		ul, ol
+			margin-bottom: 0
+			margin-left: $base-line-height-comp * 2
+
+
+
+		// MODIFIERS ===========------------------
+
+		&.#{$mod-unstyled}
+			margin-left: 0
+			& > li
+				list-style: none
+
+		&.#{$mod-horizontal}
+			margin-bottom: 0
+			li
+				padding-left: $list-item-inline-padding
+				padding-right: $list-item-inline-padding
+				display: inline-block
+
+				&:first-child
+					padding-left: 0
+
+
+	dl
+		margin-bottom: $base-line-height-comp / 2
+		line-height: $base-line-height
+
+		dt
+			font-weight: bold
+
+		&.#{$mod-horizontal}
+			dt
+				@extend .#{$column-class}3
+				@include text-overflow
+			dd
+				@extend .#{$column-class}9
+				@extend .#{$offset-class}3
+				float: none
+				@include clearfix

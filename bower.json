@@ -26,8 +26,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular-route": "~1.2.9",
-    "angular": "~1.2.9",
+    "angular-route": "1.2.12",
+    "angular": "1.2.12",
     "bourbon": "~3.2.0",
     "neat": "~1.5.0",
     "jquery": "~2.0.3",
