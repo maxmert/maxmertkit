@@ -8530,7 +8530,8 @@ a.-btn {
     opacity: 0.7; }
   .-thumbnail-caption h1, .-thumbnail-caption .-h1, .-thumbnail-caption h2, .-thumbnail-caption .-h2, .-thumbnail-caption h3, .-thumbnail-caption .-h3, .-thumbnail-caption h4, .-thumbnail-caption .-h4, .-thumbnail-caption h5, .-thumbnail-caption .-h5, .-thumbnail-caption h6, .-thumbnail-caption .-h6 {
     text-align: center;
-    margin-top: 0; }
+    margin-top: 0;
+    margin-bottom: 1em; }
   .-thumbnail-caption:before {
     content: " ";
     position: absolute;

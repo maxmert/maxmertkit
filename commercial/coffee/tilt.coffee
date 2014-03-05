@@ -86,6 +86,10 @@ class Tilt extends MaxmertkitHelpers
 		@_orientation = (if window.orientation is 0 then "portrait" else "landscape")
 		_refreshImageData.call @
 
+		if @$figureCaption.length
+			@$figureCaption.on "click.#{@_name}.#{@_id}", =>
+				@$figureCaption.toggleClass "_active_"
+
 		$(window).on "resize.#{@_name}.#{@_id}", =>
 			_refreshImageData.call @
 		
@@ -111,9 +115,9 @@ class Tilt extends MaxmertkitHelpers
 				# Move tilt map
 				if @$tiltHandle?
 					left = 100 - (percent + 1 ) / 2 * 100
-					@$figure.find('figcaption').css left: "#{left}%"
 					if left < 10 then left = 10
 					if left > 90 then left = 90
+					@$figureCaption.css({ left: "#{@$el.width() * (percent + 1 ) / 2}px", opacity: (percent * (if percent > 0 then -2 else 3) + 1)}) if @$figureCaption.length
 					@$tiltHandle.css left: "#{left}%"
 
 			else
@@ -151,17 +155,22 @@ _refreshImageData = ->
 	@_windowWidth = $(window).width()
 	@$img = @$el.find('img')
 	@$figure = @$el.find('figure')
+	@$figureCaption = @$figure.find('figcaption')
 	@deviceMobile = @_deviceMobile()
 	
 	if @deviceMobile
 		@$el.height @_windowHeight
-		@$img.height @_windowHeight
 		@$figure.height @_windowHeight
+		@$figureCaption.width @_windowWidth - 20
+		@$img.height @_windowHeight
 		@style = @$image[0].style
 
 	if @$img.width() > @_windowWidth
 		@$tilt.fadeIn()
+		@$img.css width: 'auto'
 	else
+		@$img.width @_windowWidth
+		@$img.css height: 'auto'
 		@$tilt.fadeOut()
 
 $.fn[_name] = (options) ->

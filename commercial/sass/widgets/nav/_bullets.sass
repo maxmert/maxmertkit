@@ -1,3 +1,5 @@
+@import "./animation/bullets"
+
 @mixin nav-bullets-theme-setter($i)
 	#{$nav-bullets-item}
 		border-color: nth($themes-background-light-colors, $i)
@@ -18,6 +20,7 @@
 
 
 @include exports("nav/bullets")
+
 	.#{$nav-bullets-class}
 		position: fixed
 		top: 50%
@@ -54,6 +57,7 @@
 					opacity: 1
 
 			&.#{$mod-active}
+				@include animation(bullets-rotate-from 1.0s ease-in)
 				@include transform(rotate(0deg))
 				opacity: 1
 
@@ -69,6 +73,7 @@
 					margin-left: auto
 					margin-right: 5px
 				&.#{$mod-active}
+					@include animation(bullets-rotate-from-positive 1.0s ease-in)
 					@include transform(rotate(0deg))
 
 		// Set sizes

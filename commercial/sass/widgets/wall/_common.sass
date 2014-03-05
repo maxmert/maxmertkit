@@ -135,8 +135,28 @@
 				z-index: 2
 				display: block
 				bottom: 20px
-				width: 100%
+				// width: 100%
 				padding: 10px 20px
+				@include transition( background-color 0.5s ease-out, overflow 0.5s ease-out )
+				height: 6em
+				overflow: hidden
+
+				&:after
+					content: "..."
+					position: absolute
+					display: block
+					bottom: 5px
+					right: 20px
+
+				&.#{$mod-active}
+					background-color: rgba( #000, .7 )
+					border-radius: 3px
+					height: auto
+					overflow: visible
+
+					&:after
+						display: none
+
 
 
 
