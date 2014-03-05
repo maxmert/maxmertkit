@@ -2,16 +2,6 @@ _name = "wall"
 _instances = []
 _nav = []
 _id = 0
-_axisTable =
-	landscape:
-		x: "gamma"
-		y: "beta"
-		z: "alpha"
-
-	portrait:
-		y: "beta"
-		x: "gamma"
-		z: "alpha"
 
 class Wall extends MaxmertkitHelpers
 	
@@ -29,11 +19,10 @@ class Wall extends MaxmertkitHelpers
 		_options =
 			kind: @$el.data('kind') or 'wall'
 			group: @$el.data('group') or 'wall'
-			name: @$el.data('name') or 'wall'
-			video: @$el.data('video') or no
+			name: @$el.data('name') or no
+			video: @$el.find('.-wall-video') or no
 			videoOpacity: no
-			poster: @$el.data('poster') or no
-			image: @$el.data('image') or no
+			image: @$el.find('.-wall-image .-thumbnail') or no
 			imageBlur: no
 			imageOpacity: no
 			caption: @$el.data('caption') or no
@@ -67,28 +56,12 @@ class Wall extends MaxmertkitHelpers
 
 			switch key
 				when 'video'
-					@video.remove() if @video?
-					if value
-						urls = value.split(',')
-						
-
-						video = "<video preload autoplay loop muted volume='0'>"
-						for url in urls
-							video += "<source src='#{url}' type='video/#{_parseUrl(url).ext}'>"
-						video += "</video>"
-
-						@video = $( video )
-						@$el.append @video
+					@video = @options.video
+					@[key] = @options[key]
 
 				when 'image'
-					@image.remove() if @image?
-					if value
-						image = "<figure><img src='#{value}'/>"
-						if @options.caption then image += "<caption>#{@options.caption}</caption>"
-						image += "</figure>"
-
-						@image = $(image)
-						@$el.append @image
+					@image = @options.image
+					@[key] = @options[key]
 
 				when 'group'
 					i = 0
@@ -125,45 +98,18 @@ class Wall extends MaxmertkitHelpers
 		$(window).off "resize.#{@_name}.#{@_id}"
 		super
 
-	# updateImagePosition: ( e ) ->
-	# 	# pull proper angle based on orientation
-	# 	axis = Lenticular.axisTable[Lenticular.orientation][image.axis];
-	# 	angle = e[axis];
-
-	# 	// show the proper frame
-	# 	var percent = Lenticular.clamp((angle - image.adjustedMin) / image.tiltRange, 0, 1);
-	# 	image.showFrame(Math.floor(percent * (image.frames - 1)));
-
 	activate: ->
 		_refreshDevice.call @
-		@_orientation = (if window.orientation is 0 then "portrait" else "landscape")
 
 		$(window).on "resize.#{@_name}.#{@_id}", =>
 			_refreshHeaderHeight.call @
 			_refreshDevice.call @
 
-		window.addEventListener 'deviceorientation', (e) =>
-			axis = _axisTable[@_orientation].x
-			angle = e[axis]
-			percent = (angle - 0) / 40
-
-			if @image?
-				@image.height $(window).height()
-				@image.find('img').height $(window).height()
-				@image.find('img').animate marginLeft: "#{( @image.width() - $(window).width() ) * percent}px"
-				# if @image.find('img').length
-				@$el.html "#{( @image.width() - $(window).width() ) * percent}px"
-		, false
-
-		window.addEventListener 'orientationchange', (e) =>
-			@_orientation = (if window.orientation is 0 then "portrait" else "landscape")
-		, false
-
 		$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 			min = @$el.offset().top - $(window).height()
 			max = @$el.offset().top + @$el.height() + $(window).height()
 			current = @scroll.scrollTop() + $(window).height()
-			
+
 			if current > min
 				percent = 1 - current / max
 			else
@@ -224,11 +170,6 @@ class Wall extends MaxmertkitHelpers
 
 
 # =============== Private methods
-
-_clamp = (val, min, max) ->
-	if(val > max) then max
-	if(val < min) then min
-	val
 
 _refreshDevice = ->
 	@deviceMobile = @_deviceMobile()
