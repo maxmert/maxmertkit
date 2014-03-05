@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
 
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 		
@@ -18,7 +18,7 @@
 		<div class="-nav-bullets _right_" data-kind="wall-nav" data-group="wall1"></div>
 
 
-		<div data-kind="wall" data-group="wall1" data-name="Japan" data-video="/media/japan.mp4, /media/japan.webm, /media/japan.ogg" class="-wall -shader">
+		<div data-kind="wall" data-group="wall1" data-name="Japan" class="-wall -shader">
 			<header class="-header">
 				<div class="-content">
 					<h1>
@@ -27,11 +27,11 @@
 					<div class="-row">
 						<div class="-col2 -offset5">
 							<h6 class="subtitle">Learn more about Maxmertkit.warp1 in the light demo version. It has components from the full version, two great samples and documentation.</h6>
-							<hr>
+							<hr class="_hidden-tablets_ _hidden-phones_">
 						</div>
 					</div>
 					
-					<div style="text-align: center">
+					<div class="_hidden-tablets_ _hidden-phones_" style="text-align: center">
 						<svg class="-play" viewBox="-15 -15 55 60">
 							<circle cx="13" cy="15" r="23"></circle>
 							<path d="M6.684,25.682L24.316,15.5L6.684,5.318V25.682z"></path>
@@ -43,8 +43,16 @@
 					<path d="M0,0l14,14L29,0"/>
 				</svg>
 			</header>
+
+			<div class="-wall-video">
+				<video preload="" autoplay="" loop="" muted="" volume="0">
+					<source src="/media/japan.mp4" type="video/mp4">
+					<source src=" /media/japan.webm" type="video/webm">
+					<source src=" /media/japan.ogg" type="video/ogg">
+				</video>
+			</div>
+
 			<div class="-caption">
-				
 				<div class="-container">
 					<div class="-row">
 						<div class="-col8 -offset2">
@@ -67,7 +75,7 @@
 
 
 
-		<div data-kind="wall" data-group="wall1" data-name="Geisha" data-image="http://farm8.staticflickr.com/7167/6646127171_f2fb6ed076_b.jpg" class="-wall -shader">
+		<div data-kind="wall" data-group="wall1" data-name="Geisha" class="-wall -shader">
 			<header class="-header">
 				<div class="-content">
 					<h1>
@@ -84,6 +92,17 @@
 					<path d="M0,0l14,14L29,0"/>
 				</svg>
 			</header>
+			<div class="-wall-image" data-kind="tilt">
+				<div class="-thumbnail">
+					<figure>
+						<img src="http://farm8.staticflickr.com/7167/6646127171_f2fb6ed076_b.jpg">
+						<figcaption>Geisha in Tokyo</figcaption>
+					</figure>
+				</div>
+				<div class="-tilt">
+					<span class="-tilt-handle"></span>
+				</div>
+			</div>
 		</div>
 
 
@@ -94,7 +113,7 @@
 
 
 
-		<div data-kind="wall" data-group="wall1" data-name="New York" data-video="http://designmodo.com/storage/startuppreview.mp4, http://designmodo.com/storage/startuppreview.webm, http://designmodo.com/storage/startuppreview.ogg" class="-wall">
+		<div data-kind="wall" data-group="wall1" data-name="New York" class="-wall">
 			<header class="-header">
 				<div class="-content">
 					<h1>
@@ -107,6 +126,13 @@
 					</div>
 				</div>
 			</header>
+			<div class="-wall-video">
+				<video preload="" autoplay="" loop="" muted="" volume="0">
+					<source src="http://designmodo.com/storage/startuppreview.mp4" type="video/mp4">
+					<source src=" http://designmodo.com/storage/startuppreview.webm" type="video/webm">
+					<source src=" http://designmodo.com/storage/startuppreview.ogg" type="video/ogg">
+				</video>
+			</div>
 		</div>
 		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

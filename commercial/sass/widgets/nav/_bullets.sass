@@ -7,6 +7,14 @@
 
 		color: nth($themes-white-colors, $i)
 
+	@include media(new-breakpoint(max-width 768px 6))
+		#{$nav-bullets-item}
+			border-color: nth($themes-colors, $i)
+
+			&.#{$mod-active}
+				background-color: nth($themes-colors, $i)
+
+			color: nth($themes-colors, $i)
 
 
 @include exports("nav/bullets")
@@ -101,3 +109,9 @@
 			&.#{$size}
 				#{$nav-bullets-item}
 					border-radius: $nav-bullets-item-size * nth($base-sizes-values, $i)
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$nav-bullets-class}
+			#{$nav-bullets-item}
+				span
+					display: none

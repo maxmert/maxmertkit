@@ -1,0 +1,56 @@
+@mixin tilt-theme-setter( $i )
+	background-color: rgba(nth($themes-background-colors, $i),.4)
+	
+	.#{$tilt-handle-class}
+		background-color: nth($themes-background-colors, $i)
+
+	
+
+
+
+@include exports("tilt/common")
+	.#{$tilt-class}
+		display: none
+		position: absolute
+		z-index: 5
+		height: $tilt-height
+		width: 90%
+		bottom: $tilt-offset
+		left: 5%
+		// margin-left: -25%
+		background-color: rgba(#fff, .4)
+		// padding-left: 10%
+		// padding-right: 20%
+
+		.#{$tilt-handle-class}
+			background-color: rgba(#fff, 1)
+			height: $tilt-height
+			width: 20%
+			position: absolute
+			margin-left: -10%
+
+		&.#{$mod-top}
+			bottom: auto
+			top: $tilt-offset
+
+		// Set sizes
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			$pixels: nth($base-sizes-values, $i) * $tilt-height
+			@if $size == "_normal"
+				height: $pixels
+			
+			&.#{$size}
+				height: $pixels
+
+
+
+		// Set themes
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include tilt-theme-setter($i)
+				
+			&.#{$theme}
+				@include tilt-theme-setter($i)

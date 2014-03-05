@@ -19,3 +19,8 @@
 			right: 0
 			background: url("#{$path-img}/shaders/pattern1.png") //rgba(#000, .5)
 			z-index: 3
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$shader-class}
+			&:before
+				display: none
