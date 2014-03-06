@@ -22,6 +22,7 @@
 	.#{$play-class}
 		cursor: pointer
 		display: inline-block
+		vertical-align: middle
 		
 		circle
 			fill: transparent
@@ -42,11 +43,11 @@
 			$pixels: nth($base-sizes-values, $i) * $base-font-size * 5
 			@if $size == "_normal"
 				@include size( $pixels )
-				margin-bottom: -$pixels / 3
+				// margin-bottom: -$pixels / 3
 			
 			&.#{$size}
 				@include size( $pixels )
-				margin-bottom: -$pixels / 3
+				// margin-bottom: -$pixels / 3
 
 
 

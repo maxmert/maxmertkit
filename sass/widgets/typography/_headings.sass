@@ -37,6 +37,10 @@
 		margin-bottom: $base-line-height-comp / 2
 		font-weight: $headings-font-weight-small
 
+	h1, h2, h3, h4, h5, h6
+		& + h1, & + h2, & + h3, & + h4, & + h5, & + h6
+			margin-top: 0
+
 	@for $i from 1 through 6
 		.#{$headings-class}#{$i}
 			@extend h#{$i}

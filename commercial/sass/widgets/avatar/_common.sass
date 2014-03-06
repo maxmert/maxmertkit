@@ -1,0 +1,87 @@
+@mixin avatar-theme-setter( $i )
+	.#{$thumbnail-class}
+		border-color: nth($themes-border-colors, $i)
+
+
+
+
+@include exports("avatar/common")
+	
+	.#{$avatar-class}
+		display: inline-block
+		// vertical-align: middle
+		// 
+		a
+			text-decoration: none
+
+		.#{$thumbnail-class}
+			vertical-align: middle
+			display: inline-block
+			border-width: $avatar-border-width
+			border-style: solid
+			border-color: transparent
+			border-radius: $avatar-border-radius
+			overflow: hidden
+
+		img
+			position: absolute
+			top: 0
+			left: 0
+			min-width: 100%
+			min-height: 100%
+			background: transparent
+
+		&:hover
+			a
+				text-decoration: underline
+
+
+
+		// Set sizes
+		@each $size in $base-sizes-names
+			$i: index($base-sizes-names, $size)
+			
+			$thumb-size: nth($base-sizes-values, $i) * $avatar-size
+			$text-size: nth($base-sizes-values, $i) * $base-font-size
+			$thumb-margin: nth($base-sizes-values, $i) * 5px
+			
+			@if $size == "_normal"
+				// font-size: $text-size
+				&.#{$mod-round}
+					.#{$thumbnail-class}
+						border-radius: $thumb-size / 2
+				.#{$thumbnail-class}
+					@include size( $thumb-size )
+					margin-right: $thumb-margin
+			
+			&.#{$size}
+				// font-size: $text-size
+				&.#{$mod-round}
+					.#{$thumbnail-class}
+						border-radius: $thumb-size / 2
+				.#{$thumbnail-class}
+					@include size( $thumb-size )
+					margin-right: $thumb-margin
+
+
+
+		// Set themes
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include avatar-theme-setter($i)
+				
+			&.#{$theme}
+				@include avatar-theme-setter($i)
+
+	a.#{$avatar-class}
+		text-decoration: none
+
+		&:hover
+			text-decoration: underline
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$avatar-class}
+			.#{$thumbnail-class}
+				display: none

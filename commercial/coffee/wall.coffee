@@ -61,6 +61,8 @@ class Wall extends MaxmertkitHelpers
 
 				when 'image'
 					@image = @options.image
+					caption = @$el.find 'figcaption'
+					@caption = caption if caption.length
 					@[key] = @options[key]
 
 				when 'group'
@@ -136,6 +138,7 @@ class Wall extends MaxmertkitHelpers
 					if @image? then @image.css top: Math.round( (@scroll.scrollTop() - @$el.offset().top ) * percent)
 
 					if @scroller? then @scroller.css opacity: percent * 2
+					if @caption? then @caption.css opacity: percent * 2
 				
 				
 			_setNavActive.call @

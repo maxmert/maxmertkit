@@ -2,17 +2,29 @@
 	@include prefixer(filter, $type, webkit moz spec)
 
 @mixin wall-theme-setter($i)
-	color: nth($themes-white-colors, $i)
+	color: lighten(nth($themes-white-colors, $i), 15%)
 	background-color: nth($themes-colors, $i)
+
+	// h1, h2, h3, h4, h5, h6
+	// 	color: lighten(nth($themes-white-colors, $i), 15%)
+
+
+	a
+		color: nth($themes-white-colors, $i)
+	
+		&:hover
+			color: lighten(nth($themes-white-colors, $i), 15%)
 
 	.#{$wall-image-class}
 		figure figcaption
-			color: nth($themes-white-colors, $i)
+			color: lighten(nth($themes-white-colors, $i), 15%)
 
 
 	@include media(new-breakpoint(max-width 768px 6))
 		color: nth($themes-colors, $i)
 		background-color: lighten(nth($themes-white-colors, $i), 25%)
+		.#{$avatar-class} a, a.#{$avatar-class}
+			color: nth($themes-colors, $i)
 
 
 
@@ -62,10 +74,11 @@
 				vertical-align: middle
 				
 				h1, h2, h3, h4, h5, h6
-					text-align: center
-					font-weight: 200
+					// text-align: center
+					// font-weight: 200
 
 					&.subtitle
+						font-weight: 100
 						opacity: 0.7
 
 				h1
@@ -132,20 +145,19 @@
 			
 			figure figcaption
 				position: absolute
-				z-index: 2
+				z-index: 5
 				display: block
 				bottom: 20px
-				// width: 100%
+				width: 20%
 				padding: 10px 20px
 				@include transition( background-color 0.5s ease-out, overflow 0.5s ease-out )
-				height: 6em
-				overflow: hidden
 
 				&:after
-					content: "..."
+					content: "\f103"
+					font-family: FontAwesome
 					position: absolute
-					display: block
-					bottom: 5px
+					display: none
+					bottom: 0
 					right: 20px
 
 				&.#{$mod-active}
@@ -191,7 +203,25 @@
 			.#{$header-class-name}, header
 				height: auto!important
 
-			.#{$wall-video-class}, .#{$wall-image-class}, .#{$wall-video-class} video, .#{$wall-image-class} figure, .#{$wall-image-class} figure img
+				h1
+					font-size: $headings-h1-font-size
+				
+				h2
+					font-size: $headings-h2-font-size
+				
+				h3
+					font-size: $headings-h3-font-size
+
+				h4
+					font-size: $headings-h4-font-size
+
+				h5
+					font-size: $headings-h5-font-size
+
+				h6
+					font-size: $headings-h6-font-size
+
+			.#{$wall-video-class}, .#{$wall-image-class}, .#{$wall-video-class} video, .#{$wall-video-class} .-thumbnail, .#{$wall-image-class} figure, .#{$wall-image-class} figure img
 				position: relative
 
 			.#{$wall-video-class}, .#{$wall-image-class}
@@ -201,5 +231,18 @@
 					margin-bottom: 0
 
 			.#{$caption-class}
-				margin: 0px 0
+				// margin: 0px 0
 				font-size: 100%
+
+			.#{$wall-image-class}
+				.-thumbnail
+					max-height: 100%
+
+				figure figcaption
+					width: auto
+					height: 6em
+					overflow: hidden
+
+					&:after
+						display: block
+
