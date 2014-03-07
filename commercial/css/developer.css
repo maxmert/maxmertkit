@@ -11,4 +11,23 @@ body {
 .-wall {
   font-family: Helvetica; }
 
+.-developer-post {
+  font-size: 140%; }
+  .-developer-post blockquote {
+    font-size: 120%;
+    line-height: 1.3em;
+    margin: 40px 0; }
+  .-developer-post h1, .-developer-post h2, .-developer-post h3, .-developer-post h4, .-developer-post h5, .-developer-post h6 {
+    font-size: 140%; }
+    .-developer-post h1 + p, .-developer-post h2 + p, .-developer-post h3 + p, .-developer-post h4 + p, .-developer-post h5 + p, .-developer-post h6 + p {
+      margin-top: 10px; }
+  .-developer-post p {
+    margin: 40px 0; }
+    .-developer-post p + p, .-developer-post p + figure {
+      margin-top: 0; }
+  .-developer-post figure {
+    margin: 40px 0; }
+    .-developer-post figure figcaption p {
+      margin: 0; }
+
 /*# sourceMappingURL=developer.sass.map */

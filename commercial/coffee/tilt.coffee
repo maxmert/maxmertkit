@@ -77,8 +77,9 @@ class Tilt extends MaxmertkitHelpers
 
 	destroy: ->
 		@$el.off ".#{@_name}"
-		$(document).off "scroll.#{@_name}.#{@_id}"
 		$(window).off "resize.#{@_name}.#{@_id}"
+		window.removeEventListener 'deviceorientation'
+		window.removeEventListener 'orientationchange'
 		super
 
 
@@ -105,7 +106,7 @@ class Tilt extends MaxmertkitHelpers
 			if @$img.width() > @_windowWidth
 				translate = "translateX(#{px}px)"
 
-				if @style.left isnt "-50%"
+				if @style? and @style.left isnt "-50%"
 					@style.left = "-50%"
 
 				@style.webkitTransform = translate
@@ -122,7 +123,7 @@ class Tilt extends MaxmertkitHelpers
 
 			else
 				translate = "translateX(0px)"
-				if @style.left isnt "0"
+				if @style? and @style.left isnt "0"
 					@style.left = "0"
 					@style.webkitTransform = translate
 					@style.MozTransform = translate
@@ -165,13 +166,15 @@ _refreshImageData = ->
 		@$img.height @_windowHeight
 		@style = @$image[0].style
 
-	if @$img.width() > @_windowWidth
-		@$tilt.fadeIn()
+	if @deviceMobile and @$img.width() > @_windowWidth
+		@$tilt.fadeIn() if @$tilt?
 		@$img.css width: 'auto'
 	else
 		@$img.width @_windowWidth
 		@$img.css height: 'auto'
-		@$tilt.fadeOut()
+		@$tilt.fadeOut() if @$tilt?
+
+		
 
 $.fn[_name] = (options) ->
 	@each ->

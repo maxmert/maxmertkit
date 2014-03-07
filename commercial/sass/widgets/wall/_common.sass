@@ -42,6 +42,7 @@
 
 		.#{$scroller-class}
 			position: absolute
+			z-index: 5
 			top: 100%
 			left: 50%
 
@@ -168,6 +169,15 @@
 
 					&:after
 						display: none
+
+		&[data-zoom="yes"]
+			.#{$wall-image-class}
+				.-thumbnail
+					width: 140%
+					left: -20%
+
+				figure figcaption
+					display: none!important
 
 
 

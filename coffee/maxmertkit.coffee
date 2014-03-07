@@ -44,7 +44,15 @@ class MaxmertkitHelpers
 		node1.get(0) is node2.get(0)
 
 	_deviceMobile: ->
-		@$el.width() < 768
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+	_refreshSizes: ->
+		@_windowHeight = $(window).height()
+		@_windowWidth = $(window).width()
+		@_height = @$el.height()
+		@_width = @$el.width()
+		@_offset = @$el.offset()
+		
 
 
 	# POSITIONING
@@ -81,6 +89,94 @@ class MaxmertkitHelpers
 					return parent
 
 		return $(document)
+
+	_scrollVisible: ->
+		if @scroll?
+			min = @_offset.top - @_windowHeight
+			max = @_offset.top + @_height + @_windowHeight
+			current = @scroll.scrollTop() + @_windowHeight
+
+			percent = 1 - current / max
+			1 > percent > 0
+		
+		else
+
+			yes
+
+
+
+
+
+
+
+
+
+
+# SCROLL EVENTS
+###
+Adds support for the special browser events 'scrollstart' and 'scrollstop'.
+###
+(->
+	special = jQuery.event.special
+	uid1 = "D" + (+new Date())
+	uid2 = "D" + (+new Date() + 1)
+	special.scrollstart =
+		setup: ->
+			timer = undefined
+			handler = (evt) ->
+				_args = arguments
+				if timer
+					clearTimeout timer
+				else
+					evt.type = "scrollstart"
+					jQuery.event.trigger.apply @, _args
+				timer = setTimeout(->
+					timer = null
+					return
+				, special.scrollstop.latency)
+				return
+
+			jQuery(this).bind("scroll", handler).data uid1, handler
+			return
+
+		teardown: ->
+			jQuery(this).unbind "scroll", jQuery(this).data(uid1)
+			return
+
+	special.scrollstop =
+		latency: 300
+		setup: ->
+			timer = undefined
+			handler = (evt) ->
+				_args = arguments
+				clearTimeout timer  if timer
+				timer = setTimeout(->
+					timer = null
+					evt.type = "scrollstop"
+					jQuery.event.trigger.apply @, _args
+					return
+				, special.scrollstop.latency)
+				return
+
+			jQuery(this).bind("scroll", handler).data uid2, handler
+			return
+
+		teardown: ->
+			jQuery(this).unbind "scroll", jQuery(this).data(uid2)
+			return
+
+	return
+)()
+
+
+
+
+# Remove pointer events while scrolling
+$(window).on "scrollstart.kit", ( event ) ->
+	$('body').addClass '-no-pointer-events'
+
+$(window).on "scrollstop.kit", =>
+	$('body').removeClass '-no-pointer-events'
 
 
 

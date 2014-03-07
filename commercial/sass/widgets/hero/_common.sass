@@ -2,18 +2,22 @@
 	@include prefixer(filter, $type, webkit moz spec)
 
 @mixin hero-theme-setter($i)
-	color: lighten(nth($themes-white-colors, $i), 15%)
-	background-color: nth($themes-colors, $i)
+	&.#{$mod-invert}
+		color: lighten(nth($themes-white-colors, $i), 15%)
+		// background-color: nth($themes-colors, $i)
 
-	a
-		color: nth($themes-white-colors, $i)
-	
-		&:hover
-			color: lighten(nth($themes-white-colors, $i), 15%)
+		hr
+			background-color: lighten(nth($themes-white-colors, $i), 15%)
+			
+		a
+			color: nth($themes-white-colors, $i)
+		
+			&:hover
+				color: lighten(nth($themes-white-colors, $i), 15%)
 
-	.#{$wall-image-class}
-		figure figcaption
-			color: lighten(nth($themes-white-colors, $i), 15%)
+		.#{$wall-image-class}
+			figure figcaption
+				color: lighten(nth($themes-white-colors, $i), 15%)
 
 
 
@@ -24,15 +28,13 @@
 		min-height: 70%
 		background-size: cover
 		overflow: hidden
-		
-		hr
-			background-color: #fff
 
 
 		.#{$scroller-class}
 			position: absolute
 			top: 100%
 			left: 50%
+			z-index: 5
 
 			// Set margins for each size
 			@each $size in $base-sizes-names
@@ -51,8 +53,9 @@
 			position: absolute
 			bottom: 100px
 			width: 100%
-			z-index: 5
-			height: auto!important
+			z-index: 4
+			
+			-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
 
 			h1, h2, h3, h4, h5, h6
 				&.subtitle
@@ -112,6 +115,14 @@
 					&:after
 						display: none
 
+		&[data-zoom="yes"]
+			.#{$hero-image-class}
+				.-thumbnail
+					width: 140%
+					left: -20%
+				figure figcaption
+					display: none!important
+
 
 
 		&._blur_
@@ -132,5 +143,28 @@
 
 	@include media(new-breakpoint(max-width 768px 6))
 		.#{$hero-class}
-			min-height: 0
-			margin-bottom: $base-padding-vertical * 3
+			.#{$header-class-name}, header
+
+				h1
+					font-size: $headings-h1-font-size
+				
+				h2
+					font-size: $headings-h2-font-size
+				
+				h3
+					font-size: $headings-h3-font-size
+
+				h4
+					font-size: $headings-h4-font-size
+
+				h5
+					font-size: $headings-h5-font-size
+
+				h6
+					font-size: $headings-h6-font-size
+
+			.#{$hero-image-class}
+				figure figcaption
+					display: none
+			// min-height: 0
+			// margin-bottom: $base-padding-vertical * 3

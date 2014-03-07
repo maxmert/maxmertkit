@@ -76,7 +76,15 @@
     };
 
     MaxmertkitHelpers.prototype._deviceMobile = function() {
-      return this.$el.width() < 768;
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    MaxmertkitHelpers.prototype._refreshSizes = function() {
+      this._windowHeight = $(window).height();
+      this._windowWidth = $(window).width();
+      this._height = this.$el.height();
+      this._width = this.$el.width();
+      return this._offset = this.$el.offset();
     };
 
     MaxmertkitHelpers.prototype._getContainer = function(el) {
@@ -118,9 +126,90 @@
       return $(document);
     };
 
+    MaxmertkitHelpers.prototype._scrollVisible = function() {
+      var current, max, min, percent;
+      if (this.scroll != null) {
+        min = this._offset.top - this._windowHeight;
+        max = this._offset.top + this._height + this._windowHeight;
+        current = this.scroll.scrollTop() + this._windowHeight;
+        percent = 1 - current / max;
+        return (1 > percent && percent > 0);
+      } else {
+        return true;
+      }
+    };
+
     return MaxmertkitHelpers;
 
   })();
+
+
+  /*
+  Adds support for the special browser events 'scrollstart' and 'scrollstop'.
+   */
+
+  (function() {
+    var special, uid1, uid2;
+    special = jQuery.event.special;
+    uid1 = "D" + (+new Date());
+    uid2 = "D" + (+new Date() + 1);
+    special.scrollstart = {
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          } else {
+            evt.type = "scrollstart";
+            jQuery.event.trigger.apply(this, _args);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid1, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid1));
+      }
+    };
+    special.scrollstop = {
+      latency: 300,
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+            evt.type = "scrollstop";
+            jQuery.event.trigger.apply(this, _args);
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid2, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid2));
+      }
+    };
+  })();
+
+  $(window).on("scrollstart.kit", function(event) {
+    return $('body').addClass('-no-pointer-events');
+  });
+
+  $(window).on("scrollstop.kit", (function(_this) {
+    return function() {
+      return $('body').removeClass('-no-pointer-events');
+    };
+  })(this));
 
   window['MaxmertkitHelpers'] = MaxmertkitHelpers;
 

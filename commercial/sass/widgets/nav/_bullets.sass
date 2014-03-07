@@ -9,7 +9,7 @@
 
 		color: nth($themes-white-colors, $i)
 
-	@include media(new-breakpoint(max-width 768px 6))
+	&.#{$mod-invert}
 		#{$nav-bullets-item}
 			border-color: nth($themes-colors, $i)
 
@@ -25,7 +25,7 @@
 		position: fixed
 		top: 50%
 		left: 20px
-		z-index: 4
+		z-index: 5
 		@include user-select(none)
 
 		#{$nav-bullets-item}
@@ -40,6 +40,7 @@
 			position: relative
 
 			span
+				-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
 				@include transition (all 0.2s ease-out 0s)
 				position: absolute
 				pointer-events: none
