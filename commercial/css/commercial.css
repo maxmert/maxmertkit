@@ -8,6 +8,11 @@ html, body {
   font-family: "Helvetica";
   height: 100%; }
 
+.-no-pointer-events {
+  pointer-events: none; }
+  .-no-pointer-events nav {
+    pointer-events: auto; }
+
 .-shader:before {
   content: " ";
   display: block;
