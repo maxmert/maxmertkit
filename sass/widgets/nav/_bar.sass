@@ -107,9 +107,16 @@
 
 		&.#{$mod-top}
 			top: 0
+			@include transition (top 1.5s ease-out 0s)
+			&.#{$mod-hidden}
+				top: -100%
+
 
 		&.#{$mod-bottom}
 			bottom: 0
+			@include transition (bottom 1.5s ease-out 0s)
+			&.#{$mod-hidden}
+				bottom: -100%
 
 
 		@each $theme in $themes

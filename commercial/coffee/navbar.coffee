@@ -2,16 +2,6 @@ _name = "navbar"
 _instances = []
 _nav = []
 _id = 0
-_axisTable =
-	landscape:
-		x: "beta"
-		y: "gamma"
-		z: "alpha"
-
-	portrait:
-		y: "beta"
-		x: "gamma"
-		z: "alpha"
 
 class Navbar extends MaxmertkitHelpers
 	
@@ -29,6 +19,7 @@ class Navbar extends MaxmertkitHelpers
 		
 		_options =
 			kind: @$el.data('kind') or 'navbar'
+			showOnMousemove: yes
 			
 			beforeactive: ->
 			onactive: ->
@@ -68,22 +59,46 @@ class Navbar extends MaxmertkitHelpers
 		@$el.off ".#{@_name}"
 		super
 
+	show: ->
+		@$el.removeClass '_hidden_'
+
+	hide: ->
+		@$el.addClass '_hidden_'
+
 
 	activate: ->
+		color = _rgbToRgba @$el.css( 'background-color' ), .8
 		@$el.css
 			position: 'fixed'
 			width: '100%'
 			zIndex: 5
+			backgroundColor: color
+			borderWidth: 0
+
+
+		if @options.showOnMousemove
+			$(document).on "mousemove.kit", ( event ) =>
+				if event.pageY - $(document).scrollTop() <= @$el.height() / 3
+					@show()
 
 		$(document).on "scrollstart.kit", ( event ) =>
 			@_direction = $(document).scrollTop()
-			@$el.animate top: - @$el.height() - 10
+			if @_timer? 
+				clearTimeout( @_timer )
+				@_timer = null
+			@hide()
 
 		$(document).on "scrollstop.kit", =>
-			@_direction -= $(document).scrollTop()
+			scrollTop = $(document).scrollTop()
+			@_direction -= scrollTop
 			
 			if @_direction > 0
-				@$el.animate top: 0
+				if scrollTop is 0
+					@show()
+				else
+					@_timer = setTimeout =>
+						@show()
+					, 5000
 
 	deactivate: ->
 		if @$el.hasClass '_active_'
@@ -99,6 +114,18 @@ class Navbar extends MaxmertkitHelpers
 
 # =============== Private methods
 		
+_rgbToRgba = ( rgb, a ) ->
+	_rgb = rgb.split(',')
+	_rgba = 'rgba('
+	
+	for color, index in _rgb
+		int = parseInt color.replace( /^\D+/g, '')
+		if typeof int is "number"
+			_rgba += "#{int},"
+
+	_rgba += "#{a})"
+
+	_rgba
 
 $.fn[_name] = (options) ->
 	@each ->
