@@ -126,6 +126,10 @@
       return $(document);
     };
 
+    MaxmertkitHelpers.prototype._isVisible = function() {
+      return this._offset.top - this._windowHeight <= this.scroll.scrollTop() && this.scroll.scrollTop() <= this._offset.top + this._height;
+    };
+
     MaxmertkitHelpers.prototype._scrollVisible = function() {
       var current, max, min, percent;
       if (this.scroll != null) {

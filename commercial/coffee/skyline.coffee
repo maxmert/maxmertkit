@@ -1,3 +1,8 @@
+###
+Animating show content when it's in the visible page part (page skyline),
+and hide it, when you scroll out.
+###
+
 _name = "skyline"
 _instances = []
 _nav = []
@@ -19,13 +24,9 @@ class Skyline extends MaxmertkitHelpers
 		
 		_options =
 			kind: @$el.data('kind') or 'skyline'
-			delay: @$el.data('delay') or 0
-			activeClass: @$el.data('active-class') or '-skyline-drop'
-			
-			# beforeactive: ->
-			# onactive: ->
-			# beforeunactive: ->
-			# onunactive: ->
+			delay: @$el.data('delay') or 0							# miliseconds before show; it's better to use css transmission-delay
+			class: @$el.data('class') or '-skyline-drop'			# add this class on initialize
+			activeClass: @$el.data('active-class') or '-start'	# add this class to show element
 		
 		@options = @_merge _options, @options
 
@@ -57,20 +58,21 @@ class Skyline extends MaxmertkitHelpers
 
 
 	destroy: ->
-		@$el.off ".#{@_name}"
+		$(@scroll).off ".#{@_name}"
+		$(window).off ".#{@_name}"
 		super
 
 	_isActive: ->
 		@$el.hasClass @options.activeClass
 
-	
-	_isVisible: ->
-		@_offset.top - @_windowHeight <= @scroll.scrollTop() and @scroll.scrollTop() <= @_offset.top + @_height
 
 	activate: ->
-		@$el.addClass '-skyline'
+		@$el.addClass @options.class
 		@scroll = @_getScrollParent(@$el)
 		@_refreshSizes()
+
+		$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+			@_refreshSizes()
 
 		$(@scroll).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 			if @_isVisible()
@@ -82,10 +84,6 @@ class Skyline extends MaxmertkitHelpers
 				@hide()
 				
 			
-
-	disable: ->
-		@$el.toggleClass '_disabled_'
-
 	hide: ->
 		@$el.removeClass @options.activeClass
 		clearTimeout( @showTimer ) if @showTimer?

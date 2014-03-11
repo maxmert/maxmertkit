@@ -1,0 +1,23 @@
+@include exports("skyline/rotate")
+	
+	.#{$skyline-rotate-class}
+		@include skyline-set
+
+		@include transition-property (transform, opacity)
+		@include transition-duration(0.3s)
+		@include transition-timing-function(ease-out)
+		@include transition-delay(0.5s)
+		@include transform( scale(1.2) rotate(-20deg) )
+
+		&.#{$mod-right}
+			@include transform( scale(1.2)  rotate(20deg) )
+
+
+		&.#{$skyline-start-class}
+			pointer-events: inherit
+			@include transform( scale(1) rotate(0deg) )
+			@include transform( scale(1) rotate(0deg) )
+			opacity: 1
+
+		&.#{$animation-elastic-class}
+			@include transition-timing-function(cubic-bezier(.47,.01,.35,1.61))

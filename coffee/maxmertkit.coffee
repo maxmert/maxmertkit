@@ -90,6 +90,9 @@ class MaxmertkitHelpers
 
 		return $(document)
 
+	_isVisible: ->
+		@_offset.top - @_windowHeight <= @scroll.scrollTop() and @scroll.scrollTop() <= @_offset.top + @_height
+
 	_scrollVisible: ->
 		if @scroll?
 			min = @_offset.top - @_windowHeight

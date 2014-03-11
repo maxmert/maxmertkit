@@ -1,0 +1,199 @@
+@include keyframes( prev-animation )
+	from
+		@include transform( translateX(-50px) )
+		// opacity: 0
+	to
+		@include transform( translateX(0px) )
+		// opacity: 1
+
+
+@include keyframes( next-animation )
+	from
+		@include transform( translateX(50px) )
+		// opacity: 0
+	to
+		@include transform( translateX(0px) )
+		// opacity: 1
+
+@mixin carousel-theme-setter($i)
+	background-color: rgba(nth($themes-colors, $i), $carousel-background-opacity)
+
+	@if nth($themes, $i) == "-default-"
+		.#{$close-class}
+			polygon, path
+				fill: #fff
+			circle
+				stroke: #fff
+	@else
+		.#{$close-class}
+			polygon, path
+				fill: nth($themes-white-colors, $i)
+			circle
+				stroke: nth($themes-white-colors, $i)
+
+@mixin carousel-header-theme-setter($i)
+	background-color: nth($themes-background-colors, $i)
+	
+	.#{$header-class-name}
+		background-color: darken(nth($themes-background-colors, $i), 5%)
+		border-bottom-color: darken(nth($themes-background-colors, $i), 7%)
+
+
+
+@include exports("carousel/common")
+
+	.#{$carousel-class}
+
+		position: fixed
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: $carousel-z-index
+		overflow-y: auto
+
+		opacity: 1
+		visibility: visible
+		@include transition-property (opacity)
+		@include transition-duration(0.1)
+		@include transition-timing-function(ease-out)
+		@include transition-delay(0)
+		@include animation-play-state(paused)
+
+
+		.-holder
+			display: inline-block
+			float: none
+			visibility: visible
+			position: absolute
+			left: 50%
+			// -webkit-font-smoothing: subpixel-antialiased
+			-webkit-backface-visibility: hidden
+			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
+		
+		.#{$carousel-arrow-class}
+			position: fixed
+			top: 50%
+			margin-top: -$carousel-arrow-size / 2
+			@include size( $carousel-arrow-size / 2 $carousel-arrow-size )
+			cursor: pointer
+			@include transition(all 0.3s ease-out)
+
+			svg
+				width: 100%
+				height: 100%
+				path
+					fill: transparent
+					stroke: #fff
+					stroke-width: 3px
+					@include transition(stroke-width 0.3s ease-out)
+
+			&:hover
+				svg
+					path
+						stroke-width: 5px
+
+			&.#{$mod-left}
+				left: $carousel-arrow-margin
+				@include transform( translateX(10px) )
+				
+
+
+			&.#{$mod-right}
+				right: $carousel-arrow-margin
+				@include transform( translateX(-10px) )
+			
+			&:active
+				@include transform( translateX(0px) )
+
+
+		.#{$carousel-item-class}
+			padding: 40px 0
+			position: absolute
+			top: 0
+			opacity: 0
+			// img
+			// 	display: none
+			// display: none
+			@include transition(opacity 0.3s ease-out)
+
+			&.#{$carousel-item-animate-left}
+				// display: block
+				img
+					display: block !important
+				@include animation(prev-animation 0.5s cubic-bezier(.47,.01,.35,1.61))
+				opacity: 1
+
+			&.#{$carousel-item-animate-right}
+				// display: block
+				img
+					display: block !important
+				@include animation(next-animation 0.5s cubic-bezier(.47,.01,.35,1.61))
+				opacity: 1
+
+			
+
+		.#{$close-class}
+			background-color: transparent
+			position: fixed
+			z-index: 1
+			top: $carousel-padding-vertical
+			right: $carousel-padding-horizontal
+			cursor: pointer
+
+			@include transition-property(transform)
+			@include transition-duration(0.6s)
+			@include transition-timing-function(cubic-bezier(.47,.01,.26,1.42))
+			@include transition-delay(0s)
+
+			@include transform(rotate(-270deg))
+
+			polygon, path
+				opacity: 0.4
+				@include transition(opacity 0.3s ease-out 0)
+
+			circle
+				stroke-width: 0
+				fill: transparent
+				@include transition(stroke-width 0.3s ease-out 0)
+
+
+			&:hover
+				circle
+					stroke-width: 50
+				polygon, path
+					opacity: 1
+				
+				@include transform(rotate(0deg))
+
+
+			// Set sizes
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				$pixels: nth($base-sizes-values, $i) * $carousel-close-size
+				@if $size == "_normal"
+					@include size( $pixels )
+					// margin-bottom: -$pixels / 3
+				
+				&.#{$size}
+					@include size( $pixels )
+					// margin-bottom: -$pixels / 3
+				
+
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include carousel-theme-setter($i)
+				&.#{$theme}
+					@include carousel-theme-setter($i)
+			@else
+				&.#{$theme}
+					@include carousel-theme-setter($i)
+
+
+
+		&.#{$mod-active}
+			opacity: 1
+			visibility: visible
