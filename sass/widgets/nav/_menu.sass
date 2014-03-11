@@ -27,6 +27,11 @@
 				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
 				pointer-events: none
 
+	&.#{$mod-invert}
+		#{$nav-item}
+			& > a
+				color: nth($themes-white-colors, $i)
+
 @mixin nav-theme-menu-item-setter($i)
 	#{$nav-item}.#{nth($themes, $i)}
 
@@ -53,6 +58,11 @@
 				background: transparent
 				color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
 				pointer-events: none
+
+	&.#{$mod-invert}
+		#{$nav-item}.#{nth($themes, $i)}
+			& > a
+				color: nth($themes-white-colors, $i)
 
 
 @include exports("nav/menu")

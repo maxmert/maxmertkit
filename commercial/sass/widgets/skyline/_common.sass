@@ -1,0 +1,14 @@
+@include exports("skyline/common")
+	.#{$skyline-class}
+		opacity: 0
+		pointer-events: none
+		@include transition-property (transform, opacity)
+		@include transition-duration(0.3s)
+		@include transition-timing-function(ease-in)
+		@include transition-delay(0.5s)
+		@include transform( translateY(-20px) )
+
+		&.#{$skyline-drop-class}
+			pointer-events: inherit
+			@include transform( translateY(0px) )
+			opacity: 1

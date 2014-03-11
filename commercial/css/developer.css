@@ -11,6 +11,15 @@ body {
 .-wall {
   font-family: Helvetica; }
 
+nav.-navbar {
+  font-family: "jaf-bernina-sans";
+  border-width: 0;
+  position: fixed; }
+
+.logo {
+  display: inline-block;
+  padding: 15px 12px; }
+
 .-developer-post {
   font-size: 140%; }
   .-developer-post blockquote {

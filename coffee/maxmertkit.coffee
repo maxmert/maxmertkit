@@ -95,8 +95,8 @@ class MaxmertkitHelpers
 			min = @_offset.top - @_windowHeight
 			max = @_offset.top + @_height + @_windowHeight
 			current = @scroll.scrollTop() + @_windowHeight
-
 			percent = 1 - current / max
+			
 			1 > percent > 0
 		
 		else
