@@ -65,7 +65,14 @@ class Skyline extends MaxmertkitHelpers
 	_isActive: ->
 		@$el.hasClass @options.activeClass
 
-
+	_checkActivation: ->
+		if @_isVisible()
+			if not @_isActive()
+				@showTimer = setTimeout =>
+					@show()
+				, @options.delay
+		else
+			@hide()
 	activate: ->
 		@$el.addClass @options.class
 		@scroll = @_getScrollParent(@$el)
@@ -75,13 +82,9 @@ class Skyline extends MaxmertkitHelpers
 			@_refreshSizes()
 
 		$(@scroll).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-			if @_isVisible()
-				if not @_isActive()
-					@showTimer = setTimeout =>
-						@show()
-					, @options.delay
-			else
-				@hide()
+			@_checkActivation()
+
+		@_checkActivation()
 				
 			
 	hide: ->

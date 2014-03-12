@@ -174,6 +174,18 @@ _refreshItems = ->
 	@activateNextItem.call @
 
 
+# _ongoingTouchIndexById = (idToFind) ->
+# 	i = 0
+
+# 	while i < ongoingTouches.length
+# 		id = ongoingTouches[i].identifier
+# 		return i  if id is idToFind
+# 		i++
+# 	-1 # not found
+
+
+
+
 _beforeactive = ->
 	
 	if @beforeactive?
@@ -195,8 +207,79 @@ _beforeactive = ->
 
 _activate = ->
 
-	@$el.on "touchend", =>
-		alert 123
+	@$el[0].addEventListener "touchstart", ( event ) =>
+		event.preventDefault()
+		@_touchStartX = parseInt(event.touches[0].clientX)
+		@_touchStartY = parseInt(event.touches[0].clientY)
+		@_touchItem = @items[ _findActiveItem.call(@) ]
+		@_touchItemStyle = @_touchItem[0].style
+		@_touchScrollStart = @$el.scrollTop()
+
+	@$el[0].addEventListener "touchmove", ( event ) =>
+		event.preventDefault()
+		@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
+		@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
+		
+		translate = "translateX(#{@_touchDeltaX}px)"
+		
+		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 and Math.abs(@_touchDeltaY) < 10
+			@_touchItemStyle.webkitTransform = translate
+			@_touchItemStyle.MozTransform = translate
+			@_touchItemStyle.transform = translate
+
+		else
+			if @_touchScrollStart - @_touchDeltaY < 0
+				translate = "scale(#{($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()}, #{($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()})"
+				@$el[0].style.webkitTransform = translate
+				@$el[0].style.MozTransform = translate
+				@$el[0].style.transform = translate
+			else
+				@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+
+	@$el[0].addEventListener "touchend", ( event ) =>
+		event.preventDefault()
+		if Math.abs( @_touchDeltaX ) > 60
+			if @_touchDeltaX < 0
+				@activateNextItem()
+			else
+				@activatePrevItem()
+
+
+		translate = "translateX(0px) translateY(0px)"		
+		
+		if @_touchItemStyle?
+			@_touchItemStyle.webkitTransform = translate
+			@_touchItemStyle.MozTransform = translate
+			@_touchItemStyle.transform = translate
+
+		@_touchStartX = @_touchStartY = @_touchItem = @_touchItemStyle = @_touchDelta = null
+	
+	
+	@$el[0].addEventListener "gesturestart", ( event ) =>
+		@_gestureItem = @items[ _findActiveItem.call(@) ]
+		@_gestureItemStyle = @_gestureItem[0].style
+
+	@$el[0].addEventListener "gesturechange", ( event ) =>
+		translate = "scale(#{event.scale}, #{event.scale})"
+		
+		if @_gestureItemStyle?
+			@_gestureItemStyle.webkitTransform = translate
+			@_gestureItemStyle.MozTransform = translate
+			@_gestureItemStyle.transform = translate
+	
+	@$el[0].addEventListener "gestureend", ( event ) =>
+		if event.scale < 1
+			@deactivate()
+
+		translate = "scale(1, 1)"
+		if @_gestureItemStyle?
+			@_gestureItemStyle.webkitTransform = translate
+			@_gestureItemStyle.MozTransform = translate
+			@_gestureItemStyle.transform = translate
+
+		@_gestureItem = @_gestureItemStyle = null
+		
+
 
 	$('body').addClass '_no-scroll_'
 	clearTimeout(@deactivateTimer) if @deactivateTimer?
