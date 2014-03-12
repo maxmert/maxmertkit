@@ -109,9 +109,10 @@ class Tilt extends MaxmertkitHelpers
 				if @style? and @style.left isnt "-50%"
 					@style.left = "-50%"
 
-				@style.webkitTransform = translate
-				@style.MozTransform = translate
-				@style.transform = translate
+				if @style?
+					@style.webkitTransform = translate
+					@style.MozTransform = translate
+					@style.transform = translate
 
 				# Move tilt map
 				if @$tiltHandle?

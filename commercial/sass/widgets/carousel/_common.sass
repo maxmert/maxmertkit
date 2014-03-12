@@ -17,6 +17,7 @@
 
 @mixin carousel-theme-setter($i)
 	background-color: rgba(nth($themes-colors, $i), $carousel-background-opacity)
+	color: nth($themes-white-colors, $i)
 
 	@if nth($themes, $i) == "-default-"
 		.#{$close-class}
@@ -31,13 +32,6 @@
 			circle
 				stroke: nth($themes-white-colors, $i)
 
-@mixin carousel-header-theme-setter($i)
-	background-color: nth($themes-background-colors, $i)
-	
-	.#{$header-class-name}
-		background-color: darken(nth($themes-background-colors, $i), 5%)
-		border-bottom-color: darken(nth($themes-background-colors, $i), 7%)
-
 
 
 @include exports("carousel/common")
@@ -49,16 +43,12 @@
 		bottom: 0
 		left: 0
 		right: 0
-		z-index: $carousel-z-index
 		overflow-y: auto
+		overflow-x: hidden
 
-		opacity: 1
-		visibility: visible
-		@include transition-property (opacity)
-		@include transition-duration(0.1)
-		@include transition-timing-function(ease-out)
-		@include transition-delay(0)
-		@include animation-play-state(paused)
+		opacity: 0
+		z-index: -10
+		@include transition(opacity 0.3s ease-out 0)
 
 
 		.-holder
@@ -67,6 +57,7 @@
 			visibility: visible
 			position: absolute
 			left: 50%
+			width: 100%
 			// -webkit-font-smoothing: subpixel-antialiased
 			-webkit-backface-visibility: hidden
 			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
@@ -112,20 +103,19 @@
 			position: absolute
 			top: 0
 			opacity: 0
-			// img
-			// 	display: none
-			// display: none
+			max-width: 80%
+			img
+				max-width: 100%
+			
 			@include transition(opacity 0.3s ease-out)
 
 			&.#{$carousel-item-animate-left}
-				// display: block
 				img
 					display: block !important
 				@include animation(prev-animation 0.5s cubic-bezier(.47,.01,.35,1.61))
 				opacity: 1
 
 			&.#{$carousel-item-animate-right}
-				// display: block
 				img
 					display: block !important
 				@include animation(next-animation 0.5s cubic-bezier(.47,.01,.35,1.61))
@@ -173,11 +163,9 @@
 				$pixels: nth($base-sizes-values, $i) * $carousel-close-size
 				@if $size == "_normal"
 					@include size( $pixels )
-					// margin-bottom: -$pixels / 3
 				
 				&.#{$size}
 					@include size( $pixels )
-					// margin-bottom: -$pixels / 3
 				
 
 
@@ -196,4 +184,4 @@
 
 		&.#{$mod-active}
 			opacity: 1
-			visibility: visible
+			z-index: $carousel-z-index

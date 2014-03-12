@@ -21,6 +21,7 @@ class Carousel extends MaxmertkitHelpers
 			group: @$el.data('group') or 'carousel'
 			itemSelector: @$el.data('items') or '.-item'
 			arrowsSelector: @$el.data('arrows') or '.-arrow'
+			closer: @$el.data('closer') or '.-close'
 			# preload: yes
 
 			beforeactive: ->
@@ -35,7 +36,7 @@ class Carousel extends MaxmertkitHelpers
 		@$holder = @$el.find '.-holder'
 		@_setOptions @options
 
-		@activate()
+		@$el.css display: 'none'
 
 	
 	_setOptions: ( options ) ->
@@ -51,6 +52,17 @@ class Carousel extends MaxmertkitHelpers
 					if value
 						@[key] = @options[key]
 						_refreshItems.call @
+						_refreshTriggers.call @
+
+
+
+				when 'closer'
+					if value
+						@[key] = @options[key]
+						@$closer = @$el.find value
+						@$closer.on "click.#{@_name}.#{@_id}", =>
+							@deactivate()
+
 
 				when 'arrowsSelector'
 					if value
@@ -146,6 +158,10 @@ _findActiveItem = ->
 _deactivateItem = ( item ) ->
 	item.removeClass '_left_ _right_'
 
+_refreshTriggers = ->
+	for trigger in $(document).find( "[data-trigger='#{@_name}'][data-trigger-group='#{@options.group}']" )
+		$(trigger).on "click.#{@_name}.#{@_id}", =>
+			@activate()
 
 _refreshItems = ->
 	@items = []
@@ -179,7 +195,12 @@ _beforeactive = ->
 
 _activate = ->
 
+	@$el.on "touchend", =>
+		alert 123
+
 	$('body').addClass '_no-scroll_'
+	clearTimeout(@deactivateTimer) if @deactivateTimer?
+	@$el.css display: 'block'
 	@$el.addClass '_active_'
 	@$el.trigger "activated.#{@_name}"
 	if @onactive?
@@ -208,6 +229,9 @@ _beforeunactive = ->
 
 _deactivate = ->
 	@$el.removeClass '_active_'
+	@deactivateTimer = setTimeout =>
+		@$el.css display: 'none'
+	, 800
 	$('body').removeClass '_no-scroll_'
 	@$el.trigger "deactivated.#{@_name}"
 	if @onunactive?

@@ -2938,32 +2938,22 @@ a.-avatar {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1004;
   overflow-y: auto;
-  opacity: 1;
-  visibility: visible;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  transition-property: opacity;
-  -webkit-transition-duration: 0.1;
-  -moz-transition-duration: 0.1;
-  transition-duration: 0.1;
-  -webkit-transition-timing-function: ease-out;
-  -moz-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-  -webkit-transition-delay: 0;
-  -moz-transition-delay: 0;
-  transition-delay: 0;
-  -webkit-animation-play-state: paused;
-  -moz-animation-play-state: paused;
-  animation-play-state: paused;
-  background-color: rgba(0, 0, 0, 0.9); }
+  overflow-x: hidden;
+  opacity: 0;
+  z-index: -10;
+  -webkit-transition: opacity 0.3s ease-out 0;
+  -moz-transition: opacity 0.3s ease-out 0;
+  transition: opacity 0.3s ease-out 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #cccccc; }
   .-carousel .-holder {
     display: inline-block;
     float: none;
     visibility: visible;
     position: absolute;
     left: 50%;
+    width: 100%;
     -webkit-backface-visibility: hidden; }
   .-carousel .-arrow {
     position: fixed;
@@ -2988,14 +2978,14 @@ a.-avatar {
     .-carousel .-arrow:hover svg path {
       stroke-width: 5px; }
     .-carousel .-arrow._left_ {
-      left: 100px;
+      left: 30px;
       -webkit-transform: translateX(10px);
       -moz-transform: translateX(10px);
       -ms-transform: translateX(10px);
       -o-transform: translateX(10px);
       transform: translateX(10px); }
     .-carousel .-arrow._right_ {
-      right: 100px;
+      right: 30px;
       -webkit-transform: translateX(-10px);
       -moz-transform: translateX(-10px);
       -ms-transform: translateX(-10px);
@@ -3012,9 +3002,12 @@ a.-avatar {
     position: absolute;
     top: 0;
     opacity: 0;
+    max-width: 80%;
     -webkit-transition: opacity 0.3s ease-out;
     -moz-transition: opacity 0.3s ease-out;
     transition: opacity 0.3s ease-out; }
+    .-carousel .-item img {
+      max-width: 100%; }
     .-carousel .-item._left_ {
       -webkit-animation: prev-animation 0.5s cubic-bezier(0.47, 0.01, 0.35, 1.61);
       -moz-animation: prev-animation 0.5s cubic-bezier(0.47, 0.01, 0.35, 1.61);
@@ -3108,31 +3101,35 @@ a.-avatar {
   .-carousel .-close circle {
     stroke: white; }
   .-carousel.-default- {
-    background-color: rgba(0, 0, 0, 0.9); }
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #cccccc; }
     .-carousel.-default- .-close polygon, .-carousel.-default- .-close path {
       fill: white; }
     .-carousel.-default- .-close circle {
       stroke: white; }
   .-carousel.-primary- {
-    background-color: rgba(53, 152, 219, 0.9); }
+    background-color: rgba(53, 152, 219, 0.9);
+    color: white; }
     .-carousel.-primary- .-close polygon, .-carousel.-primary- .-close path {
       fill: white; }
     .-carousel.-primary- .-close circle {
       stroke: white; }
   .-carousel.-error- {
-    background-color: rgba(205, 44, 36, 0.9); }
+    background-color: rgba(205, 44, 36, 0.9);
+    color: white; }
     .-carousel.-error- .-close polygon, .-carousel.-error- .-close path {
       fill: white; }
     .-carousel.-error- .-close circle {
       stroke: white; }
   .-carousel.-warning- {
-    background-color: rgba(255, 196, 62, 0.9); }
+    background-color: rgba(255, 196, 62, 0.9);
+    color: white; }
     .-carousel.-warning- .-close polygon, .-carousel.-warning- .-close path {
       fill: white; }
     .-carousel.-warning- .-close circle {
       stroke: white; }
   .-carousel._active_ {
     opacity: 1;
-    visibility: visible; }
+    z-index: 1004; }
 
 /*# sourceMappingURL=commercial.sass.map */

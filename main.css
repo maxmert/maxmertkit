@@ -8526,18 +8526,22 @@ a.-btn {
     right: 0; }
   .-navbar._top_ {
     top: 0;
-    -webkit-transition: top 1.5s ease-out 0s;
-    -moz-transition: top 1.5s ease-out 0s;
-    transition: top 1.5s ease-out 0s; }
-    .-navbar._top_._hidden_ {
-      top: -100%; }
+    opacity: 1;
+    -webkit-transition: top 1.5s ease-out 0s, opacity 1.5s ease-out 0s;
+    -moz-transition: top 1.5s ease-out 0s, opacity 1.5s ease-out 0s;
+    transition: top 1.5s ease-out 0s, opacity 1.5s ease-out 0s; }
+    .-navbar._top_._hidden_, ._no-scroll_ .-navbar {
+      top: -100%;
+      opacity: 0; }
   .-navbar._bottom_ {
     bottom: 0;
-    -webkit-transition: bottom 1.5s ease-out 0s;
-    -moz-transition: bottom 1.5s ease-out 0s;
-    transition: bottom 1.5s ease-out 0s; }
+    opacity: 1;
+    -webkit-transition: bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s;
+    -moz-transition: bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s;
+    transition: bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s; }
     .-navbar._bottom_._hidden_ {
-      bottom: -100%; }
+      bottom: -100%;
+      opacity: 0; }
   .-navbar.-default- {
     background-color: #fafafa;
     border-color: #ededed; }

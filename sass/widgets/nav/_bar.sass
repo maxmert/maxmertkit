@@ -107,16 +107,20 @@
 
 		&.#{$mod-top}
 			top: 0
-			@include transition (top 1.5s ease-out 0s)
+			opacity: 1
+			@include transition (top 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
 			&.#{$mod-hidden}
 				top: -100%
+				opacity: 0
 
 
 		&.#{$mod-bottom}
 			bottom: 0
-			@include transition (bottom 1.5s ease-out 0s)
+			opacity: 1
+			@include transition (bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
 			&.#{$mod-hidden}
 				bottom: -100%
+				opacity: 0
 
 
 		@each $theme in $themes
@@ -152,3 +156,6 @@
 					@extend .#{$button-class}.#{$size}
 				.#{$group-class}
 					@extend .#{$group-class}.#{$size}
+	._no-scroll_
+		.#{$nav-bar-class}
+			@extend .#{$nav-bar-class}.#{$mod-top}.#{$mod-hidden}
