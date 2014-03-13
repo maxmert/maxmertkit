@@ -222,19 +222,21 @@ _activate = ->
 		
 		translate = "translateX(#{@_touchDeltaX}px)"
 		
-		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 and Math.abs(@_touchDeltaY) < 10
+		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
 			@_touchItemStyle.webkitTransform = translate
 			@_touchItemStyle.MozTransform = translate
 			@_touchItemStyle.transform = translate
 
-		else
-			if @_touchScrollStart - @_touchDeltaY < 0
-				translate = "scale(#{($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()}, #{($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()})"
-				@$el[0].style.webkitTransform = translate
-				@$el[0].style.MozTransform = translate
-				@$el[0].style.transform = translate
-			else
-				@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+		if Math.abs(@_touchDeltaY) > 10
+			# if @_touchScrollStart - @_touchDeltaY < 0
+			# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
+			# 	translate = "scale(#{percent}, #{percent})"
+				
+			# 	@$el[0].style.webkitTransform = translate
+			# 	@$el[0].style.MozTransform = translate
+			# 	@$el[0].style.transform = translate
+			# else
+			@$el.scrollTop @_touchScrollStart - @_touchDeltaY
 
 	@$el[0].addEventListener "touchend", ( event ) =>
 		event.preventDefault()
@@ -260,22 +262,20 @@ _activate = ->
 		@_gestureItemStyle = @_gestureItem[0].style
 
 	@$el[0].addEventListener "gesturechange", ( event ) =>
-		translate = "scale(#{event.scale}, #{event.scale})"
+		opacity = "#{event.scale}"
 		
 		if @_gestureItemStyle?
-			@_gestureItemStyle.webkitTransform = translate
-			@_gestureItemStyle.MozTransform = translate
-			@_gestureItemStyle.transform = translate
+			@_gestureItemStyle.opacity = opacity
 	
 	@$el[0].addEventListener "gestureend", ( event ) =>
 		if event.scale < 1
 			@deactivate()
 
-		translate = "scale(1, 1)"
-		if @_gestureItemStyle?
-			@_gestureItemStyle.webkitTransform = translate
-			@_gestureItemStyle.MozTransform = translate
-			@_gestureItemStyle.transform = translate
+		# translate = "scale(1, 1)"
+		# if @_gestureItemStyle?
+		# 	@_gestureItemStyle.webkitTransform = translate
+		# 	@_gestureItemStyle.MozTransform = translate
+		# 	@_gestureItemStyle.transform = translate
 
 		@_gestureItem = @_gestureItemStyle = null
 		

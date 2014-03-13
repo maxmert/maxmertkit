@@ -2945,6 +2945,12 @@ a.-avatar {
   -webkit-transition: opacity 0.3s ease-out 0;
   -moz-transition: opacity 0.3s ease-out 0;
   transition: opacity 0.3s ease-out 0;
+  -webkit-perspective: 300px;
+  -moz-perspective: 300px;
+  perspective: 300px;
+  -webkit-perspective-origin: 50% 50%;
+  -moz-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%;
   background-color: rgba(0, 0, 0, 0.9);
   color: #cccccc; }
   .-carousel .-holder {
