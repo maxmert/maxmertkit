@@ -16,7 +16,7 @@ class Modal extends MaxmertkitHelpers
 			toggle: @$btn.data('toggle') or 'modal'		# To automatically find elements which toggle modal windows
 			event: "click.#{@_name}"					# Event on button to open modal
 			eventClose: "click.#{@_name}"				# Event on close elements to close modal
-			backdrop: no								# Close modal on click on backdrop
+			backdrop: @$btn.data('backdrop') or no		# Close modal on click on backdrop
 		
 		@options = @_merge _options, @options
 		
@@ -37,12 +37,14 @@ class Modal extends MaxmertkitHelpers
 		# Set close on backdrop event
 		if @options.backdrop
 			@$el.on "click.#{@_name}", ( event ) =>
-				if $(event.target).hasClass '-modal _active_'
+				if $(event.target).hasClass('-modal _active_') or $(event.target).hasClass('-carousel')
 					@close()
 
 		# Find dismiss buttons inside modal window
 		@$el.find("*[data-dismiss='modal']").on @options.event, =>
 			@close()
+
+		@close()
 
 		super @$btn, @options
 
@@ -89,7 +91,11 @@ _beforeopen = ->
 # Opens modal
 # and triggers onopen
 _open = ->
-	@$el.addClass '_active_'
+	@$el.css display: 'block'
+	setTimeout =>
+		@$el.addClass '_active_'
+	, 1
+	$('body').addClass '_no-scroll_'
 	@$el.trigger "opened.#{@_name}"
 	if @onopen?
 		try
@@ -121,6 +127,10 @@ _beforeclose = ->
 # and triggers onclose
 _close = ->
 	@$el.removeClass '_active_'
+	setTimeout =>
+		@$el.css display: 'none'
+	, 500
+	$('body').removeClass '_no-scroll_'
 	@$el.trigger "closed.#{@_name}"
 	if @onclose?
 		try
@@ -142,3 +152,8 @@ $.fn[_name] = (options) ->
 			else
 				(if typeof options is "string" and options.charAt(0) isnt "_" then $.data(@, "kit-" + _name)[options] else console.error("Maxmertkit error. You passed into the #{_name} something wrong."))
 		return
+
+$(window).on 'load', ->
+	$('[data-toggle="modal"]').each ->
+		$modal = $(@)
+		$modal.modal($modal.data())

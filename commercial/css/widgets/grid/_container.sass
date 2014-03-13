@@ -1,0 +1,22 @@
+@include exports("grid/container")
+
+	.#{$container-class}
+		@include outer-container
+
+	@include media(new-breakpoint(min-width 1200px 6))
+		$max-width: em($base-screen-huge) !global
+		.#{$container-class}
+			@include outer-container
+
+
+	@include media(new-breakpoint(max-width 1200px 6))
+		$max-width: em($base-screen-small) !global
+		.#{$container-class}
+			@include outer-container
+
+	@include media(new-breakpoint(max-width 768px 6))
+		$max-width: em($base-screen-tiny) !global
+		.#{$container-class}
+			@include outer-container
+			padding: 0 10px
+		

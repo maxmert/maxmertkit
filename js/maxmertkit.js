@@ -71,6 +71,12 @@
       return _results;
     };
 
+    MaxmertkitHelpers.prototype._setTransform = function(style, transform) {
+      style.webkitTransform = transform;
+      style.MozTransform = transform;
+      return style.transform = transform;
+    };
+
     MaxmertkitHelpers.prototype._equalNodes = function(node1, node2) {
       return node1.get(0) === node2.get(0);
     };
@@ -105,7 +111,7 @@
     };
 
     MaxmertkitHelpers.prototype._getScrollParent = function(el) {
-      var parent, style, _ref;
+      var parent, style;
       parent = el[0] || el;
       while (parent = parent.parentNode) {
         try {
@@ -115,12 +121,7 @@
           return $(parent);
         }
         if (((style.webkitPerspective != null) && style.webkitPerspective !== 'none') || ((style.mozPerspective != null) && style.mozPerspective !== 'none') || ((style.perspective != null) && style.perspective !== 'none')) {
-          return parent;
-        }
-        if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x'])) {
-          if (position !== 'absolute' || ((_ref = style['position']) === 'relative' || _ref === 'absolute' || _ref === 'fixed')) {
-            return parent;
-          }
+          return $(parent);
         }
       }
       return $(document);
@@ -640,7 +641,7 @@
         toggle: this.$btn.data('toggle') || 'modal',
         event: "click." + this._name,
         eventClose: "click." + this._name,
-        backdrop: false
+        backdrop: this.$btn.data('backdrop') || false
       };
       this.options = this._merge(_options, this.options);
       this.beforeopen = this.options.beforeopen;
@@ -656,7 +657,7 @@
       if (this.options.backdrop) {
         this.$el.on("click." + this._name, (function(_this) {
           return function(event) {
-            if ($(event.target).hasClass('-modal _active_')) {
+            if ($(event.target).hasClass('-modal _active_') || $(event.target).hasClass('-carousel')) {
               return _this.close();
             }
           };
@@ -667,6 +668,7 @@
           return _this.close();
         };
       })(this));
+      this.close();
       Modal.__super__.constructor.call(this, this.$btn, this.options);
     }
 
@@ -710,7 +712,15 @@
   };
 
   _open = function() {
-    this.$el.addClass('_active_');
+    this.$el.css({
+      display: 'block'
+    });
+    setTimeout((function(_this) {
+      return function() {
+        return _this.$el.addClass('_active_');
+      };
+    })(this), 1);
+    $('body').addClass('_no-scroll_');
     this.$el.trigger("opened." + this._name);
     if (this.onopen != null) {
       try {
@@ -743,6 +753,14 @@
 
   _close = function() {
     this.$el.removeClass('_active_');
+    setTimeout((function(_this) {
+      return function() {
+        return _this.$el.css({
+          display: 'none'
+        });
+      };
+    })(this), 500);
+    $('body').removeClass('_no-scroll_');
     this.$el.trigger("closed." + this._name);
     if (this.onclose != null) {
       try {
@@ -768,6 +786,14 @@
       }
     });
   };
+
+  $(window).on('load', function() {
+    return $('[data-toggle="modal"]').each(function() {
+      var $modal;
+      $modal = $(this);
+      return $modal.modal($modal.data());
+    });
+  });
 
 }).call(this);
 

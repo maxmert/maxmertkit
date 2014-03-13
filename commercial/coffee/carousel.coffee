@@ -18,7 +18,7 @@ class Carousel extends MaxmertkitHelpers
 		
 		_options =
 			kind: @$el.data('kind') or 'carousel'
-			group: @$el.data('group') or 'carousel'
+			# group: @$el.data('group') or 'carousel'
 			itemSelector: @$el.data('items') or '.-item'
 			arrowsSelector: @$el.data('arrows') or '.-arrow'
 			closer: @$el.data('closer') or '.-close'
@@ -33,10 +33,9 @@ class Carousel extends MaxmertkitHelpers
 
 		super @$el, @options
 
-		@$holder = @$el.find '.-holder'
 		@_setOptions @options
 
-		@$el.css display: 'none'
+		@activate()
 
 	
 	_setOptions: ( options ) ->
@@ -48,33 +47,20 @@ class Carousel extends MaxmertkitHelpers
 
 			switch key
 
-				when 'group'
-					if value
-						@[key] = @options[key]
-						_refreshItems.call @
-						_refreshTriggers.call @
-
-
-
-				when 'closer'
-					if value
-						@[key] = @options[key]
-						@$closer = @$el.find value
-						@$closer.on "click.#{@_name}.#{@_id}", =>
-							@deactivate()
-
-
 				when 'arrowsSelector'
 					if value
 						@[key] = @options[key]
+						
+						# Deinitialize old one
+						if @$arrowRight? then @$arrowRight.off ".#{@_name}.#{@_id}"
+						if @$arrowLeft? then @$arrowLeft.off ".#{@_name}.#{@_id}"
+
+						# Initialize new one
 						@$arrowLeft = @$el.find "#{value}._left_"
 						@$arrowRight = @$el.find "#{value}._right_"
 
-						@$arrowRight.on "click.#{@_name}.#{@_id}", =>
-							@activateNextItem()
-
-						@$arrowLeft.on "click.#{@_name}.#{@_id}", =>
-							@activatePrevItem()
+						@$arrowRight.on "click.#{@_name}.#{@_id}", => @activateNextItem()
+						@$arrowLeft.on "click.#{@_name}.#{@_id}", => @activatePrevItem()
 
 
 				else
@@ -100,7 +86,6 @@ class Carousel extends MaxmertkitHelpers
 
 
 	activateNextItem: ->
-		# item.addClass '_active_'
 		if @items?
 			i = _findActiveItem.call @
 			
@@ -117,11 +102,9 @@ class Carousel extends MaxmertkitHelpers
 					i++
 
 			@items[i].addClass '_right_'
-			# _activateItem.call @, @items[i]
 
 
 	activatePrevItem: ->
-		# item.addClass '_active_'
 		if @items?
 			i = _findActiveItem.call @
 			
@@ -148,7 +131,11 @@ class Carousel extends MaxmertkitHelpers
 
 
 
+
+
 # =============== Private methods
+
+
 _findActiveItem = ->
 	i = 0
 	while i + 1 < @items.length and not @items[i].hasClass('_left_') and not @items[i].hasClass('_right_')
@@ -157,11 +144,6 @@ _findActiveItem = ->
 
 _deactivateItem = ( item ) ->
 	item.removeClass '_left_ _right_'
-
-_refreshTriggers = ->
-	for trigger in $(document).find( "[data-trigger='#{@_name}'][data-trigger-group='#{@options.group}']" )
-		$(trigger).on "click.#{@_name}.#{@_id}", =>
-			@activate()
 
 _refreshItems = ->
 	@items = []
@@ -172,18 +154,6 @@ _refreshItems = ->
 		@items.push $(item)
 	
 	@activateNextItem.call @
-
-
-# _ongoingTouchIndexById = (idToFind) ->
-# 	i = 0
-
-# 	while i < ongoingTouches.length
-# 		id = ongoingTouches[i].identifier
-# 		return i  if id is idToFind
-# 		i++
-# 	-1 # not found
-
-
 
 
 _beforeactive = ->
@@ -206,89 +176,89 @@ _beforeactive = ->
 
 
 _activate = ->
+	_refreshItems.call @
 
-	@$el[0].addEventListener "touchstart", ( event ) =>
-		event.preventDefault()
-		@_touchStartX = parseInt(event.touches[0].clientX)
-		@_touchStartY = parseInt(event.touches[0].clientY)
-		@_touchItem = @items[ _findActiveItem.call(@) ]
-		@_touchItemStyle = @_touchItem[0].style
-		@_touchScrollStart = @$el.scrollTop()
 
-	@$el[0].addEventListener "touchmove", ( event ) =>
-		event.preventDefault()
-		@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
-		@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
+	# @$el[0].addEventListener "touchstart", ( event ) =>
+	# 	event.preventDefault()
+	# 	@_touchStartX = parseInt(event.touches[0].clientX)
+	# 	@_touchStartY = parseInt(event.touches[0].clientY)
+	# 	@_touchItem = @items[ _findActiveItem.call(@) ]
+	# 	@_touchItemStyle = @_touchItem[0].style
+	# 	@_touchScrollStart = @$el.scrollTop()
+
+	# @$el[0].addEventListener "touchmove", ( event ) =>
+	# 	event.preventDefault()
+	# 	@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
+	# 	@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
 		
-		translate = "translateX(#{@_touchDeltaX}px)"
+	# 	translate = "translateX(#{@_touchDeltaX}px)"
 		
-		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
-			@_touchItemStyle.webkitTransform = translate
-			@_touchItemStyle.MozTransform = translate
-			@_touchItemStyle.transform = translate
+	# 	if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
+	# 		@_touchItemStyle.webkitTransform = translate
+	# 		@_touchItemStyle.MozTransform = translate
+	# 		@_touchItemStyle.transform = translate
 
-		if Math.abs(@_touchDeltaY) > 10
-			# if @_touchScrollStart - @_touchDeltaY < 0
-			# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
-			# 	translate = "scale(#{percent}, #{percent})"
+	# 	if Math.abs(@_touchDeltaY) > 10
+	# 		# if @_touchScrollStart - @_touchDeltaY < 0
+	# 		# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
+	# 		# 	translate = "scale(#{percent}, #{percent})"
 				
-			# 	@$el[0].style.webkitTransform = translate
-			# 	@$el[0].style.MozTransform = translate
-			# 	@$el[0].style.transform = translate
-			# else
-			@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+	# 		# 	@$el[0].style.webkitTransform = translate
+	# 		# 	@$el[0].style.MozTransform = translate
+	# 		# 	@$el[0].style.transform = translate
+	# 		# else
+	# 		@$el.scrollTop @_touchScrollStart - @_touchDeltaY
 
-	@$el[0].addEventListener "touchend", ( event ) =>
-		event.preventDefault()
-		if Math.abs( @_touchDeltaX ) > 60
-			if @_touchDeltaX < 0
-				@activateNextItem()
-			else
-				@activatePrevItem()
+	# @$el[0].addEventListener "touchend", ( event ) =>
+	# 	event.preventDefault()
+	# 	if Math.abs( @_touchDeltaX ) > 60
+	# 		if @_touchDeltaX < 0
+	# 			@activateNextItem()
+	# 		else
+	# 			@activatePrevItem()
 
 
-		translate = "translateX(0px) translateY(0px)"		
+	# 	translate = "translateX(0px) translateY(0px)"		
 		
-		if @_touchItemStyle?
-			@_touchItemStyle.webkitTransform = translate
-			@_touchItemStyle.MozTransform = translate
-			@_touchItemStyle.transform = translate
+	# 	if @_touchItemStyle?
+	# 		@_touchItemStyle.webkitTransform = translate
+	# 		@_touchItemStyle.MozTransform = translate
+	# 		@_touchItemStyle.transform = translate
 
-		@_touchStartX = @_touchStartY = @_touchItem = @_touchItemStyle = @_touchDelta = null
+	# 	@_touchStartX = @_touchStartY = @_touchItem = @_touchItemStyle = @_touchDelta = null
 	
 	
-	@$el[0].addEventListener "gesturestart", ( event ) =>
-		@_gestureItem = @items[ _findActiveItem.call(@) ]
-		@_gestureItemStyle = @_gestureItem[0].style
+	# @$el[0].addEventListener "gesturestart", ( event ) =>
+	# 	@_gestureItem = @items[ _findActiveItem.call(@) ]
+	# 	@_gestureItemStyle = @_gestureItem[0].style
 
-	@$el[0].addEventListener "gesturechange", ( event ) =>
-		opacity = "#{event.scale}"
+	# @$el[0].addEventListener "gesturechange", ( event ) =>
+	# 	opacity = "#{event.scale}"
 		
-		if @_gestureItemStyle?
-			@_gestureItemStyle.opacity = opacity
+	# 	if @_gestureItemStyle?
+	# 		@_gestureItemStyle.opacity = opacity
 	
-	@$el[0].addEventListener "gestureend", ( event ) =>
-		if event.scale < 1
-			@deactivate()
+	# @$el[0].addEventListener "gestureend", ( event ) =>
+	# 	if event.scale < 1
+	# 		@deactivate()
 
-		# translate = "scale(1, 1)"
-		# if @_gestureItemStyle?
-		# 	@_gestureItemStyle.webkitTransform = translate
-		# 	@_gestureItemStyle.MozTransform = translate
-		# 	@_gestureItemStyle.transform = translate
+	# 	# translate = "scale(1, 1)"
+	# 	# if @_gestureItemStyle?
+	# 	# 	@_gestureItemStyle.webkitTransform = translate
+	# 	# 	@_gestureItemStyle.MozTransform = translate
+	# 	# 	@_gestureItemStyle.transform = translate
 
-		@_gestureItem = @_gestureItemStyle = null
+	# 	@_gestureItem = @_gestureItemStyle = null
 		
 
-
-	$('body').addClass '_no-scroll_'
-	clearTimeout(@deactivateTimer) if @deactivateTimer?
-	@$el.css display: 'block'
 	@$el.addClass '_active_'
 	@$el.trigger "activated.#{@_name}"
 	if @onactive?
 		try
 			@onactive.call @$el
+
+	# _refreshItemsPosition.call @
 
 
 
@@ -312,10 +282,7 @@ _beforeunactive = ->
 
 _deactivate = ->
 	@$el.removeClass '_active_'
-	@deactivateTimer = setTimeout =>
-		@$el.css display: 'none'
-	, 800
-	$('body').removeClass '_no-scroll_'
+	
 	@$el.trigger "deactivated.#{@_name}"
 	if @onunactive?
 		try

@@ -30,7 +30,7 @@ path =
 		'coffee/maxmertkit.coffee'
 		'coffee/*.coffee'
 	]
-	maxmertkitCss: 'sass/**/main.sass'
+	maxmertkitCss: 'sass/**/*.sass'
 
 
 

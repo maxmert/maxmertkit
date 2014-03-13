@@ -45,34 +45,18 @@ class Skyline extends MaxmertkitHelpers
 			if not @options[key]?
 				return console.error "Maxmertkit Skyline. You're trying to set unpropriate option."
 
-			switch key
-
-				when 'image'
-					@$image = @options.image
-
-				else
-					@options[key] = value
-					if typeof value is 'function'
-						@[key] = @options[key]
+			@options[key] = value
+			if typeof value is 'function'
+				@[key] = @options[key]
 
 
 
 	destroy: ->
-		$(@scroll).off ".#{@_name}"
-		$(window).off ".#{@_name}"
+		$(@scroll).off ".#{@_name}.#{@_id}"
+		$(window).off ".#{@_name}.#{@_id}"
 		super
 
-	_isActive: ->
-		@$el.hasClass @options.activeClass
-
-	_checkActivation: ->
-		if @_isVisible()
-			if not @_isActive()
-				@showTimer = setTimeout =>
-					@show()
-				, @options.delay
-		else
-			@hide()
+	
 	activate: ->
 		@$el.addClass @options.class
 		@scroll = @_getScrollParent(@$el)
@@ -82,9 +66,9 @@ class Skyline extends MaxmertkitHelpers
 			@_refreshSizes()
 
 		$(@scroll).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-			@_checkActivation()
+			_checkActivation.call @
 
-		@_checkActivation()
+		_checkActivation.call @
 				
 			
 	hide: ->
@@ -100,6 +84,18 @@ class Skyline extends MaxmertkitHelpers
 
 
 # =============== Private methods
+
+_checkActivation = ->
+	if @_isVisible()
+		if not _isActive.call @
+			@showTimer = setTimeout =>
+				@show()
+			, @options.delay
+	else
+		@hide()
+
+_isActive = ->
+	@$el.hasClass @options.activeClass
 
 $.fn[_name] = (options) ->
 	@each ->

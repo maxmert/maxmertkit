@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		
-		<nav class="-navbar _top_" style="background-color: rgb(30, 30, 30)" data-kind="navbar">
+		<nav class="-navbar-float -dark- _top_" data-kind="navbar">
 			<div class="-container">
 				<div class="-col1 -offset2">
 					<a class="logo" href="/">
@@ -23,21 +23,30 @@
 					</a>
 				</div>
 				<div class="-col5">
-					<ul class="-menu -dark- _invert_">
-						<li>
-							<a>free kit</a>
-						</li>
-						<li class="_active_">
-							<a>warp1</a>
-						</li>
-					</ul>
-					&nbsp;
-					<a class="-btn -error-">buy</a>
+					<div class="_visible-desktops_ _visible-large-desktops_">
+						<ul class="-menu -dark- _invert_">
+							<li>
+								<a>free kit</a>
+							</li>
+							<li class="_active_">
+								<a>warp1</a>
+							</li>
+						</ul>
+						&nbsp;
+						<a class="-btn -error-">buy</a>
+					</div>
+
+					<a class="-navbar-toggle _hidden-desktops_ _hidden-large-desktops_ -btn"><i class="fa fa-th-list"></i></a>
 				</div>
 			</div>
 		</nav>
 
 		<div class="-nav-bullets _right_" data-kind="wall-nav" data-group="wall1"></div>
+
+
+
+
+
 
 
 		<section data-kind="wall" data-group="wall1" data-name="Hero" data-zoom="yes" class="-hero _invert_">
@@ -93,7 +102,14 @@
 
 		</section>
 
-		<section data-kind="wall" data-group="wall1" data-name="Hero" class="-hero -developer-post">
+
+
+
+
+
+
+
+		<section data-kind="wall" data-group="wall1" data-name="Text Hero" class="-hero -developer-post">
 			<div class="-container">
 				<div class="-col6 -offset3">
 					<p>
@@ -109,7 +125,7 @@
 					</p>
 
 					<figure data-kind="skyline" class="-thumbnail">
-						<a class="-shadow-lifted-" data-trigger="carousel" data-trigger-group="carousel1">
+						<a class="-shadow-lifted-" data-toggle="modal" data-backdrop="true" data-target="#modal1">
 							<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
 						</a>
 						<figcaption class="-thumbnail-caption _left_">
@@ -144,6 +160,12 @@
 				</div>
 			</div>
 		</section>
+
+
+
+
+
+
 
 
 
@@ -209,35 +231,199 @@
 
 
 
+
+
+
+
+
 		<div id="carousel1" data-kind="carousel" data-group="carousel1" class="-carousel">
 
-			<svg class="-close _big" data-dismiss="carousel" x="0px" y="0px" viewBox="0 0 600 600">
+				<div class="-arrow _left_">
+					<svg viewBox="-10 0 70 100"><path d="M50,100L0,50L50,0"></path></svg>
+				</div>
+				<div class="-arrow _right_">
+					<svg viewBox="-10 0 70 100"><path d="M0,0l50,50L0,100"></path></svg>
+				</div>
+				
+
+				
+				<div class="-holder">
+						
+
+
+						<section class="-item -wall _invert_" data-kind="wall" data-name="Hero" data-zoom="yes">
+
+							<header class="-header">
+				
+								<div class="-content -container">
+									<div class="-col4 -offset4">
+										
+										<h3>
+											<span class="tk-jaf-bernina-sans">All at the tip of your fingers</span>
+										</h3>
+										<h4 class="tk-jaf-bernina-sans subtitle">Who doesn’t like a neat hyperlink in their documents?</h4>
+
+										<div style="text-align: center">
+											<svg class="-play _hidden-tablets_ _hidden-phones_" viewBox="-15 -15 55 60">
+												<circle cx="13" cy="15" r="23"></circle>
+												<path d="M6.684,25.682L24.316,15.5L6.684,5.318V25.682z"></path>
+											</svg>
+										</div>
+
+									</div>
+								</div>
+
+								<svg class="-scroller _major" viewBox="-14 -24 55 60">
+									<circle cx="14" cy="6" r="27"></circle>
+									<path d="M0,0l14,14L29,0"/>
+								</svg>
+
+							</header>
+
+							<div class="-wall-video">
+								<video preload="" autoplay="" loop="" muted="" volume="0">
+									<source src="http://designmodo.com/storage/startuppreview.mp4" type="video/mp4">
+									<source src=" http://designmodo.com/storage/startuppreview.webm" type="video/webm">
+									<source src=" http://designmodo.com/storage/startuppreview.ogg" type="video/ogg">
+								</video>
+							</div>
+
+							<div class="-caption">
+								<div class="-container">
+									<div class="-row">
+										<div class="-col8 -offset2">
+											<p>
+												How many times have you left where you were typing in the document, went to a new tab in your browser, searched to get a link to paste as a hyperlink? Well no more running around the tabs, you say hyperlink, we bring you Google search at your finger tips, but not just that, how about we search in your documents as well and show results based on your search history.
+											</p>
+
+											<p>
+												Some reactions are just too predicatable, I mean well, if someone sends you an invitation to a dropbox folder, “Duah” you probably want to open it! And of course, I want to be friends on foursquare too! So why go to that other app and do that action, when Google knows what you want to do next and can bring it to you at the tip of your fingers even without opening the email.
+											</p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</section>
+
+
+
+
+						<div class="-item">
+							<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+						</div>
+					
+
+
+						<section class="-item -hero _invert_" data-kind="wall" data-group="wall1" data-name="Carousel" data-zoom="yes">
+
+							<header class="-header">
+								
+								<div class="-container">
+									
+									<div class="-col6 -offset3">
+										
+										<h1>
+											<span class="tk-jaf-bernina-sans">Maxmertkit</span> <span class=" -primary- tk-raleway">warp1</span>
+										</h1>
+										<h4 class="tk-jaf-bernina-sans subtitle">Learn more about it in the light demo version.</h4>
+
+										<small>
+											<a href="" class="-avatar _round_">
+												<div class="-thumbnail">
+													<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1/c0.28.150.150/35079_103585023028528_4592910_a.jpg?lvh=1" alt="Santi Urso">
+												</div>Maxmert
+											</a> from Moscow
+										</small>
+									
+									</div>
+
+								</div>
+
+							</header>
+
+							<div class="-hero-image" data-kind="tilt">
+								
+								<div class="-thumbnail">
+									
+									<figure>
+										<img src="/img/space.jpg">
+										<figcaption>
+											<h4>K1-256 Nebula <small>1M Lightyears</small></h4>
+										</figcaption>
+									</figure>
+
+								</div>
+								
+								<div class="-tilt">
+									<span class="-tilt-handle"></span>
+								</div>
+
+							</div>
+
+							<svg class="-scroller _major" viewBox="-14 -24 55 60">
+								<circle cx="14" cy="6" r="27"></circle>
+								<path d="M0,0l14,14L29,0"/>
+							</svg>
+
+						</section>
+
+
+
+
+						
+				</div>
+				
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div id="modal1" class="-modal">
+			<svg class="-close _big" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
 				<circle cx="300" cy="300" r="260"></circle>
 				<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "></polygon>
 			</svg>
 
-			<div class="-arrow _left_">
-				<svg viewBox="-10 0 70 100"><path d="M50,100L0,50L50,0"></path></svg>
-			</div>
-			<div class="-arrow _right_">
-				<svg viewBox="-10 0 70 100"><path d="M0,0l50,50L0,100"></path></svg>
-			</div>
-			
 
-			
-			<div class="-holder">
-				<div class="-item">
-					<span id="logg"></span>
-					<img src="http://designmodo.com/wp-content/themes/designmodov2.1/custom-pages/startup/presentation/img/components-large/projects.jpg">
+				<div id="carousel1" data-kind="carousel" data-group="carousel1" class="-carousel">
+
+					<div class="-arrow _left_">
+						<svg viewBox="-10 0 70 100"><path d="M50,100L0,50L50,0"></path></svg>
+					</div>
+					<div class="-arrow _right_">
+						<svg viewBox="-10 0 70 100"><path d="M0,0l50,50L0,100"></path></svg>
+					</div>
+					
+
+					
+					<div class="-holder">
+						<div class="-item">
+							<span id="logg"></span>
+							<img src="http://designmodo.com/wp-content/themes/designmodov2.1/custom-pages/startup/presentation/img/components-large/projects.jpg">
+						</div>
+						<div class="-item">
+							<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
+						</div>
+						<div class="-item">
+							<img src="/img/space2.jpg">
+						</div>
+					</div>
+					
 				</div>
-				<div class="-item">
-					<img src="http://farm9.staticflickr.com/8238/8517415655_ac223034a7_b.jpg">
-				</div>
-				<div class="-item">
-					<img src="/img/space2.jpg">
-				</div>
-			</div>
-			
+
 		</div>
 
 <!-- 

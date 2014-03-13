@@ -626,8 +626,7 @@ $animations-fall-delay: 0.1s !global
 	
 	.#{$animations-fall-class}
 		opacity: 0
-		visibility: hidden
-		@include transition-property (transform, opacity, visibility)
+		@include transition-property (transform, opacity)
 		@include transition-duration($animations-fall-duration)
 		@include transition-timing-function($animations-fall-timing-function)
 		@include transition-delay($animations-fall-delay)
@@ -640,7 +639,6 @@ $animations-fall-delay: 0.1s !global
 
 	
 		&.#{$animation-start-class}
-			visibility: visible
 			opacity: 1
 			@include transform(translateZ(0px) rotateX(0deg))
 

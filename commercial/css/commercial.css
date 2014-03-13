@@ -2571,7 +2571,9 @@ a.-avatar {
       height: 6em;
       overflow: hidden; }
       .-wall .-wall-image figure figcaption:after {
-        display: block; } }
+        display: block; }
+    .-wall .-wall-video video {
+      min-height: inherit; } }
 .-tilt {
   display: none;
   position: absolute;
@@ -2933,24 +2935,12 @@ a.-avatar {
   to {
     transform: translateX(0px); } }
 .-carousel {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow-y: auto;
+  display: block;
   overflow-x: hidden;
-  opacity: 0;
-  z-index: -10;
-  -webkit-transition: opacity 0.3s ease-out 0;
-  -moz-transition: opacity 0.3s ease-out 0;
-  transition: opacity 0.3s ease-out 0;
-  -webkit-perspective: 300px;
-  -moz-perspective: 300px;
-  perspective: 300px;
-  -webkit-perspective-origin: 50% 50%;
-  -moz-perspective-origin: 50% 50%;
-  perspective-origin: 50% 50%;
+  position: relative;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   color: #cccccc; }
   .-carousel .-holder {
@@ -2960,9 +2950,10 @@ a.-avatar {
     position: absolute;
     left: 50%;
     width: 100%;
+    height: 100%;
     -webkit-backface-visibility: hidden; }
   .-carousel .-arrow {
-    position: fixed;
+    position: absolute;
     top: 50%;
     margin-top: -50px;
     width: 50px;
@@ -2970,7 +2961,8 @@ a.-avatar {
     cursor: pointer;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out; }
+    transition: all 0.3s ease-out;
+    z-index: 7; }
     .-carousel .-arrow svg {
       width: 100%;
       height: 100%; }
@@ -3009,11 +3001,13 @@ a.-avatar {
     top: 0;
     opacity: 0;
     max-width: 80%;
+    max-height: 80%;
     -webkit-transition: opacity 0.3s ease-out;
     -moz-transition: opacity 0.3s ease-out;
     transition: opacity 0.3s ease-out; }
     .-carousel .-item img {
-      max-width: 100%; }
+      max-width: 100%;
+      max-height: 90%; }
     .-carousel .-item._left_ {
       -webkit-animation: prev-animation 0.5s cubic-bezier(0.47, 0.01, 0.35, 1.61);
       -moz-animation: prev-animation 0.5s cubic-bezier(0.47, 0.01, 0.35, 1.61);
@@ -3028,114 +3022,36 @@ a.-avatar {
       opacity: 1; }
       .-carousel .-item._right_ img {
         display: block !important; }
-  .-carousel .-close {
-    background-color: transparent;
-    position: fixed;
-    z-index: 1;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-    -webkit-transition-property: -webkit-transform;
-    -moz-transition-property: -moz-transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.6s;
-    -moz-transition-duration: 0.6s;
-    transition-duration: 0.6s;
-    -webkit-transition-timing-function: cubic-bezier(0.47, 0.01, 0.26, 1.42);
-    -moz-transition-timing-function: cubic-bezier(0.47, 0.01, 0.26, 1.42);
-    transition-timing-function: cubic-bezier(0.47, 0.01, 0.26, 1.42);
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    transition-delay: 0s;
-    -webkit-transform: rotate(-270deg);
-    -moz-transform: rotate(-270deg);
-    -ms-transform: rotate(-270deg);
-    -o-transform: rotate(-270deg);
-    transform: rotate(-270deg);
-    width: 38px;
-    height: 38px; }
-    .-carousel .-close polygon, .-carousel .-close path {
-      opacity: 0.4;
-      -webkit-transition: opacity 0.3s ease-out 0;
-      -moz-transition: opacity 0.3s ease-out 0;
-      transition: opacity 0.3s ease-out 0; }
-    .-carousel .-close circle {
-      stroke-width: 0;
-      fill: transparent;
-      -webkit-transition: stroke-width 0.3s ease-out 0;
-      -moz-transition: stroke-width 0.3s ease-out 0;
-      transition: stroke-width 0.3s ease-out 0; }
-    .-carousel .-close:hover {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg); }
-      .-carousel .-close:hover circle {
-        stroke-width: 50; }
-      .-carousel .-close:hover polygon, .-carousel .-close:hover path {
-        opacity: 1; }
-    .-carousel .-close._tiny {
-      width: 9.5px;
-      height: 9.5px; }
-    .-carousel .-close._small {
-      width: 19px;
-      height: 19px; }
-    .-carousel .-close._minor {
-      width: 28.5px;
-      height: 28.5px; }
-    .-carousel .-close._normal {
-      width: 38px;
-      height: 38px; }
-    .-carousel .-close._major {
-      width: 47.5px;
-      height: 47.5px; }
-    .-carousel .-close._big {
-      width: 57px;
-      height: 57px; }
-    .-carousel .-close._huge {
-      width: 66.5px;
-      height: 66.5px; }
-    .-carousel .-close._giant {
-      width: 72.2px;
-      height: 72.2px; }
-    .-carousel .-close._divine {
-      width: 76px;
-      height: 76px; }
-  .-carousel .-close polygon, .-carousel .-close path {
-    fill: white; }
-  .-carousel .-close circle {
-    stroke: white; }
+    .-carousel .-item.-wall, .-carousel .-item.-hero {
+      max-width: 100%;
+      max-height: 100%;
+      height: 100%;
+      padding: 0; }
+      .-carousel .-item.-wall img, .-carousel .-item.-hero img {
+        max-height: inherit;
+        max-width: inherit; }
   .-carousel.-default- {
     background-color: rgba(0, 0, 0, 0.9);
     color: #cccccc; }
-    .-carousel.-default- .-close polygon, .-carousel.-default- .-close path {
-      fill: white; }
-    .-carousel.-default- .-close circle {
-      stroke: white; }
   .-carousel.-primary- {
     background-color: rgba(53, 152, 219, 0.9);
     color: white; }
-    .-carousel.-primary- .-close polygon, .-carousel.-primary- .-close path {
-      fill: white; }
-    .-carousel.-primary- .-close circle {
-      stroke: white; }
   .-carousel.-error- {
     background-color: rgba(205, 44, 36, 0.9);
     color: white; }
-    .-carousel.-error- .-close polygon, .-carousel.-error- .-close path {
-      fill: white; }
-    .-carousel.-error- .-close circle {
-      stroke: white; }
   .-carousel.-warning- {
     background-color: rgba(255, 196, 62, 0.9);
     color: white; }
-    .-carousel.-warning- .-close polygon, .-carousel.-warning- .-close path {
-      fill: white; }
-    .-carousel.-warning- .-close circle {
-      stroke: white; }
   .-carousel._active_ {
-    opacity: 1;
-    z-index: 1004; }
+    opacity: 1; }
+
+.-modal .-carousel {
+  overflow-y: auto;
+  height: 100%; }
+  .-modal .-carousel .-item {
+    max-height: inherit; }
+    .-modal .-carousel .-item img {
+      max-width: 100%;
+      max-height: inherit; }
 
 /*# sourceMappingURL=commercial.sass.map */

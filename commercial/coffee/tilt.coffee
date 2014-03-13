@@ -31,10 +31,6 @@ class Tilt extends MaxmertkitHelpers
 			image: @$el.find('.-thumbnail')
 			map: yes
 			
-			beforeactive: ->
-			onactive: ->
-			beforeunactive: ->
-			onunactive: ->
 		
 		@options = @_merge _options, @options
 
@@ -76,7 +72,7 @@ class Tilt extends MaxmertkitHelpers
 
 
 	destroy: ->
-		@$el.off ".#{@_name}"
+		@$el.off ".#{@_name}.#{@_id}"
 		$(window).off "resize.#{@_name}.#{@_id}"
 		window.removeEventListener 'deviceorientation'
 		window.removeEventListener 'orientationchange'
@@ -86,6 +82,8 @@ class Tilt extends MaxmertkitHelpers
 	activate: ->
 		@_orientation = (if window.orientation is 0 then "portrait" else "landscape")
 		_refreshImageData.call @
+		@_refreshSizes()
+		@scroll = @_getScrollParent(@$el)
 
 		if @$figureCaption.length
 			@$figureCaption.on "click.#{@_name}.#{@_id}", =>
@@ -95,40 +93,39 @@ class Tilt extends MaxmertkitHelpers
 			_refreshImageData.call @
 		
 		window.addEventListener 'deviceorientation', (e) =>
-			axis = _axisTable[@_orientation].x
-			angle = e[axis]
-			percent = (angle) / 30
-			if percent > 1 then percent = 1
-			if percent < -1 then percent = -1
-
-			px = ( @$el.width() - @_windowWidth / 2  ) * percent
+			
+			if @_isVisible()
 				
-			if @$img.width() > @_windowWidth
-				translate = "translateX(#{px}px)"
+				axis = _axisTable[@_orientation].x
+				angle = e[axis]
+				percent = (angle) / 30
+				if percent > 1 then percent = 1
+				if percent < -1 then percent = -1
 
-				if @style? and @style.left isnt "-50%"
-					@style.left = "-50%"
+				px = ( @$el.width() - @_windowWidth / 2  ) * percent
+					
+				if @$img.width() > @_windowWidth
+					translate = "translateX(#{px}px)"
 
-				if @style?
-					@style.webkitTransform = translate
-					@style.MozTransform = translate
-					@style.transform = translate
+					if @style? and @style.left isnt "-50%"
+						@style.left = "-50%"
 
-				# Move tilt map
-				if @$tiltHandle?
-					left = 100 - (percent + 1 ) / 2 * 100
-					if left < 10 then left = 10
-					if left > 90 then left = 90
-					@$figureCaption.css({ left: "#{@$el.width() * (percent + 1 ) / 2}px", opacity: (percent * (if percent > 0 then -2 else 3) + 1)}) if @$figureCaption.length
-					@$tiltHandle.css left: "#{left}%"
+					if @style?
+						@_setTransform @style, translate
 
-			else
-				translate = "translateX(0px)"
-				if @style? and @style.left isnt "0"
-					@style.left = "0"
-					@style.webkitTransform = translate
-					@style.MozTransform = translate
-					@style.transform = translate
+					# Move tilt map
+					if @$tiltHandle?
+						left = 100 - (percent + 1 ) / 2 * 100
+						if left < 10 then left = 10
+						if left > 90 then left = 90
+						@$figureCaption.css({ left: "#{@$el.width() * (percent + 1 ) / 2}px", opacity: (percent * (if percent > 0 then -2 else 3) + 1)}) if @$figureCaption.length
+						@$tiltHandle.css left: "#{left}%"
+
+				else
+					translate = "translateX(0px)"
+					if @style? and @style.left isnt "0"
+						@style.left = "0"
+						@_setTransform @style, translate
 		, false
 
 		window.addEventListener 'orientationchange', (e) =>

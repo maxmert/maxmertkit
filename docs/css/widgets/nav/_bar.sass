@@ -107,9 +107,20 @@
 
 		&.#{$mod-top}
 			top: 0
+			opacity: 1
+			@include transition (top 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
+			&.#{$mod-hidden}
+				top: -100%
+				opacity: 0
+
 
 		&.#{$mod-bottom}
 			bottom: 0
+			opacity: 1
+			@include transition (bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
+			&.#{$mod-hidden}
+				bottom: -100%
+				opacity: 0
 
 
 		@each $theme in $themes
@@ -123,15 +134,15 @@
 				&.#{$theme}
 					@include nav-theme-bar-setter($i)
 
-			&.#{$theme}
-				.#{$nav-menu-class}
-					@extend .#{$nav-menu-class}.#{$theme}
-				.#{$nav-pills-class}
-					@extend .#{$nav-pills-class}.#{$theme}
-				.#{$button-class}
-					@extend .#{$button-class}.#{$theme}
-				.#{$group-class}
-					@extend .#{$group-class}.#{$theme}
+			// &.#{$theme}
+			// 	.#{$nav-menu-class}
+			// 		@extend .#{$nav-menu-class}.#{$theme}
+			// 	.#{$nav-pills-class}
+			// 		@extend .#{$nav-pills-class}.#{$theme}
+			// 	.#{$button-class}
+			// 		@extend .#{$button-class}.#{$theme}
+			// 	.#{$group-class}
+			// 		@extend .#{$group-class}.#{$theme}
 
 		@each $size in $base-sizes-names
 			$i: index($base-sizes-names, $size)
@@ -145,3 +156,6 @@
 					@extend .#{$button-class}.#{$size}
 				.#{$group-class}
 					@extend .#{$group-class}.#{$size}
+	// ._no-scroll_
+	// 	.#{$nav-bar-class}
+	// 		@extend .#{$nav-bar-class}.#{$mod-top}.#{$mod-hidden}

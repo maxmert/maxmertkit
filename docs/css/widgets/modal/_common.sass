@@ -1,6 +1,19 @@
 @mixin modal-theme-setter($i)
 	background-color: rgba(nth($themes-colors, $i), $modal-background-opacity)
 
+	@if nth($themes, $i) == "-default-"
+		& > .#{$close-class}
+			polygon, path
+				fill: #fff
+			circle
+				stroke: #fff
+	@else
+		& > .#{$close-class}
+			polygon, path
+				fill: nth($themes-white-colors, $i)
+			circle
+				stroke: nth($themes-white-colors, $i)
+
 @mixin modal-header-theme-setter($i)
 	background-color: nth($themes-background-colors, $i)
 	@if nth($themes, $i) == "-default-"
@@ -21,6 +34,8 @@
 	.#{$header-class-name}
 		background-color: darken(nth($themes-background-colors, $i), 5%)
 		border-bottom-color: darken(nth($themes-background-colors, $i), 7%)
+
+
 	
 // color: nth($themes-white-colors, $i)
 
@@ -69,7 +84,6 @@
 		overflow-y: auto
 
 		opacity: 0
-		visibility: hidden
 		@include transition-property (opacity)
 		@include transition-duration($animations-fadein-duration)
 		@include transition-timing-function($animations-fadein-timing-function)
@@ -77,19 +91,68 @@
 		@include animation-play-state(paused)
 
 
+		& > .#{$close-class}
+			background-color: transparent
+			position: fixed
+			z-index: 1
+			top: $modal-dialog-padding-vertical
+			right: $modal-dialog-padding-horizontal
+			cursor: pointer
+
+			@include transition-property(transform)
+			@include transition-duration(0.6s)
+			@include transition-timing-function(cubic-bezier(.47,.01,.26,1.42))
+			@include transition-delay(0s)
+
+			@include transform(rotate(-270deg))
+
+			polygon, path
+				opacity: 0.4
+				@include transition(opacity 0.3s ease-out 0)
+
+			circle
+				stroke-width: 0
+				fill: transparent
+				@include transition(stroke-width 0.3s ease-out 0)
+
+
+			&:hover
+				circle
+					stroke-width: 50
+				polygon, path
+					opacity: 1
+				
+				@include transform(rotate(0deg))
+
+
+			// Set sizes
+			@each $size in $base-sizes-names
+				$i: index($base-sizes-names, $size)
+				$pixels: nth($base-sizes-values, $i) * $modal-dialog-close-size
+				@if $size == "_normal"
+					@include size( $pixels )
+				
+				&.#{$size}
+					@include size( $pixels )
+
+		.-arrow
+			position: fixed !important
+			
+
 		.#{$modal-dialog-class}
 			// margin: $modal-padding-vertical auto
 			// position: absolute
-			display: inline-block
 			float: none
-			height: auto
+			height: 100%
+
 			// margin-left: 50%
 			border-radius: $modal-dialog-border-radius
 			box-shadow: $modal-dialog-shadow
-			visibility: hidden
+			// visibility: hidden
 			// -webkit-font-smoothing: subpixel-antialiased
 			-webkit-backface-visibility: hidden
 			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
+			
 
 
 			@for $i from 1 through $column-quantity
@@ -119,7 +182,7 @@
 
 					@include transition-property(transform)
 					@include transition-duration(0.5s)
-					@include transition-timing-function(ease-out)
+					@include transition-timing-function(cubic-bezier(.47,.01,.26,1.42))
 					@include transition-delay(0s)
 
 					@include transform(rotate(-270deg))
@@ -161,8 +224,7 @@
 						@include modal-header-theme-setter($i)
 				
 
-
-		.-holder
+		& > .-holder
 			position: inherit
 			top: 50%
 			left: 50%
@@ -170,6 +232,10 @@
 			@include transform(translateY(-50%) translateX(-50%))
 			@include perspective(1300px)
 			@include perspective-origin(50% 50%)
+
+			.#{$modal-dialog-class}
+				width: inherit
+				display: inline-block
 
 
 
@@ -188,118 +254,9 @@
 
 		&.#{$mod-active}
 			opacity: 1
-			visibility: visible
+			// z-index: $modal-z-index
 
 			.#{$modal-dialog-class}
 				@extend .#{$animation-start-class}
-
-		// display: inline-block
-		// position: absolute
-		// top: 100%
-		// left: 0
-		// z-index: $dropdown-z-index
-		// border-width: $dropdown-border-width
-		// border-style: $dropdown-border-style
-		// border-color: transparent
-
-		// box-shadow: $dropdown-shadow
-
-		// background-color: nth($themes-background-light-colors, index($themes, "-default-"))
-		// border-color: lighten(nth($themes-background-colors, index($themes, "-default-")), 5%)
-
-		// .#{$content-class-name}, .#{$header-class-name}
-		// 	padding: $dropdown-content-padding-vertical $dropdown-content-padding-horizontal
-		// 	position: relative
-
-		// .#{$header-class-name}
-		// 	border-radius: $dropdown-border-radius $dropdown-border-radius 0 0
-		// 	top: -$dropdown-border-radius
-
-		// .#{$arrow-class-name}
-		// 	position: absolute
-		// 	bottom: 100%
-		// 	left: 50%
-		// 	margin-left: -$dropdown-arrow-size / 2
-		
-		// &:before
-		// 	content: " "
-		// 	display: block
-		// 	position: absolute
-		// 	top: inherit
-		// 	bottom: 100%
-		// 	height: $dropdown-border-width
-		// 	width: 100%
-
-		// &.#{$mod-bottom}
-		// 	&:before
-		// 		bottom: 100%
-		// 		top: inherit
-		// 		height: $dropdown-border-width
-		// 		width: 100%
-
-		
-		// &.#{$mod-top}
-		// 	top: inherit
-		// 	bottom: 100%
-			
-		// 	&:before
-		// 		content: " "
-		// 		display: block
-		// 		position: absolute
-		// 		top: 100%
-		// 		height: $dropdown-border-width
-		// 		width: 100%
-
-		// 	.#{$arrow-class-name}
-		// 		top: 100%
-		// 		left: 50%
-		// 		margin-left: -$dropdown-arrow-size / 2
-
-
-		// &.#{$mod-left}
-		// 	left: inherit
-		// 	right: 100%
-		// 	top: 0
-
-		// 	&:before
-		// 		content: " "
-		// 		display: block
-		// 		position: absolute
-		// 		top: 0
-		// 		left: 100%
-		// 		right: inherit
-		// 		height: 100%
-		// 		width: $dropdown-border-width
-
-		// 	.#{$arrow-class-name}
-		// 		top: 50%
-		// 		right: inherit
-		// 		left: 100%
-		// 		margin-top: -$dropdown-arrow-size / 2
-		// 		margin-left: 0
-
-
-		// &.#{$mod-right}
-		// 	right: inherit
-		// 	left: 100%
-		// 	top: 0
-
-		// 	&:before
-		// 		content: " "
-		// 		display: block
-		// 		position: absolute
-		// 		top: 0
-		// 		left: inherit
-		// 		right: 100%
-		// 		height: 100%
-		// 		width: $dropdown-border-width
-
-		// 	.#{$arrow-class-name}
-		// 		// bottom: inherit
-		// 		top: 50%
-		// 		left: inherit
-		// 		right: 100%
-		// 		margin-top: -$dropdown-arrow-size / 2
-		// 		margin-left: 0
 
 		

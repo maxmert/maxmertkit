@@ -70,10 +70,10 @@ class Wall extends MaxmertkitHelpers
 
 				when 'group'
 					i = 0
-					while i < @_nav.length and @_nav[i].data('group') isnt value
+					while i < @_nav.length and @_nav[i].data('group')? and @_nav[i].data('group') isnt value
 						i++
 
-					if not @_nav.length or @_nav[i].data('group') isnt value
+					if not @_nav? or not @_nav.length or not @_nav[i]? or not @_nav[i].data('group')? or @_nav[i].data('group') isnt value
 						$nav = $("[data-kind='wall-nav'][data-group='#{value}']")
 						if $nav.length then @_nav.push $nav
 
@@ -120,7 +120,7 @@ class Wall extends MaxmertkitHelpers
 
 		$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 
-			if not @deviceMobile
+			if not @deviceMobile and @_isVisible()
 				_parallax.call @
 				
 				

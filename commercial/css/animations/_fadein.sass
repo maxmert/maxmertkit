@@ -1,0 +1,20 @@
+$animations-fadein-class: "-fadein--" !global
+$animations-fadein-duration: 0.1s !global
+$animations-fadein-timing-function: ease-out !global
+$animations-fadein-delay: 0s !global
+
+
+
+@include exports("animations/fadein")
+	
+	.#{$animations-fadein-class}
+		opacity: 0
+		visibility: hidden
+		@include transition-property (opacity, visibility)
+		@include transition-duration($animations-fadein-duration)
+		@include transition-timing-function($animations-fadein-timing-function)
+		@include transition-delay($animations-fadein-delay)
+
+		&.#{$animation-start-class}
+			visibility: visible
+			opacity: 1

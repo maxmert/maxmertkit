@@ -23,6 +23,7 @@ path =
 
 	coffee: [
 		'../coffee/maxmertkit.coffee'
+		'../coffee/**/*.coffee'
 		'coffee/**/*.coffee'
 	]
 	sass: ['sass/commercial.sass', 'sass/developer.sass']

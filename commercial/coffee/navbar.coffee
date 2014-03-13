@@ -63,18 +63,12 @@ class Navbar extends MaxmertkitHelpers
 		@$el.removeClass '_hidden_'
 
 	hide: ->
-		@$el.addClass '_hidden_'
+		console.log @_deviceMobile()
+		if not @_deviceMobile()
+			@$el.addClass '_hidden_'
 
 
 	activate: ->
-		color = _rgbToRgba @$el.css( 'background-color' ), .8
-		@$el.css
-			position: 'fixed'
-			width: '100%'
-			zIndex: 5
-			backgroundColor: color
-			borderWidth: 0
-
 
 		if @options.showOnMousemove
 			$(document).on "mousemove.kit", ( event ) =>
