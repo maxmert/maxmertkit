@@ -179,54 +179,61 @@ _activate = ->
 	_refreshItems.call @
 
 
-	# @$el[0].addEventListener "touchstart", ( event ) =>
-	# 	event.preventDefault()
-	# 	@_touchStartX = parseInt(event.touches[0].clientX)
-	# 	@_touchStartY = parseInt(event.touches[0].clientY)
-	# 	@_touchItem = @items[ _findActiveItem.call(@) ]
-	# 	@_touchItemStyle = @_touchItem[0].style
-	# 	@_touchScrollStart = @$el.scrollTop()
+	@$el[0].addEventListener "touchstart", ( event ) =>
+		event.preventDefault()
+		@_touchStartX = parseInt(event.touches[0].clientX)
+		@_touchStartY = parseInt(event.touches[0].clientY)
+		@_touchItem = @items[ _findActiveItem.call(@) ]
+		@_touchItemStyle = @_touchItem[0].style
+		@_touchScrollStart = @$el.scrollTop()
 
-	# @$el[0].addEventListener "touchmove", ( event ) =>
-	# 	event.preventDefault()
-	# 	@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
-	# 	@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
+	@$el[0].addEventListener "touchmove", ( event ) =>
+		event.preventDefault()
+		clearTimeout(@deactivateTimer) if @deactivateTimer?
+		@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
+		@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
 		
-	# 	translate = "translateX(#{@_touchDeltaX}px)"
+		translate = "translateX(#{@_touchDeltaX}px)"
 		
-	# 	if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
-	# 		@_touchItemStyle.webkitTransform = translate
-	# 		@_touchItemStyle.MozTransform = translate
-	# 		@_touchItemStyle.transform = translate
+		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
+			@_touchItemStyle.webkitTransform = translate
+			@_touchItemStyle.MozTransform = translate
+			@_touchItemStyle.transform = translate
 
-	# 	if Math.abs(@_touchDeltaY) > 10
-	# 		# if @_touchScrollStart - @_touchDeltaY < 0
-	# 		# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
-	# 		# 	translate = "scale(#{percent}, #{percent})"
+		if Math.abs(@_touchDeltaY) > 20
+			# if @_touchScrollStart - @_touchDeltaY < 0
+			# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
+			# 	translate = "scale(#{percent}, #{percent}) translateY(#{@_touchDeltaY}px)"
 				
-	# 		# 	@$el[0].style.webkitTransform = translate
-	# 		# 	@$el[0].style.MozTransform = translate
-	# 		# 	@$el[0].style.transform = translate
-	# 		# else
-	# 		@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+			# 	@_setTransform @$el[0].style, translate
 
-	# @$el[0].addEventListener "touchend", ( event ) =>
-	# 	event.preventDefault()
-	# 	if Math.abs( @_touchDeltaX ) > 60
-	# 		if @_touchDeltaX < 0
-	# 			@activateNextItem()
-	# 		else
-	# 			@activatePrevItem()
+			# 	if percent < 0.7
+			# 		@deactivate()
+			# 		@deactivateTimer = setTimeout =>
+			# 			translate = "scale(1, 1) translateY(0px)"
+			# 			@_setTransform @$el[0].style, translate
+			# 		, 500
+					
+			# else
+			@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+
+	@$el[0].addEventListener "touchend", ( event ) =>
+		event.preventDefault()
+		if Math.abs( @_touchDeltaX ) > 60
+			if @_touchDeltaX < 0
+				@activateNextItem()
+			else
+				@activatePrevItem()
 
 
-	# 	translate = "translateX(0px) translateY(0px)"		
+		translate = "translateX(0px) translateY(0px)"		
 		
-	# 	if @_touchItemStyle?
-	# 		@_touchItemStyle.webkitTransform = translate
-	# 		@_touchItemStyle.MozTransform = translate
-	# 		@_touchItemStyle.transform = translate
+		if @_touchItemStyle?
+			@_touchItemStyle.webkitTransform = translate
+			@_touchItemStyle.MozTransform = translate
+			@_touchItemStyle.transform = translate
 
-	# 	@_touchStartX = @_touchStartY = @_touchItem = @_touchItemStyle = @_touchDelta = null
+		@_touchStartX = @_touchStartY = @_touchItem = @_touchItemStyle = @_touchDelta = null
 	
 	
 	# @$el[0].addEventListener "gesturestart", ( event ) =>
@@ -234,7 +241,7 @@ _activate = ->
 	# 	@_gestureItemStyle = @_gestureItem[0].style
 
 	# @$el[0].addEventListener "gesturechange", ( event ) =>
-	# 	opacity = "#{event.scale}"
+	# 	console.log event
 		
 	# 	if @_gestureItemStyle?
 	# 		@_gestureItemStyle.opacity = opacity

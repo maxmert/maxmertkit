@@ -34,8 +34,8 @@ class Skyline extends MaxmertkitHelpers
 
 		@_setOptions @options
 
-		
-		@activate()
+		if not @_deviceMobile()
+			@activate()
 
 	
 	_setOptions: ( options ) ->

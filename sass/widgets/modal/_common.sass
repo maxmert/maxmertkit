@@ -259,4 +259,10 @@
 			.#{$modal-dialog-class}
 				@extend .#{$animation-start-class}
 
-		
+
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$modal-class}
+			& > .#{$close-class}
+				top: 0
+				right: 0

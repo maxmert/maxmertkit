@@ -3054,4 +3054,8 @@ a.-avatar {
       max-width: 100%;
       max-height: inherit; }
 
+@media screen and (max-width: 768px) {
+  .-carousel .-arrow {
+    display: none; } }
+
 /*# sourceMappingURL=commercial.sass.map */

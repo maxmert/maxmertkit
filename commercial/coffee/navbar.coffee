@@ -63,7 +63,6 @@ class Navbar extends MaxmertkitHelpers
 		@$el.removeClass '_hidden_'
 
 	hide: ->
-		console.log @_deviceMobile()
 		if not @_deviceMobile()
 			@$el.addClass '_hidden_'
 
@@ -72,7 +71,7 @@ class Navbar extends MaxmertkitHelpers
 
 		if @options.showOnMousemove
 			$(document).on "mousemove.kit", ( event ) =>
-				if event.pageY - $(document).scrollTop() <= @$el.height() / 3
+				if event.pageY - $(document).scrollTop() <= @$el.height()
 					@show()
 
 		$(document).on "scrollstart.kit", ( event ) =>

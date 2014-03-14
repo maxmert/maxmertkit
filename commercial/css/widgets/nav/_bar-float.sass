@@ -39,10 +39,14 @@
 @include exports("nav/bar-float")
 	.#{$nav-bar-float-class}
 		@extend .#{$nav-bar-class}
-		position: fixed
+	
+		position: fixed !important
 		width: 100%
 		border-width: $nav-bar-float-border-width
 		border-radius: $nav-bar-float-border-radius
+
+		&.#{$mod-top}, &.#{$mod-bottom}
+			position: fixed !important
 
 		@each $theme in $themes
 			$i: index($themes, $theme)

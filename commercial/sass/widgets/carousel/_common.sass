@@ -157,3 +157,8 @@
 				img
 					max-width: 100%
 					max-height: inherit
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$carousel-class}
+			.#{$carousel-arrow-class}
+				display: none

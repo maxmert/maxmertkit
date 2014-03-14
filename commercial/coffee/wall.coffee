@@ -188,8 +188,7 @@ _parallax = ->
 		# Do parallax magic here
 		if @video? then @video.css top: Math.round( (@scroll.scrollTop() - @$el.offset().top ) - (@scroll.scrollTop() - @$el.offset().top ) * 0.2 )
 		if @image?
-			
-			@image.css top: Math.round( (@scroll.scrollTop() - @$el.offset().top ) - (@scroll.scrollTop() - @$el.offset().top ) * 0.2 )
+			imageTransform = "translateY(#{Math.round( (@scroll.scrollTop() - @$el.offset().top ) - (@scroll.scrollTop() - @$el.offset().top ) * 0.2 )}px)"
 			
 			if @$el.hasClass('-hero') and @header? #and @scroll.scrollTop() > @$el.offset().top
 				@header.css
@@ -197,9 +196,10 @@ _parallax = ->
 					opacity: 3 * percent
 			
 			if @options.imageZoom
-				@image.css
-					width: "#{100 + 100 * percent}%"
-					left: "-#{100 * percent / 2}%"
+				if 1 + percent > 1
+					imageTransform += " scale(#{1 + percent}, #{1 + percent})"
+			
+			@_setTransform @image[0].style, imageTransform
 
 		if @scroller? then @scroller.css opacity: percent * 2
 		# if @caption? then @caption.css opacity: percent

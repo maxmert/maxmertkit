@@ -8563,6 +8563,8 @@ a.-btn {
   border-radius: 0px;
   background-color: rgba(250, 250, 250, 0.7);
   border-color: #ededed; }
+  .-navbar-float._top_, .-navbar-float._bottom_ {
+    position: fixed; }
   @media screen and (max-width: 992px) {
     .-navbar-float {
       background-color: #fafafa; } }
@@ -9457,5 +9459,10 @@ a.-btn {
       stroke: white; }
   .-modal._active_ {
     opacity: 1; }
+
+@media screen and (max-width: 768px) {
+  .-modal > .-close {
+    top: 0;
+    right: 0; } }
 
 /*# sourceMappingURL=main.sass.map */

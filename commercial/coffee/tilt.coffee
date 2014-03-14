@@ -103,23 +103,27 @@ class Tilt extends MaxmertkitHelpers
 				if percent < -1 then percent = -1
 
 				px = ( @$el.width() - @_windowWidth / 2  ) * percent
+				if not @pxPrev? then @pxPrev = px
 					
 				if @$img.width() > @_windowWidth
-					translate = "translateX(#{px}px)"
+					if Math.abs(px - @pxPrev) > 0.5
+						translate = "translateX(#{px}px)"
 
-					if @style? and @style.left isnt "-50%"
-						@style.left = "-50%"
+						if @style? and @style.left isnt "-50%"
+							@style.left = "-50%"
 
-					if @style?
-						@_setTransform @style, translate
+						if @style?
+							@_setTransform @style, translate
 
-					# Move tilt map
-					if @$tiltHandle?
-						left = 100 - (percent + 1 ) / 2 * 100
-						if left < 10 then left = 10
-						if left > 90 then left = 90
-						@$figureCaption.css({ left: "#{@$el.width() * (percent + 1 ) / 2}px", opacity: (percent * (if percent > 0 then -2 else 3) + 1)}) if @$figureCaption.length
-						@$tiltHandle.css left: "#{left}%"
+						# Move tilt map
+						if @$tiltHandle?
+							left = 100 - (percent + 1 ) / 2 * 100
+							if left < 10 then left = 10
+							if left > 90 then left = 90
+							@$figureCaption.css({ left: "#{@$el.width() * (percent + 1 ) / 2}px", opacity: (percent * (if percent > 0 then -2 else 3) + 1)}) if @$figureCaption.length
+							@$tiltHandle.css left: "#{left}%"
+
+					@pxPrev = px
 
 				else
 					translate = "translateX(0px)"
