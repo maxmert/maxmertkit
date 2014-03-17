@@ -105,7 +105,12 @@
 
 
 
-
+		<section data-kind="steps" data-begin="2">
+			<div data-step="0">1</div>
+			<div data-step="1">2</div>
+			<div data-step="2">3</div>
+			<div data-step="3">4</div>
+		</section>
 
 
 
@@ -564,6 +569,47 @@
 		 -->
 		
 		<script src="/js/vendor.js"></script>
+		<script>
+			(function($){
+				$(document).ready(function(){
+					$('[data-kind="steps"]').steps({
+						steps: [
+							function(){
+								d = $.Deferred();
+								setTimeout(function(){
+									d.resolve();
+								}, 2000);
+								return d.promise();
+							},
+
+							function(){
+								d = $.Deferred();
+								setTimeout(function(){
+									d.resolve();
+								}, 2000);
+								return d.promise();
+							},
+
+							function(){
+								d = $.Deferred();
+								setTimeout(function(){
+									d.resolve();
+								}, 2000);
+								return d.promise();
+							},
+
+							function(){
+								d = $.Deferred();
+								setTimeout(function(){
+									d.resolve();
+								}, 2000);
+								return d.promise();
+							}
+						]
+					});
+				});
+			})(jQuery)
+		</script>
 		<script src="/js/maxmertkitCommertial.js"></script>
 	</body>
 </html>
