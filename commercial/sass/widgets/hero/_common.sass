@@ -118,8 +118,8 @@
 		&[data-zoom="yes"]
 			.#{$hero-image-class}
 				.-thumbnail
-					width: 140%
-					left: -20%
+					@include transform( scale(1.4, 1.4) )
+					
 				figure figcaption
 					display: none!important
 

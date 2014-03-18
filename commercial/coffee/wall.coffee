@@ -86,9 +86,11 @@ class Wall extends MaxmertkitHelpers
 					@nav = $(nav)
 					@navContainer = $nav
 					@navContainer.append @nav
+					@navContainer.css marginTop: -@navContainer.height() / 2
 
 					@nav.on "click.#{@_name}.#{@_id}", =>
 						_scrollTo.call @, @$el.offset().top
+
 
 				else
 					@options[key] = value
@@ -179,10 +181,19 @@ _parallax = ->
 			if @video? 
 				if @options.videoOpacity then @video.css opacity: (percent + 0.5)
 			if @image?
-				if @options.imageOpacity then @image.css opacity: (percent + 0.5)
+				if not @options.imageBlur and @options.imageOpacity then @image.css opacity: 1 - @_getVisiblePercent()
 				if @options.imageBlur
-					blur = "blur(#{5 * (0.4 - percent)}px)"
-					@image.find('img').css "-webkit-filter": blur, "-moz-filter": blur, "filter": blur
+					if not @imageBlurred?
+						blur = "blur(5px)"
+						@imageNotBlurred = @image.find('img')
+
+						@imageBlurred = @imageNotBlurred.clone()
+						@imageBlurred.appendTo @imageNotBlurred.parent()
+
+						@imageNotBlurred.css zIndex: 2
+						@imageBlurred.css "-webkit-filter": blur, "-moz-filter": blur, "filter": blur
+
+					@imageNotBlurred.css opacity: 1 - @_getVisiblePercent() * 2
 
 
 		# Do parallax magic here
@@ -193,7 +204,8 @@ _parallax = ->
 			if @$el.hasClass('-hero') and @header? #and @scroll.scrollTop() > @$el.offset().top
 				@header.css
 					bottom: "#{300 * percent}px"
-					opacity: 3 * percent
+					opacity: 1 - @_getVisiblePercent()
+
 			
 			if @options.imageZoom
 				if 1 + percent > 1
@@ -201,8 +213,7 @@ _parallax = ->
 			
 			@_setTransform @image[0].style, imageTransform
 
-		if @scroller? then @scroller.css opacity: percent * 2
-		# if @caption? then @caption.css opacity: percent
+		if @scroller? then @scroller.css opacity: 1 - @_getVisiblePercent()
 
 _refreshDevice = ->
 	@deviceMobile = @_deviceMobile()

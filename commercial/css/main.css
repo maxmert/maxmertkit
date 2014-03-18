@@ -8557,14 +8557,14 @@ a.-btn {
     border-color: #1a1a1a; }
 
 .-navbar-float {
-  position: fixed;
+  position: fixed !important;
   width: 100%;
   border-width: 0px;
   border-radius: 0px;
   background-color: rgba(250, 250, 250, 0.7);
   border-color: #ededed; }
   .-navbar-float._top_, .-navbar-float._bottom_ {
-    position: fixed; }
+    position: fixed !important; }
   @media screen and (max-width: 992px) {
     .-navbar-float {
       background-color: #fafafa; } }

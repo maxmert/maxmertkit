@@ -1,0 +1,34 @@
+@mixin ticket-theme-setter($i)
+	@each $size in $base-sizes-names
+		$j: index($base-sizes-names, $size)
+		$fontPixels: nth($base-sizes-values, $j) * $base-font-size - 3
+		$pixels: nth($base-sizes-values, $j) * $base-font-size / 2
+		@if $size == "_normal"
+			font-size: $fontPixels
+			@include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
+			
+		&.#{$size}
+			font-size: $fontPixels
+			@include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
+	// @include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(0 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px) )
+
+
+
+@include exports("ticket/common")
+
+	.#{$ticket-class}
+
+		padding: 10px
+
+		@each $theme in $themes
+			$i: index($themes, $theme)
+			
+			@if $theme == "-default-"
+				@include ticket-theme-setter($i)
+				
+			&.#{$theme}
+				@include ticket-theme-setter($i)
+		
+		background-position: bottom left, bottom right, top right, top left
+		@include background-size(51% 51%) // 51% is to hide hotizontal line
+		background-repeat: no-repeat

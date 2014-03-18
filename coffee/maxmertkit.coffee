@@ -105,6 +105,15 @@ class MaxmertkitHelpers
 	_isVisible: ->
 		@_offset.top - @_windowHeight <= @scroll.scrollTop() and @scroll.scrollTop() <= @_offset.top + @_height
 
+	_getVisiblePercent: ->
+		min = @_offset.top
+		current = @scroll.scrollTop()
+		max = @_offset.top + @_height
+
+		(current - min) / (max - min)
+
+
+
 	_scrollVisible: ->
 		if @scroll?
 			min = @_offset.top - @_windowHeight

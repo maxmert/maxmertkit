@@ -131,6 +131,14 @@
       return this._offset.top - this._windowHeight <= this.scroll.scrollTop() && this.scroll.scrollTop() <= this._offset.top + this._height;
     };
 
+    MaxmertkitHelpers.prototype._getVisiblePercent = function() {
+      var current, max, min;
+      min = this._offset.top;
+      current = this.scroll.scrollTop();
+      max = this._offset.top + this._height;
+      return (current - min) / (max - min);
+    };
+
     MaxmertkitHelpers.prototype._scrollVisible = function() {
       var current, max, min, percent;
       if (this.scroll != null) {
