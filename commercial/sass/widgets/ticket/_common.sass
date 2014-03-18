@@ -4,31 +4,126 @@
 		$fontPixels: nth($base-sizes-values, $j) * $base-font-size - 3
 		$pixels: nth($base-sizes-values, $j) * $base-font-size / 2
 		@if $size == "_normal"
-			font-size: $fontPixels
-			@include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
-			
+			// font-size: $fontPixels
+			@if nth($themes, $i) != "-default-"
+				color: nth($themes-white-colors, $i)
+			@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
+			&:before, &:after
+				top: $pixels + 2px
+				bottom: $pixels + 2px
+
+			&.#{$mod-vertical}
+				&:before, &:after
+					top: inherit
+					bottom: inherit
+					left: $pixels + 2px!important
+					right: $pixels + 2px!important
+
 		&.#{$size}
-			font-size: $fontPixels
-			@include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(204,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
-	// @include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(0 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px) )
+			// font-size: $fontPixels
+			@if nth($themes, $i) != "-default-"
+				color: nth($themes-white-colors, $i)
+			@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
+			&:before, &:after
+				top: $pixels + 2px
+				bottom: $pixels + 2px
+
+			&.#{$mod-vertical}
+				&:before, &:after
+					top: inherit
+					bottom: inherit
+					left: $pixels + 2px!important
+					right: $pixels + 2px!important
+			// @include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(0 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px) )
 
 
 
 @include exports("ticket/common")
 
 	.#{$ticket-class}
+		display: table
 
-		padding: 10px
+		.#{$content-class-name}
+			position: relative
+			padding: 10px
+			display: table-cell
+			min-height: 100%
+			vertical-align: middle
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include ticket-theme-setter($i)
+			@each $theme in $themes
+				$i: index($themes, $theme)
 				
-			&.#{$theme}
-				@include ticket-theme-setter($i)
+				@if $theme == "-default-"
+					@include ticket-theme-setter($i)
+					
+				&.#{$theme}
+					@include ticket-theme-setter($i)
+
+			&:before, &:after
+				content: " "
+				display: block
+				position: absolute
+				width: 0
+				top: 0
+
+			&:before
+				left: 0
+				border-color: rgba(#fff, .3)
+				border-left-width: 1px
+				border-left-style: dashed
+
+			&:after
+				border-color: rgba(#000, .3)
+				right: 0
+				border-right-width: 1px
+				border-right-style: dashed
+
+
+			&:first-child
+				border-left: none
+				&:before
+					display: none!important
+
+			&:last-child
+				border-right: none
+				&:after
+					display: none!important
+			
+			background-position: bottom left, bottom right, top right, top left
+			@include background-size(51% 51%) // 51% is to hide hotizontal line
+			background-repeat: no-repeat
+
 		
-		background-position: bottom left, bottom right, top right, top left
-		@include background-size(51% 51%) // 51% is to hide hotizontal line
-		background-repeat: no-repeat
+
+		&.#{$mod-vertical}
+			display: block
+			.#{$content-class-name}
+				display: block
+				min-height: inherit
+				min-width: 100%
+
+				&:before, &:after
+					height: 0
+					width: auto
+					left: 0
+				
+				&:before
+					left: inherit
+					top: 0
+					border-color: rgba(#000, .3)
+					border-left-width: 0
+					border-top-width: 1px
+					border-top-style: dashed
+
+				&:after
+					right: inherit
+					top: inherit
+					bottom: 0
+					border-color: rgba(#fff, .7)
+					border-right-width: 0
+					border-bottom-width: 1px
+					border-bottom-style: dashed
+
+
+
+

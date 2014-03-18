@@ -3064,208 +3064,643 @@ a.-avatar {
   .-carousel .-arrow {
     display: none; } }
 .-ticket {
-  padding: 10px;
-  font-size: 11px;
-  background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px);
-  background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px);
-  background-position: bottom left, bottom right, top right, top left;
-  background-size: 51% 51%;
-  background-repeat: no-repeat; }
-  .-ticket._tiny {
-    font-size: 0.5px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px); }
-  .-ticket._small {
-    font-size: 4px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px); }
-  .-ticket._minor {
-    font-size: 7.5px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px); }
-  .-ticket._normal {
-    font-size: 11px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px); }
-  .-ticket._major {
-    font-size: 14.5px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px); }
-  .-ticket._big {
-    font-size: 18px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px); }
-  .-ticket._huge {
-    font-size: 21.5px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px); }
-  .-ticket._giant {
-    font-size: 23.6px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px); }
-  .-ticket._divine {
-    font-size: 25px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px); }
-  .-ticket.-default- {
-    font-size: 11px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px); }
-    .-ticket.-default-._tiny {
-      font-size: 0.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 1.75px, #f7f7f7 2.75px); }
-    .-ticket.-default-._small {
-      font-size: 4px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 3.5px, #f7f7f7 4.5px); }
-    .-ticket.-default-._minor {
-      font-size: 7.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 5.25px, #f7f7f7 6.25px); }
-    .-ticket.-default-._normal {
-      font-size: 11px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #f7f7f7 8px); }
-    .-ticket.-default-._major {
-      font-size: 14.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 8.75px, #f7f7f7 9.75px); }
-    .-ticket.-default-._big {
-      font-size: 18px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 10.5px, #f7f7f7 11.5px); }
-    .-ticket.-default-._huge {
-      font-size: 21.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 12.25px, #f7f7f7 13.25px); }
-    .-ticket.-default-._giant {
-      font-size: 23.6px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 13.3px, #f7f7f7 14.3px); }
-    .-ticket.-default-._divine {
-      font-size: 25px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 14px, #f7f7f7 15px); }
-  .-ticket.-primary- {
-    font-size: 11px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #60aee3 8px); }
-    .-ticket.-primary-._tiny {
-      font-size: 0.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 1.75px, #60aee3 2.75px); }
-    .-ticket.-primary-._small {
-      font-size: 4px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 3.5px, #60aee3 4.5px); }
-    .-ticket.-primary-._minor {
-      font-size: 7.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 5.25px, #60aee3 6.25px); }
-    .-ticket.-primary-._normal {
-      font-size: 11px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #60aee3 8px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #60aee3 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #60aee3 8px); }
-    .-ticket.-primary-._major {
-      font-size: 14.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 8.75px, #60aee3 9.75px); }
-    .-ticket.-primary-._big {
-      font-size: 18px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 10.5px, #60aee3 11.5px); }
-    .-ticket.-primary-._huge {
-      font-size: 21.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 12.25px, #60aee3 13.25px); }
-    .-ticket.-primary-._giant {
-      font-size: 23.6px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 13.3px, #60aee3 14.3px); }
-    .-ticket.-primary-._divine {
-      font-size: 25px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 14px, #60aee3 15px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 14px, #60aee3 15px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 14px, #60aee3 15px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 14px, #60aee3 15px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 14px, #60aee3 15px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #60aee3 15px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 14px, #60aee3 15px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 14px, #60aee3 15px); }
-  .-ticket.-error- {
-    font-size: 11px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #de4d46 8px); }
-    .-ticket.-error-._tiny {
-      font-size: 0.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 1.75px, #de4d46 2.75px); }
-    .-ticket.-error-._small {
-      font-size: 4px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 3.5px, #de4d46 4.5px); }
-    .-ticket.-error-._minor {
-      font-size: 7.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 5.25px, #de4d46 6.25px); }
-    .-ticket.-error-._normal {
-      font-size: 11px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #de4d46 8px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #de4d46 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #de4d46 8px); }
-    .-ticket.-error-._major {
-      font-size: 14.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 8.75px, #de4d46 9.75px); }
-    .-ticket.-error-._big {
-      font-size: 18px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 10.5px, #de4d46 11.5px); }
-    .-ticket.-error-._huge {
-      font-size: 21.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 12.25px, #de4d46 13.25px); }
-    .-ticket.-error-._giant {
-      font-size: 23.6px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 13.3px, #de4d46 14.3px); }
-    .-ticket.-error-._divine {
-      font-size: 25px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 14px, #de4d46 15px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 14px, #de4d46 15px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 14px, #de4d46 15px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 14px, #de4d46 15px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 14px, #de4d46 15px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #de4d46 15px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 14px, #de4d46 15px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 14px, #de4d46 15px); }
-  .-ticket.-warning- {
-    font-size: 11px;
-    background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px);
-    background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #ffd471 8px); }
-    .-ticket.-warning-._tiny {
-      font-size: 0.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 1.75px, #ffd471 2.75px); }
-    .-ticket.-warning-._small {
-      font-size: 4px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 3.5px, #ffd471 4.5px); }
-    .-ticket.-warning-._minor {
-      font-size: 7.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 5.25px, #ffd471 6.25px); }
-    .-ticket.-warning-._normal {
-      font-size: 11px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 7px, #ffd471 8px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 7px, #ffd471 8px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 7px, #ffd471 8px); }
-    .-ticket.-warning-._major {
-      font-size: 14.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 8.75px, #ffd471 9.75px); }
-    .-ticket.-warning-._big {
-      font-size: 18px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 10.5px, #ffd471 11.5px); }
-    .-ticket.-warning-._huge {
-      font-size: 21.5px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 12.25px, #ffd471 13.25px); }
-    .-ticket.-warning-._giant {
-      font-size: 23.6px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 13.3px, #ffd471 14.3px); }
-    .-ticket.-warning-._divine {
-      font-size: 25px;
-      background: -webkit-radial-gradient(0 100%,  circle, rgba(204, 0, 0, 0) 14px, #ffd471 15px), -webkit-radial-gradient(100% 100%,  circle, rgba(204, 0, 0, 0) 14px, #ffd471 15px), -webkit-radial-gradient(100% 0,  circle, rgba(204, 0, 0, 0) 14px, #ffd471 15px), -webkit-radial-gradient(0 0,  circle, rgba(204, 0, 0, 0) 14px, #ffd471 15px);
-      background: radial-gradient( circle at 0 100%, rgba(204, 0, 0, 0) 14px, #ffd471 15px), radial-gradient( circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #ffd471 15px), radial-gradient( circle at 100% 0, rgba(204, 0, 0, 0) 14px, #ffd471 15px), radial-gradient( circle at 0 0, rgba(204, 0, 0, 0) 14px, #ffd471 15px); }
+  display: table; }
+  .-ticket .-content {
+    position: relative;
+    padding: 10px;
+    display: table-cell;
+    min-height: 100%;
+    vertical-align: middle;
+    background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
+    background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px);
+    background-position: bottom left, bottom right, top right, top left;
+    background-size: 51% 51%;
+    background-repeat: no-repeat; }
+    .-ticket .-content._tiny {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #f7f7f7 2.75px);
+      background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #f7f7f7 2.75px); }
+      .-ticket .-content._tiny:before, .-ticket .-content._tiny:after {
+        top: 3.75px;
+        bottom: 3.75px; }
+      .-ticket .-content._tiny._vertical_:before, .-ticket .-content._tiny._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 3.75px !important;
+        right: 3.75px !important; }
+    .-ticket .-content._small {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #f7f7f7 4.5px);
+      background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #f7f7f7 4.5px); }
+      .-ticket .-content._small:before, .-ticket .-content._small:after {
+        top: 5.5px;
+        bottom: 5.5px; }
+      .-ticket .-content._small._vertical_:before, .-ticket .-content._small._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 5.5px !important;
+        right: 5.5px !important; }
+    .-ticket .-content._minor {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #f7f7f7 6.25px);
+      background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #f7f7f7 6.25px); }
+      .-ticket .-content._minor:before, .-ticket .-content._minor:after {
+        top: 7.25px;
+        bottom: 7.25px; }
+      .-ticket .-content._minor._vertical_:before, .-ticket .-content._minor._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 7.25px !important;
+        right: 7.25px !important; }
+    .-ticket .-content:before, .-ticket .-content:after {
+      top: 9px;
+      bottom: 9px; }
+    .-ticket .-content._vertical_:before, .-ticket .-content._vertical_:after {
+      top: inherit;
+      bottom: inherit;
+      left: 9px !important;
+      right: 9px !important; }
+    .-ticket .-content._normal {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
+      .-ticket .-content._normal:before, .-ticket .-content._normal:after {
+        top: 9px;
+        bottom: 9px; }
+      .-ticket .-content._normal._vertical_:before, .-ticket .-content._normal._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 9px !important;
+        right: 9px !important; }
+    .-ticket .-content._major {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #f7f7f7 9.75px);
+      background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #f7f7f7 9.75px); }
+      .-ticket .-content._major:before, .-ticket .-content._major:after {
+        top: 10.75px;
+        bottom: 10.75px; }
+      .-ticket .-content._major._vertical_:before, .-ticket .-content._major._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 10.75px !important;
+        right: 10.75px !important; }
+    .-ticket .-content._big {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #f7f7f7 11.5px);
+      background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #f7f7f7 11.5px); }
+      .-ticket .-content._big:before, .-ticket .-content._big:after {
+        top: 12.5px;
+        bottom: 12.5px; }
+      .-ticket .-content._big._vertical_:before, .-ticket .-content._big._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 12.5px !important;
+        right: 12.5px !important; }
+    .-ticket .-content._huge {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #f7f7f7 13.25px);
+      background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #f7f7f7 13.25px); }
+      .-ticket .-content._huge:before, .-ticket .-content._huge:after {
+        top: 14.25px;
+        bottom: 14.25px; }
+      .-ticket .-content._huge._vertical_:before, .-ticket .-content._huge._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 14.25px !important;
+        right: 14.25px !important; }
+    .-ticket .-content._giant {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #f7f7f7 14.3px);
+      background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #f7f7f7 14.3px); }
+      .-ticket .-content._giant:before, .-ticket .-content._giant:after {
+        top: 15.3px;
+        bottom: 15.3px; }
+      .-ticket .-content._giant._vertical_:before, .-ticket .-content._giant._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 15.3px !important;
+        right: 15.3px !important; }
+    .-ticket .-content._divine {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #f7f7f7 15px);
+      background-image: radial-gradient( circle at 0 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, transparent 14px, #f7f7f7 15px); }
+      .-ticket .-content._divine:before, .-ticket .-content._divine:after {
+        top: 16px;
+        bottom: 16px; }
+      .-ticket .-content._divine._vertical_:before, .-ticket .-content._divine._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 16px !important;
+        right: 16px !important; }
+    .-ticket .-content.-default- {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
+      .-ticket .-content.-default-._tiny {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #f7f7f7 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #f7f7f7 2.75px); }
+        .-ticket .-content.-default-._tiny:before, .-ticket .-content.-default-._tiny:after {
+          top: 3.75px;
+          bottom: 3.75px; }
+        .-ticket .-content.-default-._tiny._vertical_:before, .-ticket .-content.-default-._tiny._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 3.75px !important;
+          right: 3.75px !important; }
+      .-ticket .-content.-default-._small {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #f7f7f7 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #f7f7f7 4.5px); }
+        .-ticket .-content.-default-._small:before, .-ticket .-content.-default-._small:after {
+          top: 5.5px;
+          bottom: 5.5px; }
+        .-ticket .-content.-default-._small._vertical_:before, .-ticket .-content.-default-._small._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 5.5px !important;
+          right: 5.5px !important; }
+      .-ticket .-content.-default-._minor {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #f7f7f7 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #f7f7f7 6.25px); }
+        .-ticket .-content.-default-._minor:before, .-ticket .-content.-default-._minor:after {
+          top: 7.25px;
+          bottom: 7.25px; }
+        .-ticket .-content.-default-._minor._vertical_:before, .-ticket .-content.-default-._minor._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 7.25px !important;
+          right: 7.25px !important; }
+      .-ticket .-content.-default-:before, .-ticket .-content.-default-:after {
+        top: 9px;
+        bottom: 9px; }
+      .-ticket .-content.-default-._vertical_:before, .-ticket .-content.-default-._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 9px !important;
+        right: 9px !important; }
+      .-ticket .-content.-default-._normal {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
+        .-ticket .-content.-default-._normal:before, .-ticket .-content.-default-._normal:after {
+          top: 9px;
+          bottom: 9px; }
+        .-ticket .-content.-default-._normal._vertical_:before, .-ticket .-content.-default-._normal._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 9px !important;
+          right: 9px !important; }
+      .-ticket .-content.-default-._major {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #f7f7f7 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #f7f7f7 9.75px); }
+        .-ticket .-content.-default-._major:before, .-ticket .-content.-default-._major:after {
+          top: 10.75px;
+          bottom: 10.75px; }
+        .-ticket .-content.-default-._major._vertical_:before, .-ticket .-content.-default-._major._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 10.75px !important;
+          right: 10.75px !important; }
+      .-ticket .-content.-default-._big {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #f7f7f7 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #f7f7f7 11.5px); }
+        .-ticket .-content.-default-._big:before, .-ticket .-content.-default-._big:after {
+          top: 12.5px;
+          bottom: 12.5px; }
+        .-ticket .-content.-default-._big._vertical_:before, .-ticket .-content.-default-._big._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 12.5px !important;
+          right: 12.5px !important; }
+      .-ticket .-content.-default-._huge {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #f7f7f7 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #f7f7f7 13.25px); }
+        .-ticket .-content.-default-._huge:before, .-ticket .-content.-default-._huge:after {
+          top: 14.25px;
+          bottom: 14.25px; }
+        .-ticket .-content.-default-._huge._vertical_:before, .-ticket .-content.-default-._huge._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 14.25px !important;
+          right: 14.25px !important; }
+      .-ticket .-content.-default-._giant {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #f7f7f7 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #f7f7f7 14.3px); }
+        .-ticket .-content.-default-._giant:before, .-ticket .-content.-default-._giant:after {
+          top: 15.3px;
+          bottom: 15.3px; }
+        .-ticket .-content.-default-._giant._vertical_:before, .-ticket .-content.-default-._giant._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 15.3px !important;
+          right: 15.3px !important; }
+      .-ticket .-content.-default-._divine {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #f7f7f7 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, transparent 14px, #f7f7f7 15px); }
+        .-ticket .-content.-default-._divine:before, .-ticket .-content.-default-._divine:after {
+          top: 16px;
+          bottom: 16px; }
+        .-ticket .-content.-default-._divine._vertical_:before, .-ticket .-content.-default-._divine._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 16px !important;
+          right: 16px !important; }
+    .-ticket .-content.-primary- {
+      color: white;
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #60aee3 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 0, transparent 7px, #60aee3 8px), radial-gradient( circle at 0 0, transparent 7px, #60aee3 8px); }
+      .-ticket .-content.-primary-._tiny {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #60aee3 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #60aee3 2.75px); }
+        .-ticket .-content.-primary-._tiny:before, .-ticket .-content.-primary-._tiny:after {
+          top: 3.75px;
+          bottom: 3.75px; }
+        .-ticket .-content.-primary-._tiny._vertical_:before, .-ticket .-content.-primary-._tiny._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 3.75px !important;
+          right: 3.75px !important; }
+      .-ticket .-content.-primary-._small {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #60aee3 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #60aee3 4.5px); }
+        .-ticket .-content.-primary-._small:before, .-ticket .-content.-primary-._small:after {
+          top: 5.5px;
+          bottom: 5.5px; }
+        .-ticket .-content.-primary-._small._vertical_:before, .-ticket .-content.-primary-._small._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 5.5px !important;
+          right: 5.5px !important; }
+      .-ticket .-content.-primary-._minor {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #60aee3 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #60aee3 6.25px); }
+        .-ticket .-content.-primary-._minor:before, .-ticket .-content.-primary-._minor:after {
+          top: 7.25px;
+          bottom: 7.25px; }
+        .-ticket .-content.-primary-._minor._vertical_:before, .-ticket .-content.-primary-._minor._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 7.25px !important;
+          right: 7.25px !important; }
+      .-ticket .-content.-primary-:before, .-ticket .-content.-primary-:after {
+        top: 9px;
+        bottom: 9px; }
+      .-ticket .-content.-primary-._vertical_:before, .-ticket .-content.-primary-._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 9px !important;
+        right: 9px !important; }
+      .-ticket .-content.-primary-._normal {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #60aee3 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 0, transparent 7px, #60aee3 8px), radial-gradient( circle at 0 0, transparent 7px, #60aee3 8px); }
+        .-ticket .-content.-primary-._normal:before, .-ticket .-content.-primary-._normal:after {
+          top: 9px;
+          bottom: 9px; }
+        .-ticket .-content.-primary-._normal._vertical_:before, .-ticket .-content.-primary-._normal._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 9px !important;
+          right: 9px !important; }
+      .-ticket .-content.-primary-._major {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #60aee3 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #60aee3 9.75px); }
+        .-ticket .-content.-primary-._major:before, .-ticket .-content.-primary-._major:after {
+          top: 10.75px;
+          bottom: 10.75px; }
+        .-ticket .-content.-primary-._major._vertical_:before, .-ticket .-content.-primary-._major._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 10.75px !important;
+          right: 10.75px !important; }
+      .-ticket .-content.-primary-._big {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #60aee3 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #60aee3 11.5px); }
+        .-ticket .-content.-primary-._big:before, .-ticket .-content.-primary-._big:after {
+          top: 12.5px;
+          bottom: 12.5px; }
+        .-ticket .-content.-primary-._big._vertical_:before, .-ticket .-content.-primary-._big._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 12.5px !important;
+          right: 12.5px !important; }
+      .-ticket .-content.-primary-._huge {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #60aee3 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #60aee3 13.25px); }
+        .-ticket .-content.-primary-._huge:before, .-ticket .-content.-primary-._huge:after {
+          top: 14.25px;
+          bottom: 14.25px; }
+        .-ticket .-content.-primary-._huge._vertical_:before, .-ticket .-content.-primary-._huge._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 14.25px !important;
+          right: 14.25px !important; }
+      .-ticket .-content.-primary-._giant {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #60aee3 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #60aee3 14.3px); }
+        .-ticket .-content.-primary-._giant:before, .-ticket .-content.-primary-._giant:after {
+          top: 15.3px;
+          bottom: 15.3px; }
+        .-ticket .-content.-primary-._giant._vertical_:before, .-ticket .-content.-primary-._giant._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 15.3px !important;
+          right: 15.3px !important; }
+      .-ticket .-content.-primary-._divine {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #60aee3 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #60aee3 15px), radial-gradient( circle at 100% 100%, transparent 14px, #60aee3 15px), radial-gradient( circle at 100% 0, transparent 14px, #60aee3 15px), radial-gradient( circle at 0 0, transparent 14px, #60aee3 15px); }
+        .-ticket .-content.-primary-._divine:before, .-ticket .-content.-primary-._divine:after {
+          top: 16px;
+          bottom: 16px; }
+        .-ticket .-content.-primary-._divine._vertical_:before, .-ticket .-content.-primary-._divine._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 16px !important;
+          right: 16px !important; }
+    .-ticket .-content.-error- {
+      color: white;
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #de4d46 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 0, transparent 7px, #de4d46 8px), radial-gradient( circle at 0 0, transparent 7px, #de4d46 8px); }
+      .-ticket .-content.-error-._tiny {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #de4d46 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #de4d46 2.75px); }
+        .-ticket .-content.-error-._tiny:before, .-ticket .-content.-error-._tiny:after {
+          top: 3.75px;
+          bottom: 3.75px; }
+        .-ticket .-content.-error-._tiny._vertical_:before, .-ticket .-content.-error-._tiny._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 3.75px !important;
+          right: 3.75px !important; }
+      .-ticket .-content.-error-._small {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #de4d46 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #de4d46 4.5px); }
+        .-ticket .-content.-error-._small:before, .-ticket .-content.-error-._small:after {
+          top: 5.5px;
+          bottom: 5.5px; }
+        .-ticket .-content.-error-._small._vertical_:before, .-ticket .-content.-error-._small._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 5.5px !important;
+          right: 5.5px !important; }
+      .-ticket .-content.-error-._minor {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #de4d46 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #de4d46 6.25px); }
+        .-ticket .-content.-error-._minor:before, .-ticket .-content.-error-._minor:after {
+          top: 7.25px;
+          bottom: 7.25px; }
+        .-ticket .-content.-error-._minor._vertical_:before, .-ticket .-content.-error-._minor._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 7.25px !important;
+          right: 7.25px !important; }
+      .-ticket .-content.-error-:before, .-ticket .-content.-error-:after {
+        top: 9px;
+        bottom: 9px; }
+      .-ticket .-content.-error-._vertical_:before, .-ticket .-content.-error-._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 9px !important;
+        right: 9px !important; }
+      .-ticket .-content.-error-._normal {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #de4d46 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 0, transparent 7px, #de4d46 8px), radial-gradient( circle at 0 0, transparent 7px, #de4d46 8px); }
+        .-ticket .-content.-error-._normal:before, .-ticket .-content.-error-._normal:after {
+          top: 9px;
+          bottom: 9px; }
+        .-ticket .-content.-error-._normal._vertical_:before, .-ticket .-content.-error-._normal._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 9px !important;
+          right: 9px !important; }
+      .-ticket .-content.-error-._major {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #de4d46 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #de4d46 9.75px); }
+        .-ticket .-content.-error-._major:before, .-ticket .-content.-error-._major:after {
+          top: 10.75px;
+          bottom: 10.75px; }
+        .-ticket .-content.-error-._major._vertical_:before, .-ticket .-content.-error-._major._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 10.75px !important;
+          right: 10.75px !important; }
+      .-ticket .-content.-error-._big {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #de4d46 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #de4d46 11.5px); }
+        .-ticket .-content.-error-._big:before, .-ticket .-content.-error-._big:after {
+          top: 12.5px;
+          bottom: 12.5px; }
+        .-ticket .-content.-error-._big._vertical_:before, .-ticket .-content.-error-._big._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 12.5px !important;
+          right: 12.5px !important; }
+      .-ticket .-content.-error-._huge {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #de4d46 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #de4d46 13.25px); }
+        .-ticket .-content.-error-._huge:before, .-ticket .-content.-error-._huge:after {
+          top: 14.25px;
+          bottom: 14.25px; }
+        .-ticket .-content.-error-._huge._vertical_:before, .-ticket .-content.-error-._huge._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 14.25px !important;
+          right: 14.25px !important; }
+      .-ticket .-content.-error-._giant {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #de4d46 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #de4d46 14.3px); }
+        .-ticket .-content.-error-._giant:before, .-ticket .-content.-error-._giant:after {
+          top: 15.3px;
+          bottom: 15.3px; }
+        .-ticket .-content.-error-._giant._vertical_:before, .-ticket .-content.-error-._giant._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 15.3px !important;
+          right: 15.3px !important; }
+      .-ticket .-content.-error-._divine {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #de4d46 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #de4d46 15px), radial-gradient( circle at 100% 100%, transparent 14px, #de4d46 15px), radial-gradient( circle at 100% 0, transparent 14px, #de4d46 15px), radial-gradient( circle at 0 0, transparent 14px, #de4d46 15px); }
+        .-ticket .-content.-error-._divine:before, .-ticket .-content.-error-._divine:after {
+          top: 16px;
+          bottom: 16px; }
+        .-ticket .-content.-error-._divine._vertical_:before, .-ticket .-content.-error-._divine._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 16px !important;
+          right: 16px !important; }
+    .-ticket .-content.-warning- {
+      color: white;
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffd471 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffd471 8px), radial-gradient( circle at 0 0, transparent 7px, #ffd471 8px); }
+      .-ticket .-content.-warning-._tiny {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #ffd471 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #ffd471 2.75px); }
+        .-ticket .-content.-warning-._tiny:before, .-ticket .-content.-warning-._tiny:after {
+          top: 3.75px;
+          bottom: 3.75px; }
+        .-ticket .-content.-warning-._tiny._vertical_:before, .-ticket .-content.-warning-._tiny._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 3.75px !important;
+          right: 3.75px !important; }
+      .-ticket .-content.-warning-._small {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #ffd471 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #ffd471 4.5px); }
+        .-ticket .-content.-warning-._small:before, .-ticket .-content.-warning-._small:after {
+          top: 5.5px;
+          bottom: 5.5px; }
+        .-ticket .-content.-warning-._small._vertical_:before, .-ticket .-content.-warning-._small._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 5.5px !important;
+          right: 5.5px !important; }
+      .-ticket .-content.-warning-._minor {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #ffd471 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #ffd471 6.25px); }
+        .-ticket .-content.-warning-._minor:before, .-ticket .-content.-warning-._minor:after {
+          top: 7.25px;
+          bottom: 7.25px; }
+        .-ticket .-content.-warning-._minor._vertical_:before, .-ticket .-content.-warning-._minor._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 7.25px !important;
+          right: 7.25px !important; }
+      .-ticket .-content.-warning-:before, .-ticket .-content.-warning-:after {
+        top: 9px;
+        bottom: 9px; }
+      .-ticket .-content.-warning-._vertical_:before, .-ticket .-content.-warning-._vertical_:after {
+        top: inherit;
+        bottom: inherit;
+        left: 9px !important;
+        right: 9px !important; }
+      .-ticket .-content.-warning-._normal {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffd471 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffd471 8px), radial-gradient( circle at 0 0, transparent 7px, #ffd471 8px); }
+        .-ticket .-content.-warning-._normal:before, .-ticket .-content.-warning-._normal:after {
+          top: 9px;
+          bottom: 9px; }
+        .-ticket .-content.-warning-._normal._vertical_:before, .-ticket .-content.-warning-._normal._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 9px !important;
+          right: 9px !important; }
+      .-ticket .-content.-warning-._major {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #ffd471 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #ffd471 9.75px); }
+        .-ticket .-content.-warning-._major:before, .-ticket .-content.-warning-._major:after {
+          top: 10.75px;
+          bottom: 10.75px; }
+        .-ticket .-content.-warning-._major._vertical_:before, .-ticket .-content.-warning-._major._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 10.75px !important;
+          right: 10.75px !important; }
+      .-ticket .-content.-warning-._big {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #ffd471 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #ffd471 11.5px); }
+        .-ticket .-content.-warning-._big:before, .-ticket .-content.-warning-._big:after {
+          top: 12.5px;
+          bottom: 12.5px; }
+        .-ticket .-content.-warning-._big._vertical_:before, .-ticket .-content.-warning-._big._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 12.5px !important;
+          right: 12.5px !important; }
+      .-ticket .-content.-warning-._huge {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #ffd471 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #ffd471 13.25px); }
+        .-ticket .-content.-warning-._huge:before, .-ticket .-content.-warning-._huge:after {
+          top: 14.25px;
+          bottom: 14.25px; }
+        .-ticket .-content.-warning-._huge._vertical_:before, .-ticket .-content.-warning-._huge._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 14.25px !important;
+          right: 14.25px !important; }
+      .-ticket .-content.-warning-._giant {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #ffd471 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #ffd471 14.3px); }
+        .-ticket .-content.-warning-._giant:before, .-ticket .-content.-warning-._giant:after {
+          top: 15.3px;
+          bottom: 15.3px; }
+        .-ticket .-content.-warning-._giant._vertical_:before, .-ticket .-content.-warning-._giant._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 15.3px !important;
+          right: 15.3px !important; }
+      .-ticket .-content.-warning-._divine {
+        color: white;
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #ffd471 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #ffd471 15px), radial-gradient( circle at 100% 100%, transparent 14px, #ffd471 15px), radial-gradient( circle at 100% 0, transparent 14px, #ffd471 15px), radial-gradient( circle at 0 0, transparent 14px, #ffd471 15px); }
+        .-ticket .-content.-warning-._divine:before, .-ticket .-content.-warning-._divine:after {
+          top: 16px;
+          bottom: 16px; }
+        .-ticket .-content.-warning-._divine._vertical_:before, .-ticket .-content.-warning-._divine._vertical_:after {
+          top: inherit;
+          bottom: inherit;
+          left: 16px !important;
+          right: 16px !important; }
+    .-ticket .-content:before, .-ticket .-content:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      width: 0;
+      top: 0; }
+    .-ticket .-content:before {
+      left: 0;
+      border-color: rgba(255, 255, 255, 0.3);
+      border-left-width: 1px;
+      border-left-style: dashed; }
+    .-ticket .-content:after {
+      border-color: rgba(0, 0, 0, 0.3);
+      right: 0;
+      border-right-width: 1px;
+      border-right-style: dashed; }
+    .-ticket .-content:first-child {
+      border-left: none; }
+      .-ticket .-content:first-child:before {
+        display: none !important; }
+    .-ticket .-content:last-child {
+      border-right: none; }
+      .-ticket .-content:last-child:after {
+        display: none !important; }
+  .-ticket._vertical_ {
+    display: block; }
+    .-ticket._vertical_ .-content {
+      display: block;
+      min-height: inherit;
+      min-width: 100%; }
+      .-ticket._vertical_ .-content:before, .-ticket._vertical_ .-content:after {
+        height: 0;
+        width: auto;
+        left: 0; }
+      .-ticket._vertical_ .-content:before {
+        left: inherit;
+        top: 0;
+        border-color: rgba(0, 0, 0, 0.3);
+        border-left-width: 0;
+        border-top-width: 1px;
+        border-top-style: dashed; }
+      .-ticket._vertical_ .-content:after {
+        right: inherit;
+        top: inherit;
+        bottom: 0;
+        border-color: rgba(255, 255, 255, 0.7);
+        border-right-width: 0;
+        border-bottom-width: 1px;
+        border-bottom-style: dashed; }
 
 /*# sourceMappingURL=commercial.sass.map */
