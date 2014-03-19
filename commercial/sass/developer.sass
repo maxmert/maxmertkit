@@ -7,6 +7,12 @@
 // 	font-style: normal
 // 	font-weight: 800
 
+@import "../../docs/js/bower/bourbon/dist/bourbon"
+@import "../../docs/js/bower/neat/app/assets/stylesheets/neat"
+@import "../../docs/js/bower/highlightjs-scss/styles/github"
+
+@include font-face(Code39AzaleaFont, '/fonts/Code39Azalea')
+
 .tk-jaf-bernina-sans
 	font-weight: 800
 
@@ -25,38 +31,36 @@ nav.-navbar-float
 	border-width: 0
 	position: fixed
 
+pre
+	margin: 7px 0
+	code
+		background-color: transparent
 
 .logo
 	display: inline-block
 	padding: 15px 12px
 
-.-developer-post
-	font-size: 140%
-	
-	blockquote
-		font-size: 120%
-		line-height: 1.3em
-		margin: 40px 0
+.barcode
+	font-family: "Code39AzaleaFont"
 
-	h1, h2, h3, h4, h5, h6
-		font-size: 140%
-		& + p
-			margin-top: 10px
 
-	p
-		margin: 40px 0
-		// line-height: 1.6em
+.dev-block-href
+	display: table
+	float: left
+	margin-right: 20px
+	color: #2c2d31
+	text-decoration: none
 
-		& + p, & + figure
-			margin-top: 0
+	&:hover
+		text-decoration: underline
 
-	figure
-		margin: 40px 0
-		
-		figcaption
-			p
-				margin: 0
-
-// .-play
-// 	width: 20px
-// 	height: 20px
+	span
+		min-width: 250px
+		min-height: 150px
+		height: 150px
+		background-color: #fcfcfc
+		border: 1px dashed #2c2d31
+		border-radius: 5px
+		text-align: center
+		display: table-cell
+		vertical-align: middle

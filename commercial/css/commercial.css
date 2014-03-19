@@ -10,7 +10,7 @@ html, body {
 
 .-no-pointer-events {
   pointer-events: none; }
-  .-no-pointer-events .-nav-bullets, .-no-pointer-events .-nav-bullets-round {
+  .-no-pointer-events .-nav-bullets, .-no-pointer-events .-nav-bullets-round, .-no-pointer-events .-nav-bullets-ripples {
     pointer-events: auto; }
 
 .-shader:before {
@@ -2008,7 +2008,7 @@ html, body {
 
   100% {
     transform: rotate(0deg); } }
-.-nav-bullets, .-nav-bullets-round {
+.-nav-bullets, .-nav-bullets-round, .-nav-bullets-ripples {
   position: fixed;
   top: 50%;
   left: 20px;
@@ -2018,7 +2018,7 @@ html, body {
   -ms-user-select: none;
   user-select: none;
   font-size: 11px; }
-  .-nav-bullets i, .-nav-bullets-round i {
+  .-nav-bullets i, .-nav-bullets-round i, .-nav-bullets-ripples i {
     display: block;
     margin-bottom: 10px;
     border-width: 1px;
@@ -2034,7 +2034,7 @@ html, body {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     position: relative; }
-    .-nav-bullets i span, .-nav-bullets-round i span {
+    .-nav-bullets i span, .-nav-bullets-round i span, .-nav-bullets-ripples i span {
       -webkit-transform: translate3d(0px, 0px, 0px);
       -webkit-transition: all 0.2s ease-out 0s;
       -moz-transition: all 0.2s ease-out 0s;
@@ -2049,9 +2049,9 @@ html, body {
       top: 0;
       white-space: nowrap;
       font-style: normal; }
-    .-nav-bullets i:hover span, .-nav-bullets-round i:hover span {
+    .-nav-bullets i:hover span, .-nav-bullets-round i:hover span, .-nav-bullets-ripples i:hover span {
       opacity: 1; }
-    .-nav-bullets i._active_, .-nav-bullets-round i._active_ {
+    .-nav-bullets i._active_, .-nav-bullets-round i._active_, .-nav-bullets-ripples i._active_ {
       -webkit-animation: bullets-rotate-from 1s ease-in;
       -moz-animation: bullets-rotate-from 1s ease-in;
       animation: bullets-rotate-from 1s ease-in;
@@ -2061,21 +2061,21 @@ html, body {
       -o-transform: rotate(0deg);
       transform: rotate(0deg);
       opacity: 1; }
-  .-nav-bullets._right_, ._right_.-nav-bullets-round {
+  .-nav-bullets._right_, ._right_.-nav-bullets-round, ._right_.-nav-bullets-ripples {
     left: auto;
     right: 20px; }
-    .-nav-bullets._right_ i, ._right_.-nav-bullets-round i {
+    .-nav-bullets._right_ i, ._right_.-nav-bullets-round i, ._right_.-nav-bullets-ripples i {
       -webkit-transform: rotate(45deg);
       -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
       transform: rotate(45deg); }
-      .-nav-bullets._right_ i span, ._right_.-nav-bullets-round i span {
+      .-nav-bullets._right_ i span, ._right_.-nav-bullets-round i span, ._right_.-nav-bullets-ripples i span {
         right: 100%;
         left: auto;
         margin-left: auto;
         margin-right: 5px; }
-      .-nav-bullets._right_ i._active_, ._right_.-nav-bullets-round i._active_ {
+      .-nav-bullets._right_ i._active_, ._right_.-nav-bullets-round i._active_, ._right_.-nav-bullets-ripples i._active_ {
         -webkit-animation: bullets-rotate-from-positive 1s ease-in;
         -moz-animation: bullets-rotate-from-positive 1s ease-in;
         animation: bullets-rotate-from-positive 1s ease-in;
@@ -2084,113 +2084,125 @@ html, body {
         -ms-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg); }
-  .-nav-bullets._tiny, ._tiny.-nav-bullets-round {
+  .-nav-bullets._top_, ._top_.-nav-bullets-round, ._top_.-nav-bullets-ripples {
+    top: 20px;
+    bottom: inherit; }
+  .-nav-bullets._bottom_, ._bottom_.-nav-bullets-round, ._bottom_.-nav-bullets-ripples {
+    bottom: 20px;
+    top: inherit; }
+  .-nav-bullets._bottom_, ._bottom_.-nav-bullets-round, ._bottom_.-nav-bullets-ripples, .-nav-bullets._top_, ._top_.-nav-bullets-round, ._top_.-nav-bullets-ripples {
+    left: 50%; }
+    .-nav-bullets._bottom_ i, ._bottom_.-nav-bullets-round i, ._bottom_.-nav-bullets-ripples i, .-nav-bullets._top_ i, ._top_.-nav-bullets-round i, ._top_.-nav-bullets-ripples i {
+      display: inline-block;
+      margin-bottom: inherit;
+      margin-right: 10px; }
+  .-nav-bullets._tiny, ._tiny.-nav-bullets-round, ._tiny.-nav-bullets-ripples {
     font-size: 0.5px; }
-    .-nav-bullets._tiny i, ._tiny.-nav-bullets-round i {
+    .-nav-bullets._tiny i, ._tiny.-nav-bullets-round i, ._tiny.-nav-bullets-ripples i {
       width: 2.5px;
       height: 2.5px;
       margin-bottom: 2.5px; }
-  .-nav-bullets._small, ._small.-nav-bullets-round {
+  .-nav-bullets._small, ._small.-nav-bullets-round, ._small.-nav-bullets-ripples {
     font-size: 4px; }
-    .-nav-bullets._small i, ._small.-nav-bullets-round i {
+    .-nav-bullets._small i, ._small.-nav-bullets-round i, ._small.-nav-bullets-ripples i {
       width: 5px;
       height: 5px;
       margin-bottom: 5px; }
-  .-nav-bullets._minor, ._minor.-nav-bullets-round {
+  .-nav-bullets._minor, ._minor.-nav-bullets-round, ._minor.-nav-bullets-ripples {
     font-size: 7.5px; }
-    .-nav-bullets._minor i, ._minor.-nav-bullets-round i {
+    .-nav-bullets._minor i, ._minor.-nav-bullets-round i, ._minor.-nav-bullets-ripples i {
       width: 7.5px;
       height: 7.5px;
       margin-bottom: 7.5px; }
-  .-nav-bullets i, .-nav-bullets-round i {
+  .-nav-bullets i, .-nav-bullets-round i, .-nav-bullets-ripples i {
     width: 10px;
     height: 10px;
     margin-bottom: 10px; }
-  .-nav-bullets._normal, ._normal.-nav-bullets-round {
+  .-nav-bullets._normal, ._normal.-nav-bullets-round, ._normal.-nav-bullets-ripples {
     font-size: 11px; }
-    .-nav-bullets._normal i, ._normal.-nav-bullets-round i {
+    .-nav-bullets._normal i, ._normal.-nav-bullets-round i, ._normal.-nav-bullets-ripples i {
       width: 10px;
       height: 10px;
       margin-bottom: 10px; }
-  .-nav-bullets._major, ._major.-nav-bullets-round {
+  .-nav-bullets._major, ._major.-nav-bullets-round, ._major.-nav-bullets-ripples {
     font-size: 14.5px; }
-    .-nav-bullets._major i, ._major.-nav-bullets-round i {
+    .-nav-bullets._major i, ._major.-nav-bullets-round i, ._major.-nav-bullets-ripples i {
       width: 12.5px;
       height: 12.5px;
       margin-bottom: 12.5px; }
-  .-nav-bullets._big, ._big.-nav-bullets-round {
+  .-nav-bullets._big, ._big.-nav-bullets-round, ._big.-nav-bullets-ripples {
     font-size: 18px; }
-    .-nav-bullets._big i, ._big.-nav-bullets-round i {
+    .-nav-bullets._big i, ._big.-nav-bullets-round i, ._big.-nav-bullets-ripples i {
       width: 15px;
       height: 15px;
       margin-bottom: 15px; }
-  .-nav-bullets._huge, ._huge.-nav-bullets-round {
+  .-nav-bullets._huge, ._huge.-nav-bullets-round, ._huge.-nav-bullets-ripples {
     font-size: 21.5px; }
-    .-nav-bullets._huge i, ._huge.-nav-bullets-round i {
+    .-nav-bullets._huge i, ._huge.-nav-bullets-round i, ._huge.-nav-bullets-ripples i {
       width: 17.5px;
       height: 17.5px;
       margin-bottom: 17.5px; }
-  .-nav-bullets._giant, ._giant.-nav-bullets-round {
+  .-nav-bullets._giant, ._giant.-nav-bullets-round, ._giant.-nav-bullets-ripples {
     font-size: 23.6px; }
-    .-nav-bullets._giant i, ._giant.-nav-bullets-round i {
+    .-nav-bullets._giant i, ._giant.-nav-bullets-round i, ._giant.-nav-bullets-ripples i {
       width: 19px;
       height: 19px;
       margin-bottom: 19px; }
-  .-nav-bullets._divine, ._divine.-nav-bullets-round {
+  .-nav-bullets._divine, ._divine.-nav-bullets-round, ._divine.-nav-bullets-ripples {
     font-size: 25px; }
-    .-nav-bullets._divine i, ._divine.-nav-bullets-round i {
+    .-nav-bullets._divine i, ._divine.-nav-bullets-round i, ._divine.-nav-bullets-ripples i {
       width: 20px;
       height: 20px;
       margin-bottom: 20px; }
-  .-nav-bullets i, .-nav-bullets-round i {
+  .-nav-bullets i, .-nav-bullets-round i, .-nav-bullets-ripples i {
     border-color: #f7f7f7;
     color: #cccccc; }
-    .-nav-bullets i._active_, .-nav-bullets-round i._active_ {
+    .-nav-bullets i._active_, .-nav-bullets-round i._active_, .-nav-bullets-ripples i._active_ {
       background-color: #f7f7f7; }
-  .-nav-bullets._invert_ i, ._invert_.-nav-bullets-round i {
+  .-nav-bullets._invert_ i, ._invert_.-nav-bullets-round i, ._invert_.-nav-bullets-ripples i {
     border-color: black;
     color: black; }
-    .-nav-bullets._invert_ i._active_, ._invert_.-nav-bullets-round i._active_ {
+    .-nav-bullets._invert_ i._active_, ._invert_.-nav-bullets-round i._active_, ._invert_.-nav-bullets-ripples i._active_ {
       background-color: black; }
-  .-nav-bullets.-default- i, .-default-.-nav-bullets-round i {
+  .-nav-bullets.-default- i, .-default-.-nav-bullets-round i, .-default-.-nav-bullets-ripples i {
     border-color: #f7f7f7;
     color: #cccccc; }
-    .-nav-bullets.-default- i._active_, .-default-.-nav-bullets-round i._active_ {
+    .-nav-bullets.-default- i._active_, .-default-.-nav-bullets-round i._active_, .-default-.-nav-bullets-ripples i._active_ {
       background-color: #f7f7f7; }
-  .-nav-bullets.-default-._invert_ i, .-default-._invert_.-nav-bullets-round i {
+  .-nav-bullets.-default-._invert_ i, .-default-._invert_.-nav-bullets-round i, .-default-._invert_.-nav-bullets-ripples i {
     border-color: black;
     color: black; }
-    .-nav-bullets.-default-._invert_ i._active_, .-default-._invert_.-nav-bullets-round i._active_ {
+    .-nav-bullets.-default-._invert_ i._active_, .-default-._invert_.-nav-bullets-round i._active_, .-default-._invert_.-nav-bullets-ripples i._active_ {
       background-color: black; }
-  .-nav-bullets.-primary- i, .-primary-.-nav-bullets-round i {
+  .-nav-bullets.-primary- i, .-primary-.-nav-bullets-round i, .-primary-.-nav-bullets-ripples i {
     border-color: #60aee3;
     color: white; }
-    .-nav-bullets.-primary- i._active_, .-primary-.-nav-bullets-round i._active_ {
+    .-nav-bullets.-primary- i._active_, .-primary-.-nav-bullets-round i._active_, .-primary-.-nav-bullets-ripples i._active_ {
       background-color: #60aee3; }
-  .-nav-bullets.-primary-._invert_ i, .-primary-._invert_.-nav-bullets-round i {
+  .-nav-bullets.-primary-._invert_ i, .-primary-._invert_.-nav-bullets-round i, .-primary-._invert_.-nav-bullets-ripples i {
     border-color: #3598db;
     color: #3598db; }
-    .-nav-bullets.-primary-._invert_ i._active_, .-primary-._invert_.-nav-bullets-round i._active_ {
+    .-nav-bullets.-primary-._invert_ i._active_, .-primary-._invert_.-nav-bullets-round i._active_, .-primary-._invert_.-nav-bullets-ripples i._active_ {
       background-color: #3598db; }
-  .-nav-bullets.-error- i, .-error-.-nav-bullets-round i {
+  .-nav-bullets.-error- i, .-error-.-nav-bullets-round i, .-error-.-nav-bullets-ripples i {
     border-color: #de4d46;
     color: white; }
-    .-nav-bullets.-error- i._active_, .-error-.-nav-bullets-round i._active_ {
+    .-nav-bullets.-error- i._active_, .-error-.-nav-bullets-round i._active_, .-error-.-nav-bullets-ripples i._active_ {
       background-color: #de4d46; }
-  .-nav-bullets.-error-._invert_ i, .-error-._invert_.-nav-bullets-round i {
+  .-nav-bullets.-error-._invert_ i, .-error-._invert_.-nav-bullets-round i, .-error-._invert_.-nav-bullets-ripples i {
     border-color: #cd2c24;
     color: #cd2c24; }
-    .-nav-bullets.-error-._invert_ i._active_, .-error-._invert_.-nav-bullets-round i._active_ {
+    .-nav-bullets.-error-._invert_ i._active_, .-error-._invert_.-nav-bullets-round i._active_, .-error-._invert_.-nav-bullets-ripples i._active_ {
       background-color: #cd2c24; }
-  .-nav-bullets.-warning- i, .-warning-.-nav-bullets-round i {
+  .-nav-bullets.-warning- i, .-warning-.-nav-bullets-round i, .-warning-.-nav-bullets-ripples i {
     border-color: #ffd471;
     color: white; }
-    .-nav-bullets.-warning- i._active_, .-warning-.-nav-bullets-round i._active_ {
+    .-nav-bullets.-warning- i._active_, .-warning-.-nav-bullets-round i._active_, .-warning-.-nav-bullets-ripples i._active_ {
       background-color: #ffd471; }
-  .-nav-bullets.-warning-._invert_ i, .-warning-._invert_.-nav-bullets-round i {
+  .-nav-bullets.-warning-._invert_ i, .-warning-._invert_.-nav-bullets-round i, .-warning-._invert_.-nav-bullets-ripples i {
     border-color: #ffc43e;
     color: #ffc43e; }
-    .-nav-bullets.-warning-._invert_ i._active_, .-warning-._invert_.-nav-bullets-round i._active_ {
+    .-nav-bullets.-warning-._invert_ i._active_, .-warning-._invert_.-nav-bullets-round i._active_, .-warning-._invert_.-nav-bullets-ripples i._active_ {
       background-color: #ffc43e; }
 
 .-nav-bullets-round._tiny i {
@@ -2214,8 +2226,205 @@ html, body {
 .-nav-bullets-round._divine i {
   border-radius: 20px; }
 
+.-nav-bullets-ripples i {
+  opacity: 1; }
+  .-nav-bullets-ripples i:hover span {
+    opacity: 0; }
+  .-nav-bullets-ripples i._active_:hover span {
+    opacity: 1; }
+.-nav-bullets-ripples i {
+  border-color: #f7f7f7;
+  background-color: #f7f7f7;
+  color: #cccccc; }
+  .-nav-bullets-ripples i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples._invert_ i {
+  border-color: black;
+  background-color: black;
+  color: black; }
+  .-nav-bullets-ripples._invert_ i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-default- i {
+  border-color: #f7f7f7;
+  background-color: #f7f7f7;
+  color: #cccccc; }
+  .-nav-bullets-ripples.-default- i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-default-._invert_ i {
+  border-color: black;
+  background-color: black;
+  color: black; }
+  .-nav-bullets-ripples.-default-._invert_ i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-primary- i {
+  border-color: #60aee3;
+  background-color: #60aee3;
+  color: white; }
+  .-nav-bullets-ripples.-primary- i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-primary-._invert_ i {
+  border-color: #3598db;
+  background-color: #3598db;
+  color: #3598db; }
+  .-nav-bullets-ripples.-primary-._invert_ i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-error- i {
+  border-color: #de4d46;
+  background-color: #de4d46;
+  color: white; }
+  .-nav-bullets-ripples.-error- i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-error-._invert_ i {
+  border-color: #cd2c24;
+  background-color: #cd2c24;
+  color: #cd2c24; }
+  .-nav-bullets-ripples.-error-._invert_ i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-warning- i {
+  border-color: #ffd471;
+  background-color: #ffd471;
+  color: white; }
+  .-nav-bullets-ripples.-warning- i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples.-warning-._invert_ i {
+  border-color: #ffc43e;
+  background-color: #ffc43e;
+  color: #ffc43e; }
+  .-nav-bullets-ripples.-warning-._invert_ i._active_ {
+    background-color: transparent; }
+.-nav-bullets-ripples._tiny._right_ i, .-nav-bullets-ripples._tiny._left_ i, .-nav-bullets-ripples._tiny._bottom_ i, .-nav-bullets-ripples._tiny._top_ i {
+  border-radius: 2.5px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._tiny._right_ i._active_, .-nav-bullets-ripples._tiny._left_ i._active_, .-nav-bullets-ripples._tiny._bottom_ i._active_, .-nav-bullets-ripples._tiny._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._small._right_ i, .-nav-bullets-ripples._small._left_ i, .-nav-bullets-ripples._small._bottom_ i, .-nav-bullets-ripples._small._top_ i {
+  border-radius: 5px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._small._right_ i._active_, .-nav-bullets-ripples._small._left_ i._active_, .-nav-bullets-ripples._small._bottom_ i._active_, .-nav-bullets-ripples._small._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._minor._right_ i, .-nav-bullets-ripples._minor._left_ i, .-nav-bullets-ripples._minor._bottom_ i, .-nav-bullets-ripples._minor._top_ i {
+  border-radius: 7.5px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._minor._right_ i._active_, .-nav-bullets-ripples._minor._left_ i._active_, .-nav-bullets-ripples._minor._bottom_ i._active_, .-nav-bullets-ripples._minor._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._right_ i, .-nav-bullets-ripples._left_ i, .-nav-bullets-ripples._bottom_ i, .-nav-bullets-ripples._top_ i {
+  border-radius: 10px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._right_ i._active_, .-nav-bullets-ripples._left_ i._active_, .-nav-bullets-ripples._bottom_ i._active_, .-nav-bullets-ripples._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._normal._right_ i, .-nav-bullets-ripples._normal._left_ i, .-nav-bullets-ripples._normal._bottom_ i, .-nav-bullets-ripples._normal._top_ i {
+  border-radius: 10px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._normal._right_ i._active_, .-nav-bullets-ripples._normal._left_ i._active_, .-nav-bullets-ripples._normal._bottom_ i._active_, .-nav-bullets-ripples._normal._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._major._right_ i, .-nav-bullets-ripples._major._left_ i, .-nav-bullets-ripples._major._bottom_ i, .-nav-bullets-ripples._major._top_ i {
+  border-radius: 12.5px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._major._right_ i._active_, .-nav-bullets-ripples._major._left_ i._active_, .-nav-bullets-ripples._major._bottom_ i._active_, .-nav-bullets-ripples._major._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._big._right_ i, .-nav-bullets-ripples._big._left_ i, .-nav-bullets-ripples._big._bottom_ i, .-nav-bullets-ripples._big._top_ i {
+  border-radius: 15px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._big._right_ i._active_, .-nav-bullets-ripples._big._left_ i._active_, .-nav-bullets-ripples._big._bottom_ i._active_, .-nav-bullets-ripples._big._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._huge._right_ i, .-nav-bullets-ripples._huge._left_ i, .-nav-bullets-ripples._huge._bottom_ i, .-nav-bullets-ripples._huge._top_ i {
+  border-radius: 17.5px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._huge._right_ i._active_, .-nav-bullets-ripples._huge._left_ i._active_, .-nav-bullets-ripples._huge._bottom_ i._active_, .-nav-bullets-ripples._huge._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._giant._right_ i, .-nav-bullets-ripples._giant._left_ i, .-nav-bullets-ripples._giant._bottom_ i, .-nav-bullets-ripples._giant._top_ i {
+  border-radius: 19px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._giant._right_ i._active_, .-nav-bullets-ripples._giant._left_ i._active_, .-nav-bullets-ripples._giant._bottom_ i._active_, .-nav-bullets-ripples._giant._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+.-nav-bullets-ripples._divine._right_ i, .-nav-bullets-ripples._divine._left_ i, .-nav-bullets-ripples._divine._bottom_ i, .-nav-bullets-ripples._divine._top_ i {
+  border-radius: 20px;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+  .-nav-bullets-ripples._divine._right_ i._active_, .-nav-bullets-ripples._divine._left_ i._active_, .-nav-bullets-ripples._divine._bottom_ i._active_, .-nav-bullets-ripples._divine._top_ i._active_ {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+
 @media screen and (max-width: 768px) {
-  .-nav-bullets i span, .-nav-bullets-round i span {
+  .-nav-bullets i span, .-nav-bullets-round i span, .-nav-bullets-ripples i span {
     display: none; } }
 .-avatar {
   display: inline-block; }
@@ -3067,640 +3276,850 @@ a.-avatar {
   display: table; }
   .-ticket .-content {
     position: relative;
-    padding: 10px;
     display: table-cell;
     min-height: 100%;
     vertical-align: middle;
+    float: none;
+    padding: 35px;
     background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
     background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px);
     background-position: bottom left, bottom right, top right, top left;
     background-size: 51% 51%;
     background-repeat: no-repeat; }
-    .-ticket .-content._tiny {
+    .-ticket .-content h1 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h1:first-child {
+        margin-top: 0; }
+      .-ticket .-content h1:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content h2 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h2:first-child {
+        margin-top: 0; }
+      .-ticket .-content h2:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content h3 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h3:first-child {
+        margin-top: 0; }
+      .-ticket .-content h3:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content h4 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h4:first-child {
+        margin-top: 0; }
+      .-ticket .-content h4:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content h5 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h5:first-child {
+        margin-top: 0; }
+      .-ticket .-content h5:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content h6 {
+      text-transform: uppercase;
+      font-family: "alternate-gothic-no-3-d"; }
+      .-ticket .-content h6:first-child {
+        margin-top: 0; }
+      .-ticket .-content h6:last-child {
+        margin-bottom: 0; }
+    .-ticket .-content._tiny, .-ticket._tiny .-content {
+      padding: 8.75px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #f7f7f7 2.75px);
       background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #f7f7f7 2.75px); }
-      .-ticket .-content._tiny:before, .-ticket .-content._tiny:after {
+      .-ticket .-content._tiny .-divider._left_, .-ticket._tiny .-content .-divider._left_, .-ticket .-content._tiny .-divider._right_, .-ticket._tiny .-content .-divider._right_ {
         top: 3.75px;
-        bottom: 3.75px; }
-      .-ticket .-content._tiny._vertical_:before, .-ticket .-content._tiny._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 3.75px !important;
-        right: 3.75px !important; }
-    .-ticket .-content._small {
+        bottom: 3.75px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._tiny .-divider._top_, .-ticket._tiny .-content .-divider._top_, .-ticket .-content._tiny .-divider._bottom_, .-ticket._tiny .-content .-divider._bottom_ {
+        left: 3.75px;
+        right: 3.75px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._small, .-ticket._small .-content {
+      padding: 17.5px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #f7f7f7 4.5px);
       background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #f7f7f7 4.5px); }
-      .-ticket .-content._small:before, .-ticket .-content._small:after {
+      .-ticket .-content._small .-divider._left_, .-ticket._small .-content .-divider._left_, .-ticket .-content._small .-divider._right_, .-ticket._small .-content .-divider._right_ {
         top: 5.5px;
-        bottom: 5.5px; }
-      .-ticket .-content._small._vertical_:before, .-ticket .-content._small._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 5.5px !important;
-        right: 5.5px !important; }
-    .-ticket .-content._minor {
+        bottom: 5.5px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._small .-divider._top_, .-ticket._small .-content .-divider._top_, .-ticket .-content._small .-divider._bottom_, .-ticket._small .-content .-divider._bottom_ {
+        left: 5.5px;
+        right: 5.5px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._minor, .-ticket._minor .-content {
+      padding: 26.25px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #f7f7f7 6.25px);
       background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #f7f7f7 6.25px); }
-      .-ticket .-content._minor:before, .-ticket .-content._minor:after {
+      .-ticket .-content._minor .-divider._left_, .-ticket._minor .-content .-divider._left_, .-ticket .-content._minor .-divider._right_, .-ticket._minor .-content .-divider._right_ {
         top: 7.25px;
-        bottom: 7.25px; }
-      .-ticket .-content._minor._vertical_:before, .-ticket .-content._minor._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 7.25px !important;
-        right: 7.25px !important; }
-    .-ticket .-content:before, .-ticket .-content:after {
+        bottom: 7.25px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._minor .-divider._top_, .-ticket._minor .-content .-divider._top_, .-ticket .-content._minor .-divider._bottom_, .-ticket._minor .-content .-divider._bottom_ {
+        left: 7.25px;
+        right: 7.25px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content .-divider._left_, .-ticket .-content .-divider._right_ {
       top: 9px;
-      bottom: 9px; }
-    .-ticket .-content._vertical_:before, .-ticket .-content._vertical_:after {
-      top: inherit;
-      bottom: inherit;
-      left: 9px !important;
-      right: 9px !important; }
-    .-ticket .-content._normal {
+      bottom: 9px;
+      border-left: 1px dashed white;
+      border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content .-divider._top_, .-ticket .-content .-divider._bottom_ {
+      left: 9px;
+      right: 9px;
+      border-bottom: 1px dashed white;
+      border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._normal, .-ticket .-content, .-ticket._normal .-content {
+      padding: 35px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
       background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
-      .-ticket .-content._normal:before, .-ticket .-content._normal:after {
+      .-ticket .-content._normal .-divider._left_, .-ticket .-content .-divider._left_, .-ticket .-content._normal .-divider._right_, .-ticket .-content .-divider._right_ {
         top: 9px;
-        bottom: 9px; }
-      .-ticket .-content._normal._vertical_:before, .-ticket .-content._normal._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 9px !important;
-        right: 9px !important; }
-    .-ticket .-content._major {
+        bottom: 9px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._normal .-divider._top_, .-ticket .-content .-divider._top_, .-ticket .-content._normal .-divider._bottom_, .-ticket .-content .-divider._bottom_ {
+        left: 9px;
+        right: 9px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._major, .-ticket._major .-content {
+      padding: 43.75px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #f7f7f7 9.75px);
       background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #f7f7f7 9.75px); }
-      .-ticket .-content._major:before, .-ticket .-content._major:after {
+      .-ticket .-content._major .-divider._left_, .-ticket._major .-content .-divider._left_, .-ticket .-content._major .-divider._right_, .-ticket._major .-content .-divider._right_ {
         top: 10.75px;
-        bottom: 10.75px; }
-      .-ticket .-content._major._vertical_:before, .-ticket .-content._major._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 10.75px !important;
-        right: 10.75px !important; }
-    .-ticket .-content._big {
+        bottom: 10.75px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._major .-divider._top_, .-ticket._major .-content .-divider._top_, .-ticket .-content._major .-divider._bottom_, .-ticket._major .-content .-divider._bottom_ {
+        left: 10.75px;
+        right: 10.75px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._big, .-ticket._big .-content {
+      padding: 52.5px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #f7f7f7 11.5px);
       background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #f7f7f7 11.5px); }
-      .-ticket .-content._big:before, .-ticket .-content._big:after {
+      .-ticket .-content._big .-divider._left_, .-ticket._big .-content .-divider._left_, .-ticket .-content._big .-divider._right_, .-ticket._big .-content .-divider._right_ {
         top: 12.5px;
-        bottom: 12.5px; }
-      .-ticket .-content._big._vertical_:before, .-ticket .-content._big._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 12.5px !important;
-        right: 12.5px !important; }
-    .-ticket .-content._huge {
+        bottom: 12.5px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._big .-divider._top_, .-ticket._big .-content .-divider._top_, .-ticket .-content._big .-divider._bottom_, .-ticket._big .-content .-divider._bottom_ {
+        left: 12.5px;
+        right: 12.5px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._huge, .-ticket._huge .-content {
+      padding: 61.25px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #f7f7f7 13.25px);
       background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #f7f7f7 13.25px); }
-      .-ticket .-content._huge:before, .-ticket .-content._huge:after {
+      .-ticket .-content._huge .-divider._left_, .-ticket._huge .-content .-divider._left_, .-ticket .-content._huge .-divider._right_, .-ticket._huge .-content .-divider._right_ {
         top: 14.25px;
-        bottom: 14.25px; }
-      .-ticket .-content._huge._vertical_:before, .-ticket .-content._huge._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 14.25px !important;
-        right: 14.25px !important; }
-    .-ticket .-content._giant {
+        bottom: 14.25px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._huge .-divider._top_, .-ticket._huge .-content .-divider._top_, .-ticket .-content._huge .-divider._bottom_, .-ticket._huge .-content .-divider._bottom_ {
+        left: 14.25px;
+        right: 14.25px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._giant, .-ticket._giant .-content {
+      padding: 66.5px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #f7f7f7 14.3px);
       background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #f7f7f7 14.3px); }
-      .-ticket .-content._giant:before, .-ticket .-content._giant:after {
+      .-ticket .-content._giant .-divider._left_, .-ticket._giant .-content .-divider._left_, .-ticket .-content._giant .-divider._right_, .-ticket._giant .-content .-divider._right_ {
         top: 15.3px;
-        bottom: 15.3px; }
-      .-ticket .-content._giant._vertical_:before, .-ticket .-content._giant._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 15.3px !important;
-        right: 15.3px !important; }
-    .-ticket .-content._divine {
+        bottom: 15.3px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._giant .-divider._top_, .-ticket._giant .-content .-divider._top_, .-ticket .-content._giant .-divider._bottom_, .-ticket._giant .-content .-divider._bottom_ {
+        left: 15.3px;
+        right: 15.3px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+    .-ticket .-content._divine, .-ticket._divine .-content {
+      padding: 70px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #f7f7f7 15px);
       background-image: radial-gradient( circle at 0 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, transparent 14px, #f7f7f7 15px); }
-      .-ticket .-content._divine:before, .-ticket .-content._divine:after {
+      .-ticket .-content._divine .-divider._left_, .-ticket._divine .-content .-divider._left_, .-ticket .-content._divine .-divider._right_, .-ticket._divine .-content .-divider._right_ {
         top: 16px;
-        bottom: 16px; }
-      .-ticket .-content._divine._vertical_:before, .-ticket .-content._divine._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 16px !important;
-        right: 16px !important; }
+        bottom: 16px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content._divine .-divider._top_, .-ticket._divine .-content .-divider._top_, .-ticket .-content._divine .-divider._bottom_, .-ticket._divine .-content .-divider._bottom_ {
+        left: 16px;
+        right: 16px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
     .-ticket .-content.-default- {
+      padding: 35px;
       background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
       background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
-      .-ticket .-content.-default-._tiny {
+      .-ticket .-content.-default-._tiny, .-ticket._tiny .-default-.-content {
+        padding: 8.75px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #f7f7f7 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #f7f7f7 2.75px);
         background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #f7f7f7 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #f7f7f7 2.75px); }
-        .-ticket .-content.-default-._tiny:before, .-ticket .-content.-default-._tiny:after {
+        .-ticket .-content.-default-._tiny .-divider._left_, .-ticket._tiny .-default-.-content .-divider._left_, .-ticket .-content.-default-._tiny .-divider._right_, .-ticket._tiny .-default-.-content .-divider._right_ {
           top: 3.75px;
-          bottom: 3.75px; }
-        .-ticket .-content.-default-._tiny._vertical_:before, .-ticket .-content.-default-._tiny._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 3.75px !important;
-          right: 3.75px !important; }
-      .-ticket .-content.-default-._small {
+          bottom: 3.75px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._tiny .-divider._top_, .-ticket._tiny .-default-.-content .-divider._top_, .-ticket .-content.-default-._tiny .-divider._bottom_, .-ticket._tiny .-default-.-content .-divider._bottom_ {
+          left: 3.75px;
+          right: 3.75px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._small, .-ticket._small .-default-.-content {
+        padding: 17.5px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #f7f7f7 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #f7f7f7 4.5px);
         background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #f7f7f7 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #f7f7f7 4.5px); }
-        .-ticket .-content.-default-._small:before, .-ticket .-content.-default-._small:after {
+        .-ticket .-content.-default-._small .-divider._left_, .-ticket._small .-default-.-content .-divider._left_, .-ticket .-content.-default-._small .-divider._right_, .-ticket._small .-default-.-content .-divider._right_ {
           top: 5.5px;
-          bottom: 5.5px; }
-        .-ticket .-content.-default-._small._vertical_:before, .-ticket .-content.-default-._small._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 5.5px !important;
-          right: 5.5px !important; }
-      .-ticket .-content.-default-._minor {
+          bottom: 5.5px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._small .-divider._top_, .-ticket._small .-default-.-content .-divider._top_, .-ticket .-content.-default-._small .-divider._bottom_, .-ticket._small .-default-.-content .-divider._bottom_ {
+          left: 5.5px;
+          right: 5.5px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._minor, .-ticket._minor .-default-.-content {
+        padding: 26.25px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #f7f7f7 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #f7f7f7 6.25px);
         background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #f7f7f7 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #f7f7f7 6.25px); }
-        .-ticket .-content.-default-._minor:before, .-ticket .-content.-default-._minor:after {
+        .-ticket .-content.-default-._minor .-divider._left_, .-ticket._minor .-default-.-content .-divider._left_, .-ticket .-content.-default-._minor .-divider._right_, .-ticket._minor .-default-.-content .-divider._right_ {
           top: 7.25px;
-          bottom: 7.25px; }
-        .-ticket .-content.-default-._minor._vertical_:before, .-ticket .-content.-default-._minor._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 7.25px !important;
-          right: 7.25px !important; }
-      .-ticket .-content.-default-:before, .-ticket .-content.-default-:after {
+          bottom: 7.25px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._minor .-divider._top_, .-ticket._minor .-default-.-content .-divider._top_, .-ticket .-content.-default-._minor .-divider._bottom_, .-ticket._minor .-default-.-content .-divider._bottom_ {
+          left: 7.25px;
+          right: 7.25px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default- .-divider._left_, .-ticket .-content.-default- .-divider._right_ {
         top: 9px;
-        bottom: 9px; }
-      .-ticket .-content.-default-._vertical_:before, .-ticket .-content.-default-._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 9px !important;
-        right: 9px !important; }
-      .-ticket .-content.-default-._normal {
+        bottom: 9px;
+        border-left: 1px dashed white;
+        border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default- .-divider._top_, .-ticket .-content.-default- .-divider._bottom_ {
+        left: 9px;
+        right: 9px;
+        border-bottom: 1px dashed white;
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._normal, .-ticket .-default-.-content {
+        padding: 35px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #f7f7f7 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #f7f7f7 8px);
         background-image: radial-gradient( circle at 0 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 100%, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 100% 0, transparent 7px, #f7f7f7 8px), radial-gradient( circle at 0 0, transparent 7px, #f7f7f7 8px); }
-        .-ticket .-content.-default-._normal:before, .-ticket .-content.-default-._normal:after {
+        .-ticket .-content.-default-._normal .-divider._left_, .-ticket .-default-.-content .-divider._left_, .-ticket .-content.-default-._normal .-divider._right_, .-ticket .-default-.-content .-divider._right_ {
           top: 9px;
-          bottom: 9px; }
-        .-ticket .-content.-default-._normal._vertical_:before, .-ticket .-content.-default-._normal._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 9px !important;
-          right: 9px !important; }
-      .-ticket .-content.-default-._major {
+          bottom: 9px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._normal .-divider._top_, .-ticket .-default-.-content .-divider._top_, .-ticket .-content.-default-._normal .-divider._bottom_, .-ticket .-default-.-content .-divider._bottom_ {
+          left: 9px;
+          right: 9px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._major, .-ticket._major .-default-.-content {
+        padding: 43.75px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #f7f7f7 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #f7f7f7 9.75px);
         background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #f7f7f7 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #f7f7f7 9.75px); }
-        .-ticket .-content.-default-._major:before, .-ticket .-content.-default-._major:after {
+        .-ticket .-content.-default-._major .-divider._left_, .-ticket._major .-default-.-content .-divider._left_, .-ticket .-content.-default-._major .-divider._right_, .-ticket._major .-default-.-content .-divider._right_ {
           top: 10.75px;
-          bottom: 10.75px; }
-        .-ticket .-content.-default-._major._vertical_:before, .-ticket .-content.-default-._major._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 10.75px !important;
-          right: 10.75px !important; }
-      .-ticket .-content.-default-._big {
+          bottom: 10.75px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._major .-divider._top_, .-ticket._major .-default-.-content .-divider._top_, .-ticket .-content.-default-._major .-divider._bottom_, .-ticket._major .-default-.-content .-divider._bottom_ {
+          left: 10.75px;
+          right: 10.75px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._big, .-ticket._big .-default-.-content {
+        padding: 52.5px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #f7f7f7 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #f7f7f7 11.5px);
         background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #f7f7f7 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #f7f7f7 11.5px); }
-        .-ticket .-content.-default-._big:before, .-ticket .-content.-default-._big:after {
+        .-ticket .-content.-default-._big .-divider._left_, .-ticket._big .-default-.-content .-divider._left_, .-ticket .-content.-default-._big .-divider._right_, .-ticket._big .-default-.-content .-divider._right_ {
           top: 12.5px;
-          bottom: 12.5px; }
-        .-ticket .-content.-default-._big._vertical_:before, .-ticket .-content.-default-._big._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 12.5px !important;
-          right: 12.5px !important; }
-      .-ticket .-content.-default-._huge {
+          bottom: 12.5px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._big .-divider._top_, .-ticket._big .-default-.-content .-divider._top_, .-ticket .-content.-default-._big .-divider._bottom_, .-ticket._big .-default-.-content .-divider._bottom_ {
+          left: 12.5px;
+          right: 12.5px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._huge, .-ticket._huge .-default-.-content {
+        padding: 61.25px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #f7f7f7 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #f7f7f7 13.25px);
         background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #f7f7f7 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #f7f7f7 13.25px); }
-        .-ticket .-content.-default-._huge:before, .-ticket .-content.-default-._huge:after {
+        .-ticket .-content.-default-._huge .-divider._left_, .-ticket._huge .-default-.-content .-divider._left_, .-ticket .-content.-default-._huge .-divider._right_, .-ticket._huge .-default-.-content .-divider._right_ {
           top: 14.25px;
-          bottom: 14.25px; }
-        .-ticket .-content.-default-._huge._vertical_:before, .-ticket .-content.-default-._huge._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 14.25px !important;
-          right: 14.25px !important; }
-      .-ticket .-content.-default-._giant {
+          bottom: 14.25px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._huge .-divider._top_, .-ticket._huge .-default-.-content .-divider._top_, .-ticket .-content.-default-._huge .-divider._bottom_, .-ticket._huge .-default-.-content .-divider._bottom_ {
+          left: 14.25px;
+          right: 14.25px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._giant, .-ticket._giant .-default-.-content {
+        padding: 66.5px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #f7f7f7 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #f7f7f7 14.3px);
         background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #f7f7f7 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #f7f7f7 14.3px); }
-        .-ticket .-content.-default-._giant:before, .-ticket .-content.-default-._giant:after {
+        .-ticket .-content.-default-._giant .-divider._left_, .-ticket._giant .-default-.-content .-divider._left_, .-ticket .-content.-default-._giant .-divider._right_, .-ticket._giant .-default-.-content .-divider._right_ {
           top: 15.3px;
-          bottom: 15.3px; }
-        .-ticket .-content.-default-._giant._vertical_:before, .-ticket .-content.-default-._giant._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 15.3px !important;
-          right: 15.3px !important; }
-      .-ticket .-content.-default-._divine {
+          bottom: 15.3px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._giant .-divider._top_, .-ticket._giant .-default-.-content .-divider._top_, .-ticket .-content.-default-._giant .-divider._bottom_, .-ticket._giant .-default-.-content .-divider._bottom_ {
+          left: 15.3px;
+          right: 15.3px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content.-default-._divine, .-ticket._divine .-default-.-content {
+        padding: 70px;
         background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #f7f7f7 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #f7f7f7 15px);
         background-image: radial-gradient( circle at 0 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 100%, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 100% 0, transparent 14px, #f7f7f7 15px), radial-gradient( circle at 0 0, transparent 14px, #f7f7f7 15px); }
-        .-ticket .-content.-default-._divine:before, .-ticket .-content.-default-._divine:after {
+        .-ticket .-content.-default-._divine .-divider._left_, .-ticket._divine .-default-.-content .-divider._left_, .-ticket .-content.-default-._divine .-divider._right_, .-ticket._divine .-default-.-content .-divider._right_ {
           top: 16px;
-          bottom: 16px; }
-        .-ticket .-content.-default-._divine._vertical_:before, .-ticket .-content.-default-._divine._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 16px !important;
-          right: 16px !important; }
+          bottom: 16px;
+          border-left: 1px dashed white;
+          border-right: 1px dashed rgba(0, 0, 0, 0.2); }
+        .-ticket .-content.-default-._divine .-divider._top_, .-ticket._divine .-default-.-content .-divider._top_, .-ticket .-content.-default-._divine .-divider._bottom_, .-ticket._divine .-default-.-content .-divider._bottom_ {
+          left: 16px;
+          right: 16px;
+          border-bottom: 1px dashed white;
+          border-top: 1px dashed rgba(0, 0, 0, 0.2); }
     .-ticket .-content.-primary- {
+      padding: 35px;
       color: white;
-      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #60aee3 8px);
-      background-image: radial-gradient( circle at 0 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 0, transparent 7px, #60aee3 8px), radial-gradient( circle at 0 0, transparent 7px, #60aee3 8px); }
-      .-ticket .-content.-primary-._tiny {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #3598db 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #3598db 8px), radial-gradient( circle at 100% 100%, transparent 7px, #3598db 8px), radial-gradient( circle at 100% 0, transparent 7px, #3598db 8px), radial-gradient( circle at 0 0, transparent 7px, #3598db 8px); }
+      .-ticket .-content.-primary-._tiny, .-ticket._tiny .-primary-.-content {
+        padding: 8.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #60aee3 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #60aee3 2.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #60aee3 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #60aee3 2.75px); }
-        .-ticket .-content.-primary-._tiny:before, .-ticket .-content.-primary-._tiny:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #3598db 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #3598db 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #3598db 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #3598db 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #3598db 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #3598db 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #3598db 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #3598db 2.75px); }
+        .-ticket .-content.-primary-._tiny .-divider._left_, .-ticket._tiny .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._tiny .-divider._right_, .-ticket._tiny .-primary-.-content .-divider._right_ {
           top: 3.75px;
-          bottom: 3.75px; }
-        .-ticket .-content.-primary-._tiny._vertical_:before, .-ticket .-content.-primary-._tiny._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 3.75px !important;
-          right: 3.75px !important; }
-      .-ticket .-content.-primary-._small {
+          bottom: 3.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._tiny .-divider._top_, .-ticket._tiny .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._tiny .-divider._bottom_, .-ticket._tiny .-primary-.-content .-divider._bottom_ {
+          left: 3.75px;
+          right: 3.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._small, .-ticket._small .-primary-.-content {
+        padding: 17.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #60aee3 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #60aee3 4.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #60aee3 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #60aee3 4.5px); }
-        .-ticket .-content.-primary-._small:before, .-ticket .-content.-primary-._small:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #3598db 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #3598db 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #3598db 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #3598db 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #3598db 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #3598db 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #3598db 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #3598db 4.5px); }
+        .-ticket .-content.-primary-._small .-divider._left_, .-ticket._small .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._small .-divider._right_, .-ticket._small .-primary-.-content .-divider._right_ {
           top: 5.5px;
-          bottom: 5.5px; }
-        .-ticket .-content.-primary-._small._vertical_:before, .-ticket .-content.-primary-._small._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 5.5px !important;
-          right: 5.5px !important; }
-      .-ticket .-content.-primary-._minor {
+          bottom: 5.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._small .-divider._top_, .-ticket._small .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._small .-divider._bottom_, .-ticket._small .-primary-.-content .-divider._bottom_ {
+          left: 5.5px;
+          right: 5.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._minor, .-ticket._minor .-primary-.-content {
+        padding: 26.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #60aee3 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #60aee3 6.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #60aee3 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #60aee3 6.25px); }
-        .-ticket .-content.-primary-._minor:before, .-ticket .-content.-primary-._minor:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #3598db 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #3598db 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #3598db 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #3598db 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #3598db 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #3598db 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #3598db 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #3598db 6.25px); }
+        .-ticket .-content.-primary-._minor .-divider._left_, .-ticket._minor .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._minor .-divider._right_, .-ticket._minor .-primary-.-content .-divider._right_ {
           top: 7.25px;
-          bottom: 7.25px; }
-        .-ticket .-content.-primary-._minor._vertical_:before, .-ticket .-content.-primary-._minor._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 7.25px !important;
-          right: 7.25px !important; }
-      .-ticket .-content.-primary-:before, .-ticket .-content.-primary-:after {
+          bottom: 7.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._minor .-divider._top_, .-ticket._minor .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._minor .-divider._bottom_, .-ticket._minor .-primary-.-content .-divider._bottom_ {
+          left: 7.25px;
+          right: 7.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary- .-divider._left_, .-ticket .-content.-primary- .-divider._right_ {
         top: 9px;
-        bottom: 9px; }
-      .-ticket .-content.-primary-._vertical_:before, .-ticket .-content.-primary-._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 9px !important;
-        right: 9px !important; }
-      .-ticket .-content.-primary-._normal {
+        bottom: 9px;
+        border-left: 1px dashed rgba(255, 255, 255, 0.5);
+        border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary- .-divider._top_, .-ticket .-content.-primary- .-divider._bottom_ {
+        left: 9px;
+        right: 9px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+        border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._normal, .-ticket .-primary-.-content {
+        padding: 35px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #60aee3 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #60aee3 8px);
-        background-image: radial-gradient( circle at 0 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 100%, transparent 7px, #60aee3 8px), radial-gradient( circle at 100% 0, transparent 7px, #60aee3 8px), radial-gradient( circle at 0 0, transparent 7px, #60aee3 8px); }
-        .-ticket .-content.-primary-._normal:before, .-ticket .-content.-primary-._normal:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #3598db 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #3598db 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #3598db 8px), radial-gradient( circle at 100% 100%, transparent 7px, #3598db 8px), radial-gradient( circle at 100% 0, transparent 7px, #3598db 8px), radial-gradient( circle at 0 0, transparent 7px, #3598db 8px); }
+        .-ticket .-content.-primary-._normal .-divider._left_, .-ticket .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._normal .-divider._right_, .-ticket .-primary-.-content .-divider._right_ {
           top: 9px;
-          bottom: 9px; }
-        .-ticket .-content.-primary-._normal._vertical_:before, .-ticket .-content.-primary-._normal._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 9px !important;
-          right: 9px !important; }
-      .-ticket .-content.-primary-._major {
+          bottom: 9px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._normal .-divider._top_, .-ticket .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._normal .-divider._bottom_, .-ticket .-primary-.-content .-divider._bottom_ {
+          left: 9px;
+          right: 9px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._major, .-ticket._major .-primary-.-content {
+        padding: 43.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #60aee3 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #60aee3 9.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #60aee3 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #60aee3 9.75px); }
-        .-ticket .-content.-primary-._major:before, .-ticket .-content.-primary-._major:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #3598db 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #3598db 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #3598db 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #3598db 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #3598db 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #3598db 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #3598db 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #3598db 9.75px); }
+        .-ticket .-content.-primary-._major .-divider._left_, .-ticket._major .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._major .-divider._right_, .-ticket._major .-primary-.-content .-divider._right_ {
           top: 10.75px;
-          bottom: 10.75px; }
-        .-ticket .-content.-primary-._major._vertical_:before, .-ticket .-content.-primary-._major._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 10.75px !important;
-          right: 10.75px !important; }
-      .-ticket .-content.-primary-._big {
+          bottom: 10.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._major .-divider._top_, .-ticket._major .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._major .-divider._bottom_, .-ticket._major .-primary-.-content .-divider._bottom_ {
+          left: 10.75px;
+          right: 10.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._big, .-ticket._big .-primary-.-content {
+        padding: 52.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #60aee3 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #60aee3 11.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #60aee3 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #60aee3 11.5px); }
-        .-ticket .-content.-primary-._big:before, .-ticket .-content.-primary-._big:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #3598db 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #3598db 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #3598db 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #3598db 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #3598db 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #3598db 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #3598db 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #3598db 11.5px); }
+        .-ticket .-content.-primary-._big .-divider._left_, .-ticket._big .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._big .-divider._right_, .-ticket._big .-primary-.-content .-divider._right_ {
           top: 12.5px;
-          bottom: 12.5px; }
-        .-ticket .-content.-primary-._big._vertical_:before, .-ticket .-content.-primary-._big._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 12.5px !important;
-          right: 12.5px !important; }
-      .-ticket .-content.-primary-._huge {
+          bottom: 12.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._big .-divider._top_, .-ticket._big .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._big .-divider._bottom_, .-ticket._big .-primary-.-content .-divider._bottom_ {
+          left: 12.5px;
+          right: 12.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._huge, .-ticket._huge .-primary-.-content {
+        padding: 61.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #60aee3 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #60aee3 13.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #60aee3 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #60aee3 13.25px); }
-        .-ticket .-content.-primary-._huge:before, .-ticket .-content.-primary-._huge:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #3598db 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #3598db 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #3598db 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #3598db 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #3598db 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #3598db 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #3598db 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #3598db 13.25px); }
+        .-ticket .-content.-primary-._huge .-divider._left_, .-ticket._huge .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._huge .-divider._right_, .-ticket._huge .-primary-.-content .-divider._right_ {
           top: 14.25px;
-          bottom: 14.25px; }
-        .-ticket .-content.-primary-._huge._vertical_:before, .-ticket .-content.-primary-._huge._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 14.25px !important;
-          right: 14.25px !important; }
-      .-ticket .-content.-primary-._giant {
+          bottom: 14.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._huge .-divider._top_, .-ticket._huge .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._huge .-divider._bottom_, .-ticket._huge .-primary-.-content .-divider._bottom_ {
+          left: 14.25px;
+          right: 14.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._giant, .-ticket._giant .-primary-.-content {
+        padding: 66.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #60aee3 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #60aee3 14.3px);
-        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #60aee3 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #60aee3 14.3px); }
-        .-ticket .-content.-primary-._giant:before, .-ticket .-content.-primary-._giant:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #3598db 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #3598db 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #3598db 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #3598db 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #3598db 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #3598db 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #3598db 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #3598db 14.3px); }
+        .-ticket .-content.-primary-._giant .-divider._left_, .-ticket._giant .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._giant .-divider._right_, .-ticket._giant .-primary-.-content .-divider._right_ {
           top: 15.3px;
-          bottom: 15.3px; }
-        .-ticket .-content.-primary-._giant._vertical_:before, .-ticket .-content.-primary-._giant._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 15.3px !important;
-          right: 15.3px !important; }
-      .-ticket .-content.-primary-._divine {
+          bottom: 15.3px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._giant .-divider._top_, .-ticket._giant .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._giant .-divider._bottom_, .-ticket._giant .-primary-.-content .-divider._bottom_ {
+          left: 15.3px;
+          right: 15.3px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-primary-._divine, .-ticket._divine .-primary-.-content {
+        padding: 70px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #60aee3 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #60aee3 15px);
-        background-image: radial-gradient( circle at 0 100%, transparent 14px, #60aee3 15px), radial-gradient( circle at 100% 100%, transparent 14px, #60aee3 15px), radial-gradient( circle at 100% 0, transparent 14px, #60aee3 15px), radial-gradient( circle at 0 0, transparent 14px, #60aee3 15px); }
-        .-ticket .-content.-primary-._divine:before, .-ticket .-content.-primary-._divine:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #3598db 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #3598db 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #3598db 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #3598db 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #3598db 15px), radial-gradient( circle at 100% 100%, transparent 14px, #3598db 15px), radial-gradient( circle at 100% 0, transparent 14px, #3598db 15px), radial-gradient( circle at 0 0, transparent 14px, #3598db 15px); }
+        .-ticket .-content.-primary-._divine .-divider._left_, .-ticket._divine .-primary-.-content .-divider._left_, .-ticket .-content.-primary-._divine .-divider._right_, .-ticket._divine .-primary-.-content .-divider._right_ {
           top: 16px;
-          bottom: 16px; }
-        .-ticket .-content.-primary-._divine._vertical_:before, .-ticket .-content.-primary-._divine._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 16px !important;
-          right: 16px !important; }
+          bottom: 16px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-primary-._divine .-divider._top_, .-ticket._divine .-primary-.-content .-divider._top_, .-ticket .-content.-primary-._divine .-divider._bottom_, .-ticket._divine .-primary-.-content .-divider._bottom_ {
+          left: 16px;
+          right: 16px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
     .-ticket .-content.-error- {
+      padding: 35px;
       color: white;
-      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #de4d46 8px);
-      background-image: radial-gradient( circle at 0 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 0, transparent 7px, #de4d46 8px), radial-gradient( circle at 0 0, transparent 7px, #de4d46 8px); }
-      .-ticket .-content.-error-._tiny {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #cd2c24 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #cd2c24 8px), radial-gradient( circle at 100% 100%, transparent 7px, #cd2c24 8px), radial-gradient( circle at 100% 0, transparent 7px, #cd2c24 8px), radial-gradient( circle at 0 0, transparent 7px, #cd2c24 8px); }
+      .-ticket .-content.-error-._tiny, .-ticket._tiny .-error-.-content {
+        padding: 8.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #de4d46 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #de4d46 2.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #de4d46 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #de4d46 2.75px); }
-        .-ticket .-content.-error-._tiny:before, .-ticket .-content.-error-._tiny:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #cd2c24 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #cd2c24 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #cd2c24 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #cd2c24 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #cd2c24 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #cd2c24 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #cd2c24 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #cd2c24 2.75px); }
+        .-ticket .-content.-error-._tiny .-divider._left_, .-ticket._tiny .-error-.-content .-divider._left_, .-ticket .-content.-error-._tiny .-divider._right_, .-ticket._tiny .-error-.-content .-divider._right_ {
           top: 3.75px;
-          bottom: 3.75px; }
-        .-ticket .-content.-error-._tiny._vertical_:before, .-ticket .-content.-error-._tiny._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 3.75px !important;
-          right: 3.75px !important; }
-      .-ticket .-content.-error-._small {
+          bottom: 3.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._tiny .-divider._top_, .-ticket._tiny .-error-.-content .-divider._top_, .-ticket .-content.-error-._tiny .-divider._bottom_, .-ticket._tiny .-error-.-content .-divider._bottom_ {
+          left: 3.75px;
+          right: 3.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._small, .-ticket._small .-error-.-content {
+        padding: 17.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #de4d46 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #de4d46 4.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #de4d46 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #de4d46 4.5px); }
-        .-ticket .-content.-error-._small:before, .-ticket .-content.-error-._small:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #cd2c24 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #cd2c24 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #cd2c24 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #cd2c24 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #cd2c24 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #cd2c24 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #cd2c24 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #cd2c24 4.5px); }
+        .-ticket .-content.-error-._small .-divider._left_, .-ticket._small .-error-.-content .-divider._left_, .-ticket .-content.-error-._small .-divider._right_, .-ticket._small .-error-.-content .-divider._right_ {
           top: 5.5px;
-          bottom: 5.5px; }
-        .-ticket .-content.-error-._small._vertical_:before, .-ticket .-content.-error-._small._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 5.5px !important;
-          right: 5.5px !important; }
-      .-ticket .-content.-error-._minor {
+          bottom: 5.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._small .-divider._top_, .-ticket._small .-error-.-content .-divider._top_, .-ticket .-content.-error-._small .-divider._bottom_, .-ticket._small .-error-.-content .-divider._bottom_ {
+          left: 5.5px;
+          right: 5.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._minor, .-ticket._minor .-error-.-content {
+        padding: 26.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #de4d46 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #de4d46 6.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #de4d46 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #de4d46 6.25px); }
-        .-ticket .-content.-error-._minor:before, .-ticket .-content.-error-._minor:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #cd2c24 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #cd2c24 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #cd2c24 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #cd2c24 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #cd2c24 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #cd2c24 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #cd2c24 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #cd2c24 6.25px); }
+        .-ticket .-content.-error-._minor .-divider._left_, .-ticket._minor .-error-.-content .-divider._left_, .-ticket .-content.-error-._minor .-divider._right_, .-ticket._minor .-error-.-content .-divider._right_ {
           top: 7.25px;
-          bottom: 7.25px; }
-        .-ticket .-content.-error-._minor._vertical_:before, .-ticket .-content.-error-._minor._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 7.25px !important;
-          right: 7.25px !important; }
-      .-ticket .-content.-error-:before, .-ticket .-content.-error-:after {
+          bottom: 7.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._minor .-divider._top_, .-ticket._minor .-error-.-content .-divider._top_, .-ticket .-content.-error-._minor .-divider._bottom_, .-ticket._minor .-error-.-content .-divider._bottom_ {
+          left: 7.25px;
+          right: 7.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error- .-divider._left_, .-ticket .-content.-error- .-divider._right_ {
         top: 9px;
-        bottom: 9px; }
-      .-ticket .-content.-error-._vertical_:before, .-ticket .-content.-error-._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 9px !important;
-        right: 9px !important; }
-      .-ticket .-content.-error-._normal {
+        bottom: 9px;
+        border-left: 1px dashed rgba(255, 255, 255, 0.5);
+        border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error- .-divider._top_, .-ticket .-content.-error- .-divider._bottom_ {
+        left: 9px;
+        right: 9px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+        border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._normal, .-ticket .-error-.-content {
+        padding: 35px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #de4d46 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #de4d46 8px);
-        background-image: radial-gradient( circle at 0 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 100%, transparent 7px, #de4d46 8px), radial-gradient( circle at 100% 0, transparent 7px, #de4d46 8px), radial-gradient( circle at 0 0, transparent 7px, #de4d46 8px); }
-        .-ticket .-content.-error-._normal:before, .-ticket .-content.-error-._normal:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #cd2c24 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #cd2c24 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #cd2c24 8px), radial-gradient( circle at 100% 100%, transparent 7px, #cd2c24 8px), radial-gradient( circle at 100% 0, transparent 7px, #cd2c24 8px), radial-gradient( circle at 0 0, transparent 7px, #cd2c24 8px); }
+        .-ticket .-content.-error-._normal .-divider._left_, .-ticket .-error-.-content .-divider._left_, .-ticket .-content.-error-._normal .-divider._right_, .-ticket .-error-.-content .-divider._right_ {
           top: 9px;
-          bottom: 9px; }
-        .-ticket .-content.-error-._normal._vertical_:before, .-ticket .-content.-error-._normal._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 9px !important;
-          right: 9px !important; }
-      .-ticket .-content.-error-._major {
+          bottom: 9px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._normal .-divider._top_, .-ticket .-error-.-content .-divider._top_, .-ticket .-content.-error-._normal .-divider._bottom_, .-ticket .-error-.-content .-divider._bottom_ {
+          left: 9px;
+          right: 9px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._major, .-ticket._major .-error-.-content {
+        padding: 43.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #de4d46 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #de4d46 9.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #de4d46 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #de4d46 9.75px); }
-        .-ticket .-content.-error-._major:before, .-ticket .-content.-error-._major:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #cd2c24 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #cd2c24 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #cd2c24 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #cd2c24 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #cd2c24 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #cd2c24 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #cd2c24 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #cd2c24 9.75px); }
+        .-ticket .-content.-error-._major .-divider._left_, .-ticket._major .-error-.-content .-divider._left_, .-ticket .-content.-error-._major .-divider._right_, .-ticket._major .-error-.-content .-divider._right_ {
           top: 10.75px;
-          bottom: 10.75px; }
-        .-ticket .-content.-error-._major._vertical_:before, .-ticket .-content.-error-._major._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 10.75px !important;
-          right: 10.75px !important; }
-      .-ticket .-content.-error-._big {
+          bottom: 10.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._major .-divider._top_, .-ticket._major .-error-.-content .-divider._top_, .-ticket .-content.-error-._major .-divider._bottom_, .-ticket._major .-error-.-content .-divider._bottom_ {
+          left: 10.75px;
+          right: 10.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._big, .-ticket._big .-error-.-content {
+        padding: 52.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #de4d46 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #de4d46 11.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #de4d46 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #de4d46 11.5px); }
-        .-ticket .-content.-error-._big:before, .-ticket .-content.-error-._big:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #cd2c24 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #cd2c24 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #cd2c24 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #cd2c24 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #cd2c24 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #cd2c24 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #cd2c24 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #cd2c24 11.5px); }
+        .-ticket .-content.-error-._big .-divider._left_, .-ticket._big .-error-.-content .-divider._left_, .-ticket .-content.-error-._big .-divider._right_, .-ticket._big .-error-.-content .-divider._right_ {
           top: 12.5px;
-          bottom: 12.5px; }
-        .-ticket .-content.-error-._big._vertical_:before, .-ticket .-content.-error-._big._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 12.5px !important;
-          right: 12.5px !important; }
-      .-ticket .-content.-error-._huge {
+          bottom: 12.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._big .-divider._top_, .-ticket._big .-error-.-content .-divider._top_, .-ticket .-content.-error-._big .-divider._bottom_, .-ticket._big .-error-.-content .-divider._bottom_ {
+          left: 12.5px;
+          right: 12.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._huge, .-ticket._huge .-error-.-content {
+        padding: 61.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #de4d46 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #de4d46 13.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #de4d46 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #de4d46 13.25px); }
-        .-ticket .-content.-error-._huge:before, .-ticket .-content.-error-._huge:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #cd2c24 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #cd2c24 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #cd2c24 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #cd2c24 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #cd2c24 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #cd2c24 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #cd2c24 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #cd2c24 13.25px); }
+        .-ticket .-content.-error-._huge .-divider._left_, .-ticket._huge .-error-.-content .-divider._left_, .-ticket .-content.-error-._huge .-divider._right_, .-ticket._huge .-error-.-content .-divider._right_ {
           top: 14.25px;
-          bottom: 14.25px; }
-        .-ticket .-content.-error-._huge._vertical_:before, .-ticket .-content.-error-._huge._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 14.25px !important;
-          right: 14.25px !important; }
-      .-ticket .-content.-error-._giant {
+          bottom: 14.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._huge .-divider._top_, .-ticket._huge .-error-.-content .-divider._top_, .-ticket .-content.-error-._huge .-divider._bottom_, .-ticket._huge .-error-.-content .-divider._bottom_ {
+          left: 14.25px;
+          right: 14.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._giant, .-ticket._giant .-error-.-content {
+        padding: 66.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #de4d46 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #de4d46 14.3px);
-        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #de4d46 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #de4d46 14.3px); }
-        .-ticket .-content.-error-._giant:before, .-ticket .-content.-error-._giant:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #cd2c24 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #cd2c24 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #cd2c24 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #cd2c24 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #cd2c24 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #cd2c24 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #cd2c24 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #cd2c24 14.3px); }
+        .-ticket .-content.-error-._giant .-divider._left_, .-ticket._giant .-error-.-content .-divider._left_, .-ticket .-content.-error-._giant .-divider._right_, .-ticket._giant .-error-.-content .-divider._right_ {
           top: 15.3px;
-          bottom: 15.3px; }
-        .-ticket .-content.-error-._giant._vertical_:before, .-ticket .-content.-error-._giant._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 15.3px !important;
-          right: 15.3px !important; }
-      .-ticket .-content.-error-._divine {
+          bottom: 15.3px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._giant .-divider._top_, .-ticket._giant .-error-.-content .-divider._top_, .-ticket .-content.-error-._giant .-divider._bottom_, .-ticket._giant .-error-.-content .-divider._bottom_ {
+          left: 15.3px;
+          right: 15.3px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-error-._divine, .-ticket._divine .-error-.-content {
+        padding: 70px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #de4d46 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #de4d46 15px);
-        background-image: radial-gradient( circle at 0 100%, transparent 14px, #de4d46 15px), radial-gradient( circle at 100% 100%, transparent 14px, #de4d46 15px), radial-gradient( circle at 100% 0, transparent 14px, #de4d46 15px), radial-gradient( circle at 0 0, transparent 14px, #de4d46 15px); }
-        .-ticket .-content.-error-._divine:before, .-ticket .-content.-error-._divine:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #cd2c24 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #cd2c24 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #cd2c24 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #cd2c24 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #cd2c24 15px), radial-gradient( circle at 100% 100%, transparent 14px, #cd2c24 15px), radial-gradient( circle at 100% 0, transparent 14px, #cd2c24 15px), radial-gradient( circle at 0 0, transparent 14px, #cd2c24 15px); }
+        .-ticket .-content.-error-._divine .-divider._left_, .-ticket._divine .-error-.-content .-divider._left_, .-ticket .-content.-error-._divine .-divider._right_, .-ticket._divine .-error-.-content .-divider._right_ {
           top: 16px;
-          bottom: 16px; }
-        .-ticket .-content.-error-._divine._vertical_:before, .-ticket .-content.-error-._divine._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 16px !important;
-          right: 16px !important; }
+          bottom: 16px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-error-._divine .-divider._top_, .-ticket._divine .-error-.-content .-divider._top_, .-ticket .-content.-error-._divine .-divider._bottom_, .-ticket._divine .-error-.-content .-divider._bottom_ {
+          left: 16px;
+          right: 16px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
     .-ticket .-content.-warning- {
+      padding: 35px;
       color: white;
-      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffd471 8px);
-      background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffd471 8px), radial-gradient( circle at 0 0, transparent 7px, #ffd471 8px); }
-      .-ticket .-content.-warning-._tiny {
+      background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffc43e 8px);
+      background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffc43e 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffc43e 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffc43e 8px), radial-gradient( circle at 0 0, transparent 7px, #ffc43e 8px); }
+      .-ticket .-content.-warning-._tiny, .-ticket._tiny .-warning-.-content {
+        padding: 8.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #ffd471 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #ffd471 2.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #ffd471 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #ffd471 2.75px); }
-        .-ticket .-content.-warning-._tiny:before, .-ticket .-content.-warning-._tiny:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 1.75px, #ffc43e 2.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 1.75px, #ffc43e 2.75px), -webkit-radial-gradient(100% 0,  circle, transparent 1.75px, #ffc43e 2.75px), -webkit-radial-gradient(0 0,  circle, transparent 1.75px, #ffc43e 2.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 1.75px, #ffc43e 2.75px), radial-gradient( circle at 100% 100%, transparent 1.75px, #ffc43e 2.75px), radial-gradient( circle at 100% 0, transparent 1.75px, #ffc43e 2.75px), radial-gradient( circle at 0 0, transparent 1.75px, #ffc43e 2.75px); }
+        .-ticket .-content.-warning-._tiny .-divider._left_, .-ticket._tiny .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._tiny .-divider._right_, .-ticket._tiny .-warning-.-content .-divider._right_ {
           top: 3.75px;
-          bottom: 3.75px; }
-        .-ticket .-content.-warning-._tiny._vertical_:before, .-ticket .-content.-warning-._tiny._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 3.75px !important;
-          right: 3.75px !important; }
-      .-ticket .-content.-warning-._small {
+          bottom: 3.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._tiny .-divider._top_, .-ticket._tiny .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._tiny .-divider._bottom_, .-ticket._tiny .-warning-.-content .-divider._bottom_ {
+          left: 3.75px;
+          right: 3.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._small, .-ticket._small .-warning-.-content {
+        padding: 17.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #ffd471 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #ffd471 4.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #ffd471 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #ffd471 4.5px); }
-        .-ticket .-content.-warning-._small:before, .-ticket .-content.-warning-._small:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 3.5px, #ffc43e 4.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 3.5px, #ffc43e 4.5px), -webkit-radial-gradient(100% 0,  circle, transparent 3.5px, #ffc43e 4.5px), -webkit-radial-gradient(0 0,  circle, transparent 3.5px, #ffc43e 4.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 3.5px, #ffc43e 4.5px), radial-gradient( circle at 100% 100%, transparent 3.5px, #ffc43e 4.5px), radial-gradient( circle at 100% 0, transparent 3.5px, #ffc43e 4.5px), radial-gradient( circle at 0 0, transparent 3.5px, #ffc43e 4.5px); }
+        .-ticket .-content.-warning-._small .-divider._left_, .-ticket._small .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._small .-divider._right_, .-ticket._small .-warning-.-content .-divider._right_ {
           top: 5.5px;
-          bottom: 5.5px; }
-        .-ticket .-content.-warning-._small._vertical_:before, .-ticket .-content.-warning-._small._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 5.5px !important;
-          right: 5.5px !important; }
-      .-ticket .-content.-warning-._minor {
+          bottom: 5.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._small .-divider._top_, .-ticket._small .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._small .-divider._bottom_, .-ticket._small .-warning-.-content .-divider._bottom_ {
+          left: 5.5px;
+          right: 5.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._minor, .-ticket._minor .-warning-.-content {
+        padding: 26.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #ffd471 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #ffd471 6.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #ffd471 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #ffd471 6.25px); }
-        .-ticket .-content.-warning-._minor:before, .-ticket .-content.-warning-._minor:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 5.25px, #ffc43e 6.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 5.25px, #ffc43e 6.25px), -webkit-radial-gradient(100% 0,  circle, transparent 5.25px, #ffc43e 6.25px), -webkit-radial-gradient(0 0,  circle, transparent 5.25px, #ffc43e 6.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 5.25px, #ffc43e 6.25px), radial-gradient( circle at 100% 100%, transparent 5.25px, #ffc43e 6.25px), radial-gradient( circle at 100% 0, transparent 5.25px, #ffc43e 6.25px), radial-gradient( circle at 0 0, transparent 5.25px, #ffc43e 6.25px); }
+        .-ticket .-content.-warning-._minor .-divider._left_, .-ticket._minor .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._minor .-divider._right_, .-ticket._minor .-warning-.-content .-divider._right_ {
           top: 7.25px;
-          bottom: 7.25px; }
-        .-ticket .-content.-warning-._minor._vertical_:before, .-ticket .-content.-warning-._minor._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 7.25px !important;
-          right: 7.25px !important; }
-      .-ticket .-content.-warning-:before, .-ticket .-content.-warning-:after {
+          bottom: 7.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._minor .-divider._top_, .-ticket._minor .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._minor .-divider._bottom_, .-ticket._minor .-warning-.-content .-divider._bottom_ {
+          left: 7.25px;
+          right: 7.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning- .-divider._left_, .-ticket .-content.-warning- .-divider._right_ {
         top: 9px;
-        bottom: 9px; }
-      .-ticket .-content.-warning-._vertical_:before, .-ticket .-content.-warning-._vertical_:after {
-        top: inherit;
-        bottom: inherit;
-        left: 9px !important;
-        right: 9px !important; }
-      .-ticket .-content.-warning-._normal {
+        bottom: 9px;
+        border-left: 1px dashed rgba(255, 255, 255, 0.5);
+        border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning- .-divider._top_, .-ticket .-content.-warning- .-divider._bottom_ {
+        left: 9px;
+        right: 9px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+        border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._normal, .-ticket .-warning-.-content {
+        padding: 35px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffd471 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffd471 8px);
-        background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffd471 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffd471 8px), radial-gradient( circle at 0 0, transparent 7px, #ffd471 8px); }
-        .-ticket .-content.-warning-._normal:before, .-ticket .-content.-warning-._normal:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(100% 100%,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(100% 0,  circle, transparent 7px, #ffc43e 8px), -webkit-radial-gradient(0 0,  circle, transparent 7px, #ffc43e 8px);
+        background-image: radial-gradient( circle at 0 100%, transparent 7px, #ffc43e 8px), radial-gradient( circle at 100% 100%, transparent 7px, #ffc43e 8px), radial-gradient( circle at 100% 0, transparent 7px, #ffc43e 8px), radial-gradient( circle at 0 0, transparent 7px, #ffc43e 8px); }
+        .-ticket .-content.-warning-._normal .-divider._left_, .-ticket .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._normal .-divider._right_, .-ticket .-warning-.-content .-divider._right_ {
           top: 9px;
-          bottom: 9px; }
-        .-ticket .-content.-warning-._normal._vertical_:before, .-ticket .-content.-warning-._normal._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 9px !important;
-          right: 9px !important; }
-      .-ticket .-content.-warning-._major {
+          bottom: 9px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._normal .-divider._top_, .-ticket .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._normal .-divider._bottom_, .-ticket .-warning-.-content .-divider._bottom_ {
+          left: 9px;
+          right: 9px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._major, .-ticket._major .-warning-.-content {
+        padding: 43.75px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #ffd471 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #ffd471 9.75px);
-        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #ffd471 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #ffd471 9.75px); }
-        .-ticket .-content.-warning-._major:before, .-ticket .-content.-warning-._major:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 8.75px, #ffc43e 9.75px), -webkit-radial-gradient(100% 100%,  circle, transparent 8.75px, #ffc43e 9.75px), -webkit-radial-gradient(100% 0,  circle, transparent 8.75px, #ffc43e 9.75px), -webkit-radial-gradient(0 0,  circle, transparent 8.75px, #ffc43e 9.75px);
+        background-image: radial-gradient( circle at 0 100%, transparent 8.75px, #ffc43e 9.75px), radial-gradient( circle at 100% 100%, transparent 8.75px, #ffc43e 9.75px), radial-gradient( circle at 100% 0, transparent 8.75px, #ffc43e 9.75px), radial-gradient( circle at 0 0, transparent 8.75px, #ffc43e 9.75px); }
+        .-ticket .-content.-warning-._major .-divider._left_, .-ticket._major .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._major .-divider._right_, .-ticket._major .-warning-.-content .-divider._right_ {
           top: 10.75px;
-          bottom: 10.75px; }
-        .-ticket .-content.-warning-._major._vertical_:before, .-ticket .-content.-warning-._major._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 10.75px !important;
-          right: 10.75px !important; }
-      .-ticket .-content.-warning-._big {
+          bottom: 10.75px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._major .-divider._top_, .-ticket._major .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._major .-divider._bottom_, .-ticket._major .-warning-.-content .-divider._bottom_ {
+          left: 10.75px;
+          right: 10.75px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._big, .-ticket._big .-warning-.-content {
+        padding: 52.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #ffd471 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #ffd471 11.5px);
-        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #ffd471 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #ffd471 11.5px); }
-        .-ticket .-content.-warning-._big:before, .-ticket .-content.-warning-._big:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 10.5px, #ffc43e 11.5px), -webkit-radial-gradient(100% 100%,  circle, transparent 10.5px, #ffc43e 11.5px), -webkit-radial-gradient(100% 0,  circle, transparent 10.5px, #ffc43e 11.5px), -webkit-radial-gradient(0 0,  circle, transparent 10.5px, #ffc43e 11.5px);
+        background-image: radial-gradient( circle at 0 100%, transparent 10.5px, #ffc43e 11.5px), radial-gradient( circle at 100% 100%, transparent 10.5px, #ffc43e 11.5px), radial-gradient( circle at 100% 0, transparent 10.5px, #ffc43e 11.5px), radial-gradient( circle at 0 0, transparent 10.5px, #ffc43e 11.5px); }
+        .-ticket .-content.-warning-._big .-divider._left_, .-ticket._big .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._big .-divider._right_, .-ticket._big .-warning-.-content .-divider._right_ {
           top: 12.5px;
-          bottom: 12.5px; }
-        .-ticket .-content.-warning-._big._vertical_:before, .-ticket .-content.-warning-._big._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 12.5px !important;
-          right: 12.5px !important; }
-      .-ticket .-content.-warning-._huge {
+          bottom: 12.5px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._big .-divider._top_, .-ticket._big .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._big .-divider._bottom_, .-ticket._big .-warning-.-content .-divider._bottom_ {
+          left: 12.5px;
+          right: 12.5px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._huge, .-ticket._huge .-warning-.-content {
+        padding: 61.25px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #ffd471 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #ffd471 13.25px);
-        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #ffd471 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #ffd471 13.25px); }
-        .-ticket .-content.-warning-._huge:before, .-ticket .-content.-warning-._huge:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 12.25px, #ffc43e 13.25px), -webkit-radial-gradient(100% 100%,  circle, transparent 12.25px, #ffc43e 13.25px), -webkit-radial-gradient(100% 0,  circle, transparent 12.25px, #ffc43e 13.25px), -webkit-radial-gradient(0 0,  circle, transparent 12.25px, #ffc43e 13.25px);
+        background-image: radial-gradient( circle at 0 100%, transparent 12.25px, #ffc43e 13.25px), radial-gradient( circle at 100% 100%, transparent 12.25px, #ffc43e 13.25px), radial-gradient( circle at 100% 0, transparent 12.25px, #ffc43e 13.25px), radial-gradient( circle at 0 0, transparent 12.25px, #ffc43e 13.25px); }
+        .-ticket .-content.-warning-._huge .-divider._left_, .-ticket._huge .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._huge .-divider._right_, .-ticket._huge .-warning-.-content .-divider._right_ {
           top: 14.25px;
-          bottom: 14.25px; }
-        .-ticket .-content.-warning-._huge._vertical_:before, .-ticket .-content.-warning-._huge._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 14.25px !important;
-          right: 14.25px !important; }
-      .-ticket .-content.-warning-._giant {
+          bottom: 14.25px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._huge .-divider._top_, .-ticket._huge .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._huge .-divider._bottom_, .-ticket._huge .-warning-.-content .-divider._bottom_ {
+          left: 14.25px;
+          right: 14.25px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._giant, .-ticket._giant .-warning-.-content {
+        padding: 66.5px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #ffd471 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #ffd471 14.3px);
-        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #ffd471 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #ffd471 14.3px); }
-        .-ticket .-content.-warning-._giant:before, .-ticket .-content.-warning-._giant:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 13.3px, #ffc43e 14.3px), -webkit-radial-gradient(100% 100%,  circle, transparent 13.3px, #ffc43e 14.3px), -webkit-radial-gradient(100% 0,  circle, transparent 13.3px, #ffc43e 14.3px), -webkit-radial-gradient(0 0,  circle, transparent 13.3px, #ffc43e 14.3px);
+        background-image: radial-gradient( circle at 0 100%, transparent 13.3px, #ffc43e 14.3px), radial-gradient( circle at 100% 100%, transparent 13.3px, #ffc43e 14.3px), radial-gradient( circle at 100% 0, transparent 13.3px, #ffc43e 14.3px), radial-gradient( circle at 0 0, transparent 13.3px, #ffc43e 14.3px); }
+        .-ticket .-content.-warning-._giant .-divider._left_, .-ticket._giant .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._giant .-divider._right_, .-ticket._giant .-warning-.-content .-divider._right_ {
           top: 15.3px;
-          bottom: 15.3px; }
-        .-ticket .-content.-warning-._giant._vertical_:before, .-ticket .-content.-warning-._giant._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 15.3px !important;
-          right: 15.3px !important; }
-      .-ticket .-content.-warning-._divine {
+          bottom: 15.3px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._giant .-divider._top_, .-ticket._giant .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._giant .-divider._bottom_, .-ticket._giant .-warning-.-content .-divider._bottom_ {
+          left: 15.3px;
+          right: 15.3px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+      .-ticket .-content.-warning-._divine, .-ticket._divine .-warning-.-content {
+        padding: 70px;
         color: white;
-        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #ffd471 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #ffd471 15px);
-        background-image: radial-gradient( circle at 0 100%, transparent 14px, #ffd471 15px), radial-gradient( circle at 100% 100%, transparent 14px, #ffd471 15px), radial-gradient( circle at 100% 0, transparent 14px, #ffd471 15px), radial-gradient( circle at 0 0, transparent 14px, #ffd471 15px); }
-        .-ticket .-content.-warning-._divine:before, .-ticket .-content.-warning-._divine:after {
+        background-image: -webkit-radial-gradient(0 100%,  circle, transparent 14px, #ffc43e 15px), -webkit-radial-gradient(100% 100%,  circle, transparent 14px, #ffc43e 15px), -webkit-radial-gradient(100% 0,  circle, transparent 14px, #ffc43e 15px), -webkit-radial-gradient(0 0,  circle, transparent 14px, #ffc43e 15px);
+        background-image: radial-gradient( circle at 0 100%, transparent 14px, #ffc43e 15px), radial-gradient( circle at 100% 100%, transparent 14px, #ffc43e 15px), radial-gradient( circle at 100% 0, transparent 14px, #ffc43e 15px), radial-gradient( circle at 0 0, transparent 14px, #ffc43e 15px); }
+        .-ticket .-content.-warning-._divine .-divider._left_, .-ticket._divine .-warning-.-content .-divider._left_, .-ticket .-content.-warning-._divine .-divider._right_, .-ticket._divine .-warning-.-content .-divider._right_ {
           top: 16px;
-          bottom: 16px; }
-        .-ticket .-content.-warning-._divine._vertical_:before, .-ticket .-content.-warning-._divine._vertical_:after {
-          top: inherit;
-          bottom: inherit;
-          left: 16px !important;
-          right: 16px !important; }
-    .-ticket .-content:before, .-ticket .-content:after {
-      content: " ";
-      display: block;
-      position: absolute;
-      width: 0;
-      top: 0; }
-    .-ticket .-content:before {
-      left: 0;
-      border-color: rgba(255, 255, 255, 0.3);
-      border-left-width: 1px;
-      border-left-style: dashed; }
-    .-ticket .-content:after {
-      border-color: rgba(0, 0, 0, 0.3);
-      right: 0;
-      border-right-width: 1px;
-      border-right-style: dashed; }
-    .-ticket .-content:first-child {
-      border-left: none; }
-      .-ticket .-content:first-child:before {
-        display: none !important; }
-    .-ticket .-content:last-child {
-      border-right: none; }
-      .-ticket .-content:last-child:after {
-        display: none !important; }
+          bottom: 16px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.5);
+          border-right: 1px dashed rgba(0, 0, 0, 0.4); }
+        .-ticket .-content.-warning-._divine .-divider._top_, .-ticket._divine .-warning-.-content .-divider._top_, .-ticket .-content.-warning-._divine .-divider._bottom_, .-ticket._divine .-warning-.-content .-divider._bottom_ {
+          left: 16px;
+          right: 16px;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+          border-top: 1px dashed rgba(0, 0, 0, 0.4); }
+    .-ticket .-content .-divider {
+      display: none; }
+      .-ticket .-content .-divider._horizontal_ {
+        display: block;
+        height: 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+        border-top: 1px dashed rgba(0, 0, 0, 0.2); }
+      .-ticket .-content .-divider._left_, .-ticket .-content .-divider._right_ {
+        display: block;
+        position: absolute;
+        width: 0; }
+      .-ticket .-content .-divider._left_ {
+        left: 0; }
+      .-ticket .-content .-divider._right_ {
+        right: 0; }
+      .-ticket .-content .-divider._top_, .-ticket .-content .-divider._bottom_ {
+        display: block;
+        position: absolute;
+        height: 0; }
+      .-ticket .-content .-divider._top_ {
+        top: 0; }
+      .-ticket .-content .-divider._bottom_ {
+        bottom: 0; }
   .-ticket._vertical_ {
     display: block; }
     .-ticket._vertical_ .-content {
       display: block;
       min-height: inherit;
       min-width: 100%; }
-      .-ticket._vertical_ .-content:before, .-ticket._vertical_ .-content:after {
-        height: 0;
-        width: auto;
-        left: 0; }
-      .-ticket._vertical_ .-content:before {
-        left: inherit;
-        top: 0;
-        border-color: rgba(0, 0, 0, 0.3);
-        border-left-width: 0;
-        border-top-width: 1px;
-        border-top-style: dashed; }
-      .-ticket._vertical_ .-content:after {
-        right: inherit;
-        top: inherit;
-        bottom: 0;
-        border-color: rgba(255, 255, 255, 0.7);
-        border-right-width: 0;
-        border-bottom-width: 1px;
-        border-bottom-style: dashed; }
+
+@media screen and (max-width: 992px) {
+  .-ticket {
+    display: block; }
+    .-ticket .-content {
+      display: block;
+      min-height: inherit;
+      min-width: 100%; }
+      .-ticket .-content .-divider._left_, .-ticket .-content .-divider._right_ {
+        display: none; } }
+.-block-post {
+  font-size: 140%; }
+  .-block-post blockquote {
+    font-size: 120%;
+    line-height: 1.3em;
+    margin: 40px 0; }
+  .-block-post h1 + p, .-block-post h2 + p, .-block-post h3 + p, .-block-post h4 + p, .-block-post h5 + p, .-block-post h6 + p {
+    margin-top: 10px; }
+  .-block-post h1 {
+    font-size: 50.4px; }
+  .-block-post h2 {
+    font-size: 42px; }
+  .-block-post h3 {
+    font-size: 32.2px; }
+  .-block-post h4 {
+    font-size: 23.8px; }
+  .-block-post h5 {
+    font-size: 19.6px; }
+  .-block-post h6 {
+    font-size: 15.4px; }
+  .-block-post p {
+    margin: 40px 0; }
+    .-block-post p + p, .-block-post p + figure {
+      margin-top: 0; }
+  .-block-post figure {
+    margin: 40px 0; }
+    .-block-post figure figcaption p {
+      margin: 0; }
 
 /*# sourceMappingURL=commercial.sass.map */

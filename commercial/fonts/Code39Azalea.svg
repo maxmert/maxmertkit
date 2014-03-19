@@ -1,0 +1,75 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg>
+<metadata>
+Created by FontForge 20090914 at Sat Dec  8 00:40:35 2012
+ By www-data
+Copyright (c) 2012 by Jerry Whiting. All rights reserved.
+</metadata>
+<defs>
+<font id="Code39Azalea" horiz-adv-x="348" >
+  <font-face 
+    font-family="Code39Azalea"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="0 0 0 0 0 0 0 0 0 0"
+    ascent="1000"
+    descent="0"
+    bbox="0 0 324 1000"
+    underline-thickness="20"
+    underline-position="-122"
+    unicode-range="U+000D-U+2010"
+  />
+<missing-glyph horiz-adv-x="500" 
+ />
+    <glyph glyph-name=".notdef" horiz-adv-x="500" 
+ />
+    <glyph glyph-name="NULL" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="NULL" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" unicode="&#xd;" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="exclam" unicode="!" 
+ />
+    <glyph glyph-name="asterisk" unicode="*" 
+d="M300 1000h24v-1000h-24v1000zM216 1000h60v-1000h-60v1000zM132 1000h60v-1000h-60v1000zM84 1000h24v-1000h-24v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="zero" unicode="0" 
+d="M300 1000h24v-1000h-24v1000zM216 1000h60v-1000h-60v1000zM132 1000h60v-1000h-60v1000zM48 1000h24v-1000h-24v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="one" unicode="1" 
+d="M264 1000h60v-1000h-60v1000zM216 1000h24v-1000h-24v1000zM168 1000h24v-1000h-24v1000zM84 1000h24v-1000h-24v1000zM0 1000h60v-1000h-60v1000z" />
+    <glyph glyph-name="two" unicode="2" 
+d="M264 1000h60v-1000h-60v1000zM216 1000h24v-1000h-24v1000zM168 1000h24v-1000h-24v1000zM48 1000h60v-1000h-60v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="three" unicode="3" 
+d="M300 1000h24v-1000h-24v1000zM252 1000h24v-1000h-24v1000zM204 1000h24v-1000h-24v1000zM84 1000h60v-1000h-60v1000zM0 1000h60v-1000h-60v1000z" />
+    <glyph glyph-name="four" unicode="4" 
+d="M264 1000h60v-1000h-60v1000zM216 1000h24v-1000h-24v1000zM132 1000h60v-1000h-60v1000zM48 1000h24v-1000h-24v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="five" unicode="5" 
+d="M300 1000h24v-1000h-24v1000zM252 1000h24v-1000h-24v1000zM168 1000h60v-1000h-60v1000zM84 1000h24v-1000h-24v1000zM0 1000h60v-1000h-60v1000z" />
+    <glyph glyph-name="six" unicode="6" 
+d="M300 1000h24v-1000h-24v1000zM252 1000h24v-1000h-24v1000zM168 1000h60v-1000h-60v1000zM48 1000h60v-1000h-60v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="seven" unicode="7" 
+d="M264 1000h60v-1000h-60v1000zM180 1000h60v-1000h-60v1000zM132 1000h24v-1000h-24v1000zM48 1000h24v-1000h-24v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="eight" unicode="8" 
+d="M300 1000h24v-1000h-24v1000zM216 1000h60v-1000h-60v1000zM168 1000h24v-1000h-24v1000zM84 1000h24v-1000h-24v1000zM0 1000h60v-1000h-60v1000z" />
+    <glyph glyph-name="nine" unicode="9" 
+d="M300 1000h24v-1000h-24v1000zM216 1000h60v-1000h-60v1000zM168 1000h24v-1000h-24v1000zM48 1000h60v-1000h-60v1000zM0 1000h24v-1000h-24v1000z" />
+    <glyph glyph-name="colon" unicode=":" 
+ />
+    <glyph glyph-name="nonbreakingspace" unicode="&#xa0;" 
+ />
+    <glyph glyph-name="uni2010" unicode="&#x2010;" horiz-adv-x="1000" 
+ />
+    <glyph glyph-name="_51" 
+ />
+    <glyph glyph-name="_52" 
+ />
+    <glyph glyph-name="glyph51" 
+ />
+    <glyph glyph-name="glyph52" 
+ />
+  </font>
+</defs></svg>

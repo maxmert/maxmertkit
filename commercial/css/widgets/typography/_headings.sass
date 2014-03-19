@@ -20,7 +20,10 @@
 		color: $headings-color
 
 		small
-			color: $headings-injection-color
+			opacity: $headings-injection-opacity
+
+		&.#{$mod-center}
+			text-align: center
 
 		@each $size in $base-sizes-names
 			$i: index($base-sizes-names, $size)

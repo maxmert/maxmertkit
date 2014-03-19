@@ -4,37 +4,69 @@
 		$fontPixels: nth($base-sizes-values, $j) * $base-font-size - 3
 		$pixels: nth($base-sizes-values, $j) * $base-font-size / 2
 		@if $size == "_normal"
-			// font-size: $fontPixels
+			padding: $pixels * 5
 			@if nth($themes, $i) != "-default-"
 				color: nth($themes-white-colors, $i)
-			@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
-			&:before, &:after
-				top: $pixels + 2px
-				bottom: $pixels + 2px
+				@include background-image( nth($themes-background-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1) )
+			@else
+				@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
 
-			&.#{$mod-vertical}
-				&:before, &:after
-					top: inherit
-					bottom: inherit
-					left: $pixels + 2px!important
-					right: $pixels + 2px!important
+
+			.#{$divider-class}
+				&.#{$mod-left}, &.#{$mod-right}
+					top: $pixels + 2
+					bottom: $pixels + 2
+
+					@if nth($themes, $i) != "-default-"
+						border-left: $ticket-divider-width dashed rgba(#fff, .5)
+						border-right: $ticket-divider-width dashed rgba(#000, .4)
+					@else
+						border-left: $ticket-divider-width dashed rgba(#fff, 1)
+						border-right: $ticket-divider-width dashed rgba(#000, .2)
+
+				&.#{$mod-top}, &.#{$mod-bottom}
+					left: $pixels + 2
+					right: $pixels + 2
+
+					@if nth($themes, $i) != "-default-"
+						border-bottom: $ticket-divider-width dashed rgba(#fff, .5)
+						border-top: $ticket-divider-width dashed rgba(#000, .4)
+					@else
+						border-bottom: $ticket-divider-width dashed rgba(#fff, 1)
+						border-top: $ticket-divider-width dashed rgba(#000, .2)
+
 
 		&.#{$size}
-			// font-size: $fontPixels
+			padding: $pixels * 5
 			@if nth($themes, $i) != "-default-"
 				color: nth($themes-white-colors, $i)
-			@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
-			&:before, &:after
-				top: $pixels + 2px
-				bottom: $pixels + 2px
+				@include background-image( nth($themes-background-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-colors, $i) $pixels + 1) )
+			@else
+				@include background-image( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 100%, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(100% 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1), radial-gradient(0 0, circle, rgba(0,0,0,0) $pixels, nth($themes-background-light-colors, $i) $pixels + 1) )
 
-			&.#{$mod-vertical}
-				&:before, &:after
-					top: inherit
-					bottom: inherit
-					left: $pixels + 2px!important
-					right: $pixels + 2px!important
-			// @include background( nth($themes-background-light-colors, $i), radial-gradient(0 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 100%, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(100% 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px), radial-gradient(0 0, circle, rgba(204,0,0,0) 14px, nth($themes-background-light-colors, $i) 15px) )
+			.#{$divider-class}
+				&.#{$mod-left}, &.#{$mod-right}
+					top: $pixels + 2
+					bottom: $pixels + 2
+
+					@if nth($themes, $i) != "-default-"
+						border-left: $ticket-divider-width dashed rgba(#fff, .5)
+						border-right: $ticket-divider-width dashed rgba(#000, .4)
+					@else
+						border-left: $ticket-divider-width dashed rgba(#fff, 1)
+						border-right: $ticket-divider-width dashed rgba(#000, .2)
+
+				&.#{$mod-top}, &.#{$mod-bottom}
+					left: $pixels + 2
+					right: $pixels + 2
+
+					@if nth($themes, $i) != "-default-"
+						border-bottom: $ticket-divider-width dashed rgba(#fff, .5)
+						border-top: $ticket-divider-width dashed rgba(#000, .4)
+					@else
+						border-bottom: $ticket-divider-width dashed rgba(#fff, 1)
+						border-top: $ticket-divider-width dashed rgba(#000, .2)
+
 
 
 
@@ -45,10 +77,20 @@
 
 		.#{$content-class-name}
 			position: relative
-			padding: 10px
+			// padding: 10px
 			display: table-cell
 			min-height: 100%
 			vertical-align: middle
+			float: none
+
+			@for $i from 1 through 6
+				h#{$i}
+					text-transform: uppercase
+					font-family: "alternate-gothic-no-3-d"
+					&:first-child
+						margin-top: 0
+					&:last-child
+						margin-bottom: 0
 
 			@each $theme in $themes
 				$i: index($themes, $theme)
@@ -58,40 +100,53 @@
 					
 				&.#{$theme}
 					@include ticket-theme-setter($i)
-
-			&:before, &:after
-				content: " "
-				display: block
-				position: absolute
-				width: 0
-				top: 0
-
-			&:before
-				left: 0
-				border-color: rgba(#fff, .3)
-				border-left-width: 1px
-				border-left-style: dashed
-
-			&:after
-				border-color: rgba(#000, .3)
-				right: 0
-				border-right-width: 1px
-				border-right-style: dashed
-
-
-			&:first-child
-				border-left: none
-				&:before
-					display: none!important
-
-			&:last-child
-				border-right: none
-				&:after
-					display: none!important
 			
 			background-position: bottom left, bottom right, top right, top left
 			@include background-size(51% 51%) // 51% is to hide hotizontal line
 			background-repeat: no-repeat
+
+			.#{$divider-class}
+				display: none
+
+				&.#{$mod-horizontal}
+					display: block
+					height: 0
+					border-bottom: $ticket-divider-width dashed rgba(#fff, .3)
+					border-top: $ticket-divider-width dashed rgba(#000, .2)
+				
+				&.#{$mod-left}, &.#{$mod-right}
+					display: block
+					position: absolute
+					width: 0
+
+				&.#{$mod-left}
+					left: 0
+
+				&.#{$mod-right}
+					right: 0
+
+				&.#{$mod-top}, &.#{$mod-bottom}
+					display: block
+					position: absolute
+					height: 0
+
+				&.#{$mod-top}
+					top: 0
+
+				&.#{$mod-bottom}
+					bottom: 0
+
+
+
+
+		@each $size in $base-sizes-names
+			@if $size == "_normal"
+				.#{$content-class-name}
+					@extend .#{$content-class-name}.#{$size}
+			&.#{$size}
+				.#{$content-class-name}
+					@extend .#{$content-class-name}.#{$size}
+
 
 		
 
@@ -102,28 +157,17 @@
 				min-height: inherit
 				min-width: 100%
 
-				&:before, &:after
-					height: 0
-					width: auto
-					left: 0
 				
-				&:before
-					left: inherit
-					top: 0
-					border-color: rgba(#000, .3)
-					border-left-width: 0
-					border-top-width: 1px
-					border-top-style: dashed
+@include media(new-breakpoint(max-width 992px 6))
+	.#{$ticket-class}
+		display: block
+		
+		.#{$content-class-name}
+			display: block
+			min-height: inherit
+			min-width: 100%
 
-				&:after
-					right: inherit
-					top: inherit
-					bottom: 0
-					border-color: rgba(#fff, .7)
-					border-right-width: 0
-					border-bottom-width: 1px
-					border-bottom-style: dashed
-
-
-
+			.#{$divider-class}
+				&.#{$mod-left}, &.#{$mod-right}
+					display: none
 
