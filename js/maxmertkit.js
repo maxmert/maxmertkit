@@ -658,7 +658,8 @@
       this.onclose = this.options.onclose;
       this.$el = $(document).find(this.options.target);
       this.$btn.on(this.options.event, (function(_this) {
-        return function() {
+        return function(event) {
+          event.preventDefault();
           return _this.open();
         };
       })(this));
