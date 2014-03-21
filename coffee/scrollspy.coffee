@@ -212,3 +212,8 @@ $.fn[_name] = (options) ->
 			else
 				(if typeof options is "string" and options.charAt(0) isnt "_" then $.data(@, "kit-" + _name)[options] else console.error("Maxmertkit Affix. You passed into the #{_name} something wrong."))
 		return
+
+# $(window).on 'load', ->
+# 	$('[data-spy="scroll"]').each ->
+# 		$navbar = $(@)
+# 		$navbar.navbar($navbar.data())

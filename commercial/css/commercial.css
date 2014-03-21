@@ -4152,4 +4152,8 @@ a.-avatar {
     .-comments .-comment:hover .-comment-block._hidden_, .-comments .-comment:hover .-comment-block ._hidden_ {
       opacity: 1; }
 
+@media screen and (max-width: 768px) {
+  .-comments .-comment .-comment-block._hidden_, .-comments .-comment .-comment-block ._hidden_ {
+    opacity: 1; } }
+
 /*# sourceMappingURL=commercial.sass.map */

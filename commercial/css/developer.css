@@ -170,7 +170,61 @@ pre {
     display: table-cell;
     vertical-align: middle; }
 
+body.dev {
+  overflow: auto;
+  overflow-x: hidden; }
+
 .dev-comments > .-row {
   margin-bottom: 13px; }
+
+.dev-btn {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  z-index: 1000; }
+
+.dev-view {
+  right: 100%;
+  position: fixed;
+  background: url("/img/paper.jpg") 0 0;
+  width: 70%;
+  color: #303336; }
+  .dev-view .dev-view-block-container {
+    display: none; }
+    .dev-view .dev-view-block-container._active_ {
+      display: block; }
+
+.dev-source, .dev-view {
+  height: 100%;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out; }
+
+.dev-toggle-source-active .dev-source {
+  -webkit-transform: translateX(70%);
+  -moz-transform: translateX(70%);
+  -ms-transform: translateX(70%);
+  -o-transform: translateX(70%);
+  transform: translateX(70%); }
+  .dev-toggle-source-active .dev-source .-container {
+    margin-left: 0; }
+.dev-toggle-source-active .dev-view {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%); }
+
+.dev-container {
+  position: relative;
+  font-size: 13px;
+  border: 1px dashed #8a857f;
+  border-radius: 4px;
+  padding: 20px; }
+  .dev-container .dev-name {
+    position: absolute;
+    top: -11px;
+    padding: 3px 5px;
+    background: url("/img/paper.jpg") 0 0; }
 
 /*# sourceMappingURL=developer.sass.map */

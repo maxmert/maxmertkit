@@ -7442,11 +7442,11 @@ form label._horizontal_ {
   border-right-color: #e6e6e6;
   border-bottom-color: #e0e0e0;
   color: black;
-  font-size: 10px;
-  font-size: 10px;
-  font-size: 10px;
-  font-size: 10px;
-  font-size: 10px;
+  font-size: 9px;
+  font-size: 9px;
+  font-size: 9px;
+  font-size: 9px;
+  font-size: 9px;
   font-size: 10.5px;
   font-size: 12.25px;
   font-size: 13.3px;
@@ -7555,9 +7555,9 @@ form label._horizontal_ {
     .-btn._unstyled_ .fa {
       padding-right: 4px; }
   .-btn._tiny, .-group._tiny .-btn, .-navbar._tiny .-btn, ._tiny.-navbar-float .-btn {
-    font-size: 10px; }
+    font-size: 9px; }
   .-btn._small, .-group._small .-btn, .-navbar._small .-btn, ._small.-navbar-float .-btn {
-    font-size: 10px; }
+    font-size: 9px; }
   .-btn._minor, .-group._minor .-btn, .-navbar._minor .-btn, ._minor.-navbar-float .-btn {
     font-size: 10.5px; }
   .-btn._normal, .-group._normal .-btn, .-navbar._normal .-btn, ._normal.-navbar-float .-btn {
