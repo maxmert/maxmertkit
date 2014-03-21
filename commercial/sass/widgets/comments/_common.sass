@@ -45,3 +45,11 @@
 				.#{$comments-item-block-class}
 					&.#{$mod-hidden}, .#{$mod-hidden}
 						opacity: 1
+
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$comments-class}
+			.#{$comments-item-class}
+				.#{$comments-item-block-class}
+					&.#{$mod-hidden}, .#{$mod-hidden}
+						opacity: 1
