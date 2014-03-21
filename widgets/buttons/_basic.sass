@@ -116,10 +116,16 @@
 		@each $size in $base-sizes-names
 			$i: index($base-sizes-names, $size)
 			@if #{$size} == "_normal"
-				font-size: nth($base-sizes-values, $i) * $base-font-size / 2
+				@if nth($base-sizes-values, $i) * $base-font-size / 2 > $button-min-font-size
+					font-size: nth($base-sizes-values, $i) * $base-font-size / 2
+				@else
+					font-size: $button-min-font-size
 			
 			&.#{$size}
-				font-size: nth($base-sizes-values, $i) * $base-font-size
+				@if nth($base-sizes-values, $i) * $base-font-size > $button-min-font-size
+					font-size: nth($base-sizes-values, $i) * $base-font-size
+				@else
+					font-size: $button-min-font-size
 
 
 	a.#{$button-class}

@@ -168,13 +168,14 @@ _refreshImageData = ->
 		@$img.height @_windowHeight
 		@style = @$image[0].style
 
-	if @deviceMobile and @$img.width() > @_windowWidth
-		@$tilt.fadeIn() if @$tilt?
-		@$img.css width: 'auto'
-	else
-		@$img.width @_windowWidth
-		@$img.css height: 'auto'
-		@$tilt.fadeOut() if @$tilt?
+	if @deviceMobile
+		if @$img.width() > @_windowWidth
+			@$tilt.fadeIn() if @$tilt?
+			@$img.css width: 'auto'
+		else
+			@$img.width @_windowWidth
+			@$img.css height: 'auto'
+			@$tilt.fadeOut() if @$tilt?
 
 		
 

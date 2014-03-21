@@ -31,7 +31,8 @@ class Modal extends MaxmertkitHelpers
 		@$el = $(document).find @options.target
 		
 		# Set event on button to show modal window
-		@$btn.on @options.event, =>
+		@$btn.on @options.event, ( event ) =>
+			event.preventDefault()
 			@open()
 
 		# Set close on backdrop event

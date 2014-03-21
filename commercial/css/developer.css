@@ -128,6 +128,9 @@ body {
   height: 100%;
   font-family: "freight-text-pro"; }
 
+form {
+  font-family: "Helvetica"; }
+
 .-wall {
   font-family: Helvetica; }
 
@@ -166,5 +169,8 @@ pre {
     text-align: center;
     display: table-cell;
     vertical-align: middle; }
+
+.dev-comments > .-row {
+  margin-bottom: 13px; }
 
 /*# sourceMappingURL=developer.sass.map */

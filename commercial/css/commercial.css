@@ -2437,7 +2437,12 @@ html, body {
     border-style: solid;
     border-color: transparent;
     border-radius: 3px;
-    overflow: hidden; }
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0); }
   .-avatar img {
     position: absolute;
     top: 0;
@@ -4121,5 +4126,30 @@ a.-avatar {
     margin: 40px 0; }
     .-block-post figure figcaption p {
       margin: 0; }
+
+.-comments {
+  list-style: none; }
+  .-comments .-comment {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    width: auto;
+    margin-bottom: 20px; }
+    .-comments .-comment:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .-comments .-comment .-comment-block {
+      display: table-cell;
+      vertical-align: top; }
+      .-comments .-comment .-comment-block .-avatar {
+        margin-bottom: 0.1em; }
+      .-comments .-comment .-comment-block._hidden_, .-comments .-comment .-comment-block ._hidden_ {
+        opacity: 0;
+        -webkit-transition: opacity 0.3s ease-out;
+        -moz-transition: opacity 0.3s ease-out;
+        transition: opacity 0.3s ease-out; }
+    .-comments .-comment:hover .-comment-block._hidden_, .-comments .-comment:hover .-comment-block ._hidden_ {
+      opacity: 1; }
 
 /*# sourceMappingURL=commercial.sass.map */

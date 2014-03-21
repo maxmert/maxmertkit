@@ -27,6 +27,8 @@ class Steps extends MaxmertkitHelpers
 			stepSelect: "[data-step]"
 			steps: []
 			begin: @$el.data('begin') or 0
+
+			onactive: ->
 		
 		@options = @_merge _options, @options
 
@@ -110,19 +112,25 @@ _prevStep = ->
 
 _setStep = ( number ) ->
 	if number >= 0 and  number < @stepsItems.length
+		_deactivateStep.call @
 		@active = number
 		_activateStep.call @
 
 
 _activateStep = ->
+	@stepsItems[ @active ].addClass '_active_ _right_'
+
+	if @onactive?
+		@onactive.call @
+
 	if @steps? and @steps.length and @steps[ @active ]?
 		try
-			deferred = @steps[ @active ].call @$el
+			deferred = @steps[ @active ].call @
 			deferred
 				.done =>
 					_deactivateStep.call @
-					@stepsItems[ @active ].addClass '_active_'
 					_nextStep.call @
+
 					
 				.fail =>
 					_prevStep.call @
@@ -141,7 +149,7 @@ _compareSteps = ( one, two ) ->
 _deactivateStep = ->
 	for step in @stepsItems
 		if step.hasClass '_active_'
-			step.removeClass '_active_'
+			step.removeClass '_active_ _right_'
 
 $.fn[_name] = (options) ->
 	@each ->
