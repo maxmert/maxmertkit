@@ -4152,12 +4152,8 @@ a.-avatar {
     .-comments .-comment:hover .-comment-block._hidden_, .-comments .-comment:hover .-comment-block ._hidden_ {
       opacity: 1; }
 
-<<<<<<< HEAD
-/*# sourceMappingURL=commercial.sass.map */
-=======
 @media screen and (max-width: 768px) {
   .-comments .-comment .-comment-block._hidden_, .-comments .-comment .-comment-block ._hidden_ {
     opacity: 1; } }
 
 /*# sourceMappingURL=commercial.sass.map */
->>>>>>> 1b3ea30c2724627e80838b783c1fd358bbd3dbdf

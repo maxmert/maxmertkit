@@ -177,9 +177,6 @@ body.dev {
 .dev-comments > .-row {
   margin-bottom: 13px; }
 
-<<<<<<< HEAD
-/*# sourceMappingURL=developer.sass.map */
-=======
 .dev-btn {
   position: fixed;
   top: 5px;
@@ -231,4 +228,3 @@ body.dev {
     background: url("/img/paper.jpg") 0 0; }
 
 /*# sourceMappingURL=developer.sass.map */
->>>>>>> 1b3ea30c2724627e80838b783c1fd358bbd3dbdf
