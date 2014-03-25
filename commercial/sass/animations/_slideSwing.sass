@@ -1,0 +1,24 @@
+$animations-slideswing-class: "-slideswing--" !global
+
+$animations-slideswing-duration: 1.2s !global
+$animations-slideswing-timing-function: cubic-bezier(1, -0.2, 0, 1) !global
+$animations-slideswing-delay: 0s !global
+
+
+@import "pressAway"
+
+
+@include exports("animations/slideSwing")
+	.#{$animations-slideswing-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				@include animation( slideInFromRight $animations-slideswing-duration forwards $animations-slideswing-timing-function )
+			&.#{$mod-left}
+				@include animation( slideInFromLeft $animations-slideswing-duration forwards $animations-slideswing-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include animation( slideOutScaleLeft $animations-slideswing-duration forwards $animations-slideswing-timing-function )
+			&.#{$mod-left}
+				@include animation( slideOutScaleRight $animations-slideswing-duration forwards $animations-slideswing-timing-function )

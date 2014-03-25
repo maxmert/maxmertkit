@@ -19,6 +19,7 @@ class Carousel extends MaxmertkitHelpers
 		_options =
 			kind: @$el.data('kind') or 'carousel'
 			# group: @$el.data('group') or 'carousel'
+			animation: @$el.data('animation') or 'snapin'
 			itemSelector: @$el.data('items') or '.-item'
 			arrowsSelector: @$el.data('arrows') or '.-arrow'
 			closer: @$el.data('closer') or '.-close'
@@ -84,44 +85,66 @@ class Carousel extends MaxmertkitHelpers
 		@$el.toggleClass '_disabled_'
 
 
+	activateNumItem: ( num ) ->
+		if not num?
+			num = 0
+			activeItem = _findActiveItem.call @
+			@items[num].addClass '_right_'
+			_activateItem.call @, @items[ num ]
+
+		else
+		
+			activeItem = _findActiveItem.call @
+			if activeItem?
+				@deactivateItem activeItem
+
+			_activateItem.call @, @items[ num ]
+
 
 	activateNextItem: ->
-		if @items?
-			i = _findActiveItem.call @
+		if @items? and @items.length
 			
-			if not @items[i].hasClass('_left_') and not @items[i].hasClass('_right_')
-				i = 0
+			for item in @items
+				item
+					.removeClass '_left_'
+					.addClass '_right_'
+				
+
+			activeItem = _findActiveItem.call @
+			activeItemIndex = activeItem.index()
+
+			if activeItemIndex + 1 < @items.length
+				activeItemIndex = activeItemIndex + 1
 
 			else
-				if i is @items.length - 1
-					_deactivateItem.call @, @items[i]
-					i = 0
-
-				else
-					_deactivateItem.call @, @items[i]
-					i++
-
-			@items[i].addClass '_right_'
+				activeItemIndex = 0
+			
+			@activateNumItem activeItemIndex
 
 
 	activatePrevItem: ->
-		if @items?
-			i = _findActiveItem.call @
-			
-			if not @items[i].hasClass('_left_') and not @items[i].hasClass('_right_')
-				i = 0
+		if @items? and @items.length
+			activeItem = _findActiveItem.call @
+			activeItemIndex = activeItem.index()
+			for item in @items
+				item
+					.removeClass '_right_'
+					.addClass '_left_'
+
+
+
+			if activeItemIndex - 1 >= 0
+				activeItemIndex = activeItemIndex - 1
 
 			else
-				if i is 0
-					_deactivateItem.call @, @items[i]
-					i = @items.length - 1
+				activeItemIndex = @items.length - 1
+			
+			@activateNumItem activeItemIndex
 
-				else
-					_deactivateItem.call @, @items[i]
-					i--
 
-			@items[i].addClass '_left_'
-			# _activateItem.call @, @items[i]
+
+	deactivateItem: ( item ) ->
+		_deactivateItem.call @, item
 
 			
 
@@ -137,23 +160,41 @@ class Carousel extends MaxmertkitHelpers
 
 
 _findActiveItem = ->
-	i = 0
-	while i + 1 < @items.length and not @items[i].hasClass('_left_') and not @items[i].hasClass('_right_')
-		i++
-	i
+	for item in @items
+		if item.hasClass '_active_'
+			return item
+
+# 	i = 0
+# 	while i + 1 < @items.length and not @items[i].hasClass('_left_') and not @items[i].hasClass('_right_') and not @items[i].hasClass('_active_')
+# 		i++
+# 	i
+
+_activateItem = ( item ) ->
+	item.removeClass '-stop--'
+	item.show()
+	item.addClass '-start-- _active_'
 
 _deactivateItem = ( item ) ->
-	item.removeClass '_left_ _right_'
+	item.removeClass '-start--'
+	item.addClass '-stop--'
+	item.removeClass '_active_'
+	setTimeout =>
+		item.hide()
+	, 1500
 
 _refreshItems = ->
 	@items = []
 	for item in @$el.find @options.itemSelector
 		$item = $(item)
-		$item.css marginLeft: "-#{$item.width() / 2}px"
-		$item.find('img').css display: 'none'
+		$item.addClass "-#{@options.animation}-- -stop-- _right_"
+		$item.css marginLeft: "-#{$item.width() / 2}px", display: 'none'
+		# $item.find('img').css display: 'none'
 		@items.push $(item)
 	
-	@activateNextItem.call @
+	# Activate first one
+	# @items[0].addClass '_active_'
+
+	@activateNumItem.call @, 0
 
 
 _beforeactive = ->
@@ -186,6 +227,7 @@ _activate = ->
 		@_touchItem = @items[ _findActiveItem.call(@) ]
 		@_touchItemStyle = @_touchItem[0].style
 		@_touchScrollStart = @$el.scrollTop()
+		console.log "123 ",@$el
 
 	@$el[0].addEventListener "touchmove", ( event ) =>
 		event.preventDefault()
@@ -193,14 +235,14 @@ _activate = ->
 		@_touchDeltaX = parseInt(event.changedTouches[0].clientX) - @_touchStartX
 		@_touchDeltaY = parseInt(event.changedTouches[0].clientY) - @_touchStartY
 		
-		translate = "translateX(#{@_touchDeltaX}px)"
+		# translate = "translateX(#{@_touchDeltaX}px)"
 		
-		if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
-			@_touchItemStyle.webkitTransform = translate
-			@_touchItemStyle.MozTransform = translate
-			@_touchItemStyle.transform = translate
-
-		if Math.abs(@_touchDeltaY) > 20
+		# if @_touchItemStyle? and Math.abs(@_touchDeltaX) > 5 # and Math.abs(@_touchDeltaY) < 10
+		# 	@_touchItemStyle.webkitTransform = translate
+		# 	@_touchItemStyle.MozTransform = translate
+		# 	@_touchItemStyle.transform = translate
+		console.log @_touchDeltaY
+		# if Math.abs(@_touchDeltaY) > 20
 			# if @_touchScrollStart - @_touchDeltaY < 0
 			# 	percent = ($(window).height() + (@_touchScrollStart - @_touchDeltaY)) / $(window).height()
 			# 	translate = "scale(#{percent}, #{percent}) translateY(#{@_touchDeltaY}px)"
@@ -215,7 +257,8 @@ _activate = ->
 			# 		, 500
 					
 			# else
-			@$el.scrollTop @_touchScrollStart - @_touchDeltaY
+			# console.log @_touchScrollStart
+			# @$el.scrollTop @_touchScrollStart - @_touchDeltaY
 
 	@$el[0].addEventListener "touchend", ( event ) =>
 		event.preventDefault()
