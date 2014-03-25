@@ -144,11 +144,11 @@ class Wall extends MaxmertkitHelpers
 		_setNavActive.call @
 		_refreshHeaderHeight.call @
 			
-		@$el.addClass '_active_'
+		# @$el.addClass '_active_'
 
 	deactivate: ->
-		if @$el.hasClass '_active_'
-			_beforeunactive.call @
+		# if @$el.hasClass '_active_'
+		_beforeunactive.call @
 
 	disable: ->
 		@$el.toggelleClass '_disabled_'

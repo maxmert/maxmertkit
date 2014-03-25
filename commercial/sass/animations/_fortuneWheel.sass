@@ -1,0 +1,42 @@
+$animations-fortunewheel-class: "-fortunewheel--" !global
+
+$animations-fortunewheel-duration: 1.2s !global
+$animations-fortunewheel-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !global
+$animations-fortunewheel-delay: 0s !global
+
+
+@import "pressAway"
+
+@include exports("animations/fortuneWheel")
+
+	@include keyframes( rotateInFromLeft )
+		from
+			@include transform( translateX(-100%) rotateY(-55deg) )
+		to
+			@include transform( translateX(0) rotateY(0deg) )
+			opacity: 1
+
+
+	@include keyframes( rotateInFromRight )
+		from
+			@include transform( translateX(100%) rotateY(55deg) )
+		to
+			@include transform( translateX(0) rotateY(0deg) )
+			opacity: 1
+
+
+	.#{$animations-fortunewheel-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				@include transform-origin(100% 50%)
+				@include animation( rotateInFromLeft $animations-fortunewheel-duration forwards $animations-fortunewheel-timing-function )
+			&.#{$mod-left}
+				@include transform-origin(100% 50%)
+				@include animation( rotateInFromRight $animations-fortunewheel-duration forwards $animations-fortunewheel-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include animation( slideOutScaleRight $animations-fortunewheel-duration forwards $animations-fortunewheel-timing-function )
+			&.#{$mod-left}
+				@include animation( slideOutScaleLeft $animations-fortunewheel-duration forwards $animations-fortunewheel-timing-function )

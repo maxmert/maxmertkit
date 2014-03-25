@@ -10,6 +10,9 @@ app.use express.static "#{__dirname}/../"
 app.get '/', (req, res) ->
 	res.sendfile "server/views/index.html"
 
+app.get '/all', (req, res) ->
+	res.sendfile "server/views/all.html"
+
 
 app.get '/widgets/wall', (req, res) ->
 	res.sendfile "server/views/widgets/wall.html"

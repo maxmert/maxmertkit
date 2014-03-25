@@ -1,0 +1,371 @@
+
+/*****************************************/
+/* Let me in */
+/*****************************************/
+
+.fxLetMeIn .itemwrap {
+	-webkit-perspective: 1600px;
+	perspective: 1600px;
+}
+
+.fxLetMeIn .navOutNext {
+	-webkit-transform-origin: 0% 50%;
+	transform-origin: 0% 50%;
+	-webkit-animation: rotateOutRight 0.5s forwards ease-in-out;
+	animation: rotateOutRight 0.5s forwards ease-in-out;
+}
+
+.fxLetMeIn .navInNext {
+	z-index: 1001;
+	opacity: 1;
+	-webkit-animation: slideFromRightFast 0.5s forwards ease;
+	animation: slideFromRightFast 0.5s forwards ease;
+}
+
+.fxLetMeIn .navOutPrev {
+	-webkit-transform-origin: 100% 0%;
+	transform-origin: 100% 0%;
+	-webkit-animation: rotateOutLeft 0.5s forwards ease-in-out;
+	animation: rotateOutLeft 0.5s forwards ease-in-out;
+}
+
+.fxLetMeIn .navInPrev {
+	z-index: 1001;
+	opacity: 1;
+	-webkit-animation: slideFromLeftFast 0.5s forwards ease;
+	animation: slideFromLeftFast 0.5s forwards ease;
+}
+
+.fxLetMeIn li::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	background-color: rgba(0,0,0,0.6);
+	-webkit-transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.fxLetMeIn .navOutPrev::after,
+.fxLetMeIn .navOutNext::after {
+	opacity: 1;
+}
+
+@include keyframes( rotateOutRight )
+	to
+		@include transform( rotateY(10deg) )
+
+@include keyframes( rotateOutLeft )
+	to
+		@include transform( rotateY(-10deg) )
+
+
+/*****************************************/
+/* Stick it */
+/*****************************************/
+
+.fxStickIt .itemwrap {
+	-webkit-perspective: 1600px;
+	perspective: 1600px;
+}
+
+.fxStickIt .navOutNext {
+	-webkit-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-animation: rotateBottomSideOut 0.8s forwards ease-in;
+	animation: rotateBottomSideOut 0.8s forwards ease-in;
+}
+
+.fxStickIt .navInNext {
+	z-index: 1001;
+	opacity: 1;
+	-webkit-animation: slideInFromBottomDelayed 0.8s forwards;
+	animation: slideInFromBottomDelayed 0.8s forwards;
+}
+
+.fxStickIt .navOutPrev {
+	opacity: 1;
+	-webkit-animation: slideOutToBottom 0.8s forwards;
+	animation: slideOutToBottom 0.8s forwards;
+}
+
+.fxStickIt .navInPrev {
+	-webkit-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-animation: rotateBottomSideIn 0.8s 0.1s forwards ease-in;
+	animation: rotateBottomSideIn 0.8s 0.1s forwards ease-in;
+}
+
+@include keyframes( rotateBottomSideOut )
+	40%
+		@include transform( rotateX(-15deg) )
+		@include animation-timing-function(ease-out)
+	100%
+		opacity: 0
+		@include transform( scale(0.8) translateZ(-200px) )
+
+
+@include keyframes( slideInFromBottomDelayed )
+	0%, 30%
+		@include transform( translateY(100%) )
+	100%
+		@include transform( translateY(100%) )
+
+
+
+@include keyframes( rotateBottomSideIn )
+	0%
+		opacity: 0
+		@include transform( scale(0.8) translateZ(-200px) )
+	60%
+		@include animation-timing-function(ease-out)
+		@include transform( scale(1) translateZ(0) rotateX(-15deg) )
+	100%
+		opacity: 1
+		@include transform( scale(1) translateZ(0) rotateX(0deg) )
+
+
+
+/*****************************************/
+/* Archive me */
+/*****************************************/
+
+.fxArchiveMe .navOutNext {
+	-webkit-animation: scaleHalfDown 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: scaleHalfDown 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxArchiveMe .navInNext {
+	z-index: 1001;
+	opacity: 1;
+	-webkit-animation: slideInFromBottom 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: slideInFromBottom 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxArchiveMe .navOutPrev {
+	-webkit-animation: slideOutToBottom 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: slideOutToBottom 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxArchiveMe .navInPrev {
+	-webkit-animation: scaleHalfUp 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: scaleHalfUp 0.7s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxArchiveMe li::before,
+.fxArchiveMe li::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background-color: rgba(0,0,0,0.7);
+	-webkit-transition: opacity 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+	transition: opacity 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxArchiveMe li::after,
+.fxArchiveMe .navOutNext::before {
+	opacity: 1;
+}
+
+.fxArchiveMe li::before,
+.fxArchiveMe li.current::after,
+.fxArchiveMe .navInNext::after,
+.fxArchiveMe .navInPrev::after {
+	opacity: 0;
+}
+
+.fxArchiveMe .navInNext::after {
+	-webkit-transition: none;
+	transition: none;
+}
+
+
+@include keyframes( scaleHalfDown )
+	to
+		@include transform( scale(0.6) )
+		opacity: 0
+
+@include keyframes( slideOutToBottom )
+	to
+		@include transform( translateY(100%) )
+	
+@include keyframes( scaleHalfUp )
+	from
+		opacity: 0
+		@include transform( scale(0.6) )
+	to
+		@include transform( scale(1) )
+
+
+
+
+/*****************************************/
+/* Slide Behind */
+/* From https://github.com/hakimel/kontext by Hakim El Hattab, http://hakim.se */
+/*****************************************/
+
+.fxSlideBehind .itemwrap {
+	-webkit-perspective: 1000px;
+	perspective: 1000px;
+}
+
+.fxSlideBehind .navOutNext {
+	-webkit-animation: hideLeft 0.8s forwards;
+	animation: hideLeft 0.8s forwards;
+}
+
+.fxSlideBehind .navInNext {
+	-webkit-animation: showRight 0.8s forwards;
+	animation: showRight 0.8s forwards;
+}
+
+.fxSlideBehind .navOutPrev {
+	-webkit-animation: hideRight 0.8s forwards;
+	animation: hideRight 0.8s forwards;
+}
+
+.fxSlideBehind .navInPrev {
+	-webkit-animation: showLeft 0.8s forwards;
+	animation: showLeft 0.8s forwards;
+}
+
+@include keyframes( hideLeft )
+	0%
+		@include transform( translateZ( 0px ) )
+	40%
+		@include transform( translate( 0, -40% ) scale( 0.8 ) rotateX( -20deg) )
+		z-index: 9999
+	100%
+		opacity: 1
+		@include transform( translateZ( -400px ) )
+
+
+@include keyframes( showRight )
+	0%
+		@include transform( translateZ( -400px ) )
+		opacity: 1
+	40%
+		@include transform( translate( 0, 40% ) scale( 0.8 ) rotateX( 20deg ) )
+		opacity: 1
+	41%
+		@include transform( translate( 0, 40% ) scale( 0.8 ) rotateX( 20deg ) )
+		opacity: 1
+		z-index: 9999
+	100%
+		@include transform( translateZ( 0px ) )
+		opacity: 1
+		z-index: 9999
+
+
+@include keyframes( hideRight )
+	0%
+		@include transform( translateZ( 0px ) )
+	40%
+		@include transform( translate( 0, 40% ) scale( 0.8 ) rotateX( 20deg ) )
+		z-index: 9999
+	100%
+		opacity: 1
+		@include transform( translateZ( -400px ) )
+
+
+
+@include keyframes( showLeft )
+	0%
+		@include transform( translateZ( -400px ) )
+		opacity: 1
+	40%
+		@include transform( translate( 0, -40% ) scale( 0.8 ) rotateX( -20deg ) )
+		opacity: 1
+	41%
+		@include transform( translate( 0, -40% ) scale( 0.8 ) rotateX( -20deg ) )
+		opacity: 1
+		z-index: 9999
+	100%
+		@include transform( translateZ( 0px ) )
+		opacity: 1
+		z-index: 9999
+
+
+/*****************************************/
+/* Cliff diving */
+/*****************************************/
+
+.fxCliffDiving li {
+	-webkit-transform-origin: 50% 400%;
+	transform-origin: 50% 400%;
+}
+
+.fxCliffDiving .navOutNext {
+	opacity: 1;
+	-webkit-animation: rotateOutCircLeft 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: rotateOutCircLeft 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxCliffDiving .navInNext {
+	opacity: 1;
+	-webkit-animation: rotateInCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: rotateInCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxCliffDiving .navOutPrev {
+	opacity: 1;
+	-webkit-animation: rotateOutCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: rotateOutCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxCliffDiving .navInPrev {
+	opacity: 1;
+	-webkit-animation: rotateInCircLeft 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+	animation: rotateInCircLeft 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxCliffDiving li::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	background-color: rgba(0,0,0,1);
+	-webkit-transition: opacity 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+	transition: opacity 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.fxCliffDiving .navOutPrev::after,
+.fxCliffDiving .navOutNext::after {
+	opacity: 1;
+}
+
+@include keyframes( rotateOutCircLeft )
+	to
+		@include transform( rotate(-20deg) translateX(-100%) )
+
+
+
+@include keyframes( rotateInCircRight )
+	from
+		@include transform( rotate(20deg) translateX(100%) )
+	to
+		@include transform( rotate(0deg) translateX(0) )
+
+
+@include keyframes( rotateOutCircRight )
+	to
+		@include transform( rotate(20deg) translateX(100%) )
+
+
+@include keyframes( rotateInCircLeft )
+	from
+		@include transform( rotate(-20deg) translateX(-100%) )
+	to
+		@include transform( rotate(0deg) translateX(0) )

@@ -1,0 +1,59 @@
+$animations-snapin-class: "-snapin--" !global
+
+$animations-snapin-duration: 0.8s !global
+$animations-snapin-timing-function: ease-in-out !global
+$animations-snapin-delay: 0s !global
+
+
+@include exports("animations/snapIn")
+
+	@include keyframes( slideOutLeft )
+		to
+			opacity: 0
+			@include transform( translateX(-10%) )
+
+
+
+	@include keyframes( slideFromRightFast )
+		0%
+			@include transform( translateX(100%) )
+		50%
+			@include transform( translateX(100%) )
+		100%
+			@include transform( translateX(0%) )
+			z-index: inherit
+
+
+	@include keyframes( slideOutRight )
+		to
+			opacity: 0
+			z-index: inherit
+			@include transform( translateX(10%) )
+
+
+	@include keyframes( slideFromLeftFast )
+		0%
+			@include transform( translateX(-100%) )
+		50%
+			@include transform( translateX(-100%) )
+		100%
+			@include transform( translateX(0%) )
+
+
+	.#{$animations-snapin-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				z-index: 1
+				opacity: 1
+				@include animation( slideFromRightFast $animations-snapin-duration forwards $animations-snapin-timing-function )
+			&.#{$mod-left}
+				@include animation( slideFromLeftFast $animations-snapin-duration forwards $animations-snapin-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include animation( slideOutLeft $animations-snapin-duration forwards $animations-snapin-timing-function )
+			&.#{$mod-left}
+				z-index: 1
+				opacity: 1
+				@include animation( slideOutRight $animations-snapin-duration forwards $animations-snapin-timing-function )
