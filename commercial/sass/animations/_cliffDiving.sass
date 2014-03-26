@@ -1,0 +1,58 @@
+$animations-cliffdiving-class: "-cliffdiving--" !global
+
+$animations-cliffdiving-duration: 0.9s !global
+$animations-cliffdiving-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !global
+$animations-cliffdiving-delay: 0s !global
+
+
+
+
+@include exports("animations/cliffDiving")
+	
+	@include keyframes( rotateOutCircLeft )
+		to
+			@include transform( rotate(-20deg) translateX(-100%) )
+
+
+
+	@include keyframes( rotateInCircRight )
+		from
+			@include transform( rotate(20deg) translateX(100%) )
+		to
+			@include transform( rotate(0deg) translateX(0) )
+
+
+	@include keyframes( rotateOutCircRight )
+		to
+			@include transform( rotate(20deg) translateX(100%) )
+
+
+	@include keyframes( rotateInCircLeft )
+		from
+			@include transform( rotate(-20deg) translateX(-100%) )
+		to
+			@include transform( rotate(0deg) translateX(0) )
+
+
+
+
+
+
+	.#{$animations-cliffdiving-class}
+		@include transform-origin(50% 400%)
+
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				opacity: 1
+				@include animation( rotateInCircRight $animations-cliffdiving-duration forwards $animations-cliffdiving-timing-function )
+			&.#{$mod-left}
+				opacity: 1
+				@include animation( rotateInCircLeft $animations-cliffdiving-duration forwards $animations-cliffdiving-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				opacity: 1
+				@include animation( rotateOutCircLeft $animations-cliffdiving-duration forwards $animations-cliffdiving-timing-function )
+			&.#{$mod-left}
+				opacity: 1
+				@include animation( rotateOutCircRight $animations-cliffdiving-duration forwards $animations-cliffdiving-timing-function )

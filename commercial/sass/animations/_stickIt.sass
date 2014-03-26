@@ -1,0 +1,66 @@
+$animations-stickit-class: "-stickit--" !global
+
+$animations-stickit-duration: 0.8s !global
+$animations-stickit-timing-function: ease-out !global
+$animations-stickit-delay: 0s !global
+
+
+@include exports("animations/stickIt")
+
+	@include keyframes( rotateBottomSideOut )
+		40%
+			@include transform( rotateX(-15deg) )
+			@include animation-timing-function(ease-out)
+		100%
+			opacity: 0
+			@include transform( scale(0.8) translateZ(-200px) )
+
+
+	@include keyframes( slideInFromBottomDelayed )
+		0%
+			@include transform( translateY(100%) )
+		30%
+			@include transform( translateY(100%) )
+		100%
+			@include transform( translateY(0) )
+
+
+
+	@include keyframes( rotateBottomSideIn )
+		0%
+			opacity: 0
+			@include transform( scale(0.8) translateZ(-200px) )
+		60%
+			@include animation-timing-function(ease-out)
+			@include transform( scale(1) translateZ(0) rotateX(-15deg) )
+		100%
+			opacity: 1
+			@include transform( scale(1) translateZ(0) rotateX(0deg) )
+			// opacity: 0
+
+	
+	@include keyframes( slideOutToBottom )
+		to
+			@include transform( translateY(100%) )
+
+
+
+	.#{$animations-stickit-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				// z-index: 1
+				opacity: 1
+				@include animation( slideInFromBottomDelayed $animations-stickit-duration forwards $animations-stickit-timing-function )
+			&.#{$mod-left}
+				// z-index: 1
+				@include transform-origin(50% 0%)
+				@include animation( rotateBottomSideIn $animations-stickit-duration forwards $animations-stickit-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include transform-origin(50% 0%)
+				@include animation( rotateBottomSideOut $animations-stickit-duration forwards $animations-stickit-timing-function )
+			&.#{$mod-left}
+				opacity: 1
+				@include animation( slideOutToBottom $animations-stickit-duration forwards $animations-stickit-timing-function )

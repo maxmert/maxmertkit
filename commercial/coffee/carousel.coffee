@@ -19,6 +19,7 @@ class Carousel extends MaxmertkitHelpers
 		_options =
 			kind: @$el.data('kind') or 'carousel'
 			# group: @$el.data('group') or 'carousel'
+
 			animation: @$el.data('animation') or 'rotatemesoftly'
 			itemSelector: @$el.data('items') or '.-item'
 			arrowsSelector: @$el.data('arrows') or '.-arrow'
@@ -106,13 +107,13 @@ class Carousel extends MaxmertkitHelpers
 			
 			for item in @items
 				item
-					.removeClass '_left_'
+					.removeClass('_left_')
 					.addClass '_right_'
 				
 
 			activeItem = _findActiveItem.call @
-			activeItemIndex = activeItem.index()
-
+			activeItemIndex = activeItem.index
+			
 			if activeItemIndex + 1 < @items.length
 				activeItemIndex = activeItemIndex + 1
 
@@ -125,10 +126,10 @@ class Carousel extends MaxmertkitHelpers
 	activatePrevItem: ->
 		if @items? and @items.length
 			activeItem = _findActiveItem.call @
-			activeItemIndex = activeItem.index()
+			activeItemIndex = activeItem.index
 			for item in @items
 				item
-					.removeClass '_right_'
+					.removeClass('_right_')
 					.addClass '_left_'
 
 
@@ -184,13 +185,17 @@ _deactivateItem = ( item ) ->
 
 _refreshItems = ->
 	@items = []
-	for item in @$el.find @options.itemSelector
+	for item, index in @$el.find @options.itemSelector
 		$item = $(item)
 		$item.addClass "-#{@options.animation}-- -stop-- _right_"
 		$item.hide()
+<<<<<<< HEAD
+=======
+		$item.index = index
+>>>>>>> c9d06c053ec0d88d564db2b5abdd9d20786c0c11
 		# $item.css marginLeft: "-#{$item.width() / 2}px", display: 'none'
 		# $item.find('img').css display: 'none'
-		@items.push $(item)
+		@items.push $item
 	
 	# Activate first one
 	# @items[0].addClass '_active_'
