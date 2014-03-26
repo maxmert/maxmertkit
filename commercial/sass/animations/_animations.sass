@@ -1,68 +1,4 @@
 
-/*****************************************/
-/* Let me in */
-/*****************************************/
-
-.fxLetMeIn .itemwrap {
-	-webkit-perspective: 1600px;
-	perspective: 1600px;
-}
-
-.fxLetMeIn .navOutNext {
-	-webkit-transform-origin: 0% 50%;
-	transform-origin: 0% 50%;
-	-webkit-animation: rotateOutRight 0.5s forwards ease-in-out;
-	animation: rotateOutRight 0.5s forwards ease-in-out;
-}
-
-.fxLetMeIn .navInNext {
-	z-index: 1001;
-	opacity: 1;
-	-webkit-animation: slideFromRightFast 0.5s forwards ease;
-	animation: slideFromRightFast 0.5s forwards ease;
-}
-
-.fxLetMeIn .navOutPrev {
-	-webkit-transform-origin: 100% 0%;
-	transform-origin: 100% 0%;
-	-webkit-animation: rotateOutLeft 0.5s forwards ease-in-out;
-	animation: rotateOutLeft 0.5s forwards ease-in-out;
-}
-
-.fxLetMeIn .navInPrev {
-	z-index: 1001;
-	opacity: 1;
-	-webkit-animation: slideFromLeftFast 0.5s forwards ease;
-	animation: slideFromLeftFast 0.5s forwards ease;
-}
-
-.fxLetMeIn li::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	pointer-events: none;
-	background-color: rgba(0,0,0,0.6);
-	-webkit-transition: opacity 0.5s ease-in-out;
-	transition: opacity 0.5s ease-in-out;
-}
-
-.fxLetMeIn .navOutPrev::after,
-.fxLetMeIn .navOutNext::after {
-	opacity: 1;
-}
-
-@include keyframes( rotateOutRight )
-	to
-		@include transform( rotateY(10deg) )
-
-@include keyframes( rotateOutLeft )
-	to
-		@include transform( rotateY(-10deg) )
-
 
 /*****************************************/
 /* Stick it */
@@ -110,10 +46,12 @@
 
 
 @include keyframes( slideInFromBottomDelayed )
-	0%, 30%
+	0%
+		@include transform( translateY(100%) )
+	30%
 		@include transform( translateY(100%) )
 	100%
-		@include transform( translateY(100%) )
+		@include transform( translateY(0) )
 
 
 

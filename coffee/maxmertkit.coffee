@@ -94,8 +94,9 @@ class MaxmertkitHelpers
 			
 			return $(parent) if not style?
 
-			if ( style.webkitPerspective? and style.webkitPerspective isnt 'none' ) or ( style.mozPerspective? and style.mozPerspective isnt 'none' ) or ( style.perspective? and style.perspective isnt 'none' )
-				return $(parent)
+			# if ( style.webkitPerspective? and style.webkitPerspective isnt 'none' ) or ( style.mozPerspective? and style.mozPerspective isnt 'none' ) or ( style.perspective? and style.perspective isnt 'none' )
+			# 	console.log parent
+			# 	return $(parent)
 			# if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x'])
 			# 	if style['position'] isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
 			# 		return $(parent)
