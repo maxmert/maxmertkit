@@ -722,11 +722,11 @@
 
   _open = function() {
     this.$el.css({
-      display: 'block'
+      display: 'table'
     });
     setTimeout((function(_this) {
       return function() {
-        return _this.$el.addClass('_active_');
+        return _this.$el.addClass('_visible_ -start--');
       };
     })(this), 1);
     $('body').addClass('_no-scroll_');
@@ -761,15 +761,14 @@
   };
 
   _close = function() {
-    this.$el.removeClass('_active_');
+    this.$el.addClass('-stop--');
     setTimeout((function(_this) {
       return function() {
-        return _this.$el.css({
-          display: 'none'
-        });
+        _this.$el.removeClass('_visible_ -start-- -stop--');
+        $('body').removeClass('_no-scroll_');
+        return _this.$el.hide();
       };
-    })(this), 500);
-    $('body').removeClass('_no-scroll_');
+    })(this), 1000);
     this.$el.trigger("closed." + this._name);
     if (this.onclose != null) {
       try {

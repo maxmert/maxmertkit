@@ -92,9 +92,9 @@ _beforeopen = ->
 # Opens modal
 # and triggers onopen
 _open = ->
-	@$el.css display: 'block'
+	@$el.css display: 'table'
 	setTimeout =>
-		@$el.addClass '_active_'
+		@$el.addClass '_visible_ -start--'
 	, 1
 	$('body').addClass '_no-scroll_'
 	@$el.trigger "opened.#{@_name}"
@@ -127,11 +127,12 @@ _beforeclose = ->
 # Closes modal
 # and triggers onclose
 _close = ->
-	@$el.removeClass '_active_'
+	@$el.addClass '-stop--'
 	setTimeout =>
-		@$el.css display: 'none'
-	, 500
-	$('body').removeClass '_no-scroll_'
+		@$el.removeClass '_visible_ -start-- -stop--'
+		$('body').removeClass '_no-scroll_'
+		@$el.hide()
+	, 1000
 	@$el.trigger "closed.#{@_name}"
 	if @onclose?
 		try

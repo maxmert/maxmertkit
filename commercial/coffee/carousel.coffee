@@ -19,7 +19,7 @@ class Carousel extends MaxmertkitHelpers
 		_options =
 			kind: @$el.data('kind') or 'carousel'
 			# group: @$el.data('group') or 'carousel'
-			animation: @$el.data('animation') or 'snapin'
+			animation: @$el.data('animation') or 'rotatemesoftly'
 			itemSelector: @$el.data('items') or '.-item'
 			arrowsSelector: @$el.data('arrows') or '.-arrow'
 			closer: @$el.data('closer') or '.-close'
@@ -78,7 +78,7 @@ class Carousel extends MaxmertkitHelpers
 		_beforeactive.call @
 
 	deactivate: ->
-		if @$el.hasClass '_active_'
+		if @$el.hasClass '_visible_'
 			_beforeunactive.call @
 
 	disable: ->
@@ -171,8 +171,8 @@ _findActiveItem = ->
 
 _activateItem = ( item ) ->
 	item.removeClass '-stop--'
-	item.show()
 	item.addClass '-start-- _active_'
+	item.show()
 
 _deactivateItem = ( item ) ->
 	item.removeClass '-start--'
@@ -187,7 +187,8 @@ _refreshItems = ->
 	for item in @$el.find @options.itemSelector
 		$item = $(item)
 		$item.addClass "-#{@options.animation}-- -stop-- _right_"
-		$item.css marginLeft: "-#{$item.width() / 2}px", display: 'none'
+		$item.hide()
+		# $item.css marginLeft: "-#{$item.width() / 2}px", display: 'none'
 		# $item.find('img').css display: 'none'
 		@items.push $(item)
 	
@@ -302,7 +303,9 @@ _activate = ->
 	# 	@_gestureItem = @_gestureItemStyle = null
 		
 
-	@$el.addClass '_active_'
+	setTimeout =>
+		@$el.addClass '_visible_'
+	, 1000
 	@$el.trigger "activated.#{@_name}"
 	if @onactive?
 		try

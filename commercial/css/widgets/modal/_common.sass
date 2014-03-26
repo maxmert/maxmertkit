@@ -77,18 +77,19 @@
 
 		position: fixed
 		top: 0
-		bottom: 0
 		left: 0
-		right: 0
+		display: none
+		width: 100%
+		height: 100%
 		z-index: -$modal-z-index
 		overflow-y: auto
+		// -webkit-transform: translateZ(0)
 
-		opacity: 0
-		@include transition-property (opacity)
-		@include transition-duration($animations-fadein-duration)
-		@include transition-timing-function($animations-fadein-timing-function)
-		@include transition-delay($animations-fadein-delay)
-		@include animation-play-state(paused)
+		// @include transition-property (opacity)
+		// @include transition-duration($animations-fadein-duration)
+		// @include transition-timing-function($animations-fadein-timing-function)
+		// @include transition-delay($animations-fadein-delay)
+		// @include animation-play-state(paused)
 
 
 		& > .#{$close-class}
@@ -143,7 +144,7 @@
 			// margin: $modal-padding-vertical auto
 			// position: absolute
 			float: none
-			height: 100%
+			// height: 100%
 
 			// margin-left: 50%
 			border-radius: $modal-dialog-border-radius
@@ -225,13 +226,11 @@
 				
 
 		& > .-holder
-			position: inherit
-			top: 50%
-			left: 50%
-			width: 50%
-			@include transform(translateY(-50%) translateX(-50%))
+			
+			display: table-cell
 			@include perspective(1300px)
 			@include perspective-origin(50% 50%)
+			vertical-align: middle
 
 			.#{$modal-dialog-class}
 				width: inherit
@@ -252,12 +251,12 @@
 
 
 
-		&.#{$mod-active}
-			opacity: 1
+		&.#{$mod-visible}
+			// opacity: 1
 			z-index: $modal-z-index
+			// @extend .#{$animation-start-class}
 
-			.#{$modal-dialog-class}
-				@extend .#{$animation-start-class}
+			// .#{$modal-dialog-class}
 
 
 

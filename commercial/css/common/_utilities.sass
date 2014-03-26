@@ -1,7 +1,10 @@
 @include exports("common/utilities")
 
 	._no-scroll_
-		overflow: hidden
+		overflow: hidden!important
+	
+	._perspective_
+		@include perspective( 1200px ) // For modals and other stuff
 
 	._float-right_
 		float: right

@@ -1,0 +1,50 @@
+$animations-coverflow-class: "-coverflow--" !global
+
+$animations-coverflow-duration: 0.3s !global
+$animations-coverflow-timing-function: ease-in-out !global
+$animations-coverflow-delay: 0s !global
+
+
+@include exports("animations/coverFlow")
+
+	@include keyframes( rotate3DSlideOutLeft )
+		to
+			@include transform( translateX(-40%) rotateY(45deg) translateZ(-300px) )
+			opacity: 0
+
+
+	@include keyframes( rotate3DSlideInRight )
+		from
+			@include transform( translateX(40%) rotateY(-45deg) translateZ(-300px) )
+		to
+			@include transform( translateX(0) rotateY(0deg) translateZ(0) )
+			opacity: 1
+
+
+	@include keyframes( rotate3DSlideOutRight )
+		to
+			@include transform( translateX(40%) rotateY(-45deg) translateZ(-300px) )
+			opacity: 0
+
+
+	@include keyframes( rotate3DSlideInLeft )
+		from
+			@include transform( translateX(-40%) rotateY(45deg) translateZ(-300px) )
+		to
+			@include transform( translateX(0) rotateY(0deg) translateZ(0) )
+			opacity: 1
+
+
+	.#{$animations-coverflow-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				@include animation( rotate3DSlideInRight $animations-coverflow-duration forwards $animations-coverflow-timing-function )
+			&.#{$mod-left}
+				@include animation( rotate3DSlideInLeft $animations-coverflow-duration forwards $animations-coverflow-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include animation( rotate3DSlideOutLeft $animations-coverflow-duration forwards $animations-coverflow-timing-function )
+			&.#{$mod-left}
+				@include animation( rotate3DSlideOutRight $animations-coverflow-duration forwards $animations-coverflow-timing-function )
