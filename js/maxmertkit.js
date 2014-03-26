@@ -120,9 +120,6 @@
         if (style == null) {
           return $(parent);
         }
-        if (((style.webkitPerspective != null) && style.webkitPerspective !== 'none') || ((style.mozPerspective != null) && style.mozPerspective !== 'none') || ((style.perspective != null) && style.perspective !== 'none')) {
-          return $(parent);
-        }
       }
       return $(document);
     };

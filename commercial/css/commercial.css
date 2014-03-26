@@ -480,7 +480,6 @@ html, body {
   -moz-animation: slideOutRight 0.8s forwards ease-in-out;
   animation: slideOutRight 0.8s forwards ease-in-out; }
 
-<<<<<<< HEAD
 @-webkit-keyframes rotate3DSlideOutLeft {
   to {
     -webkit-transform: translateX(-40%) rotateY(45deg) translateZ(-300px);
@@ -646,7 +645,7 @@ html, body {
   -webkit-animation: rotate3DOutLeft 1s forwards cubic-bezier(0.7, 0, 0.3, 1);
   -moz-animation: rotate3DOutLeft 1s forwards cubic-bezier(0.7, 0, 0.3, 1);
   animation: rotate3DOutLeft 1s forwards cubic-bezier(0.7, 0, 0.3, 1); }
-=======
+
 @-webkit-keyframes rotateOutRight {
   to {
     -webkit-transform: rotateY(10deg);
@@ -1174,7 +1173,6 @@ html, body {
     -webkit-animation: rotateOutCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
     -moz-animation: rotateOutCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1);
     animation: rotateOutCircRight 0.9s forwards cubic-bezier(0.7, 0, 0.3, 1); }
->>>>>>> c9d06c053ec0d88d564db2b5abdd9d20786c0c11
 
 .-shader:before {
   content: " ";
@@ -4289,16 +4287,9 @@ a.-avatar {
   min-height: 100%;
   height: auto;
   width: 100%;
-<<<<<<< HEAD
   -webkit-transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;
   transition: opacity 0.5s ease-out;
-=======
-  -webkit-perspective: 1000px;
-  -moz-perspective: 1000px;
-  perspective: 1000px;
-  -webkit-backface-visibility: hidden;
->>>>>>> c9d06c053ec0d88d564db2b5abdd9d20786c0c11
   background-color: rgba(0, 0, 0, 0.9);
   color: #cccccc; }
   .-carousel .-holder {
@@ -4356,14 +4347,8 @@ a.-avatar {
     padding: 40px 0;
     position: absolute;
     top: 0;
-<<<<<<< HEAD
     max-width: 100%;
     width: 100%; }
-=======
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%; }
->>>>>>> c9d06c053ec0d88d564db2b5abdd9d20786c0c11
     .-carousel .-item img {
       max-width: 100%;
       max-height: 100%; }

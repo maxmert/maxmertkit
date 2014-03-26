@@ -189,10 +189,9 @@ _refreshItems = ->
 		$item = $(item)
 		$item.addClass "-#{@options.animation}-- -stop-- _right_"
 		$item.hide()
-<<<<<<< HEAD
-=======
+
 		$item.index = index
->>>>>>> c9d06c053ec0d88d564db2b5abdd9d20786c0c11
+
 		# $item.css marginLeft: "-#{$item.width() / 2}px", display: 'none'
 		# $item.find('img').css display: 'none'
 		@items.push $item
