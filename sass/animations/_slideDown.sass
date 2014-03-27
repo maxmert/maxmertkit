@@ -1,0 +1,48 @@
+$animations-slideDown-class: "-slidedown--" !global
+
+$animations-slideDown-duration: 0.4s !global
+$animations-slideDown-timing-function: ease-in-out !global
+$animations-slideDown-delay: 0s !global
+
+
+@include exports("animations/slideDown")
+
+
+	@include keyframes( slideDownIn )
+		from
+			@include transform( translateY(-100%) )
+			opacity: 0
+		to
+			@include transform( translateY(0) )
+			opacity: 1
+
+
+	@include keyframes( slideDownOut )
+		from
+			@include transform( translateY(0) )
+			opacity: 1
+		to
+			@include transform( translateY(-100%) )
+			opacity: 0
+
+
+	.#{$animations-slideDown-class}
+
+		// opacity: 0
+		// visibility: hidden
+		// @include transition( opacity $animations-slideDown-duration forwards $animations-slideDown-timing-function, visibility $animations-slideDown-duration forwards $animations-slideDown-timing-function )
+		
+		&.#{$animation-start-class}
+			// opacity: 1
+			// visibility: visible
+
+			// & > div
+			@include animation( slideDownIn $animations-slideDown-duration forwards $animations-slideDown-timing-function )
+
+
+		&.#{$animation-stop-class}
+			// opacity: 0
+			// visibility: hidden
+
+			// & > div
+			@include animation( slideDownOut $animations-slideDown-duration forwards $animations-slideDown-timing-function )
