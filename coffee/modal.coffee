@@ -16,17 +16,16 @@ class Modal extends MaxmertkitHelpers
 			toggle: @$btn.data('toggle') or 'modal'		# To automatically find elements which toggle modal windows
 			event: "click.#{@_name}"					# Event on button to open modal
 			eventClose: "click.#{@_name}"				# Event on close elements to close modal
-			backdrop: @$btn.data('backdrop') or no		# Close modal on click on backdrop
+			backdrop: @$btn.data('backdrop') or no	# Close modal on click on backdrop
+			push: @$btn.data('push') or no			# The selector of the container with whole content, except modal window, to use push animation
+			
+			beforeactive: ->
+			onactive: ->
+			beforeunactive: ->
+			onunactive: ->
 		
 		@options = @_merge _options, @options
 		
-
-		# Reset default event functions 
-		@beforeopen = @options.beforeopen
-		@onopen = @options.onopen
-		@beforeclose = @options.beforeclose
-		@onclose = @options.onclose
-
 		# Set modal window element
 		@$el = $(document).find @options.target
 		
@@ -35,19 +34,49 @@ class Modal extends MaxmertkitHelpers
 			event.preventDefault()
 			@open()
 
-		# Set close on backdrop event
-		if @options.backdrop
-			@$el.on "click.#{@_name}", ( event ) =>
-				if $(event.target).hasClass('-modal _active_') or $(event.target).hasClass('-carousel')
-					@close()
+		# super @$el, @options
+		
+
+		@_setOptions @options
+
+
+		
+
 
 		# Find dismiss buttons inside modal window
 		@$el.find("*[data-dismiss='modal']").on @options.event, =>
 			@close()
 
-		@close()
+		# @close()
 
 		super @$btn, @options
+
+	_setOptions: ( options ) ->
+		
+		for key, value of options
+			
+			if not @options[key]?
+				return console.error "Maxmertkit Modal. You're trying to set unpropriate option – #{key}"
+
+			switch key
+
+				when 'backdrop'
+					if value
+						@$el.on "click.#{@_name}", ( event ) =>
+							if $(event.target).hasClass('-modal _active_') or $(event.target).hasClass('-carousel')
+								@close()
+
+				when 'push'
+					if value
+						push = $(document).find value
+						if push.length
+							@$push = $(document).find value
+
+
+			
+			@options[key] = value
+			if typeof value is 'function'
+				@[key] = @options[key]
 
 	
 	destroy: ->
@@ -67,11 +96,23 @@ class Modal extends MaxmertkitHelpers
 
 # =============== Private methods
 
+_pushStart = ->
+	if @$push?
+		@$push.addClass '-start--'
+		@$push.removeClass '-stop--'
 
-# If you have beforeopen function
-# 	it will be called here
-# if you don't
-# 	just open modal window
+_pushStop = ->
+	if @$push?
+		@$push.addClass '-stop--'
+		@$push.removeClass '-start--'
+
+		# Fix mobile webkit render bug
+		# After first showing it will not be smooth
+		if @$push[0]? and @$push[0].style? and @$push[0].style['-webkit-overflow-scrolling']?
+			@$push[0].style['-webkit-overflow-scrolling'] = 'auto'
+		
+
+
 _beforeopen = ->
 	if @beforeopen?
 		try
@@ -92,9 +133,12 @@ _beforeopen = ->
 # Opens modal
 # and triggers onopen
 _open = ->
+	if @$push?
+		$('body').addClass '_perspective_'
 	@$el.css display: 'table'
 	setTimeout =>
 		@$el.addClass '_visible_ -start--'
+		_pushStart.call @
 	, 1
 	$('body').addClass '_no-scroll_'
 	@$el.trigger "opened.#{@_name}"
@@ -128,9 +172,12 @@ _beforeclose = ->
 # and triggers onclose
 _close = ->
 	@$el.addClass '-stop--'
+	_pushStop.call @
 	setTimeout =>
 		@$el.removeClass '_visible_ -start-- -stop--'
 		$('body').removeClass '_no-scroll_'
+		if @$push?
+			$('body').removeClass '_perspective_'
 		@$el.hide()
 	, 1000
 	@$el.trigger "closed.#{@_name}"

@@ -58,8 +58,14 @@ class MaxmertkitHelpers
 		@_windowWidth = $(window).width()
 		@_height = @$el.height()
 		@_width = @$el.width()
-		@_offset = @$el.offset()
-		
+
+		if @scroll?
+			if @scroll[0].nodeName is 'BODY'
+				@_offset = @$el.offset()
+			else
+				@_offset = @$el.offset()
+		else
+			@_offset = @$el.offset()
 
 
 
@@ -97,9 +103,10 @@ class MaxmertkitHelpers
 			# if ( style.webkitPerspective? and style.webkitPerspective isnt 'none' ) or ( style.mozPerspective? and style.mozPerspective isnt 'none' ) or ( style.perspective? and style.perspective isnt 'none' )
 			# 	console.log parent
 			# 	return $(parent)
-			# if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x'])
-			# 	if style['position'] isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
-			# 		return $(parent)
+			
+			if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) and $(parent)[0].nodeName isnt 'BODY'
+				return $(parent)
+				# if style['position'] isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
 
 		return $(document)
 

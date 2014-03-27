@@ -90,7 +90,15 @@
       this._windowWidth = $(window).width();
       this._height = this.$el.height();
       this._width = this.$el.width();
-      return this._offset = this.$el.offset();
+      if (this.scroll != null) {
+        if (this.scroll[0].nodeName === 'BODY') {
+          return this._offset = this.$el.offset();
+        } else {
+          return this._offset = this.$el.offset();
+        }
+      } else {
+        return this._offset = this.$el.offset();
+      }
     };
 
     MaxmertkitHelpers.prototype._getContainer = function(el) {
@@ -118,6 +126,9 @@
           style = getComputedStyle(parent);
         } catch (_error) {}
         if (style == null) {
+          return $(parent);
+        }
+        if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) && $(parent)[0].nodeName !== 'BODY') {
           return $(parent);
         }
       }
@@ -621,7 +632,7 @@
 }).call(this);
 
 (function() {
-  var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open,
+  var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open, _pushStart, _pushStop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -646,13 +657,14 @@
         toggle: this.$btn.data('toggle') || 'modal',
         event: "click." + this._name,
         eventClose: "click." + this._name,
-        backdrop: this.$btn.data('backdrop') || false
+        backdrop: this.$btn.data('backdrop') || false,
+        push: this.$btn.data('push') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
       };
       this.options = this._merge(_options, this.options);
-      this.beforeopen = this.options.beforeopen;
-      this.onopen = this.options.onopen;
-      this.beforeclose = this.options.beforeclose;
-      this.onclose = this.options.onclose;
       this.$el = $(document).find(this.options.target);
       this.$btn.on(this.options.event, (function(_this) {
         return function(event) {
@@ -660,23 +672,48 @@
           return _this.open();
         };
       })(this));
-      if (this.options.backdrop) {
-        this.$el.on("click." + this._name, (function(_this) {
-          return function(event) {
-            if ($(event.target).hasClass('-modal _active_') || $(event.target).hasClass('-carousel')) {
-              return _this.close();
-            }
-          };
-        })(this));
-      }
+      this._setOptions(this.options);
       this.$el.find("*[data-dismiss='modal']").on(this.options.event, (function(_this) {
         return function() {
           return _this.close();
         };
       })(this));
-      this.close();
       Modal.__super__.constructor.call(this, this.$btn, this.options);
     }
+
+    Modal.prototype._setOptions = function(options) {
+      var key, push, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Modal. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'backdrop':
+            if (value) {
+              this.$el.on("click." + this._name, (function(_this) {
+                return function(event) {
+                  if ($(event.target).hasClass('-modal _active_') || $(event.target).hasClass('-carousel')) {
+                    return _this.close();
+                  }
+                };
+              })(this));
+            }
+            break;
+          case 'push':
+            if (value) {
+              push = $(document).find(value);
+              if (push.length) {
+                this.$push = $(document).find(value);
+              }
+            }
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = this.options[key];
+        }
+      }
+    };
 
     Modal.prototype.destroy = function() {
       this.$btn.off("." + this._name);
@@ -694,6 +731,23 @@
     return Modal;
 
   })(MaxmertkitHelpers);
+
+  _pushStart = function() {
+    if (this.$push != null) {
+      this.$push.addClass('-start--');
+      return this.$push.removeClass('-stop--');
+    }
+  };
+
+  _pushStop = function() {
+    if (this.$push != null) {
+      this.$push.addClass('-stop--');
+      this.$push.removeClass('-start--');
+      if ((this.$push[0] != null) && (this.$push[0].style != null) && (this.$push[0].style['-webkit-overflow-scrolling'] != null)) {
+        return this.$push[0].style['-webkit-overflow-scrolling'] = 'auto';
+      }
+    }
+  };
 
   _beforeopen = function() {
     var deferred;
@@ -718,12 +772,16 @@
   };
 
   _open = function() {
+    if (this.$push != null) {
+      $('body').addClass('_perspective_');
+    }
     this.$el.css({
       display: 'table'
     });
     setTimeout((function(_this) {
       return function() {
-        return _this.$el.addClass('_visible_ -start--');
+        _this.$el.addClass('_visible_ -start--');
+        return _pushStart.call(_this);
       };
     })(this), 1);
     $('body').addClass('_no-scroll_');
@@ -759,10 +817,14 @@
 
   _close = function() {
     this.$el.addClass('-stop--');
+    _pushStop.call(this);
     setTimeout((function(_this) {
       return function() {
         _this.$el.removeClass('_visible_ -start-- -stop--');
         $('body').removeClass('_no-scroll_');
+        if (_this.$push != null) {
+          $('body').removeClass('_perspective_');
+        }
         return _this.$el.hide();
       };
     })(this), 1000);

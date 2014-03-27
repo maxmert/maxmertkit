@@ -59,7 +59,7 @@ class Skyline extends MaxmertkitHelpers
 	
 	activate: ->
 		@$el.addClass @options.class
-		@scroll = @_getScrollParent(@$el)
+		@scroll = @_getScrollParent(@el)
 		@_refreshSizes()
 
 		$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>

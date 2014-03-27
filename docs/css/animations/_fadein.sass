@@ -7,14 +7,24 @@ $animations-fadein-delay: 0s !global
 
 @include exports("animations/fadein")
 	
-	.#{$animations-fadein-class}
-		opacity: 0
-		visibility: hidden
-		@include transition-property (opacity, visibility)
-		@include transition-duration($animations-fadein-duration)
-		@include transition-timing-function($animations-fadein-timing-function)
-		@include transition-delay($animations-fadein-delay)
-
-		&.#{$animation-start-class}
-			visibility: visible
+	@include keyframes( fadeIn )
+		from
+			opacity: 0
+		to
 			opacity: 1
+
+
+	@include keyframes( fadeOut )
+		from
+			opacity: 1
+		to
+			opacity: 0
+
+
+	.#{$animations-fadein-class}
+		
+		&.#{$animation-start-class}
+			@include animation( fadeIn $animations-fadein-duration forwards $animations-fadein-timing-function )
+
+		&.#{$animation-stop-class}
+			@include animation( fadeOut $animations-fadein-duration forwards $animations-fadein-timing-function )

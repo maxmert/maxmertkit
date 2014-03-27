@@ -1,646 +1,631 @@
 $animations-fall-class: "-fall--" !global
 
-$animations-fall-duration: 0.2s !global
-$animations-fall-elastic-duration: 2s !global
-$animations-fall-timing-function: ease-out !global
-$animations-fall-delay: 0.1s !global
+$animations-fall-duration: 2s !global
+$animations-fall-timing-function: linear !global
+$animations-fall-delay: 0s !global
 
 
 
 @include exports("animations/fall")
 
-	@-webkit-keyframes fall-keyframes
+	
+
+	@include keyframes(fallIn)
 		0%
-			-webkit-transform: translateZ(600px) rotateX(40deg)
+			opacity: 0
+			@include transform( translateZ(600px) rotateX(40deg) )
 		1%
-			-webkit-transform: translateZ(547.59px) rotateX(36.51deg)
+			opacity: 0.09
+			@include transform( translateZ(547.59px) rotateX(36.51deg) )
 		2%
-			-webkit-transform: translateZ(477.17px) rotateX(31.81deg)
+			opacity: 0.2
+			@include transform( translateZ(477.17px) rotateX(31.81deg) )
 		3%
-			-webkit-transform: translateZ(394.28px) rotateX(26.29deg)
+			opacity: 0.34
+			@include transform( translateZ(394.28px) rotateX(26.29deg) )
 		4%
-			-webkit-transform: translateZ(304.26px) rotateX(20.28deg)
+			opacity: 0.49
+			@include transform( translateZ(304.26px) rotateX(20.28deg) )
 		5%
-			-webkit-transform: translateZ(212.13px) rotateX(14.14deg)
+			opacity: 0.65
+			@include transform( translateZ(212.13px) rotateX(14.14deg) )
 		6%
-			-webkit-transform: translateZ(122.33px) rotateX(8.16deg)
+			opacity: 0.8
+			@include transform( translateZ(122.33px) rotateX(8.16deg) )
 		7%
-			-webkit-transform: translateZ(38.61px) rotateX(2.57deg)
+			opacity: 0.94
+			@include transform( translateZ(38.61px) rotateX(2.57deg) )
 		8%
-			-webkit-transform: translateZ(-36.02px) rotateX(-2.4deg)
+			opacity: 1.06
+			@include transform( translateZ(-36.02px) rotateX(-2.4deg) )
 		9%
-			-webkit-transform: translateZ(-99.36px) rotateX(-6.62deg)
+			opacity: 1.17
+			@include transform( translateZ(-99.36px) rotateX(-6.62deg) )
 		10%
-			-webkit-transform: translateZ(-150px) rotateX(-10deg)
+			opacity: 1.25
+			@include transform( translateZ(-150px) rotateX(-10deg) )
 		11%
-			-webkit-transform: translateZ(-187.3px) rotateX(-12.49deg)
+			opacity: 1.31
+			@include transform( translateZ(-187.3px) rotateX(-12.49deg) )
 		12%
-			-webkit-transform: translateZ(-211.29px) rotateX(-14.09deg)
+			opacity: 1.35
+			@include transform( translateZ(-211.29px) rotateX(-14.09deg) )
 		13%
-			-webkit-transform: translateZ(-222.61px) rotateX(-14.84deg)
+			opacity: 1.37
+			@include transform( translateZ(-222.61px) rotateX(-14.84deg) )
 		14%
-			-webkit-transform: translateZ(-222.39px) rotateX(-14.83deg)
+			opacity: 1.37
+			@include transform( translateZ(-222.39px) rotateX(-14.83deg) )
 		15%
-			-webkit-transform: translateZ(-212.13px) rotateX(-14.14deg)
+			opacity: 1.35
+			@include transform( translateZ(-212.13px) rotateX(-14.14deg) )
 		16%
-			-webkit-transform: translateZ(-193.6px) rotateX(-12.91deg)
+			opacity: 1.32
+			@include transform( translateZ(-193.6px) rotateX(-12.91deg) )
 		17%
-			-webkit-transform: translateZ(-168.71px) rotateX(-11.25deg)
+			opacity: 1.28
+			@include transform( translateZ(-168.71px) rotateX(-11.25deg) )
 		18%
-			-webkit-transform: translateZ(-139.4px) rotateX(-9.29deg)
+			opacity: 1.23
+			@include transform( translateZ(-139.4px) rotateX(-9.29deg) )
 		19%
-			-webkit-transform: translateZ(-107.57px) rotateX(-7.17deg)
+			opacity: 1.18
+			@include transform( translateZ(-107.57px) rotateX(-7.17deg) )
 		20%
-			-webkit-transform: translateZ(-75px) rotateX(-5deg)
+			opacity: 1.13
+			@include transform( translateZ(-75px) rotateX(-5deg) )
 		21%
-			-webkit-transform: translateZ(-43.25px) rotateX(-2.88deg)
+			opacity: 1.07
+			@include transform( translateZ(-43.25px) rotateX(-2.88deg) )
 		22%
-			-webkit-transform: translateZ(-13.65px) rotateX(-0.91deg)
+			opacity: 1.02
+			@include transform( translateZ(-13.65px) rotateX(-0.91deg) )
 		23%
-			-webkit-transform: translateZ(12.74px) rotateX(0.85deg)
+			opacity: 0.98
+			@include transform( translateZ(12.74px) rotateX(0.85deg) )
 		24%
-			-webkit-transform: translateZ(35.13px) rotateX(2.34deg)
+			opacity: 0.94
+			@include transform( translateZ(35.13px) rotateX(2.34deg) )
 		25%
-			-webkit-transform: translateZ(53.03px) rotateX(3.54deg)
+			opacity: 0.91
+			@include transform( translateZ(53.03px) rotateX(3.54deg) )
 		26%
-			-webkit-transform: translateZ(66.22px) rotateX(4.41deg)
+			opacity: 0.89
+			@include transform( translateZ(66.22px) rotateX(4.41deg) )
 		27%
-			-webkit-transform: translateZ(74.7px) rotateX(4.98deg)
+			opacity: 0.88
+			@include transform( translateZ(74.7px) rotateX(4.98deg) )
 		28%
-			-webkit-transform: translateZ(78.7px) rotateX(5.25deg)
+			opacity: 0.87
+			@include transform( translateZ(78.7px) rotateX(5.25deg) )
 		29%
-			-webkit-transform: translateZ(78.63px) rotateX(5.24deg)
+			opacity: 0.87
+			@include transform( translateZ(78.63px) rotateX(5.24deg) )
 		30%
-			-webkit-transform: translateZ(75px) rotateX(5deg)
+			opacity: 0.88
+			@include transform( translateZ(75px) rotateX(5deg) )
 		31%
-			-webkit-transform: translateZ(68.45px) rotateX(4.56deg)
+			opacity: 0.89
+			@include transform( translateZ(68.45px) rotateX(4.56deg) )
 		32%
-			-webkit-transform: translateZ(59.65px) rotateX(3.98deg)
+			opacity: 0.9
+			@include transform( translateZ(59.65px) rotateX(3.98deg) )
 		33%
-			-webkit-transform: translateZ(49.28px) rotateX(3.29deg)
+			opacity: 0.92
+			@include transform( translateZ(49.28px) rotateX(3.29deg) )
 		34%
-			-webkit-transform: translateZ(38.03px) rotateX(2.54deg)
+			opacity: 0.94
+			@include transform( translateZ(38.03px) rotateX(2.54deg) )
 		35%
-			-webkit-transform: translateZ(26.52px) rotateX(1.77deg)
+			opacity: 0.96
+			@include transform( translateZ(26.52px) rotateX(1.77deg) )
 		36%
-			-webkit-transform: translateZ(15.29px) rotateX(1.02deg)
+			opacity: 0.97
+			@include transform( translateZ(15.29px) rotateX(1.02deg) )
 		37%
-			-webkit-transform: translateZ(4.83px) rotateX(0.32deg)
+			opacity: 0.99
+			@include transform( translateZ(4.83px) rotateX(0.32deg) )
 		38%
-			-webkit-transform: translateZ(-4.5px) rotateX(-0.3deg)
+			opacity: 1.01
+			@include transform( translateZ(-4.5px) rotateX(-0.3deg) )
 		39%
-			-webkit-transform: translateZ(-12.42px) rotateX(-0.83deg)
+			opacity: 1.02
+			@include transform( translateZ(-12.42px) rotateX(-0.83deg) )
 		40%
-			-webkit-transform: translateZ(-18.75px) rotateX(-1.25deg)
+			opacity: 1.03
+			@include transform( translateZ(-18.75px) rotateX(-1.25deg) )
 		41%
-			-webkit-transform: translateZ(-23.41px) rotateX(-1.56deg)
+			opacity: 1.04
+			@include transform( translateZ(-23.41px) rotateX(-1.56deg) )
 		42%
-			-webkit-transform: translateZ(-26.41px) rotateX(-1.76deg)
+			opacity: 1.04
+			@include transform( translateZ(-26.41px) rotateX(-1.76deg) )
 		43%
-			-webkit-transform: translateZ(-27.83px) rotateX(-1.86deg)
+			opacity: 1.05
+			@include transform( translateZ(-27.83px) rotateX(-1.86deg) )
 		44%
-			-webkit-transform: translateZ(-27.8px) rotateX(-1.85deg)
+			opacity: 1.05
+			@include transform( translateZ(-27.8px) rotateX(-1.85deg) )
 		45%
-			-webkit-transform: translateZ(-26.52px) rotateX(-1.77deg)
+			opacity: 1.04
+			@include transform( translateZ(-26.52px) rotateX(-1.77deg) )
 		46%
-			-webkit-transform: translateZ(-24.2px) rotateX(-1.61deg)
+			opacity: 1.04
+			@include transform( translateZ(-24.2px) rotateX(-1.61deg) )
 		47%
-			-webkit-transform: translateZ(-21.09px) rotateX(-1.41deg)
+			opacity: 1.04
+			@include transform( translateZ(-21.09px) rotateX(-1.41deg) )
 		48%
-			-webkit-transform: translateZ(-17.42px) rotateX(-1.16deg)
+			opacity: 1.03
+			@include transform( translateZ(-17.42px) rotateX(-1.16deg) )
 		49%
-			-webkit-transform: translateZ(-13.45px) rotateX(-0.9deg)
+			opacity: 1.02
+			@include transform( translateZ(-13.45px) rotateX(-0.9deg) )
 		50%
-			-webkit-transform: translateZ(-9.37px) rotateX(-0.62deg)
+			opacity: 1.02
+			@include transform( translateZ(-9.37px) rotateX(-0.62deg) )
 		51%
-			-webkit-transform: translateZ(-5.41px) rotateX(-0.36deg)
+			opacity: 1.01
+			@include transform( translateZ(-5.41px) rotateX(-0.36deg) )
 		52%
-			-webkit-transform: translateZ(-1.71px) rotateX(-0.11deg)
+			opacity: 1
+			@include transform( translateZ(-1.71px) rotateX(-0.11deg) )
 		53%
-			-webkit-transform: translateZ(1.59px) rotateX(0.11deg)
+			opacity: 1
+			@include transform( translateZ(1.59px) rotateX(0.11deg) )
 		54%
-			-webkit-transform: translateZ(4.39px) rotateX(0.29deg)
+			opacity: 1
+			@include transform( translateZ(4.39px) rotateX(0.29deg) )
 		55%
-			-webkit-transform: translateZ(6.63px) rotateX(0.44deg)
+			opacity: 1
+			@include transform( translateZ(6.63px) rotateX(0.44deg) )
 		56%
-			-webkit-transform: translateZ(8.28px) rotateX(0.55deg)
+			opacity: 1
+			@include transform( translateZ(8.28px) rotateX(0.55deg) )
 		57%
-			-webkit-transform: translateZ(9.34px) rotateX(0.62deg)
+			opacity: 1
+			@include transform( translateZ(9.34px) rotateX(0.62deg) )
 		58%
-			-webkit-transform: translateZ(9.84px) rotateX(0.66deg)
+			opacity: 1
+			@include transform( translateZ(9.84px) rotateX(0.66deg) )
 		59%
-			-webkit-transform: translateZ(9.83px) rotateX(0.66deg)
+			opacity: 1
+			@include transform( translateZ(9.83px) rotateX(0.66deg) )
 		60%
-			-webkit-transform: translateZ(9.38px) rotateX(0.63deg)
+			opacity: 1
+			@include transform( translateZ(9.38px) rotateX(0.63deg) )
 		61%
-			-webkit-transform: translateZ(8.56px) rotateX(0.57deg)
+			opacity: 1
+			@include transform( translateZ(8.56px) rotateX(0.57deg) )
 		62%
-			-webkit-transform: translateZ(7.46px) rotateX(0.5deg)
+			opacity: 1
+			@include transform( translateZ(7.46px) rotateX(0.5deg) )
 		63%
-			-webkit-transform: translateZ(6.16px) rotateX(0.41deg)
+			opacity: 1
+			@include transform( translateZ(6.16px) rotateX(0.41deg) )
 		64%
-			-webkit-transform: translateZ(4.75px) rotateX(0.32deg)
+			opacity: 1
+			@include transform( translateZ(4.75px) rotateX(0.32deg) )
 		65%
-			-webkit-transform: translateZ(3.31px) rotateX(0.22deg)
+			opacity: 1
+			@include transform( translateZ(3.31px) rotateX(0.22deg) )
 		66%
-			-webkit-transform: translateZ(1.91px) rotateX(0.13deg)
+			opacity: 1
+			@include transform( translateZ(1.91px) rotateX(0.13deg) )
 		67%
-			-webkit-transform: translateZ(0.6px) rotateX(0.04deg)
+			opacity: 1
+			@include transform( translateZ(0.6px) rotateX(0.04deg) )
 		68%
-			-webkit-transform: translateZ(-0.56px) rotateX(-0.04deg)
+			opacity: 1
+			@include transform( translateZ(-0.56px) rotateX(-0.04deg) )
 		69%
-			-webkit-transform: translateZ(-1.55px) rotateX(-0.1deg)
+			opacity: 1
+			@include transform( translateZ(-1.55px) rotateX(-0.1deg) )
 		70%
-			-webkit-transform: translateZ(-2.34px) rotateX(-0.16deg)
+			opacity: 1
+			@include transform( translateZ(-2.34px) rotateX(-0.16deg) )
 		71%
-			-webkit-transform: translateZ(-2.93px) rotateX(-0.2deg)
+			opacity: 1
+			@include transform( translateZ(-2.93px) rotateX(-0.2deg) )
 		72%
-			-webkit-transform: translateZ(-3.3px) rotateX(-0.22deg)
+			opacity: 1.01
+			@include transform( translateZ(-3.3px) rotateX(-0.22deg) )
 		73%
-			-webkit-transform: translateZ(-3.48px) rotateX(-0.23deg)
+			opacity: 1.01
+			@include transform( translateZ(-3.48px) rotateX(-0.23deg) )
 		74%
-			-webkit-transform: translateZ(-3.47px) rotateX(-0.23deg)
+			opacity: 1.01
+			@include transform( translateZ(-3.47px) rotateX(-0.23deg) )
 		75%
-			-webkit-transform: translateZ(-3.31px) rotateX(-0.22deg)
+			opacity: 1.01
+			@include transform( translateZ(-3.31px) rotateX(-0.22deg) )
 		76%
-			-webkit-transform: translateZ(-3.03px) rotateX(-0.2deg)
+			opacity: 1.01
+			@include transform( translateZ(-3.03px) rotateX(-0.2deg) )
 		77%
-			-webkit-transform: translateZ(-2.64px) rotateX(-0.18deg)
+			opacity: 1
+			@include transform( translateZ(-2.64px) rotateX(-0.18deg) )
 		78%
-			-webkit-transform: translateZ(-2.18px) rotateX(-0.15deg)
+			opacity: 1
+			@include transform( translateZ(-2.18px) rotateX(-0.15deg) )
 		79%
-			-webkit-transform: translateZ(-1.68px) rotateX(-0.11deg)
+			opacity: 1
+			@include transform( translateZ(-1.68px) rotateX(-0.11deg) )
 		80%
-			-webkit-transform: translateZ(-1.17px) rotateX(-0.08deg)
+			opacity: 1
+			@include transform( translateZ(-1.17px) rotateX(-0.08deg) )
 		81%
-			-webkit-transform: translateZ(-0.68px) rotateX(-0.05deg)
+			opacity: 1
+			@include transform( translateZ(-0.68px) rotateX(-0.05deg) )
 		82%
-			-webkit-transform: translateZ(-0.21px) rotateX(-0.01deg)
+			opacity: 1
+			@include transform( translateZ(-0.21px) rotateX(-0.01deg) )
 		83%
-			-webkit-transform: translateZ(0.2px) rotateX(0.01deg)
+			opacity: 1
+			@include transform( translateZ(0.2px) rotateX(0.01deg) )
 		84%
-			-webkit-transform: translateZ(0.55px) rotateX(0.04deg)
+			opacity: 1
+			@include transform( translateZ(0.55px) rotateX(0.04deg) )
 		85%
-			-webkit-transform: translateZ(0.83px) rotateX(0.06deg)
+			opacity: 1
+			@include transform( translateZ(0.83px) rotateX(0.06deg) )
 		86%
-			-webkit-transform: translateZ(1.03px) rotateX(0.07deg)
+			opacity: 1
+			@include transform( translateZ(1.03px) rotateX(0.07deg) )
 		87%
-			-webkit-transform: translateZ(1.17px) rotateX(0.08deg)
+			opacity: 1
+			@include transform( translateZ(1.17px) rotateX(0.08deg) )
 		88%
-			-webkit-transform: translateZ(1.23px) rotateX(0.08deg)
+			opacity: 1
+			@include transform( translateZ(1.23px) rotateX(0.08deg) )
 		89%
-			-webkit-transform: translateZ(1.23px) rotateX(0.08deg)
+			opacity: 1
+			@include transform( translateZ(1.23px) rotateX(0.08deg) )
 		90%
-			-webkit-transform: translateZ(1.17px) rotateX(0.08deg)
+			opacity: 1
+			@include transform( translateZ(1.17px) rotateX(0.08deg) )
 		91%
-			-webkit-transform: translateZ(1.07px) rotateX(0.07deg)
+			opacity: 1
+			@include transform( translateZ(1.07px) rotateX(0.07deg) )
 		92%
-			-webkit-transform: translateZ(0.93px) rotateX(0.06deg)
+			opacity: 1
+			@include transform( translateZ(0.93px) rotateX(0.06deg) )
 		93%
-			-webkit-transform: translateZ(0.77px) rotateX(0.05deg)
+			opacity: 1
+			@include transform( translateZ(0.77px) rotateX(0.05deg) )
 		94%
-			-webkit-transform: translateZ(0.59px) rotateX(0.04deg)
+			opacity: 1
+			@include transform( translateZ(0.59px) rotateX(0.04deg) )
 		95%
-			-webkit-transform: translateZ(0.41px) rotateX(0.03deg)
+			opacity: 1
+			@include transform( translateZ(0.41px) rotateX(0.03deg) )
 		96%
-			-webkit-transform: translateZ(0.24px) rotateX(0.02deg)
+			opacity: 1
+			@include transform( translateZ(0.24px) rotateX(0.02deg) )
 		97%
-			-webkit-transform: translateZ(0.08px) rotateX(0.01deg)
+			opacity: 1
+			@include transform( translateZ(0.08px) rotateX(0.01deg) )
 		98%
-			-webkit-transform: translateZ(-0.07px) rotateX(0deg)
+			opacity: 1
+			@include transform( translateZ(-0.07px) rotateX(0deg) )
 		99%
-			-webkit-transform: translateZ(-0.19px) rotateX(-0.01deg)
+			opacity: 1
+			@include transform( translateZ(-0.19px) rotateX(-0.01deg) )
 		100%
-			-webkit-transform: translateZ(0px) rotateX(0deg)
+			opacity: 1
+			@include transform( translateZ(0px) rotateX(0deg) )
 
 
-	@-moz-keyframes fall-keyframes
+	@include keyframes(fallOut)
 		0%
-			-moz-transform: translateZ(600px) rotateX(40deg)
+			opacity: 1
+			@include transform( translateZ(0px) rotateX(0deg) )
 		1%
-			-moz-transform: translateZ(547.59px) rotateX(36.51deg)
+			opacity: 0.91
+			@include transform( translateZ(52.41px) rotateX(3.49deg) )
 		2%
-			-moz-transform: translateZ(477.17px) rotateX(31.81deg)
+			opacity: 0.8
+			@include transform( translateZ(122.83px) rotateX(8.19deg) )
 		3%
-			-moz-transform: translateZ(394.28px) rotateX(26.29deg)
+			opacity: 0.66
+			@include transform( translateZ(205.72px) rotateX(13.71deg) )
 		4%
-			-moz-transform: translateZ(304.26px) rotateX(20.28deg)
+			opacity: 0.51
+			@include transform( translateZ(295.74px) rotateX(19.72deg) )
 		5%
-			-moz-transform: translateZ(212.13px) rotateX(14.14deg)
+			opacity: 0.35
+			@include transform( translateZ(387.87px) rotateX(25.86deg) )
 		6%
-			-moz-transform: translateZ(122.33px) rotateX(8.16deg)
+			opacity: 0.2
+			@include transform( translateZ(477.67px) rotateX(31.84deg) )
 		7%
-			-moz-transform: translateZ(38.61px) rotateX(2.57deg)
+			opacity: 0.06
+			@include transform( translateZ(561.39px) rotateX(37.43deg) )
 		8%
-			-moz-transform: translateZ(-36.02px) rotateX(-2.4deg)
+			opacity: 0
+			@include transform( translateZ(636.02px) rotateX(42.4deg) )
 		9%
-			-moz-transform: translateZ(-99.36px) rotateX(-6.62deg)
+			opacity: 0
+			@include transform( translateZ(699.36px) rotateX(46.62deg) )
 		10%
-			-moz-transform: translateZ(-150px) rotateX(-10deg)
+			opacity: 0
+			@include transform( translateZ(750px) rotateX(50deg) )
 		11%
-			-moz-transform: translateZ(-187.3px) rotateX(-12.49deg)
+			opacity: 0
+			@include transform( translateZ(787.3px) rotateX(52.49deg) )
 		12%
-			-moz-transform: translateZ(-211.29px) rotateX(-14.09deg)
+			opacity: 0
+			@include transform( translateZ(811.29px) rotateX(54.09deg) )
 		13%
-			-moz-transform: translateZ(-222.61px) rotateX(-14.84deg)
+			opacity: 0
+			@include transform( translateZ(822.61px) rotateX(54.84deg) )
 		14%
-			-moz-transform: translateZ(-222.39px) rotateX(-14.83deg)
+			opacity: 0
+			@include transform( translateZ(822.39px) rotateX(54.83deg) )
 		15%
-			-moz-transform: translateZ(-212.13px) rotateX(-14.14deg)
+			opacity: 0
+			@include transform( translateZ(812.13px) rotateX(54.14deg) )
 		16%
-			-moz-transform: translateZ(-193.6px) rotateX(-12.91deg)
+			opacity: 0
+			@include transform( translateZ(793.6px) rotateX(52.91deg) )
 		17%
-			-moz-transform: translateZ(-168.71px) rotateX(-11.25deg)
+			opacity: 0
+			@include transform( translateZ(768.71px) rotateX(51.25deg) )
 		18%
-			-moz-transform: translateZ(-139.4px) rotateX(-9.29deg)
+			opacity: 0
+			@include transform( translateZ(739.4px) rotateX(49.29deg) )
 		19%
-			-moz-transform: translateZ(-107.57px) rotateX(-7.17deg)
+			opacity: 0
+			@include transform( translateZ(707.57px) rotateX(47.17deg) )
 		20%
-			-moz-transform: translateZ(-75px) rotateX(-5deg)
+			opacity: 0
+			@include transform( translateZ(675px) rotateX(45deg) )
 		21%
-			-moz-transform: translateZ(-43.25px) rotateX(-2.88deg)
+			opacity: 0
+			@include transform( translateZ(643.25px) rotateX(42.88deg) )
 		22%
-			-moz-transform: translateZ(-13.65px) rotateX(-0.91deg)
+			opacity: 0
+			@include transform( translateZ(613.65px) rotateX(40.91deg) )
 		23%
-			-moz-transform: translateZ(12.74px) rotateX(0.85deg)
+			opacity: 0
+			@include transform( translateZ(587.26px) rotateX(39.15deg) )
 		24%
-			-moz-transform: translateZ(35.13px) rotateX(2.34deg)
+			opacity: 0
+			@include transform( translateZ(564.87px) rotateX(37.66deg) )
 		25%
-			-moz-transform: translateZ(53.03px) rotateX(3.54deg)
+			opacity: 0
+			@include transform( translateZ(546.97px) rotateX(36.46deg) )
 		26%
-			-moz-transform: translateZ(66.22px) rotateX(4.41deg)
+			opacity: 0
+			@include transform( translateZ(533.78px) rotateX(35.59deg) )
 		27%
-			-moz-transform: translateZ(74.7px) rotateX(4.98deg)
+			opacity: 0
+			@include transform( translateZ(525.3px) rotateX(35.02deg) )
 		28%
-			-moz-transform: translateZ(78.7px) rotateX(5.25deg)
+			opacity: 0
+			@include transform( translateZ(521.3px) rotateX(34.75deg) )
 		29%
-			-moz-transform: translateZ(78.63px) rotateX(5.24deg)
+			opacity: 0
+			@include transform( translateZ(521.37px) rotateX(34.76deg) )
 		30%
-			-moz-transform: translateZ(75px) rotateX(5deg)
+			opacity: 0
+			@include transform( translateZ(525px) rotateX(35deg) )
 		31%
-			-moz-transform: translateZ(68.45px) rotateX(4.56deg)
+			opacity: 0
+			@include transform( translateZ(531.55px) rotateX(35.44deg) )
 		32%
-			-moz-transform: translateZ(59.65px) rotateX(3.98deg)
+			opacity: 0
+			@include transform( translateZ(540.35px) rotateX(36.02deg) )
 		33%
-			-moz-transform: translateZ(49.28px) rotateX(3.29deg)
+			opacity: 0
+			@include transform( translateZ(550.72px) rotateX(36.71deg) )
 		34%
-			-moz-transform: translateZ(38.03px) rotateX(2.54deg)
+			opacity: 0
+			@include transform( translateZ(561.97px) rotateX(37.46deg) )
 		35%
-			-moz-transform: translateZ(26.52px) rotateX(1.77deg)
+			opacity: 0
+			@include transform( translateZ(573.48px) rotateX(38.23deg) )
 		36%
-			-moz-transform: translateZ(15.29px) rotateX(1.02deg)
+			opacity: 0
+			@include transform( translateZ(584.71px) rotateX(38.98deg) )
 		37%
-			-moz-transform: translateZ(4.83px) rotateX(0.32deg)
+			opacity: 0
+			@include transform( translateZ(595.17px) rotateX(39.68deg) )
 		38%
-			-moz-transform: translateZ(-4.5px) rotateX(-0.3deg)
+			opacity: 0
+			@include transform( translateZ(604.5px) rotateX(40.3deg) )
 		39%
-			-moz-transform: translateZ(-12.42px) rotateX(-0.83deg)
+			opacity: 0
+			@include transform( translateZ(612.42px) rotateX(40.83deg) )
 		40%
-			-moz-transform: translateZ(-18.75px) rotateX(-1.25deg)
+			opacity: 0
+			@include transform( translateZ(618.75px) rotateX(41.25deg) )
 		41%
-			-moz-transform: translateZ(-23.41px) rotateX(-1.56deg)
+			opacity: 0
+			@include transform( translateZ(623.41px) rotateX(41.56deg) )
 		42%
-			-moz-transform: translateZ(-26.41px) rotateX(-1.76deg)
+			opacity: 0
+			@include transform( translateZ(626.41px) rotateX(41.76deg) )
 		43%
-			-moz-transform: translateZ(-27.83px) rotateX(-1.86deg)
+			opacity: 0
+			@include transform( translateZ(627.83px) rotateX(41.86deg) )
 		44%
-			-moz-transform: translateZ(-27.8px) rotateX(-1.85deg)
+			opacity: 0
+			@include transform( translateZ(627.8px) rotateX(41.85deg) )
 		45%
-			-moz-transform: translateZ(-26.52px) rotateX(-1.77deg)
+			opacity: 0
+			@include transform( translateZ(626.52px) rotateX(41.77deg) )
 		46%
-			-moz-transform: translateZ(-24.2px) rotateX(-1.61deg)
+			opacity: 0
+			@include transform( translateZ(624.2px) rotateX(41.61deg) )
 		47%
-			-moz-transform: translateZ(-21.09px) rotateX(-1.41deg)
+			opacity: 0
+			@include transform( translateZ(621.09px) rotateX(41.41deg) )
 		48%
-			-moz-transform: translateZ(-17.42px) rotateX(-1.16deg)
+			opacity: 0
+			@include transform( translateZ(617.42px) rotateX(41.16deg) )
 		49%
-			-moz-transform: translateZ(-13.45px) rotateX(-0.9deg)
+			opacity: 0
+			@include transform( translateZ(613.45px) rotateX(40.9deg) )
 		50%
-			-moz-transform: translateZ(-9.37px) rotateX(-0.62deg)
+			opacity: 0
+			@include transform( translateZ(609.38px) rotateX(40.63deg) )
 		51%
-			-moz-transform: translateZ(-5.41px) rotateX(-0.36deg)
+			opacity: 0
+			@include transform( translateZ(605.41px) rotateX(40.36deg) )
 		52%
-			-moz-transform: translateZ(-1.71px) rotateX(-0.11deg)
+			opacity: 0
+			@include transform( translateZ(601.71px) rotateX(40.11deg) )
 		53%
-			-moz-transform: translateZ(1.59px) rotateX(0.11deg)
+			opacity: 0
+			@include transform( translateZ(598.41px) rotateX(39.89deg) )
 		54%
-			-moz-transform: translateZ(4.39px) rotateX(0.29deg)
+			opacity: 0
+			@include transform( translateZ(595.61px) rotateX(39.71deg) )
 		55%
-			-moz-transform: translateZ(6.63px) rotateX(0.44deg)
+			opacity: 0
+			@include transform( translateZ(593.37px) rotateX(39.56deg) )
 		56%
-			-moz-transform: translateZ(8.28px) rotateX(0.55deg)
+			opacity: 0
+			@include transform( translateZ(591.72px) rotateX(39.45deg) )
 		57%
-			-moz-transform: translateZ(9.34px) rotateX(0.62deg)
+			opacity: 0
+			@include transform( translateZ(590.66px) rotateX(39.38deg) )
 		58%
-			-moz-transform: translateZ(9.84px) rotateX(0.66deg)
+			opacity: 0
+			@include transform( translateZ(590.16px) rotateX(39.34deg) )
 		59%
-			-moz-transform: translateZ(9.83px) rotateX(0.66deg)
+			opacity: 0
+			@include transform( translateZ(590.17px) rotateX(39.34deg) )
 		60%
-			-moz-transform: translateZ(9.38px) rotateX(0.63deg)
+			opacity: 0
+			@include transform( translateZ(590.63px) rotateX(39.38deg) )
 		61%
-			-moz-transform: translateZ(8.56px) rotateX(0.57deg)
+			opacity: 0
+			@include transform( translateZ(591.44px) rotateX(39.43deg) )
 		62%
-			-moz-transform: translateZ(7.46px) rotateX(0.5deg)
+			opacity: 0
+			@include transform( translateZ(592.54px) rotateX(39.5deg) )
 		63%
-			-moz-transform: translateZ(6.16px) rotateX(0.41deg)
+			opacity: 0
+			@include transform( translateZ(593.84px) rotateX(39.59deg) )
 		64%
-			-moz-transform: translateZ(4.75px) rotateX(0.32deg)
+			opacity: 0
+			@include transform( translateZ(595.25px) rotateX(39.68deg) )
 		65%
-			-moz-transform: translateZ(3.31px) rotateX(0.22deg)
+			opacity: 0
+			@include transform( translateZ(596.69px) rotateX(39.78deg) )
 		66%
-			-moz-transform: translateZ(1.91px) rotateX(0.13deg)
+			opacity: 0
+			@include transform( translateZ(598.09px) rotateX(39.87deg) )
 		67%
-			-moz-transform: translateZ(0.6px) rotateX(0.04deg)
+			opacity: 0
+			@include transform( translateZ(599.4px) rotateX(39.96deg) )
 		68%
-			-moz-transform: translateZ(-0.56px) rotateX(-0.04deg)
+			opacity: 0
+			@include transform( translateZ(600.56px) rotateX(40.04deg) )
 		69%
-			-moz-transform: translateZ(-1.55px) rotateX(-0.1deg)
+			opacity: 0
+			@include transform( translateZ(601.55px) rotateX(40.1deg) )
 		70%
-			-moz-transform: translateZ(-2.34px) rotateX(-0.16deg)
+			opacity: 0
+			@include transform( translateZ(602.34px) rotateX(40.16deg) )
 		71%
-			-moz-transform: translateZ(-2.93px) rotateX(-0.2deg)
+			opacity: 0
+			@include transform( translateZ(602.93px) rotateX(40.2deg) )
 		72%
-			-moz-transform: translateZ(-3.3px) rotateX(-0.22deg)
+			opacity: 0
+			@include transform( translateZ(603.3px) rotateX(40.22deg) )
 		73%
-			-moz-transform: translateZ(-3.48px) rotateX(-0.23deg)
+			opacity: 0
+			@include transform( translateZ(603.48px) rotateX(40.23deg) )
 		74%
-			-moz-transform: translateZ(-3.47px) rotateX(-0.23deg)
+			opacity: 0
+			@include transform( translateZ(603.47px) rotateX(40.23deg) )
 		75%
-			-moz-transform: translateZ(-3.31px) rotateX(-0.22deg)
+			opacity: 0
+			@include transform( translateZ(603.31px) rotateX(40.22deg) )
 		76%
-			-moz-transform: translateZ(-3.03px) rotateX(-0.2deg)
+			opacity: 0
+			@include transform( translateZ(603.03px) rotateX(40.2deg) )
 		77%
-			-moz-transform: translateZ(-2.64px) rotateX(-0.18deg)
+			opacity: 0
+			@include transform( translateZ(602.64px) rotateX(40.18deg) )
 		78%
-			-moz-transform: translateZ(-2.18px) rotateX(-0.15deg)
+			opacity: 0
+			@include transform( translateZ(602.18px) rotateX(40.15deg) )
 		79%
-			-moz-transform: translateZ(-1.68px) rotateX(-0.11deg)
+			opacity: 0
+			@include transform( translateZ(601.68px) rotateX(40.11deg) )
 		80%
-			-moz-transform: translateZ(-1.17px) rotateX(-0.08deg)
+			opacity: 0
+			@include transform( translateZ(601.17px) rotateX(40.08deg) )
 		81%
-			-moz-transform: translateZ(-0.68px) rotateX(-0.05deg)
+			opacity: 0
+			@include transform( translateZ(600.68px) rotateX(40.05deg) )
 		82%
-			-moz-transform: translateZ(-0.21px) rotateX(-0.01deg)
+			opacity: 0
+			@include transform( translateZ(600.21px) rotateX(40.01deg) )
 		83%
-			-moz-transform: translateZ(0.2px) rotateX(0.01deg)
+			opacity: 0
+			@include transform( translateZ(599.8px) rotateX(39.99deg) )
 		84%
-			-moz-transform: translateZ(0.55px) rotateX(0.04deg)
+			opacity: 0
+			@include transform( translateZ(599.45px) rotateX(39.96deg) )
 		85%
-			-moz-transform: translateZ(0.83px) rotateX(0.06deg)
+			opacity: 0
+			@include transform( translateZ(599.17px) rotateX(39.94deg) )
 		86%
-			-moz-transform: translateZ(1.03px) rotateX(0.07deg)
+			opacity: 0
+			@include transform( translateZ(598.97px) rotateX(39.93deg) )
 		87%
-			-moz-transform: translateZ(1.17px) rotateX(0.08deg)
+			opacity: 0
+			@include transform( translateZ(598.83px) rotateX(39.92deg) )
 		88%
-			-moz-transform: translateZ(1.23px) rotateX(0.08deg)
+			opacity: 0
+			@include transform( translateZ(598.77px) rotateX(39.92deg) )
 		89%
-			-moz-transform: translateZ(1.23px) rotateX(0.08deg)
+			opacity: 0
+			@include transform( translateZ(598.77px) rotateX(39.92deg) )
 		90%
-			-moz-transform: translateZ(1.17px) rotateX(0.08deg)
+			opacity: 0
+			@include transform( translateZ(598.83px) rotateX(39.92deg) )
 		91%
-			-moz-transform: translateZ(1.07px) rotateX(0.07deg)
+			opacity: 0
+			@include transform( translateZ(598.93px) rotateX(39.93deg) )
 		92%
-			-moz-transform: translateZ(0.93px) rotateX(0.06deg)
+			opacity: 0
+			@include transform( translateZ(599.07px) rotateX(39.94deg) )
 		93%
-			-moz-transform: translateZ(0.77px) rotateX(0.05deg)
+			opacity: 0
+			@include transform( translateZ(599.23px) rotateX(39.95deg) )
 		94%
-			-moz-transform: translateZ(0.59px) rotateX(0.04deg)
+			opacity: 0
+			@include transform( translateZ(599.41px) rotateX(39.96deg) )
 		95%
-			-moz-transform: translateZ(0.41px) rotateX(0.03deg)
+			opacity: 0
+			@include transform( translateZ(599.59px) rotateX(39.97deg) )
 		96%
-			-moz-transform: translateZ(0.24px) rotateX(0.02deg)
+			opacity: 0
+			@include transform( translateZ(599.76px) rotateX(39.98deg) )
 		97%
-			-moz-transform: translateZ(0.08px) rotateX(0.01deg)
+			opacity: 0
+			@include transform( translateZ(599.92px) rotateX(39.99deg) )
 		98%
-			-moz-transform: translateZ(-0.07px) rotateX(0deg)
+			opacity: 0
+			@include transform( translateZ(600.07px) rotateX(40deg) )
 		99%
-			-moz-transform: translateZ(-0.19px) rotateX(-0.01deg)
+			opacity: 0
+			@include transform( translateZ(600.19px) rotateX(40.01deg) )
 		100%
-			-moz-transform: translateZ(0px) rotateX(0deg)
-
-
-	@keyframes fall-keyframes
-		0%
-			transform: translateZ(600px) rotateX(40deg)
-		1%
-			transform: translateZ(547.59px) rotateX(36.51deg)
-		2%
-			transform: translateZ(477.17px) rotateX(31.81deg)
-		3%
-			transform: translateZ(394.28px) rotateX(26.29deg)
-		4%
-			transform: translateZ(304.26px) rotateX(20.28deg)
-		5%
-			transform: translateZ(212.13px) rotateX(14.14deg)
-		6%
-			transform: translateZ(122.33px) rotateX(8.16deg)
-		7%
-			transform: translateZ(38.61px) rotateX(2.57deg)
-		8%
-			transform: translateZ(-36.02px) rotateX(-2.4deg)
-		9%
-			transform: translateZ(-99.36px) rotateX(-6.62deg)
-		10%
-			transform: translateZ(-150px) rotateX(-10deg)
-		11%
-			transform: translateZ(-187.3px) rotateX(-12.49deg)
-		12%
-			transform: translateZ(-211.29px) rotateX(-14.09deg)
-		13%
-			transform: translateZ(-222.61px) rotateX(-14.84deg)
-		14%
-			transform: translateZ(-222.39px) rotateX(-14.83deg)
-		15%
-			transform: translateZ(-212.13px) rotateX(-14.14deg)
-		16%
-			transform: translateZ(-193.6px) rotateX(-12.91deg)
-		17%
-			transform: translateZ(-168.71px) rotateX(-11.25deg)
-		18%
-			transform: translateZ(-139.4px) rotateX(-9.29deg)
-		19%
-			transform: translateZ(-107.57px) rotateX(-7.17deg)
-		20%
-			transform: translateZ(-75px) rotateX(-5deg)
-		21%
-			transform: translateZ(-43.25px) rotateX(-2.88deg)
-		22%
-			transform: translateZ(-13.65px) rotateX(-0.91deg)
-		23%
-			transform: translateZ(12.74px) rotateX(0.85deg)
-		24%
-			transform: translateZ(35.13px) rotateX(2.34deg)
-		25%
-			transform: translateZ(53.03px) rotateX(3.54deg)
-		26%
-			transform: translateZ(66.22px) rotateX(4.41deg)
-		27%
-			transform: translateZ(74.7px) rotateX(4.98deg)
-		28%
-			transform: translateZ(78.7px) rotateX(5.25deg)
-		29%
-			transform: translateZ(78.63px) rotateX(5.24deg)
-		30%
-			transform: translateZ(75px) rotateX(5deg)
-		31%
-			transform: translateZ(68.45px) rotateX(4.56deg)
-		32%
-			transform: translateZ(59.65px) rotateX(3.98deg)
-		33%
-			transform: translateZ(49.28px) rotateX(3.29deg)
-		34%
-			transform: translateZ(38.03px) rotateX(2.54deg)
-		35%
-			transform: translateZ(26.52px) rotateX(1.77deg)
-		36%
-			transform: translateZ(15.29px) rotateX(1.02deg)
-		37%
-			transform: translateZ(4.83px) rotateX(0.32deg)
-		38%
-			transform: translateZ(-4.5px) rotateX(-0.3deg)
-		39%
-			transform: translateZ(-12.42px) rotateX(-0.83deg)
-		40%
-			transform: translateZ(-18.75px) rotateX(-1.25deg)
-		41%
-			transform: translateZ(-23.41px) rotateX(-1.56deg)
-		42%
-			transform: translateZ(-26.41px) rotateX(-1.76deg)
-		43%
-			transform: translateZ(-27.83px) rotateX(-1.86deg)
-		44%
-			transform: translateZ(-27.8px) rotateX(-1.85deg)
-		45%
-			transform: translateZ(-26.52px) rotateX(-1.77deg)
-		46%
-			transform: translateZ(-24.2px) rotateX(-1.61deg)
-		47%
-			transform: translateZ(-21.09px) rotateX(-1.41deg)
-		48%
-			transform: translateZ(-17.42px) rotateX(-1.16deg)
-		49%
-			transform: translateZ(-13.45px) rotateX(-0.9deg)
-		50%
-			transform: translateZ(-9.37px) rotateX(-0.62deg)
-		51%
-			transform: translateZ(-5.41px) rotateX(-0.36deg)
-		52%
-			transform: translateZ(-1.71px) rotateX(-0.11deg)
-		53%
-			transform: translateZ(1.59px) rotateX(0.11deg)
-		54%
-			transform: translateZ(4.39px) rotateX(0.29deg)
-		55%
-			transform: translateZ(6.63px) rotateX(0.44deg)
-		56%
-			transform: translateZ(8.28px) rotateX(0.55deg)
-		57%
-			transform: translateZ(9.34px) rotateX(0.62deg)
-		58%
-			transform: translateZ(9.84px) rotateX(0.66deg)
-		59%
-			transform: translateZ(9.83px) rotateX(0.66deg)
-		60%
-			transform: translateZ(9.38px) rotateX(0.63deg)
-		61%
-			transform: translateZ(8.56px) rotateX(0.57deg)
-		62%
-			transform: translateZ(7.46px) rotateX(0.5deg)
-		63%
-			transform: translateZ(6.16px) rotateX(0.41deg)
-		64%
-			transform: translateZ(4.75px) rotateX(0.32deg)
-		65%
-			transform: translateZ(3.31px) rotateX(0.22deg)
-		66%
-			transform: translateZ(1.91px) rotateX(0.13deg)
-		67%
-			transform: translateZ(0.6px) rotateX(0.04deg)
-		68%
-			transform: translateZ(-0.56px) rotateX(-0.04deg)
-		69%
-			transform: translateZ(-1.55px) rotateX(-0.1deg)
-		70%
-			transform: translateZ(-2.34px) rotateX(-0.16deg)
-		71%
-			transform: translateZ(-2.93px) rotateX(-0.2deg)
-		72%
-			transform: translateZ(-3.3px) rotateX(-0.22deg)
-		73%
-			transform: translateZ(-3.48px) rotateX(-0.23deg)
-		74%
-			transform: translateZ(-3.47px) rotateX(-0.23deg)
-		75%
-			transform: translateZ(-3.31px) rotateX(-0.22deg)
-		76%
-			transform: translateZ(-3.03px) rotateX(-0.2deg)
-		77%
-			transform: translateZ(-2.64px) rotateX(-0.18deg)
-		78%
-			transform: translateZ(-2.18px) rotateX(-0.15deg)
-		79%
-			transform: translateZ(-1.68px) rotateX(-0.11deg)
-		80%
-			transform: translateZ(-1.17px) rotateX(-0.08deg)
-		81%
-			transform: translateZ(-0.68px) rotateX(-0.05deg)
-		82%
-			transform: translateZ(-0.21px) rotateX(-0.01deg)
-		83%
-			transform: translateZ(0.2px) rotateX(0.01deg)
-		84%
-			transform: translateZ(0.55px) rotateX(0.04deg)
-		85%
-			transform: translateZ(0.83px) rotateX(0.06deg)
-		86%
-			transform: translateZ(1.03px) rotateX(0.07deg)
-		87%
-			transform: translateZ(1.17px) rotateX(0.08deg)
-		88%
-			transform: translateZ(1.23px) rotateX(0.08deg)
-		89%
-			transform: translateZ(1.23px) rotateX(0.08deg)
-		90%
-			transform: translateZ(1.17px) rotateX(0.08deg)
-		91%
-			transform: translateZ(1.07px) rotateX(0.07deg)
-		92%
-			transform: translateZ(0.93px) rotateX(0.06deg)
-		93%
-			transform: translateZ(0.77px) rotateX(0.05deg)
-		94%
-			transform: translateZ(0.59px) rotateX(0.04deg)
-		95%
-			transform: translateZ(0.41px) rotateX(0.03deg)
-		96%
-			transform: translateZ(0.24px) rotateX(0.02deg)
-		97%
-			transform: translateZ(0.08px) rotateX(0.01deg)
-		98%
-			transform: translateZ(-0.07px) rotateX(0deg)
-		99%
-			transform: translateZ(-0.19px) rotateX(-0.01deg)
-		100%
-			transform: translateZ(0px) rotateX(0deg)
-
+			opacity: 0
+			@include transform( translateZ(600px) rotateX(40deg) )
 	
 	.#{$animations-fall-class}
-		opacity: 0
-		@include transition-property (transform, opacity)
-		@include transition-duration($animations-fall-duration)
-		@include transition-timing-function($animations-fall-timing-function)
-		@include transition-delay($animations-fall-delay)
-		@include transform-origin(center top)
-		@include transform-style(preserve-3d)
-		
+		@include transform-origin( 50% 50% )
 
-		@include transform(translateZ(600px) rotateX(40deg))
-		
-
-	
 		&.#{$animation-start-class}
-			opacity: 1
-			@include transform(translateZ(0px) rotateX(0deg))
-
-			&.#{$animation-elastic-class}
-				@include animation(fall-keyframes $animations-scalein-elastic-duration forwards $animations-scalein-timing-function $animations-fall-delay)
+			@include animation( fallIn $animations-fall-duration forwards $animations-fall-timing-function )
+		
+		&.#{$animation-stop-class}
+			@include animation( fallOut $animations-fall-duration forwards $animations-fall-timing-function )

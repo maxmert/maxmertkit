@@ -1,650 +1,630 @@
-$animations-flip-class: "-flipvertical--" !global
+$animations-flipVertical-class: "-flipvertical--" !global
 
-$animations-flip-duration: 0.2s !global
-$animations-flip-elastic-duration: 2s !global
-$animations-flip-timing-function: ease-out !global
-$animations-flip-delay: 0.2s !global
-
+$animations-flipVertical-duration: 1.5s !global
+$animations-flipVertical-timing-function: linear !global
+$animations-flipVertical-delay: 0s !global
 
 
-@include exports("animations/flip")
 
-	@-webkit-keyframes flip
+@include exports("animations/flipVertical")
+	@include keyframes(flipIn)
 		0%
-			-webkit-transform: rotateY(-90deg) rotateY(-20deg)
+			opacity: 0
+			@include transform( rotateY(-90deg) rotateX(-20deg) )
 		1%
-			-webkit-transform: rotateY(-82.14deg) rotateY(-18.25deg)
+			opacity: 0.09
+			@include transform( rotateY(-82.14deg) rotateX(-18.25deg) )
 		2%
-			-webkit-transform: rotateY(-71.58deg) rotateY(-15.91deg)
+			opacity: 0.2
+			@include transform( rotateY(-71.58deg) rotateX(-15.91deg) )
 		3%
-			-webkit-transform: rotateY(-59.14deg) rotateY(-13.14deg)
+			opacity: 0.34
+			@include transform( rotateY(-59.14deg) rotateX(-13.14deg) )
 		4%
-			-webkit-transform: rotateY(-45.64deg) rotateY(-10.14deg)
+			opacity: 0.49
+			@include transform( rotateY(-45.64deg) rotateX(-10.14deg) )
 		5%
-			-webkit-transform: rotateY(-31.82deg) rotateY(-7.07deg)
+			opacity: 0.65
+			@include transform( rotateY(-31.82deg) rotateX(-7.07deg) )
 		6%
-			-webkit-transform: rotateY(-18.35deg) rotateY(-4.08deg)
+			opacity: 0.8
+			@include transform( rotateY(-18.35deg) rotateX(-4.08deg) )
 		7%
-			-webkit-transform: rotateY(-5.79deg) rotateY(-1.29deg)
+			opacity: 0.94
+			@include transform( rotateY(-5.79deg) rotateX(-1.29deg) )
 		8%
-			-webkit-transform: rotateY(5.4deg) rotateY(1.2deg)
+			opacity: 1.06
+			@include transform( rotateY(5.4deg) rotateX(1.2deg) )
 		9%
-			-webkit-transform: rotateY(14.9deg) rotateY(3.31deg)
+			opacity: 1.17
+			@include transform( rotateY(14.9deg) rotateX(3.31deg) )
 		10%
-			-webkit-transform: rotateY(22.5deg) rotateY(5deg)
+			opacity: 1.25
+			@include transform( rotateY(22.5deg) rotateX(5deg) )
 		11%
-			-webkit-transform: rotateY(28.09deg) rotateY(6.24deg)
+			opacity: 1.31
+			@include transform( rotateY(28.09deg) rotateX(6.24deg) )
 		12%
-			-webkit-transform: rotateY(31.69deg) rotateY(7.04deg)
+			opacity: 1.35
+			@include transform( rotateY(31.69deg) rotateX(7.04deg) )
 		13%
-			-webkit-transform: rotateY(33.39deg) rotateY(7.42deg)
+			opacity: 1.37
+			@include transform( rotateY(33.39deg) rotateX(7.42deg) )
 		14%
-			-webkit-transform: rotateY(33.36deg) rotateY(7.41deg)
+			opacity: 1.37
+			@include transform( rotateY(33.36deg) rotateX(7.41deg) )
 		15%
-			-webkit-transform: rotateY(31.82deg) rotateY(7.07deg)
+			opacity: 1.35
+			@include transform( rotateY(31.82deg) rotateX(7.07deg) )
 		16%
-			-webkit-transform: rotateY(29.04deg) rotateY(6.45deg)
+			opacity: 1.32
+			@include transform( rotateY(29.04deg) rotateX(6.45deg) )
 		17%
-			-webkit-transform: rotateY(25.31deg) rotateY(5.62deg)
+			opacity: 1.28
+			@include transform( rotateY(25.31deg) rotateX(5.62deg) )
 		18%
-			-webkit-transform: rotateY(20.91deg) rotateY(4.65deg)
+			opacity: 1.23
+			@include transform( rotateY(20.91deg) rotateX(4.65deg) )
 		19%
-			-webkit-transform: rotateY(16.14deg) rotateY(3.59deg)
+			opacity: 1.18
+			@include transform( rotateY(16.14deg) rotateX(3.59deg) )
 		20%
-			-webkit-transform: rotateY(11.25deg) rotateY(2.5deg)
+			opacity: 1.13
+			@include transform( rotateY(11.25deg) rotateX(2.5deg) )
 		21%
-			-webkit-transform: rotateY(6.49deg) rotateY(1.44deg)
+			opacity: 1.07
+			@include transform( rotateY(6.49deg) rotateX(1.44deg) )
 		22%
-			-webkit-transform: rotateY(2.05deg) rotateY(0.45deg)
+			opacity: 1.02
+			@include transform( rotateY(2.05deg) rotateX(0.45deg) )
 		23%
-			-webkit-transform: rotateY(-1.91deg) rotateY(-0.42deg)
+			opacity: 0.98
+			@include transform( rotateY(-1.91deg) rotateX(-0.42deg) )
 		24%
-			-webkit-transform: rotateY(-5.27deg) rotateY(-1.17deg)
+			opacity: 0.94
+			@include transform( rotateY(-5.27deg) rotateX(-1.17deg) )
 		25%
-			-webkit-transform: rotateY(-7.95deg) rotateY(-1.77deg)
+			opacity: 0.91
+			@include transform( rotateY(-7.95deg) rotateX(-1.77deg) )
 		26%
-			-webkit-transform: rotateY(-9.93deg) rotateY(-2.21deg)
+			opacity: 0.89
+			@include transform( rotateY(-9.93deg) rotateX(-2.21deg) )
 		27%
-			-webkit-transform: rotateY(-11.21deg) rotateY(-2.49deg)
+			opacity: 0.88
+			@include transform( rotateY(-11.21deg) rotateX(-2.49deg) )
 		28%
-			-webkit-transform: rotateY(-11.81deg) rotateY(-2.62deg)
+			opacity: 0.87
+			@include transform( rotateY(-11.81deg) rotateX(-2.62deg) )
 		29%
-			-webkit-transform: rotateY(-11.79deg) rotateY(-2.62deg)
+			opacity: 0.87
+			@include transform( rotateY(-11.79deg) rotateX(-2.62deg) )
 		30%
-			-webkit-transform: rotateY(-11.25deg) rotateY(-2.5deg)
+			opacity: 0.88
+			@include transform( rotateY(-11.25deg) rotateX(-2.5deg) )
 		31%
-			-webkit-transform: rotateY(-10.27deg) rotateY(-2.28deg)
+			opacity: 0.89
+			@include transform( rotateY(-10.27deg) rotateX(-2.28deg) )
 		32%
-			-webkit-transform: rotateY(-8.95deg) rotateY(-1.99deg)
+			opacity: 0.9
+			@include transform( rotateY(-8.95deg) rotateX(-1.99deg) )
 		33%
-			-webkit-transform: rotateY(-7.39deg) rotateY(-1.64deg)
+			opacity: 0.92
+			@include transform( rotateY(-7.39deg) rotateX(-1.64deg) )
 		34%
-			-webkit-transform: rotateY(-5.7deg) rotateY(-1.27deg)
+			opacity: 0.94
+			@include transform( rotateY(-5.7deg) rotateX(-1.27deg) )
 		35%
-			-webkit-transform: rotateY(-3.98deg) rotateY(-0.88deg)
+			opacity: 0.96
+			@include transform( rotateY(-3.98deg) rotateX(-0.88deg) )
 		36%
-			-webkit-transform: rotateY(-2.29deg) rotateY(-0.51deg)
+			opacity: 0.97
+			@include transform( rotateY(-2.29deg) rotateX(-0.51deg) )
 		37%
-			-webkit-transform: rotateY(-0.72deg) rotateY(-0.16deg)
+			opacity: 0.99
+			@include transform( rotateY(-0.72deg) rotateX(-0.16deg) )
 		38%
-			-webkit-transform: rotateY(0.68deg) rotateY(0.15deg)
+			opacity: 1.01
+			@include transform( rotateY(0.68deg) rotateX(0.15deg) )
 		39%
-			-webkit-transform: rotateY(1.86deg) rotateY(0.41deg)
+			opacity: 1.02
+			@include transform( rotateY(1.86deg) rotateX(0.41deg) )
 		40%
-			-webkit-transform: rotateY(2.81deg) rotateY(0.63deg)
+			opacity: 1.03
+			@include transform( rotateY(2.81deg) rotateX(0.63deg) )
 		41%
-			-webkit-transform: rotateY(3.51deg) rotateY(0.78deg)
+			opacity: 1.04
+			@include transform( rotateY(3.51deg) rotateX(0.78deg) )
 		42%
-			-webkit-transform: rotateY(3.96deg) rotateY(0.88deg)
+			opacity: 1.04
+			@include transform( rotateY(3.96deg) rotateX(0.88deg) )
 		43%
-			-webkit-transform: rotateY(4.17deg) rotateY(0.93deg)
+			opacity: 1.05
+			@include transform( rotateY(4.17deg) rotateX(0.93deg) )
 		44%
-			-webkit-transform: rotateY(4.17deg) rotateY(0.93deg)
+			opacity: 1.05
+			@include transform( rotateY(4.17deg) rotateX(0.93deg) )
 		45%
-			-webkit-transform: rotateY(3.98deg) rotateY(0.88deg)
+			opacity: 1.04
+			@include transform( rotateY(3.98deg) rotateX(0.88deg) )
 		46%
-			-webkit-transform: rotateY(3.63deg) rotateY(0.81deg)
+			opacity: 1.04
+			@include transform( rotateY(3.63deg) rotateX(0.81deg) )
 		47%
-			-webkit-transform: rotateY(3.16deg) rotateY(0.7deg)
+			opacity: 1.04
+			@include transform( rotateY(3.16deg) rotateX(0.7deg) )
 		48%
-			-webkit-transform: rotateY(2.61deg) rotateY(0.58deg)
+			opacity: 1.03
+			@include transform( rotateY(2.61deg) rotateX(0.58deg) )
 		49%
-			-webkit-transform: rotateY(2.02deg) rotateY(0.45deg)
+			opacity: 1.02
+			@include transform( rotateY(2.02deg) rotateX(0.45deg) )
 		50%
-			-webkit-transform: rotateY(1.41deg) rotateY(0.31deg)
+			opacity: 1.02
+			@include transform( rotateY(1.41deg) rotateX(0.31deg) )
 		51%
-			-webkit-transform: rotateY(0.81deg) rotateY(0.18deg)
+			opacity: 1.01
+			@include transform( rotateY(0.81deg) rotateX(0.18deg) )
 		52%
-			-webkit-transform: rotateY(0.26deg) rotateY(0.06deg)
-		53%
-			-webkit-transform: rotateY(-0.24deg) rotateY(-0.05deg)
-		54%
-			-webkit-transform: rotateY(-0.66deg) rotateY(-0.15deg)
-		55%
-			-webkit-transform: rotateY(-0.99deg) rotateY(-0.22deg)
-		56%
-			-webkit-transform: rotateY(-1.24deg) rotateY(-0.28deg)
-		57%
-			-webkit-transform: rotateY(-1.4deg) rotateY(-0.31deg)
-		58%
-			-webkit-transform: rotateY(-1.48deg) rotateY(-0.33deg)
-		59%
-			-webkit-transform: rotateY(-1.47deg) rotateY(-0.33deg)
-		60%
-			-webkit-transform: rotateY(-1.41deg) rotateY(-0.31deg)
-		61%
-			-webkit-transform: rotateY(-1.28deg) rotateY(-0.29deg)
-		62%
-			-webkit-transform: rotateY(-1.12deg) rotateY(-0.25deg)
-		63%
-			-webkit-transform: rotateY(-0.92deg) rotateY(-0.21deg)
-		64%
-			-webkit-transform: rotateY(-0.71deg) rotateY(-0.16deg)
-		65%
-			-webkit-transform: rotateY(-0.5deg) rotateY(-0.11deg)
-		66%
-			-webkit-transform: rotateY(-0.29deg) rotateY(-0.06deg)
-		67%
-			-webkit-transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		68%
-			-webkit-transform: rotateY(0.08deg) rotateY(0.02deg)
-		69%
-			-webkit-transform: rotateY(0.23deg) rotateY(0.05deg)
-		70%
-			-webkit-transform: rotateY(0.35deg) rotateY(0.08deg)
-		71%
-			-webkit-transform: rotateY(0.44deg) rotateY(0.1deg)
-		72%
-			-webkit-transform: rotateY(0.5deg) rotateY(0.11deg)
-		73%
-			-webkit-transform: rotateY(0.52deg) rotateY(0.12deg)
-		74%
-			-webkit-transform: rotateY(0.52deg) rotateY(0.12deg)
-		75%
-			-webkit-transform: rotateY(0.5deg) rotateY(0.11deg)
-		76%
-			-webkit-transform: rotateY(0.45deg) rotateY(0.1deg)
-		77%
-			-webkit-transform: rotateY(0.4deg) rotateY(0.09deg)
-		78%
-			-webkit-transform: rotateY(0.33deg) rotateY(0.07deg)
-		79%
-			-webkit-transform: rotateY(0.25deg) rotateY(0.06deg)
-		80%
-			-webkit-transform: rotateY(0.18deg) rotateY(0.04deg)
-		81%
-			-webkit-transform: rotateY(0.1deg) rotateY(0.02deg)
-		82%
-			-webkit-transform: rotateY(0.03deg) rotateY(0.01deg)
-		83%
-			-webkit-transform: rotateY(-0.03deg) rotateY(-0.01deg)
-		84%
-			-webkit-transform: rotateY(-0.08deg) rotateY(-0.02deg)
-		85%
-			-webkit-transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		86%
-			-webkit-transform: rotateY(-0.16deg) rotateY(-0.03deg)
-		87%
-			-webkit-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		88%
-			-webkit-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		89%
-			-webkit-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		90%
-			-webkit-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		91%
-			-webkit-transform: rotateY(-0.16deg) rotateY(-0.04deg)
-		92%
-			-webkit-transform: rotateY(-0.14deg) rotateY(-0.03deg)
-		93%
-			-webkit-transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		94%
-			-webkit-transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		95%
-			-webkit-transform: rotateY(-0.06deg) rotateY(-0.01deg)
-		96%
-			-webkit-transform: rotateY(-0.04deg) rotateY(-0.01deg)
-		97%
-			-webkit-transform: rotateY(-0.01deg) rotateY(0deg)
-		98%
-			-webkit-transform: rotateY(0.01deg) rotateY(0deg)
-		99%
-			-webkit-transform: rotateY(0.03deg) rotateY(0.01deg)
-		100%
-			-webkit-transform: rotateY(0deg) rotateY(0deg)
-
-
-	@-moz-keyframes flip
-		0%
-			-moz-transform: rotateY(-90deg) rotateY(-20deg)
-		1%
-			-moz-transform: rotateY(-82.14deg) rotateY(-18.25deg)
-		2%
-			-moz-transform: rotateY(-71.58deg) rotateY(-15.91deg)
-		3%
-			-moz-transform: rotateY(-59.14deg) rotateY(-13.14deg)
-		4%
-			-moz-transform: rotateY(-45.64deg) rotateY(-10.14deg)
-		5%
-			-moz-transform: rotateY(-31.82deg) rotateY(-7.07deg)
-		6%
-			-moz-transform: rotateY(-18.35deg) rotateY(-4.08deg)
-		7%
-			-moz-transform: rotateY(-5.79deg) rotateY(-1.29deg)
-		8%
-			-moz-transform: rotateY(5.4deg) rotateY(1.2deg)
-		9%
-			-moz-transform: rotateY(14.9deg) rotateY(3.31deg)
-		10%
-			-moz-transform: rotateY(22.5deg) rotateY(5deg)
-		11%
-			-moz-transform: rotateY(28.09deg) rotateY(6.24deg)
-		12%
-			-moz-transform: rotateY(31.69deg) rotateY(7.04deg)
-		13%
-			-moz-transform: rotateY(33.39deg) rotateY(7.42deg)
-		14%
-			-moz-transform: rotateY(33.36deg) rotateY(7.41deg)
-		15%
-			-moz-transform: rotateY(31.82deg) rotateY(7.07deg)
-		16%
-			-moz-transform: rotateY(29.04deg) rotateY(6.45deg)
-		17%
-			-moz-transform: rotateY(25.31deg) rotateY(5.62deg)
-		18%
-			-moz-transform: rotateY(20.91deg) rotateY(4.65deg)
-		19%
-			-moz-transform: rotateY(16.14deg) rotateY(3.59deg)
-		20%
-			-moz-transform: rotateY(11.25deg) rotateY(2.5deg)
-		21%
-			-moz-transform: rotateY(6.49deg) rotateY(1.44deg)
-		22%
-			-moz-transform: rotateY(2.05deg) rotateY(0.45deg)
-		23%
-			-moz-transform: rotateY(-1.91deg) rotateY(-0.42deg)
-		24%
-			-moz-transform: rotateY(-5.27deg) rotateY(-1.17deg)
-		25%
-			-moz-transform: rotateY(-7.95deg) rotateY(-1.77deg)
-		26%
-			-moz-transform: rotateY(-9.93deg) rotateY(-2.21deg)
-		27%
-			-moz-transform: rotateY(-11.21deg) rotateY(-2.49deg)
-		28%
-			-moz-transform: rotateY(-11.81deg) rotateY(-2.62deg)
-		29%
-			-moz-transform: rotateY(-11.79deg) rotateY(-2.62deg)
-		30%
-			-moz-transform: rotateY(-11.25deg) rotateY(-2.5deg)
-		31%
-			-moz-transform: rotateY(-10.27deg) rotateY(-2.28deg)
-		32%
-			-moz-transform: rotateY(-8.95deg) rotateY(-1.99deg)
-		33%
-			-moz-transform: rotateY(-7.39deg) rotateY(-1.64deg)
-		34%
-			-moz-transform: rotateY(-5.7deg) rotateY(-1.27deg)
-		35%
-			-moz-transform: rotateY(-3.98deg) rotateY(-0.88deg)
-		36%
-			-moz-transform: rotateY(-2.29deg) rotateY(-0.51deg)
-		37%
-			-moz-transform: rotateY(-0.72deg) rotateY(-0.16deg)
-		38%
-			-moz-transform: rotateY(0.68deg) rotateY(0.15deg)
-		39%
-			-moz-transform: rotateY(1.86deg) rotateY(0.41deg)
-		40%
-			-moz-transform: rotateY(2.81deg) rotateY(0.63deg)
-		41%
-			-moz-transform: rotateY(3.51deg) rotateY(0.78deg)
-		42%
-			-moz-transform: rotateY(3.96deg) rotateY(0.88deg)
-		43%
-			-moz-transform: rotateY(4.17deg) rotateY(0.93deg)
-		44%
-			-moz-transform: rotateY(4.17deg) rotateY(0.93deg)
-		45%
-			-moz-transform: rotateY(3.98deg) rotateY(0.88deg)
-		46%
-			-moz-transform: rotateY(3.63deg) rotateY(0.81deg)
-		47%
-			-moz-transform: rotateY(3.16deg) rotateY(0.7deg)
-		48%
-			-moz-transform: rotateY(2.61deg) rotateY(0.58deg)
-		49%
-			-moz-transform: rotateY(2.02deg) rotateY(0.45deg)
-		50%
-			-moz-transform: rotateY(1.41deg) rotateY(0.31deg)
-		51%
-			-moz-transform: rotateY(0.81deg) rotateY(0.18deg)
-		52%
-			-moz-transform: rotateY(0.26deg) rotateY(0.06deg)
-		53%
-			-moz-transform: rotateY(-0.24deg) rotateY(-0.05deg)
-		54%
-			-moz-transform: rotateY(-0.66deg) rotateY(-0.15deg)
-		55%
-			-moz-transform: rotateY(-0.99deg) rotateY(-0.22deg)
-		56%
-			-moz-transform: rotateY(-1.24deg) rotateY(-0.28deg)
-		57%
-			-moz-transform: rotateY(-1.4deg) rotateY(-0.31deg)
-		58%
-			-moz-transform: rotateY(-1.48deg) rotateY(-0.33deg)
-		59%
-			-moz-transform: rotateY(-1.47deg) rotateY(-0.33deg)
-		60%
-			-moz-transform: rotateY(-1.41deg) rotateY(-0.31deg)
-		61%
-			-moz-transform: rotateY(-1.28deg) rotateY(-0.29deg)
-		62%
-			-moz-transform: rotateY(-1.12deg) rotateY(-0.25deg)
-		63%
-			-moz-transform: rotateY(-0.92deg) rotateY(-0.21deg)
-		64%
-			-moz-transform: rotateY(-0.71deg) rotateY(-0.16deg)
-		65%
-			-moz-transform: rotateY(-0.5deg) rotateY(-0.11deg)
-		66%
-			-moz-transform: rotateY(-0.29deg) rotateY(-0.06deg)
-		67%
-			-moz-transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		68%
-			-moz-transform: rotateY(0.08deg) rotateY(0.02deg)
-		69%
-			-moz-transform: rotateY(0.23deg) rotateY(0.05deg)
-		70%
-			-moz-transform: rotateY(0.35deg) rotateY(0.08deg)
-		71%
-			-moz-transform: rotateY(0.44deg) rotateY(0.1deg)
-		72%
-			-moz-transform: rotateY(0.5deg) rotateY(0.11deg)
-		73%
-			-moz-transform: rotateY(0.52deg) rotateY(0.12deg)
-		74%
-			-moz-transform: rotateY(0.52deg) rotateY(0.12deg)
-		75%
-			-moz-transform: rotateY(0.5deg) rotateY(0.11deg)
-		76%
-			-moz-transform: rotateY(0.45deg) rotateY(0.1deg)
-		77%
-			-moz-transform: rotateY(0.4deg) rotateY(0.09deg)
-		78%
-			-moz-transform: rotateY(0.33deg) rotateY(0.07deg)
-		79%
-			-moz-transform: rotateY(0.25deg) rotateY(0.06deg)
-		80%
-			-moz-transform: rotateY(0.18deg) rotateY(0.04deg)
-		81%
-			-moz-transform: rotateY(0.1deg) rotateY(0.02deg)
-		82%
-			-moz-transform: rotateY(0.03deg) rotateY(0.01deg)
-		83%
-			-moz-transform: rotateY(-0.03deg) rotateY(-0.01deg)
-		84%
-			-moz-transform: rotateY(-0.08deg) rotateY(-0.02deg)
-		85%
-			-moz-transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		86%
-			-moz-transform: rotateY(-0.16deg) rotateY(-0.03deg)
-		87%
-			-moz-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		88%
-			-moz-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		89%
-			-moz-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		90%
-			-moz-transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		91%
-			-moz-transform: rotateY(-0.16deg) rotateY(-0.04deg)
-		92%
-			-moz-transform: rotateY(-0.14deg) rotateY(-0.03deg)
-		93%
-			-moz-transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		94%
-			-moz-transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		95%
-			-moz-transform: rotateY(-0.06deg) rotateY(-0.01deg)
-		96%
-			-moz-transform: rotateY(-0.04deg) rotateY(-0.01deg)
-		97%
-			-moz-transform: rotateY(-0.01deg) rotateY(0deg)
-		98%
-			-moz-transform: rotateY(0.01deg) rotateY(0deg)
-		99%
-			-moz-transform: rotateY(0.03deg) rotateY(0.01deg)
-		100%
-			-moz-transform: rotateY(0deg) rotateY(0deg)
-
-
-	@keyframes flip
-		0%
-			transform: rotateY(-90deg) rotateY(-20deg)
-		1%
-			transform: rotateY(-82.14deg) rotateY(-18.25deg)
-		2%
-			transform: rotateY(-71.58deg) rotateY(-15.91deg)
-		3%
-			transform: rotateY(-59.14deg) rotateY(-13.14deg)
-		4%
-			transform: rotateY(-45.64deg) rotateY(-10.14deg)
-		5%
-			transform: rotateY(-31.82deg) rotateY(-7.07deg)
-		6%
-			transform: rotateY(-18.35deg) rotateY(-4.08deg)
-		7%
-			transform: rotateY(-5.79deg) rotateY(-1.29deg)
-		8%
-			transform: rotateY(5.4deg) rotateY(1.2deg)
-		9%
-			transform: rotateY(14.9deg) rotateY(3.31deg)
-		10%
-			transform: rotateY(22.5deg) rotateY(5deg)
-		11%
-			transform: rotateY(28.09deg) rotateY(6.24deg)
-		12%
-			transform: rotateY(31.69deg) rotateY(7.04deg)
-		13%
-			transform: rotateY(33.39deg) rotateY(7.42deg)
-		14%
-			transform: rotateY(33.36deg) rotateY(7.41deg)
-		15%
-			transform: rotateY(31.82deg) rotateY(7.07deg)
-		16%
-			transform: rotateY(29.04deg) rotateY(6.45deg)
-		17%
-			transform: rotateY(25.31deg) rotateY(5.62deg)
-		18%
-			transform: rotateY(20.91deg) rotateY(4.65deg)
-		19%
-			transform: rotateY(16.14deg) rotateY(3.59deg)
-		20%
-			transform: rotateY(11.25deg) rotateY(2.5deg)
-		21%
-			transform: rotateY(6.49deg) rotateY(1.44deg)
-		22%
-			transform: rotateY(2.05deg) rotateY(0.45deg)
-		23%
-			transform: rotateY(-1.91deg) rotateY(-0.42deg)
-		24%
-			transform: rotateY(-5.27deg) rotateY(-1.17deg)
-		25%
-			transform: rotateY(-7.95deg) rotateY(-1.77deg)
-		26%
-			transform: rotateY(-9.93deg) rotateY(-2.21deg)
-		27%
-			transform: rotateY(-11.21deg) rotateY(-2.49deg)
-		28%
-			transform: rotateY(-11.81deg) rotateY(-2.62deg)
-		29%
-			transform: rotateY(-11.79deg) rotateY(-2.62deg)
-		30%
-			transform: rotateY(-11.25deg) rotateY(-2.5deg)
-		31%
-			transform: rotateY(-10.27deg) rotateY(-2.28deg)
-		32%
-			transform: rotateY(-8.95deg) rotateY(-1.99deg)
-		33%
-			transform: rotateY(-7.39deg) rotateY(-1.64deg)
-		34%
-			transform: rotateY(-5.7deg) rotateY(-1.27deg)
-		35%
-			transform: rotateY(-3.98deg) rotateY(-0.88deg)
-		36%
-			transform: rotateY(-2.29deg) rotateY(-0.51deg)
-		37%
-			transform: rotateY(-0.72deg) rotateY(-0.16deg)
-		38%
-			transform: rotateY(0.68deg) rotateY(0.15deg)
-		39%
-			transform: rotateY(1.86deg) rotateY(0.41deg)
-		40%
-			transform: rotateY(2.81deg) rotateY(0.63deg)
-		41%
-			transform: rotateY(3.51deg) rotateY(0.78deg)
-		42%
-			transform: rotateY(3.96deg) rotateY(0.88deg)
-		43%
-			transform: rotateY(4.17deg) rotateY(0.93deg)
-		44%
-			transform: rotateY(4.17deg) rotateY(0.93deg)
-		45%
-			transform: rotateY(3.98deg) rotateY(0.88deg)
-		46%
-			transform: rotateY(3.63deg) rotateY(0.81deg)
-		47%
-			transform: rotateY(3.16deg) rotateY(0.7deg)
-		48%
-			transform: rotateY(2.61deg) rotateY(0.58deg)
-		49%
-			transform: rotateY(2.02deg) rotateY(0.45deg)
-		50%
-			transform: rotateY(1.41deg) rotateY(0.31deg)
-		51%
-			transform: rotateY(0.81deg) rotateY(0.18deg)
-		52%
-			transform: rotateY(0.26deg) rotateY(0.06deg)
-		53%
-			transform: rotateY(-0.24deg) rotateY(-0.05deg)
-		54%
-			transform: rotateY(-0.66deg) rotateY(-0.15deg)
-		55%
-			transform: rotateY(-0.99deg) rotateY(-0.22deg)
-		56%
-			transform: rotateY(-1.24deg) rotateY(-0.28deg)
-		57%
-			transform: rotateY(-1.4deg) rotateY(-0.31deg)
-		58%
-			transform: rotateY(-1.48deg) rotateY(-0.33deg)
-		59%
-			transform: rotateY(-1.47deg) rotateY(-0.33deg)
-		60%
-			transform: rotateY(-1.41deg) rotateY(-0.31deg)
-		61%
-			transform: rotateY(-1.28deg) rotateY(-0.29deg)
-		62%
-			transform: rotateY(-1.12deg) rotateY(-0.25deg)
-		63%
-			transform: rotateY(-0.92deg) rotateY(-0.21deg)
-		64%
-			transform: rotateY(-0.71deg) rotateY(-0.16deg)
-		65%
-			transform: rotateY(-0.5deg) rotateY(-0.11deg)
-		66%
-			transform: rotateY(-0.29deg) rotateY(-0.06deg)
-		67%
-			transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		68%
-			transform: rotateY(0.08deg) rotateY(0.02deg)
-		69%
-			transform: rotateY(0.23deg) rotateY(0.05deg)
-		70%
-			transform: rotateY(0.35deg) rotateY(0.08deg)
-		71%
-			transform: rotateY(0.44deg) rotateY(0.1deg)
-		72%
-			transform: rotateY(0.5deg) rotateY(0.11deg)
-		73%
-			transform: rotateY(0.52deg) rotateY(0.12deg)
-		74%
-			transform: rotateY(0.52deg) rotateY(0.12deg)
-		75%
-			transform: rotateY(0.5deg) rotateY(0.11deg)
-		76%
-			transform: rotateY(0.45deg) rotateY(0.1deg)
-		77%
-			transform: rotateY(0.4deg) rotateY(0.09deg)
-		78%
-			transform: rotateY(0.33deg) rotateY(0.07deg)
-		79%
-			transform: rotateY(0.25deg) rotateY(0.06deg)
-		80%
-			transform: rotateY(0.18deg) rotateY(0.04deg)
-		81%
-			transform: rotateY(0.1deg) rotateY(0.02deg)
-		82%
-			transform: rotateY(0.03deg) rotateY(0.01deg)
-		83%
-			transform: rotateY(-0.03deg) rotateY(-0.01deg)
-		84%
-			transform: rotateY(-0.08deg) rotateY(-0.02deg)
-		85%
-			transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		86%
-			transform: rotateY(-0.16deg) rotateY(-0.03deg)
-		87%
-			transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		88%
-			transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		89%
-			transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		90%
-			transform: rotateY(-0.18deg) rotateY(-0.04deg)
-		91%
-			transform: rotateY(-0.16deg) rotateY(-0.04deg)
-		92%
-			transform: rotateY(-0.14deg) rotateY(-0.03deg)
-		93%
-			transform: rotateY(-0.12deg) rotateY(-0.03deg)
-		94%
-			transform: rotateY(-0.09deg) rotateY(-0.02deg)
-		95%
-			transform: rotateY(-0.06deg) rotateY(-0.01deg)
-		96%
-			transform: rotateY(-0.04deg) rotateY(-0.01deg)
-		97%
-			transform: rotateY(-0.01deg) rotateY(0deg)
-		98%
-			transform: rotateY(0.01deg) rotateY(0deg)
-		99%
-			transform: rotateY(0.03deg) rotateY(0.01deg)
-		100%
-			transform: rotateY(0deg) rotateY(0deg)
-
-
-
-	
-	.#{$animations-flip-class}
-		opacity: 0
-		visibility: hidden
-		@include transition-property (transform, opacity, visibility)
-		@include transition-duration($animations-flip-duration)
-		@include transition-timing-function($animations-flip-timing-function)
-		@include transition-delay($animations-flip-delay)
-		@include transform-origin(center top)
-		@include transform-style(preserve-3d)
-		
-
-		@include transform(rotateY(-70deg))
-		
-
-	
-		&.#{$animation-start-class}
-			visibility: visible
 			opacity: 1
-			@include transform(rotateY(0deg))
+			@include transform( rotateY(0.26deg) rotateX(0.06deg) )
+		53%
+			opacity: 1
+			@include transform( rotateY(-0.24deg) rotateX(-0.05deg) )
+		54%
+			opacity: 0.99
+			@include transform( rotateY(-0.66deg) rotateX(-0.15deg) )
+		55%
+			opacity: 0.99
+			@include transform( rotateY(-0.99deg) rotateX(-0.22deg) )
+		56%
+			opacity: 0.99
+			@include transform( rotateY(-1.24deg) rotateX(-0.28deg) )
+		57%
+			opacity: 0.98
+			@include transform( rotateY(-1.4deg) rotateX(-0.31deg) )
+		58%
+			opacity: 0.98
+			@include transform( rotateY(-1.48deg) rotateX(-0.33deg) )
+		59%
+			opacity: 0.98
+			@include transform( rotateY(-1.47deg) rotateX(-0.33deg) )
+		60%
+			opacity: 0.98
+			@include transform( rotateY(-1.41deg) rotateX(-0.31deg) )
+		61%
+			opacity: 0.99
+			@include transform( rotateY(-1.28deg) rotateX(-0.29deg) )
+		62%
+			opacity: 0.99
+			@include transform( rotateY(-1.12deg) rotateX(-0.25deg) )
+		63%
+			opacity: 0.99
+			@include transform( rotateY(-0.92deg) rotateX(-0.21deg) )
+		64%
+			opacity: 0.99
+			@include transform( rotateY(-0.71deg) rotateX(-0.16deg) )
+		65%
+			opacity: 0.99
+			@include transform( rotateY(-0.5deg) rotateX(-0.11deg) )
+		66%
+			opacity: 1
+			@include transform( rotateY(-0.29deg) rotateX(-0.06deg) )
+		67%
+			opacity: 1
+			@include transform( rotateY(-0.09deg) rotateX(-0.02deg) )
+		68%
+			opacity: 1
+			@include transform( rotateY(0.08deg) rotateX(0.02deg) )
+		69%
+			opacity: 1
+			@include transform( rotateY(0.23deg) rotateX(0.05deg) )
+		70%
+			opacity: 1
+			@include transform( rotateY(0.35deg) rotateX(0.08deg) )
+		71%
+			opacity: 1
+			@include transform( rotateY(0.44deg) rotateX(0.1deg) )
+		72%
+			opacity: 1.01
+			@include transform( rotateY(0.5deg) rotateX(0.11deg) )
+		73%
+			opacity: 1.01
+			@include transform( rotateY(0.52deg) rotateX(0.12deg) )
+		74%
+			opacity: 1.01
+			@include transform( rotateY(0.52deg) rotateX(0.12deg) )
+		75%
+			opacity: 1.01
+			@include transform( rotateY(0.5deg) rotateX(0.11deg) )
+		76%
+			opacity: 1.01
+			@include transform( rotateY(0.45deg) rotateX(0.1deg) )
+		77%
+			opacity: 1
+			@include transform( rotateY(0.4deg) rotateX(0.09deg) )
+		78%
+			opacity: 1
+			@include transform( rotateY(0.33deg) rotateX(0.07deg) )
+		79%
+			opacity: 1
+			@include transform( rotateY(0.25deg) rotateX(0.06deg) )
+		80%
+			opacity: 1
+			@include transform( rotateY(0.18deg) rotateX(0.04deg) )
+		81%
+			opacity: 1
+			@include transform( rotateY(0.1deg) rotateX(0.02deg) )
+		82%
+			opacity: 1
+			@include transform( rotateY(0.03deg) rotateX(0.01deg) )
+		83%
+			opacity: 1
+			@include transform( rotateY(-0.03deg) rotateX(-0.01deg) )
+		84%
+			opacity: 1
+			@include transform( rotateY(-0.08deg) rotateX(-0.02deg) )
+		85%
+			opacity: 1
+			@include transform( rotateY(-0.12deg) rotateX(-0.03deg) )
+		86%
+			opacity: 1
+			@include transform( rotateY(-0.16deg) rotateX(-0.03deg) )
+		87%
+			opacity: 1
+			@include transform( rotateY(-0.18deg) rotateX(-0.04deg) )
+		88%
+			opacity: 1
+			@include transform( rotateY(-0.18deg) rotateX(-0.04deg) )
+		89%
+			opacity: 1
+			@include transform( rotateY(-0.18deg) rotateX(-0.04deg) )
+		90%
+			opacity: 1
+			@include transform( rotateY(-0.18deg) rotateX(-0.04deg) )
+		91%
+			opacity: 1
+			@include transform( rotateY(-0.16deg) rotateX(-0.04deg) )
+		92%
+			opacity: 1
+			@include transform( rotateY(-0.14deg) rotateX(-0.03deg) )
+		93%
+			opacity: 1
+			@include transform( rotateY(-0.12deg) rotateX(-0.03deg) )
+		94%
+			opacity: 1
+			@include transform( rotateY(-0.09deg) rotateX(-0.02deg) )
+		95%
+			opacity: 1
+			@include transform( rotateY(-0.06deg) rotateX(-0.01deg) )
+		96%
+			opacity: 1
+			@include transform( rotateY(-0.04deg) rotateX(-0.01deg) )
+		97%
+			opacity: 1
+			@include transform( rotateY(-0.01deg) rotateX(0deg) )
+		98%
+			opacity: 1
+			@include transform( rotateY(0.01deg) rotateX(0deg) )
+		99%
+			opacity: 1
+			@include transform( rotateY(0.03deg) rotateX(0.01deg) )
+		100%
+			opacity: 1
+			@include transform( rotateY(0deg) rotateX(0deg) )
 
-			&.#{$animation-elastic-class}
-				@include animation(flip $animations-scalein-elastic-duration forwards $animations-scalein-timing-function $animations-flip-delay)
+
+
+	@include keyframes(flipOut)
+		0%
+			opacity: 1
+			@include transform( rotateY(0deg) rotateX(0deg) )
+		1%
+			opacity: 1
+			@include transform( rotateY(-0.01deg) rotateX(0deg) )
+		2%
+			opacity: 1
+			@include transform( rotateY(-0.04deg) rotateX(-0.01deg) )
+		3%
+			opacity: 1
+			@include transform( rotateY(-0.08deg) rotateX(-0.02deg) )
+		4%
+			opacity: 1
+			@include transform( rotateY(-0.14deg) rotateX(-0.03deg) )
+		5%
+			opacity: 1
+			@include transform( rotateY(-0.22deg) rotateX(-0.05deg) )
+		6%
+			opacity: 1
+			@include transform( rotateY(-0.32deg) rotateX(-0.07deg) )
+		7%
+			opacity: 1
+			@include transform( rotateY(-0.44deg) rotateX(-0.1deg) )
+		8%
+			opacity: 0.99
+			@include transform( rotateY(-0.58deg) rotateX(-0.13deg) )
+		9%
+			opacity: 0.99
+			@include transform( rotateY(-0.73deg) rotateX(-0.16deg) )
+		10%
+			opacity: 0.99
+			@include transform( rotateY(-0.9deg) rotateX(-0.2deg) )
+		11%
+			opacity: 0.99
+			@include transform( rotateY(-1.09deg) rotateX(-0.24deg) )
+		12%
+			opacity: 0.99
+			@include transform( rotateY(-1.3deg) rotateX(-0.29deg) )
+		13%
+			opacity: 0.98
+			@include transform( rotateY(-1.52deg) rotateX(-0.34deg) )
+		14%
+			opacity: 0.98
+			@include transform( rotateY(-1.76deg) rotateX(-0.39deg) )
+		15%
+			opacity: 0.98
+			@include transform( rotateY(-2.02deg) rotateX(-0.45deg) )
+		16%
+			opacity: 0.97
+			@include transform( rotateY(-2.3deg) rotateX(-0.51deg) )
+		17%
+			opacity: 0.97
+			@include transform( rotateY(-2.6deg) rotateX(-0.58deg) )
+		18%
+			opacity: 0.97
+			@include transform( rotateY(-2.92deg) rotateX(-0.65deg) )
+		19%
+			opacity: 0.96
+			@include transform( rotateY(-3.25deg) rotateX(-0.72deg) )
+		20%
+			opacity: 0.96
+			@include transform( rotateY(-3.6deg) rotateX(-0.8deg) )
+		21%
+			opacity: 0.96
+			@include transform( rotateY(-3.97deg) rotateX(-0.88deg) )
+		22%
+			opacity: 0.95
+			@include transform( rotateY(-4.36deg) rotateX(-0.97deg) )
+		23%
+			opacity: 0.95
+			@include transform( rotateY(-4.76deg) rotateX(-1.06deg) )
+		24%
+			opacity: 0.94
+			@include transform( rotateY(-5.18deg) rotateX(-1.15deg) )
+		25%
+			opacity: 0.94
+			@include transform( rotateY(-5.62deg) rotateX(-1.25deg) )
+		26%
+			opacity: 0.93
+			@include transform( rotateY(-6.08deg) rotateX(-1.35deg) )
+		27%
+			opacity: 0.93
+			@include transform( rotateY(-6.56deg) rotateX(-1.46deg) )
+		28%
+			opacity: 0.92
+			@include transform( rotateY(-7.06deg) rotateX(-1.57deg) )
+		29%
+			opacity: 0.92
+			@include transform( rotateY(-7.57deg) rotateX(-1.68deg) )
+		30%
+			opacity: 0.91
+			@include transform( rotateY(-8.1deg) rotateX(-1.8deg) )
+		31%
+			opacity: 0.9
+			@include transform( rotateY(-8.65deg) rotateX(-1.92deg) )
+		32%
+			opacity: 0.9
+			@include transform( rotateY(-9.22deg) rotateX(-2.05deg) )
+		33%
+			opacity: 0.89
+			@include transform( rotateY(-9.8deg) rotateX(-2.18deg) )
+		34%
+			opacity: 0.88
+			@include transform( rotateY(-10.4deg) rotateX(-2.31deg) )
+		35%
+			opacity: 0.88
+			@include transform( rotateY(-11.02deg) rotateX(-2.45deg) )
+		36%
+			opacity: 0.87
+			@include transform( rotateY(-11.66deg) rotateX(-2.59deg) )
+		37%
+			opacity: 0.86
+			@include transform( rotateY(-12.32deg) rotateX(-2.74deg) )
+		38%
+			opacity: 0.86
+			@include transform( rotateY(-13deg) rotateX(-2.89deg) )
+		39%
+			opacity: 0.85
+			@include transform( rotateY(-13.69deg) rotateX(-3.04deg) )
+		40%
+			opacity: 0.84
+			@include transform( rotateY(-14.4deg) rotateX(-3.2deg) )
+		41%
+			opacity: 0.83
+			@include transform( rotateY(-15.13deg) rotateX(-3.36deg) )
+		42%
+			opacity: 0.82
+			@include transform( rotateY(-15.88deg) rotateX(-3.53deg) )
+		43%
+			opacity: 0.82
+			@include transform( rotateY(-16.64deg) rotateX(-3.7deg) )
+		44%
+			opacity: 0.81
+			@include transform( rotateY(-17.42deg) rotateX(-3.87deg) )
+		45%
+			opacity: 0.8
+			@include transform( rotateY(-18.23deg) rotateX(-4.05deg) )
+		46%
+			opacity: 0.79
+			@include transform( rotateY(-19.04deg) rotateX(-4.23deg) )
+		47%
+			opacity: 0.78
+			@include transform( rotateY(-19.88deg) rotateX(-4.42deg) )
+		48%
+			opacity: 0.77
+			@include transform( rotateY(-20.74deg) rotateX(-4.61deg) )
+		49%
+			opacity: 0.76
+			@include transform( rotateY(-21.61deg) rotateX(-4.8deg) )
+		50%
+			opacity: 0.75
+			@include transform( rotateY(-22.5deg) rotateX(-5deg) )
+		51%
+			opacity: 0.74
+			@include transform( rotateY(-23.41deg) rotateX(-5.2deg) )
+		52%
+			opacity: 0.73
+			@include transform( rotateY(-24.34deg) rotateX(-5.41deg) )
+		53%
+			opacity: 0.72
+			@include transform( rotateY(-25.28deg) rotateX(-5.62deg) )
+		54%
+			opacity: 0.71
+			@include transform( rotateY(-26.24deg) rotateX(-5.83deg) )
+		55%
+			opacity: 0.7
+			@include transform( rotateY(-27.23deg) rotateX(-6.05deg) )
+		56%
+			opacity: 0.69
+			@include transform( rotateY(-28.22deg) rotateX(-6.27deg) )
+		57%
+			opacity: 0.68
+			@include transform( rotateY(-29.24deg) rotateX(-6.5deg) )
+		58%
+			opacity: 0.66
+			@include transform( rotateY(-30.28deg) rotateX(-6.73deg) )
+		59%
+			opacity: 0.65
+			@include transform( rotateY(-31.33deg) rotateX(-6.96deg) )
+		60%
+			opacity: 0.64
+			@include transform( rotateY(-32.4deg) rotateX(-7.2deg) )
+		61%
+			opacity: 0.63
+			@include transform( rotateY(-33.49deg) rotateX(-7.44deg) )
+		62%
+			opacity: 0.62
+			@include transform( rotateY(-34.6deg) rotateX(-7.69deg) )
+		63%
+			opacity: 0.6
+			@include transform( rotateY(-35.72deg) rotateX(-7.94deg) )
+		64%
+			opacity: 0.59
+			@include transform( rotateY(-36.86deg) rotateX(-8.19deg) )
+		65%
+			opacity: 0.58
+			@include transform( rotateY(-38.02deg) rotateX(-8.45deg) )
+		66%
+			opacity: 0.56
+			@include transform( rotateY(-39.2deg) rotateX(-8.71deg) )
+		67%
+			opacity: 0.55
+			@include transform( rotateY(-40.4deg) rotateX(-8.98deg) )
+		68%
+			opacity: 0.54
+			@include transform( rotateY(-41.62deg) rotateX(-9.25deg) )
+		69%
+			opacity: 0.52
+			@include transform( rotateY(-42.85deg) rotateX(-9.52deg) )
+		70%
+			opacity: 0.51
+			@include transform( rotateY(-44.1deg) rotateX(-9.8deg) )
+		71%
+			opacity: 0.5
+			@include transform( rotateY(-45.37deg) rotateX(-10.08deg) )
+		72%
+			opacity: 0.48
+			@include transform( rotateY(-46.66deg) rotateX(-10.37deg) )
+		73%
+			opacity: 0.47
+			@include transform( rotateY(-47.96deg) rotateX(-10.66deg) )
+		74%
+			opacity: 0.45
+			@include transform( rotateY(-49.28deg) rotateX(-10.95deg) )
+		75%
+			opacity: 0.44
+			@include transform( rotateY(-50.62deg) rotateX(-11.25deg) )
+		76%
+			opacity: 0.42
+			@include transform( rotateY(-51.98deg) rotateX(-11.55deg) )
+		77%
+			opacity: 0.41
+			@include transform( rotateY(-53.36deg) rotateX(-11.86deg) )
+		78%
+			opacity: 0.39
+			@include transform( rotateY(-54.76deg) rotateX(-12.17deg) )
+		79%
+			opacity: 0.38
+			@include transform( rotateY(-56.17deg) rotateX(-12.48deg) )
+		80%
+			opacity: 0.36
+			@include transform( rotateY(-57.6deg) rotateX(-12.8deg) )
+		81%
+			opacity: 0.34
+			@include transform( rotateY(-59.05deg) rotateX(-13.12deg) )
+		82%
+			opacity: 0.33
+			@include transform( rotateY(-60.52deg) rotateX(-13.45deg) )
+		83%
+			opacity: 0.31
+			@include transform( rotateY(-62deg) rotateX(-13.78deg) )
+		84%
+			opacity: 0.29
+			@include transform( rotateY(-63.5deg) rotateX(-14.11deg) )
+		85%
+			opacity: 0.28
+			@include transform( rotateY(-65.02deg) rotateX(-14.45deg) )
+		86%
+			opacity: 0.26
+			@include transform( rotateY(-66.56deg) rotateX(-14.79deg) )
+		87%
+			opacity: 0.24
+			@include transform( rotateY(-68.12deg) rotateX(-15.14deg) )
+		88%
+			opacity: 0.23
+			@include transform( rotateY(-69.7deg) rotateX(-15.49deg) )
+		89%
+			opacity: 0.21
+			@include transform( rotateY(-71.29deg) rotateX(-15.84deg) )
+		90%
+			opacity: 0.19
+			@include transform( rotateY(-72.9deg) rotateX(-16.2deg) )
+		91%
+			opacity: 0.17
+			@include transform( rotateY(-74.53deg) rotateX(-16.56deg) )
+		92%
+			opacity: 0.15
+			@include transform( rotateY(-76.18deg) rotateX(-16.93deg) )
+		93%
+			opacity: 0.14
+			@include transform( rotateY(-77.84deg) rotateX(-17.3deg) )
+		94%
+			opacity: 0.12
+			@include transform( rotateY(-79.52deg) rotateX(-17.67deg) )
+		95%
+			opacity: 0.1
+			@include transform( rotateY(-81.22deg) rotateX(-18.05deg) )
+		96%
+			opacity: 0.08
+			@include transform( rotateY(-82.94deg) rotateX(-18.43deg) )
+		97%
+			opacity: 0.06
+			@include transform( rotateY(-84.68deg) rotateX(-18.82deg) )
+		98%
+			opacity: 0.04
+			@include transform( rotateY(-86.44deg) rotateX(-19.21deg) )
+		99%
+			opacity: 0.02
+			@include transform( rotateY(-88.21deg) rotateX(-19.6deg) )
+		100%
+			opacity: 0
+			@include transform( rotateY(-90deg) rotateX(-20deg) )
+
+
+	.#{$animations-flipVertical-class}
+		
+		&.#{$animation-start-class}
+			@include animation( flipIn $animations-flipVertical-duration forwards $animations-flipVertical-timing-function )
+
+
+		&.#{$animation-stop-class}
+			@include animation( flipOut 0.2s forwards $animations-flipVertical-timing-function )

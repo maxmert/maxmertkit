@@ -39,7 +39,7 @@
 	.#{$carousel-class}
 
 		display: block
-		overflow-x: hidden
+		// overflow-x: hidden
 		position: relative
 		opacity: 0
 		min-height: 100%
@@ -151,6 +151,8 @@
 
 
 
+
+
 		&.#{$mod-visible}
 			opacity: 1
 
@@ -159,6 +161,8 @@
 		.#{$carousel-class}
 			overflow-y: auto
 			height: 100%
+			background-color: transparent
+			
 			.#{$carousel-item-class}
 				max-height: inherit
 				img

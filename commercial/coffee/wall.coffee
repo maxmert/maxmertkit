@@ -47,8 +47,14 @@ class Wall extends MaxmertkitHelpers
 		if caption.length then @caption = caption
 		@scroller = @$el.find('.-scroller')
 		@scroll = @_getScrollParent @el
-
+		
 		@activate()
+
+		setTimeout =>
+			@_refreshSizes()
+			if not @deviceMobile
+				_parallax.call @
+		, 100
 
 	
 	_setOptions: ( options ) ->
@@ -89,7 +95,7 @@ class Wall extends MaxmertkitHelpers
 					@navContainer.css marginTop: -@navContainer.height() / 2
 
 					@nav.on "click.#{@_name}.#{@_id}", =>
-						_scrollTo.call @, @$el.offset().top
+						_scrollTo.call @, @_offset.top
 
 
 				else
@@ -101,7 +107,7 @@ class Wall extends MaxmertkitHelpers
 
 	destroy: ->
 		@$el.off ".#{@_name}"
-		$(document).off "scroll.#{@_name}.#{@_id}"
+		@scroll.off "scroll.#{@_name}.#{@_id}"
 		$(window).off "resize.#{@_name}.#{@_id}"
 		super
 
@@ -120,7 +126,8 @@ class Wall extends MaxmertkitHelpers
 			@_refreshSizes()
 			_refreshDevice.call @
 
-		$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		
+		@scroll.on "scroll.#{@_name}.#{@_id}", ( event ) =>
 
 			if not @deviceMobile and @_isVisible()
 				_parallax.call @
@@ -136,7 +143,7 @@ class Wall extends MaxmertkitHelpers
 				# if @caption?
 					# scrollTo = @caption.offset().top - 10
 				# else
-				scrollTo = @$el.offset().top + @$el.height() 
+				scrollTo = @_offset.top + @$el.height() 
 				
 				_scrollTo.call @, scrollTo
 
@@ -197,14 +204,16 @@ _parallax = ->
 
 
 		# Do parallax magic here
-		if @video? then @video.css top: Math.round( (@scroll.scrollTop() - @$el.offset().top ) - (@scroll.scrollTop() - @$el.offset().top ) * 0.2 )
+		if @video? then @video.css top: Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * 0.2 )
 		if @image?
-			imageTransform = "translateY(#{Math.round( (@scroll.scrollTop() - @$el.offset().top ) - (@scroll.scrollTop() - @$el.offset().top ) * 0.2 )}px)"
+			parallaxOffset = "#{Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * 0.2 )}px"
+			imageTransform = "translateY(#{parallaxOffset})"
 			
-			if @$el.hasClass('-hero') and @header? #and @scroll.scrollTop() > @$el.offset().top
+			if @$el.hasClass('-hero') and @header? #and @scroll.scrollTop() > @_offset.top
 				@header.css
-					bottom: "#{300 * percent}px"
 					opacity: 1 - @_getVisiblePercent()
+					# bottom: "#{300 * percent}px"
+
 
 			
 			if @options.imageZoom
@@ -219,20 +228,35 @@ _refreshDevice = ->
 	@deviceMobile = @_deviceMobile()
 
 _scrollTo = ( px ) ->
-	if @scroll[0].activeElement.nodeName is 'BODY'
+	if @scroll[0].activeElement? and @scroll[0].activeElement.nodeName is 'BODY'
 		$('body,html').animate {scrollTop: "#{px}px"}, 700
 	else
 		@scroll.animate {scrollTop: "#{px}px"}, 700
 
 _setNavActive = ->
 	# if @_id is 2
-	# 	console.log "#{@$el.offset().top + $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@$el.offset().top - $(window).height() / 2}			#{@$el.offset().top + @$el.height() - $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@$el.offset().top + @$el.height() - $(window).height()}"
-	if (@$el.offset().top + $(window).height() / 2 > 0 and @$el.offset().top + $(window).height() / 2 >= @scroll.scrollTop() > @$el.offset().top - $(window).height() / 2) or ( @$el.offset().top + @$el.height() - $(window).height() / 2 >= @scroll.scrollTop() > @$el.offset().top + @$el.height() - $(window).height() )
-		if not @nav.hasClass('_active_')
-			@navContainer.find('._active_').removeClass '_active_'
-			@nav.addClass '_active_'
+	# 	console.log "#{@_offset.top + $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@_offset.top - $(window).height() / 2}			#{@_offset.top + @$el.height() - $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@_offset.top + @$el.height() - $(window).height()}"
+	scrollTop = @scroll.scrollTop()
+	if (@_offset.top + @_windowHeight / 2 > 0 and @_offset.top + @_windowHeight / 2 >= scrollTop > @_offset.top - @_windowHeight / 2) or ( @_offset.top + @$el.height() - @_windowHeight / 2 >= scrollTop > @_offset.top + @_height - @_windowHeight )
+		# if not @nav.hasClass('_active_')
+		# 	@navContainer.find('._active_').removeClass '_active_'
+		# 	@nav.addClass '_active_'
+		# i = 0
+		
 
-		if (@video? and not @deviceMobile) or @image? then @navContainer.removeClass( '_invert_' ) else @navContainer.addClass( '_invert_' )
+
+
+		if @_id is 1
+			console.log 123
+
+
+
+
+		if (@video? and not @deviceMobile) or @image?
+			if @navContainer.hasClass( '_invert_' ) then @navContainer.removeClass( '_invert_' )
+
+		else
+			if not @navContainer.hasClass( '_invert_' ) then @navContainer.addClass( '_invert_' )
 
 	
 
