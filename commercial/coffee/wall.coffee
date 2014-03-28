@@ -28,6 +28,8 @@ class Wall extends MaxmertkitHelpers
 			imageBlur: @$el.data('blur') or no
 			imageOpacity: @$el.data('opacity') or no
 			imageZoom: @$el.data('zoom') or no
+
+			parallaxSpeed: @$el.data('speed') or 0.2	# 0 - pictire stands, 1 - picture scrolls as usually
 			
 			caption: @$el.data('caption') or no
 			
@@ -114,6 +116,8 @@ class Wall extends MaxmertkitHelpers
 	activate: ->
 		_refreshDevice.call @
 		@_refreshSizes()
+
+		_adjustHeightToScreen.call @
 		
 		if not @deviceMobile
 			_parallax.call @
@@ -124,6 +128,7 @@ class Wall extends MaxmertkitHelpers
 		$(window).on "resize.#{@_name}.#{@_id}", =>
 			_refreshHeaderHeight.call @
 			@_refreshSizes()
+			_adjustHeightToScreen.call @
 			_refreshDevice.call @
 
 		
@@ -167,6 +172,11 @@ class Wall extends MaxmertkitHelpers
 
 # =============== Private methods
 
+_adjustHeightToScreen = ->
+	if @_height is 0
+		@_height = @_windowHeight
+		@$el.height @_height
+
 _parallax = ->
 	min = @_offset.top - @_windowHeight
 	max = @_offset.top + @_height + @_windowHeight
@@ -204,15 +214,14 @@ _parallax = ->
 
 
 		# Do parallax magic here
-		if @video? then @video.css top: Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * 0.2 )
+		if @video? then @video.css top: Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * @options.parallaxSpeed )
 		if @image?
-			parallaxOffset = "#{Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * 0.2 )}px"
+			parallaxOffset = "#{Math.round( (@scroll.scrollTop() - @_offset.top ) - (@scroll.scrollTop() - @_offset.top ) * @options.parallaxSpeed )}px"
 			imageTransform = "translateY(#{parallaxOffset})"
 			
 			if @$el.hasClass('-hero') and @header? #and @scroll.scrollTop() > @_offset.top
-				@header.css
-					opacity: 1 - @_getVisiblePercent()
-					# bottom: "#{300 * percent}px"
+				@_setTransform @header[0].style, "translateY(#{50 - 300 * percent}px)"
+				@header[0].style['opacity'] = 1 - @_getVisiblePercent()
 
 
 			
@@ -234,30 +243,20 @@ _scrollTo = ( px ) ->
 		@scroll.animate {scrollTop: "#{px}px"}, 700
 
 _setNavActive = ->
-	# if @_id is 2
-	# 	console.log "#{@_offset.top + $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@_offset.top - $(window).height() / 2}			#{@_offset.top + @$el.height() - $(window).height() / 2} >= #{@scroll.scrollTop()} > #{@_offset.top + @$el.height() - $(window).height()}"
-	scrollTop = @scroll.scrollTop()
-	if (@_offset.top + @_windowHeight / 2 > 0 and @_offset.top + @_windowHeight / 2 >= scrollTop > @_offset.top - @_windowHeight / 2) or ( @_offset.top + @$el.height() - @_windowHeight / 2 >= scrollTop > @_offset.top + @_height - @_windowHeight )
-		# if not @nav.hasClass('_active_')
-		# 	@navContainer.find('._active_').removeClass '_active_'
-		# 	@nav.addClass '_active_'
-		# i = 0
+
+	inBottomBorder = @_offset.top + @$el.height() - $(window).height() / 2 >= @scroll.scrollTop()
+	inTopBorder = @scroll.scrollTop() > @_offset.top - $(window).height() / 2
+	
+	if inTopBorder and inBottomBorder
+		if not @nav.hasClass('_active_')
+			@navContainer.find('._active_').removeClass '_active_'
+			@nav.addClass '_active_'
 		
-
-
-
-		if @_id is 1
-			console.log 123
-
-
-
-
 		if (@video? and not @deviceMobile) or @image?
 			if @navContainer.hasClass( '_invert_' ) then @navContainer.removeClass( '_invert_' )
 
 		else
 			if not @navContainer.hasClass( '_invert_' ) then @navContainer.addClass( '_invert_' )
-
 	
 
 _refreshHeaderHeight = ->

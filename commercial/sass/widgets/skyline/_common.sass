@@ -1,33 +1,34 @@
-@mixin skyline-set
-	opacity: 0
-	pointer-events: none
-
-
 @include exports("skyline/common")
 
-	.#{$skyline-drop-class}
-		@include skyline-set
+	// .#{$skyline-class}
+		// @include transition( opacity 0.5s ease-out )
 
-		@include transition-property (transform, opacity)
-		@include transition-duration(0.3s)
-		@include transition-timing-function(ease-out)
-		@include transition-delay(0.5s)
-		@include transform( translateY(-20px) )
+		// @include transition( opacity 0.4 linear )
 
-		&.#{$mod-bottom}
-			@include transform( translateY(20px) )
+		// @include transition-property (transform, opacity)
+		// @include transition-duration(0.3s)
+		// @include transition-timing-function(ease-out)
+		// @include transition-delay(0.5s)
+		// @include transform( translateY(-20px) )
 
-		&.#{$mod-left}
-			@include transform( translateY(0) translateX(-20px) )
+		// &.#{$mod-bottom}
+		// 	@include transform( translateY(20px) )
 
-		&.#{$mod-right}
-			@include transform( translateY(0) translateX(20px) )
+		// &.#{$mod-left}
+		// 	@include transform( translateY(0) translateX(-20px) )
 
-		&.#{$skyline-start-class}
-			pointer-events: inherit
-			@include transform( translateY(0px) )
-			@include transform( translateX(0px) )
-			opacity: 1
+		// &.#{$mod-right}
+		// 	@include transform( translateY(0) translateX(20px) )
 
-		&.#{$animation-elastic-class}
-			@include transition-timing-function(cubic-bezier(.47,.01,.35,1.61))
+		// &.#{$animation-start-class}
+		// 	pointer-events: inherit
+		// 	// @include transform( translateY(0px) )
+		// 	// @include transform( translateX(0px) )
+		// 	opacity: 1
+
+		// &.#{$animation-stop-class}
+		// 	opacity: 0
+		// 	pointer-events: none
+
+		// // &.#{$animation-elastic-class}
+		// // 	@include transition-timing-function(cubic-bezier(.47,.01,.35,1.61))

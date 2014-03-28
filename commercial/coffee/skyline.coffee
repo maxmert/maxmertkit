@@ -24,9 +24,10 @@ class Skyline extends MaxmertkitHelpers
 		
 		_options =
 			kind: @$el.data('kind') or 'skyline'
-			delay: @$el.data('delay') or 0							# miliseconds before show; it's better to use css transmission-delay
-			class: @$el.data('class') or '-skyline-drop'			# add this class on initialize
-			activeClass: @$el.data('active-class') or '-start'	# add this class to show element
+			delay: @$el.data('delay') or 300									# miliseconds before show; it's better to use css transmission-delay
+			animation: @$el.data('class') or '-softdrop--'						# add this class on initialize
+			activeClass: @$el.data('active-class') or '-start--'		# add this class to show element
+			unactiveClass: @$el.data('active-class') or '-stop--'		# add this class to show element
 		
 		@options = @_merge _options, @options
 
@@ -52,31 +53,37 @@ class Skyline extends MaxmertkitHelpers
 
 
 	destroy: ->
-		$(@scroll).off ".#{@_name}.#{@_id}"
+		@scroll.off ".#{@_name}.#{@_id}"
 		$(window).off ".#{@_name}.#{@_id}"
 		super
 
 	
 	activate: ->
-		@$el.addClass @options.class
 		@scroll = @_getScrollParent(@el)
 		@_refreshSizes()
 
 		$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
 			@_refreshSizes()
 
-		$(@scroll).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		@scroll.on "scroll.#{@_name}.#{@_id}", ( event ) =>
 			_checkActivation.call @
 
 		_checkActivation.call @
+
+		# TODO: Fix it
+		setTimeout =>
+			@_refreshSizes()
+		, 1000
 				
 			
 	hide: ->
 		@$el.removeClass @options.activeClass
+		@$el.addClass @options.unactiveClass
 		clearTimeout( @showTimer ) if @showTimer?
 
 	show: ->
 		@$el.addClass @options.activeClass
+		@$el.removeClass @options.unactiveClass
 
 
 
@@ -93,6 +100,9 @@ _checkActivation = ->
 			, @options.delay
 	else
 		@hide()
+
+		if not @$el.hasClass @options.animation
+			@$el.addClass @options.animation
 
 _isActive = ->
 	@$el.hasClass @options.activeClass

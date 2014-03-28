@@ -1,0 +1,52 @@
+$animations-softdrop-class: "-softdrop--" !global
+
+$animations-softdrop-duration: 0.5s !global
+$animations-softdrop-timing-function: ease-out !global
+$animations-softdrop-delay: 0s !global
+
+
+@include exports("animations/softDrop")
+
+	@include keyframes( softdropOutRight )
+		to
+			@include transform( translateY(50px) )
+			opacity: 0
+
+
+	@include keyframes( softdropInFromLeft )
+		from
+			@include transform( translateY(-50px) )
+			opacity: 0
+		to
+			@include transform( translateY(0px) )
+			opacity: 1
+
+
+	@include keyframes(  softdropOutLeft )
+		to
+			@include transform( translateY(50px) )
+			opacity: 0
+
+
+	@include keyframes( softdropInFromRight )
+		from
+			@include transform( translateY(-50px)  )
+			opacity: 0
+		to
+			@include transform( translateY(0px) )
+			opacity: 1
+
+
+	.#{$animations-softdrop-class}
+		
+		&.#{$animation-start-class}
+			&.#{$mod-right}
+				@include animation( softdropInFromLeft $animations-softdrop-duration forwards $animations-softdrop-timing-function )
+			&.#{$mod-left}
+				@include animation( softdropInFromRight $animations-softdrop-duration forwards $animations-softdrop-timing-function )
+
+		&.#{$animation-stop-class}
+			&.#{$mod-right}
+				@include animation( softdropOutRight $animations-softdrop-duration forwards $animations-softdrop-timing-function )
+			&.#{$mod-left}
+				@include animation(  softdropOutLeft $animations-softdrop-duration forwards $animations-softdrop-timing-function )
