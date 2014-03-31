@@ -60,39 +60,58 @@ class Navbar extends MaxmertkitHelpers
 		super
 
 	show: ->
-		@$el.removeClass '_hidden_'
+		if not @_deviceMobile()
+			@$el.removeClass '_hidden_'
 
 	hide: ->
 		if not @_deviceMobile()
 			@$el.addClass '_hidden_'
 
-
 	activate: ->
+		@_refreshSizes()
 
-		if @options.showOnMousemove
-			$(document).on "mousemove.kit", ( event ) =>
-				if event.pageY - $(document).scrollTop() <= @$el.height()
-					@show()
-
-		$(document).on "scrollstart.kit", ( event ) =>
-			@_direction = $(document).scrollTop()
-			if @_timer? 
-				clearTimeout( @_timer )
-				@_timer = null
+		if $(document).scrollTop() > @_height
 			@hide()
 
-		$(document).on "scrollstop.kit", =>
-			scrollTop = $(document).scrollTop()
-			@_direction -= scrollTop
-			
-			if @_direction > 0
-				if scrollTop is 0
-					@show()
-				else
-					@_timer = setTimeout =>
+		if @options.showOnMousemove
+			$(document).on "mousemove.#{@_name}", ( event ) =>
+				scrollTop = $(document).scrollTop()
+				if event.pageY - scrollTop <= @_height and scrollTop > @_height
+					if not @$el.hasClass '_shaded_'
+						_setShaded.call @, scrollTop
+					if @$el.hasClass '_hidden_'
 						@show()
-					, 5000
 
+		$(document).on "scrollstart.#{@_name}", ( event ) =>
+			scrollTop = $(document).scrollTop()
+			# @_direction = scrollTop
+
+			if scrollTop > @_height
+				@hide()
+			
+			_setShaded.call @, scrollTop
+			
+			
+
+		$(document).on "scrollstop.#{@_name}", =>
+			
+			scrollTop = $(document).scrollTop()
+
+			if scrollTop > @_height
+				@hide()
+			else
+				@show()
+
+			setTimeout =>
+				_setShaded.call @, scrollTop
+			, 500
+
+			# @_direction = scrollTop - @_direction
+			
+			# if @_direction < 0
+			# 	@show()
+
+			
 	deactivate: ->
 		if @$el.hasClass '_active_'
 			_beforeunactive.call @
@@ -106,19 +125,12 @@ class Navbar extends MaxmertkitHelpers
 
 
 # =============== Private methods
-		
-_rgbToRgba = ( rgb, a ) ->
-	_rgb = rgb.split(',')
-	_rgba = 'rgba('
-	
-	for color, index in _rgb
-		int = parseInt color.replace( /^\D+/g, '')
-		if typeof int is "number"
-			_rgba += "#{int},"
 
-	_rgba += "#{a})"
-
-	_rgba
+_setShaded = ( scrollTop ) ->
+	if scrollTop > @_height and not @$el.hasClass '_shaded_'
+		@$el.addClass '_shaded_'
+	else
+		@$el.removeClass '_shaded_'
 
 $.fn[_name] = (options) ->
 	@each ->

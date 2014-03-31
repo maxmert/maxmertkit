@@ -1,52 +1,35 @@
 @mixin nav-theme-bar-float-setter($i)
-	@if nth($themes, $i) != "-default-"
-		background-color: rgba(lighten(nth($themes-background-light-colors, $i), 5%), $nav-bar-float-background-opacity)
-		border-color: nth($themes-background-light-colors, $i)
-	@else
-		background-color: rgba(lighten(nth($themes-background-light-colors, $i), 1%), $nav-bar-float-background-opacity)
-		border-color: darken(nth($themes-background-light-colors, $i), 4%)
+	background-color: transparent
+	border-color: transparent
 
-	@include media(new-breakpoint(max-width 992px 6))
+	&.#{$mod-shaded}
 		@if nth($themes, $i) != "-default-"
-			background-color: lighten(nth($themes-background-light-colors, $i), 5%)
+			background-color: rgba(lighten(nth($themes-background-light-colors, $i), 5%), $nav-bar-float-background-opacity)
+			border-color: nth($themes-background-light-colors, $i)
 		@else
-			background-color: lighten(nth($themes-background-light-colors, $i), 1%)
-	// #{$nav-item}
-
-	// 	&:hover, &.#{$mod-hovered}
-	// 		& > a
-	// 			@if nth($themes, $i) != "-default-"
-	// 				color: nth($themes-white-colors, $i)
-	// 			@else
-	// 				color: nth($themes-colors, $i)
-		
-	// 	&.#{$mod-active}
-	// 		& > a				
-	// 			@if nth($themes, $i) != "-default-"
-	// 				color: nth($themes-white-colors, $i)
-	// 				background-color: nth($themes-background-colors, $i)
-	// 			@else
-	// 				color: nth($themes-colors, $i)
-	// 				background-color: darken(nth($themes-background-light-colors, $i), 5%)
+			background-color: rgba(lighten(nth($themes-background-light-colors, $i), 1%), $nav-bar-float-background-opacity)
+			border-color: darken(nth($themes-background-light-colors, $i), 4%)
 
 
-	// 	&.#{$mod-disabled}, &[disabled]
-	// 		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
-	// 			background: transparent
-	// 			color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+	// @include media(new-breakpoint(max-width 992px 6))
+	// 	@if nth($themes, $i) != "-default-"
+	// 		background-color: lighten(nth($themes-background-light-colors, $i), 5%)
+	// 	@else
+	// 		background-color: lighten(nth($themes-background-light-colors, $i), 1%)
+	
 
 
 @include exports("nav/bar-float")
 	.#{$nav-bar-float-class}
 		@extend .#{$nav-bar-class}
 	
-		position: fixed !important
+		position: absolute
 		width: 100%
 		border-width: $nav-bar-float-border-width
 		border-radius: $nav-bar-float-border-radius
 
-		&.#{$mod-top}, &.#{$mod-bottom}
-			position: fixed !important
+		&.#{$mod-shaded}
+			position: fixed
 
 		@each $theme in $themes
 			$i: index($themes, $theme)
@@ -60,9 +43,9 @@
 					@include nav-theme-bar-float-setter($i)
 
 
-	@include media(new-breakpoint(max-width 992px 6))
-		.#{$nav-bar-float-class}
-			position: relative !important
-			top: 0 !important
-			&.#{$mod-top}, &.#{$mod-bottom}
-				position: relative !important
+	// @include media(new-breakpoint(max-width 992px 6))
+	// 	.#{$nav-bar-float-class}
+	// 		position: relative !important
+	// 		top: 0 !important
+	// 		&.#{$mod-top}, &.#{$mod-bottom}
+	// 			position: relative !important

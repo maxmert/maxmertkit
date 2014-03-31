@@ -107,20 +107,18 @@
 
 		&.#{$mod-top}
 			top: 0
-			opacity: 1
-			@include transition (top 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
+			@include transform( translateY(0) )
+			@include transition (all 0.3s ease-out 0s)
 			&.#{$mod-hidden}
-				top: -100%
-				opacity: 0
+				@include transform( translateY(-100%) )
 
 
 		&.#{$mod-bottom}
 			bottom: 0
-			opacity: 1
-			@include transition (bottom 1.5s ease-out 0s, opacity 1.5s ease-out 0s)
+			@include transition (all 0.3s ease-out 0s)
+			@include transform( translateY(0) )
 			&.#{$mod-hidden}
-				bottom: -100%
-				opacity: 0
+				@include transform( translateY(100%) )
 
 
 		@each $theme in $themes

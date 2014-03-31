@@ -16,6 +16,8 @@ path =
 		'../docs/js/bower/angular/**/*.min.js'
 		'../docs/js/bower/angular-route/angular-route.js'
 		'!../docs/js/bower/angular-route/angular-route.min.js'
+		'../docs/js/bower/threejs/build/three.min.js'
+		'../docs/js/bower/sparksjs/Sparks.js'
 		'../docs/js/bower/**/*.min.js'
 		'../docs/js/bower/**/*.pack.js'
 		'../docs/js/libs/**/*.js'

@@ -5265,5 +5265,10 @@ a.-avatar {
 @media screen and (max-width: 768px) {
   .-comments .-comment .-comment-block._hidden_, .-comments .-comment .-comment-block ._hidden_ {
     opacity: 1; } }
+.-sparks {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0; }
 
 /*# sourceMappingURL=commercial.sass.map */
