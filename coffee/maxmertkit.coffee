@@ -1,3 +1,8 @@
+_globalRotation =
+	x: 0
+	y: 0
+	z: 0
+
 class MaxmertkitHelpers
 	_id: 0
 	_instances: new Array()
@@ -134,6 +139,18 @@ class MaxmertkitHelpers
 		else
 
 			yes
+
+
+
+	# 3D
+	_setGlobalRotation: (x, y, z) ->
+		_globalRotation =
+			x: x
+			y: y
+			z: z
+
+	_getGlobalRotation: ->
+		_globalRotation
 
 
 

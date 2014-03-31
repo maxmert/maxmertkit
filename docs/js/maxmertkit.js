@@ -1,5 +1,11 @@
 (function() {
-  var MaxmertkitHelpers;
+  var MaxmertkitHelpers, _globalRotation;
+
+  _globalRotation = {
+    x: 0,
+    y: 0,
+    z: 0
+  };
 
   MaxmertkitHelpers = (function() {
     MaxmertkitHelpers.prototype._id = 0;
@@ -158,6 +164,18 @@
       } else {
         return true;
       }
+    };
+
+    MaxmertkitHelpers.prototype._setGlobalRotation = function(x, y, z) {
+      return _globalRotation = {
+        x: x,
+        y: y,
+        z: z
+      };
+    };
+
+    MaxmertkitHelpers.prototype._getGlobalRotation = function() {
+      return _globalRotation;
     };
 
     return MaxmertkitHelpers;

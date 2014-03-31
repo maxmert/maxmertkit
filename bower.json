@@ -33,7 +33,9 @@
     "jquery": "~2.0.3",
     "highlightjs-scss": "~7.3.0",
     "angular-highlightjs": "~0.1.3",
-    "threejs": "*"
+    "threejs": "*",
+    "sparksjs": "*",
+    "tweenjs": "*"
   },
   "devDependencies": {
     "jquery.event.swipe": "~0.5.2"

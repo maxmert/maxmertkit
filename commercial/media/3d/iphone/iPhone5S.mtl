@@ -1,0 +1,119 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# Fichier créé: 14.09.2013 18:11:22
+
+newmtl 03___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.8118 0.8196 0.8392
+	Kd 0.8118 0.8196 0.8392
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Diffuse Body 1.jpg
+	map_Kd Textures\Diffuse Body 1.jpg
+	map_refl Map__10_Réflexion_réfraction.tga
+
+newmtl 02___Default
+	Ns 21.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.7830 0.7830 0.7830
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Diffuse Screen.jpg
+	map_Kd Textures\Diffuse Screen.jpg
+	map_refl Map__8_Réflexion_réfraction.tga
+
+newmtl 01___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Diffuse Body 1.jpg
+	map_Kd Textures\Diffuse Body 1.jpg
+	map_refl Map__12_Réflexion_réfraction.tga
+
+newmtl 09___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Bouton Diffuse 1.jpg
+	map_Kd Textures\Bouton Diffuse 1.jpg
+	map_refl Map__15_Réflexion_réfraction.tga
+
+newmtl 07___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Diffuse Body 2.jpg
+	map_Kd Textures\Diffuse Body 2.jpg
+	map_refl Map__13_Réflexion_réfraction.tga
+
+newmtl 08___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Bouton Diffuse 1.jpg
+	map_Kd Textures\Bouton Diffuse 1.jpg
+	map_refl Map__14_Réflexion_réfraction.tga
+
+newmtl 13___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1059 0.1059 0.1059
+	Kd 0.1059 0.1059 0.1059
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 14___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\Bouton Diffuse 2.jpg
+	map_Kd Textures\Bouton Diffuse 2.jpg
+	map_refl Map__16_Réflexion_réfraction.tga

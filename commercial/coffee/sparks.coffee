@@ -52,21 +52,9 @@ class Sparks extends MaxmertkitHelpers
 
 			# switch key
 
-			# 	when 'stepSelect'
-			# 		@sparksItems = []
-			# 		@active = 0
-			# 		@$el.find( value ).each ( index, step ) =>
-			# 			@sparksItems.push $(step)
-					
-			# 		@sparksItems.sort _compareSparks
-
 			# 	when 'sparks'
 			# 		if value? and value.length
 			# 			@sparks = value
-
-			# 	when 'begin'
-			# 		if typeof value isnt 'number'
-			# 			@options[key] = value * 1
 
 			# 	else
 			# 		@options[key] = value
@@ -115,6 +103,8 @@ class Sparks extends MaxmertkitHelpers
 
 # =============== Private methods
 _scene = _particleCloud = null
+_self = null
+_accelerate = null
 
 _animate = =>
 	if _particleCloud?
@@ -130,17 +120,29 @@ _render = ->
 	delta = time - oldTime
 	oldTime = time
 	delta = 1000 / 60  if isNaN(delta) or delta > 1000 or delta is 0
+
+	if _particleCloud?
+		globalRotation = _self._getGlobalRotation()
+		# _particleCloud.rotation.x = globalRotation.x
+		# _particleCloud.rotation.y = globalRotation.y
+		# _particleCloud.rotation.z = globalRotation.z
+		if _accelerate?
+			# _accelerate.acceleration.x = globalRotation.y
+			_scene.camera.rotation.y = -globalRotation.y * 0.05
 	
 	_scene.renderer.render( _scene, _scene.camera )
 
 _initialize = ->
 	@_refreshSizes()
 
+	_self = @
+	
 	_scene = @scene = new THREE.Scene()
 	@scene.camera = new THREE.PerspectiveCamera 45, @_windowWidth / @_windowHeight, 0.1, 10000
 	@scene.camera.position.y = - @scroll.scrollTop() * @options.axes
 	@scene.camera.position.x = 0
 	@scene.camera.position.z = 0
+	# @scene.camera.lookAt( @scene.camera.position )
 	@scene.add @scene.camera
 
 	@scene.renderer = new THREE.WebGLRenderer
@@ -262,7 +264,7 @@ _initializeParticles = ->
 	sparksEmitter.addInitializer new SPARKS.Target(null, setTargetParticle)
 	sparksEmitter.addInitializer new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3( 0.00002, 0.00002, 0.00002 )))
 
-	@accelerate = new SPARKS.Accelerate( 0, 0, 0 )
+	_accelerate = @accelerate = new SPARKS.Accelerate( 0, 0, 0 )
 	@random = new SPARKS.RandomDrift(@options.random.x, @options.random.y, @options.random.z)
 
 	# TOTRY Set velocity to move away from centroid
@@ -272,11 +274,12 @@ _initializeParticles = ->
 	sparksEmitter.addAction @random
 	sparksEmitter.addCallback "created", onParticleCreated
 	sparksEmitter.addCallback "dead", onParticleDead
-	# sparksEmitter.addCallback("loopUpdated", engineLoopUpdate)
+	
 	sparksEmitter.start()
 
 
 	@scene.add @particleCloud
+	# @scene.camera.lookAt( emitterpos )
 
 
 
