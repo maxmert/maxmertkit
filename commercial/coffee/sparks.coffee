@@ -19,12 +19,12 @@ class Sparks extends MaxmertkitHelpers
 		
 		_options =
 			kind: @$el.data('kind') or 'sparks'
-			quantity: @$el.data('quantity') or 100
+			quantity: @$el.data('quantity')*1 or 100
 			texture: @$el.data('texture') or null
-			color: @$el.data('color') or 0x777777
-			size: @$el.data('size') or 0.1
-			accelerate: @$el.data('accelerate') or 0.8
-			axes: @$el.data('axes') or 0.05
+			color: @$el.data('color') or '0.1,0.1,0.1'
+			size: @$el.data('size')*1 or 0.1
+			accelerate: @$el.data('accelerate')*1 or 0.8
+			axes: @$el.data('axes')*1 or 0.05
 			random:
 				x: 50
 				y: 50
@@ -50,14 +50,13 @@ class Sparks extends MaxmertkitHelpers
 			if not @options[key]?
 				return console.error "Maxmertkit Sparks. You're trying to set unpropriate option."
 
-			# switch key
+			switch key
 
-			# 	when 'sparks'
-			# 		if value? and value.length
-			# 			@sparks = value
+				when 'color'
+					@options[key] = value.split ','
 
-			# 	else
-			# 		@options[key] = value
+				else
+					@options[key] = value
 			
 			if typeof value is 'function'
 				@[key] = @options[key]
@@ -126,9 +125,9 @@ _render = ->
 		# _particleCloud.rotation.x = globalRotation.x
 		# _particleCloud.rotation.y = globalRotation.y
 		# _particleCloud.rotation.z = globalRotation.z
-		if _accelerate?
+		# if _accelerate?
 			# _accelerate.acceleration.x = globalRotation.y
-			_scene.camera.rotation.y = -globalRotation.y * 0.05
+		_particleCloud.rotation.y = globalRotation.y
 	
 	_scene.renderer.render( _scene, _scene.camera )
 
@@ -141,8 +140,8 @@ _initialize = ->
 	@scene.camera = new THREE.PerspectiveCamera 45, @_windowWidth / @_windowHeight, 0.1, 10000
 	@scene.camera.position.y = - @scroll.scrollTop() * @options.axes
 	@scene.camera.position.x = 0
-	@scene.camera.position.z = 0
-	# @scene.camera.lookAt( @scene.camera.position )
+	@scene.camera.position.z = 300
+	# @scene.camera.lookAt( new THREE.Vector3( 0,0,0 ) )
 	@scene.add @scene.camera
 
 	@scene.renderer = new THREE.WebGLRenderer
@@ -166,7 +165,7 @@ _initializeParticles = ->
 	particleslength = @options.quantity
 	particles = new THREE.Geometry()
 	particles.dynamic = yes
-	emitterpos = new THREE.Vector3( 0, -400, -300 )
+	emitterpos = new THREE.Vector3( 0, 0, 0 )
 
 	newpos = (x, y, z) =>
 		return new THREE.Vector3(x, y, z)
@@ -200,10 +199,11 @@ _initializeParticles = ->
 		map = null
 
 	material = new THREE.ParticleSystemMaterial
-		color: @options.color
+		color: new THREE.Color().setRGB @options.color[0], @options.color[1], @options.color[2]
 		map: map
 		size: @options.size
 		sizeAttenuation: yes
+		transparent: true
 
 	_particleCloud = @particleCloud = new THREE.ParticleSystem( particles, material )
 	@particleCloud.dynamic = yes
@@ -239,12 +239,19 @@ _initializeParticles = ->
 				else
 					multiplyer = 1
 				emitterpos.x = multiplyer * Math.floor(Math.random() * 500) + 0
-				emitterpos.z = - (Math.floor(Math.random() * 800) + 300)
+				
+				if Math.random() > 0.5
+					multiplyer = -1
+				else
+					multiplyer = 1
+				emitterpos.z = multiplyer * (Math.floor(Math.random() * 200) + 10)
+				
 				if Math.random() > 0.5
 					multiplyer = -1
 				else
 					multiplyer = 1
 				emitterpos.y = multiplyer * Math.floor(Math.random() * 500) + 0
+				
 				particles.vertices[target] = p.position
 
 

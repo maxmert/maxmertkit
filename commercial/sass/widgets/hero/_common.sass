@@ -15,7 +15,7 @@
 			&:hover
 				color: lighten(nth($themes-white-colors, $i), 15%)
 
-		.#{$wall-image-class}
+		.#{$hero-image-class}
 			figure figcaption
 				color: lighten(nth($themes-white-colors, $i), 15%)
 
@@ -28,6 +28,11 @@
 		min-height: 70%
 		background-size: cover
 		overflow: hidden
+
+		.-product
+			z-index: 2
+		.-sparks
+			z-index: 3
 
 
 		.#{$scroller-class}

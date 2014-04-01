@@ -3791,6 +3791,10 @@ a.-avatar {
   background-color: black; }
   .-wall hr {
     background-color: white; }
+  .-wall .-product {
+    z-index: 2; }
+  .-wall .-sparks {
+    z-index: 3; }
   .-wall .-scroller {
     position: absolute;
     z-index: 5;
@@ -3891,7 +3895,8 @@ a.-avatar {
     min-width: 100%;
     min-height: 100%;
     width: auto;
-    height: auto; }
+    height: auto;
+    top: 0; }
   .-wall .-wall-image figure figcaption {
     position: absolute;
     z-index: 5;
@@ -4104,6 +4109,10 @@ a.-avatar {
   min-height: 70%;
   background-size: cover;
   overflow: hidden; }
+  .-hero .-product {
+    z-index: 2; }
+  .-hero .-sparks {
+    z-index: 3; }
   .-hero .-scroller {
     position: absolute;
     top: 100%;
@@ -4211,7 +4220,7 @@ a.-avatar {
       color: #cccccc; }
       .-hero._invert_ a:hover {
         color: #f2f2f2; }
-    .-hero._invert_ .-wall-image figure figcaption {
+    .-hero._invert_ .-hero-image figure figcaption {
       color: #f2f2f2; }
   .-hero.-default-._invert_ {
     color: #f2f2f2; }
@@ -4221,7 +4230,7 @@ a.-avatar {
       color: #cccccc; }
       .-hero.-default-._invert_ a:hover {
         color: #f2f2f2; }
-    .-hero.-default-._invert_ .-wall-image figure figcaption {
+    .-hero.-default-._invert_ .-hero-image figure figcaption {
       color: #f2f2f2; }
   .-hero.-primary-._invert_ {
     color: white; }
@@ -4231,7 +4240,7 @@ a.-avatar {
       color: white; }
       .-hero.-primary-._invert_ a:hover {
         color: white; }
-    .-hero.-primary-._invert_ .-wall-image figure figcaption {
+    .-hero.-primary-._invert_ .-hero-image figure figcaption {
       color: white; }
   .-hero.-error-._invert_ {
     color: white; }
@@ -4241,7 +4250,7 @@ a.-avatar {
       color: white; }
       .-hero.-error-._invert_ a:hover {
         color: white; }
-    .-hero.-error-._invert_ .-wall-image figure figcaption {
+    .-hero.-error-._invert_ .-hero-image figure figcaption {
       color: white; }
   .-hero.-warning-._invert_ {
     color: white; }
@@ -4251,7 +4260,7 @@ a.-avatar {
       color: white; }
       .-hero.-warning-._invert_ a:hover {
         color: white; }
-    .-hero.-warning-._invert_ .-wall-image figure figcaption {
+    .-hero.-warning-._invert_ .-hero-image figure figcaption {
       color: white; }
 
 @media screen and (max-width: 768px) {
@@ -5266,7 +5275,7 @@ a.-avatar {
   .-comments .-comment .-comment-block._hidden_, .-comments .-comment .-comment-block ._hidden_ {
     opacity: 1; } }
 .-sparks {
-  position: fixed;
+  position: absolute;
   z-index: -1;
   top: 0;
   left: 0; }

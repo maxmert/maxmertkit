@@ -122,7 +122,7 @@ class Wall extends MaxmertkitHelpers
 		if not @deviceMobile
 			_parallax.call @
 
-		if @video or @image then @$el.addClass '_invert_'
+		# if @video or @image then @$el.addClass '_invert_'
 
 
 		$(window).on "resize.#{@_name}.#{@_id}", =>

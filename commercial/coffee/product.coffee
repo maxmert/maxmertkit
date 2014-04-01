@@ -80,11 +80,11 @@ class Product extends MaxmertkitHelpers
 
 	
 	activate: ->
-		@scroll = @_getScrollParent(@el)
+		@container = $ @_getContainer @el
 
 		$(window).on "resize.#{@_name}.#{@_id}", =>
 			@_refreshSizes()
-			@scene.renderer.setSize @_windowWidth, @_windowHeight
+			@scene.renderer.setSize @container.width(), @container.height()
 			
 	hide: ->
 	
@@ -101,6 +101,7 @@ _scene = null
 _product = null
 _targetRotation = 0
 _self = null
+_container = null
 
 _animate = =>
 
@@ -132,7 +133,8 @@ _initialize = ->
 	@_refreshSizes()
 	_self = @
 	_scene = @scene = new THREE.Scene()
-	@scene.camera = new THREE.PerspectiveCamera 45, 600 / 600, 0.1, 10000
+	_container = @container
+	@scene.camera = new THREE.PerspectiveCamera 45, _container.width() / _container.height(), 0.1, 10000
 	
 	@scene.camera.position.x = @cameraPosition[0]
 	@scene.camera.position.y = @cameraPosition[1]
@@ -149,7 +151,7 @@ _initialize = ->
 		alpha: yes
 	@scene.renderer.autoClear = no
 	@scene.renderer.clearAlpha = 1
-	@scene.renderer.setSize 600, 600
+	@scene.renderer.setSize _container.width(), _container.height()
 	@scene.renderer.domElement.className = "-#{@_name}"
 	@$el.append @scene.renderer.domElement
 
