@@ -22,6 +22,20 @@ class Product extends MaxmertkitHelpers
 			model: @$el.data('model') or null
 			position: @$el.data('position') or '0,0,0'
 			camera: @$el.data('camera') or '0,0,-100'
+
+			# light
+			lightDirect: @$el.data('light-direct') or yes
+			lightDirectColor: @$el.data('light-direct-color') or '255,255,255'
+			lightDirectPosition: @$el.data('light-direct-position') or '-1,0.75,1'
+			lightDirectIntensity: @$el.data('light-direct-intensity') or 1
+
+			lightGlobal: @$el.data('light-global') or yes
+			lightGlobalIntensity: @$el.data('light-global-intensity') or 0.005
+			lightGlobalPosition: @$el.data('light-global-position') or '0,500,0'
+			lightGlobalColor: @$el.data('light-global-color') or '230, 233, 212'
+			lightGlobalGroundColor: @$el.data('light-global-ground-color') or '106,77,65'
+
+			initialize: ->
 		
 		@options = @_merge _options, @options
 
@@ -40,37 +54,75 @@ class Product extends MaxmertkitHelpers
 			if not @options[key]?
 				return console.error "Maxmertkit Product. You're trying to set unpropriate option."
 
-			switch key
+			if value?
+				switch key
 
-				when 'model'
-					if value?
+					when 'model'
+						if value?
 
-						loader = new THREE.OBJMTLLoader()
-						mtl = "#{value.substring(0, value.lastIndexOf('.')+1)}mtl"
-						
-						loader.load value, mtl, ( object ) =>
-							@product = object
-							_initialize.call @
-							_animate.call @
+							loader = new THREE.OBJMTLLoader()
+							mtl = "#{value.substring(0, value.lastIndexOf('.')+1)}mtl"
+							
+							loader.load value, mtl, ( object ) =>
 
-				when 'position'
-					if value?
+								object.traverse ( child ) =>
+									if child instanceof THREE.Mesh
+										# smooth = child.geometry.clone()
+										child.geometry.mergeVertices()
+										child.geometry.computeVertexNormals()
+										# modifier = new THREE.SubdivisionModifier(2)
+										# modifier.modify( smooth )
+										# child.geometry = smooth
+
+									
+
+								@product = object
+								_initialize.call @
+								_animate.call @
+
+					
+
+					when 'lightDirectColor'
+						@options[key] = _stringToRGB value
+
+					when 'lightDirectPosition'
+						@options[key] = _stringToPosition value
+
+					when 'lightDirectIntensity'
+						@options[key] = parseFloat value
+
+
+
+					when 'lightGlobalColor'
+						@options[key] = _stringToRGB value
+
+					when 'lightGlobalGroundColor'
+						@options[key] = _stringToRGB value
+
+					when 'lightGlobalPosition'
+						@options[key] = _stringToPosition value
+
+					when 'lightGlobalIntensity'
+						@options[key] = parseFloat value
+
+
+
+					when 'position'
 						@productPosition = value.split ','
 						for val, index in @productPosition
 							@productPosition[index] = val * 1
 
-				when 'camera'
-					if value?
+					when 'camera'
 						@cameraPosition = value.split ','
 						for val, index in @cameraPosition
 							@cameraPosition[index] = val * 1
 
 
-				else
-					@options[key] = value
-			
-			if typeof value is 'function'
-				@[key] = @options[key]
+					else
+						@options[key] = value
+				
+				if typeof value is 'function'
+					@[key] = @options[key]
 
 
 
@@ -149,9 +201,15 @@ _initialize = ->
 		physicallyBasedShading: yes
 		shadowMapEnabled: yes
 		alpha: yes
+	
 	@scene.renderer.autoClear = no
 	@scene.renderer.clearAlpha = 1
+	@scene.renderer.shadowMapEnabled = yes
+	@scene.renderer.shadowMapType = THREE.PCFShadowMap
+	@scene.renderer.gammaInput = true
+	@scene.renderer.gammaOutput = true
 	@scene.renderer.setSize _container.width(), _container.height()
+	
 	@scene.renderer.domElement.className = "-#{@_name}"
 	@$el.append @scene.renderer.domElement
 
@@ -164,34 +222,37 @@ _initialize = ->
 	
 	
 
-	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 )
-	hemiLight.color.setHSL( 0.6, 1, 0.6 )
-	hemiLight.groundColor.setHSL( 0.095, 1, 0.75 )
-	hemiLight.position.set( 0, 500, 0 )
-	@scene.add( hemiLight )
+	if @options.lightGlobal
+		hemiLight = new THREE.HemisphereLight( @options.lightGlobalColor, @options.lightGlobalGroundColor, @options.lightGlobalIntensity )
+		# hemiLight.color = @options.lightGlobalColor
+		# hemiLight.groundColor = @options.lightGlobalGroundColor
+		hemiLight.position = @options.lightGlobalPosition
+		# console.log typeof @options.lightGlobalIntensity
+		@scene.add( hemiLight )
 
 
-	dirLight = new THREE.DirectionalLight( 0xffffff, 1 )
-	dirLight.color.setHSL( 0.1, 1, 0.95 )
-	dirLight.position.set( -1, 1.75, 1 )
-	dirLight.position.multiplyScalar( 50 )
-	@scene.add( dirLight )
+	if @options.lightDirect
+		dirLight = new THREE.DirectionalLight( 0xffffff, @options.lightDirectIntensity )
+		dirLight.color = @options.lightDirectColor
+		dirLight.position = @options.lightDirectPosition
+		dirLight.position.multiplyScalar( 50 )
+		@scene.add( dirLight )
 
-	dirLight.castShadow = true
+		dirLight.castShadow = true
 
-	dirLight.shadowMapWidth = 2048
-	dirLight.shadowMapHeight = 2048
+		dirLight.shadowMapWidth = 2048
+		dirLight.shadowMapHeight = 2048
 
-	d = 50
+		d = 50
 
-	dirLight.shadowCameraLeft = -d
-	dirLight.shadowCameraRight = d
-	dirLight.shadowCameraTop = d
-	dirLight.shadowCameraBottom = -d
+		dirLight.shadowCameraLeft = -d
+		dirLight.shadowCameraRight = d
+		dirLight.shadowCameraTop = d
+		dirLight.shadowCameraBottom = -d
 
-	dirLight.shadowCameraFar = 3500
-	dirLight.shadowBias = -0.0001
-	dirLight.shadowDarkness = 0.35
+		dirLight.shadowCameraFar = 3500
+		dirLight.shadowBias = -0.0001
+		dirLight.shadowDarkness = 0.35
 
 
 	_rendererDom = document
@@ -205,6 +266,8 @@ _initialize = ->
 
 	windowHalfX = window.innerWidth / 2
 	windowHalfY = window.innerHeight / 2
+
+
 
 	onDocumentMouseDown = (event) =>
 		event.preventDefault()
@@ -245,6 +308,42 @@ _initialize = ->
 	_rendererDom.addEventListener( 'touchstart', onDocumentTouchStart, false )
 	_rendererDom.addEventListener( 'touchmove', onDocumentTouchMove, false )
 
+
+	if @options.initialize? and typeof @options.initialize is 'function'
+		@options.initialize.call @
+
+
+
+
+# PRIVATE METHODS
+_stringToRGB = ( string ) ->
+	array = string.split ','
+
+	for item, index in array
+		item[index] = parseInt( item )
+	
+	new THREE.Color().setRGB(array[0], array[1], array[2])
+
+
+_stringToPosition = ( string ) ->
+	array = string.split ','
+	
+	for item, index in array
+		array[index] = item * 1
+	
+	new THREE.Vector3 array[0], array[1], array[2]
+
+
+_morphColorsToFaceColors = (geometry) ->
+	if geometry.morphColors and geometry.morphColors.length
+		colorMap = geometry.morphColors[0]
+		i = 0
+
+		while i < colorMap.colors.length
+			geometry.faces[i].color = colorMap.colors[i]
+			geometry.faces[i].color.offsetHSL 0, 0.3, 0
+			i++
+	return
 
 
 $.fn[_name] = (options) ->
