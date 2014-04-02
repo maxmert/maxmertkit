@@ -26,7 +26,7 @@ class Product extends MaxmertkitHelpers
 			# light
 			lightDirect: @$el.data('light-direct') or yes
 			lightDirectColor: @$el.data('light-direct-color') or '255,255,255'
-			lightDirectPosition: @$el.data('light-direct-position') or '-1,0.75,1'
+			lightDirectPosition: @$el.data('light-direct-position') or '0,0.3{,0'
 			lightDirectIntensity: @$el.data('light-direct-intensity') or 1
 
 			lightGlobal: @$el.data('light-global') or yes
@@ -34,6 +34,12 @@ class Product extends MaxmertkitHelpers
 			lightGlobalPosition: @$el.data('light-global-position') or '0,500,0'
 			lightGlobalColor: @$el.data('light-global-color') or '230, 233, 212'
 			lightGlobalGroundColor: @$el.data('light-global-ground-color') or '106,77,65'
+
+			# floor
+			floor: @$el.data('floor') or yes
+			floorColor: @$el.data('floor-color') or '255,255,255'
+			floorPosition: @$el.data('floor-position') or '0,-0.4,0'
+			floorSize: @$el.data('floor-size') or 20
 
 			initialize: ->
 		
@@ -77,6 +83,8 @@ class Product extends MaxmertkitHelpers
 									
 
 								@product = object
+								@product.castShadow = yes
+								@product.receiveShadow = yes
 								_initialize.call @
 								_animate.call @
 
@@ -104,6 +112,20 @@ class Product extends MaxmertkitHelpers
 
 					when 'lightGlobalIntensity'
 						@options[key] = parseFloat value
+
+
+
+
+					when 'floorColor'
+						@options[key] = _stringToRGB value
+
+					when 'floorPosition'
+						@options[key] = _stringToPosition value
+
+					when 'floorSize'
+						@options[key] = parseFloat value
+
+
 
 
 
@@ -157,6 +179,10 @@ _container = null
 
 _animate = =>
 
+	timer = Date.now() * 0.0002;
+	_scene.camera.lookAt(_scene.position)
+	_scene.camera.position.x = Math.cos(timer) * 2
+	_scene.camera.position.z = Math.sin(timer) * 2
 	requestAnimationFrame _animate
 
 	_render()
@@ -192,14 +218,16 @@ _initialize = ->
 	@scene.camera.position.y = @cameraPosition[1]
 	@scene.camera.position.z = @cameraPosition[2]
 
+
 	@scene.camera.rotation.x = @scene.camera.rotation.y = @scene.camera.rotation.z = 0
+	@scene.camera.rotation.x = -10 * Math.PI / 180
 
 	@scene.add @scene.camera
 
 	@scene.renderer = new THREE.WebGLRenderer
 		antialias: yes
-		physicallyBasedShading: yes
-		shadowMapEnabled: yes
+		# physicallyBasedShading: yes
+		# shadowMapEnabled: yes
 		alpha: yes
 	
 	@scene.renderer.autoClear = no
@@ -214,6 +242,7 @@ _initialize = ->
 	@$el.append @scene.renderer.domElement
 
 	_product = @product
+	@product.scale.set 1, 1, 1
 	@product.position.set @productPosition[0], @productPosition[1], @productPosition[2]
 	# @scene.camera.lookAt( @product.position )
 	# @product.rotation.y = 90 * Math.PI / 180
@@ -222,37 +251,93 @@ _initialize = ->
 	
 	
 
-	if @options.lightGlobal
-		hemiLight = new THREE.HemisphereLight( @options.lightGlobalColor, @options.lightGlobalGroundColor, @options.lightGlobalIntensity )
-		# hemiLight.color = @options.lightGlobalColor
-		# hemiLight.groundColor = @options.lightGlobalGroundColor
-		hemiLight.position = @options.lightGlobalPosition
-		# console.log typeof @options.lightGlobalIntensity
-		@scene.add( hemiLight )
+	# if @options.lightGlobal
+	# 	hemiLight = new THREE.HemisphereLight( @options.lightGlobalColor, @options.lightGlobalGroundColor, @options.lightGlobalIntensity )
+	# 	# hemiLight.color = @options.lightGlobalColor
+	# 	# hemiLight.groundColor = @options.lightGlobalGroundColor
+	# 	hemiLight.position = @options.lightGlobalPosition
+	# 	# console.log typeof @options.lightGlobalIntensity
+	# 	@scene.add( hemiLight )
 
 
 	if @options.lightDirect
 		dirLight = new THREE.DirectionalLight( 0xffffff, @options.lightDirectIntensity )
 		dirLight.color = @options.lightDirectColor
 		dirLight.position = @options.lightDirectPosition
-		dirLight.position.multiplyScalar( 50 )
+		dirLight.position.multiplyScalar( 1.3 )
 		@scene.add( dirLight )
 
 		dirLight.castShadow = true
+		dirLight.shadowCameraVisible = yes
 
-		dirLight.shadowMapWidth = 2048
-		dirLight.shadowMapHeight = 2048
+		dirLight.shadowMapWidth = 512
+		dirLight.shadowMapHeight = 512
 
-		d = 50
+		d = 200
 
+		# dirLight.target = @product
 		dirLight.shadowCameraLeft = -d
 		dirLight.shadowCameraRight = d
 		dirLight.shadowCameraTop = d
 		dirLight.shadowCameraBottom = -d
 
-		dirLight.shadowCameraFar = 3500
-		dirLight.shadowBias = -0.0001
-		dirLight.shadowDarkness = 0.35
+		dirLight.shadowCameraFar = 1000
+		dirLight.shadowBias = 0.01
+		dirLight.shadowDarkness = 0.5
+
+
+
+
+	# ambient = new THREE.AmbientLight( 0x444444 )
+	# @scene.add( ambient )
+
+	# light = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI / 2, 1 )
+	# light.position.set( 0, 2, 0 )
+	# light.target.position.set( 0, 0, 0 )
+
+	# light.castShadow = true
+
+	# light.shadowCameraNear = 1200
+	# light.shadowCameraFar = 2500
+	# light.shadowCameraFov = 50
+
+	# light.shadowCameraVisible = true
+
+	# light.shadowBias = 0.01
+	# light.shadowDarkness = 0.5
+
+	# light.shadowMapWidth = 2048
+	# light.shadowMapHeight = 1024
+
+	# @scene.add( light )
+
+
+
+
+
+	if @options.floor
+		geometryFloor = new THREE.PlaneGeometry( @options.floorSize, @options.floorSize )
+		materialFloor = new THREE.MeshPhongMaterial color: 0xffdd99 
+		materialFloor.ambient = materialFloor.color
+		planeFloor = new THREE.Mesh( geometryFloor, materialFloor )
+		planeFloor.position = @options.floorPosition
+		# planeFloor.scale.set( 100, 100, 100 )
+		planeFloor.rotation.x = - Math.PI / 2
+		planeFloor.castShadow = no
+		planeFloor.receiveShadow = yes
+		@scene.add( planeFloor )
+
+	boxgeometry = new THREE.CubeGeometry(1, 1, 1)
+	boxmaterial = new THREE.MeshLambertMaterial
+		color: 0x0aeedf
+
+	cube = new THREE.Mesh(boxgeometry, boxmaterial);
+	cube.castShadow = true;
+	cube.position.x = 0;
+	cube.position.y = 0.3;
+	cube.position.z = 0;
+
+	@scene.add(cube)
 
 
 	_rendererDom = document
