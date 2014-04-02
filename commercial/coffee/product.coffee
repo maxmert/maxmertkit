@@ -26,19 +26,19 @@ class Product extends MaxmertkitHelpers
 			# light
 			lightDirect: @$el.data('light-direct') or yes
 			lightDirectColor: @$el.data('light-direct-color') or '255,255,255'
-			lightDirectPosition: @$el.data('light-direct-position') or '0,0.3{,0'
+			lightDirectPosition: @$el.data('light-direct-position') or '0,0.3,0'
 			lightDirectIntensity: @$el.data('light-direct-intensity') or 1
 
 			lightGlobal: @$el.data('light-global') or yes
-			lightGlobalIntensity: @$el.data('light-global-intensity') or 0.005
-			lightGlobalPosition: @$el.data('light-global-position') or '0,500,0'
-			lightGlobalColor: @$el.data('light-global-color') or '230, 233, 212'
-			lightGlobalGroundColor: @$el.data('light-global-ground-color') or '106,77,65'
+			lightGlobalIntensity: @$el.data('light-global-intensity') or 0.004
+			# lightGlobalPosition: @$el.data('light-global-position') or '0,0,0'
+			lightGlobalColor: @$el.data('light-global-color') or '229, 229, 229'
+			lightGlobalGroundColor: @$el.data('light-global-ground-color') or '178,178,178'
 
 			# floor
-			floor: @$el.data('floor') or yes
-			floorColor: @$el.data('floor-color') or '255,255,255'
-			floorPosition: @$el.data('floor-position') or '0,-0.4,0'
+			floor: @$el.data('floor') or no
+			floorColor: @$el.data('floor-color') or '254,254,254'
+			floorPosition: @$el.data('floor-position') or '0,0,0'
 			floorSize: @$el.data('floor-size') or 20
 
 			initialize: ->
@@ -76,6 +76,7 @@ class Product extends MaxmertkitHelpers
 										# smooth = child.geometry.clone()
 										child.geometry.mergeVertices()
 										child.geometry.computeVertexNormals()
+										child.castShadow = yes
 										# modifier = new THREE.SubdivisionModifier(2)
 										# modifier.modify( smooth )
 										# child.geometry = smooth
@@ -180,9 +181,9 @@ _container = null
 _animate = =>
 
 	timer = Date.now() * 0.0002;
-	_scene.camera.lookAt(_scene.position)
-	_scene.camera.position.x = Math.cos(timer) * 2
-	_scene.camera.position.z = Math.sin(timer) * 2
+	# _scene.camera.lookAt(_scene.position)
+	# _scene.camera.position.x = Math.cos(timer) * 20
+	# _scene.camera.position.z = Math.sin(timer) * 2
 	requestAnimationFrame _animate
 
 	_render()
@@ -226,16 +227,17 @@ _initialize = ->
 
 	@scene.renderer = new THREE.WebGLRenderer
 		antialias: yes
-		# physicallyBasedShading: yes
-		# shadowMapEnabled: yes
+		physicallyBasedShading: yes
+		shadowMapEnabled: yes
 		alpha: yes
 	
 	@scene.renderer.autoClear = no
 	@scene.renderer.clearAlpha = 1
 	@scene.renderer.shadowMapEnabled = yes
-	@scene.renderer.shadowMapType = THREE.PCFShadowMap
-	@scene.renderer.gammaInput = true
-	@scene.renderer.gammaOutput = true
+	# @scene.renderer.shadowMapType = THREE.PCFShadowMap
+	@scene.renderer.shadowMapSoft = yes
+	# @scene.renderer.gammaInput = true
+	# @scene.renderer.gammaOutput = true
 	@scene.renderer.setSize _container.width(), _container.height()
 	
 	@scene.renderer.domElement.className = "-#{@_name}"
@@ -244,100 +246,50 @@ _initialize = ->
 	_product = @product
 	@product.scale.set 1, 1, 1
 	@product.position.set @productPosition[0], @productPosition[1], @productPosition[2]
-	# @scene.camera.lookAt( @product.position )
-	# @product.rotation.y = 90 * Math.PI / 180
+	
 
 	@scene.add( @product )
 	
 	
 
-	# if @options.lightGlobal
-	# 	hemiLight = new THREE.HemisphereLight( @options.lightGlobalColor, @options.lightGlobalGroundColor, @options.lightGlobalIntensity )
-	# 	# hemiLight.color = @options.lightGlobalColor
-	# 	# hemiLight.groundColor = @options.lightGlobalGroundColor
-	# 	hemiLight.position = @options.lightGlobalPosition
-	# 	# console.log typeof @options.lightGlobalIntensity
-	# 	@scene.add( hemiLight )
+	if @options.lightGlobal
+		hemiLight = new THREE.HemisphereLight( @options.lightGlobalColor, @options.lightGlobalGroundColor, @options.lightGlobalIntensity )
+		@scene.add( hemiLight )
 
 
 	if @options.lightDirect
 		dirLight = new THREE.DirectionalLight( 0xffffff, @options.lightDirectIntensity )
-		dirLight.color = @options.lightDirectColor
+		dirLight.color.setRGB @options.lightDirectColor.r/255, @options.lightDirectColor.g/255, @options.lightDirectColor.b/255
 		dirLight.position = @options.lightDirectPosition
-		dirLight.position.multiplyScalar( 1.3 )
-		@scene.add( dirLight )
-
 		dirLight.castShadow = true
-		dirLight.shadowCameraVisible = yes
 
 		dirLight.shadowMapWidth = 512
 		dirLight.shadowMapHeight = 512
 
-		d = 200
+		d = 2
 
-		# dirLight.target = @product
 		dirLight.shadowCameraLeft = -d
 		dirLight.shadowCameraRight = d
 		dirLight.shadowCameraTop = d
 		dirLight.shadowCameraBottom = -d
 
 		dirLight.shadowCameraFar = 1000
-		dirLight.shadowBias = 0.01
-		dirLight.shadowDarkness = 0.5
+		dirLight.shadowBias = 0.1
+		dirLight.shadowDarkness = 0.7
 
-
-
-
-	# ambient = new THREE.AmbientLight( 0x444444 )
-	# @scene.add( ambient )
-
-	# light = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI / 2, 1 )
-	# light.position.set( 0, 2, 0 )
-	# light.target.position.set( 0, 0, 0 )
-
-	# light.castShadow = true
-
-	# light.shadowCameraNear = 1200
-	# light.shadowCameraFar = 2500
-	# light.shadowCameraFov = 50
-
-	# light.shadowCameraVisible = true
-
-	# light.shadowBias = 0.01
-	# light.shadowDarkness = 0.5
-
-	# light.shadowMapWidth = 2048
-	# light.shadowMapHeight = 1024
-
-	# @scene.add( light )
-
-
-
+		@scene.add( dirLight )
 
 
 	if @options.floor
-		geometryFloor = new THREE.PlaneGeometry( @options.floorSize, @options.floorSize )
-		materialFloor = new THREE.MeshPhongMaterial color: 0xffdd99 
-		materialFloor.ambient = materialFloor.color
-		planeFloor = new THREE.Mesh( geometryFloor, materialFloor )
-		planeFloor.position = @options.floorPosition
-		# planeFloor.scale.set( 100, 100, 100 )
-		planeFloor.rotation.x = - Math.PI / 2
-		planeFloor.castShadow = no
-		planeFloor.receiveShadow = yes
-		@scene.add( planeFloor )
+		groundMaterial = new THREE.MeshPhongMaterial()
+		groundMaterial.color.setRGB @options.floorColor.r/255, @options.floorColor.g/255, @options.floorColor.b/255, 
 
-	boxgeometry = new THREE.CubeGeometry(1, 1, 1)
-	boxmaterial = new THREE.MeshLambertMaterial
-		color: 0x0aeedf
+		plane = new THREE.Mesh(new THREE.PlaneGeometry(@options.floorSize, @options.floorSize), groundMaterial)
+		plane.rotation.x = -Math.PI / 2
+		plane.position = @options.floorPosition
+		plane.receiveShadow = true
 
-	cube = new THREE.Mesh(boxgeometry, boxmaterial);
-	cube.castShadow = true;
-	cube.position.x = 0;
-	cube.position.y = 0.3;
-	cube.position.z = 0;
-
-	@scene.add(cube)
+		@scene.add(plane)
 
 
 	_rendererDom = document
@@ -405,7 +357,7 @@ _stringToRGB = ( string ) ->
 	array = string.split ','
 
 	for item, index in array
-		item[index] = parseInt( item )
+		item[index] = parseInt( item ) / 255
 	
 	new THREE.Color().setRGB(array[0], array[1], array[2])
 
