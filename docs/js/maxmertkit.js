@@ -1,6 +1,6 @@
 
 /*
-	TODO: Improove rotation
+	TODO: Improve rotation
  */
 
 (function() {

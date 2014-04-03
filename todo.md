@@ -1,7 +1,7 @@
 ### TODOs
 | Filename | line # | todo
 |:--------:|:------:|:------:
-| docs/js/maxmertkit.js | 2 | Improove rotation
+| docs/js/maxmertkit.js | 2 | Improve rotation
 
 
 ### FIXMEs
