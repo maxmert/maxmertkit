@@ -21,6 +21,7 @@ class Product extends MaxmertkitHelpers
 			kind: @$el.data('kind') or 'product'
 			model: @$el.data('model') or null
 			position: @$el.data('position') or '0,0,0'
+			scale: @$el.data('scale') or 1
 			camera: @$el.data('camera') or '0,0,-100'
 
 			# light
@@ -42,6 +43,7 @@ class Product extends MaxmertkitHelpers
 			floorSize: @$el.data('floor-size') or 20
 
 			initialize: ->
+			animate: ->
 		
 		@options = @_merge _options, @options
 
@@ -99,6 +101,10 @@ class Product extends MaxmertkitHelpers
 
 					when 'lightDirectIntensity'
 						@options[key] = parseFloat value
+
+					when 'scale'
+						@options[key] = parseFloat value
+
 
 
 
@@ -180,10 +186,9 @@ _container = null
 
 _animate = =>
 
-	timer = Date.now() * 0.0002;
-	# _scene.camera.lookAt(_scene.position)
-	# _scene.camera.position.x = Math.cos(timer) * 20
-	# _scene.camera.position.z = Math.sin(timer) * 2
+	if _self.options.animate? and typeof _self.animate is 'function'
+		_self.animate.call @
+
 	requestAnimationFrame _animate
 
 	_render()
@@ -244,7 +249,8 @@ _initialize = ->
 	@$el.append @scene.renderer.domElement
 
 	_product = @product
-	@product.scale.set 1, 1, 1
+	console.log typeof @options.scale
+	@product.scale.x = @product.scale.y = @product.scale.z = @options.scale
 	@product.position.set @productPosition[0], @productPosition[1], @productPosition[2]
 	
 
@@ -275,7 +281,7 @@ _initialize = ->
 
 		dirLight.shadowCameraFar = 1000
 		dirLight.shadowBias = 0.1
-		dirLight.shadowDarkness = 0.7
+		dirLight.shadowDarkness = 0.85
 
 		@scene.add( dirLight )
 
