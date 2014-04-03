@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Sparks.js - three.js canvas particles - random shading programs</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<style type="text/css">
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			a {
+				color:#0078ff;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!--
+
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/build/Three.js"></script>
+
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/Stats.js"></script>
+		
+		<script type="text/javascript" src="http://sole.github.com/tween.js/src/Tween.js"></script>
+		<script type="text/javascript" src="https://raw.github.com/zz85/sparks.js/master/Sparks.js"></script>
+		-->
+		<script type="text/javascript" src="js/Three.js"></script>
+
+		<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="js/Stats.js"></script>
+		
+		<script type="text/javascript" src="js/Tween.js"></script>
+		<script type="text/javascript" src="../Sparks.js"></script>
+		<script type="text/javascript" src="CanvasShaders.js"></script>
+		
+		<script type="text/javascript">
+			// Inspired from http://wonderfl.net/c/qTwn and mr doob three.js examples
+
+			var container, stats;
+			var camera, scene, renderer, group, particle;
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var lasttime = Date.now(), elapsed;
+			
+			init();
+			animate();
+			
+			var sparksEmitter;
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.Camera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera.position.z = 200; //1000
+
+				scene = new THREE.Scene();
+
+				group = new THREE.Object3D();
+				scene.add( group );
+
+
+				renderer = new THREE.CanvasRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				
+				function generateSprite() {
+
+					var canvas = document.createElement( 'canvas' );
+					canvas.width = 16;
+					canvas.height = 16;
+
+					var context = canvas.getContext( '2d' );
+					var gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
+					gradient.addColorStop( 0, 'rgba(255,255,255,1)' );
+					gradient.addColorStop( 0.2, 'rgba(0,255,255,1)' );
+					gradient.addColorStop( 0.4, 'rgba(0,0,64,1)' );
+					gradient.addColorStop( 1, 'rgba(0,0,0,1)' );
+
+					context.fillStyle = gradient;
+					context.fillRect( 0, 0, canvas.width, canvas.height );
+
+					return canvas;
+
+				}
+				
+				
+				//// EMITTER STUFF
+				var h = 0;
+				var k = 0.7;
+				
+				
+				var callback = function() {
+
+					var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.hexagons, blending:THREE.AdditiveBlending } );
+					
+					material.color.setHSV(h, 1, 0.3); //0.7
+					h += 0.001;
+					if (h>1) h-=1;
+					
+					particle = new THREE.Particle( material );
+
+					particle.scale.x = particle.scale.y = Math.random() * 10 + 4;
+					group.add( particle );	
+
+					return particle;
+				};
+				
+				var setTargetParticle2 = function() {
+
+					var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.hexagons, blending:THREE.AdditiveBlending } );
+					
+					material.color.setHSV(k, 1, 0.2); //0.7
+					k += 0.001;
+					if (k>1) k-=1;
+					
+					particle = new THREE.Particle( material );
+
+					particle.scale.x = particle.scale.y = Math.random() * 5 + 4;
+					group.add( particle );	
+
+					return particle;
+				};
+				
+				var onParticleCreated = function(p) {
+					var position = p.position;
+					p.target.position = position;	
+				};
+				
+				var onParticleDead = function(particle) {
+					particle.target.visible = false; // is this a work around?
+					group.remove(particle.target); 
+				};
+				
+				
+				sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(160));
+
+				emitterpos = new THREE.Vector3(0,0,0);
+				var sphereCap = new SPARKS.SphereCapZone(0, 0, 0, 10, 0, 40);
+
+				sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.PointZone( emitterpos ) ) );
+				sparksEmitter.addInitializer(new SPARKS.Lifetime(0,2));
+				sparksEmitter.addInitializer(new SPARKS.Target(null, callback));
+				sparksEmitter.addInitializer(new SPARKS.Velocity(sphereCap));
+
+				sparksEmitter.addAction(new SPARKS.Age());
+				sparksEmitter.addAction(new SPARKS.Accelerate(0.2));
+				sparksEmitter.addAction(new SPARKS.Move()); 
+				
+				sparksEmitter.addCallback("created", onParticleCreated);
+				sparksEmitter.addCallback("dead", onParticleDead);
+				
+				sparksEmitter2 = new SPARKS.Emitter(new SPARKS.SteadyCounter(150));
+
+				emitterpos2 = new THREE.Vector3(0,0,0);
+				
+				sparksEmitter2.addInitializer(new SPARKS.Position( new SPARKS.PointZone( emitterpos2 ) ) );
+				sparksEmitter2.addInitializer(new SPARKS.Lifetime(0,4));
+				sparksEmitter2.addInitializer(new SPARKS.Target(null, setTargetParticle2));
+				sparksEmitter2.addInitializer(new SPARKS.Velocity(sphereCap));
+
+				sparksEmitter2.addAction(new SPARKS.Age());
+				sparksEmitter2.addAction(new SPARKS.Accelerate(0.2));
+				sparksEmitter2.addAction(new SPARKS.Move()); 
+				
+				sparksEmitter2.addCallback("created", onParticleCreated);
+				sparksEmitter2.addCallback("dead", onParticleDead);
+				
+				/*
+				sparksEmitter.addCallback("updated", function(p) {
+					
+				});
+				*/
+				
+				sparksEmitter.start();
+				sparksEmitter2.start();
+
+			}
+
+			//
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+			}
+
+			function onDocumentTouchStart( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			//
+			
+
+
+			function animate(time) {
+				elapsed = time - lasttime;
+			    //console.log( elapsed);
+			    lasttime = time;
+			    // sparksEmitter.update(elapsed / 1000);
+			    // sparksEmitter2.update(elapsed / 1000);
+				
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+			
+			var _rotation = 0;
+
+			function render() {
+
+				camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+				camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+				// 
+				group.rotation.x += 0.01;
+	 			group.rotation.y += 0.02;
+				
+				_rotation += 3;
+	            
+				emitterpos.x = 100 * Math.sin(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+	            emitterpos.y = 100 * Math.cos(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+				emitterpos2.z = 100 * Math.cos(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+	            emitterpos2.y = 100 * Math.sin(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

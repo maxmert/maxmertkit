@@ -1,3 +1,6 @@
+###
+	TODO: Improve rotation
+###
 _globalRotation =
 	x: 0
 	y: 0

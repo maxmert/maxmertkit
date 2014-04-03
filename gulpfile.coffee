@@ -7,77 +7,262 @@ uglify = require 'gulp-uglify'
 watch = require 'gulp-watch'
 nodemon = require 'gulp-nodemon'
 sass = require 'gulp-ruby-sass'
-
+size = require 'gulp-size'
+todo = require 'gulp-todo'
+cache = require 'gulp-cached'
+plato = require 'gulp-plato'
+plumber = require 'gulp-plumber'
+livereload = require 'gulp-livereload'
+rev = require 'gulp-rev'
+minifyCSS = require 'gulp-minify-css'
+bytediff = require 'gulp-bytediff'
 
 
 path =
-	docsCoffee: 'docs/js/app/**/*.coffee'
-	docsJs: 'docs/js'
-	docsCss: 'docs/css'
-	server: 'docs/server/app.coffee'
+	docs:
+		front:
+			js: "docs/js"
+			css: "docs/css"
+			coffee: "docs/coffee"
+			vendor:
+				bower: "docs/js/bower"
+				libs: "docs/js/libs"
+		server:
+			app: "docs/server/app.coffee"
 
-	bower: "docs/js/bower"
-	vendor: [
-		"docs/js/bower/angular/**/*.min.js"
-		"docs/js/bower/angular-route/angular-route.js"
-		"!docs/js/bower/angular-route/angular-route.min.js"
-		"docs/js/bower/**/*.min.js"
-		"docs/js/bower/**/*.pack.js"
-		"docs/js/libs/**/*.js"
+
+	kit:
+		coffee: "coffee"
+		sass: "sass"
+		vendor:
+			bower: "js/bower"
+			libs: "js/libs"
+
+	dev: "development"
+
+	build:
+		js: "build/js"
+		css: "build/css"
+
+
+
+
+
+
+
+# ====================== DEVELOPER TASKS
+
+# Concatenate all vendors into one file
+# This vendor js is only for maxmertkit.js, no docs vendors here
+gulp.task 'kitVendor', ->
+
+	files = [
+		"#{path.kit.vendor.bower}/jquery/jquery.js"
+		# "#{path.kit.vendor.bower}/jquery.event.swipe/jquery.event.swipe.js"
+		"#{path.kit.vendor.bower}/threejs/build/three.js"
+		"#{path.kit.vendor.bower}/sparksjs/Sparks.js"
+		"#{path.kit.vendor.bower}/tweenjs/Tween.js"
+		
+		"#{path.kit.vendor.libs}/threejs.mtlLoader.js"
 	]
 
-	maxmertkitCoffee: [
-		'coffee/maxmertkit.coffee'
-		'coffee/*.coffee'
+	gulp.src( files )
+		.pipe( cache('kitVendor') )
+		.pipe( concat 'vendor.js' )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( livereload() )
+
+
+
+# Compile all kit coffee files
+# No uglyfying
+gulp.task 'kitCoffee', ->
+
+	files = [
+		"#{path.kit.coffee}/maxmertkit.coffee"
+		"#{path.kit.coffee}/**/*.coffee"
 	]
-	maxmertkitCss: 'sass/**/*.sass'
 
-
-
-
-
-gulp.task 'vendor', ->
-	gulp.src( path.vendor )
-		.pipe( concat 'vendor.js'  )
-		# .pipe( uglify() )
-		.pipe( gulp.dest path.docsJs )
-
-gulp.task 'app', ->
-	gulp.src( path.docsCoffee )
+	gulp.src( files )
+		.pipe( plumber() )
+		.pipe( cache('kitCoffee') )
 		.pipe( coffeelint() )
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
-		.pipe( concat "app.js" )
-		# .pipe( uglify() )
-		.pipe( gulp.dest path.docsJs )
+		.pipe( concat 'maxmertkit.js' )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( livereload() )
 
-gulp.task 'maxmertkitJs', ->
-	gulp.src( path.maxmertkitCoffee )
+
+# Compile all kit sass
+# No minification
+gulp.task 'kitSass', ->
+
+	files = [
+		"#{path.kit.sass}/main.sass"
+	]
+
+	gulp.src( files )
+		.pipe( plumber() )
+		.pipe( cache('kitSass') )
+		.pipe( sass( sourcemap: yes ) )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.css}" )
+		.pipe( livereload() )
+
+
+
+# Create todo.md to maintain all todos in js files
+# In coffee use multiline comments
+gulp.task 'kitTodo', ->
+
+	files = "#{path.docs.front.js}/maxmertkit.js"
+	dest = "#{path.docs.front.js}"
+
+	gulp.src( files )
+		.pipe( cache('kitTodo') )
+		.pipe( todo() )
+		.pipe( gulp.dest './' )
+
+
+
+
+
+
+
+
+
+
+
+
+# ====================== DOCUMENTATION TASKS
+
+gulp.task 'docsVendor', ->
+
+	files = [
+		"#{path.docs.front.vendor.bower}/angular/angular.js"
+		"#{path.docs.front.vendor.bower}/angular-route/angular-route.js"
+		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
+		"#{path.docs.front.vendor.bower}/angular-highlightjs/angular-highlightjs.js"
+		
+		"#{path.docs.front.vendor.libs}/scrollTo.angular.js"
+		
+	]
+
+	gulp.src( files )
+		.pipe( cache('docsVendor') )
+		.pipe( concat 'docsvendor.js' )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( livereload() )
+
+
+
+gulp.task 'docsApp', ->
+
+	files = [
+		"#{path.docs.front.coffee}/app.coffee"
+	]
+
+	gulp.src( files )
+		.pipe( cache('docsApp') )
 		.pipe( coffeelint() )
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
-		.pipe( concat "maxmertkit.js" )
-		# .pipe( uglify() )
-		.pipe( gulp.dest path.docsJs )
-		.pipe( gulp.dest 'js' )
-
-gulp.task  'maxmertkitCss', ->
-	gulp.src path.maxmertkitCss
-		.pipe sass( sourcemap: yes, quiet: yes )
-		.pipe( gulp.dest path.docsCss )
-		.pipe( gulp.dest '.' )
-		.pipe( gulp.dest 'commercial/css' )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( livereload() )
 
 
+# Compile all kit sass
+# No minification
+gulp.task 'docsSass', ->
+
+	files = [
+		"#{path.kit.sass}/developer.sass"
+	]
+
+	gulp.src( files )
+		.pipe( plumber() )
+		.pipe( cache('docsSass') )
+		.pipe( sass( sourcemap: yes ) )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.css}" )
+		.pipe( livereload() )
+
+
+
+# Starts node server
 gulp.task 'nodemon', ->
-	nodemon( script: path.server )
+	nodemon( 
+		script: path.docs.server.app
+		ext: 'server/**/*.coffee server/**/*.html'
+	)
 		# .on('restart', 'default')
 
 
 
+
+
+
+
+
+
+
+
+# ================ GLOBAL TASKS
+
 gulp.task 'watch', ->
-	gulp.watch path.vendor, ['vendor']
-	gulp.watch path.docsCoffee, ['app']
-	gulp.watch path.maxmertkitCoffee, ['maxmertkitJs']
-	gulp.watch path.maxmertkitCss, ['maxmertkitCss']
+	gulp.watch "#{path.kit.coffee}/**/*.coffee", [ 'kitCoffee' ]
+	gulp.watch "#{path.docs.front.js}/maxmertkit.js", [ 'kitTodo' ]
+	gulp.watch [ "#{path.kit.vendor.bower}/**/*.js", "#{path.kit.vendor.libs}/**/*.js" ], [ 'kitVendor' ]
+	gulp.watch "#{path.kit.sass}/**/*.sass", [ 'kitSass' ]
+	
+	gulp.watch [ "#{path.docs.front.vendor.bower}/**/*.js", "#{path.docs.front.vendor.libs}/**/*.js" ], [ 'kitVendor' ]
+	gulp.watch "#{path.kit.sass}/developer.sass", [ 'docsSass' ]
 
 
-gulp.task('default', ['vendor', 'app', 'maxmertkitJs', 'maxmertkitCss', 'watch', 'nodemon'])
+gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'docsApp', 'docsSass' ], ->
+	gulp.tasks.nodemon.fn()
+	gulp.tasks.watch.fn()
+	gulp.tasks.kitTodo.fn()
+)
+
+
+
+
+
+
+
+
+
+# ====================== BUILD TASKS
+
+gulp.task 'build', [ 'kitCoffee', 'kitSass' ], ->
+
+	
+	gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+		.pipe( bytediff.start() )
+		.pipe( uglify() )
+		.pipe( bytediff.stop() )
+		.pipe( gulp.dest "#{path.build.js}" )
+		
+		.pipe( rev() )
+		.pipe( gulp.dest "#{path.build.js}" )
+
+	
+	gulp.src( "#{path.docs.front.css}/main.css" )
+		.pipe( bytediff.start() )
+		.pipe( minifyCSS() )
+		.pipe( bytediff.stop() )
+		.pipe( gulp.dest "#{path.build.css}" )
+		
+		.pipe( rev() )
+		.pipe( gulp.dest "#{path.build.css}" )
+
+
+
+	gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+		.pipe( plato "#{path.dev}/report" )
+
+

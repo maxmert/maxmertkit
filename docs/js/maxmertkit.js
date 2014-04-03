@@ -1,3 +1,8 @@
+
+/*
+	TODO: Improve rotation
+ */
+
 (function() {
   var MaxmertkitHelpers, _globalRotation;
 
