@@ -36,11 +36,21 @@
     "gulp-coffee": "~1.4.1",
     "gulp-util": "~2.2.14",
     "gulp-concat": "~2.1.7",
-    "gulp-coffeelint": "~0.3.0",
+    "gulp-coffeelint": "~0.3.2",
     "gulp-uglify": "~0.2.1",
     "gulp-watch": "~0.5.0",
     "gulp-livereload": "~1.2.0",
     "gulp-nodemon": "~1.0.0",
-    "gulp-ruby-sass": "~0.3.1"
+    "gulp-ruby-sass": "~0.3.1",
+    "gulp-plato": "~0.2.1",
+    "gulp-size": "~0.2.0",
+    "gulp-todo": "~0.1.6",
+    "gulp-changed": "~0.3.0",
+    "gulp-cached": "0.0.3",
+    "gulp-plumber": "~0.5.6",
+    "gulp-rev": "~0.3.2",
+    "gulp-rev-all": "~0.1.0",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-bytediff": "~0.1.8"
   }
 }

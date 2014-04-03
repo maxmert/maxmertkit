@@ -4,7 +4,7 @@
   app = angular.module('docsApp', ['ngRoute', 'hljs', 'ngScrollTo']);
 
   paths = {
-    tmpl: '/templates'
+    tmpl: '/server/views/templates'
   };
 
   app.directive('menu', function() {

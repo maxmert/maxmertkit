@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - /Users/maxmert/Projects/maxmertkit-old/main/docs/js/maxmertkit.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome-ie7.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>/Users/maxmert/Projects/maxmertkit-old/main/docs/js/maxmertkit.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">69.02</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">1622</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">230.31</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">22.01</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/*
+	TODO: Improove rotation
+ */
+
+(function() {
+  var MaxmertkitHelpers, _globalRotation;
+
+  _globalRotation = {
+    x: 0,
+    y: 0,
+    z: 0
+  };
+
+  MaxmertkitHelpers = (function() {
+    MaxmertkitHelpers.prototype._id = 0;
+
+    MaxmertkitHelpers.prototype._instances = new Array();
+
+    function MaxmertkitHelpers($btn, options) {
+      this.$btn = $btn;
+      this.options = options;
+      this._pushInstance();
+      if (this._afterConstruct != null) {
+        this._afterConstruct();
+      }
+    }
+
+    MaxmertkitHelpers.prototype.destroy = function() {
+      this.$el.off(&quot;.&quot; + this._name);
+      return this._popInstance();
+    };
+
+    MaxmertkitHelpers.prototype._extend = function(object, properties) {
+      var key, val;
+      for (key in properties) {
+        val = properties[key];
+        object[key] = val;
+      }
+      return object;
+    };
+
+    MaxmertkitHelpers.prototype._merge = function(options, overrides) {
+      return this._extend(this._extend({}, options), overrides);
+    };
+
+    MaxmertkitHelpers.prototype._setOptions = function(options) {
+      return console.warning(&quot;Maxmertkit Helpers. There is no standart setOptions function.&quot;);
+    };
+
+    MaxmertkitHelpers.prototype._pushInstance = function() {
+      this._id++;
+      return this._instances.push(this);
+    };
+
+    MaxmertkitHelpers.prototype._popInstance = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i &lt; _len; index = ++_i) {
+        instance = _ref[index];
+        if (instance._id === this._id) {
+          this._instances.splice(index, 1);
+        }
+        _results.push(delete this);
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._selfish = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i &lt; _len; index = ++_i) {
+        instance = _ref[index];
+        if (this._id !== instance._id) {
+          _results.push(instance.close());
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._setTransform = function(style, transform) {
+      style.webkitTransform = transform;
+      style.MozTransform = transform;
+      return style.transform = transform;
+    };
+
+    MaxmertkitHelpers.prototype._equalNodes = function(node1, node2) {
+      return node1.get(0) === node2.get(0);
+    };
+
+    MaxmertkitHelpers.prototype._deviceMobile = function() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    MaxmertkitHelpers.prototype._refreshSizes = function() {
+      this._windowHeight = $(window).height();
+      this._windowWidth = $(window).width();
+      this._height = this.$el.height();
+      this._width = this.$el.width();
+      if (this.scroll != null) {
+        if (this.scroll[0].nodeName === &#039;BODY&#039;) {
+          return this._offset = this.$el.offset();
+        } else {
+          return this._offset = this.$el.offset();
+        }
+      } else {
+        return this._offset = this.$el.offset();
+      }
+    };
+
+    MaxmertkitHelpers.prototype._getContainer = function(el) {
+      var parent, style;
+      parent = el[0] || el;
+      while (parent = parent.parentNode) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return $(parent);
+        }
+        if (/(relative)/.test(style[&#039;position&#039;])) {
+          return parent;
+        }
+      }
+      return document.body;
+    };
+
+    MaxmertkitHelpers.prototype._getScrollParent = function(el) {
+      var parent, style;
+      parent = el[0] || el;
+      while (parent = parent.parentNode) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return $(parent);
+        }
+        if (/(auto|scroll)/.test(style[&#039;overflow&#039;] + style[&#039;overflow-y&#039;] + style[&#039;overflow-x&#039;]) &amp;&amp; $(parent)[0].nodeName !== &#039;BODY&#039;) {
+          return $(parent);
+        }
+      }
+      return $(document);
+    };
+
+    MaxmertkitHelpers.prototype._isVisible = function() {
+      return this._offset.top - this._windowHeight &lt;= this.scroll.scrollTop() &amp;&amp; this.scroll.scrollTop() &lt;= this._offset.top + this._height;
+    };
+
+    MaxmertkitHelpers.prototype._getVisiblePercent = function() {
+      var current, max, min;
+      min = this._offset.top;
+      current = this.scroll.scrollTop();
+      max = this._offset.top + this._height;
+      return (current - min) / (max - min);
+    };
+
+    MaxmertkitHelpers.prototype._scrollVisible = function() {
+      var current, max, min, percent;
+      if (this.scroll != null) {
+        min = this._offset.top - this._windowHeight;
+        max = this._offset.top + this._height + this._windowHeight;
+        current = this.scroll.scrollTop() + this._windowHeight;
+        percent = 1 - current / max;
+        return (1 &gt; percent &amp;&amp; percent &gt; 0);
+      } else {
+        return true;
+      }
+    };
+
+    MaxmertkitHelpers.prototype._setGlobalRotation = function(x, y, z) {
+      return _globalRotation = {
+        x: x,
+        y: y,
+        z: z
+      };
+    };
+
+    MaxmertkitHelpers.prototype._getGlobalRotation = function() {
+      return _globalRotation;
+    };
+
+    return MaxmertkitHelpers;
+
+  })();
+
+
+  /*
+  Adds support for the special browser events &#039;scrollstart&#039; and &#039;scrollstop&#039;.
+   */
+
+  (function() {
+    var special, uid1, uid2;
+    special = jQuery.event.special;
+    uid1 = &quot;D&quot; + (+new Date());
+    uid2 = &quot;D&quot; + (+new Date() + 1);
+    special.scrollstart = {
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          } else {
+            evt.type = &quot;scrollstart&quot;;
+            jQuery.event.trigger.apply(this, _args);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind(&quot;scroll&quot;, handler).data(uid1, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind(&quot;scroll&quot;, jQuery(this).data(uid1));
+      }
+    };
+    special.scrollstop = {
+      latency: 300,
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+            evt.type = &quot;scrollstop&quot;;
+            jQuery.event.trigger.apply(this, _args);
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind(&quot;scroll&quot;, handler).data(uid2, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind(&quot;scroll&quot;, jQuery(this).data(uid2));
+      }
+    };
+  })();
+
+  $(window).on(&quot;scrollstart.kit&quot;, function(event) {
+    return $(&#039;body&#039;).addClass(&#039;-no-pointer-events&#039;);
+  });
+
+  $(window).on(&quot;scrollstop.kit&quot;, (function(_this) {
+    return function() {
+      return $(&#039;body&#039;).removeClass(&#039;-no-pointer-events&#039;);
+    };
+  })(this));
+
+  window[&#039;MaxmertkitHelpers&#039;] = MaxmertkitHelpers;
+
+}).call(this);
+
+(function() {
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;affix&quot;;
+
+  _instances = [];
+
+  _id = 0;
+
+  Affix = (function(_super) {
+    __extends(Affix, _super);
+
+    Affix.prototype._name = _name;
+
+    Affix.prototype._instances = _instances;
+
+    function Affix(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      this.$el = $(this.el);
+      this.$el.parent().append(&#039;&amp;nbsp;&#039;);
+      this._id = _id++;
+      _options = {
+        spy: this.$el.data(&#039;spy&#039;) || &#039;affix&#039;,
+        offset: 5
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeopen = this.options.beforeopen;
+      this.onopen = this.options.onopen;
+      this.beforeclose = this.options.beforeclose;
+      this.onclose = this.options.onclose;
+      this.start();
+      Affix.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Affix.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Affix. You&#039;re trying to set unpropriate option.&quot;);
+        }
+        this.options[key] = value;
+      }
+    };
+
+    Affix.prototype.destroy = function() {
+      return Affix.__super__.destroy.apply(this, arguments);
+    };
+
+    Affix.prototype.start = function() {
+      return _beforestart.call(this);
+    };
+
+    Affix.prototype.stop = function() {
+      return _beforestop.call(this);
+    };
+
+    return Affix;
+
+  })(MaxmertkitHelpers);
+
+  _position = function() {
+    var $scrollParent, offset, scrollParent;
+    scrollParent = this._getContainer(this.$el);
+    $scrollParent = $(scrollParent);
+    if ($scrollParent[0].firstElementChild.nodeName === &quot;HTML&quot;) {
+      offset = 0;
+    } else {
+      offset = $scrollParent.offset().top;
+    }
+    return $(document).on(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id, (function(_this) {
+      return function(event) {
+        if (_this.$el.parent().offset().top - _this.options.offset &lt;= $(document).scrollTop()) {
+          if (offset + $scrollParent.height() - _this.$el.outerHeight() &gt;= $(document).scrollTop()) {
+            return _this.$el.css({
+              width: _this.$el.width(),
+              position: &#039;fixed&#039;,
+              top: &quot;&quot; + _this.options.offset + &quot;px&quot;,
+              bottom: &#039;auto&#039;
+            });
+          } else {
+            return _this.$el.css({
+              position: &#039;absolute&#039;,
+              top: &#039;auto&#039;,
+              bottom: 0,
+              width: _this.$el.width()
+            });
+          }
+        } else {
+          _this.$el.css(&#039;position&#039;, &#039;relative&#039;);
+          return _this.$el.css(&#039;top&#039;, &#039;inherit&#039;);
+        }
+      };
+    })(this));
+  };
+
+  _beforestart = function() {
+    var deferred;
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _start.call(this);
+      }
+    } else {
+      return _start.call(this);
+    }
+  };
+
+  _start = function() {
+    _position.call(this);
+    this.$el.addClass(&#039;_active_&#039;);
+    this.$el.trigger(&quot;started.&quot; + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  _beforestop = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _stop.call(this);
+      }
+    } else {
+      return _stop.call(this);
+    }
+  };
+
+  _stop = function() {
+    this.$el.removeClass(&#039;_active_&#039;);
+    $(document).off(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id);
+    this.$el.trigger(&quot;stopped.&quot; + this._name);
+    if (this.onstop != null) {
+      try {
+        return this.onstop.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Affix(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit Affix. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Button, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;button&quot;;
+
+  _instances = [];
+
+  _id = 0;
+
+  Button = (function(_super) {
+    __extends(Button, _super);
+
+    Button.prototype._name = _name;
+
+    Button.prototype._instances = _instances;
+
+    function Button(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      this._id = _id++;
+      _options = {
+        toggle: this.$btn.data(&#039;toggle&#039;) || &#039;button&#039;,
+        group: this.$btn.data(&#039;group&#039;) || null,
+        type: this.$btn.data(&#039;type&#039;) || &#039;button&#039;,
+        event: &quot;click&quot;,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$btn.hasClass(&#039;_active_&#039;)) {
+            return _this.activate();
+          } else {
+            return _this.deactivate();
+          }
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.deactivate();
+          }
+        };
+      })(this));
+      this.$btn.removeClass(&#039;_active_ _disabled_ _loading_&#039;);
+      Button.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Button.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Button. You&#039;re trying to set unpropriate option.&quot;);
+        }
+        switch (key) {
+          case &#039;event&#039;:
+            this.$btn.off(&quot;&quot; + this.options.event + &quot;.&quot; + this._name);
+            this.options.event = value;
+            this.$btn.on(&quot;&quot; + this.options.event + &quot;.&quot; + this._name, (function(_this) {
+              return function() {
+                if (_this.$btn.hasClass(&#039;_active_&#039;)) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
+            break;
+          default:
+            this.options[key] = value;
+            if (typeof value === &#039;function&#039;) {
+              this[key] = this.options[key];
+            }
+        }
+      }
+    };
+
+    Button.prototype.destroy = function() {
+      this.$btn.off(&quot;.&quot; + this._name);
+      return Button.__super__.destroy.apply(this, arguments);
+    };
+
+    Button.prototype.activate = function() {
+      return _beforeactive.call(this);
+    };
+
+    Button.prototype.deactivate = function() {
+      if (this.$btn.hasClass(&#039;_active_&#039;)) {
+        return _beforeunactive.call(this);
+      }
+    };
+
+    Button.prototype.disable = function() {
+      return this.$btn.toggleClass(&#039;_disabled_&#039;);
+    };
+
+    return Button;
+
+  })(MaxmertkitHelpers);
+
+  _beforeactive = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var button, _i, _len, _ref;
+    if (this.options.type === &#039;radio&#039;) {
+      _ref = this._instances;
+      for (_i = 0, _len = _ref.length; _i &lt; _len; _i++) {
+        button = _ref[_i];
+        if (this._id !== button._id &amp;&amp; button.options.type === &#039;radio&#039; &amp;&amp; button.options.group === this.options.group) {
+          button.deactivate();
+        }
+      }
+    }
+    this.$btn.addClass(&#039;_active_&#039;);
+    this.$btn.trigger(&quot;activated.&quot; + this._name);
+    if (this.onactive != null) {
+      try {
+        return this.onactive.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeunactive = function() {
+    var deferred;
+    if (this.beforeunactive != null) {
+      try {
+        deferred = this.beforeunactive.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    this.$btn.removeClass(&#039;_active_&#039;);
+    this.$btn.trigger(&quot;deactivated.&quot; + this._name);
+    if (this.onunactive != null) {
+      try {
+        return this.onunactive.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Button(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit Button. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open, _pushStart, _pushStop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;modal&quot;;
+
+  _instances = [];
+
+  Modal = (function(_super) {
+    __extends(Modal, _super);
+
+    Modal.prototype._name = _name;
+
+    Modal.prototype._instances = _instances;
+
+    function Modal(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      _options = {
+        target: this.$btn.data(&#039;target&#039;),
+        toggle: this.$btn.data(&#039;toggle&#039;) || &#039;modal&#039;,
+        event: &quot;click.&quot; + this._name,
+        eventClose: &quot;click.&quot; + this._name,
+        backdrop: this.$btn.data(&#039;backdrop&#039;) || false,
+        push: this.$btn.data(&#039;push&#039;) || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.$el = $(document).find(this.options.target);
+      this.$btn.on(this.options.event, (function(_this) {
+        return function(event) {
+          event.preventDefault();
+          return _this.open();
+        };
+      })(this));
+      this._setOptions(this.options);
+      this.$el.find(&quot;*[data-dismiss=&#039;modal&#039;]&quot;).on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      Modal.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Modal.prototype._setOptions = function(options) {
+      var key, push, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Modal. You&#039;re trying to set unpropriate option – &quot; + key);
+        }
+        switch (key) {
+          case &#039;backdrop&#039;:
+            if (value) {
+              this.$el.on(&quot;click.&quot; + this._name, (function(_this) {
+                return function(event) {
+                  if ($(event.target).hasClass(&#039;-modal _active_&#039;) || $(event.target).hasClass(&#039;-carousel&#039;)) {
+                    return _this.close();
+                  }
+                };
+              })(this));
+            }
+            break;
+          case &#039;push&#039;:
+            if (value) {
+              push = $(document).find(value);
+              if (push.length) {
+                this.$push = $(document).find(value);
+              }
+            }
+        }
+        this.options[key] = value;
+        if (typeof value === &#039;function&#039;) {
+          this[key] = this.options[key];
+        }
+      }
+    };
+
+    Modal.prototype.destroy = function() {
+      this.$btn.off(&quot;.&quot; + this._name);
+      return Modal.__super__.destroy.apply(this, arguments);
+    };
+
+    Modal.prototype.open = function() {
+      return _beforeopen.call(this);
+    };
+
+    Modal.prototype.close = function() {
+      return _beforeclose.call(this);
+    };
+
+    return Modal;
+
+  })(MaxmertkitHelpers);
+
+  _pushStart = function() {
+    if (this.$push != null) {
+      this.$push.addClass(&#039;-start--&#039;);
+      return this.$push.removeClass(&#039;-stop--&#039;);
+    }
+  };
+
+  _pushStop = function() {
+    if (this.$push != null) {
+      this.$push.addClass(&#039;-stop--&#039;);
+      this.$push.removeClass(&#039;-start--&#039;);
+      if ((this.$push[0] != null) &amp;&amp; (this.$push[0].style != null) &amp;&amp; (this.$push[0].style[&#039;-webkit-overflow-scrolling&#039;] != null)) {
+        return this.$push[0].style[&#039;-webkit-overflow-scrolling&#039;] = &#039;auto&#039;;
+      }
+    }
+  };
+
+  _beforeopen = function() {
+    var deferred;
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _open.call(this);
+      }
+    } else {
+      return _open.call(this);
+    }
+  };
+
+  _open = function() {
+    if (this.$push != null) {
+      $(&#039;body&#039;).addClass(&#039;_perspective_&#039;);
+    }
+    this.$el.css({
+      display: &#039;table&#039;
+    });
+    setTimeout((function(_this) {
+      return function() {
+        _this.$el.addClass(&#039;_visible_ -start--&#039;);
+        return _pushStart.call(_this);
+      };
+    })(this), 1);
+    $(&#039;body&#039;).addClass(&#039;_no-scroll_&#039;);
+    this.$el.trigger(&quot;opened.&quot; + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeclose = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _close.call(this);
+      }
+    } else {
+      return _close.call(this);
+    }
+  };
+
+  _close = function() {
+    this.$el.addClass(&#039;-stop--&#039;);
+    _pushStop.call(this);
+    setTimeout((function(_this) {
+      return function() {
+        _this.$el.removeClass(&#039;_visible_ -start-- -stop--&#039;);
+        $(&#039;body&#039;).removeClass(&#039;_no-scroll_&#039;);
+        if (_this.$push != null) {
+          $(&#039;body&#039;).removeClass(&#039;_perspective_&#039;);
+        }
+        return _this.$el.hide();
+      };
+    })(this), 1000);
+    this.$el.trigger(&quot;closed.&quot; + this._name);
+    if (this.onclose != null) {
+      try {
+        return this.onclose.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Modal(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit error. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+  $(window).on(&#039;load&#039;, function() {
+    return $(&#039;[data-toggle=&quot;modal&quot;]&#039;).each(function() {
+      var $modal;
+      $modal = $(this);
+      return $modal.modal($modal.data());
+    });
+  });
+
+}).call(this);
+
+(function() {
+  var Popup, _beforeclose, _beforeopen, _close, _id, _instances, _name, _open, _position,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;popup&quot;;
+
+  _instances = [];
+
+  _id = 0;
+
+  Popup = (function(_super) {
+    __extends(Popup, _super);
+
+    Popup.prototype._name = _name;
+
+    Popup.prototype._instances = _instances;
+
+    function Popup(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      this._id = _id++;
+      _options = {
+        target: this.$btn.data(&#039;target&#039;),
+        toggle: this.$btn.data(&#039;toggle&#039;) || &#039;popup&#039;,
+        event: &quot;click&quot;,
+        eventClose: &quot;click&quot;,
+        positionVertical: &#039;top&#039;,
+        positionHorizontal: &#039;center&#039;,
+        offset: {
+          horizontal: 5,
+          vertical: 5
+        },
+        closeUnfocus: false,
+        selfish: true
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeopen = this.options.beforeopen;
+      this.onopen = this.options.onopen;
+      this.beforeclose = this.options.beforeclose;
+      this.onclose = this.options.onclose;
+      this.$el = $(document).find(this.options.target);
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$el.is(&#039;:visible&#039;)) {
+            return _this.open();
+          } else {
+            return _this.close();
+          }
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.close();
+          }
+        };
+      })(this));
+      this.$el.find(&quot;*[data-dismiss=&#039;popup&#039;]&quot;).on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      if (this.options.closeUnfocus) {
+        $(document).on(&#039;click&#039;, (function(_this) {
+          return function(event) {
+            var classes;
+            classes = &#039;.&#039; + _this.$el[0].className.split(&#039; &#039;).join(&#039;.&#039;);
+            if (!$(event.target).closest(classes).length &amp;&amp; _this.$el.is(&#039;:visible&#039;) &amp;&amp; !_this.$el.is(&#039;:animated&#039;) &amp;&amp; $(event.target)[0] !== _this.$btn[0]) {
+              return _this.close();
+            }
+          };
+        })(this));
+      }
+      this.$el.removeClass(&#039;_top_ _bottom_ _left_ _right_&#039;);
+      this.$el.addClass(&quot;_&quot; + this.options.positionVertical + &quot;_ _&quot; + this.options.positionHorizontal + &quot;_&quot;);
+      Popup.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Popup.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Popup. You&#039;re trying to set unpropriate option.&quot;);
+        }
+        switch (key) {
+          case &#039;target&#039;:
+            this.$el = $(document).find(this.options.target);
+            this.$el.find(&quot;*[data-dismiss=&#039;popup&#039;]&quot;).on(this.options.event, (function(_this) {
+              return function() {
+                return _this.close();
+              };
+            })(this));
+            break;
+          case &#039;event&#039;:
+            this.$btn.off(&quot;&quot; + this.options.event + &quot;.&quot; + this._name);
+            this.options.event = value;
+            this.$btn.on(&quot;&quot; + this.options.event + &quot;.&quot; + this._name, (function(_this) {
+              return function() {
+                if (!_this.$el.is(&#039;:visible&#039;)) {
+                  return _this.open();
+                } else {
+                  return _this.close();
+                }
+              };
+            })(this));
+            break;
+          case &#039;eventClose&#039;:
+            this.$btn.off(&quot;&quot; + this.options.eventClose + &quot;.&quot; + this._name);
+            this.options.eventClose = value;
+            this.$btn.on(&quot;&quot; + this.options.eventClose + &quot;.&quot; + this._name, (function(_this) {
+              return function() {
+                if (_this.options.event !== _this.options.eventClose) {
+                  return _this.close();
+                }
+              };
+            })(this));
+            break;
+          case &#039;closeUnfocus&#039;:
+            this.options.closeUnfocus = value;
+            $(document).off(&quot;click.&quot; + this._name);
+            if (this.options.closeUnfocus) {
+              $(document).on(&quot;click.&quot; + this._name, (function(_this) {
+                return function(event) {
+                  var classes;
+                  classes = &#039;.&#039; + _this.$el[0].className.split(&#039; &#039;).join(&#039;.&#039;);
+                  if (!$(event.target).closest(classes).length &amp;&amp; _this.$el.is(&#039;:visible&#039;) &amp;&amp; !_this.$el.is(&#039;:animated&#039;) &amp;&amp; $(event.target)[0] !== _this.$btn[0]) {
+                    return _this.close();
+                  }
+                };
+              })(this));
+            }
+            break;
+          case &#039;positionVertical&#039;:
+            this.$el.removeClass(&quot;_top_ _middle_ _bottom_&quot;);
+            this.options.positionVertical = value;
+            this.$el.addClass(&quot;_&quot; + this.options.positionVertical + &quot;_&quot;);
+            break;
+          case &#039;positionHorizontal&#039;:
+            this.$el.removeClass(&quot;_left_ _center_ _right_&quot;);
+            this.options.positionHorizontal = value;
+            this.$el.addClass(&quot;_&quot; + this.options.positionHorizontal + &quot;_&quot;);
+            break;
+          default:
+            this.options[key] = value;
+        }
+      }
+    };
+
+    Popup.prototype.destroy = function() {
+      this.$btn.off(&quot;.&quot; + this._name);
+      return Popup.__super__.destroy.apply(this, arguments);
+    };
+
+    Popup.prototype.open = function() {
+      return _beforeopen.call(this);
+    };
+
+    Popup.prototype.close = function() {
+      return _beforeclose.call(this);
+    };
+
+    return Popup;
+
+  })(MaxmertkitHelpers);
+
+  _position = function() {
+    var newLeft, newTop, position, positionBtn, scrollParent, scrollParentBtn, size, sizeBtn;
+    scrollParent = this._getScrollParent(this.$el);
+    scrollParentBtn = this._getScrollParent(this.$btn);
+    positionBtn = this.$btn.offset();
+    position = this.$el.offset();
+    if ((scrollParent != null) &amp;&amp; (scrollParent[0] == null) || scrollParent[0].activeElement.nodeName !== &#039;BODY&#039;) {
+      positionBtn.top = positionBtn.top - $(scrollParent).offset().top;
+      positionBtn.left = positionBtn.left - $(scrollParent).offset().left;
+    }
+    sizeBtn = {
+      width: this.$btn.outerWidth(),
+      height: this.$btn.outerHeight()
+    };
+    size = {
+      width: this.$el.outerWidth(),
+      height: this.$el.outerHeight()
+    };
+    newTop = newLeft = 0;
+    switch (this.options.positionVertical) {
+      case &#039;top&#039;:
+        newTop = positionBtn.top - size.height - this.options.offset.vertical;
+        break;
+      case &#039;bottom&#039;:
+        newTop = positionBtn.top + sizeBtn.height + this.options.offset.vertical;
+        break;
+      case &#039;middle&#039; || &#039;center&#039;:
+        newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2;
+    }
+    switch (this.options.positionHorizontal) {
+      case &#039;center&#039; || &#039;middle&#039;:
+        newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2;
+        break;
+      case &#039;left&#039;:
+        newLeft = positionBtn.left - size.width - this.options.offset.horizontal;
+        break;
+      case &#039;right&#039;:
+        newLeft = positionBtn.left + sizeBtn.width + this.options.offset.horizontal;
+    }
+    return this.$el.css({
+      left: newLeft,
+      top: newTop
+    });
+  };
+
+  _beforeopen = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _open.call(this);
+      }
+    } else {
+      return _open.call(this);
+    }
+  };
+
+  _open = function() {
+    _position.call(this);
+    this.$el.addClass(&#039;_active_&#039;);
+    this.$el.trigger(&quot;opened.&quot; + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeclose = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _close.call(this);
+      }
+    } else {
+      return _close.call(this);
+    }
+  };
+
+  _close = function() {
+    this.$el.removeClass(&#039;_active_&#039;);
+    this.$el.trigger(&quot;closed.&quot; + this._name);
+    if (this.onclose != null) {
+      try {
+        return this.onclose.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Popup(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit Popup. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;scrollspy&quot;;
+
+  _instances = [];
+
+  _id = 0;
+
+  Scrollspy = (function(_super) {
+    __extends(Scrollspy, _super);
+
+    Scrollspy.prototype._name = _name;
+
+    Scrollspy.prototype._instances = _instances;
+
+    function Scrollspy(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      this.$el = $(this.el);
+      this._id = _id++;
+      _options = {
+        spy: this.$el.data(&#039;spy&#039;) || &#039;scroll&#039;,
+        target: this.$el.data(&#039;target&#039;) || &#039;body&#039;,
+        offset: 10,
+        elements: &#039;li a&#039;,
+        elementsAttr: &#039;href&#039;,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.start();
+      Scrollspy.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Scrollspy.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Affix. You&#039;re trying to set unpropriate option.&quot;);
+        }
+        this.options[key] = value;
+      }
+    };
+
+    Scrollspy.prototype.destroy = function() {
+      return Scrollspy.__super__.destroy.apply(this, arguments);
+    };
+
+    Scrollspy.prototype.refresh = function() {
+      return _refresh.call(this);
+    };
+
+    Scrollspy.prototype.start = function() {
+      return _beforestart.call(this);
+    };
+
+    Scrollspy.prototype.stop = function() {
+      return _beforestop.call(this);
+    };
+
+    return Scrollspy;
+
+  })(MaxmertkitHelpers);
+
+  _activateItem = function(itemNumber) {
+    var element, _i, _len, _ref;
+    _ref = this.elements;
+    for (_i = 0, _len = _ref.length; _i &lt; _len; _i++) {
+      element = _ref[_i];
+      element.menu.removeClass(&#039;_active_&#039;);
+    }
+    return this.elements[itemNumber].menu.addClass(&#039;_active_&#039;).parents(&#039;li&#039;).addClass(&#039;_active_&#039;);
+  };
+
+  _refresh = function() {
+    this.elements = [];
+    return this.$el.find(this.options.elements).each((function(_this) {
+      return function(index, el) {
+        var item, link;
+        link = $(el).attr(_this.options.elementsAttr);
+        if (link != null) {
+          item = $(_this.options.target).find(link);
+          if (item.length) {
+            return _this.elements.push({
+              menu: $(el).parent(),
+              item: item.parent(),
+              offsetTop: item.position().top
+            });
+          }
+        }
+      };
+    })(this));
+  };
+
+  _spy = function(event) {
+    var i, _ref, _results;
+    i = 0;
+    _results = [];
+    while (i + 1 &lt; this.elements.length) {
+      if ((this.elements[i].offsetTop &lt;= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) &amp;&amp; _ref &lt;= this.elements[i + 1].offsetTop)) {
+        _activateItem.call(this, i);
+      } else {
+        if ((event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset &gt; this.elements[i + 1].offsetTop) {
+          _activateItem.call(this, i + 1);
+        }
+      }
+      _results.push(i++);
+    }
+    return _results;
+  };
+
+  _activate = function() {
+    var target;
+    if (this.options.target === &#039;body&#039;) {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    return $(target).on(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id, (function(_this) {
+      return function(event) {
+        return _spy.call(_this, event);
+      };
+    })(this));
+  };
+
+  _beforestart = function() {
+    var deferred;
+    this.refresh();
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _start.call(this);
+      }
+    } else {
+      return _start.call(this);
+    }
+  };
+
+  _start = function() {
+    _activate.call(this);
+    this.$el.addClass(&#039;_active_&#039;);
+    this.$el.trigger(&quot;started.&quot; + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  _beforestop = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _stop.call(this);
+      }
+    } else {
+      return _stop.call(this);
+    }
+  };
+
+  _stop = function() {
+    $(document).off(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id);
+    this.$el.trigger(&quot;stopped.&quot; + this._name);
+    if (this.onstop != null) {
+      try {
+        return this.onstop.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Scrollspy(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit Affix. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Tabs, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = &quot;tabs&quot;;
+
+  _instances = [];
+
+  _id = 0;
+
+  Tabs = (function(_super) {
+    __extends(Tabs, _super);
+
+    Tabs.prototype._name = _name;
+
+    Tabs.prototype._instances = _instances;
+
+    function Tabs(tab, options) {
+      var _options;
+      this.tab = tab;
+      this.options = options;
+      this.$tab = $(this.tab);
+      this._id = _id++;
+      _options = {
+        toggle: this.$tab.data(&#039;toggle&#039;) || &#039;tabs&#039;,
+        group: this.$tab.data(&#039;group&#039;) || null,
+        target: this.$tab.data(&#039;target&#039;) || null,
+        event: &quot;click&quot;,
+        active: 0,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.$tab.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$tab.hasClass(&#039;_active_&#039;)) {
+            return _this.activate();
+          }
+        };
+      })(this));
+      this.$content = $(document).find(this.options.target);
+      this.$content.hide();
+      Tabs.__super__.constructor.call(this, this.$tab, this.options);
+    }
+
+    Tabs.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error(&quot;Maxmertkit Tabs. You&#039;re trying to set unpropriate option.&quot;);
+        }
+        switch (key) {
+          case &#039;event&#039;:
+            this.$tab.off(&quot;&quot; + this.options.event + &quot;.&quot; + this._name);
+            this.options.event = value;
+            this.$tab.on(&quot;&quot; + this.options.event + &quot;.&quot; + this._name, (function(_this) {
+              return function() {
+                if (_this.$tab.hasClass(&#039;_active_&#039;)) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
+            break;
+          case &#039;target&#039;:
+            this.options.target = value;
+            this.$content = $(document).find(this.options.target);
+            break;
+          default:
+            this.options[key] = value;
+            if (typeof value === &#039;function&#039;) {
+              this[key] = this.options[key];
+            }
+        }
+      }
+    };
+
+    Tabs.prototype._afterConstruct = function() {
+      var i;
+      i = 0;
+      while (i &lt; this._instances &amp;&amp; this._instances[i].group !== this.options.group) {
+        i++;
+      }
+      return this._instances[i].activate();
+    };
+
+    Tabs.prototype.destroy = function() {
+      this.$tab.off(&quot;.&quot; + this._name);
+      return Tabs.__super__.destroy.apply(this, arguments);
+    };
+
+    Tabs.prototype.activate = function() {
+      return _beforeactive.call(this);
+    };
+
+    Tabs.prototype.deactivate = function() {
+      if (this.$tab.hasClass(&#039;_active_&#039;)) {
+        return _beforeunactive.call(this);
+      }
+    };
+
+    Tabs.prototype.disable = function() {
+      return this.$tab.toggleClass(&#039;_disabled_&#039;);
+    };
+
+    return Tabs;
+
+  })(MaxmertkitHelpers);
+
+  _beforeactive = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.$tab);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var tab, _i, _len, _ref;
+    _ref = this._instances;
+    for (_i = 0, _len = _ref.length; _i &lt; _len; _i++) {
+      tab = _ref[_i];
+      if (this._id !== tab._id &amp;&amp; tab.options.group === this.options.group) {
+        tab.deactivate();
+      }
+    }
+    this.$tab.addClass(&#039;_active_&#039;);
+    this.$tab.trigger(&quot;activated.&quot; + this._name);
+    this.$content.show();
+    if (this.onactive != null) {
+      try {
+        return this.onactive.call(this.$tab);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeunactive = function() {
+    var deferred;
+    if (this.beforeunactive != null) {
+      try {
+        deferred = this.beforeunactive.call(this.$tab);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger(&quot;fail.&quot; + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    this.$tab.removeClass(&#039;_active_&#039;);
+    this.$tab.trigger(&quot;deactivated.&quot; + this._name);
+    this.$content.hide();
+    if (this.onunactive != null) {
+      try {
+        return this.onunactive.call(this.$tab);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, &quot;kit-&quot; + _name)) {
+        $.data(this, &quot;kit-&quot; + _name, new Tabs(this, options));
+      } else {
+        if (typeof options === &quot;object&quot;) {
+          $.data(this, &quot;kit-&quot; + _name)._setOptions(options);
+        } else {
+          if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
+            $.data(this, &quot;kit-&quot; + _name)[options];
+          } else {
+            console.error(&quot;Maxmertkit Tabs. You passed into the &quot; + _name + &quot; something wrong.&quot;);
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

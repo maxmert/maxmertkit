@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Sparks.js - three.js webgl particles - WebGL Example</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<style type="text/css">
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			a {
+				color:#0078ff;
+			}
+		</style>
+	</head>
+	<body>
+
+	<!--
+
+			<script type="text/javascript" src="https://raw.github.com/zz85/three.js/experimental/build/Three.js"></script>
+
+			<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/RequestAnimationFrame.js"></script>
+			<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/Stats.js"></script>
+
+			<script type="text/javascript" src="http://sole.github.com/tween.js/src/Tween.js"></script>
+			<script type="text/javascript" src="https://raw.github.com/zz85/sparks.js/master/Sparks.js"></script>
+				-->		
+			<script type="text/javascript" src="js/Three.js"></script>
+
+			<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+			<script type="text/javascript" src="js/Stats.js"></script>
+
+			<script type="text/javascript" src="js/Tween.js"></script>
+			<script type="text/javascript" src="../Sparks.js"></script>
+			<script type="text/javascript" src="js/ShaderExtras.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/EffectComposer.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/RenderPass.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/ShaderPass.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/MaskPass.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/BloomPass.js"></script> 
+			<script type="text/javascript" src="js/postprocessing/FilmPass.js"></script> 
+			
+				
+				<script type="x-shader/x-vertex" id="vertexshader"> 
+
+					attribute float size;
+					attribute vec4 ca;
+
+					varying vec4 vColor;
+
+					void main() {
+						
+						vColor = ca;
+
+						vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+						gl_PointSize = size * ( 150.0 / length( mvPosition.xyz ) );
+
+						gl_Position = projectionMatrix * mvPosition;
+
+					}
+
+				</script> 
+
+				<script type="x-shader/x-fragment" id="fragmentshader"> 
+
+					uniform vec3 color;
+					uniform sampler2D texture;
+
+					varying vec4 vColor;
+					
+					
+					uniform float radius;
+
+					uniform vec2 delta;
+
+					varying vec2 texCoord;
+
+					
+					void main() {
+
+						vec4 outColor = texture2D( texture, gl_PointCoord );
+
+						if ( outColor.a < 0.5 ) discard;
+
+						gl_FragColor = outColor * vec4( color * vColor.xyz, 1.0 );
+
+						//float depth = gl_FragCoord.z / gl_FragCoord.w;
+						///const vec3 fogColor = vec3( 0.0 );
+
+						//float fogFactor = smoothstep( 200.0, 600.0, depth );
+						//gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+
+					}
+
+				</script>
+
+
+		<script type="text/javascript">
+			// Inspired from http://wonderfl.net/c/qTwn and mr doob three.js examples
+
+			var container, stats;
+			var camera, scene, renderer, group, particle;
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var lasttime = Date.now(), elapsed;
+			
+			init();
+			animate();
+			
+			var sparksEmitter;
+			var composer;
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.Camera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera.position.z = 200; //1000
+
+				scene = new THREE.Scene();
+
+				var PI2 = Math.PI * 2;
+				
+				var particleslength = 10000;
+				
+				var particles = new THREE.Geometry();
+				
+				function newpos(x, y, z) {
+							return new THREE.Vertex(
+				            new THREE.Vector3(x, y, z)
+				        );
+				}
+				
+				
+				var Pool = {
+					__pools: [],
+
+					// Get a new Vector
+					get: function() {
+						if (this.__pools.length>0) {
+							return this.__pools.pop();
+						}
+						
+						console.log("pool ran out!")
+						return null;
+
+					},
+
+					// Release a vector back into the pool
+					add: function(v) {
+						this.__pools.push(v);
+					},
+
+
+				};
+				
+				
+				for ( i = 0; i < particleslength; i++ ) {
+						particles.vertices.push(newpos(Math.random() *200 - 100, Math.random() *100+150, Math.random() *50));
+						Pool.add(i);
+				}
+				
+				
+				
+				
+				// Create pools of vectors
+
+				attributes = {
+
+					size: {	type: 'f', value: [] },
+					ca: { type: 'c', value: [] } //ca //customColor
+
+				};
+				
+				var sprite = generateSprite() ;
+				textu = new THREE.Texture ( sprite );
+				textu.needsUpdate = true;
+
+				uniforms = {
+
+					amplitude: { type: "f", value: 1.0 },
+					color:     { type: "c", value: new THREE.Color( 0xffffff ) },
+					texture:   { type: "t", value: 0, texture:textu} //
+					// 
+				
+
+				};
+				
+				function generateSprite() {
+							
+					var canvas = document.createElement( 'canvas' );
+					canvas.width = 128;
+					canvas.height = 128;
+				
+					var context = canvas.getContext( '2d' );
+					
+					
+				
+					context.fillStyle = "white";
+					context.strokeStyle = "white";
+					
+					//context.fillRect(0, 0, 128, 128) ;
+					
+		context.beginPath();
+		context.arc( 64, 64, 64, 0, PI2, true );
+		context.closePath();
+		context.fill();
+				
+					//context.lineWidth = 0.5; //0.05
+					//context.stroke();
+					//context.fill();
+					
+					//var idata =context.getImageData(0, 0, canvas.width, canvas.height);
+					//document.body.appendChild(canvas);
+					return canvas;
+				
+				}
+				
+				function generateSprite() {
+							
+					var canvas = document.createElement( 'canvas' );
+					canvas.width = 128;
+					canvas.height = 128;
+				
+					var context = canvas.getContext( '2d' );
+					
+					
+					context.beginPath();
+					context.arc(64, 64, 60, 0, Math.PI*2, false);
+					context.closePath();
+					
+					context.lineWidth = 0.5; //0.05
+					context.stroke();
+
+					var gradient = context.createRadialGradient( canvas.width /2, canvas.height /2, 0, canvas.width /2, canvas.height /2, canvas.width /2 );				
+					gradient.addColorStop( 0, 'rgba(255,255,255,1)' );
+					gradient.addColorStop( 0.2, 'rgba(255,255,255,1)' );
+					//gradient.addColorStop( 0.6, 'rgba(200,200,200,1)' );
+					gradient.addColorStop( 0.4, 'rgba(128,128,128,1)' );
+					gradient.addColorStop( 1, 'rgba(0,0,0,1)' );
+					context.fillStyle = gradient;
+					
+					context.fill();
+					
+					return canvas;
+				
+				}
+
+				var shaderMaterial = new THREE.MeshShaderMaterial( {
+
+					uniforms	: uniforms,
+					attributes	: attributes,
+	 
+					vertexShader	: document.getElementById( 'vertexshader' ).textContent,
+					fragmentShader	: document.getElementById( 'fragmentshader' ).textContent,
+
+					blending	: THREE.AdditiveBlending,
+					depthTest	: false,
+					transparent	: true
+				
+				});
+
+				group = new THREE.ParticleSystem( particles, shaderMaterial );
+				
+				group.dynamic = true;
+				//group.sortParticles = true;
+				
+				var vertices = group.geometry.vertices;
+				var values_size = attributes.size.value;
+				var values_color = attributes.ca.value;
+				
+				for( var v = 0; v < vertices.length; v++ ) {
+				
+					values_size[ v ] = 50;
+					values_color[ v ] = new THREE.Color( 0xaaff00 );
+					values_color[ v ].setHSV( 0, 0, 0 );
+					particles.vertices[v].position.set(Number.POSITIVE_INFINITY,Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
+				
+				}
+
+				scene.add( group );
+
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+								
+				//// EMITTER STUFF
+				var h = 0;
+				var k = 0.7;
+
+				// Push indics
+				
+				var setTargetParticle = function() {
+					
+					// Find available pool
+					var target = Pool.get();
+					//values_size[target] = Math.random() * 20;
+					values_size[target] = 50+Math.random() * 20;
+					
+					return target;
+	
+					
+				};
+				
+				var onParticleCreated = function(p) {
+
+					var target = p.target;
+					if (target) {
+						//console.log(target,particles.vertices[target]);
+						//values_size[target]
+						//values_color[target]
+						
+						h += 0.001;
+						if (h>1) h-=1;
+						//h = 0.5;
+						particles.vertices[target].position = p.position;
+						
+						values_color[target].setHSV(h, 0.8, 0.1); //0.15
+						
+					}; 
+					
+				};
+				
+				var onParticleDead = function(particle) {
+					
+					var target = particle.target;
+					if (target) {
+						// Hide the particle
+						values_color[target].setHSV(0, 0, 0);
+						particles.vertices[target].position.set(Number.POSITIVE_INFINITY,Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
+						
+						// Mark particle system as available by returning to pool
+						Pool.add(particle.target);
+					}
+					
+				};
+				
+				
+				sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(500));
+
+				emitterpos	= new THREE.Vector3(0,0,0);
+				var sphereCap	= new SPARKS.SphereCapZone(0, 0, 0, 10, 0, 40);
+
+				sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.PointZone( emitterpos ) ) );
+				sparksEmitter.addInitializer(new SPARKS.Lifetime(0,8));
+				sparksEmitter.addInitializer(new SPARKS.Target(null, setTargetParticle)); //, setTargetParticle //Pool.get()
+				sparksEmitter.addInitializer(new SPARKS.Velocity(sphereCap));
+
+				sparksEmitter.addAction(new SPARKS.Age());
+				sparksEmitter.addAction(new SPARKS.Accelerate(0.2));
+				sparksEmitter.addAction(new SPARKS.Move()); 
+				
+				sparksEmitter.addCallback("created", onParticleCreated);
+				sparksEmitter.addCallback("dead", onParticleDead);
+				
+
+				sparksEmitter.start();
+			}
+
+			// End Init
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+			}
+
+			function onDocumentTouchStart( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			//
+			
+
+
+			function animate(time) {
+
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+			
+			var _rotation = 0;
+
+			function render() {
+				
+				group.geometry.__dirtyVertices = true;
+				group.geometry.__dirtyColors = true;
+				attributes.size.needsUpdate = true;
+				attributes.ca.needsUpdate = true;
+								
+				_rotation += 3;
+	            
+				emitterpos.x = 100 * Math.sin(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+				emitterpos.y = 100 * Math.cos(_rotation * SPARKS.Utils.DEGREE_TO_RADIAN);
+
+				renderer.render( scene, camera );
+			}
+
+		</script>
+	</body>
+</html>

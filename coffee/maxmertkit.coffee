@@ -1,3 +1,7 @@
+###
+	TODO: Improove rotation
+###
+
 _globalRotation =
 	x: 0
 	y: 0

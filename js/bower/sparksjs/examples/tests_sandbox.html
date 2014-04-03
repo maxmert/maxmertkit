@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Sparks.js - three.js canvas particles - simple test sandbox</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<style type="text/css">
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			a {
+				color:#0078ff;
+			}
+			
+			#code {
+				display:block;
+				position:absolute;
+				float: left;
+				z-index: 5;
+				width: 80%;
+				height: 100%;
+				margin: auto;
+				
+				color: #ffffff;
+				font-family: Monospace;
+				font-size: 13px;
+			
+				padding: 8px 12px 8px 12px;
+
+				border: none;
+				border-radius: 5px;
+				margin-right: 5px;
+				
+				overflow: auto;
+				
+				opacity: 1;
+				
+				white-space: pre;
+			}
+			
+			.codeblocks {
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<pre id="moveExample" class="codeblocks">
+			var onParticleCreated = function(p) {
+				// create a three.js particle
+				
+				var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.circles, blending:THREE.AdditiveBlending } );
+				material.color.setHSV(Math.random() * 0.5 + 0.2, 1, 0.2); 
+				
+				particle = new THREE.Particle( material );
+				particle.scale.x = particle.scale.y = 4;
+				group.add( particle );	
+				
+				
+				// assign three.js particle to sparks.js position
+				particle.position = p.position;
+
+				// assign sparks.js target particle to three.js particle
+				p.target = particle;
+				
+			};
+			
+			var onParticleDead = function(particle) {
+				particle.target.visible = false; // is this a work around?
+				group.remove(particle.target); 
+			};
+			
+			
+			sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(100));
+
+			sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.PointZone( new THREE.Vector3(0,0,0) ) ) );
+			sparksEmitter.addInitializer(new SPARKS.Lifetime(3,3));
+			sparksEmitter.addInitializer(new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3(0,0,100))));
+
+			sparksEmitter.addAction(new SPARKS.Age());
+			sparksEmitter.addAction(new SPARKS.Move()); 
+			
+			sparksEmitter.addCallback("created", onParticleCreated);
+			sparksEmitter.addCallback("dead", onParticleDead);
+
+			sparksEmitter.start();
+		</pre>
+
+		<pre id="cubeZoneExample" class="codeblocks">
+			var onParticleCreated = function(p) {
+				// create a three.js particle
+
+				var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.circles, blending:THREE.AdditiveBlending } );
+				material.color.setHSV(Math.random() * 0.5 + 0.2, 1, 0.2); 
+
+				particle = new THREE.Particle( material );
+				particle.scale.x = particle.scale.y = 4;
+				group.add( particle );	
+
+
+				// assign three.js particle to sparks.js position
+				particle.position = p.position;
+
+				// assign sparks.js target particle to three.js particle
+				p.target = particle;
+
+			};
+
+			var onParticleDead = function(particle) {
+				particle.target.visible = false; // is this a work around?
+				group.remove(particle.target); 
+			};
+
+
+			sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(200));
+
+			sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.CubeZone( new THREE.Vector3(0,0,0), 100, 100, 100 ) ) );
+			sparksEmitter.addInitializer(new SPARKS.Lifetime(3,3));
+			sparksEmitter.addInitializer(new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3(0,0,100))));
+
+			sparksEmitter.addAction(new SPARKS.Age());
+			sparksEmitter.addAction(new SPARKS.Move()); 
+
+			sparksEmitter.addCallback("created", onParticleCreated);
+			sparksEmitter.addCallback("dead", onParticleDead);
+
+			sparksEmitter.start();
+		</pre>
+
+		<code id="code" contentEditable="true" onkeyup="run()">
+			
+			var onParticleCreated = function(p) {
+				// create a three.js particle
+
+				var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.circles, blending:THREE.AdditiveBlending } );
+				material.color.setHSV(Math.random() * 0.5 + 0.2, 1, 0.2); 
+
+				particle = new THREE.Particle( material );
+				particle.scale.x = particle.scale.y = 4;
+				group.add( particle );	
+
+
+				// assign three.js particle to sparks.js position
+				particle.position = p.position;
+
+				// assign sparks.js target particle to three.js particle
+				p.target = particle;
+
+			};
+
+			var onParticleDead = function(particle) {
+				particle.target.visible = false; // is this a work around?
+				group.remove(particle.target); 
+			};
+
+
+			sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(200));
+
+			sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.CubeZone( new THREE.Vector3(0,0,0), 100, 100, 100 ) ) );
+			sparksEmitter.addInitializer(new SPARKS.Lifetime(3,3));
+			sparksEmitter.addInitializer(new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3(0,0,100))));
+
+			sparksEmitter.addAction(new SPARKS.Age());
+			sparksEmitter.addAction(new SPARKS.Move()); 
+
+			sparksEmitter.addCallback("created", onParticleCreated);
+			sparksEmitter.addCallback("dead", onParticleDead);
+
+			sparksEmitter.start();				
+			
+
+
+		</code>
+		<!--
+		<div></div>
+		-->
+		
+		<!--
+
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/build/Three.js"></script>
+
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="http://mrdoob.github.com/three.js/examples/js/Stats.js"></script>
+		
+		<script type="text/javascript" src="http://sole.github.com/tween.js/src/Tween.js"></script>
+		<script type="text/javascript" src="https://raw.github.com/zz85/sparks.js/master/Sparks.js"></script>
+		-->
+		<script type="text/javascript" src="js/Three.js"></script>
+
+		<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="js/Stats.js"></script>
+		
+		<script type="text/javascript" src="js/Tween.js"></script>
+		<script type="text/javascript" src="../Sparks.js"></script>
+		<script type="text/javascript" src="CanvasShaders.js"></script>
+		
+		<script type="text/javascript">
+
+			var container, stats;
+			var camera, scene, renderer, group, particle;
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var lasttime = Date.now(), elapsed;
+			
+			var codeElement = document.getElementById('code');
+			
+			init();
+			animate();
+			
+			var sparksEmitter;
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera.position.z = 200; //1000
+
+				scene = new THREE.Scene();
+
+				renderer = new THREE.CanvasRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+				displayExample(actionZone);
+				run();
+
+			}
+
+			function actionZone() {
+				var onParticleCreated = function(p) {
+					// create a three.js particle
+
+					var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.circles, blending:THREE.AdditiveBlending } );
+					material.color.setHSV(Math.random() * 0.5 + 0.2, 1, 0.2); 
+
+					particle = new THREE.Particle( material );
+					particle.scale.x = particle.scale.y = 4;
+					group.add( particle );	
+
+
+					// assign three.js particle to sparks.js position
+					particle.position = p.position;
+
+					// assign sparks.js target particle to three.js particle
+					p.target = particle;
+
+				};
+
+				var onParticleDead = function(particle) {
+					particle.target.visible = false; // is this a work around?
+					group.remove(particle.target); 
+				};
+
+
+				sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(200));
+
+				
+				sparksEmitter.addInitializer(new SPARKS.Lifetime(3,3));
+				sparksEmitter.addInitializer(new SPARKS.Position(new SPARKS.CubeZone( new THREE.Vector3(0,0,0), 100, 100, 100 ) ) );
+				sparksEmitter.addInitializer(new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3(-10,0,0))));
+				sparksEmitter.addAction(new SPARKS.Accelerate(0, 0, 2));
+				
+				sparksEmitter.addAction(new SPARKS.Age());
+				sparksEmitter.addAction(new SPARKS.Move()); 
+				
+				sparksEmitter.addAction(new SPARKS.ActionZone( 
+					//new SPARKS.RandomDrift(1000,1000,1000),
+					new SPARKS.Accelerate(0, 0, 1000),
+					new SPARKS.CubeZone( new THREE.Vector3(20,20,0), 30, 30, 100 ) ) );
+
+				sparksEmitter.addCallback("created", onParticleCreated);
+				sparksEmitter.addCallback("dead", onParticleDead);
+
+				sparksEmitter.start();
+			}
+
+			function deathZone() {
+				var onParticleCreated = function(p) {
+					// create a three.js particle
+
+					var material = new THREE.ParticleCanvasMaterial( {  program: SPARKS.CanvasShadersUtils.circles, blending:THREE.AdditiveBlending } );
+					material.color.setHSV(Math.random() * 0.5 + 0.2, 1, 0.2); 
+
+					particle = new THREE.Particle( material );
+					particle.scale.x = particle.scale.y = 4;
+					group.add( particle );	
+
+
+					// assign three.js particle to sparks.js position
+					particle.position = p.position;
+
+					// assign sparks.js target particle to three.js particle
+					p.target = particle;
+
+				};
+
+				var onParticleDead = function(particle) {
+					particle.target.visible = false; // is this a work around?
+					group.remove(particle.target); 
+				};
+
+
+				sparksEmitter = new SPARKS.Emitter(new SPARKS.SteadyCounter(300));
+
+				
+				sparksEmitter.addInitializer(new SPARKS.Lifetime(3,3));
+				sparksEmitter.addInitializer(new SPARKS.Position( new SPARKS.CubeZone( new THREE.Vector3(0,0,0), 100, 100, 100 ) ) );
+				sparksEmitter.addInitializer(new SPARKS.Velocity(new SPARKS.PointZone(new THREE.Vector3(0,0,0))));
+				
+				sparksEmitter.addAction(new SPARKS.Age());
+				sparksEmitter.addAction(new SPARKS.Move()); 
+				
+				sparksEmitter.addAction(new SPARKS.DeathZone( 
+					new SPARKS.CubeZone( new THREE.Vector3(20,20,0), 50, 50, 100 ) ) );
+
+				sparksEmitter.addCallback("created", onParticleCreated);
+				sparksEmitter.addCallback("dead", onParticleDead);
+
+				sparksEmitter.start();
+			}
+
+			function displayExample(example) {
+				var codes = example.toString();
+				var lines = codes.split('\n');
+				lines.pop();
+				lines.shift();
+				lines.forEach(function(a,b) {
+					lines[b] = a.replace(/\t\t/, '');
+				});
+				
+				codeElement.innerHTML = lines.join('\n');
+				
+				//console.log(lines.join('\n'));
+			}
+			
+		
+			function run() {
+				
+				if (sparksEmitter) {
+					sparksEmitter.stop();
+					scene.remove(group);
+					sparksEmitter.update(2);
+					//  release used vectors
+				}
+				
+				group = new THREE.Object3D();
+				scene.add( group );
+				
+				//var codegen = "var configureParticles2 = function() { " + code.innerText + "};");
+				var codegen = document.createElement('script');
+				codegen.innerHTML = codeElement.innerText;
+				
+				document.body.appendChild(codegen);
+				//document.body.removeChild(codegen);
+				delete codegen;
+				
+			}
+			
+
+			//
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+			}
+
+			function onDocumentTouchStart( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					mouseY = event.touches[ 0 ].pageY - windowHalfY;
+				}
+			}
+
+			//
+			
+
+
+			function animate() {
+				
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+			
+			var _rotation = 0;
+
+			function render() {
+
+				camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+				camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+		<script src="https://raw.github.com/cloudhead/hijs/master/hijs.js"></script>
+	</body>
+</html>
