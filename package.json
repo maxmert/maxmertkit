@@ -28,7 +28,8 @@
     "url": "https://github.com/maxmert/maxmertkit-old/issues"
   },
   "dependencies": {
-    "express": "~3.4.8"
+    "express": "~3.4.8",
+    "mocha": "~1.18.2"
   },
   "devDependencies": {
     "gulp": "~3.5.2",
@@ -51,6 +52,8 @@
     "gulp-rev": "~0.3.2",
     "gulp-rev-all": "~0.1.0",
     "gulp-minify-css": "~0.3.0",
-    "gulp-bytediff": "~0.1.8"
+    "gulp-bytediff": "~0.1.8",
+    "chai": "~1.9.1",
+    "gulp-mocha": "~0.4.1"
   }
 }

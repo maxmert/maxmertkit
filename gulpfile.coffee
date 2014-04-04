@@ -16,6 +16,7 @@ livereload = require 'gulp-livereload'
 rev = require 'gulp-rev'
 minifyCSS = require 'gulp-minify-css'
 bytediff = require 'gulp-bytediff'
+mocha = require 'gulp-mocha'
 
 
 path =
@@ -200,6 +201,19 @@ gulp.task 'nodemon', ->
 	)
 		# .on('restart', 'default')
 
+
+
+
+
+
+
+
+
+# ================ TESTS TASKS
+
+gulp.task 'test', ->
+	gulp.src( "test/kit.coffee" )
+		.pipe( mocha() )
 
 
 

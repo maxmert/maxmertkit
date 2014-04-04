@@ -25,6 +25,5 @@
   },
   "_source": "git://github.com/thoughtbot/neat.git",
   "_target": "1.6.0",
-  "_originalSource": "neat",
-  "_direct": true
+  "_originalSource": "neat"
 }
