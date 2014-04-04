@@ -4,7 +4,7 @@
  */
 
 (function() {
-  var MaxmertkitHelpers, _globalRotation;
+  var MaxmertkitHelpers, _globalRotation, _id;
 
   _globalRotation = {
     x: 0,
@@ -12,9 +12,9 @@
     z: 0
   };
 
-  MaxmertkitHelpers = (function() {
-    MaxmertkitHelpers.prototype._id = 0;
+  _id = 0;
 
+  MaxmertkitHelpers = (function() {
     MaxmertkitHelpers.prototype._instances = new Array();
 
     function MaxmertkitHelpers($btn, options) {
@@ -27,8 +27,16 @@
     }
 
     MaxmertkitHelpers.prototype.destroy = function() {
-      this.$el.off("." + this._name);
-      return this._popInstance();
+      var key;
+      if (this.$el != null) {
+        this.$el.off("." + this._name);
+      }
+      this._popInstance();
+      for (key in this) {
+        this[key] = null;
+        delete this[key];
+      }
+      return true;
     };
 
     MaxmertkitHelpers.prototype._extend = function(object, properties) {
@@ -49,7 +57,7 @@
     };
 
     MaxmertkitHelpers.prototype._pushInstance = function() {
-      this._id++;
+      this._id = _id++;
       return this._instances.push(this);
     };
 
@@ -60,9 +68,10 @@
       for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
         instance = _ref[index];
         if (instance._id === this._id) {
-          this._instances.splice(index, 1);
+          _results.push(this._instances.splice(index, 1));
+        } else {
+          _results.push(void 0);
         }
-        _results.push(delete this);
       }
       return _results;
     };
@@ -97,8 +106,6 @@
     };
 
     MaxmertkitHelpers.prototype._refreshSizes = function() {
-      this._windowHeight = $(window).height();
-      this._windowWidth = $(window).width();
       this._height = this.$el.height();
       this._width = this.$el.width();
       if (this.scroll != null) {

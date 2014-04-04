@@ -28,11 +28,7 @@
   "dependencies": {
     "neat": "1.6.0",
     "jquery": "~2.0.3",
-    "threejs": "*",
-    "sparksjs": "*",
-    "tweenjs": "*",
-    "bourbon": "4.0.0-rc.1",
-    "jquery.event.swipe": "~0.5.2"
+    "bourbon": "4.0.0-rc.1"
   },
   "devDependencies": {}
 }

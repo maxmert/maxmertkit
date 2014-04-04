@@ -6,8 +6,9 @@ _globalRotation =
 	y: 0
 	z: 0
 
+_id = 0
+
 class MaxmertkitHelpers
-	_id: 0
 	_instances: new Array()
 
 	constructor: ( @$btn, @options ) ->
@@ -16,8 +17,14 @@ class MaxmertkitHelpers
 			@_afterConstruct()
 
 	destroy: ->
-		@$el.off ".#{@_name}"
+		if @$el? then @$el.off ".#{@_name}"
 		@_popInstance()
+		
+		for key of @
+			@[key] = null
+			delete @[key]
+
+		yes
 
 	_extend: (object, properties) ->
 		for key, val of properties
@@ -31,14 +38,13 @@ class MaxmertkitHelpers
 		console.warning "Maxmertkit Helpers. There is no standart setOptions function."
 
 	_pushInstance: ->
-		@_id++
+		@_id = _id++
 		@_instances.push @
 
 	_popInstance: ->
 		for instance, index in @_instances
 			if instance._id is @_id
 				@_instances.splice index, 1
-			delete @
 
 	_selfish: ->
 		for instance, index in @_instances
@@ -62,8 +68,8 @@ class MaxmertkitHelpers
 		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
 	_refreshSizes: ->
-		@_windowHeight = $(window).height()
-		@_windowWidth = $(window).width()
+		# @_windowHeight = $(window).height()
+		# @_windowWidth = $(window).width()
 		@_height = @$el.height()
 		@_width = @$el.width()
 
@@ -224,12 +230,12 @@ Adds support for the special browser events 'scrollstart' and 'scrollstop'.
 
 
 # Remove pointer events while scrolling
-# $(window).on "scrollstart.kit", ( event ) ->
-# 	$('body').addClass '-no-pointer-events'
+$(window).on "scrollstart.kit", ( event ) ->
+	$('body').addClass '-no-pointer-events'
 
-# $(window).on "scrollstop.kit", =>
-# 	$('body').removeClass '-no-pointer-events'
+$(window).on "scrollstop.kit", =>
+	$('body').removeClass '-no-pointer-events'
 
 
 
-# window['MaxmertkitHelpers'] = MaxmertkitHelpers
+window['MaxmertkitHelpers'] = MaxmertkitHelpers

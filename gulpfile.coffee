@@ -17,6 +17,9 @@ rev = require 'gulp-rev'
 minifyCSS = require 'gulp-minify-css'
 bytediff = require 'gulp-bytediff'
 mocha = require 'gulp-mocha'
+clean = require 'gulp-clean'
+runSequence = require 'run-sequence'
+
 
 
 path =
@@ -72,7 +75,7 @@ gulp.task 'kitVendor', ->
 		.pipe( concat 'vendor.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 
@@ -93,7 +96,7 @@ gulp.task 'kitCoffee', ->
 		.pipe( concat 'maxmertkit.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 # Compile all kit sass
@@ -110,7 +113,7 @@ gulp.task 'kitSass', ->
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 
@@ -156,7 +159,7 @@ gulp.task 'docsVendor', ->
 		.pipe( concat 'docsvendor.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 
@@ -172,7 +175,7 @@ gulp.task 'docsApp', ->
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 # Compile all kit sass
@@ -189,7 +192,7 @@ gulp.task 'docsSass', ->
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
-		.pipe( livereload() )
+		# .pipe( livereload() )
 
 
 
@@ -199,8 +202,6 @@ gulp.task 'nodemon', ->
 		script: path.docs.server.app
 		ext: 'server/**/*.coffee server/**/*.html'
 	)
-		# .on('restart', 'default')
-
 
 
 
@@ -227,13 +228,36 @@ gulp.task 'test', ->
 # ================ GLOBAL TASKS
 
 gulp.task 'watch', ->
-	gulp.watch "#{path.kit.coffee}/**/*.coffee", [ 'kitCoffee' ]
-	gulp.watch "#{path.docs.front.js}/maxmertkit.js", [ 'kitTodo' ]
-	gulp.watch [ "#{path.kit.vendor.bower}/**/*.js", "#{path.kit.vendor.libs}/**/*.js" ], [ 'kitVendor' ]
-	gulp.watch "#{path.kit.sass}/**/*.sass", [ 'kitSass' ]
 	
-	gulp.watch [ "#{path.docs.front.vendor.bower}/**/*.js", "#{path.docs.front.vendor.libs}/**/*.js" ], [ 'kitVendor' ]
-	gulp.watch "#{path.kit.sass}/developer.sass", [ 'docsSass' ]
+	files =
+		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
+		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
+		kitVendor:
+			bower: "#{path.kit.vendor.bower}/**/*.js"
+			libs: "#{path.kit.vendor.libs}/**/*.js"
+		kitSass: "#{path.kit.sass}/**/*.sass"
+		kitDocsVendor:
+			bower: "#{path.docs.front.vendor.bower}/**/*.js"
+			libs: "#{path.docs.front.vendor.libs}/**/*.js"
+		docsSass: "#{path.kit.sass}/developer.sass"
+
+	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
+	gulp.watch files.kitTodo, [ 'kitTodo' ]
+	gulp.watch [ files.kitVendor.bower, files.kitVendor.libs ], [ 'kitVendor' ]
+	gulp.watch files.kitSass, [ 'kitSass' ]
+	
+	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	gulp.watch files.docsSass, [ 'docsSass' ]
+
+
+	server = livereload()
+	gulp.watch( [
+		"#{path.docs.front.css}/**"
+		"#{path.docs.front.js}/**"
+		"docs/server/**/*.html"
+
+	] ).on 'change', ( file ) ->
+		server.changed file.path
 
 
 gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'docsApp', 'docsSass' ], ->
@@ -252,31 +276,38 @@ gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'do
 
 # ====================== BUILD TASKS
 
-gulp.task 'build', [ 'kitCoffee', 'kitSass' ], ->
+gulp.task 'clean', ->
+	gulp.src( ["#{path.build.js}", "#{path.build.css}" ], read: no)
+		.pipe( clean() )
 
-	
-	gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
-		.pipe( bytediff.start() )
-		.pipe( uglify() )
-		.pipe( bytediff.stop() )
-		.pipe( gulp.dest "#{path.build.js}" )
+
+gulp.task 'build', [ 'test' ], ->
+
+	gutil.log gutil.colors.cyan '\n\n\nStarting building. It can take a while. Please, be patient.\n\n'
+
+	runSequence [ 'kitCoffee', 'kitSass', 'clean' ],  ->
+		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+			.pipe( bytediff.start() )
+			.pipe( uglify() )
+			.pipe( bytediff.stop() )
+			.pipe( gulp.dest "#{path.build.js}" )
+			
+			.pipe( rev() )
+			.pipe( gulp.dest "#{path.build.js}" )
+
 		
-		.pipe( rev() )
-		.pipe( gulp.dest "#{path.build.js}" )
-
-	
-	gulp.src( "#{path.docs.front.css}/main.css" )
-		.pipe( bytediff.start() )
-		.pipe( minifyCSS() )
-		.pipe( bytediff.stop() )
-		.pipe( gulp.dest "#{path.build.css}" )
-		
-		.pipe( rev() )
-		.pipe( gulp.dest "#{path.build.css}" )
+		gulp.src( "#{path.docs.front.css}/main.css" )
+			.pipe( bytediff.start() )
+			.pipe( minifyCSS() )
+			.pipe( bytediff.stop() )
+			.pipe( gulp.dest "#{path.build.css}" )
+			
+			.pipe( rev() )
+			.pipe( gulp.dest "#{path.build.css}" )
 
 
 
-	gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
-		.pipe( plato "#{path.dev}/report" )
+		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+			.pipe( plato "#{path.dev}/report" )
 
 
