@@ -66,7 +66,7 @@ gulp.task 'kitVendor', ->
 		"#{path.kit.vendor.bower}/threejs/build/three.js"
 		"#{path.kit.vendor.bower}/sparksjs/Sparks.js"
 		"#{path.kit.vendor.bower}/tweenjs/Tween.js"
-		
+
 		"#{path.kit.vendor.libs}/threejs.mtlLoader.js"
 	]
 
@@ -149,9 +149,9 @@ gulp.task 'docsVendor', ->
 		"#{path.docs.front.vendor.bower}/angular-route/angular-route.js"
 		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
 		"#{path.docs.front.vendor.bower}/angular-highlightjs/angular-highlightjs.js"
-		
+
 		"#{path.docs.front.vendor.libs}/scrollTo.angular.js"
-		
+
 	]
 
 	gulp.src( files )
@@ -198,7 +198,7 @@ gulp.task 'docsSass', ->
 
 # Starts node server
 gulp.task 'nodemon', ->
-	nodemon( 
+	nodemon(
 		script: path.docs.server.app
 		ext: 'server/**/*.coffee server/**/*.html'
 	)
@@ -228,7 +228,7 @@ gulp.task 'test', ->
 # ================ GLOBAL TASKS
 
 gulp.task 'watch', ->
-	
+
 	files =
 		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
 		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
@@ -245,7 +245,7 @@ gulp.task 'watch', ->
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
 	gulp.watch [ files.kitVendor.bower, files.kitVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.kitSass, [ 'kitSass' ]
-	
+
 	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
 
@@ -291,17 +291,17 @@ gulp.task 'build', [ 'test' ], ->
 			.pipe( uglify() )
 			.pipe( bytediff.stop() )
 			.pipe( gulp.dest "#{path.build.js}" )
-			
+
 			.pipe( rev() )
 			.pipe( gulp.dest "#{path.build.js}" )
 
-		
+
 		gulp.src( "#{path.docs.front.css}/main.css" )
 			.pipe( bytediff.start() )
 			.pipe( minifyCSS() )
 			.pipe( bytediff.stop() )
 			.pipe( gulp.dest "#{path.build.css}" )
-			
+
 			.pipe( rev() )
 			.pipe( gulp.dest "#{path.build.css}" )
 
@@ -309,5 +309,3 @@ gulp.task 'build', [ 'test' ], ->
 
 		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
 			.pipe( plato "#{path.dev}/report" )
-
-

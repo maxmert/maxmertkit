@@ -27,8 +27,7 @@
   "bugs": {
     "url": "https://github.com/maxmert/maxmertkit/issues"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "~3.5.2",
     "coffee-script": "~1.7.1",
@@ -58,6 +57,7 @@
     "jquery": "~1.8.3",
     "jsdom": "~0.10.5",
     "gulp-clean": "~0.2.4",
-    "run-sequence": "~0.3.6"
+    "run-sequence": "~0.3.6",
+    "gulp-notify": "^1.2.5"
   }
 }

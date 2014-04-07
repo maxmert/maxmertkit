@@ -1,6 +1,6 @@
 // To import only once time
 $modules: () !global
 @mixin exports($name)
-	@if (index($modules, $name) == false)
+	@if not index($modules, $name)
 		$modules: append($modules, $name) !global
 		@content
