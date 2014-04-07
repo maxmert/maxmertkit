@@ -1,14 +1,10 @@
-###
-	TODO: Improve rotation
-###
 _globalRotation =
 	x: 0
 	y: 0
 	z: 0
 
-_id = 0
-
 class MaxmertkitHelpers
+	_id: 0
 	_instances: new Array()
 
 	constructor: ( @$btn, @options ) ->
@@ -17,14 +13,8 @@ class MaxmertkitHelpers
 			@_afterConstruct()
 
 	destroy: ->
-		if @$el? then @$el.off ".#{@_name}"
+		@$el.off ".#{@_name}"
 		@_popInstance()
-		
-		for key of @
-			@[key] = null
-			delete @[key]
-
-		yes
 
 	_extend: (object, properties) ->
 		for key, val of properties
@@ -38,13 +28,14 @@ class MaxmertkitHelpers
 		console.warning "Maxmertkit Helpers. There is no standart setOptions function."
 
 	_pushInstance: ->
-		@_id = _id++
+		@_id++
 		@_instances.push @
 
 	_popInstance: ->
 		for instance, index in @_instances
 			if instance._id is @_id
 				@_instances.splice index, 1
+			delete @
 
 	_selfish: ->
 		for instance, index in @_instances
@@ -68,8 +59,8 @@ class MaxmertkitHelpers
 		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
 	_refreshSizes: ->
-		# @_windowHeight = $(window).height()
-		# @_windowWidth = $(window).width()
+		@_windowHeight = $(window).height()
+		@_windowWidth = $(window).width()
 		@_height = @$el.height()
 		@_width = @$el.width()
 
@@ -88,15 +79,15 @@ class MaxmertkitHelpers
 
 
 	# POSITIONING
-	
+
 	_getContainer: (el) ->
 		parent = el[0] or el
-		
+
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
 		while parent = parent.parentNode
 			try
 				style = getComputedStyle parent
-			
+
 			return $(parent) if not style?
 
 			if /(relative)/.test(style['position'])
@@ -106,18 +97,18 @@ class MaxmertkitHelpers
 
 	_getScrollParent: ( el ) ->
 		parent = el[0] or el
-		
+
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
 		while parent = parent.parentNode
 			try
 				style = getComputedStyle parent
-			
+
 			return $(parent) if not style?
 
 			# if ( style.webkitPerspective? and style.webkitPerspective isnt 'none' ) or ( style.mozPerspective? and style.mozPerspective isnt 'none' ) or ( style.perspective? and style.perspective isnt 'none' )
 			# 	console.log parent
 			# 	return $(parent)
-			
+
 			if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) and $(parent)[0].nodeName isnt 'BODY'
 				return $(parent)
 				# if style['position'] isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
@@ -142,9 +133,9 @@ class MaxmertkitHelpers
 			max = @_offset.top + @_height + @_windowHeight
 			current = @scroll.scrollTop() + @_windowHeight
 			percent = 1 - current / max
-			
+
 			1 > percent > 0
-		
+
 		else
 
 			yes

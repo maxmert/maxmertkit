@@ -1,0 +1,14 @@
+{
+  "name": "highlightjs-scss",
+  "version": "7.3.0",
+  "main": [
+    "highlight.pack.js",
+    "styles/_default.scss"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor",
+    "components"
+  ]
+}
