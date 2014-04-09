@@ -1,7 +1,41 @@
+_eventCallbacks = []
+_reactorEvents = []
+
 _globalRotation =
 	x: 0
 	y: 0
 	z: 0
+
+_version = "0.0.1"
+
+
+class MaxmertkitEvent
+	constructor: (@name) ->
+
+	callbacks: _eventCallbacks
+
+	registerCallback: ( callback ) ->
+		@callbacks.push callback
+
+
+
+
+class MaxmertkitReactor
+	events: _reactorEvents
+
+	registerEvent: ( eventName ) ->
+		event = new MaxmertkitEvent( eventName )
+		@events[ eventName ] = event
+
+	dispatchEvent: ( eventName, eventArgs ) ->
+		for callback in @events[ eventName ].callbacks
+			callback( eventArgs )
+
+	addEventListener: ( eventName, callback ) ->
+		@events[ eventName ].registerCallback callback
+
+
+
 
 class MaxmertkitHelpers
 	_id: 0
@@ -42,6 +76,13 @@ class MaxmertkitHelpers
 			if @_id isnt instance._id
 				instance.close()
 
+	_getVersion: ->
+		_version
+
+
+
+	# EVENT REACTOR
+	reactor: new MaxmertkitReactor()
 
 
 
@@ -151,7 +192,6 @@ class MaxmertkitHelpers
 
 	_getGlobalRotation: ->
 		_globalRotation
-
 
 
 
