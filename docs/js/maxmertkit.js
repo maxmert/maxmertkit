@@ -1,11 +1,62 @@
 (function() {
-  var MaxmertkitHelpers, _globalRotation;
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbacks, _globalRotation, _reactorEvents, _version;
+
+  _eventCallbacks = [];
+
+  _reactorEvents = [];
 
   _globalRotation = {
     x: 0,
     y: 0,
     z: 0
   };
+
+  _version = "0.0.1";
+
+  MaxmertkitEvent = (function() {
+    function MaxmertkitEvent(name) {
+      this.name = name;
+    }
+
+    MaxmertkitEvent.prototype.callbacks = _eventCallbacks;
+
+    MaxmertkitEvent.prototype.registerCallback = function(callback) {
+      return this.callbacks.push(callback);
+    };
+
+    return MaxmertkitEvent;
+
+  })();
+
+  MaxmertkitReactor = (function() {
+    function MaxmertkitReactor() {}
+
+    MaxmertkitReactor.prototype.events = _reactorEvents;
+
+    MaxmertkitReactor.prototype.registerEvent = function(eventName) {
+      var event;
+      event = new MaxmertkitEvent(eventName);
+      return this.events[eventName] = event;
+    };
+
+    MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
+      var callback, _i, _len, _ref, _results;
+      _ref = this.events[eventName].callbacks;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        callback = _ref[_i];
+        _results.push(callback(eventArgs));
+      }
+      return _results;
+    };
+
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback) {
+      return this.events[eventName].registerCallback(callback);
+    };
+
+    return MaxmertkitReactor;
+
+  })();
 
   MaxmertkitHelpers = (function() {
     MaxmertkitHelpers.prototype._id = 0;
@@ -76,6 +127,12 @@
       }
       return _results;
     };
+
+    MaxmertkitHelpers.prototype._getVersion = function() {
+      return _version;
+    };
+
+    MaxmertkitHelpers.prototype.reactor = new MaxmertkitReactor();
 
     MaxmertkitHelpers.prototype._setTransform = function(style, transform) {
       style.webkitTransform = transform;
