@@ -90,7 +90,7 @@ gulp.task 'kitCoffee', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('kitCoffee') )
+		# .pipe( cache('kitCoffee') )
 		.pipe( coffeelint() )
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
 		.pipe( concat 'maxmertkit.js' )
@@ -109,7 +109,7 @@ gulp.task 'kitSass', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('kitSass') )
+		# .pipe( cache('kitSass') )
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )

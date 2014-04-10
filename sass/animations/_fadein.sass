@@ -6,7 +6,7 @@ $animations-fadein-delay: 0s !global
 
 
 @include exports("animations/fadein")
-	
+
 	@include keyframes( fadeIn )
 		from
 			opacity: 0
@@ -22,7 +22,7 @@ $animations-fadein-delay: 0s !global
 
 
 	.#{$animations-fadein-class}
-		
+
 		&.#{$animation-start-class}
 			@include animation( fadeIn $animations-fadein-duration forwards $animations-fadein-timing-function )
 

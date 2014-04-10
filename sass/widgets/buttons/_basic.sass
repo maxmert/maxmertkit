@@ -1,40 +1,52 @@
-@mixin buttons-theme-button-setter($i)
-	@if nth($themes, $i) == "-default-"
-		background-color: nth($themes-background-light-colors, $i)
-		border-top-color: lighten(nth($themes-background-colors, $i), 5%)
-		border-left-color: lighten(nth($themes-background-colors, $i), 5%)
-		border-right-color: lighten(nth($themes-background-colors, $i), 5%)
-		border-bottom-color: lighten(nth($themes-background-colors, $i), 3%)
-		color: nth($themes-colors, $i)
+@mixin buttons-theme-button-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+
+	@if $name == default
+		background-color: lighten($background-color, 6%)
+		border-color: darken($background-color, 3%)
+		color: $color
 	@else
-		background-color: nth($themes-background-colors, $i)
-		border-color: darken(nth($themes-background-colors, $i), 7%)
-		color: nth($themes-white-colors, $i)
+		background-color: $background-color
+		border-color: darken($background-color, 7%)
+		color: $white-color
+
 
 	&:hover, &.#{$mod-hovered}
-		@if nth($themes, $i) != "-default-"
-			background-color: lighten(nth($themes-background-colors, $i), 5%)
+		@if $name == default
+			background-color: lighten($background-color, 10%)
 		@else
-			background-color: lighten(nth($themes-background-light-colors, $i), 2%)
-		// box-shadow: 1px 1px 2px rgba(0,0,0,.2), -1px 1px 2px rgba(0,0,0,.2), 0 4px 4px rgba(0,0,0,.05), 0 6px 6px rgba(0,0,0,.1)
-		// box-shadow: 1px 1px 0 rgba(0,0,0,.1), -1px 1px 0 rgba(0,0,0,.1), 0 4px 4px rgba(0,0,0,.05), 0 6px 6px rgba(0,0,0,.1), inset 0 -4px 4px rgba(0,0,0,.05)
+			background-color: lighten($background-color, 5%)
 
 	&:active, &.#{$mod-active}
-		box-shadow: inset 0 0 15px rgba(0,0,0,.1)
-		@if nth($themes, $i) != "-default-"
-			background-color: nth($themes-background-dark-colors, $i)
-			border-color: nth($themes-background-dark-colors, $i)
-			// box-shadow: none
+		@if $name == default
+			background-color: darken($background-color, 1%)
+			border-color: darken($background-color, 5%)
 		@else
-			border-color: nth($themes-background-colors, $i)
-			background-color: darken(nth($themes-background-light-colors, $i), 2%)
-
+			background-color: darken($background-color, 5%)
+			border-color: darken($background-color, 5%)
 
 	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
-		color: rgba(nth($themes-white-colors, $i), .65)
+		color: rgba($white-color, .65)
 
 	&.#{$mod-unstyled}
-		color: nth($themes-colors, $i)
+		color: $color
+
+
+
+@mixin button-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	@if $name == "_normal"
+		font-size: $multiplier * $base-font-size
+	@else
+		font-size: $multiplier * $base-font-size
+
 
 
 
@@ -42,12 +54,11 @@
 
 	.#{$button-class}
 
-
-
 		display: inline-block
 		margin: 0 //For input.btn
 		font-weight: $button-font-weight
 		text-align: center
+		text-decoration: none
 		vertical-align: middle
 		cursor: pointer
 		background-image: none // Took from bootstrap, Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
@@ -57,7 +68,6 @@
 		white-space: nowrap
 		outline: none
 		position: relative
-		// z-index: 1
 
 		// Set default size
 		padding: $base-padding-vertical $base-padding-horizontal
@@ -66,8 +76,6 @@
 		border-radius: $button-border-radius
 
 		@include user-select(none)
-
-		// box-shadow: 0 2px 2px rgba(0,0,0,.1), 0 4px 4px rgba(0,0,0,.05), 0 6px 6px rgba(0,0,0,.02), inset 0 -4px 4px rgba(0,0,0,.05)
 
 
 
@@ -78,26 +86,22 @@
 			& + .#{$button-class}
 				margin-top: 5px
 
-		// &:active, &.#{$mod-active}, &.#{$mod-disabled}, &[disabled], fieldset[disabled] &
-		// 	z-index: 0
+		@each $themeName in $button-themes
+			$thm: map-get( $base-themes, $themeName )
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include buttons-theme-button-setter($i)
-				&.#{$theme}
-					@include buttons-theme-button-setter($i)
-			@else
-				&.#{$theme}
-					@include buttons-theme-button-setter($i)
+			@if $themeName == default
+				@include buttons-theme-button-setter($thm)
+			&.-#{$themeName}-
+				@include buttons-theme-button-setter($thm)
+
+
 
 		&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
 			cursor: not-allowed
 			pointer-events: none // Future-proof disabling of clicks
 			opacity: .55
 			box-shadow: none
-			opacity: 1 // iOS fix for unreadable disabled content
+			// opacity: 1 // iOS fix for unreadable disabled content
 
 		&.#{$mod-unstyled}
 			background-color: transparent !important
@@ -113,20 +117,14 @@
 				padding-right: 4px
 
 
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			@if #{$size} == "_normal"
-				@if nth($base-sizes-values, $i) * $base-font-size / 2 > $button-min-font-size
-					font-size: nth($base-sizes-values, $i) * $base-font-size / 2
-				@else
-					font-size: $button-min-font-size
-			
-			&.#{$size}
-				@if nth($base-sizes-values, $i) * $base-font-size > $button-min-font-size
-					font-size: nth($base-sizes-values, $i) * $base-font-size
-				@else
-					font-size: $button-min-font-size
-
+		@each $sizeName in $button-sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include button-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size / 2
+			&._#{$sizeName}
+				@include button-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size
 
 	a.#{$button-class}
 		font-weight: normal
