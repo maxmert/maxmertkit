@@ -1,23 +1,26 @@
 @mixin typography-inline-theme-setter($theme)
+	$name: map-get( $theme, name)
 	$color: map-get( $theme, color)
-	color: $color
+	@if $name != default
+		color: $color
 
 
-@mixin typography-theme-setter($theme)
-	// $name: map-get( $theme, name)
+@mixin typography-blockquote-theme-setter($theme)
 	$color: map-get( $theme, color)
-	// $white-color: map-get( $theme, white-color)
-	// $border-color: map-get( $theme, border-color)
-	// $background-color: map-get( $theme, background-color)
 
 	border-color: $color
 	small
 		color: $color
 
-@mixin hr-theme-setter($theme)
-	// $name: map-get( $theme, name)
+@mixin typography-hr-theme-setter($theme)
 	$color: map-get( $theme, color)
 	background-color: $color
+
+
+@mixin typography-inline-size-setter($size)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
 
 
 
@@ -37,6 +40,14 @@
 		line-height: $base-line-height
 
 	b, i, small, p, span
+
+		@each $sizeName in $typography-body-sizes
+			$sz: map-get( $base-sizes, $sizeName )
+
+			&._#{$sizeName}
+				@include typography-inline-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size
+
 		// @each $size in $base-sizes-names
 		// 	$i: index($base-sizes-names, $size)
 		// 	&.#{$size}
@@ -49,10 +60,7 @@
 				@include typography-inline-theme-setter($thm)
 			&.-#{$themeName}-
 				@include typography-inline-theme-setter($thm)
-		// @each $theme in $themes
-		// 	$i: index($themes, $theme)
-		// 	&.#{$theme}
-		// 		color: nth($themes-colors, $i)
+
 
 		&.#{$mod-left}
 			text-align: left
@@ -107,14 +115,14 @@
 				&:after
 					content: '\2014 \00A0'
 
+		@each $themeName in $typography-body-themes
+			$thm: map-get( $base-themes, $themeName )
 
-		// @each $theme in $themes
-		// 	$i: index($themes, $theme)
-		//
-		// 	@if $theme == "-default-"
-		// 		@include typography-theme-setter($i)
-		// 	&.#{$theme}
-		// 		@include typography-theme-setter($i)
+			@if $themeName == default
+				@include typography-blockquote-theme-setter($thm)
+			&.-#{$themeName}-
+				@include typography-blockquote-theme-setter($thm)
+
 
 	hr
 		display: block
@@ -123,11 +131,10 @@
 		margin: $hr-margin-vertical $hr-margin-horizontal
 		border: none
 
+		@each $themeName in $typography-body-themes
+			$thm: map-get( $base-themes, $themeName )
 
-		// @each $theme in $themes
-		// 	$i: index($themes, $theme)
-		//
-		// 	@if $theme == "-default-"
-		// 		@include hr-theme-setter($i)
-		// 	&.#{$theme}
-		// 		@include hr-theme-setter($i)
+			@if $themeName == default
+				@include typography-hr-theme-setter($thm)
+			&.-#{$themeName}-
+				@include typography-hr-theme-setter($thm)

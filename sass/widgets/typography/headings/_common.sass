@@ -1,3 +1,10 @@
+@mixin typography-heading-size-setter( $size )
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * 100%
+
+
 @include exports("typography/headings")
 
 	h1
@@ -25,11 +32,10 @@
 		&.#{$mod-center}
 			text-align: center
 
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			.#{$size}
-				font-size: nth($base-sizes-values, $i) * 100%
-
+		@each $sizeName in $typography-heading-sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			&._#{$sizeName}
+				@include typography-heading-size-setter($sz)
 
 	h1, h2, h3
 		margin-top: $base-line-height-comp
