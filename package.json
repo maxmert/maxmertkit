@@ -58,6 +58,11 @@
     "jsdom": "~0.10.5",
     "gulp-clean": "~0.2.4",
     "run-sequence": "~0.3.6",
-    "gulp-notify": "^1.2.5"
+    "gulp-notify": "^1.2.5",
+    "gulp-jstemplater": "0.0.1",
+    "gulp-browserify": "^0.5.0",
+    "gulp-rename": "^1.2.0",
+    "coffeeify": "^0.6.0",
+    "browserify": "^3.41.0"
   }
 }

@@ -41,7 +41,7 @@
 
 	b, i, small, p, span
 
-		@each $sizeName in $typography-body-sizes
+		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
 			&._#{$sizeName}
@@ -53,7 +53,7 @@
 		// 	&.#{$size}
 		// 		font-size: nth($base-sizes-values, $i) * 100%
 
-		@each $themeName in $typography-body-themes
+		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
 			@if $themeName == default
@@ -115,7 +115,7 @@
 				&:after
 					content: '\2014 \00A0'
 
-		@each $themeName in $typography-body-themes
+		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
 			@if $themeName == default
@@ -131,7 +131,7 @@
 		margin: $hr-margin-vertical $hr-margin-horizontal
 		border: none
 
-		@each $themeName in $typography-body-themes
+		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
 			@if $themeName == default

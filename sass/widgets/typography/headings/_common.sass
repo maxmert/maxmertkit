@@ -32,7 +32,7 @@
 		&.#{$mod-center}
 			text-align: center
 
-		@each $sizeName in $typography-heading-sizes
+		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			&._#{$sizeName}
 				@include typography-heading-size-setter($sz)

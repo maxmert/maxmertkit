@@ -83,7 +83,7 @@
 			& + .#{$button-class}
 				margin-top: 5px
 
-		@each $themeName in $button-themes
+		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
 			@if $themeName == default
@@ -114,7 +114,7 @@
 				padding-right: 4px
 
 
-		@each $sizeName in $button-sizes
+		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include button-size-setter($sz)

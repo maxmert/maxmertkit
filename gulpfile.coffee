@@ -19,6 +19,9 @@ bytediff = require 'gulp-bytediff'
 mocha = require 'gulp-mocha'
 clean = require 'gulp-clean'
 runSequence = require 'run-sequence'
+templater = require 'gulp-jstemplater'
+browserify = require 'gulp-browserify'
+rename = require 'gulp-rename'
 
 
 
@@ -28,6 +31,7 @@ path =
 			js: "docs/js"
 			css: "docs/css"
 			coffee: "docs/coffee"
+			templates: "docs/server/views/templates"
 			vendor:
 				bower: "docs/js/bower"
 				libs: "docs/js/libs"
@@ -145,13 +149,12 @@ gulp.task 'kitTodo', ->
 gulp.task 'docsVendor', ->
 
 	files = [
-		"#{path.docs.front.vendor.bower}/angular/angular.js"
-		"#{path.docs.front.vendor.bower}/angular-route/angular-route.js"
+		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
+		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
+		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
+		"#{path.docs.front.vendor.bower}/backbone.wreqr/lib/backbone.wreqr.js"
+		"#{path.docs.front.vendor.bower}/marionette/lib/backbone.marionette.js"
 		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
-		"#{path.docs.front.vendor.bower}/angular-highlightjs/angular-highlightjs.js"
-
-		"#{path.docs.front.vendor.libs}/scrollTo.angular.js"
-
 	]
 
 	gulp.src( files )
@@ -165,17 +168,28 @@ gulp.task 'docsVendor', ->
 
 gulp.task 'docsApp', ->
 
-	files = [
-		"#{path.docs.front.coffee}/app.coffee"
-	]
-
-	gulp.src( files )
-		.pipe( cache('docsApp') )
-		.pipe( coffeelint() )
-		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
+	gulp.src( "#{path.docs.front.coffee}/app.coffee", { read: false } )
+		.pipe( plumber() )
+		.pipe( browserify( transform: ['coffeeify'], extensions: ['.coffee'] ) )
+		.pipe( rename('app.js') )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
 		# .pipe( livereload() )
+
+
+
+gulp.task 'docsTemplates', ->
+
+	files = [
+		"#{path.docs.front.templates}/**/*.html"
+	]
+
+	gulp.src( files )
+		# .pipe( cache('docsApp') )
+		.pipe( templater( "templates.js", {variable: "TMPL"} ) )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+
 
 
 # Compile all kit sass
@@ -239,7 +253,9 @@ gulp.task 'watch', ->
 		kitDocsVendor:
 			bower: "#{path.docs.front.vendor.bower}/**/*.js"
 			libs: "#{path.docs.front.vendor.libs}/**/*.js"
+		docsCoffee: "#{path.docs.front.coffee}/**/*.coffee"
 		docsSass: "#{path.kit.sass}/developer.sass"
+		docsTemplates: "#{path.docs.front.templates}/**/*.html"
 
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
@@ -247,7 +263,9 @@ gulp.task 'watch', ->
 	gulp.watch files.kitSass, [ 'kitSass' ]
 
 	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
+	gulp.watch files.docsTemplates, [ 'docsTemplates' ]
 
 
 	server = livereload()
@@ -260,7 +278,7 @@ gulp.task 'watch', ->
 		server.changed file.path
 
 
-gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'docsApp', 'docsSass' ], ->
+gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass' ], ->
 	gulp.tasks.nodemon.fn()
 	gulp.tasks.watch.fn()
 	gulp.tasks.kitTodo.fn()
