@@ -1,1 +1,8 @@
-exports.opt1 = "Hi"
+commonPath = '.'
+
+exports.path =
+    views: "#{commonPath}/views"
+    regions: "regions"
+    models: "#{commonPath}/models"
+    collections: "#{commonPath}/collections"
+    routers: "#{commonPath}/routers"

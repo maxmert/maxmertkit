@@ -1,9 +1,25 @@
-$.app = new Backbone.Marionette.Application()
+Backbone.Marionette.Renderer.render = (template, data) ->
+	Mustache.to_html(template, data);
 
+$.app = new Marionette.Application()
 $.app.config = require './config'
+$.app.contents = require './contents'
+$.app.templates = require('../js/templates.js').module
 
-$.app.on 'start', =>
-	console.log $.app.config.opt1
+RegionIndex = require("./layouts/index").module
+Router = require("./routers/router").module
+
+
+$.app.addRegions
+	main: '#app'
+
+$.app.addInitializer ->
+	$.app.router = new Router()
+	Backbone.history.start
+		pushState: yes
+
+
+$.app.main.show new RegionIndex()
 
 $.app.start()
 

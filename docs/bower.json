@@ -19,6 +19,7 @@
     "angular": "1.2.12",
     "highlightjs-scss": "~7.3.0",
     "angular-route": "1.2.12",
-    "marionette": "~1.7.4"
+    "marionette": "~1.7.4",
+    "mustache": "~0.8.1"
   }
 }

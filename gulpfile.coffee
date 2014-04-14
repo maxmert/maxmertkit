@@ -154,6 +154,7 @@ gulp.task 'docsVendor', ->
 		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
 		"#{path.docs.front.vendor.bower}/backbone.wreqr/lib/backbone.wreqr.js"
 		"#{path.docs.front.vendor.bower}/marionette/lib/backbone.marionette.js"
+		"#{path.docs.front.vendor.bower}/mustache/mustache.js"
 		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
 	]
 
@@ -170,7 +171,7 @@ gulp.task 'docsApp', ->
 
 	gulp.src( "#{path.docs.front.coffee}/app.coffee", { read: false } )
 		.pipe( plumber() )
-		.pipe( browserify( transform: ['coffeeify'], extensions: ['.coffee'] ) )
+		.pipe( browserify( transform: ['coffeeify'], extensions: ['.coffee'], debug: yes ) )
 		.pipe( rename('app.js') )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
@@ -186,7 +187,7 @@ gulp.task 'docsTemplates', ->
 
 	gulp.src( files )
 		# .pipe( cache('docsApp') )
-		.pipe( templater( "templates.js", {variable: "TMPL"} ) )
+		.pipe( templater( "templates.js", {variable: "module", commonjs: yes} ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
 
