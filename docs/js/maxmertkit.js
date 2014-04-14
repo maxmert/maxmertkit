@@ -174,11 +174,11 @@
         if (style == null) {
           return $(parent);
         }
-        if (/(relative)/.test(style['position'])) {
-          return parent;
+        if (/(relative)/.test(style['position']) || /(relative)/.test(parent.style['position'])) {
+          return $(parent);
         }
       }
-      return document.body;
+      return $(document);
     };
 
     MaxmertkitHelpers.prototype._getScrollParent = function(el) {
@@ -377,9 +377,8 @@
   })(MaxmertkitHelpers);
 
   _position = function() {
-    var $scrollParent, offset, scrollParent;
-    scrollParent = this._getContainer(this.$el);
-    $scrollParent = $(scrollParent);
+    var $scrollParent, offset;
+    $scrollParent = this._getContainer(this.$el);
     if ($scrollParent[0].firstElementChild.nodeName === "HTML") {
       offset = 0;
     } else {
@@ -487,8 +486,6 @@
         } else {
           if (typeof options === "string" && options.charAt(0) !== "_") {
             $.data(this, "kit-" + _name)[options];
-          } else {
-            console.error("Maxmertkit Affix. You passed into the " + _name + " something wrong.");
           }
         }
       }

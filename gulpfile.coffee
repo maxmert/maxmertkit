@@ -159,7 +159,7 @@ gulp.task 'docsVendor', ->
 	]
 
 	gulp.src( files )
-		.pipe( cache('docsVendor') )
+		# .pipe( cache('docsVendor') )
 		.pipe( concat 'docsvendor.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
@@ -203,7 +203,7 @@ gulp.task 'docsSass', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('docsSass') )
+		# .pipe( cache('docsSass') )
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
@@ -266,7 +266,7 @@ gulp.task 'watch', ->
 	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
-	gulp.watch files.docsTemplates, [ 'docsTemplates' ]
+	gulp.watch files.docsTemplates, [ 'docsTemplates', 'docsApp' ]
 
 
 	server = livereload()

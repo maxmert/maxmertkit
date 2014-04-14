@@ -117,6 +117,9 @@ pre .chunk {
   border: 1px solid #cccccc;
   border-radius: 5px; }
 
+pre code {
+  background-color: rgba(0, 0, 0, 0.03); }
+
 .example-block .example, .example-block .view {
   padding: 15px !important;
   position: relative; }
@@ -147,6 +150,9 @@ pre .chunk {
     padding: 0;
     border: none;
     margin: 0; }
+    .example-block .example pre code {
+      background-color: transparent;
+      overflow: hidden; }
   .example-block .example:first-child {
     border-top: none; }
 

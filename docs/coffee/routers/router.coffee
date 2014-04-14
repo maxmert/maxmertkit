@@ -10,7 +10,12 @@ exports.module = Marionette.AppRouter.extend
         '': 'index'
         'widgets': 'widgets'
 
-    widgets: ->
-        console.log Backbone.history
     index: ->
-        console.log Backbone.history
+        Backbone.history.templates = 'index'
+        $.app.vent.trigger 'index.route'
+    widgets: ->
+        Backbone.history.templates = 'widgets'
+        $.app.vent.trigger 'widgets.route'
+    components: ->
+        Backbone.history.templates = 'components'
+        $.app.vent.trigger 'components.route'

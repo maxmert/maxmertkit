@@ -129,12 +129,13 @@ class MaxmertkitHelpers
 			try
 				style = getComputedStyle parent
 
+
 			return $(parent) if not style?
 
-			if /(relative)/.test(style['position'])
-				return parent
+			if /(relative)/.test(style['position']) or /(relative)/.test(parent.style['position'])
+					return $(parent)
 
-		return document.body
+		return $(document)
 
 	_getScrollParent: ( el ) ->
 		parent = el[0] or el
