@@ -147,6 +147,36 @@ exports.widgets = [
 			}
 		]
 	}
+	{
+		name: "nav"
+		path: "navCommon"
+		include: [
+			{
+				name: "common"
+				path: "navCommon"
+			}
+			{
+				name: "menu"
+				path: "navMenu"
+			}
+			{
+				name: "tabs"
+				path: "navTabs"
+			}
+			{
+				name: "pills"
+				path: "navPills"
+			}
+			{
+				name: "bar"
+				path: "navBar"
+			}
+			{
+				name: "list-group"
+				path: "navListGroup"
+			}
+		]
+	}
 ]
 
 exports.utilities = [
