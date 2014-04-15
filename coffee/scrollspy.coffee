@@ -106,11 +106,11 @@ _refresh = ->
 _spy = ( event ) ->
 	i = 0
 	while i + 1 < @elements.length
-		if @elements[i].offsetTop <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i+1].offsetTop
+		if (@elements[i].offsetTop <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i+1].offsetTop) and not @elements[i].menu.hasClass '_active_'
 			_activateItem.call @, i
-		else
-			if (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset > @elements[i+1].offsetTop
-				_activateItem.call @, i + 1
+		# else
+		# 	if (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset > @elements[i+1].offsetTop
+		# 		_activateItem.call @, i + 1
 		i++
 	# for element, index in @elements
 	# 	if element.offsetTop - @options.offset <= event.currentTarget.scrollTop <= element.offsetTop + @options.offset

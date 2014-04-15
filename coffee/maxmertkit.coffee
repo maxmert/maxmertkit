@@ -262,11 +262,13 @@ Adds support for the special browser events 'scrollstart' and 'scrollstop'.
 
 
 # Remove pointer events while scrolling
-$(window).on "scrollstart.kit", ( event ) ->
-	$('body').addClass '-no-pointer-events'
-
-$(window).on "scrollstop.kit", =>
-	$('body').removeClass '-no-pointer-events'
+# $(window).on "scrollstart.kit", ( event ) ->
+# 	if not $('body').hasClass '-no-pointer-events'
+# 		$('body').addClass '-no-pointer-events'
+#
+# $(window).on "scrollstop.kit", =>
+# 	if $('body').hasClass '-no-pointer-events'
+# 		$('body').removeClass '-no-pointer-events'
 
 
 

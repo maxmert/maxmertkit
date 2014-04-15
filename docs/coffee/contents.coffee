@@ -6,6 +6,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "typoCommon"
+				invisible: yes
 			}
 			{
 				name: "headings"
@@ -32,6 +33,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "gridCommon"
+				invisible: yes
 			}
 			{
 				name: "container"
@@ -54,6 +56,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "tablesCommon"
+				invisible: yes
 			}
 			{
 				name: "basic"
@@ -84,6 +87,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "formsCommon"
+				invisible: yes
 			}
 			{
 				name: "grid"
@@ -106,6 +110,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "buttonsCommon"
+				invisible: yes
 			}
 			{
 				name: "themes"
@@ -132,6 +137,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "groupsCommon"
+				invisible: yes
 			}
 			{
 				name: "buttons"
@@ -158,6 +164,7 @@ exports.widgets = [
 			{
 				name: "common"
 				path: "navCommon"
+				invisible: yes
 			}
 			{
 				name: "menu"
@@ -178,6 +185,37 @@ exports.widgets = [
 			{
 				name: "list-group"
 				path: "navListGroup"
+			}
+		]
+	}
+	{
+		name: "labels"
+		path: "labelsCommon"
+	}
+	{
+		name: "badges"
+		path: "badgesCommon"
+	}
+	{
+		name: "progress"
+		path: "progressCommon"
+	}
+	{
+		name: "alerts"
+		path: "alertsCommon"
+	}
+	{
+		name: "thumbnails"
+		path: "thumbnailsCommon"
+		include: [
+			{
+				name: "common"
+				path: "thumbnailsCommon"
+				invisible: yes
+			}
+			{
+				name: "captions"
+				path: "thumbnailsCaptions"
 			}
 		]
 	}

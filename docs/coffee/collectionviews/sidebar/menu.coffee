@@ -10,7 +10,7 @@ collectionMenu = new CollectionMenu()
 
 exports.module = Marionette.CollectionView.extend
     tagName: "ul"
-    className: '-list-group'
+    className: '-list-group -primary-'
     itemView: ViewMenuItem
     collection: collectionMenu
 

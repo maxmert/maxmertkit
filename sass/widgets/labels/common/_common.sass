@@ -1,0 +1,83 @@
+@import "sizes"
+@import "themes"
+
+@mixin labels-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 10%)
+		border-color: lighten($background-color, 9%)
+		color: $color
+	@else
+		background-color: $background-color
+		border-color: $background-color
+		color: $white-color
+
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		color: $color
+
+@mixin labels-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: floor($multiplier * $base-font-size * 0.8)
+
+
+
+@include exports("labels/common")
+
+	.#{$label-class}
+
+		display: inline-block
+		font-weight: $label-font-weight
+		text-align: center
+		vertical-align: middle
+		border-width: $label-border-width
+		border-style: $label-border-style
+		border-radius: $label-border-radius
+		border-color: transparent
+		outline: none
+		position: relative
+
+		@include text-overflow
+
+		// Set default size
+		padding: $label-padding-vertical $label-padding-horizontal
+		font-size: $base-font-size
+		line-height: $base-line-height
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include labels-theme-setter($thm)
+			&.-#{$themeName}-
+				@include labels-theme-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include labels-size-setter($sz)
+			&._#{$sizeName}
+				@include labels-size-setter($sz)
+
+		&:empty
+			display: none
+
+
+	// To nest sizes from parents elements
+	@each $sizeName in $sizes
+		$sz: map-get( $base-sizes, $sizeName )
+
+		._#{$sizeName}
+			.#{$label-class}
+				@extend .#{$label-class}._#{$sizeName}

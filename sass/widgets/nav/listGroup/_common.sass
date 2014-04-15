@@ -65,6 +65,8 @@
 					position: absolute
 					right: $nav-list-group-items-padding-horizontal
 
+			& > .#{$nav-list-group-class}
+				display: none
 
 
 
@@ -76,6 +78,9 @@
 					padding: $nav-list-group-items-padding-vertical $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical $nav-list-group-items-padding-horizontal - $nav-list-group-items-active-border-width
 					border-left-width: $nav-list-group-items-active-border-width
 
+				& > .#{$nav-list-group-class}
+					display: block
+
 			#{$nav-item}
 				a
 					padding: $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal * 2
@@ -84,6 +89,9 @@
 				&.#{$mod-active}
 					a
 						padding: $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal * 2 - $nav-list-group-items-active-border-width
+
+		&.#{$mod-visible} #{$nav-item} .#{$nav-list-group-class}
+			display: block
 
 		&.#{$mod-right}
 			#{$nav-item}

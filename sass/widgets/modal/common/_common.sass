@@ -1,7 +1,17 @@
-@mixin modal-theme-setter($i)
-	background-color: rgba(nth($themes-colors, $i), $modal-background-opacity)
+@import "sizes"
+@import "themes"
 
-	@if nth($themes, $i) == "-default-"
+@mixin modal-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+
+	background-color: rgba($color, $modal-background-opacity)
+
+	@if $name == default
 		& > .#{$close-class}
 			polygon, path
 				fill: #fff
@@ -10,33 +20,39 @@
 	@else
 		& > .#{$close-class}
 			polygon, path
-				fill: nth($themes-white-colors, $i)
+				fill: $white-color
 			circle
-				stroke: nth($themes-white-colors, $i)
+				stroke: $white-color
 
-@mixin modal-header-theme-setter($i)
-	background-color: nth($themes-background-colors, $i)
-	@if nth($themes, $i) == "-default-"
-		color: nth($themes-colors, $i)
+@mixin modal-header-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	background-color: $background-color
+	@if $name == default
+		color: $color
 		.#{$close-class}
 			polygon, path
-				fill: nth($themes-colors, $i)
+				fill: $color
 			circle
-				stroke: nth($themes-colors, $i)
+				stroke: $color
 	@else
-		color: nth($themes-white-colors, $i)
+		color: $white-color
 		.#{$close-class}
 			polygon, path
-				fill: nth($themes-white-colors, $i)
+				fill: $white-color
 			circle
-				stroke: nth($themes-white-colors, $i)
-	
-	.#{$header-class-name}
-		background-color: darken(nth($themes-background-colors, $i), 5%)
-		border-bottom-color: darken(nth($themes-background-colors, $i), 7%)
+				stroke: $white-color
+
+	.#{$header-class}
+		background-color: darken($background-color, 5%)
+		border-bottom-color: darken($background-color, 7%)
 
 
-	
+
 // color: nth($themes-white-colors, $i)
 
 // 	.#{$header-class-name}
@@ -69,6 +85,21 @@
 // 	&.#{$mod-right}
 // 		.#{$arrow-class-name}
 // 			@include triangle($dropdown-arrow-size, nth($themes-background-colors, $i), left)
+
+
+@mixin modal-close-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	@include size( $modal-dialog-close-size * $multiplier )
+
+@mixin modal-header-close-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	@include size( $modal-dialog-close-size * $multiplier )
+	margin-top: - ( $modal-dialog-close-size * $multiplier ) / 2
+
 
 
 @include exports("modal/common")
@@ -122,23 +153,19 @@
 					stroke-width: 50
 				polygon, path
 					opacity: 1
-				
+
 				@include transform(rotate(0deg))
 
-
-			// Set sizes
-			@each $size in $base-sizes-names
-				$i: index($base-sizes-names, $size)
-				$pixels: nth($base-sizes-values, $i) * $modal-dialog-close-size
-				@if $size == "_normal"
-					@include size( $pixels )
-				
-				&.#{$size}
-					@include size( $pixels )
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+				@if $sizeName == normal
+					@include modal-close-size-setter($sz)
+				&._#{$sizeName}
+					@include modal-close-size-setter($sz)
 
 		.-arrow
 			position: fixed !important
-			
+
 
 		.#{$modal-dialog-class}
 			// margin: $modal-padding-vertical auto
@@ -153,7 +180,7 @@
 			// -webkit-font-smoothing: subpixel-antialiased
 			-webkit-backface-visibility: hidden
 			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
-			
+
 
 
 			@for $i from 1 through $column-quantity
@@ -161,7 +188,7 @@
 					// $padding: get-padding-for-table-layout($columns, $container-columns)
 					margin-left: flex-grid($i,$column-quantity) / 2
 
-			.#{$header-class-name}
+			.#{$header-class}
 				padding: $modal-dialog-padding-vertical $modal-dialog-padding-horizontal
 				border-radius: $modal-dialog-border-radius $modal-dialog-border-radius 0 0
 				position: relative
@@ -172,13 +199,11 @@
 				border-bottom-color: transparent
 
 				.#{$close-class}
-					width: $modal-dialog-close-size
-					height: $modal-dialog-close-size
 					position: absolute
 					z-index: 1
 					top: 50%
 					right: $modal-dialog-padding-horizontal
-					margin-top: - $modal-dialog-close-size / 2
+					// margin-top: - $modal-dialog-close-size / 2
 					cursor: pointer
 
 					@include transition-property(transform)
@@ -205,50 +230,48 @@
 							stroke-width: 50
 						polygon, path
 							opacity: 1
-						
+
 						@include transform(rotate(0deg))
 
-			.#{$content-class-name}
+					@each $sizeName in $sizes
+						$sz: map-get( $base-sizes, $sizeName )
+						@if $sizeName == normal
+							@include modal-header-close-size-setter($sz)
+						&._#{$sizeName}
+							@include modal-header-close-size-setter($sz)
+
+			.#{$content-class}
 				padding: $modal-dialog-padding-vertical $modal-dialog-padding-horizontal
 				// border-radius: $modal-dialog-border-radius $modal-dialog-border-radius 0 0
 				// position: relative
 
-			@each $theme in $themes
-				$i: index($themes, $theme)
-				
-				@if $theme == "-default-"
-					@include modal-header-theme-setter($i)
-					&.#{$theme}
-						@include modal-header-theme-setter($i)
-				@else
-					&.#{$theme}
-						@include modal-header-theme-setter($i)
-				
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include modal-header-theme-setter($thm)
+				&.-#{$themeName}-
+					@include modal-header-theme-setter($thm)
 
 		& > .-holder
-			
+
 			display: table-cell
 			@include perspective(1300px)
 			@include perspective-origin(50% 50%)
 			vertical-align: middle
+			text-align: center
 
 			.#{$modal-dialog-class}
-				width: inherit
 				display: inline-block
+				margin: 0
 
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
 
-
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include modal-theme-setter($i)
-				&.#{$theme}
-					@include modal-theme-setter($i)
-			@else
-				&.#{$theme}
-					@include modal-theme-setter($i)
-
+			@if $themeName == default
+				@include modal-theme-setter($thm)
+			&.-#{$themeName}-
+				@include modal-theme-setter($thm)
 
 
 		&.#{$mod-visible}

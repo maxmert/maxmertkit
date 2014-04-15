@@ -297,16 +297,6 @@
     };
   })();
 
-  $(window).on("scrollstart.kit", function(event) {
-    return $('body').addClass('-no-pointer-events');
-  });
-
-  $(window).on("scrollstop.kit", (function(_this) {
-    return function() {
-      return $('body').removeClass('-no-pointer-events');
-    };
-  })(this));
-
   window['MaxmertkitHelpers'] = MaxmertkitHelpers;
 
 }).call(this);
@@ -1348,12 +1338,8 @@
     i = 0;
     _results = [];
     while (i + 1 < this.elements.length) {
-      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) {
+      if (((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) && !this.elements[i].menu.hasClass('_active_')) {
         _activateItem.call(this, i);
-      } else {
-        if ((event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset > this.elements[i + 1].offsetTop) {
-          _activateItem.call(this, i + 1);
-        }
       }
       _results.push(i++);
     }

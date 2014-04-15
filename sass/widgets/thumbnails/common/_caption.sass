@@ -1,19 +1,24 @@
-@mixin thumbnails-theme-caption-setter($i)
+@import "sizes"
+@import "themes"
+
+@mixin thumbnails-theme-caption-setter($theme)
+	$background-color: map-get( $theme, background-color)
+
 	&:before
-		background-color: nth($themes-background-colors, $i)
+		background-color: $background-color
 
 
 @include exports("thumbnails/caption")
-	
+
 	.#{$thumbnail-caption-class}
-			
+
 		font-size: $thumbnail-caption-font-size
 		position: relative
 		margin-top: $thumbnail-caption-padding
 		margin-bottom: $thumbnail-caption-padding
 		padding-top: $thumbnail-caption-padding
 		padding-bottom: $thumbnail-caption-padding
-		
+
 		p
 			opacity: .7
 
@@ -21,7 +26,7 @@
 			text-align: center
 			margin-top: 0
 			margin-bottom: 1em
-		
+
 		&:before
 			content: " "
 			position: absolute
@@ -32,18 +37,16 @@
 			left: 50%
 			margin-left: -25%
 
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include thumbnails-theme-caption-setter($i)
-				
-			&.#{$theme}
-				@include thumbnails-theme-caption-setter($i)
+			@if $themeName == default
+				@include thumbnails-theme-caption-setter($thm)
+			&.-#{$themeName}-
+				@include thumbnails-theme-caption-setter($thm)
 
 
-	@include media(new-breakpoint(min-width 992px 6))	
+	@include media(new-breakpoint(min-width $base-screen-middle 6))
 
 		.#{$thumbnail-caption-class}
 			&.#{$mod-left}, &.#{$mod-right}

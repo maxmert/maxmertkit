@@ -1,0 +1,91 @@
+@import "sizes"
+@import "themes"
+
+@mixin alerts-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 10%)
+		border-color: lighten($border-color, 10%)
+		color: $color
+	@else
+		background-color: lighten($background-color, 25%)
+		border-color: lighten($border-color, 3%)
+		color: darken($color, 20%)
+
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		color: $color
+
+@mixin alerts-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: floor($multiplier * $base-font-size)
+
+
+@include exports("alerts/common")
+
+	.#{$alert-class}
+
+		display: block
+		vertical-align: middle
+		border-width: $alert-border-width
+		border-style: $alert-border-style
+		border-radius: $alert-border-radius
+		border-color: transparent
+		outline: none
+		position: relative
+
+		// Set default size
+		padding: $alert-padding-vertical * 2 $alert-padding-horizontal
+		font-size: $base-font-size
+		line-height: $base-line-height
+
+		.#{$close-class}
+			float: right
+			text-decoration: none
+			cursor: pointer
+			margin: 0
+			padding: 0
+			opacity: 0.2
+			position: relative
+			top: 0
+			right: 0
+
+			&:hover
+				opacity: 0.4
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include alerts-theme-setter($thm)
+			&.-#{$themeName}-
+				@include alerts-theme-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include alerts-size-setter($sz)
+			&._#{$sizeName}
+				@include alerts-size-setter($sz)
+
+		&:empty
+			display: none
+
+
+	// To nest sizes from parents elements
+	// @each $size in $base-sizes-names
+	// 	$i: index($base-sizes-names, $size)
+
+	// 	.#{$size}
+	// 		.#{$alert-class}
+	// 			@extend .#{$alert-class}.#{$size}
