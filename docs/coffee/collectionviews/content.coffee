@@ -12,4 +12,4 @@ exports.module = Marionette.CollectionView.extend
         @listenTo @collection, 'reset', @render
 
     resetCollection: ->
-        @collection.reset toCollection $.app.templates[ Backbone.history.templates ]
+        @collection.reset toCollection $.app.contents[ Backbone.history.templates ], $.app.templates[ Backbone.history.templates ]

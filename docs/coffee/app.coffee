@@ -1,22 +1,36 @@
-window['toCollection'] = ( object, index = 0 ) ->
+window['toCollection'] = ( contents, object) ->
 	result = []
 
-	_.each object, ( value, key ) ->
-		intermediateResult =
-			name: key
-			index: index++
-
-		if typeof value is 'object'
-			intermediateResult.includes = toCollection( value, index )
-		else
-			intermediateResult.value = value
-
-		result.push intermediateResult
-
-	result.sort ( a, b ) ->
-		a.name > b.name
-
-	result
+	for key, value in contents
+		if key.include.length
+			intermediateRes = []
+			for innerkey, value of object[ key.name ]
+				intermediateRes.push
+					name: innerkey
+					value: value
+			console.log intermediateRes.reverse()
+		# 	object[ key.name ].
+		# result.push object[ key.name ]
+	console.log result
+# window['toCollection'] = ( object, index = 0 ) ->
+	# result = []
+#
+# 	_.each object, ( value, key ) ->
+# 		intermediateResult =
+# 			name: key
+# 			index: index++
+#
+# 		if typeof value is 'object'
+# 			intermediateResult.includes = toCollection( value, index )
+# 		else
+# 			intermediateResult.value = value
+#
+# 		result.push intermediateResult
+#
+# 	result.sort ( a, b ) ->
+# 		a.name > b.name
+#
+# 	result
 
 
 Backbone.Marionette.Renderer.render = (template, data) ->
@@ -24,7 +38,7 @@ Backbone.Marionette.Renderer.render = (template, data) ->
 
 $.app = new Marionette.Application()
 $.app.config = require './config'
-$.app.contents = require './contents'
+$.app.contents = require('./contents')
 $.app.templates = require('../js/templates.js').module
 
 RegionIndex = require("./layouts/index").module
