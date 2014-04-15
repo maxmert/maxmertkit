@@ -1,107 +1,127 @@
 exports.widgets = [
 	{
 		name: "typography"
-		path: "common"
+		path: "typoCommon"
 		include: [
 			{
+				name: "common"
+				path: "typoCommon"
+			}
+			{
 				name: "headings"
-				path: "headings"
+				path: "typoHeadings"
 			}
 			{
 				name: "body"
-				path: "body"
+				path: "typoBody"
 			}
 			{
 				name: "lists"
-				path: "lists"
+				path: "typoLists"
 			}
 			{
 				name: "code"
-				path: "code"
+				path: "typoCode"
 			}
 		]
 	}
 	{
 		name: "grid"
-		path: "common"
+		path: "gridCommon"
 		include: [
 			{
+				name: "common"
+				path: "gridCommon"
+			}
+			{
 				name: "container"
-				path: "container"
+				path: "gridContainer"
 			}
 			{
 				name: "row"
-				path: "row"
+				path: "gridRow"
 			}
 			{
 				name: "columns"
-				path: "columns"
+				path: "gridColumns"
 			}
 		]
 	}
 	{
 		name: "tables"
-		path: "common"
+		path: "tablesCommon"
 		include: [
 			{
+				name: "common"
+				path: "tablesCommon"
+			}
+			{
 				name: "basic"
-				path: "basic"
+				path: "tablesbasic"
 			}
 			{
 				name: "striped"
-				path: "striped"
+				path: "tablesStriped"
 			}
 			{
 				name: "hovered"
-				path: "hovered"
+				path: "tablesHovered"
 			}
 			{
 				name: "rows"
-				path: "rows"
+				path: "tablesRows"
 			}
 			{
 				name: "cells"
-				path: "cells"
+				path: "tablesCells"
 			}
 		]
 	}
 	{
 		name: "forms"
-		path: "common"
+		path: "formsGrid"
 		include: [
 			{
-				name: "formgrid"
-				path: "grid"
+				name: "common"
+				path: "formsCommon"
 			}
 			{
-				name: "fieldset"
-				path: "fieldset"
+				name: "grid"
+				path: "formsGrid"
 			}
 			{
 				name: "fields"
-				path: "fields"
+				path: "formsFields"
+			}
+			{
+				name: "fieldset"
+				path: "formsFieldset"
 			}
 		]
 	}
 	{
 		name: "buttons"
-		path: "common"
+		path: "buttonsCommon"
 		include: [
 			{
+				name: "common"
+				path: "buttonsCommon"
+			}
+			{
 				name: "themes"
-				path: "themes"
+				path: "buttonsThemes"
 			}
 			{
 				name: "sizes"
-				path: "sizes"
+				path: "buttonsSizes"
 			}
 			{
 				name: "states"
-				path: "states"
+				path: "buttonsStates"
 			}
 			{
 				name: "blocks"
-				path: "blocks"
+				path: "buttonsBlocks"
 			}
 		]
 	}

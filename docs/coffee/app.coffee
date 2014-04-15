@@ -3,34 +3,15 @@ window['toCollection'] = ( contents, object) ->
 
 	for key, value in contents
 		if key.include.length
-			intermediateRes = []
-			for innerkey, value of object[ key.name ]
-				intermediateRes.push
-					name: innerkey
-					value: value
-			console.log intermediateRes.reverse()
-		# 	object[ key.name ].
-		# result.push object[ key.name ]
-	console.log result
-# window['toCollection'] = ( object, index = 0 ) ->
-	# result = []
-#
-# 	_.each object, ( value, key ) ->
-# 		intermediateResult =
-# 			name: key
-# 			index: index++
-#
-# 		if typeof value is 'object'
-# 			intermediateResult.includes = toCollection( value, index )
-# 		else
-# 			intermediateResult.value = value
-#
-# 		result.push intermediateResult
-#
-# 	result.sort ( a, b ) ->
-# 		a.name > b.name
-#
-# 	result
+			inner = object[ key.name ]
+
+			for menuItem in key.include
+				result.push
+					name: menuItem.name
+					path: menuItem.path
+					value: inner[ menuItem.name ]
+
+	result
 
 
 Backbone.Marionette.Renderer.render = (template, data) ->

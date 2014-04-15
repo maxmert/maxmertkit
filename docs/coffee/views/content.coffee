@@ -11,7 +11,7 @@ tagsToReplace =
 
 exports.module = Marionette.ItemView.extend
 
-    template: '{{#value}}<div id="{{name}}">{{{value}}}{{/value}}{{#includes}}{{#value}}<div id="{{name}}">{{{value}}}</div>{{/value}}</div>{{/includes}}'
+    template: '{{#value}}<div id="{{path}}">{{{value}}}{{/value}}{{#includes}}{{#value}}<div id="{{path}}">{{{value}}}</div>{{/value}}</div>{{/includes}}'
 
     onRender: ->
         @$el.find('[hljs]').each ( index, pre ) =>

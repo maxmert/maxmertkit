@@ -1,7 +1,7 @@
 ViewContent = require('../views/content').module
 
-CollectionContent = Backbone.Collection.extend
-    comparator: 'name'
+CollectionContent = Backbone.Collection.extend()
+    # comparator: 'name'
 
 exports.module = Marionette.CollectionView.extend
     itemView: ViewContent

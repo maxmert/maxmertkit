@@ -4,7 +4,7 @@ ViewMenuItem = require('../../views/sidebar/menu').module
 
 CollectionMenu = Backbone.Collection.extend
     model: ModelMenu
-    
+
 collectionMenu = new CollectionMenu()
 
 
@@ -20,8 +20,4 @@ exports.module = Marionette.CollectionView.extend
 
     resetCollection: ->
 
-        # collection = []
-        console.log $.app.contents[ Backbone.history.templates ]
         @collection.reset $.app.contents[ Backbone.history.templates ]
-
-        # @collection.reset collection
