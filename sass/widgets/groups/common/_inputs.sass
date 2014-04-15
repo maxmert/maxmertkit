@@ -1,5 +1,5 @@
 @include exports("groups/inputs")
-	
+
 	.#{$group-class}
 
 		display: inline-block
@@ -29,29 +29,28 @@
 				width: 100%
 
 		&.#{$mod-responsive}
-			@include media(new-breakpoint(max-width 992px 6))
+			@include media(new-breakpoint(max-width $base-screen-middle 6))
 				.#{$form-field-class}, select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
 					display: table-cell
 					width: 100%
 
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			&.#{$theme}
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			&.-#{$themeName}-
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"].#{$theme}
+					@extend input[type="text"].-#{$themeName}-
 
 				.#{$form-field-class}
-					@extend .#{$form-field-class}.#{$theme}
+					@extend .#{$form-field-class}.-#{$themeName}-
 
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
 
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			&.#{$size}
-				
+			&._#{$sizeName}
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"].#{$size}
-				
+					@extend input[type="text"]._#{$sizeName}
+
 				.#{$form-field-class}
-					@extend .#{$form-field-class}.#{$size}
+					@extend .#{$form-field-class}._#{$sizeName}

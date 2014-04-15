@@ -7,7 +7,7 @@
 
 
 	@if $name == default
-		background-color: lighten($background-color, 6%)
+		background-color: lighten($background-color, 10%)
 		border-color: darken($background-color, 3%)
 		color: $color
 	@else
@@ -18,17 +18,17 @@
 
 	&:hover, &.#{$mod-hovered}
 		@if $name == default
-			background-color: lighten($background-color, 10%)
+			background-color: lighten($background-color, 13%)
 		@else
 			background-color: lighten($background-color, 5%)
 
 	&:active, &.#{$mod-active}
 		@if $name == default
-			background-color: darken($background-color, 1%)
-			border-color: darken($background-color, 5%)
+			background-color: lighten($background-color, 3%)
+			border-color: darken($background-color, 3%)
 		@else
-			background-color: darken($background-color, 5%)
-			border-color: darken($background-color, 5%)
+			background-color: darken($background-color, 13%)
+			border-color: darken($background-color, 13%)
 
 	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
 		color: rgba($white-color, .65)

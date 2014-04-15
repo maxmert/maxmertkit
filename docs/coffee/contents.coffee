@@ -125,6 +125,28 @@ exports.widgets = [
 			}
 		]
 	}
+	{
+		name: "groups"
+		path: "groupsCommon"
+		include: [
+			{
+				name: "common"
+				path: "groupsCommon"
+			}
+			{
+				name: "buttons"
+				path: "groupsButtons"
+			}
+			{
+				name: "inputs"
+				path: "groupsInputs"
+			}
+			{
+				name: "addons"
+				path: "groupsAddons"
+			}
+		]
+	}
 ]
 
 exports.utilities = [
