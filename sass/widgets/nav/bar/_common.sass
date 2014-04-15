@@ -1,33 +1,25 @@
-@mixin nav-theme-bar-setter($i)
-	@if nth($themes, $i) != "-default-"
-		background-color: lighten(nth($themes-background-light-colors, $i), 5%)
-		border-color: nth($themes-background-light-colors, $i)
+@import "../../buttons"
+@import "../../groups"
+@import "../menu/common"
+@import "../pills/common"
+
+@import "sizes"
+@import "themes"
+
+
+@mixin nav-theme-bar-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 14%)
+		border-color: lighten($border-color, 23%)
 	@else
-		background-color: lighten(nth($themes-background-light-colors, $i), 1%)
-		border-color: darken(nth($themes-background-light-colors, $i), 4%)
-	// #{$nav-item}
-
-	// 	&:hover, &.#{$mod-hovered}
-	// 		& > a
-	// 			@if nth($themes, $i) != "-default-"
-	// 				color: nth($themes-white-colors, $i)
-	// 			@else
-	// 				color: nth($themes-colors, $i)
-		
-	// 	&.#{$mod-active}
-	// 		& > a				
-	// 			@if nth($themes, $i) != "-default-"
-	// 				color: nth($themes-white-colors, $i)
-	// 				background-color: nth($themes-background-colors, $i)
-	// 			@else
-	// 				color: nth($themes-colors, $i)
-	// 				background-color: darken(nth($themes-background-light-colors, $i), 5%)
-
-
-	// 	&.#{$mod-disabled}, &[disabled]
-	// 		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
-	// 			background: transparent
-	// 			color: rgba(nth($themes-colors, index($themes, "-default-")),.3)
+		background-color: lighten($background-color, 35%)
+		border-color: $border-color
 
 
 @include exports("nav/bar")
@@ -60,8 +52,8 @@
 			vertical-align: middle
 			display: inline-block
 
-		
-		.#{$header-class-name}
+
+		.#{$header-class}
 			$delta: $nav-bar-height - $nav-menu-items-padding-vertical * 2 - $base-line-height-comp
 			padding: $nav-menu-items-padding-vertical + $delta / 2 $nav-menu-items-padding-horizontal
 			line-height: $base-line-height-comp
@@ -98,7 +90,7 @@
 			right: $nav-bar-padding-horizontal
 			top: 1px
 
-		
+
 		&.#{$mod-top}, &.#{$mod-bottom}
 			position: absolute
 			z-index: $nav-bar-z-index
@@ -120,40 +112,28 @@
 			&.#{$mod-hidden}
 				@include transform( translateY(100%) )
 
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include nav-theme-bar-setter($i)
-				&.#{$theme}
-					@include nav-theme-bar-setter($i)
-			@else
-				&.#{$theme}
-					@include nav-theme-bar-setter($i)
+			@if $themeName == default
+				@include nav-theme-bar-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bar-setter($thm)
 
-			// &.#{$theme}
-			// 	.#{$nav-menu-class}
-			// 		@extend .#{$nav-menu-class}.#{$theme}
-			// 	.#{$nav-pills-class}
-			// 		@extend .#{$nav-pills-class}.#{$theme}
-			// 	.#{$button-class}
-			// 		@extend .#{$button-class}.#{$theme}
-			// 	.#{$group-class}
-			// 		@extend .#{$group-class}.#{$theme}
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
 
-		@each $size in $base-sizes-names
-			$i: index($base-sizes-names, $size)
-			
-			&.#{$size}
+			&._#{$sizeName}
 				.#{$nav-menu-class}
-					@extend .#{$nav-menu-class}.#{$size}
+					@extend .#{$nav-menu-class}._#{$sizeName}
 				.#{$nav-pills-class}
-					@extend .#{$nav-pills-class}.#{$size}
+					@extend .#{$nav-pills-class}._#{$sizeName}
 				.#{$button-class}
-					@extend .#{$button-class}.#{$size}
+					@extend .#{$button-class}._#{$sizeName}
 				.#{$group-class}
-					@extend .#{$group-class}.#{$size}
+					@extend .#{$group-class}._#{$sizeName}
+
+
 	// ._no-scroll_
 	// 	.#{$nav-bar-class}
 	// 		@extend .#{$nav-bar-class}.#{$mod-top}.#{$mod-hidden}

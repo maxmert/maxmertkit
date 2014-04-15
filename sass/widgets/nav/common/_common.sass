@@ -1,3 +1,9 @@
+@mixin nav-item-setter( $size )
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
+
 @mixin nav-setter
 	margin: 0
 	padding: 0
@@ -39,32 +45,32 @@
 				opacity: .3
 				line-height: $base-line-height
 
-		.#{$dropdown-class}
-			display: none
+	// 	.#{$dropdown-class}
+	// 		display: none
+	//
+	//
+	// 	&.#{$mod-active}
+	// 		.#{$dropdown-class}
+	// 			display: block
+	//
+	// 	&.#{$mod-disabled}, &[disabled]
+	// 		a
+	// 			cursor: not-allowed
+	//
+	// &.#{$mod-hovered}
+	// 	#{$nav-item}
+	// 		&.#{$mod-hovered}, &:hover
+	// 			& > .#{$dropdown-class}
+	// 				display: block
 
-
-		&.#{$mod-active}
-			.#{$dropdown-class}
-				display: block
-
-		&.#{$mod-disabled}, &[disabled]
-			a
-				cursor: not-allowed
-
-	&.#{$mod-hovered}
-		#{$nav-item}
-			&.#{$mod-hovered}, &:hover
-				& > .#{$dropdown-class}
-					display: block
-
-	@each $size in $base-sizes-names
-		$i: index($base-sizes-names, $size)
-		@if #{$size} == "_normal"
+	@each $sizeName in $sizes
+		$sz: map-get( $base-sizes, $sizeName )
+		@if $sizeName == normal
 			#{$nav-item}
 				a
-					font-size: nth($base-sizes-values, $i) * $base-font-size / 2
-		
-		&.#{$size}
+					@include nav-item-setter($sz)
+
+		&._#{$sizeName}
 			#{$nav-item}
 				a
-					font-size: nth($base-sizes-values, $i) * $base-font-size
+					@include nav-item-setter($sz)

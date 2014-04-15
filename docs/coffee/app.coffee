@@ -2,7 +2,7 @@ window['toCollection'] = ( contents, object) ->
 	result = []
 
 	for key, value in contents
-		if key.include.length
+		if key.include? and key.include.length
 			inner = object[ key.name ]
 
 			for menuItem in key.include
@@ -11,6 +11,11 @@ window['toCollection'] = ( contents, object) ->
 					path: menuItem.path
 					value: inner[ menuItem.name ]
 
+		else
+			result.push
+				name: key.name
+				path: key.path
+				value: object[ key.name ]
 	result
 
 

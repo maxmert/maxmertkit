@@ -6,14 +6,14 @@ class Scrollspy extends MaxmertkitHelpers
 
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @el, @options ) ->
 		@$el = $(@el)
 
 		@_id = _id++
-		
+
 		_options =
 			spy: @$el.data('spy') or 'scroll'			# To automatically find affix elements and make them active
 			target: @$el.data('target') or 'body'	# Selector of the scrolling block
@@ -24,11 +24,11 @@ class Scrollspy extends MaxmertkitHelpers
 			onactive: ->
 			beforeunactive: ->
 			onunactive: ->
-		
+
 		@options = @_merge _options, @options
 
 
-		# Reset default event functions 
+		# Reset default event functions
 		@beforeactive = @options.beforeactive
 		@onactive = @options.onactive
 		@beforeunactive = @options.beforeunactive
@@ -43,9 +43,9 @@ class Scrollspy extends MaxmertkitHelpers
 
 		super @$btn, @options
 
-	
+
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
 			if not @options[key]?
 				return console.error "Maxmertkit Affix. You're trying to set unpropriate option."
@@ -79,13 +79,10 @@ class Scrollspy extends MaxmertkitHelpers
 
 # =============== Private methods
 
-
-#TODO: Add no-pointer-events while scrolling
-
 _activateItem = ( itemNumber ) ->
 	for element in @elements
 		element.menu.removeClass '_active_'
-	
+
 	@elements[itemNumber].menu
 		.addClass( '_active_')
 		.parents('li')
@@ -94,6 +91,7 @@ _activateItem = ( itemNumber ) ->
 
 _refresh = ->
 	@elements = []
+
 	@$el.find(@options.elements).each (index, el) =>
 		link = $(el).attr @options.elementsAttr
 		if link?
@@ -126,7 +124,7 @@ _activate = ->
 		target = window
 	else
 		target = @options.target
-	
+
 	$(target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		_spy.call @, event
 
@@ -146,7 +144,7 @@ _beforestart = ->
 			deferred
 				.done =>
 					_start.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -178,7 +176,7 @@ _beforestop = ->
 			deferred
 				.done =>
 					_stop.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -197,7 +195,7 @@ _stop = ->
 		try
 			@onstop.call @$el
 
-			
+
 
 
 

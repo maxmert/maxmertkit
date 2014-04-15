@@ -1,14 +1,26 @@
-@mixin nav-theme-bar-float-setter($i)
+@import "../bar/common"
+
+@import "sizes"
+@import "themes"
+
+
+@mixin nav-theme-bar-float-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
 	background-color: transparent
 	border-color: transparent
 
 	&.#{$mod-shaded}
-		@if nth($themes, $i) != "-default-"
-			background-color: rgba(lighten(nth($themes-background-light-colors, $i), 5%), $nav-bar-float-background-opacity)
-			border-color: nth($themes-background-light-colors, $i)
+		@if $name == default
+			background-color: lighten($background-color, 14%)
+			border-color: lighten($border-color, 23%)
 		@else
-			background-color: rgba(lighten(nth($themes-background-light-colors, $i), 1%), $nav-bar-float-background-opacity)
-			border-color: darken(nth($themes-background-light-colors, $i), 4%)
+			background-color: lighten($background-color, 35%)
+			border-color: $border-color
 
 
 	// @include media(new-breakpoint(max-width 992px 6))
@@ -16,13 +28,13 @@
 	// 		background-color: lighten(nth($themes-background-light-colors, $i), 5%)
 	// 	@else
 	// 		background-color: lighten(nth($themes-background-light-colors, $i), 1%)
-	
+
 
 
 @include exports("nav/bar-float")
 	.#{$nav-bar-float-class}
 		@extend .#{$nav-bar-class}
-	
+
 		position: absolute
 		width: 100%
 		border-width: $nav-bar-float-border-width
@@ -31,16 +43,13 @@
 		&.#{$mod-shaded}
 			position: fixed
 
-		@each $theme in $themes
-			$i: index($themes, $theme)
-			
-			@if $theme == "-default-"
-				@include nav-theme-bar-float-setter($i)
-				&.#{$theme}
-					@include nav-theme-bar-float-setter($i)
-			@else
-				&.#{$theme}
-					@include nav-theme-bar-float-setter($i)
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-bar-float-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bar-float-setter($thm)
 
 
 	// @include media(new-breakpoint(max-width 992px 6))

@@ -148,6 +148,10 @@ exports.widgets = [
 		]
 	}
 	{
+		name: "dropdowns"
+		path: "dropdownsCommon"
+	}
+	{
 		name: "nav"
 		path: "navCommon"
 		include: [

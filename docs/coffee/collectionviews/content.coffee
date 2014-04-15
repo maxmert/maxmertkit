@@ -13,3 +13,7 @@ exports.module = Marionette.CollectionView.extend
 
     resetCollection: ->
         @collection.reset toCollection $.app.contents[ Backbone.history.templates ], $.app.templates[ Backbone.history.templates ]
+
+    onRender: ->
+        if $.app.main.currentView?
+            $.app.main.currentView.sidebar.$el.scrollspy()

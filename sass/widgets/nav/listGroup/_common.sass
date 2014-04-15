@@ -1,0 +1,107 @@
+// @import "../../dropdowns"
+
+@import "sizes"
+@import "themes"
+
+@mixin nav-theme-list-group-setter($theme)
+	#{$nav-item}
+		@include nav-theme-list-group-item-setter($theme)
+
+
+
+@mixin nav-theme-list-group-item-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	&:hover, &.#{$mod-hovered}
+		& > a
+			border-color: $border-color
+
+	&.#{$mod-active}
+		& > a
+			border-color: $border-color
+			color: $color
+
+
+	&.#{$mod-disabled}, &[disabled]
+		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+			background: transparent
+			color: rgba($color, .3)
+			pointer-events: none
+			border-color: transparent
+
+
+
+@include exports("nav/list-group")
+
+	.#{$nav-list-group-class}
+		display: block
+
+		#{$nav-item}
+			margin-right: 0
+			margin-bottom: $nav-tabs-items-margin
+			float: none
+			display: block
+
+			a
+				padding: $nav-list-group-items-padding-vertical $nav-list-group-items-padding-horizontal
+				border-left-width: $nav-list-group-items-border-width
+				border-style: solid
+				border-color: transparent
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
+
+				.#{$addon-class}
+					position: absolute
+					right: $nav-list-group-items-padding-horizontal
+
+
+
+
+			&.#{$mod-active}
+
+				& > a
+					cursor: inherit
+					font-weight: bold
+					padding: $nav-list-group-items-padding-vertical $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical $nav-list-group-items-padding-horizontal - $nav-list-group-items-active-border-width
+					border-left-width: $nav-list-group-items-active-border-width
+
+			#{$nav-item}
+				a
+					padding: $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal * 2
+					font-size: 80%
+
+				&.#{$mod-active}
+					a
+						padding: $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal $nav-list-group-items-padding-vertical / 2 $nav-list-group-items-padding-horizontal * 2 - $nav-list-group-items-active-border-width
+
+		&.#{$mod-right}
+			#{$nav-item}
+				a
+					border-left-width: 0
+					border-right-width: $nav-list-group-items-border-width
+
+				&.#{$mod-active}
+					& > a
+						border-left-width: 0
+						border-right-width: $nav-list-group-items-active-border-width
+
+		@include nav-setter
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-list-group-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-list-group-setter($thm)
