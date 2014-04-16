@@ -1,3 +1,5 @@
+LayoutWidgets = require('../layouts/pages/widgets').module
+
 mainController =
 
 
@@ -7,15 +9,19 @@ exports.module = Marionette.AppRouter.extend
     controller: mainController
 
     routes:
-        '': 'index'
+        # '': 'index'
         'widgets': 'widgets'
+        # 'utilities': 'utilities'
 
-    index: ->
-        Backbone.history.templates = 'index'
-        $.app.vent.trigger 'index.route'
+    # index: ->
+    #     Backbone.history.templates = 'index'
+    #     $.app.vent.trigger 'index.route'
     widgets: ->
         Backbone.history.templates = 'widgets'
         $.app.vent.trigger 'widgets.route'
-    components: ->
-        Backbone.history.templates = 'components'
-        $.app.vent.trigger 'components.route'
+
+        $.app.main.currentView.content.show new LayoutWidgets()
+
+    # utilities: ->
+    #     Backbone.history.templates = 'utilities'
+    #     $.app.vent.trigger 'utilities.route'

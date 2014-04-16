@@ -16,8 +16,8 @@ exports.module = Marionette.CollectionView.extend
 
     initialize: ->
         @listenTo $.app.vent, 'route', @resetCollection
-        @listenTo @collection, 'reset', @render
+        @$el.append "<li class='_small' style='margin-bottom: 15px'><a href='#mainmenu' data-bypass><i class='fa fa-arrow-up'></i> on top</a></li>"
+        # @listenTo @collection, 'reset', @render
 
     resetCollection: ->
-
         @collection.reset $.app.contents[ Backbone.history.templates ]

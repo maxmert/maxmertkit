@@ -152,8 +152,8 @@ gulp.task 'docsVendor', ->
 		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
 		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
 		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
-		"#{path.docs.front.vendor.bower}/backbone.wreqr/lib/backbone.wreqr.js"
 		"#{path.docs.front.vendor.bower}/marionette/lib/backbone.marionette.js"
+		"#{path.docs.front.vendor.bower}/backbone.wreqr/lib/backbone.wreqr.js"
 		"#{path.docs.front.vendor.bower}/mustache/mustache.js"
 		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
 	]
@@ -260,10 +260,10 @@ gulp.task 'watch', ->
 
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
-	gulp.watch [ files.kitVendor.bower, files.kitVendor.libs ], [ 'kitVendor' ]
+	gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.kitSass, [ 'kitSass' ]
 
-	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	gulp.watch [ files.kitDocsVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
 	gulp.watch files.docsTemplates, [ 'docsTemplates', 'docsApp' ]
@@ -272,7 +272,7 @@ gulp.task 'watch', ->
 	server = livereload()
 	gulp.watch( [
 		"#{path.docs.front.css}/**"
-		"#{path.docs.front.js}/**"
+		"#{path.docs.front.js}/*.js"
 		"docs/server/**/*.html"
 
 	] ).on 'change', ( file ) ->

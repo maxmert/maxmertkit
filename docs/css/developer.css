@@ -120,6 +120,54 @@ pre .chunk {
 pre code {
   background-color: rgba(0, 0, 0, 0.03); }
 
+.dev-logo {
+  max-height: 18px;
+  display: inline-block;
+  vertical-align: top; }
+
+.dev-sidebar-menu {
+  margin-top: 20px; }
+
+.dev-navbar {
+  position: relative;
+  border-width: 0 !important;
+  border-bottom-width: 1px !important;
+  border-radius: 0 !important;
+  border-style: none !important; }
+
+.dev-instructions {
+  min-height: 400px;
+  position: relative;
+  display: table;
+  background-image: -webkit-linear-gradient(#187da9 0, #2da7ab 100%);
+  background-image: linear-gradient(to   , #2da7ab 100%);
+  color: white; }
+  .dev-instructions .dev-additional {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75em;
+    font-weight: 100; }
+  .dev-instructions > .dev-instructions-holder {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle; }
+  .dev-instructions:before {
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/mainmenu.png");
+    position: absolute;
+    z-index: 0; }
+  .dev-instructions .dev-font-lobster {
+    font-family: "Lobster", cursive; }
+  .dev-instructions .dev-font-raleway {
+    font-family: "Raleway", sans-serif; }
+
 .example-block .example, .example-block .view {
   padding: 15px !important;
   position: relative; }

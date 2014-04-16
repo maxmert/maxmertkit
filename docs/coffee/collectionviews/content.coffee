@@ -1,7 +1,6 @@
 ViewContent = require('../views/content').module
 
 CollectionContent = Backbone.Collection.extend()
-    # comparator: 'name'
 
 exports.module = Marionette.CollectionView.extend
     itemView: ViewContent
@@ -9,11 +8,15 @@ exports.module = Marionette.CollectionView.extend
 
     initialize: ->
         @listenTo $.app.vent, 'route', @resetCollection
-        @listenTo @collection, 'reset', @render
 
     resetCollection: ->
         @collection.reset toCollection $.app.contents[ Backbone.history.templates ], $.app.templates[ Backbone.history.templates ]
 
     onRender: ->
-        if $.app.main.currentView?
-            $.app.main.currentView.sidebar.$el.scrollspy()
+        if $.app.main.currentView.content.currentView?
+
+            menu = $.app.main.currentView.content.currentView.sidebar.$el
+            if menu.data('kit-scrollspy')?
+                menu.data('kit-scrollspy').refresh()
+            else
+                menu.scrollspy()

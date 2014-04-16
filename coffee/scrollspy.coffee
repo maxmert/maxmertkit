@@ -48,7 +48,7 @@ class Scrollspy extends MaxmertkitHelpers
 
 		for key, value of options
 			if not @options[key]?
-				return console.error "Maxmertkit Affix. You're trying to set unpropriate option."
+				return console.error "Maxmertkit Scrollspy. You're trying to set unpropriate option."
 
 			# switch key
 				# when 'target'

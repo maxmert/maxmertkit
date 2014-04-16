@@ -27,6 +27,9 @@ $.app.config = require './config'
 $.app.contents = require('./contents')
 $.app.templates = require('../js/templates.js').module
 
+# Initialize backbone wreqr 1.2 with radio, dont support in current version of marionette
+$.app.commands = Backbone.Wreqr.radio.commands
+
 RegionIndex = require("./layouts/index").module
 Router = require("./routers/router").module
 
@@ -44,6 +47,7 @@ $.app.addInitializer ->
 
 	# Make all hrefs use Backbone history and router
 	$(document).on "click", "a:not([data-bypass])", (evt) ->
+		evt.preventDefault()
 		href =
 			prop: $(this).prop("href")
 			attr: $(this).attr("href")

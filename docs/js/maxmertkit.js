@@ -377,7 +377,7 @@
     return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
         if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
-          if (offset + $scrollParent.height() - _this.$el.outerHeight() >= $(document).scrollTop()) {
+          if (_this.$el.parent().offset().top + $scrollParent.outerHeight() - _this.options.offset - _this.$el.outerHeight() >= $(document).scrollTop()) {
             return _this.$el.css({
               width: _this.$el.width(),
               position: 'fixed',
@@ -388,7 +388,7 @@
             return _this.$el.css({
               position: 'absolute',
               top: 'auto',
-              bottom: 0,
+              bottom: "-" + _this.options.offset + "px",
               width: _this.$el.width()
             });
           }
@@ -1277,7 +1277,7 @@
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
-          return console.error("Maxmertkit Affix. You're trying to set unpropriate option.");
+          return console.error("Maxmertkit Scrollspy. You're trying to set unpropriate option.");
         }
         this.options[key] = value;
       }

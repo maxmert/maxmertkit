@@ -1,3 +1,16 @@
-<div ng-repeat="item in items">
-	<div id="{{item.name}}" ng-include="item.path">
-</div>
+{{#value}}
+	<div id="{{path}}">
+		{{{value}}}
+{{/value}}
+
+{{#includes}}
+	{{#value}}
+		<div id="{{path}}">
+			{{{value}}}
+		</div>
+	{{/value}}
+{{/includes}}
+
+{{#value}}
+	</div>
+{{/value}}

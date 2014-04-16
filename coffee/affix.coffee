@@ -83,7 +83,7 @@ _position = ->
 
 	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-			if offset + $scrollParent.height() - @$el.outerHeight() >= $(document).scrollTop()
+			if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
 				@$el.css
 					width: @$el.width()
 					position: 'fixed'
@@ -93,7 +93,7 @@ _position = ->
 				@$el.css
 					position: 'absolute'
 					top: 'auto'
-					bottom: 0
+					bottom: "-#{@options.offset}px"
 					width: @$el.width()
 		else
 			@$el.css 'position', 'relative'

@@ -13,6 +13,62 @@
 pre code
 	background-color: rgba(#000, 0.03)
 
+.dev-logo
+	max-height: 18px
+	display: inline-block
+	vertical-align: top
+
+.dev-sidebar-menu
+	margin-top: 20px
+
+.dev-navbar
+	position: relative
+	border-width: 0!important
+	border-bottom-width: 1px!important
+	border-radius: 0!important
+	border-style: none!important
+
+.dev-instructions
+	min-height: 400px
+	position: relative
+	display: table
+	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
+
+	color: #fff
+
+	.dev-additional
+		position: absolute
+		bottom: 10px
+		left: 0
+		width: 100%
+		text-align: center
+		font-size: .75em
+		font-weight: 100
+
+	& > .dev-instructions-holder
+		display: table-cell
+		width: 100%
+		vertical-align: middle
+
+
+	&:before
+		content: " "
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-image: url("/img/mainmenu.png")
+		position: absolute
+		z-index: 0
+
+	// h1, h2, h3, h4, h5, h6
+
+	.dev-font-lobster
+		font-family: 'Lobster', cursive
+
+	.dev-font-raleway
+		font-family: 'Raleway', sans-serif
+
 .example-block
 	.example, .view
 		padding: 15px!important
