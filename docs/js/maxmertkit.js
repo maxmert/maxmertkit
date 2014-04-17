@@ -1231,7 +1231,7 @@
 }).call(this);
 
 (function() {
-  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _deactivateItem, _id, _instances, _name, _refresh, _spy, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -1315,6 +1315,10 @@
     return this.elements[itemNumber].menu.addClass('_active_').parents('li').addClass('_active_');
   };
 
+  _deactivateItem = function(itemNumber) {
+    return this.elements[itemNumber].menu.removeClass('_active_');
+  };
+
   _refresh = function() {
     this.elements = [];
     return this.$el.find(this.options.elements).each((function(_this) {
@@ -1327,6 +1331,7 @@
             return _this.elements.push({
               menu: $(el).parent(),
               item: item.parent(),
+              itemHeight: item.parent().height(),
               offsetTop: item.position().top
             });
           }
@@ -1339,9 +1344,15 @@
     var i, _ref, _results;
     i = 0;
     _results = [];
-    while (i + 1 < this.elements.length) {
-      if (((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) && !this.elements[i].menu.hasClass('_active_')) {
-        _activateItem.call(this, i);
+    while (i < this.elements.length) {
+      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i].offsetTop + this.elements[i].itemHeight)) {
+        if (!this.elements[i].menu.hasClass('_active_')) {
+          _activateItem.call(this, i);
+        }
+      } else {
+        if (this.elements[i].menu.hasClass('_active_') && (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset < this.elements[i].offsetTop + this.elements[i].itemHeight) {
+          _deactivateItem.call(this, i);
+        }
       }
       _results.push(i++);
     }

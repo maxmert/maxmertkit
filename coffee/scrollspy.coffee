@@ -88,6 +88,9 @@ _activateItem = ( itemNumber ) ->
 		.parents('li')
 			.addClass( '_active_')
 
+_deactivateItem = ( itemNumber ) ->
+	@elements[itemNumber].menu.removeClass( '_active_')
+
 
 _refresh = ->
 	@elements = []
@@ -100,14 +103,19 @@ _refresh = ->
 				@elements.push
 					menu: $(el).parent()
 					item: item.parent()
+					itemHeight: item.parent().height()
 					offsetTop: item.position().top
 
 
 _spy = ( event ) ->
 	i = 0
-	while i + 1 < @elements.length
-		if (@elements[i].offsetTop <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i+1].offsetTop) and not @elements[i].menu.hasClass '_active_'
-			_activateItem.call @, i
+	while i < @elements.length
+		if (@elements[i].offsetTop <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i].offsetTop + @elements[i].itemHeight )
+			if not @elements[i].menu.hasClass '_active_'
+				_activateItem.call @, i
+		else
+			if @elements[i].menu.hasClass('_active_') and (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset < @elements[i].offsetTop + @elements[i].itemHeight
+				_deactivateItem.call @, i
 		# else
 		# 	if (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset > @elements[i+1].offsetTop
 		# 		_activateItem.call @, i + 1
