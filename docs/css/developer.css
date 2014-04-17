@@ -139,17 +139,18 @@ pre code {
   opacity: 0.5;
   font-size: 0.9em !important; }
 
-.dev-loader {
-  background-color: #2da7ab !important; }
+.dev-main-content {
+  margin: 30px 0; }
 
-.dev-instructions {
+.dev-mobile-menu li {
+  margin-right: 2px !important; }
+
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic {
   min-height: 400px;
   position: relative;
   display: table;
-  background-image: -webkit-linear-gradient(#187da9 0, #2da7ab 100%);
-  background-image: linear-gradient(to   , #2da7ab 100%);
   color: white; }
-  .dev-instructions .dev-additional {
+  .dev-instructions .dev-additional, .dev-instructions-utilities .dev-additional, .dev-instructions-widgets .dev-additional, .dev-instructions-basic .dev-additional {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -157,11 +158,11 @@ pre code {
     text-align: center;
     font-size: 0.75em;
     font-weight: 100; }
-  .dev-instructions > .dev-instructions-holder {
+  .dev-instructions > .dev-instructions-holder, .dev-instructions-utilities > .dev-instructions-holder, .dev-instructions-widgets > .dev-instructions-holder, .dev-instructions-basic > .dev-instructions-holder {
     display: table-cell;
     width: 100%;
     vertical-align: middle; }
-  .dev-instructions:before {
+  .dev-instructions:before, .dev-instructions-utilities:before, .dev-instructions-widgets:before, .dev-instructions-basic:before {
     content: " ";
     top: 0;
     left: 0;
@@ -170,10 +171,22 @@ pre code {
     background-image: url("/img/mainmenu.png");
     position: absolute;
     z-index: 0; }
-  .dev-instructions .dev-font-lobster {
+  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster {
     font-family: "Lobster", cursive; }
-  .dev-instructions .dev-font-raleway {
+  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway {
     font-family: "Raleway", sans-serif; }
+
+.dev-instructions-widgets {
+  background-image: -webkit-linear-gradient(#187da9 0, #2da7ab 100%);
+  background-image: linear-gradient(to   , #2da7ab 100%); }
+
+.dev-instructions-utilities {
+  background-image: -webkit-linear-gradient(#8f0e0a 0, #d26117 100%);
+  background-image: linear-gradient(to   , #d26117 100%); }
+
+.dev-instructions-basic {
+  background-image: -webkit-linear-gradient(#4b358c 0, #b30c83 100%);
+  background-image: linear-gradient(to   , #b30c83 100%); }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;

@@ -1,4 +1,4 @@
-exports.widgets = [
+exports.basic = [
 	{
 		name: "typography"
 		path: "typoCommon"
@@ -103,6 +103,10 @@ exports.widgets = [
 			}
 		]
 	}
+]
+
+
+exports.widgets = [
 	{
 		name: "buttons"
 		path: "buttonsCommon"
@@ -219,9 +223,43 @@ exports.widgets = [
 			}
 		]
 	}
+	{
+		name: "spinners"
+		path: "spinnersCommon"
+		include: [
+			{
+				name: "common"
+				path: "spinnersCommon"
+				invisible: yes
+			}
+			{
+				name: "square"
+				path: "spinnersSquare"
+			}
+			{
+				name: "fb"
+				path: "spinnersFb"
+			}
+			{
+				name: "waves"
+				path: "spinnersWaves"
+			}
+		]
+	}
+	{
+		name: "shaders"
+		path: "shadersCommon"
+		include: [
+			{
+				name: "common"
+				path: "shadersCommon"
+				invisible: yes
+			}
+		]
+	}
 ]
 
 exports.utilities = [
 	name: "responsive"
-	path: "responsive"
+	path: "responsiveCommon"
 ]

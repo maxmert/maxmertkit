@@ -302,7 +302,7 @@
 }).call(this);
 
 (function() {
-  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _setPosition, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -366,7 +366,7 @@
 
   })(MaxmertkitHelpers);
 
-  _position = function() {
+  _setPosition = function() {
     var $scrollParent, offset;
     $scrollParent = this._getContainer(this.$el);
     if ($scrollParent[0].firstElementChild.nodeName === "HTML") {
@@ -374,29 +374,44 @@
     } else {
       offset = $scrollParent.offset().top;
     }
-    return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
+    if ((this.$el.parent() != null) && this.$el.parent().offset() && !this._deviceMobile() && this._windowWidth > 992) {
+      if (this.$el.parent().offset().top - this.options.offset <= $(document).scrollTop()) {
+        if (this.$el.parent().offset().top + $scrollParent.outerHeight() - this.options.offset - this.$el.outerHeight() >= $(document).scrollTop()) {
+          return this.$el.css({
+            width: this.$el.width(),
+            position: 'fixed',
+            top: "" + this.options.offset + "px",
+            bottom: 'auto'
+          });
+        } else {
+          return this.$el.css({
+            position: 'absolute',
+            top: 'auto',
+            bottom: "-" + this.options.offset + "px",
+            width: this.$el.width()
+          });
+        }
+      } else {
+        this.$el.css('position', 'relative');
+        return this.$el.css('top', 'inherit');
+      }
+    }
+  };
+
+  _position = function() {
+    $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
-        if ((_this.$el.parent() != null) && _this.$el.parent().offset()) {
-          if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
-            if (_this.$el.parent().offset().top + $scrollParent.outerHeight() - _this.options.offset - _this.$el.outerHeight() >= $(document).scrollTop()) {
-              return _this.$el.css({
-                width: _this.$el.width(),
-                position: 'fixed',
-                top: "" + _this.options.offset + "px",
-                bottom: 'auto'
-              });
-            } else {
-              return _this.$el.css({
-                position: 'absolute',
-                top: 'auto',
-                bottom: "-" + _this.options.offset + "px",
-                width: _this.$el.width()
-              });
-            }
-          } else {
-            _this.$el.css('position', 'relative');
-            return _this.$el.css('top', 'inherit');
-          }
+        return _setPosition.call(_this);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this._windowWidth < 992) {
+          _this.$el.css('position', 'relative');
+          return _this.$el.css('top', 'inherit');
+        } else {
+          return _setPosition.call(_this);
         }
       };
     })(this));
@@ -425,6 +440,7 @@
   };
 
   _start = function() {
+    this._refreshSizes();
     _position.call(this);
     this.$el.addClass('_active_');
     this.$el.trigger("started." + this._name);

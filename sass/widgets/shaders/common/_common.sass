@@ -19,6 +19,8 @@
         display: block
         visibility: hidden
         @include transition( visibility 0.3s ease-in-out )
+        -webkit-backface-visibility: visible
+        backface-visibility: visible
 
         &.#{$mod-shaded}
             opacity: 0.9

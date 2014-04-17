@@ -86,6 +86,10 @@
 				line-height: $base-line-height
 				@include user-select(none)
 				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
 
 			&.#{$mod-active}
 				a

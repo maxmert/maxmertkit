@@ -14,26 +14,30 @@
 
 	background-color: transparent
 	border-color: $background-color
-	color: $color
 
-	// @if $name == default
-	// 	background-color: lighten($background-color, 10%)
-	// 	border-color: darken($background-color, 3%)
-	// 	color: $color
-	// @else
-	// 	background-color: $background-color
-	// 	border-color: darken($background-color, 7%)
-	// 	color: $white-color
+
+	@if $name == default
+		color: $white-color
+	@else
+		color: $color
 
 
 	&:hover, &.#{$mod-hovered}
 		background-color: $background-color
-		color: $white-color
+
+		@if $name == default
+			color: $color
+		@else
+			color: $white-color
 
 	&:active, &.#{$mod-active}
 		background-color: darken($background-color, 7%)
-		color: $white-color
 		border-color: darken($background-color, 7%)
+
+		@if $name == default
+			color: $color
+		@else
+			color: $white-color
 
 	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
 		color: rgba($white-color, .65)

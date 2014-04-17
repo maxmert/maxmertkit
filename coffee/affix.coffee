@@ -73,32 +73,41 @@ class Affix extends MaxmertkitHelpers
 
 # =============== Private methods
 
-
-
-_position = ->
+_setPosition = ->
 	$scrollParent = @_getContainer @$el
-	# $scrollParent = $(scrollParent)
 
 	if $scrollParent[0].firstElementChild.nodeName is "HTML" then offset = 0 else offset = $scrollParent.offset().top
 
-	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-		if @$el.parent()? and @$el.parent().offset()
-			if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-				if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
-					@$el.css
-						width: @$el.width()
-						position: 'fixed'
-						top: "#{@options.offset}px"
-						bottom: 'auto'
-				else
-					@$el.css
-						position: 'absolute'
-						top: 'auto'
-						bottom: "-#{@options.offset}px"
-						width: @$el.width()
+
+	if @$el.parent()? and @$el.parent().offset() and not @_deviceMobile() and @_windowWidth > 992
+		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
+			if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
+				@$el.css
+					width: @$el.width()
+					position: 'fixed'
+					top: "#{@options.offset}px"
+					bottom: 'auto'
 			else
-				@$el.css 'position', 'relative'
-				@$el.css 'top', 'inherit'
+				@$el.css
+					position: 'absolute'
+					top: 'auto'
+					bottom: "-#{@options.offset}px"
+					width: @$el.width()
+		else
+			@$el.css 'position', 'relative'
+			@$el.css 'top', 'inherit'
+
+_position = ->
+	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		_setPosition.call @
+
+	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+		@_refreshSizes()
+		if @_windowWidth < 992
+			@$el.css 'position', 'relative'
+			@$el.css 'top', 'inherit'
+		else
+			_setPosition.call @
 
 
 # If you have beforeopen function
@@ -129,6 +138,7 @@ _beforestart = ->
 # Opens modal
 # and triggers onopen
 _start = ->
+	@_refreshSizes()
 	_position.call @
 	@$el.addClass '_active_'
 	@$el.trigger "started.#{@_name}"
