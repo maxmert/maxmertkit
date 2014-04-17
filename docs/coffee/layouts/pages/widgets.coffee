@@ -16,4 +16,6 @@ exports.module = Marionette.Layout.extend
         @content.show new CollectionViewContent()
 
         @sidebar.currentView.$el.affix()
+
         $.app.commands.execute 'menu', 'activate', '#widgets'
+        $.app.commands.execute 'loader', 'finish'

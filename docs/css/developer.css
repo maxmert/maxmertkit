@@ -135,6 +135,13 @@ pre code {
   border-radius: 0 !important;
   border-style: none !important; }
 
+.dev-menu-small a {
+  opacity: 0.5;
+  font-size: 0.9em !important; }
+
+.dev-loader {
+  background-color: #2da7ab !important; }
+
 .dev-instructions {
   min-height: 400px;
   position: relative;

@@ -1,0 +1,84 @@
+@import "../common/common"
+
+@import "variables"
+
+@import "sizes"
+@import "themes"
+
+@mixin buttons-theme-button-bordered-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	background-color: transparent
+	border-color: $background-color
+	color: $color
+
+	// @if $name == default
+	// 	background-color: lighten($background-color, 10%)
+	// 	border-color: darken($background-color, 3%)
+	// 	color: $color
+	// @else
+	// 	background-color: $background-color
+	// 	border-color: darken($background-color, 7%)
+	// 	color: $white-color
+
+
+	&:hover, &.#{$mod-hovered}
+		background-color: $background-color
+		color: $white-color
+
+	&:active, &.#{$mod-active}
+		background-color: darken($background-color, 7%)
+		color: $white-color
+		border-color: darken($background-color, 7%)
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		color: $color
+
+
+
+@mixin button-bordered-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	border-width: $multiplier * $button-bordered-border-width
+	font-size: $multiplier * $base-font-size
+
+
+
+
+@include exports("buttons/bordered/common")
+
+	.#{$button-bordered-class}
+		@extend .#{$button-class}
+
+		border-radius: $button-bordered-border-radius
+
+		font-weight: $button-bordered-font-weight
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include buttons-theme-button-bordered-setter($thm)
+			&.-#{$themeName}-
+				@include buttons-theme-button-bordered-setter($thm)
+
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include button-bordered-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size / 2
+			&._#{$sizeName}
+				@include button-bordered-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size
+	//
+	// a.#{$button-class}
+	// 	font-weight: normal

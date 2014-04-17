@@ -11,7 +11,7 @@ collectionMenu = new Backbone.Collection collectionData
 
 exports.module = Marionette.CollectionView.extend
     tagName: "ul"
-    className: '-menu -dark-'
+    className: '-menu -kit-'
     itemView: ViewMenuItem
     collection: collectionMenu
     channel: Backbone.Wreqr.radio.channel( 'menu' )

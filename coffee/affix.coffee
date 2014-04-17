@@ -82,22 +82,23 @@ _position = ->
 	if $scrollParent[0].firstElementChild.nodeName is "HTML" then offset = 0 else offset = $scrollParent.offset().top
 
 	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-			if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
-				@$el.css
-					width: @$el.width()
-					position: 'fixed'
-					top: "#{@options.offset}px"
-					bottom: 'auto'
+		if @$el.parent()? and @$el.parent().offset()
+			if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
+				if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
+					@$el.css
+						width: @$el.width()
+						position: 'fixed'
+						top: "#{@options.offset}px"
+						bottom: 'auto'
+				else
+					@$el.css
+						position: 'absolute'
+						top: 'auto'
+						bottom: "-#{@options.offset}px"
+						width: @$el.width()
 			else
-				@$el.css
-					position: 'absolute'
-					top: 'auto'
-					bottom: "-#{@options.offset}px"
-					width: @$el.width()
-		else
-			@$el.css 'position', 'relative'
-			@$el.css 'top', 'inherit'
+				@$el.css 'position', 'relative'
+				@$el.css 'top', 'inherit'
 
 
 # If you have beforeopen function

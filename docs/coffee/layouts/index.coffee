@@ -12,8 +12,19 @@ exports.module = Marionette.Layout.extend
         menu: '#mainmenu'
         content: '#maincontent'
 
+    channel: Backbone.Wreqr.radio.channel( 'loader' )
+
+    initialize: ->
+
+        @channel.commands.setHandler 'start', =>
+            if @loader? then @loader.addClass '_active_'
+
+        @channel.commands.setHandler 'finish', =>
+            if @loader? then @loader.removeClass '_active_'
+
 
     onRender: ->
+        @loader = @$el.find '#loader'
 
         # @sidebar.show new CollectionViewMenu()
         # @content.show new CollectionViewContent()

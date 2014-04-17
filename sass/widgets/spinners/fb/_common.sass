@@ -1,0 +1,77 @@
+// HTML EXAMPLE
+// <div class="-spinner-fb">
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+// </div>
+
+@import "variables"
+@import "sizes"
+@import "themes"
+
+
+@mixin spinner-fb-theme-setter( $theme )
+    $name: map-get( $theme, name)
+    $color: map-get( $theme, color)
+
+    .#{$addon-class}
+        @if $name == default
+            background-color: #fff
+        @else
+            background-color: $color
+
+@mixin spinner-fb-size-setter( $size )
+    $multiplier: map-get( $size, multiplier)
+
+    .#{$addon-class}
+        height: floor( $spinner-fb-size * $multiplier )
+        width: floor( $spinner-fb-size / 5 * $multiplier )
+
+    &.#{$mod-responsive}
+        margin-top: - floor(( $spinner-fb-size * $multiplier ) / 2)
+        margin-left: - floor(( $spinner-fb-size * $multiplier ) / 2)
+
+
+@include keyframes( stretchdelaySpinnerFb )
+    0%, 40%, 100%
+        @include transform( scaleY(0.4) )
+
+    20%
+        @include transform( scaleY(1.0) )
+
+
+@include exports("spinners/fb/common")
+    .#{$spinner-fb-class}
+        display: inline-block
+
+        .#{$addon-class}
+            display: inline-block
+            @include animation( stretchdelaySpinnerFb 1.2s infinite ease-in-out )
+
+            @for $i from 0 through $spinner-fb-max-addons
+                &:nth-child( #{$i} )
+                    @include animation-delay( -1 + 0.1s * $i )
+
+
+
+        &.#{$mod-responsive}
+            position: absolute
+            top: 50%
+            left: 50%
+
+        @each $themeName in $themes
+            $thm: map-get( $base-themes, $themeName )
+
+            @if $themeName == default
+                @include spinner-fb-theme-setter($thm)
+            &.-#{$themeName}-
+                @include spinner-fb-theme-setter($thm)
+
+        @each $sizeName in $sizes
+            $sz: map-get( $base-sizes, $sizeName )
+            @if $sizeName == normal
+                @include spinner-fb-size-setter($sz)
+            &._#{$sizeName}
+                @include spinner-fb-size-setter($sz)

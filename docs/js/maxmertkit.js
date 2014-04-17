@@ -376,25 +376,27 @@
     }
     return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
-        if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
-          if (_this.$el.parent().offset().top + $scrollParent.outerHeight() - _this.options.offset - _this.$el.outerHeight() >= $(document).scrollTop()) {
-            return _this.$el.css({
-              width: _this.$el.width(),
-              position: 'fixed',
-              top: "" + _this.options.offset + "px",
-              bottom: 'auto'
-            });
+        if ((_this.$el.parent() != null) && _this.$el.parent().offset()) {
+          if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
+            if (_this.$el.parent().offset().top + $scrollParent.outerHeight() - _this.options.offset - _this.$el.outerHeight() >= $(document).scrollTop()) {
+              return _this.$el.css({
+                width: _this.$el.width(),
+                position: 'fixed',
+                top: "" + _this.options.offset + "px",
+                bottom: 'auto'
+              });
+            } else {
+              return _this.$el.css({
+                position: 'absolute',
+                top: 'auto',
+                bottom: "-" + _this.options.offset + "px",
+                width: _this.$el.width()
+              });
+            }
           } else {
-            return _this.$el.css({
-              position: 'absolute',
-              top: 'auto',
-              bottom: "-" + _this.options.offset + "px",
-              width: _this.$el.width()
-            });
+            _this.$el.css('position', 'relative');
+            return _this.$el.css('top', 'inherit');
           }
-        } else {
-          _this.$el.css('position', 'relative');
-          return _this.$el.css('top', 'inherit');
         }
       };
     })(this));
