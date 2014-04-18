@@ -260,6 +260,12 @@ exports.widgets = [
 ]
 
 exports.utilities = [
-	name: "responsive"
-	path: "responsiveCommon"
+	{
+		name: "responsive"
+		path: "responsiveCommon"
+	}
+	{
+		name: "order"
+		path: "orderCommon"
+	}
 ]

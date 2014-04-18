@@ -1,0 +1,175 @@
+@import "../../js/bower/bourbon/dist/bourbon"
+@import "../../js/bower/neat/app/assets/stylesheets/neat"
+
+
+
+.example-block
+	margin: 15px 0 35px
+	border: 1px solid #ccc
+	border-radius: 5px
+
+
+pre.prettyprint
+	padding: 15px
+	background-color: #f7f7f7
+	border: 1px solid #cccccc
+
+.dev-logo
+	max-height: 18px
+	display: inline-block
+	vertical-align: top
+
+.dev-sidebar-menu
+	margin-top: 20px
+
+.dev-navbar
+	position: relative
+	border-width: 0!important
+	border-bottom-width: 1px!important
+	border-radius: 0!important
+	border-style: none!important
+
+.dev-menu-small a
+	opacity: 0.5
+	font-size: 0.9em !important
+
+// .dev-loader
+// 	background-color: #2da7ab !important
+
+.dev-main-content
+	margin: 30px auto
+
+.dev-mobile-menu
+	li
+		margin-right: 2px !important
+
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic
+	min-height: 400px
+	position: relative
+	display: table
+	color: #fff
+
+	.dev-version
+		text-align: center
+		opacity: 0.4
+		font-weight: 100
+		font-size: 0.7em
+
+	.dev-additional
+		position: absolute
+		bottom: 10px
+		left: 0
+		width: 100%
+		text-align: center
+		font-size: .75em
+		font-weight: 100
+
+	& > .dev-instructions-holder
+		display: table-cell
+		width: 100%
+		vertical-align: middle
+
+
+	&:before
+		content: " "
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-image: url("/img/mainmenu.png")
+		position: absolute
+		z-index: 0
+
+	// h1, h2, h3, h4, h5, h6
+
+	.dev-font-lobster
+		font-family: 'Lobster', cursive
+
+	.dev-font-raleway
+		font-family: 'Raleway', sans-serif
+
+.dev-instructions-widgets
+	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
+
+.dev-instructions-utilities
+	@include background-image(linear-gradient(#8f0e0a 0, #d26117 100%))
+
+.dev-instructions-basic
+	@include background-image(linear-gradient(#4b358c 0, #b30c83 100%))
+
+
+.example-block
+	.example, .view
+		padding: 15px!important
+		position: relative
+
+	.view
+		& > .-btn, & > .-group
+			margin-top: 5px
+			margin-bottom: 5px
+
+		& > .-group
+			.-btn
+				margin-top: 0
+				margin-bottom: 0
+
+		& > .-drop
+			display: inline-block
+
+		._dev-clear_
+			@include clearfix
+			position: relative
+			top: inherit
+			left: inherit
+			right: inherit
+
+	.example
+		border: none
+		border-radius: 0
+		border-top: 1px solid #ccc
+		background-color: rgba(0,0,0,.03)
+		margin-bottom: 0
+
+		pre
+			padding: 0
+			border: none
+			margin: 0
+
+
+		&:first-child
+			border-top: none
+
+._dev-invisibility_, ._dev-visibility_
+	padding: 10px 15px
+	border-radius: 5px
+
+._dev-invisibility_
+	background-color: #eeeeee
+	position: relative
+
+._dev-visibility_
+	position: absolute
+	background-color: #ffc43e
+	top: 0
+	left: 0
+	width: 100%
+
+@include media(new-breakpoint(max-width 768px 6))
+	.example-block
+		.example
+			display: none !important
+
+
+.row-color
+	background-color: #d5e7f1
+	margin-bottom: 1px
+	padding: 10px
+
+	.column-color
+		background-color: #baddf1
+		padding: 10px
+
+#popup
+	.popups-block
+		@include perspective(1300px)
+		@include perspective-origin(50% 50%)

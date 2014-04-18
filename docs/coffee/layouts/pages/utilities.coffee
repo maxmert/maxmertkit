@@ -6,6 +6,8 @@ ViewSocial = require( '../../views/pages/social' )
 
 exports.module = Marionette.Layout.extend
 
+    model: new Backbone.Model kit
+
     template: $.app.templates.common.pages.utilities
 
     regions:

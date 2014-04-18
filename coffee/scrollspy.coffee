@@ -20,6 +20,7 @@ class Scrollspy extends MaxmertkitHelpers
 			offset:	10									# Vertical offset in pixels
 			elements: 'li a'							# Elements to spy inside @$el
 			elementsAttr: 'href'						# attribute of each element with ID of the target
+			noMobile: @$el.data("no-mobile") or yes
 			beforeactive: ->
 			onactive: ->
 			beforeunactive: ->
@@ -136,6 +137,14 @@ _activate = ->
 	$(target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		_spy.call @, event
 
+	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+		@_refreshSizes()
+		if @options.noMobile
+			if @_windowWidth < 992
+				@stop()
+			else
+				@start()
+
 # If you have beforeopen function
 # 	it will be called here
 # if you don't
@@ -197,7 +206,12 @@ _beforestop = ->
 # Closes modal
 # and triggers onstop
 _stop = ->
-	$(document).off "scroll.#{@_name}.#{@_id}"
+	if @options.target is 'body'
+		target = window
+	else
+		target = @options.target
+
+	$(target).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
 	if @onstop?
 		try

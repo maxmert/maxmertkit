@@ -4,8 +4,6 @@ api = require './routes/api/0.1'
 express = require 'express'
 app = express()
 
-
-
 app.configure ->
 	app.set('port', process.env.PORT or 3333)
 	app.set 'view engine', 'html'
@@ -13,6 +11,7 @@ app.configure ->
 	app.set 'views', "#{__dirname}/views"
 	app.engine 'html', require('hogan-express')
 	app.use errorHandler
+	app.locals.kit = JSON.stringify require('../../package.json')
 
 
 

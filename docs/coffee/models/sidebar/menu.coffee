@@ -1,7 +1,7 @@
 "use strict"
 
 
-exports.module = Backbone.Model.extend
+exports.model = Backbone.Model.extend
     defaults:
-        nameNormalized: ->
-            @name.replace(/[0-9]/g, '')
+        existIncludes: ->
+            @include? and @include.length > 0 and not ( @include.length is 1 and @include[0].invisible? )

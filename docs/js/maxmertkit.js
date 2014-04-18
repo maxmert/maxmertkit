@@ -1276,6 +1276,7 @@
         offset: 10,
         elements: 'li a',
         elementsAttr: 'href',
+        noMobile: this.$el.data("no-mobile") || true,
         beforeactive: function() {},
         onactive: function() {},
         beforeunactive: function() {},
@@ -1382,9 +1383,21 @@
     } else {
       target = this.options.target;
     }
-    return $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
+    $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
         return _spy.call(_this, event);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this.options.noMobile) {
+          if (_this._windowWidth < 992) {
+            return _this.stop();
+          } else {
+            return _this.start();
+          }
+        }
       };
     })(this));
   };
@@ -1446,7 +1459,13 @@
   };
 
   _stop = function() {
-    $(document).off("scroll." + this._name + "." + this._id);
+    var target;
+    if (this.options.target === 'body') {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    $(target).off("scroll." + this._name + "." + this._id);
     this.$el.trigger("stopped." + this._name);
     if (this.onstop != null) {
       try {

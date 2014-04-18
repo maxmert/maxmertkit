@@ -22,6 +22,7 @@ runSequence = require 'run-sequence'
 templater = require 'gulp-jstemplater'
 browserify = require 'gulp-browserify'
 rename = require 'gulp-rename'
+jeditor = require 'gulp-json-editor'
 
 
 
@@ -29,9 +30,10 @@ path =
 	docs:
 		front:
 			js: "docs/js"
+			sass: "docs/sass"
 			css: "docs/css"
 			coffee: "docs/coffee"
-			templates: "docs/server/views/templates"
+			templates: "docs/templates"
 			vendor:
 				bower: "docs/js/bower"
 				libs: "docs/js/libs"
@@ -198,7 +200,7 @@ gulp.task 'docsTemplates', ->
 gulp.task 'docsSass', ->
 
 	files = [
-		"#{path.kit.sass}/developer.sass"
+		"#{path.docs.front.sass}/developer.sass"
 	]
 
 	gulp.src( files )
@@ -255,7 +257,7 @@ gulp.task 'watch', ->
 			bower: "#{path.docs.front.vendor.bower}/**/*.js"
 			libs: "#{path.docs.front.vendor.libs}/**/*.js"
 		docsCoffee: "#{path.docs.front.coffee}/**/*.coffee"
-		docsSass: "#{path.kit.sass}/developer.sass"
+		docsSass: "#{path.docs.front.sass}/developer.sass"
 		docsTemplates: "#{path.docs.front.templates}/**/*.html"
 
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
@@ -328,3 +330,8 @@ gulp.task 'build', [ 'test' ], ->
 
 		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
 			.pipe( plato "#{path.dev}/report" )
+
+
+		gulp.src( "./package.json" )
+			.pipe( jeditor( buildDate: new Date() ) )
+			.pipe( gulp.dest "." )

@@ -15,11 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "highlightjs-scss": "~7.3.0",
     "marionette": "~1.7.4",
     "backbone.wreqr": "1.2.0",
     "mustache": "~0.8.1",
-    "highlightjs": "8.0.0",
-    "fontawesome": "~4.0.3"
+    "fontawesome": "~4.0.3",
+    "google-code-prettify": "~1.0.1",
+    "google-code-prettify-language-handlers": "~0.1.5"
   }
 }

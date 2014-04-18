@@ -42,8 +42,6 @@
 @include exports("spinners/square/common")
     .#{$spinner-square-class}
         display: inline-block
-        -webkit-backface-visibility: visible
-        backface-visibility: visible
         @include animation( rotateplane 1.2s infinite ease-in-out )
 
         &.#{$mod-responsive}

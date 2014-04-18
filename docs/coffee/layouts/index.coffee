@@ -1,11 +1,6 @@
-CollectionViewMainMenu = require( '../collectionviews/header/mainmenu' ).module
-CollectionViewMobileMenu = require( '../collectionviews/header/mobilemenu' ).module
+CollectionViewMenu = require( '../collectionviews/header/menu' )
+ViewSocialButton = require( '../views/header/social' )
 
-ViewSocial = require( '../views/header/social' )
-
-ViewSocialTwitter = ViewSocial.twitter
-ViewSocialFacebook = ViewSocial.facebook
-ViewSocialGithub = ViewSocial.github
 
 exports.module = Marionette.Layout.extend
 
@@ -41,9 +36,9 @@ exports.module = Marionette.Layout.extend
     onRender: ->
         @loader = @$el.find '#loader'
 
-        @menu.show new CollectionViewMainMenu()
-        @mobilemenu.show new CollectionViewMobileMenu()
+        @menu.show new CollectionViewMenu.main()
+        @mobilemenu.show new CollectionViewMenu.mobile()
 
-        @socialTwitter.show new ViewSocialTwitter()
-        @socialFacebook.show new ViewSocialFacebook()
-        @socialGithub.show new ViewSocialGithub()
+        @socialTwitter.show new ViewSocialButton.twitter()
+        @socialFacebook.show new ViewSocialButton.facebook()
+        @socialGithub.show new ViewSocialButton.github()

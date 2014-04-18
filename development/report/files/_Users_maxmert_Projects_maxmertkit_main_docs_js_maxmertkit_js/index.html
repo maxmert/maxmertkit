@@ -49,7 +49,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">1629</p>
+      <p class="stat">1691</p>
     </div>
   </div>
   <div class="row historical">
@@ -63,11 +63,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">231.19</p>
+      <p class="stat">226.19</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">22.01</p>
+      <p class="stat">23.18</p>
     </div>
   </div>
 </div>
@@ -90,12 +90,12 @@
 
 <div class="container">
   <div class="row">
-    <textarea id="file-source" class="col-md-12">/*
-	TODO: Improve rotation
- */
+    <textarea id="file-source" class="col-md-12">(function() {
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbacks, _globalRotation, _reactorEvents, _version;
 
-(function() {
-  var MaxmertkitHelpers, _globalRotation, _id;
+  _eventCallbacks = [];
+
+  _reactorEvents = [];
 
   _globalRotation = {
     x: 0,
@@ -103,9 +103,56 @@
     z: 0
   };
 
-  _id = 0;
+  _version = &quot;0.0.1&quot;;
+
+  MaxmertkitEvent = (function() {
+    function MaxmertkitEvent(name) {
+      this.name = name;
+    }
+
+    MaxmertkitEvent.prototype.callbacks = _eventCallbacks;
+
+    MaxmertkitEvent.prototype.registerCallback = function(callback) {
+      return this.callbacks.push(callback);
+    };
+
+    return MaxmertkitEvent;
+
+  })();
+
+  MaxmertkitReactor = (function() {
+    function MaxmertkitReactor() {}
+
+    MaxmertkitReactor.prototype.events = _reactorEvents;
+
+    MaxmertkitReactor.prototype.registerEvent = function(eventName) {
+      var event;
+      event = new MaxmertkitEvent(eventName);
+      return this.events[eventName] = event;
+    };
+
+    MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
+      var callback, _i, _len, _ref, _results;
+      _ref = this.events[eventName].callbacks;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i &lt; _len; _i++) {
+        callback = _ref[_i];
+        _results.push(callback(eventArgs));
+      }
+      return _results;
+    };
+
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback) {
+      return this.events[eventName].registerCallback(callback);
+    };
+
+    return MaxmertkitReactor;
+
+  })();
 
   MaxmertkitHelpers = (function() {
+    MaxmertkitHelpers.prototype._id = 0;
+
     MaxmertkitHelpers.prototype._instances = new Array();
 
     function MaxmertkitHelpers($btn, options) {
@@ -118,16 +165,8 @@
     }
 
     MaxmertkitHelpers.prototype.destroy = function() {
-      var key;
-      if (this.$el != null) {
-        this.$el.off(&quot;.&quot; + this._name);
-      }
-      this._popInstance();
-      for (key in this) {
-        this[key] = null;
-        delete this[key];
-      }
-      return true;
+      this.$el.off(&quot;.&quot; + this._name);
+      return this._popInstance();
     };
 
     MaxmertkitHelpers.prototype._extend = function(object, properties) {
@@ -148,7 +187,7 @@
     };
 
     MaxmertkitHelpers.prototype._pushInstance = function() {
-      this._id = _id++;
+      this._id++;
       return this._instances.push(this);
     };
 
@@ -159,10 +198,9 @@
       for (index = _i = 0, _len = _ref.length; _i &lt; _len; index = ++_i) {
         instance = _ref[index];
         if (instance._id === this._id) {
-          _results.push(this._instances.splice(index, 1));
-        } else {
-          _results.push(void 0);
+          this._instances.splice(index, 1);
         }
+        _results.push(delete this);
       }
       return _results;
     };
@@ -182,6 +220,12 @@
       return _results;
     };
 
+    MaxmertkitHelpers.prototype._getVersion = function() {
+      return _version;
+    };
+
+    MaxmertkitHelpers.prototype.reactor = new MaxmertkitReactor();
+
     MaxmertkitHelpers.prototype._setTransform = function(style, transform) {
       style.webkitTransform = transform;
       style.MozTransform = transform;
@@ -197,6 +241,8 @@
     };
 
     MaxmertkitHelpers.prototype._refreshSizes = function() {
+      this._windowHeight = $(window).height();
+      this._windowWidth = $(window).width();
       this._height = this.$el.height();
       this._width = this.$el.width();
       if (this.scroll != null) {
@@ -220,11 +266,11 @@
         if (style == null) {
           return $(parent);
         }
-        if (/(relative)/.test(style[&#039;position&#039;])) {
-          return parent;
+        if (/(relative)/.test(style[&#039;position&#039;]) || /(relative)/.test(parent.style[&#039;position&#039;])) {
+          return $(parent);
         }
       }
-      return document.body;
+      return $(document);
     };
 
     MaxmertkitHelpers.prototype._getScrollParent = function(el) {
@@ -343,22 +389,12 @@
     };
   })();
 
-  $(window).on(&quot;scrollstart.kit&quot;, function(event) {
-    return $(&#039;body&#039;).addClass(&#039;-no-pointer-events&#039;);
-  });
-
-  $(window).on(&quot;scrollstop.kit&quot;, (function(_this) {
-    return function() {
-      return $(&#039;body&#039;).removeClass(&#039;-no-pointer-events&#039;);
-    };
-  })(this));
-
   window[&#039;MaxmertkitHelpers&#039;] = MaxmertkitHelpers;
 
 }).call(this);
 
 (function() {
-  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _setPosition, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -422,36 +458,52 @@
 
   })(MaxmertkitHelpers);
 
-  _position = function() {
-    var $scrollParent, offset, scrollParent;
-    scrollParent = this._getContainer(this.$el);
-    $scrollParent = $(scrollParent);
+  _setPosition = function() {
+    var $scrollParent, offset;
+    $scrollParent = this._getContainer(this.$el);
     if ($scrollParent[0].firstElementChild.nodeName === &quot;HTML&quot;) {
       offset = 0;
     } else {
       offset = $scrollParent.offset().top;
     }
-    return $(document).on(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id, (function(_this) {
-      return function(event) {
-        if (_this.$el.parent().offset().top - _this.options.offset &lt;= $(document).scrollTop()) {
-          if (offset + $scrollParent.height() - _this.$el.outerHeight() &gt;= $(document).scrollTop()) {
-            return _this.$el.css({
-              width: _this.$el.width(),
-              position: &#039;fixed&#039;,
-              top: &quot;&quot; + _this.options.offset + &quot;px&quot;,
-              bottom: &#039;auto&#039;
-            });
-          } else {
-            return _this.$el.css({
-              position: &#039;absolute&#039;,
-              top: &#039;auto&#039;,
-              bottom: 0,
-              width: _this.$el.width()
-            });
-          }
+    if ((this.$el.parent() != null) &amp;&amp; this.$el.parent().offset() &amp;&amp; !this._deviceMobile() &amp;&amp; this._windowWidth &gt; 992) {
+      if (this.$el.parent().offset().top - this.options.offset &lt;= $(document).scrollTop()) {
+        if (this.$el.parent().offset().top + $scrollParent.outerHeight() - this.options.offset - this.$el.outerHeight() &gt;= $(document).scrollTop()) {
+          return this.$el.css({
+            width: this.$el.width(),
+            position: &#039;fixed&#039;,
+            top: &quot;&quot; + this.options.offset + &quot;px&quot;,
+            bottom: &#039;auto&#039;
+          });
         } else {
+          return this.$el.css({
+            position: &#039;absolute&#039;,
+            top: &#039;auto&#039;,
+            bottom: &quot;-&quot; + this.options.offset + &quot;px&quot;,
+            width: this.$el.width()
+          });
+        }
+      } else {
+        this.$el.css(&#039;position&#039;, &#039;relative&#039;);
+        return this.$el.css(&#039;top&#039;, &#039;inherit&#039;);
+      }
+    }
+  };
+
+  _position = function() {
+    $(document).on(&quot;scroll.&quot; + this._name + &quot;.&quot; + this._id, (function(_this) {
+      return function(event) {
+        return _setPosition.call(_this);
+      };
+    })(this));
+    return $(window).on(&quot;resize.&quot; + this._name + &quot;.&quot; + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this._windowWidth &lt; 992) {
           _this.$el.css(&#039;position&#039;, &#039;relative&#039;);
           return _this.$el.css(&#039;top&#039;, &#039;inherit&#039;);
+        } else {
+          return _setPosition.call(_this);
         }
       };
     })(this));
@@ -480,6 +532,7 @@
   };
 
   _start = function() {
+    this._refreshSizes();
     _position.call(this);
     this.$el.addClass(&#039;_active_&#039;);
     this.$el.trigger(&quot;started.&quot; + this._name);
@@ -533,8 +586,6 @@
         } else {
           if (typeof options === &quot;string&quot; &amp;&amp; options.charAt(0) !== &quot;_&quot;) {
             $.data(this, &quot;kit-&quot; + _name)[options];
-          } else {
-            console.error(&quot;Maxmertkit Affix. You passed into the &quot; + _name + &quot; something wrong.&quot;);
           }
         }
       }
@@ -1288,7 +1339,7 @@
 }).call(this);
 
 (function() {
-  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _deactivateItem, _id, _instances, _name, _refresh, _spy, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -1336,7 +1387,7 @@
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
-          return console.error(&quot;Maxmertkit Affix. You&#039;re trying to set unpropriate option.&quot;);
+          return console.error(&quot;Maxmertkit Scrollspy. You&#039;re trying to set unpropriate option.&quot;);
         }
         this.options[key] = value;
       }
@@ -1372,6 +1423,10 @@
     return this.elements[itemNumber].menu.addClass(&#039;_active_&#039;).parents(&#039;li&#039;).addClass(&#039;_active_&#039;);
   };
 
+  _deactivateItem = function(itemNumber) {
+    return this.elements[itemNumber].menu.removeClass(&#039;_active_&#039;);
+  };
+
   _refresh = function() {
     this.elements = [];
     return this.$el.find(this.options.elements).each((function(_this) {
@@ -1384,6 +1439,7 @@
             return _this.elements.push({
               menu: $(el).parent(),
               item: item.parent(),
+              itemHeight: item.parent().height(),
               offsetTop: item.position().top
             });
           }
@@ -1396,12 +1452,14 @@
     var i, _ref, _results;
     i = 0;
     _results = [];
-    while (i + 1 &lt; this.elements.length) {
-      if ((this.elements[i].offsetTop &lt;= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) &amp;&amp; _ref &lt;= this.elements[i + 1].offsetTop)) {
-        _activateItem.call(this, i);
+    while (i &lt; this.elements.length) {
+      if ((this.elements[i].offsetTop &lt;= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) &amp;&amp; _ref &lt;= this.elements[i].offsetTop + this.elements[i].itemHeight)) {
+        if (!this.elements[i].menu.hasClass(&#039;_active_&#039;)) {
+          _activateItem.call(this, i);
+        }
       } else {
-        if ((event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset &gt; this.elements[i + 1].offsetTop) {
-          _activateItem.call(this, i + 1);
+        if (this.elements[i].menu.hasClass(&#039;_active_&#039;) &amp;&amp; (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset &lt; this.elements[i].offsetTop + this.elements[i].itemHeight) {
+          _deactivateItem.call(this, i);
         }
       }
       _results.push(i++);

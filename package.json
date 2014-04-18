@@ -2,27 +2,23 @@
   "name": "maxmertkit",
   "version": "1.0.0",
   "description": "Maxmertkit webdevelopment framework",
+  "homepage": "http://maxmert.com",
   "main": "gulpfile.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/maxmert/maxmertkit.git"
   },
-  "keywords": [
-    "maxmertkit",
-    "maxmert",
-    "framework",
-    "html5",
-    "css",
-    "sass",
-    "coffeescript"
-  ],
-  "author": "maxmert",
+  "keywords": ["maxmertkit", "maxmert", "framework", "html5", "css", "sass", "coffeescript"],
+  "author": {
+    "name": "Vetrenko Maxim",
+    "email": "me@maxmert.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/maxmert/maxmertkit/issues"
@@ -66,6 +62,8 @@
     "gulp-browserify": "^0.5.0",
     "gulp-rename": "^1.2.0",
     "coffeeify": "^0.6.0",
-    "browserify": "^3.41.0"
-  }
+    "browserify": "^3.41.0",
+    "gulp-json-editor": "^2.0.2"
+  },
+  "buildDate": "2014-04-18T11:25:09.101Z"
 }

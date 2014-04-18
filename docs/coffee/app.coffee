@@ -1,24 +1,3 @@
-window['toCollection'] = ( contents, object) ->
-	result = []
-
-	for key, value in contents
-		if key.include? and key.include.length
-			inner = object[ key.name ]
-
-			for menuItem in key.include
-				result.push
-					name: menuItem.name
-					path: menuItem.path
-					value: inner[ menuItem.name ]
-
-		else
-			result.push
-				name: key.name
-				path: key.path
-				value: object[ key.name ]
-	result
-
-
 Backbone.Marionette.Renderer.render = (template, data) ->
 	Mustache.to_html(template, data);
 
