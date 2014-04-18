@@ -19,7 +19,7 @@
     "marionette": "~1.7.4",
     "backbone.wreqr": "1.2.0",
     "mustache": "~0.8.1",
-    "highlightjs": "~8.0.0",
+    "highlightjs": "8.0.0",
     "fontawesome": "~4.0.3"
   }
 }

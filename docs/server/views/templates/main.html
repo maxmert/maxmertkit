@@ -1,13 +1,31 @@
 <header class="-navbar dev-navbar">
 	<div class="-container">
 		<div class="-row">
-			<div class="-col2">
+
+			<div class="-col2 _hidden-tablets_ _hidden-phones_">
 				<div class="-header"><a href="/" class="dev-logo"><img src="/img/logo.png"></a></div>
 			</div>
-			<nav id="mainmenu" class="-col6"></nav>
+			<nav id="mainmenu" class="-col5 _hidden-tablets_ _hidden-phones_"></nav>
+
+
+			<div class="-col12 _hidden-desktops_ _hidden-large-desktops_" style="text-align: center">
+				<div class="-header"><a href="/" class="dev-logo"><img src="/img/logo.png"></a></div>
+			</div>
+			<nav id="mobilemenu" class="dev-mobile-menu -col12 _hidden-desktops_ _hidden-large-desktops_"></nav>
+
+			<div class="-col5 _hidden-tablets_ _hidden-phones_">
+				<span id="social-twitter"></span>
+				<span id="social-facebook"></span>
+				<span id="social-github"></span>
+			</div>
+
 		</div>
 	</div>
 </header>
+
+<div id="loader" class="dev-loader -shader _responsive_ _shaded_ -fadein-- _active_">
+	<div class="-spinner-square _responsive_ _huge"></div>
+</div>
 
 <main id="maincontent">
 

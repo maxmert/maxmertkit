@@ -28,12 +28,24 @@ pre code
 	border-radius: 0!important
 	border-style: none!important
 
-.dev-instructions
+.dev-menu-small a
+	opacity: 0.5
+	font-size: 0.9em !important
+
+// .dev-loader
+// 	background-color: #2da7ab !important
+
+.dev-main-content
+	margin: 30px 0
+
+.dev-mobile-menu
+	li
+		margin-right: 2px !important
+
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic
 	min-height: 400px
 	position: relative
 	display: table
-	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
-
 	color: #fff
 
 	.dev-additional
@@ -68,6 +80,16 @@ pre code
 
 	.dev-font-raleway
 		font-family: 'Raleway', sans-serif
+
+.dev-instructions-widgets
+	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
+
+.dev-instructions-utilities
+	@include background-image(linear-gradient(#8f0e0a 0, #d26117 100%))
+
+.dev-instructions-basic
+	@include background-image(linear-gradient(#4b358c 0, #b30c83 100%))
+
 
 .example-block
 	.example, .view

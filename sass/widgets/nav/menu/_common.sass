@@ -51,14 +51,6 @@
 
 		@include nav-setter
 
-		@each $themeName in $themes
-			$thm: map-get( $base-themes, $themeName )
-
-			@if $themeName == default
-				@include nav-theme-menu-setter($thm)
-			&.-#{$themeName}-
-				@include nav-theme-menu-setter($thm)
-
 		#{$nav-item}
 			float: left
 			margin-right: $nav-tabs-items-margin
@@ -75,6 +67,10 @@
 				line-height: $base-line-height
 				@include user-select(none)
 				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
 
 			.#{$dropdown-class}
 				@include perspective-origin( 50% 0%)
@@ -95,7 +91,7 @@
 				.#{$nav-menu-class}
 					#{$nav-item}
 						a
-							padding: $base-padding-vertical $nav-menu-items-padding-horizontal + $nav-addon-size $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
+							padding: $base-padding-vertical $nav-menu-items-padding-horizontal + $nav-addon-size * 3 $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
 
 							.#{$addon-class}
 								position: absolute
@@ -113,6 +109,17 @@
 
 				&.-#{$themeName}-
 					@include nav-theme-menu-item-setter($thm)
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-menu-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-menu-setter($thm)
+
+
 
 		&.#{$mod-vertical}
 

@@ -1,5 +1,5 @@
 # ModelMenu = require('../../models/sidebar/menu').module
-ViewMenuItem = require('../views/mainmenu').module
+ViewMenuItem = require('../../views/header/mobilemenu').module
 #
 #
 collectionData = []
@@ -11,10 +11,10 @@ collectionMenu = new Backbone.Collection collectionData
 
 exports.module = Marionette.CollectionView.extend
     tagName: "ul"
-    className: '-menu -dark-'
+    className: '-pills -dark-'
     itemView: ViewMenuItem
     collection: collectionMenu
-    channel: Backbone.Wreqr.radio.channel( 'menu' )
+    channel: Backbone.Wreqr.radio.channel( 'mobilemenu' )
 
     initialize: ->
 

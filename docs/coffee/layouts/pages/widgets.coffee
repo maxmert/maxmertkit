@@ -1,6 +1,9 @@
 CollectionViewMenu = require( '../../collectionviews/sidebar/menu' ).module
 CollectionViewContent = require( '../../collectionviews/content' ).module
 
+ViewSocial = require( '../../views/pages/social' )
+
+
 exports.module = Marionette.Layout.extend
 
     template: $.app.templates.common.pages.widgets
@@ -8,12 +11,16 @@ exports.module = Marionette.Layout.extend
     regions:
         sidebar: '#sidebar'
         content: '#content'
+        socialContribute: '#social-contribute'
 
 
     onRender: ->
 
         @sidebar.show new CollectionViewMenu()
         @content.show new CollectionViewContent()
+        @socialContribute.show new ViewSocial.github()
 
         @sidebar.currentView.$el.affix()
+
         $.app.commands.execute 'menu', 'activate', '#widgets'
+        $.app.commands.execute 'loader', 'finish'

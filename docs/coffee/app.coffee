@@ -23,7 +23,7 @@ Backbone.Marionette.Renderer.render = (template, data) ->
 	Mustache.to_html(template, data);
 
 $.app = new Marionette.Application()
-$.app.config = require './config'
+$.app.config = require('./config').config
 $.app.contents = require('./contents')
 $.app.templates = require('../js/templates.js').module
 

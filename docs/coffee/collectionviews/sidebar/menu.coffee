@@ -16,7 +16,7 @@ exports.module = Marionette.CollectionView.extend
 
     initialize: ->
         @listenTo $.app.vent, 'route', @resetCollection
-        @$el.append "<li class='_small' style='margin-bottom: 15px'><a href='#mainmenu' data-bypass><i class='fa fa-arrow-up'></i> on top</a></li>"
+        @$el.append "<li class='_small' style='margin-bottom: 15px'><small class='dev-menu-small'><a href='#mainmenu' data-bypass><i class='fa fa-arrow-up'></i> on top</a></small></li>"
         # @listenTo @collection, 'reset', @render
 
     resetCollection: ->

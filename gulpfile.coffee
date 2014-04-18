@@ -279,8 +279,8 @@ gulp.task 'watch', ->
 		server.changed file.path
 
 
-gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass' ], ->
-	gulp.tasks.nodemon.fn()
+gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
+	# gulp.tasks.nodemon.fn()
 	gulp.tasks.watch.fn()
 	gulp.tasks.kitTodo.fn()
 )

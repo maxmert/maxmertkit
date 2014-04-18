@@ -1,0 +1,86 @@
+<h1>Shaders</h1>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+    <h4>Global variables</h4>
+    <div hljs>$shader-class: "-shader" !global
+$shader-z-index: 100 !global</div>
+</p>
+
+<p>Shader is a background element for any content, for example a modal window.</p>
+
+<blockquote class="-error-">
+    Hidden by default. Add modifier <code>_active_</code> to show up.<br>
+    Dont't have any sizes.
+</blockquote>
+
+
+<blockquote class="-warning-">
+    Use modifier <code>_responsive_</code> to make shader <code>position: fixed</code>.<br>
+    By default shader is <code>position: absolute</code>
+</blockquote>
+
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        Content under shader.
+        <div class="-shader -primary- _active_"></div>
+    </div>
+
+
+    <div hljs class="-col12 example">Content under shader.
+<div class="-shader -primary-"></div></div>
+
+</div>
+
+
+<p>For example add loader.</p>
+
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        Content under shader.
+        <div class="-shader -warning- _active_">
+            <div class="-spinner-fb _responsive_">
+                <div class="-addon"></div>
+                <div class="-addon"></div>
+                <div class="-addon"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div hljs class="-col12 example">Content under shader.
+<div class="-shader -warning- _active_">
+    <div class="-spinner-fb _responsive_">
+        <div class="-addon"></div>
+        <div class="-addon"></div>
+        <div class="-addon"></div>
+    </div>
+</div>
+</div></div>
+</div>
+
+
+
+
+<p>Add modifier <code>_shaded_</code> to make shader transparent.</p>
+
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        Content under shader.
+        <div class="-shader -warning- _shaded_ _active_"><div class="-spinner-square _responsive_"></div></div>
+    </div>
+
+
+    <div hljs class="-col12 example">Content under shader.
+<div class="-shader -warning- _shaded_ _active_">
+        <div class="-spinner-square _responsive_"></div>
+</div>
+
+</div>
