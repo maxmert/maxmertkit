@@ -17,7 +17,7 @@ class Scrollspy extends MaxmertkitHelpers
 		_options =
 			spy: @$el.data('spy') or 'scroll'			# To automatically find affix elements and make them active
 			target: @$el.data('target') or 'body'	# Selector of the scrolling block
-			offset:	10									# Vertical offset in pixels
+			offset:	0									# Vertical offset in pixels
 			elements: 'li a'							# Elements to spy inside @$el
 			elementsAttr: 'href'						# attribute of each element with ID of the target
 			noMobile: @$el.data("no-mobile") or yes
@@ -155,9 +155,9 @@ _beforestart = ->
 	# 	@_selfish()
 	@refresh()
 
-	if @beforeopen?
+	if @beforeactive?
 		try
-			deferred = @beforeopen.call @$el
+			deferred = @beforeactive.call @$el
 			deferred
 				.done =>
 					_start.call @
@@ -177,9 +177,9 @@ _start = ->
 	_activate.call @
 	@$el.addClass '_active_'
 	@$el.trigger "started.#{@_name}"
-	if @onopen?
+	if @onactive?
 		try
-			@onopen.call @$el
+			@onactive.call @$el
 
 
 # If you have beforeclose function
@@ -187,9 +187,9 @@ _start = ->
 # if you don't
 # 	just close modal window
 _beforestop = ->
-	if @beforeclose?
+	if @beforeunactive?
 		try
-			deferred = @beforeclose.call @$el
+			deferred = @beforeunactive.call @$el
 			deferred
 				.done =>
 					_stop.call @
@@ -213,9 +213,9 @@ _stop = ->
 
 	$(target).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
-	if @onstop?
+	if @onunactive?
 		try
-			@onstop.call @$el
+			@onunactive.call @$el
 
 
 

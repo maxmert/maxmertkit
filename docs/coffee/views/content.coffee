@@ -10,8 +10,8 @@
 #     ">": "&gt;"
 
 exports.module = Marionette.ItemView.extend
-
     template: $.app.templates.common.partials
+
 
     # onRender: ->
     #     @$el.find('[hljs]').each ( index, pre ) =>

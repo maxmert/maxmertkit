@@ -28,8 +28,7 @@
   "dependencies": {
     "neat": "1.6.0",
     "jquery": "~2.0.3",
-    "bourbon": "4.0.0-rc.1",
-    "highlightjs-scss": "~7.3.0"
+    "bourbon": "4.0.0-rc.1"
   },
   "devDependencies": {}
 }

@@ -3,17 +3,17 @@ _instances = []
 _id = 0
 
 class Button extends MaxmertkitHelpers
-	
+
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @btn, @options ) ->
 		@$btn = $(@btn)
 
 		@_id = _id++
-		
+
 		_options =
 			toggle: @$btn.data('toggle') or 'button'	# To automatically find buttons in DOM
 			group: @$btn.data('group') or null			# Some group name, like in radiobuttons. Check if button is part of some group (like radiobuttons or checkboxes)
@@ -23,17 +23,17 @@ class Button extends MaxmertkitHelpers
 			onactive: ->
 			beforeunactive: ->
 			onunactive: ->
-		
+
 		@options = @_merge _options, @options
 
 
-		# Reset default event functions 
+		# Reset default event functions
 		@beforeactive = @options.beforeactive
 		@onactive = @options.onactive
 		@beforeunactive = @options.beforeunactive
 		@onunactive = @options.onunactive
 
-		
+
 		# Set event on button to show button window
 		@$btn.on @options.event, =>
 			if not @$btn.hasClass '_active_'
@@ -52,11 +52,11 @@ class Button extends MaxmertkitHelpers
 
 		super @$btn, @options
 
-	
+
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
-			
+
 			if not @options[key]?
 				return console.error "Maxmertkit Button. You're trying to set unpropriate option."
 
@@ -117,7 +117,7 @@ _beforeactive = ->
 			deferred
 				.done =>
 					_activate.call @
-					
+
 				.fail =>
 					@$btn.trigger "fail.#{@_name}"
 
@@ -152,9 +152,9 @@ _beforeunactive = ->
 		try
 			deferred = @beforeunactive.call @$btn
 			deferred
-				.done =>					
+				.done =>
 					_deactivate.call @
-					
+
 				.fail =>
 					@$btn.trigger "fail.#{@_name}"
 
@@ -173,7 +173,7 @@ _deactivate = ->
 		try
 			@onunactive.call @$btn
 
-			
+
 
 
 
@@ -188,5 +188,13 @@ $.fn[_name] = (options) ->
 
 
 			else
-				(if typeof options is "string" and options.charAt(0) isnt "_" then $.data(@, "kit-" + _name)[options] else console.error("Maxmertkit Button. You passed into the #{_name} something wrong."))
+				if typeof options is "string" and options.charAt(0) isnt "_"
+					$.data(@, "kit-" + _name)[options]
+				else
+					console.error("Maxmertkit Button. You passed into the #{_name} something wrong.\n#{options}")
 		return
+
+$(window).on 'load', ->
+	$('[data-toggle="button"]').each ->
+		$btn = $(@)
+		$btn.button($btn.data())

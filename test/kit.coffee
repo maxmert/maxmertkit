@@ -19,8 +19,6 @@ describe 'Maxmertkit helpers', ->
 	kit = new MaxmertkitHelpers $('element'), someOption: yes
 	kit2 = new MaxmertkitHelpers $('element2'), someOption: yes
 
-	console.log kit._id, kit2._id
-
 
 	it 'should exist', ->
 		MaxmertkitHelpers.should.be.a 'function'

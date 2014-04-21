@@ -21,14 +21,20 @@ class Affix extends MaxmertkitHelpers
 			# positionVertical: 'top'						# 'top' or 'bottom'
 			offset:	5									# Vertical offset in pixels
 
+			beforeactive: ->
+			onactive: ->
+			beforeunactive: ->
+			onunactive: ->
+
 		@options = @_merge _options, @options
 
 
 		# Reset default event functions
-		@beforeopen = @options.beforeopen
-		@onopen = @options.onopen
-		@beforeclose = @options.beforeclose
-		@onclose = @options.onclose
+		@beforeactive = @options.beforeactive
+		@onactive = @options.onactive
+		@beforeunactive = @options.beforeunactive
+		@onunactive = @options.onunactive
+
 
 		# Set affix window element
 		# @$el = $(document).find @options.target
@@ -110,7 +116,7 @@ _position = ->
 			_setPosition.call @
 
 
-# If you have beforeopen function
+# If you have beforeactive function
 # 	it will be called here
 # if you don't
 # 	just open modal window
@@ -119,9 +125,9 @@ _beforestart = ->
 	# if @options.selfish
 	# 	@_selfish()
 
-	if @beforeopen?
+	if @beforeactive?
 		try
-			deferred = @beforeopen.call @$el
+			deferred = @beforeactive.call @$el
 			deferred
 				.done =>
 					_start.call @
@@ -136,25 +142,25 @@ _beforestart = ->
 		_start.call @
 
 # Opens modal
-# and triggers onopen
+# and triggers onactive
 _start = ->
 	@_refreshSizes()
 	_position.call @
 	@$el.addClass '_active_'
 	@$el.trigger "started.#{@_name}"
-	if @onopen?
+	if @onactive?
 		try
-			@onopen.call @$el
+			@onactive.call @$el
 
 
-# If you have beforeclose function
+# If you have beforeunactive function
 # 	it will be called here
 # if you don't
 # 	just close modal window
 _beforestop = ->
-	if @beforeclose?
+	if @beforeunactive?
 		try
-			deferred = @beforeclose.call @$el
+			deferred = @beforeunactive.call @$el
 			deferred
 				.done =>
 					_stop.call @
@@ -169,14 +175,14 @@ _beforestop = ->
 		_stop.call @
 
 # Closes modal
-# and triggers onstop
+# and triggers onunactive
 _stop = ->
 	@$el.removeClass '_active_'
 	$(document).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
-	if @onstop?
+	if @onunactive?
 		try
-			@onstop.call @$el
+			@onunactive.call @$el
 
 
 

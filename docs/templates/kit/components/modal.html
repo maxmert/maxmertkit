@@ -21,35 +21,31 @@
 		<div class="-col4">
 			<h3>Coffescript</h3>
 			<p>Simple way:</p>
-			<p hljs>$('.btn-modal123').modal()</p>
-			<p>More complicated:</p>
-			<p hljs>
-$('.btn-modal123').modal
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal()</pre></p><p>More complicated:</p>
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal
 	target: '.modal123'
 	toggle: 'modal'
 	event: 'click.modal123'
 	eventClose: 'click.modal123'
-	backdrop: yes</p>
+	backdrop: yes</pre></p>
 		</div>
 	</div>
 
 
 
-	
+
 	<div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<a class="-btn -primary- btn-modal123" data-toggle="modal" data-target="#modal1">Open modal with 2s delay</a>
 		<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal1">Open modal immediately</a>
 	</div>
 
 
-	<div hljs class="-col12 example">
-<a class="-btn -primary- btn-modal123" data-toggle="modal" data-target="#modal1">Open modal with 2s delay</a>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn -primary- btn-modal123" data-toggle="modal" data-target="#modal1">Open modal with 2s delay</a>
 <a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal1">Open modal immediately</a>
-</div>
-	<div hljs class="-col12 example">
-<div id="modal1" class="-modal" modal>
+</pre></div>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div id="modal1" class="-modal" modal>
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fall-- -elastic--">
 			<div class="-header">
@@ -61,7 +57,7 @@ $('.btn-modal123').modal
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
 				<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
@@ -73,9 +69,8 @@ $('.btn-modal123').modal
 		</div>
 	</div>
 </div>
-</div>
-<div hljs class="-col12 example">
-$('.btn-modal-fast').modal()
+</polygon></div>
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal-fast').modal()
 $('.btn-modal123').modal
 	beforeopen: ->
 		d = $.Deferred()
@@ -85,7 +80,7 @@ $('.btn-modal123').modal
 		, 2000
 
 		d.promise()
-</div>
+</pre></div>
 
 </div>
 
@@ -160,8 +155,7 @@ $('.btn-modal123').modal
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then modal window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for modal window.</p>
-				<p hljs language="coffeescript">
-$('.btn-modal123').modal
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal
 	beforeopen: ->
 		d = $.Deferred()
 
@@ -184,7 +178,7 @@ $('.btn-modal123').modal
 		# End of your code
 
 		d.promise()
-</p>
+</pre></p>
 			</td>
 		</tr>
 
@@ -223,65 +217,76 @@ $('.btn-modal123').modal
 	Use widget different animations. Add classes to the <code>-dialog</code>.
 </p>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
-		
+
 			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fadein">Fade in</a>
 			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fliphorizontal">Flip horizontal</a>
 			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-flipvertical">Flip vertical</a>
 			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-newspaper">Newspaper</a>
-			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-scalein">Scale in</a>
-			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-slidein">Slide in</a>
+			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-corner">Corner</a>
+			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-door">Door</a>
 			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fall">Fall</a>
+			<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-hugeinc">Hugeinc</a>
 	</div>
 
 
-	<div hljs class="-col12 example">
-<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fadein">Fade in</a>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fadein">Fade in</a>
 <a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fliphorizontal">Flip horizontal</a>
 <a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-flipvertical">Flip vertical</a>
 <a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-newspaper">Newspaper</a>
-<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-scalein">Scale in</a>
-<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-slidein">Slide in</a>
+<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-corner">Corner</a>
+<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-door">Door</a>
 <a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-fall">Fall</a>
-</div>
+<a class="-btn -primary- btn-modal-fast" data-toggle="modal" data-target="#modal-hugeinc">Hugeinc</a>
+</pre></div>
 
-<div hljs class="-col12 example">
-<div id="modal-fadein" class="-modal">
+<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div id="modal-fadein" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fadein-- -elastic--">
-			...
+			<div class="-header">
+				<svg class="-close" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
+					<circle cx="300" cy="300" r="260"></circle>
+					<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "/>
+				</svg>
+				Header
+			</div>
+			<div class="-content">
+				...
+			</div>
 		</div>
 	</div>
 </div>
 
-<div id="modal-fliphorizontal" class="-modal">
+
+<div id="modal-fliphorizontal" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fliphorizontal-- -elastic--">
-			...
+			<div class="-header">
+				<svg class="-close" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
+					<circle cx="300" cy="300" r="260"></circle>
+					<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "/>
+				</svg>
+				Header
+			</div>
+			<div class="-content">
+				...
+			</div>
 		</div>
 	</div>
 </div>
+</pre></div>
 
-<div id="modal-fall" class="-modal">
-	<div class="-holder">
-		<div class="-dialog -col6 -primary- -fall-- -elastic--">
-			...
-		</div>
-	</div>
-</div>
-
-...
-</div>
-
-<div hljs class="-col12 example">
-$('.btn-modal-fast').modal()
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal-fast').modal()
 # Just once
-</div>
+</pre></div>
 
 </div>
 
 
+<blockquote class="-primary-">
+	For the whole list of possible animations look at <a href="/animations">animations components</a>.
+</blockquote>
 
 
 
@@ -302,7 +307,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -313,7 +318,7 @@ $('.btn-modal-fast').modal()
 </div>
 
 
-<div id="modal-fadein" class="-modal">
+<div id="modal-fadein" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fadein-- -elastic--">
 			<div class="-header">
@@ -325,7 +330,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
 				<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
@@ -339,7 +344,7 @@ $('.btn-modal-fast').modal()
 </div>
 
 
-<div id="modal-fliphorizontal" class="-modal">
+<div id="modal-fliphorizontal" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fliphorizontal-- -elastic--">
 			<div class="-header">
@@ -351,7 +356,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -361,7 +366,7 @@ $('.btn-modal-fast').modal()
 	</div>
 </div>
 
-<div id="modal-flipvertical" class="-modal">
+<div id="modal-flipvertical" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -flipvertical-- -elastic--">
 			<div class="-header">
@@ -373,7 +378,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -383,7 +388,7 @@ $('.btn-modal-fast').modal()
 	</div>
 </div>
 
-<div id="modal-newspaper" class="-modal">
+<div id="modal-newspaper" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -newspaper-- -elastic--">
 			<div class="-header">
@@ -395,7 +400,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -405,9 +410,9 @@ $('.btn-modal-fast').modal()
 	</div>
 </div>
 
-<div id="modal-scalein" class="-modal">
+<div id="modal-corner" class="-modal -fadein--">
 	<div class="-holder">
-		<div class="-dialog -col6 -primary- -scalein-- -elastic--">
+		<div class="-dialog -col6 -primary- -corner--">
 			<div class="-header">
 				<svg class="-close" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
 					<circle cx="300" cy="300" r="260"></circle>
@@ -417,7 +422,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -427,7 +432,7 @@ $('.btn-modal-fast').modal()
 	</div>
 </div>
 
-<div id="modal-fall" class="-modal">
+<div id="modal-fall" class="-modal -fadein--">
 	<div class="-holder">
 		<div class="-dialog -col6 -primary- -fall-- -elastic--">
 			<div class="-header">
@@ -439,7 +444,7 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>
@@ -450,9 +455,9 @@ $('.btn-modal-fast').modal()
 </div>
 
 
-<div id="modal-slidein" class="-modal" modal>
+<div id="modal-door" class="-modal -fadein--">
 	<div class="-holder">
-		<div class="-dialog -col6 -primary- -slidein-- -elastic--">
+		<div class="-dialog -col6 -primary- -door--">
 			<div class="-header">
 				<svg class="-close" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
 					<circle cx="300" cy="300" r="260"></circle>
@@ -462,7 +467,30 @@ $('.btn-modal-fast').modal()
 
 			</div>
 			<div class="-content">
-				
+
+				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+				<p>
+					<a class="-btn" data-dismiss="modal">Close</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="modal-hugeinc" class="-modal -fadein--">
+	<div class="-holder">
+		<div class="-dialog -col6 -primary- -hugeinc--">
+			<div class="-header">
+				<svg class="-close" data-dismiss="modal" x="0px" y="0px" viewBox="0 0 600 600">
+					<circle cx="300" cy="300" r="260"></circle>
+					<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "/>
+				</svg>
+				Header
+
+			</div>
+			<div class="-content">
+
 				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 				<p>
 					<a class="-btn" data-dismiss="modal">Close</a>

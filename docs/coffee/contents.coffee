@@ -1,3 +1,30 @@
+# exports.start = [
+# 	{
+# 		name: "download"
+# 		path: "dowloadCommon"
+# 	}
+# 	{
+# 		name: "structure"
+# 		path: "commonStructure"
+# 		include: [
+# 			{
+# 				name: 'common'
+# 				path: 'commonStructure'
+# 				invisible: yes
+# 			}
+# 			{
+# 				name: 'build'
+# 				path: 'structureBuild'
+# 			}
+# 			{
+# 				name: 'sources'
+# 				path: 'structureSources'
+# 			}
+# 		]
+# 	}
+# ]
+
+
 exports.basic = [
 	{
 		name: "typography"
@@ -267,5 +294,34 @@ exports.utilities = [
 	{
 		name: "order"
 		path: "orderCommon"
+	}
+]
+
+
+
+exports.components = [
+	{
+		name: "button"
+		path: "buttonCommon"
+	}
+	{
+		name: "popup"
+		path: "popupCommon"
+	}
+	{
+		name: "tabs"
+		path: "tabsCommon"
+	}
+	{
+		name: "modal"
+		path: "modalCommon"
+	}
+	{
+		name: "scrollspy"
+		path: "scrollspyCommon"
+	}
+	{
+		name: "affix"
+		path: "affixCommon"
 	}
 ]

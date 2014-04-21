@@ -1,7 +1,7 @@
 <div id="main-content" class="-container">
 	<h1>Affix</h1>
 
-	<p>The subnavigation on the left is a live demo of the affix plugin.</p>
+	<p>The subnavigation on the right is a live demo of the affix plugin.</p>
 
 	<blockquote class="-primary-">
 		To move your affix block inside some parent, just add <code>position: relative</code> to that parent.
@@ -9,11 +9,10 @@
 
 
 
-	
+
 	<div class="-row example-block">
-<div hljs class="-col12 example">
-$('.affix-selector').affix()
-</div>
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.affix-selector').affix()
+</pre></div>
 
 </div>
 
@@ -29,6 +28,13 @@ $('.affix-selector').affix()
 		</tr>
 	</thead>
 	<tbody>
+		<tr>
+			<td>spy</td>
+			<td><i>@$el.data('spy') or 'affix'</i></td>
+			<td>
+				To automatically find affix elements and make them active.
+			</td>
+		</tr>
 		<tr>
 			<td>offset</td>
 			<td><i>5</i></td>
@@ -56,13 +62,28 @@ $('.affix-selector').affix()
 	</thead>
 	<tbody>
 		<tr>
-			<td><b>beforestart</b></td>
+			<td><b>start</b></td>
+			<td></td>
+			<td>
+				<p>Activate affix</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>stop</b></td>
+			<td></td>
+			<td>
+				<p>Deativate affix</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeactive</b></td>
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before start affix. If it returns <code>deferred.promise()</code>, then affix will not start till <code>deferred.resolve()</code>, and woun't start at all if <code>deferred.reject()</code>. You can just get data with $.ajax() for your affix block.</p>
-				<p hljs language="coffeescript">
-$('.affix').affix
-	beforestart: ->
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.affix').affix
+	beforeactive: ->
 		d = $.Deferred()
 
 		console.log @
@@ -81,13 +102,13 @@ $('.affix').affix
 		# End of your code
 
 		d.promise()
-</p>
+</pre></p>
 			</td>
 		</tr>
 
 
 		<tr>
-			<td><b>onstart</b></td>
+			<td><b>onactive</b></td>
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it after affix started.</p>
@@ -95,7 +116,7 @@ $('.affix').affix
 		</tr>
 
 		<tr>
-			<td><b>beforestop</b></td>
+			<td><b>beforeunactive</b></td>
 			<td><i>undefined</i></td>
 			<td>
 				<p>Call this function before affix stopped.</p>
@@ -103,7 +124,7 @@ $('.affix').affix
 		</tr>
 
 		<tr>
-			<td><b>onstop</b></td>
+			<td><b>onunactive</b></td>
 			<td><i>undefined</i></td>
 			<td>
 				<p>Call this function after affix stopped.</p>

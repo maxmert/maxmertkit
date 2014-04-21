@@ -21,10 +21,8 @@
 		<div class="-col4">
 			<h3>Coffescript</h3>
 			<p>Simple way:</p>
-			<p hljs>$('.btn-modal123').popup()</p>
-			<p>More complicated:</p>
-			<p hljs>
-$('.btn-popup-demo').popup
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup()</pre></p><p>More complicated:</p>
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
 	beforeopen: ->
 		# Get popup class instance
 		popup = @data('kit-popup')
@@ -39,27 +37,25 @@ $('.btn-popup-demo').popup
 
 	onclose: ->
 		# Remove active class to the button
-		@removeClass '_active_'</p>
+		@removeClass '_active_'</pre></p>
 		</div>
 	</div>
 
 
 
 	<div class="-row example-block">
-	
+
 	<div class="-col12 view">
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Flip horizontal</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">Flip horizontal elastic</a>
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo3">Scale in</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo4">Scale in elastic</a>
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo5">Fall</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo6">Fall elastic</a>
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo7">Newspaper</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo8">Newspaper elastic</a>
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo9">Slide in</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo10">Slide in elastic</a>
-		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo11">Flip vertical</a>
-		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo12">Flip vertical elastic</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">corner</a>
+		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">door</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo3">fadein</a>
+		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo4">fall</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo5">fliphorizontal</a>
+		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo6">flipvertical</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo7">hugeinc</a>
+		<a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo8">newspaper</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo9">scale</a>
+		<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo11">slidedown</a>
 	</div>
 
 	<div class="-col12 view">
@@ -72,14 +68,12 @@ $('.btn-popup-demo').popup
 	</div>
 
 
-	<div hljs class="-col12 example">
-<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
 <a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">Open popup</a>
 ...
-</div>
+</pre></div>
 
-<div hljs class="-col12 example">
-<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
+<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup
@@ -93,10 +87,9 @@ $('.btn-popup-demo').popup
 	</div>
 </div>
 ...
-</div>
+</pre></div>
 
-<div hljs class="-col12 example">
-$('.btn-popup-demo').popup
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
 	beforeopen: ->
 		popup = @data('kit-popup')
 		content = popup.$el.find '.-content'
@@ -124,7 +117,7 @@ $('.btn-popup-demo-left').popup
 		@removeClass '_active_'
 
 ...
-</div>
+</pre></div>
 
 
 </div>
@@ -242,8 +235,7 @@ $('.btn-popup-demo-left').popup
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then popup window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for popup window.</p>
-				<p hljs language="coffeescript">
-$('.btn-modal123').popup
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup
 	beforeopen: ->
 		d = $.Deferred()
 
@@ -266,7 +258,7 @@ $('.btn-modal123').popup
 		# End of your code
 
 		d.promise()
-</p>
+</pre></p>
 			</td>
 		</tr>
 
@@ -301,84 +293,84 @@ $('.btn-modal123').popup
 </div>
 
 
-<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal--">
+<div id="popup-demo" class="-drop _top_ -primary- -corner--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup
 	</div>
 </div>
 
-<div id="popup-demo2" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
+<div id="popup-demo2" class="-drop _top_ -primary- -door--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup
 	</div>
 </div>
 
-<div id="popup-demo3" class="-drop _top_ -error- -scalein--">
+<div id="popup-demo3" class="-drop _top_ -error- -fadein--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo4" class="-drop _top_ -error- -scalein-- -elastic--">
+<div id="popup-demo4" class="-drop _top_ -error- -fall--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo5" class="-drop _top_ -error- -fall--">
+<div id="popup-demo5" class="-drop _top_ -error- -fliphorizontal--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo6" class="-drop _top_ -error- -fall-- -elastic--">
+<div id="popup-demo6" class="-drop _top_ -error- -flipvertical--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo7" class="-drop _top_ -error- -newspaper--">
+<div id="popup-demo7" class="-drop _top_ -error- -hugeinc--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo8" class="-drop _top_ -error- -newspaper-- -elastic--">
+<div id="popup-demo8" class="-drop _top_ -error- -newspaper--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo9" class="-drop _top_ -error- -slidein--">
+<div id="popup-demo9" class="-drop _top_ -error- -scale--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo10" class="-drop _top_ -error- -slidein-- -elastic--">
+<div id="popup-demo10" class="-drop _top_ -error- -blur--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Fall popup
 	</div>
 </div>
 
-<div id="popup-demo11" class="-drop _top_ -primary- -flipvertical--">
+<div id="popup-demo11" class="-drop _top_ -primary- -slidedown--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup
 	</div>
 </div>
 
-<div id="popup-demo12" class="-drop _top_ -primary- -flipvertical-- -elastic--">
+<div id="popup-demo12" class="-drop _top_ -primary- -slidein--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup

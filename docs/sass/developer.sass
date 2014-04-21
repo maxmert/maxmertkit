@@ -20,7 +20,7 @@ pre.prettyprint
 	vertical-align: top
 
 .dev-sidebar-menu
-	margin-top: 20px
+	margin-top: 50px
 
 .dev-navbar
 	position: relative
@@ -37,13 +37,41 @@ pre.prettyprint
 // 	background-color: #2da7ab !important
 
 .dev-main-content
-	margin: 30px auto
+	margin: 0px auto 30px
+
+	h1
+		margin-top: 50px
+
+.dev-meta
+	opacity: .2
+
+.dev-filetree
+	list-style: none
+	font-weight: 100
+	ul
+		list-style: none
+		margin-bottom: 10px
+	
+
+	li
+		&:before
+			content: "\02EB\0009"
+			color: #ccc
+		&:last-child:before
+			content: "\02EA\0009"
+			color: #ccc
+		// &:last-child:first-child:before
+		// 	content: "\0336\0009"
+
+		.dev-meta
+			margin-left: 15px
+
 
 .dev-mobile-menu
 	li
 		margin-right: 2px !important
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start
 	min-height: 400px
 	position: relative
 	display: table
@@ -96,6 +124,12 @@ pre.prettyprint
 
 .dev-instructions-basic
 	@include background-image(linear-gradient(#4b358c 0, #b30c83 100%))
+
+.dev-instructions-components
+	@include background-image(linear-gradient(#29b600 0, #9fbc00 100%))
+
+.dev-instructions-start
+	@include background-image(linear-gradient(#252525 0, #585858 100%))
 
 
 .example-block
