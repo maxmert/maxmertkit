@@ -21,10 +21,8 @@
 		<div class="-col4">
 			<h3>Coffescript</h3>
 			<p>Simple way:</p>
-			<p hljs>$('.btn-modal123').popup()</p>
-			<p>More complicated:</p>
-			<p hljs>
-$('.btn-popup-demo').popup
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup()</pre></p><p>More complicated:</p>
+			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
 	beforeopen: ->
 		# Get popup class instance
 		popup = @data('kit-popup')
@@ -39,7 +37,7 @@ $('.btn-popup-demo').popup
 
 	onclose: ->
 		# Remove active class to the button
-		@removeClass '_active_'</p>
+		@removeClass '_active_'</pre></p>
 		</div>
 	</div>
 
@@ -72,14 +70,12 @@ $('.btn-popup-demo').popup
 	</div>
 
 
-	<div hljs class="-col12 example">
-<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-demo">Open popup</a>
 <a class="-btn -error- btn-popup-demo" data-toggle="popup" data-target="#popup-demo2">Open popup</a>
 ...
-</div>
+</pre></div>
 
-<div hljs class="-col12 example">
-<div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
+<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div id="popup-demo" class="-drop _top_ -primary- -fliphorizontal-- -elastic--">
 	<i class="-arrow"></i>
 	<div class="-content">
 		Flip horizontal popup
@@ -93,10 +89,9 @@ $('.btn-popup-demo').popup
 	</div>
 </div>
 ...
-</div>
+</pre></div>
 
-<div hljs class="-col12 example">
-$('.btn-popup-demo').popup
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
 	beforeopen: ->
 		popup = @data('kit-popup')
 		content = popup.$el.find '.-content'
@@ -124,7 +119,7 @@ $('.btn-popup-demo-left').popup
 		@removeClass '_active_'
 
 ...
-</div>
+</pre></div>
 
 
 </div>
@@ -242,8 +237,7 @@ $('.btn-popup-demo-left').popup
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then popup window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for popup window.</p>
-				<p hljs language="coffeescript">
-$('.btn-modal123').popup
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup
 	beforeopen: ->
 		d = $.Deferred()
 
@@ -266,7 +260,7 @@ $('.btn-modal123').popup
 		# End of your code
 
 		d.promise()
-</p>
+</pre></p>
 			</td>
 		</tr>
 

@@ -1,1 +1,1710 @@
-(function(){var t,i,e,n,o,s,r;n=[],s=[],o={x:0,y:0,z:0},r="0.0.1",t=function(){function t(t){this.name=t}return t.prototype.callbacks=n,t.prototype.registerCallback=function(t){return this.callbacks.push(t)},t}(),e=function(){function i(){}return i.prototype.events=s,i.prototype.registerEvent=function(i){var e;return e=new t(i),this.events[i]=e},i.prototype.dispatchEvent=function(t,i){var e,n,o,s,r;for(s=this.events[t].callbacks,r=[],n=0,o=s.length;o>n;n++)e=s[n],r.push(e(i));return r},i.prototype.addEventListener=function(t,i){return this.events[t].registerCallback(i)},i}(),i=function(){function t(t,i){this.$btn=t,this.options=i,this._pushInstance(),null!=this._afterConstruct&&this._afterConstruct()}return t.prototype._id=0,t.prototype._instances=new Array,t.prototype.destroy=function(){return this.$el.off("."+this._name),this._popInstance()},t.prototype._extend=function(t,i){var e,n;for(e in i)n=i[e],t[e]=n;return t},t.prototype._merge=function(t,i){return this._extend(this._extend({},t),i)},t.prototype._setOptions=function(){return console.warning("Maxmertkit Helpers. There is no standart setOptions function.")},t.prototype._pushInstance=function(){return this._id++,this._instances.push(this)},t.prototype._popInstance=function(){var t,i,e,n,o,s;for(o=this._instances,s=[],t=e=0,n=o.length;n>e;t=++e)i=o[t],i._id===this._id&&this._instances.splice(t,1),s.push(delete this);return s},t.prototype._selfish=function(){var t,i,e,n,o,s;for(o=this._instances,s=[],t=e=0,n=o.length;n>e;t=++e)i=o[t],s.push(this._id!==i._id?i.close():void 0);return s},t.prototype._getVersion=function(){return r},t.prototype.reactor=new e,t.prototype._setTransform=function(t,i){return t.webkitTransform=i,t.MozTransform=i,t.transform=i},t.prototype._equalNodes=function(t,i){return t.get(0)===i.get(0)},t.prototype._deviceMobile=function(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)},t.prototype._refreshSizes=function(){return this._windowHeight=$(window).height(),this._windowWidth=$(window).width(),this._height=this.$el.height(),this._width=this.$el.width(),this._offset=null!=this.scroll?("BODY"===this.scroll[0].nodeName,this.$el.offset()):this.$el.offset()},t.prototype._getContainer=function(t){var i,e;for(i=t[0]||t;i=i.parentNode;){try{e=getComputedStyle(i)}catch(n){}if(null==e)return $(i);if(/(relative)/.test(e.position)||/(relative)/.test(i.style.position))return $(i)}return $(document)},t.prototype._getScrollParent=function(t){var i,e;for(i=t[0]||t;i=i.parentNode;){try{e=getComputedStyle(i)}catch(n){}if(null==e)return $(i);if(/(auto|scroll)/.test(e.overflow+e["overflow-y"]+e["overflow-x"])&&"BODY"!==$(i)[0].nodeName)return $(i)}return $(document)},t.prototype._isVisible=function(){return this._offset.top-this._windowHeight<=this.scroll.scrollTop()&&this.scroll.scrollTop()<=this._offset.top+this._height},t.prototype._getVisiblePercent=function(){var t,i,e;return e=this._offset.top,t=this.scroll.scrollTop(),i=this._offset.top+this._height,(t-e)/(i-e)},t.prototype._scrollVisible=function(){var t,i,e,n;return null!=this.scroll?(e=this._offset.top-this._windowHeight,i=this._offset.top+this._height+this._windowHeight,t=this.scroll.scrollTop()+this._windowHeight,n=1-t/i,1>n&&n>0):!0},t.prototype._setGlobalRotation=function(t,i,e){return o={x:t,y:i,z:e}},t.prototype._getGlobalRotation=function(){return o},t}(),function(){var t,i,e;t=jQuery.event.special,i="D"+ +new Date,e="D"+(+new Date+1),t.scrollstart={setup:function(){var e,n;n=void 0,e=function(i){var e;e=arguments,n?clearTimeout(n):(i.type="scrollstart",jQuery.event.trigger.apply(this,e)),n=setTimeout(function(){n=null},t.scrollstop.latency)},jQuery(this).bind("scroll",e).data(i,e)},teardown:function(){jQuery(this).unbind("scroll",jQuery(this).data(i))}},t.scrollstop={latency:300,setup:function(){var i,n;n=void 0,i=function(i){var e;e=arguments,n&&clearTimeout(n),n=setTimeout(function(){n=null,i.type="scrollstop",jQuery.event.trigger.apply(this,e)},t.scrollstop.latency)},jQuery(this).bind("scroll",i).data(e,i)},teardown:function(){jQuery(this).unbind("scroll",jQuery(this).data(e))}}}(),window.MaxmertkitHelpers=i}).call(this),function(){var t,i,e,n,o,s,r,a,h,l,c={}.hasOwnProperty,u=function(t,i){function e(){this.constructor=t}for(var n in i)c.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};s="affix",o=[],n=0,t=function(t){function r(t,i){var e;this.el=t,this.options=i,this.$el=$(this.el),this.$el.parent().append("&nbsp;"),this._id=n++,e={spy:this.$el.data("spy")||"affix",offset:5},this.options=this._merge(e,this.options),this.beforeopen=this.options.beforeopen,this.onopen=this.options.onopen,this.beforeclose=this.options.beforeclose,this.onclose=this.options.onclose,this.start(),r.__super__.constructor.call(this,this.$btn,this.options)}return u(r,t),r.prototype._name=s,r.prototype._instances=o,r.prototype._setOptions=function(t){var i,e;for(i in t){if(e=t[i],null==this.options[i])return console.error("Maxmertkit Affix. You're trying to set unpropriate option.");this.options[i]=e}},r.prototype.destroy=function(){return r.__super__.destroy.apply(this,arguments)},r.prototype.start=function(){return i.call(this)},r.prototype.stop=function(){return e.call(this)},r}(MaxmertkitHelpers),a=function(){var t,i;return t=this._getContainer(this.$el),i="HTML"===t[0].firstElementChild.nodeName?0:t.offset().top,null!=this.$el.parent()&&this.$el.parent().offset()&&!this._deviceMobile()&&this._windowWidth>992?this.$el.parent().offset().top-this.options.offset<=$(document).scrollTop()?this.$el.css(this.$el.parent().offset().top+t.outerHeight()-this.options.offset-this.$el.outerHeight()>=$(document).scrollTop()?{width:this.$el.width(),position:"fixed",top:""+this.options.offset+"px",bottom:"auto"}:{position:"absolute",top:"auto",bottom:"-"+this.options.offset+"px",width:this.$el.width()}):(this.$el.css("position","relative"),this.$el.css("top","inherit")):void 0},r=function(){return $(document).on("scroll."+this._name+"."+this._id,function(t){return function(){return a.call(t)}}(this)),$(window).on("resize."+this._name+"."+this._id,function(t){return function(){return t._refreshSizes(),t._windowWidth<992?(t.$el.css("position","relative"),t.$el.css("top","inherit")):a.call(t)}}(this))},i=function(){var t;if(null==this.beforeopen)return h.call(this);try{return t=this.beforeopen.call(this.$el),t.done(function(t){return function(){return h.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return h.call(this)}},h=function(){if(this._refreshSizes(),r.call(this),this.$el.addClass("_active_"),this.$el.trigger("started."+this._name),null!=this.onopen)try{return this.onopen.call(this.$el)}catch(t){}},e=function(){var t;if(null==this.beforeclose)return l.call(this);try{return t=this.beforeclose.call(this.$el),t.done(function(t){return function(){return l.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return l.call(this)}},l=function(){if(this.$el.removeClass("_active_"),$(document).off("scroll."+this._name+"."+this._id),this.$el.trigger("stopped."+this._name),null!=this.onstop)try{return this.onstop.call(this.$el)}catch(t){}},$.fn[s]=function(i){return this.each(function(){$.data(this,"kit-"+s)?"object"==typeof i?$.data(this,"kit-"+s)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)&&$.data(this,"kit-"+s)[i]:$.data(this,"kit-"+s,new t(this,i))})}}.call(this),function(){var t,i,e,n,o,s,r,a,h={}.hasOwnProperty,l=function(t,i){function e(){this.constructor=t}for(var n in i)h.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};a="button",r=[],s=0,t=function(t){function i(t,e){var n;this.btn=t,this.options=e,this.$btn=$(this.btn),this._id=s++,n={toggle:this.$btn.data("toggle")||"button",group:this.$btn.data("group")||null,type:this.$btn.data("type")||"button",event:"click",beforeactive:function(){},onactive:function(){},beforeunactive:function(){},onunactive:function(){}},this.options=this._merge(n,this.options),this.beforeactive=this.options.beforeactive,this.onactive=this.options.onactive,this.beforeunactive=this.options.beforeunactive,this.onunactive=this.options.onunactive,this.$btn.on(this.options.event,function(t){return function(){return t.$btn.hasClass("_active_")?t.deactivate():t.activate()}}(this)),this.$btn.on(this.options.eventClose,function(t){return function(){return t.options.event!==t.options.eventClose?t.deactivate():void 0}}(this)),this.$btn.removeClass("_active_ _disabled_ _loading_"),i.__super__.constructor.call(this,this.$btn,this.options)}return l(i,t),i.prototype._name=a,i.prototype._instances=r,i.prototype._setOptions=function(t){var i,e;for(i in t){if(e=t[i],null==this.options[i])return console.error("Maxmertkit Button. You're trying to set unpropriate option.");switch(i){case"event":this.$btn.off(""+this.options.event+"."+this._name),this.options.event=e,this.$btn.on(""+this.options.event+"."+this._name,function(t){return function(){return t.$btn.hasClass("_active_")?t.deactivate():t.activate()}}(this));break;default:this.options[i]=e,"function"==typeof e&&(this[i]=this.options[i])}}},i.prototype.destroy=function(){return this.$btn.off("."+this._name),i.__super__.destroy.apply(this,arguments)},i.prototype.activate=function(){return e.call(this)},i.prototype.deactivate=function(){return this.$btn.hasClass("_active_")?n.call(this):void 0},i.prototype.disable=function(){return this.$btn.toggleClass("_disabled_")},i}(MaxmertkitHelpers),e=function(){var t;if(this.options.selfish&&this._selfish(),null==this.beforeactive)return i.call(this);try{return t=this.beforeactive.call(this.$btn),t.done(function(t){return function(){return i.call(t)}}(this)).fail(function(t){return function(){return t.$btn.trigger("fail."+t._name)}}(this))}catch(e){return i.call(this)}},i=function(){var t,i,e,n;if("radio"===this.options.type)for(n=this._instances,i=0,e=n.length;e>i;i++)t=n[i],this._id!==t._id&&"radio"===t.options.type&&t.options.group===this.options.group&&t.deactivate();if(this.$btn.addClass("_active_"),this.$btn.trigger("activated."+this._name),null!=this.onactive)try{return this.onactive.call(this.$btn)}catch(o){}},n=function(){var t;if(null==this.beforeunactive)return o.call(this);try{return t=this.beforeunactive.call(this.$btn),t.done(function(t){return function(){return o.call(t)}}(this)).fail(function(t){return function(){return t.$btn.trigger("fail."+t._name)}}(this))}catch(i){return o.call(this)}},o=function(){if(this.$btn.removeClass("_active_"),this.$btn.trigger("deactivated."+this._name),null!=this.onunactive)try{return this.onunactive.call(this.$btn)}catch(t){}},$.fn[a]=function(i){return this.each(function(){$.data(this,"kit-"+a)?"object"==typeof i?$.data(this,"kit-"+a)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)?$.data(this,"kit-"+a)[i]:console.error("Maxmertkit Button. You passed into the "+a+" something wrong."):$.data(this,"kit-"+a,new t(this,i))})}}.call(this),function(){var t,i,e,n,o,s,r,a,h,l={}.hasOwnProperty,c=function(t,i){function e(){this.constructor=t}for(var n in i)l.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};s="modal",o=[],t=function(t){function n(t,i){var e;this.btn=t,this.options=i,this.$btn=$(this.btn),e={target:this.$btn.data("target"),toggle:this.$btn.data("toggle")||"modal",event:"click."+this._name,eventClose:"click."+this._name,backdrop:this.$btn.data("backdrop")||!1,push:this.$btn.data("push")||!1,beforeactive:function(){},onactive:function(){},beforeunactive:function(){},onunactive:function(){}},this.options=this._merge(e,this.options),this.$el=$(document).find(this.options.target),this.$btn.on(this.options.event,function(t){return function(i){return i.preventDefault(),t.open()}}(this)),this._setOptions(this.options),this.$el.find("*[data-dismiss='modal']").on(this.options.event,function(t){return function(){return t.close()}}(this)),n.__super__.constructor.call(this,this.$btn,this.options)}return c(n,t),n.prototype._name=s,n.prototype._instances=o,n.prototype._setOptions=function(t){var i,e,n;for(i in t){if(n=t[i],null==this.options[i])return console.error("Maxmertkit Modal. You're trying to set unpropriate option – "+i);switch(i){case"backdrop":n&&this.$el.on("click."+this._name,function(t){return function(i){return $(i.target).hasClass("-modal _active_")||$(i.target).hasClass("-carousel")?t.close():void 0}}(this));break;case"push":n&&(e=$(document).find(n),e.length&&(this.$push=$(document).find(n)))}this.options[i]=n,"function"==typeof n&&(this[i]=this.options[i])}},n.prototype.destroy=function(){return this.$btn.off("."+this._name),n.__super__.destroy.apply(this,arguments)},n.prototype.open=function(){return e.call(this)},n.prototype.close=function(){return i.call(this)},n}(MaxmertkitHelpers),a=function(){return null!=this.$push?(this.$push.addClass("-start--"),this.$push.removeClass("-stop--")):void 0},h=function(){return null!=this.$push&&(this.$push.addClass("-stop--"),this.$push.removeClass("-start--"),null!=this.$push[0]&&null!=this.$push[0].style&&null!=this.$push[0].style["-webkit-overflow-scrolling"])?this.$push[0].style["-webkit-overflow-scrolling"]="auto":void 0},e=function(){var t;if(null==this.beforeopen)return r.call(this);try{return t=this.beforeopen.call(this.$btn),t.done(function(t){return function(){return r.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return r.call(this)}},r=function(){if(null!=this.$push&&$("body").addClass("_perspective_"),this.$el.css({display:"table"}),setTimeout(function(t){return function(){return t.$el.addClass("_visible_ -start--"),a.call(t)}}(this),1),$("body").addClass("_no-scroll_"),this.$el.trigger("opened."+this._name),null!=this.onopen)try{return this.onopen.call(this.$btn)}catch(t){}},i=function(){var t;if(null==this.beforeclose)return n.call(this);try{return t=this.beforeclose.call(this.$btn),t.done(function(t){return function(){return n.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return n.call(this)}},n=function(){if(this.$el.addClass("-stop--"),h.call(this),setTimeout(function(t){return function(){return t.$el.removeClass("_visible_ -start-- -stop--"),$("body").removeClass("_no-scroll_"),null!=t.$push&&$("body").removeClass("_perspective_"),t.$el.hide()}}(this),1e3),this.$el.trigger("closed."+this._name),null!=this.onclose)try{return this.onclose.call(this.$btn)}catch(t){}},$.fn[s]=function(i){return this.each(function(){$.data(this,"kit-"+s)?"object"==typeof i?$.data(this,"kit-"+s)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)?$.data(this,"kit-"+s)[i]:console.error("Maxmertkit error. You passed into the "+s+" something wrong."):$.data(this,"kit-"+s,new t(this,i))})},$(window).on("load",function(){return $('[data-toggle="modal"]').each(function(){var t;return t=$(this),t.modal(t.data())})})}.call(this),function(){var t,i,e,n,o,s,r,a,h,l={}.hasOwnProperty,c=function(t,i){function e(){this.constructor=t}for(var n in i)l.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};r="popup",s=[],o=0,t=function(t){function n(t,i){var e;this.btn=t,this.options=i,this.$btn=$(this.btn),this._id=o++,e={target:this.$btn.data("target"),toggle:this.$btn.data("toggle")||"popup",event:"click",eventClose:"click",positionVertical:"top",positionHorizontal:"center",offset:{horizontal:5,vertical:5},closeUnfocus:!1,selfish:!0},this.options=this._merge(e,this.options),this.beforeopen=this.options.beforeopen,this.onopen=this.options.onopen,this.beforeclose=this.options.beforeclose,this.onclose=this.options.onclose,this.$el=$(document).find(this.options.target),this.$btn.on(this.options.event,function(t){return function(){return t.$el.is(":visible")?t.close():t.open()}}(this)),this.$btn.on(this.options.eventClose,function(t){return function(){return t.options.event!==t.options.eventClose?t.close():void 0}}(this)),this.$el.find("*[data-dismiss='popup']").on(this.options.event,function(t){return function(){return t.close()}}(this)),this.options.closeUnfocus&&$(document).on("click",function(t){return function(i){var e;return e="."+t.$el[0].className.split(" ").join("."),$(i.target).closest(e).length||!t.$el.is(":visible")||t.$el.is(":animated")||$(i.target)[0]===t.$btn[0]?void 0:t.close()}}(this)),this.$el.removeClass("_top_ _bottom_ _left_ _right_"),this.$el.addClass("_"+this.options.positionVertical+"_ _"+this.options.positionHorizontal+"_"),n.__super__.constructor.call(this,this.$btn,this.options)}return c(n,t),n.prototype._name=r,n.prototype._instances=s,n.prototype._setOptions=function(t){var i,e;for(i in t){if(e=t[i],null==this.options[i])return console.error("Maxmertkit Popup. You're trying to set unpropriate option.");switch(i){case"target":this.$el=$(document).find(this.options.target),this.$el.find("*[data-dismiss='popup']").on(this.options.event,function(t){return function(){return t.close()}}(this));break;case"event":this.$btn.off(""+this.options.event+"."+this._name),this.options.event=e,this.$btn.on(""+this.options.event+"."+this._name,function(t){return function(){return t.$el.is(":visible")?t.close():t.open()}}(this));break;case"eventClose":this.$btn.off(""+this.options.eventClose+"."+this._name),this.options.eventClose=e,this.$btn.on(""+this.options.eventClose+"."+this._name,function(t){return function(){return t.options.event!==t.options.eventClose?t.close():void 0}}(this));break;case"closeUnfocus":this.options.closeUnfocus=e,$(document).off("click."+this._name),this.options.closeUnfocus&&$(document).on("click."+this._name,function(t){return function(i){var e;return e="."+t.$el[0].className.split(" ").join("."),$(i.target).closest(e).length||!t.$el.is(":visible")||t.$el.is(":animated")||$(i.target)[0]===t.$btn[0]?void 0:t.close()}}(this));break;case"positionVertical":this.$el.removeClass("_top_ _middle_ _bottom_"),this.options.positionVertical=e,this.$el.addClass("_"+this.options.positionVertical+"_");break;case"positionHorizontal":this.$el.removeClass("_left_ _center_ _right_"),this.options.positionHorizontal=e,this.$el.addClass("_"+this.options.positionHorizontal+"_");break;default:this.options[i]=e}}},n.prototype.destroy=function(){return this.$btn.off("."+this._name),n.__super__.destroy.apply(this,arguments)},n.prototype.open=function(){return e.call(this)},n.prototype.close=function(){return i.call(this)},n}(MaxmertkitHelpers),h=function(){var t,i,e,n,o,s,r,a;switch(o=this._getScrollParent(this.$el),s=this._getScrollParent(this.$btn),n=this.$btn.offset(),e=this.$el.offset(),(null!=o&&null==o[0]||"BODY"!==o[0].activeElement.nodeName)&&(n.top=n.top-$(o).offset().top,n.left=n.left-$(o).offset().left),a={width:this.$btn.outerWidth(),height:this.$btn.outerHeight()},r={width:this.$el.outerWidth(),height:this.$el.outerHeight()},i=t=0,this.options.positionVertical){case"top":i=n.top-r.height-this.options.offset.vertical;break;case"bottom":i=n.top+a.height+this.options.offset.vertical;break;case"middle":i=n.top+a.height/2-r.height/2}switch(this.options.positionHorizontal){case"center":t=n.left+a.width/2-r.width/2;break;case"left":t=n.left-r.width-this.options.offset.horizontal;break;case"right":t=n.left+a.width+this.options.offset.horizontal}return this.$el.css({left:t,top:i})},e=function(){var t;if(this.options.selfish&&this._selfish(),null==this.beforeopen)return a.call(this);try{return t=this.beforeopen.call(this.$btn),t.done(function(t){return function(){return a.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return a.call(this)}},a=function(){if(h.call(this),this.$el.addClass("_active_"),this.$el.trigger("opened."+this._name),null!=this.onopen)try{return this.onopen.call(this.$btn)}catch(t){}},i=function(){var t;if(null==this.beforeclose)return n.call(this);try{return t=this.beforeclose.call(this.$btn),t.done(function(t){return function(){return n.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return n.call(this)}},n=function(){if(this.$el.removeClass("_active_"),this.$el.trigger("closed."+this._name),null!=this.onclose)try{return this.onclose.call(this.$btn)}catch(t){}},$.fn[r]=function(i){return this.each(function(){$.data(this,"kit-"+r)?"object"==typeof i?$.data(this,"kit-"+r)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)?$.data(this,"kit-"+r)[i]:console.error("Maxmertkit Popup. You passed into the "+r+" something wrong."):$.data(this,"kit-"+r,new t(this,i))})}}.call(this),function(){var t,i,e,n,o,s,r,a,h,l,c,u,p,f={}.hasOwnProperty,_=function(t,i){function e(){this.constructor=t}for(var n in i)f.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};h="scrollspy",a=[],r=0,t=function(t){function i(t,e){var n;this.el=t,this.options=e,this.$el=$(this.el),this._id=r++,n={spy:this.$el.data("spy")||"scroll",target:this.$el.data("target")||"body",offset:10,elements:"li a",elementsAttr:"href",beforeactive:function(){},onactive:function(){},beforeunactive:function(){},onunactive:function(){}},this.options=this._merge(n,this.options),this.beforeactive=this.options.beforeactive,this.onactive=this.options.onactive,this.beforeunactive=this.options.beforeunactive,this.onunactive=this.options.onunactive,this.start(),i.__super__.constructor.call(this,this.$btn,this.options)}return _(i,t),i.prototype._name=h,i.prototype._instances=a,i.prototype._setOptions=function(t){var i,e;for(i in t){if(e=t[i],null==this.options[i])return console.error("Maxmertkit Scrollspy. You're trying to set unpropriate option.");this.options[i]=e}},i.prototype.destroy=function(){return i.__super__.destroy.apply(this,arguments)},i.prototype.refresh=function(){return l.call(this)},i.prototype.start=function(){return n.call(this)},i.prototype.stop=function(){return o.call(this)},i}(MaxmertkitHelpers),e=function(t){var i,e,n,o;for(o=this.elements,e=0,n=o.length;n>e;e++)i=o[e],i.menu.removeClass("_active_");return this.elements[t].menu.addClass("_active_").parents("li").addClass("_active_")},s=function(t){return this.elements[t].menu.removeClass("_active_")},l=function(){return this.elements=[],this.$el.find(this.options.elements).each(function(t){return function(i,e){var n,o;return o=$(e).attr(t.options.elementsAttr),null!=o&&(n=$(t.options.target).find(o),n.length)?t.elements.push({menu:$(e).parent(),item:n.parent(),itemHeight:n.parent().height(),offsetTop:n.position().top}):void 0}}(this))},c=function(t){var i,n,o;for(i=0,o=[];i<this.elements.length;)this.elements[i].offsetTop<=(n=(t.currentTarget.scrollTop||t.currentTarget.scrollY)+this.options.offset)&&n<=this.elements[i].offsetTop+this.elements[i].itemHeight?this.elements[i].menu.hasClass("_active_")||e.call(this,i):this.elements[i].menu.hasClass("_active_")&&(t.currentTarget.scrollTop||t.currentTarget.scrollY)+this.options.offset<this.elements[i].offsetTop+this.elements[i].itemHeight&&s.call(this,i),o.push(i++);return o},i=function(){var t;return t="body"===this.options.target?window:this.options.target,$(t).on("scroll."+this._name+"."+this._id,function(t){return function(i){return c.call(t,i)}}(this))},n=function(){var t;if(this.refresh(),null==this.beforeopen)return u.call(this);try{return t=this.beforeopen.call(this.$el),t.done(function(t){return function(){return u.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return u.call(this)}},u=function(){if(i.call(this),this.$el.addClass("_active_"),this.$el.trigger("started."+this._name),null!=this.onopen)try{return this.onopen.call(this.$el)}catch(t){}},o=function(){var t;if(null==this.beforeclose)return p.call(this);try{return t=this.beforeclose.call(this.$el),t.done(function(t){return function(){return p.call(t)}}(this)).fail(function(t){return function(){return t.$el.trigger("fail."+t._name)}}(this))}catch(i){return p.call(this)}},p=function(){if($(document).off("scroll."+this._name+"."+this._id),this.$el.trigger("stopped."+this._name),null!=this.onstop)try{return this.onstop.call(this.$el)}catch(t){}},$.fn[h]=function(i){return this.each(function(){$.data(this,"kit-"+h)?"object"==typeof i?$.data(this,"kit-"+h)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)?$.data(this,"kit-"+h)[i]:console.error("Maxmertkit Affix. You passed into the "+h+" something wrong."):$.data(this,"kit-"+h,new t(this,i))})}}.call(this),function(){var t,i,e,n,o,s,r,a,h={}.hasOwnProperty,l=function(t,i){function e(){this.constructor=t}for(var n in i)h.call(i,n)&&(t[n]=i[n]);return e.prototype=i.prototype,t.prototype=new e,t.__super__=i.prototype,t};a="tabs",r=[],s=0,t=function(t){function i(t,e){var n;this.tab=t,this.options=e,this.$tab=$(this.tab),this._id=s++,n={toggle:this.$tab.data("toggle")||"tabs",group:this.$tab.data("group")||null,target:this.$tab.data("target")||null,event:"click",active:0,beforeactive:function(){},onactive:function(){},beforeunactive:function(){},onunactive:function(){}},this.options=this._merge(n,this.options),this.beforeactive=this.options.beforeactive,this.onactive=this.options.onactive,this.beforeunactive=this.options.beforeunactive,this.onunactive=this.options.onunactive,this.$tab.on(this.options.event,function(t){return function(){return t.$tab.hasClass("_active_")?void 0:t.activate()}}(this)),this.$content=$(document).find(this.options.target),this.$content.hide(),i.__super__.constructor.call(this,this.$tab,this.options)}return l(i,t),i.prototype._name=a,i.prototype._instances=r,i.prototype._setOptions=function(t){var i,e;for(i in t){if(e=t[i],null==this.options[i])return console.error("Maxmertkit Tabs. You're trying to set unpropriate option.");switch(i){case"event":this.$tab.off(""+this.options.event+"."+this._name),this.options.event=e,this.$tab.on(""+this.options.event+"."+this._name,function(t){return function(){return t.$tab.hasClass("_active_")?t.deactivate():t.activate()}}(this));break;case"target":this.options.target=e,this.$content=$(document).find(this.options.target);break;default:this.options[i]=e,"function"==typeof e&&(this[i]=this.options[i])}}},i.prototype._afterConstruct=function(){var t;for(t=0;t<this._instances&&this._instances[t].group!==this.options.group;)t++;return this._instances[t].activate()},i.prototype.destroy=function(){return this.$tab.off("."+this._name),i.__super__.destroy.apply(this,arguments)},i.prototype.activate=function(){return e.call(this)},i.prototype.deactivate=function(){return this.$tab.hasClass("_active_")?n.call(this):void 0},i.prototype.disable=function(){return this.$tab.toggleClass("_disabled_")},i}(MaxmertkitHelpers),e=function(){var t;if(this.options.selfish&&this._selfish(),null==this.beforeactive)return i.call(this);try{return t=this.beforeactive.call(this.$tab),t.done(function(t){return function(){return i.call(t)}}(this)).fail(function(t){return function(){return t.$tab.trigger("fail."+t._name)}}(this))}catch(e){return i.call(this)}},i=function(){var t,i,e,n;for(n=this._instances,i=0,e=n.length;e>i;i++)t=n[i],this._id!==t._id&&t.options.group===this.options.group&&t.deactivate();if(this.$tab.addClass("_active_"),this.$tab.trigger("activated."+this._name),this.$content.show(),null!=this.onactive)try{return this.onactive.call(this.$tab)}catch(o){}},n=function(){var t;if(null==this.beforeunactive)return o.call(this);try{return t=this.beforeunactive.call(this.$tab),t.done(function(t){return function(){return o.call(t)}}(this)).fail(function(t){return function(){return t.$tab.trigger("fail."+t._name)}}(this))}catch(i){return o.call(this)}},o=function(){if(this.$tab.removeClass("_active_"),this.$tab.trigger("deactivated."+this._name),this.$content.hide(),null!=this.onunactive)try{return this.onunactive.call(this.$tab)}catch(t){}},$.fn[a]=function(i){return this.each(function(){$.data(this,"kit-"+a)?"object"==typeof i?$.data(this,"kit-"+a)._setOptions(i):"string"==typeof i&&"_"!==i.charAt(0)?$.data(this,"kit-"+a)[i]:console.error("Maxmertkit Tabs. You passed into the "+a+" something wrong."):$.data(this,"kit-"+a,new t(this,i))})}}.call(this);
+(function() {
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbacks, _globalRotation, _reactorEvents, _version;
+
+  _eventCallbacks = [];
+
+  _reactorEvents = [];
+
+  _globalRotation = {
+    x: 0,
+    y: 0,
+    z: 0
+  };
+
+  _version = "0.0.1";
+
+  MaxmertkitEvent = (function() {
+    function MaxmertkitEvent(name) {
+      this.name = name;
+    }
+
+    MaxmertkitEvent.prototype.callbacks = _eventCallbacks;
+
+    MaxmertkitEvent.prototype.registerCallback = function(callback) {
+      return this.callbacks.push(callback);
+    };
+
+    return MaxmertkitEvent;
+
+  })();
+
+  MaxmertkitReactor = (function() {
+    function MaxmertkitReactor() {}
+
+    MaxmertkitReactor.prototype.events = _reactorEvents;
+
+    MaxmertkitReactor.prototype.registerEvent = function(eventName) {
+      var event;
+      event = new MaxmertkitEvent(eventName);
+      return this.events[eventName] = event;
+    };
+
+    MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
+      var callback, _i, _len, _ref, _results;
+      _ref = this.events[eventName].callbacks;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        callback = _ref[_i];
+        _results.push(callback(eventArgs));
+      }
+      return _results;
+    };
+
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback) {
+      return this.events[eventName].registerCallback(callback);
+    };
+
+    return MaxmertkitReactor;
+
+  })();
+
+  MaxmertkitHelpers = (function() {
+    MaxmertkitHelpers.prototype._id = 0;
+
+    MaxmertkitHelpers.prototype._instances = new Array();
+
+    function MaxmertkitHelpers($btn, options) {
+      this.$btn = $btn;
+      this.options = options;
+      this._pushInstance();
+      if (this._afterConstruct != null) {
+        this._afterConstruct();
+      }
+    }
+
+    MaxmertkitHelpers.prototype.destroy = function() {
+      this.$el.off("." + this._name);
+      return this._popInstance();
+    };
+
+    MaxmertkitHelpers.prototype._extend = function(object, properties) {
+      var key, val;
+      for (key in properties) {
+        val = properties[key];
+        object[key] = val;
+      }
+      return object;
+    };
+
+    MaxmertkitHelpers.prototype._merge = function(options, overrides) {
+      return this._extend(this._extend({}, options), overrides);
+    };
+
+    MaxmertkitHelpers.prototype._setOptions = function(options) {
+      return console.warning("Maxmertkit Helpers. There is no standart setOptions function.");
+    };
+
+    MaxmertkitHelpers.prototype._pushInstance = function() {
+      this._id++;
+      return this._instances.push(this);
+    };
+
+    MaxmertkitHelpers.prototype._popInstance = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        instance = _ref[index];
+        if (instance._id === this._id) {
+          this._instances.splice(index, 1);
+        }
+        _results.push(delete this);
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._selfish = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        instance = _ref[index];
+        if (this._id !== instance._id) {
+          _results.push(instance.close());
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._getVersion = function() {
+      return _version;
+    };
+
+    MaxmertkitHelpers.prototype.reactor = new MaxmertkitReactor();
+
+    MaxmertkitHelpers.prototype._setTransform = function(style, transform) {
+      style.webkitTransform = transform;
+      style.MozTransform = transform;
+      return style.transform = transform;
+    };
+
+    MaxmertkitHelpers.prototype._equalNodes = function(node1, node2) {
+      return node1.get(0) === node2.get(0);
+    };
+
+    MaxmertkitHelpers.prototype._deviceMobile = function() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    MaxmertkitHelpers.prototype._refreshSizes = function() {
+      this._windowHeight = $(window).height();
+      this._windowWidth = $(window).width();
+      this._height = this.$el.height();
+      this._width = this.$el.width();
+      if (this.scroll != null) {
+        if (this.scroll[0].nodeName === 'BODY') {
+          return this._offset = this.$el.offset();
+        } else {
+          return this._offset = this.$el.offset();
+        }
+      } else {
+        return this._offset = this.$el.offset();
+      }
+    };
+
+    MaxmertkitHelpers.prototype._getContainer = function(el) {
+      var parent, style;
+      parent = el[0] || el;
+      while (parent = parent.parentNode) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return $(parent);
+        }
+        if (/(relative)/.test(style['position']) || /(relative)/.test(parent.style['position'])) {
+          return $(parent);
+        }
+      }
+      return $(document);
+    };
+
+    MaxmertkitHelpers.prototype._getScrollParent = function(el) {
+      var parent, style;
+      parent = el[0] || el;
+      while (parent = parent.parentNode) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return $(parent);
+        }
+        if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) && $(parent)[0].nodeName !== 'BODY') {
+          return $(parent);
+        }
+      }
+      return $(document);
+    };
+
+    MaxmertkitHelpers.prototype._isVisible = function() {
+      return this._offset.top - this._windowHeight <= this.scroll.scrollTop() && this.scroll.scrollTop() <= this._offset.top + this._height;
+    };
+
+    MaxmertkitHelpers.prototype._getVisiblePercent = function() {
+      var current, max, min;
+      min = this._offset.top;
+      current = this.scroll.scrollTop();
+      max = this._offset.top + this._height;
+      return (current - min) / (max - min);
+    };
+
+    MaxmertkitHelpers.prototype._scrollVisible = function() {
+      var current, max, min, percent;
+      if (this.scroll != null) {
+        min = this._offset.top - this._windowHeight;
+        max = this._offset.top + this._height + this._windowHeight;
+        current = this.scroll.scrollTop() + this._windowHeight;
+        percent = 1 - current / max;
+        return (1 > percent && percent > 0);
+      } else {
+        return true;
+      }
+    };
+
+    MaxmertkitHelpers.prototype._setGlobalRotation = function(x, y, z) {
+      return _globalRotation = {
+        x: x,
+        y: y,
+        z: z
+      };
+    };
+
+    MaxmertkitHelpers.prototype._getGlobalRotation = function() {
+      return _globalRotation;
+    };
+
+    return MaxmertkitHelpers;
+
+  })();
+
+
+  /*
+  Adds support for the special browser events 'scrollstart' and 'scrollstop'.
+   */
+
+  (function() {
+    var special, uid1, uid2;
+    special = jQuery.event.special;
+    uid1 = "D" + (+new Date());
+    uid2 = "D" + (+new Date() + 1);
+    special.scrollstart = {
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          } else {
+            evt.type = "scrollstart";
+            jQuery.event.trigger.apply(this, _args);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid1, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid1));
+      }
+    };
+    special.scrollstop = {
+      latency: 300,
+      setup: function() {
+        var handler, timer;
+        timer = void 0;
+        handler = function(evt) {
+          var _args;
+          _args = arguments;
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(function() {
+            timer = null;
+            evt.type = "scrollstop";
+            jQuery.event.trigger.apply(this, _args);
+          }, special.scrollstop.latency);
+        };
+        jQuery(this).bind("scroll", handler).data(uid2, handler);
+      },
+      teardown: function() {
+        jQuery(this).unbind("scroll", jQuery(this).data(uid2));
+      }
+    };
+  })();
+
+  window['MaxmertkitHelpers'] = MaxmertkitHelpers;
+
+}).call(this);
+
+(function() {
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _setPosition, _start, _stop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "affix";
+
+  _instances = [];
+
+  _id = 0;
+
+  Affix = (function(_super) {
+    __extends(Affix, _super);
+
+    Affix.prototype._name = _name;
+
+    Affix.prototype._instances = _instances;
+
+    function Affix(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      this.$el = $(this.el);
+      this.$el.parent().append('&nbsp;');
+      this._id = _id++;
+      _options = {
+        spy: this.$el.data('spy') || 'affix',
+        offset: 5
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeopen = this.options.beforeopen;
+      this.onopen = this.options.onopen;
+      this.beforeclose = this.options.beforeclose;
+      this.onclose = this.options.onclose;
+      this.start();
+      Affix.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Affix.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Affix. You're trying to set unpropriate option.");
+        }
+        this.options[key] = value;
+      }
+    };
+
+    Affix.prototype.destroy = function() {
+      return Affix.__super__.destroy.apply(this, arguments);
+    };
+
+    Affix.prototype.start = function() {
+      return _beforestart.call(this);
+    };
+
+    Affix.prototype.stop = function() {
+      return _beforestop.call(this);
+    };
+
+    return Affix;
+
+  })(MaxmertkitHelpers);
+
+  _setPosition = function() {
+    var $scrollParent, offset;
+    $scrollParent = this._getContainer(this.$el);
+    if ($scrollParent[0].firstElementChild.nodeName === "HTML") {
+      offset = 0;
+    } else {
+      offset = $scrollParent.offset().top;
+    }
+    if ((this.$el.parent() != null) && this.$el.parent().offset() && !this._deviceMobile() && this._windowWidth > 992) {
+      if (this.$el.parent().offset().top - this.options.offset <= $(document).scrollTop()) {
+        if (this.$el.parent().offset().top + $scrollParent.outerHeight() - this.options.offset - this.$el.outerHeight() >= $(document).scrollTop()) {
+          return this.$el.css({
+            width: this.$el.width(),
+            position: 'fixed',
+            top: "" + this.options.offset + "px",
+            bottom: 'auto'
+          });
+        } else {
+          return this.$el.css({
+            position: 'absolute',
+            top: 'auto',
+            bottom: "-" + this.options.offset + "px",
+            width: this.$el.width()
+          });
+        }
+      } else {
+        this.$el.css('position', 'relative');
+        return this.$el.css('top', 'inherit');
+      }
+    }
+  };
+
+  _position = function() {
+    $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        return _setPosition.call(_this);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this._windowWidth < 992) {
+          _this.$el.css('position', 'relative');
+          return _this.$el.css('top', 'inherit');
+        } else {
+          return _setPosition.call(_this);
+        }
+      };
+    })(this));
+  };
+
+  _beforestart = function() {
+    var deferred;
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _start.call(this);
+      }
+    } else {
+      return _start.call(this);
+    }
+  };
+
+  _start = function() {
+    this._refreshSizes();
+    _position.call(this);
+    this.$el.addClass('_active_');
+    this.$el.trigger("started." + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  _beforestop = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _stop.call(this);
+      }
+    } else {
+      return _stop.call(this);
+    }
+  };
+
+  _stop = function() {
+    this.$el.removeClass('_active_');
+    $(document).off("scroll." + this._name + "." + this._id);
+    this.$el.trigger("stopped." + this._name);
+    if (this.onstop != null) {
+      try {
+        return this.onstop.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Affix(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Button, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "button";
+
+  _instances = [];
+
+  _id = 0;
+
+  Button = (function(_super) {
+    __extends(Button, _super);
+
+    Button.prototype._name = _name;
+
+    Button.prototype._instances = _instances;
+
+    function Button(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      this._id = _id++;
+      _options = {
+        toggle: this.$btn.data('toggle') || 'button',
+        group: this.$btn.data('group') || null,
+        type: this.$btn.data('type') || 'button',
+        event: "click",
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$btn.hasClass('_active_')) {
+            return _this.activate();
+          } else {
+            return _this.deactivate();
+          }
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.deactivate();
+          }
+        };
+      })(this));
+      this.$btn.removeClass('_active_ _disabled_ _loading_');
+      Button.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Button.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Button. You're trying to set unpropriate option.");
+        }
+        switch (key) {
+          case 'event':
+            this.$btn.off("" + this.options.event + "." + this._name);
+            this.options.event = value;
+            this.$btn.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.$btn.hasClass('_active_')) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
+            break;
+          default:
+            this.options[key] = value;
+            if (typeof value === 'function') {
+              this[key] = this.options[key];
+            }
+        }
+      }
+    };
+
+    Button.prototype.destroy = function() {
+      this.$btn.off("." + this._name);
+      return Button.__super__.destroy.apply(this, arguments);
+    };
+
+    Button.prototype.activate = function() {
+      return _beforeactive.call(this);
+    };
+
+    Button.prototype.deactivate = function() {
+      if (this.$btn.hasClass('_active_')) {
+        return _beforeunactive.call(this);
+      }
+    };
+
+    Button.prototype.disable = function() {
+      return this.$btn.toggleClass('_disabled_');
+    };
+
+    return Button;
+
+  })(MaxmertkitHelpers);
+
+  _beforeactive = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var button, _i, _len, _ref;
+    if (this.options.type === 'radio') {
+      _ref = this._instances;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        button = _ref[_i];
+        if (this._id !== button._id && button.options.type === 'radio' && button.options.group === this.options.group) {
+          button.deactivate();
+        }
+      }
+    }
+    this.$btn.addClass('_active_');
+    this.$btn.trigger("activated." + this._name);
+    if (this.onactive != null) {
+      try {
+        return this.onactive.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeunactive = function() {
+    var deferred;
+    if (this.beforeunactive != null) {
+      try {
+        deferred = this.beforeunactive.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$btn.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    this.$btn.removeClass('_active_');
+    this.$btn.trigger("deactivated." + this._name);
+    if (this.onunactive != null) {
+      try {
+        return this.onunactive.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Button(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          } else {
+            console.error("Maxmertkit Button. You passed into the " + _name + " something wrong.");
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Modal, _beforeclose, _beforeopen, _close, _instances, _name, _open, _pushStart, _pushStop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "modal";
+
+  _instances = [];
+
+  Modal = (function(_super) {
+    __extends(Modal, _super);
+
+    Modal.prototype._name = _name;
+
+    Modal.prototype._instances = _instances;
+
+    function Modal(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      _options = {
+        target: this.$btn.data('target'),
+        toggle: this.$btn.data('toggle') || 'modal',
+        event: "click." + this._name,
+        eventClose: "click." + this._name,
+        backdrop: this.$btn.data('backdrop') || false,
+        push: this.$btn.data('push') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.$el = $(document).find(this.options.target);
+      this.$btn.on(this.options.event, (function(_this) {
+        return function(event) {
+          event.preventDefault();
+          return _this.open();
+        };
+      })(this));
+      this._setOptions(this.options);
+      this.$el.find("*[data-dismiss='modal']").on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      Modal.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Modal.prototype._setOptions = function(options) {
+      var key, push, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Modal. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'backdrop':
+            if (value) {
+              this.$el.on("click." + this._name, (function(_this) {
+                return function(event) {
+                  if ($(event.target).hasClass('-modal _active_') || $(event.target).hasClass('-carousel')) {
+                    return _this.close();
+                  }
+                };
+              })(this));
+            }
+            break;
+          case 'push':
+            if (value) {
+              push = $(document).find(value);
+              if (push.length) {
+                this.$push = $(document).find(value);
+              }
+            }
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = this.options[key];
+        }
+      }
+    };
+
+    Modal.prototype.destroy = function() {
+      this.$btn.off("." + this._name);
+      return Modal.__super__.destroy.apply(this, arguments);
+    };
+
+    Modal.prototype.open = function() {
+      return _beforeopen.call(this);
+    };
+
+    Modal.prototype.close = function() {
+      return _beforeclose.call(this);
+    };
+
+    return Modal;
+
+  })(MaxmertkitHelpers);
+
+  _pushStart = function() {
+    if (this.$push != null) {
+      this.$push.addClass('-start--');
+      return this.$push.removeClass('-stop--');
+    }
+  };
+
+  _pushStop = function() {
+    if (this.$push != null) {
+      this.$push.addClass('-stop--');
+      this.$push.removeClass('-start--');
+      if ((this.$push[0] != null) && (this.$push[0].style != null) && (this.$push[0].style['-webkit-overflow-scrolling'] != null)) {
+        return this.$push[0].style['-webkit-overflow-scrolling'] = 'auto';
+      }
+    }
+  };
+
+  _beforeopen = function() {
+    var deferred;
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _open.call(this);
+      }
+    } else {
+      return _open.call(this);
+    }
+  };
+
+  _open = function() {
+    if (this.$push != null) {
+      $('body').addClass('_perspective_');
+    }
+    this.$el.css({
+      display: 'table'
+    });
+    setTimeout((function(_this) {
+      return function() {
+        _this.$el.addClass('_visible_ -start--');
+        return _pushStart.call(_this);
+      };
+    })(this), 1);
+    $('body').addClass('_no-scroll_');
+    this.$el.trigger("opened." + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeclose = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _close.call(this);
+      }
+    } else {
+      return _close.call(this);
+    }
+  };
+
+  _close = function() {
+    this.$el.addClass('-stop--');
+    _pushStop.call(this);
+    setTimeout((function(_this) {
+      return function() {
+        _this.$el.removeClass('_visible_ -start-- -stop--');
+        $('body').removeClass('_no-scroll_');
+        if (_this.$push != null) {
+          $('body').removeClass('_perspective_');
+        }
+        return _this.$el.hide();
+      };
+    })(this), 1000);
+    this.$el.trigger("closed." + this._name);
+    if (this.onclose != null) {
+      try {
+        return this.onclose.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Modal(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          } else {
+            console.error("Maxmertkit error. You passed into the " + _name + " something wrong.");
+          }
+        }
+      }
+    });
+  };
+
+  $(window).on('load', function() {
+    return $('[data-toggle="modal"]').each(function() {
+      var $modal;
+      $modal = $(this);
+      return $modal.modal($modal.data());
+    });
+  });
+
+}).call(this);
+
+(function() {
+  var Popup, _beforeclose, _beforeopen, _close, _id, _instances, _name, _open, _position,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "popup";
+
+  _instances = [];
+
+  _id = 0;
+
+  Popup = (function(_super) {
+    __extends(Popup, _super);
+
+    Popup.prototype._name = _name;
+
+    Popup.prototype._instances = _instances;
+
+    function Popup(btn, options) {
+      var _options;
+      this.btn = btn;
+      this.options = options;
+      this.$btn = $(this.btn);
+      this._id = _id++;
+      _options = {
+        target: this.$btn.data('target'),
+        toggle: this.$btn.data('toggle') || 'popup',
+        event: "click",
+        eventClose: "click",
+        positionVertical: 'top',
+        positionHorizontal: 'center',
+        offset: {
+          horizontal: 5,
+          vertical: 5
+        },
+        closeUnfocus: false,
+        selfish: true
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeopen = this.options.beforeopen;
+      this.onopen = this.options.onopen;
+      this.beforeclose = this.options.beforeclose;
+      this.onclose = this.options.onclose;
+      this.$el = $(document).find(this.options.target);
+      this.$btn.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$el.is(':visible')) {
+            return _this.open();
+          } else {
+            return _this.close();
+          }
+        };
+      })(this));
+      this.$btn.on(this.options.eventClose, (function(_this) {
+        return function() {
+          if (_this.options.event !== _this.options.eventClose) {
+            return _this.close();
+          }
+        };
+      })(this));
+      this.$el.find("*[data-dismiss='popup']").on(this.options.event, (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      if (this.options.closeUnfocus) {
+        $(document).on('click', (function(_this) {
+          return function(event) {
+            var classes;
+            classes = '.' + _this.$el[0].className.split(' ').join('.');
+            if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+              return _this.close();
+            }
+          };
+        })(this));
+      }
+      this.$el.removeClass('_top_ _bottom_ _left_ _right_');
+      this.$el.addClass("_" + this.options.positionVertical + "_ _" + this.options.positionHorizontal + "_");
+      Popup.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Popup.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Popup. You're trying to set unpropriate option.");
+        }
+        switch (key) {
+          case 'target':
+            this.$el = $(document).find(this.options.target);
+            this.$el.find("*[data-dismiss='popup']").on(this.options.event, (function(_this) {
+              return function() {
+                return _this.close();
+              };
+            })(this));
+            break;
+          case 'event':
+            this.$btn.off("" + this.options.event + "." + this._name);
+            this.options.event = value;
+            this.$btn.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (!_this.$el.is(':visible')) {
+                  return _this.open();
+                } else {
+                  return _this.close();
+                }
+              };
+            })(this));
+            break;
+          case 'eventClose':
+            this.$btn.off("" + this.options.eventClose + "." + this._name);
+            this.options.eventClose = value;
+            this.$btn.on("" + this.options.eventClose + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.options.event !== _this.options.eventClose) {
+                  return _this.close();
+                }
+              };
+            })(this));
+            break;
+          case 'closeUnfocus':
+            this.options.closeUnfocus = value;
+            $(document).off("click." + this._name);
+            if (this.options.closeUnfocus) {
+              $(document).on("click." + this._name, (function(_this) {
+                return function(event) {
+                  var classes;
+                  classes = '.' + _this.$el[0].className.split(' ').join('.');
+                  if (!$(event.target).closest(classes).length && _this.$el.is(':visible') && !_this.$el.is(':animated') && $(event.target)[0] !== _this.$btn[0]) {
+                    return _this.close();
+                  }
+                };
+              })(this));
+            }
+            break;
+          case 'positionVertical':
+            this.$el.removeClass("_top_ _middle_ _bottom_");
+            this.options.positionVertical = value;
+            this.$el.addClass("_" + this.options.positionVertical + "_");
+            break;
+          case 'positionHorizontal':
+            this.$el.removeClass("_left_ _center_ _right_");
+            this.options.positionHorizontal = value;
+            this.$el.addClass("_" + this.options.positionHorizontal + "_");
+            break;
+          default:
+            this.options[key] = value;
+        }
+      }
+    };
+
+    Popup.prototype.destroy = function() {
+      this.$btn.off("." + this._name);
+      return Popup.__super__.destroy.apply(this, arguments);
+    };
+
+    Popup.prototype.open = function() {
+      return _beforeopen.call(this);
+    };
+
+    Popup.prototype.close = function() {
+      return _beforeclose.call(this);
+    };
+
+    return Popup;
+
+  })(MaxmertkitHelpers);
+
+  _position = function() {
+    var newLeft, newTop, position, positionBtn, scrollParent, scrollParentBtn, size, sizeBtn;
+    scrollParent = this._getScrollParent(this.$el);
+    scrollParentBtn = this._getScrollParent(this.$btn);
+    positionBtn = this.$btn.offset();
+    position = this.$el.offset();
+    if ((scrollParent != null) && (scrollParent[0] == null) || scrollParent[0].activeElement.nodeName !== 'BODY') {
+      positionBtn.top = positionBtn.top - $(scrollParent).offset().top;
+      positionBtn.left = positionBtn.left - $(scrollParent).offset().left;
+    }
+    sizeBtn = {
+      width: this.$btn.outerWidth(),
+      height: this.$btn.outerHeight()
+    };
+    size = {
+      width: this.$el.outerWidth(),
+      height: this.$el.outerHeight()
+    };
+    newTop = newLeft = 0;
+    switch (this.options.positionVertical) {
+      case 'top':
+        newTop = positionBtn.top - size.height - this.options.offset.vertical;
+        break;
+      case 'bottom':
+        newTop = positionBtn.top + sizeBtn.height + this.options.offset.vertical;
+        break;
+      case 'middle' || 'center':
+        newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2;
+    }
+    switch (this.options.positionHorizontal) {
+      case 'center' || 'middle':
+        newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2;
+        break;
+      case 'left':
+        newLeft = positionBtn.left - size.width - this.options.offset.horizontal;
+        break;
+      case 'right':
+        newLeft = positionBtn.left + sizeBtn.width + this.options.offset.horizontal;
+    }
+    return this.$el.css({
+      left: newLeft,
+      top: newTop
+    });
+  };
+
+  _beforeopen = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _open.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _open.call(this);
+      }
+    } else {
+      return _open.call(this);
+    }
+  };
+
+  _open = function() {
+    _position.call(this);
+    this.$el.addClass('_active_');
+    this.$el.trigger("opened." + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeclose = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$btn);
+        return deferred.done((function(_this) {
+          return function() {
+            return _close.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _close.call(this);
+      }
+    } else {
+      return _close.call(this);
+    }
+  };
+
+  _close = function() {
+    this.$el.removeClass('_active_');
+    this.$el.trigger("closed." + this._name);
+    if (this.onclose != null) {
+      try {
+        return this.onclose.call(this.$btn);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Popup(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          } else {
+            console.error("Maxmertkit Popup. You passed into the " + _name + " something wrong.");
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _deactivateItem, _id, _instances, _name, _refresh, _spy, _start, _stop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "scrollspy";
+
+  _instances = [];
+
+  _id = 0;
+
+  Scrollspy = (function(_super) {
+    __extends(Scrollspy, _super);
+
+    Scrollspy.prototype._name = _name;
+
+    Scrollspy.prototype._instances = _instances;
+
+    function Scrollspy(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      this.$el = $(this.el);
+      this._id = _id++;
+      _options = {
+        spy: this.$el.data('spy') || 'scroll',
+        target: this.$el.data('target') || 'body',
+        offset: 10,
+        elements: 'li a',
+        elementsAttr: 'href',
+        noMobile: this.$el.data("no-mobile") || true,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.start();
+      Scrollspy.__super__.constructor.call(this, this.$btn, this.options);
+    }
+
+    Scrollspy.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Scrollspy. You're trying to set unpropriate option.");
+        }
+        this.options[key] = value;
+      }
+    };
+
+    Scrollspy.prototype.destroy = function() {
+      return Scrollspy.__super__.destroy.apply(this, arguments);
+    };
+
+    Scrollspy.prototype.refresh = function() {
+      return _refresh.call(this);
+    };
+
+    Scrollspy.prototype.start = function() {
+      return _beforestart.call(this);
+    };
+
+    Scrollspy.prototype.stop = function() {
+      return _beforestop.call(this);
+    };
+
+    return Scrollspy;
+
+  })(MaxmertkitHelpers);
+
+  _activateItem = function(itemNumber) {
+    var element, _i, _len, _ref;
+    _ref = this.elements;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      element = _ref[_i];
+      element.menu.removeClass('_active_');
+    }
+    return this.elements[itemNumber].menu.addClass('_active_').parents('li').addClass('_active_');
+  };
+
+  _deactivateItem = function(itemNumber) {
+    return this.elements[itemNumber].menu.removeClass('_active_');
+  };
+
+  _refresh = function() {
+    this.elements = [];
+    return this.$el.find(this.options.elements).each((function(_this) {
+      return function(index, el) {
+        var item, link;
+        link = $(el).attr(_this.options.elementsAttr);
+        if (link != null) {
+          item = $(_this.options.target).find(link);
+          if (item.length) {
+            return _this.elements.push({
+              menu: $(el).parent(),
+              item: item.parent(),
+              itemHeight: item.parent().height(),
+              offsetTop: item.position().top
+            });
+          }
+        }
+      };
+    })(this));
+  };
+
+  _spy = function(event) {
+    var i, _ref, _results;
+    i = 0;
+    _results = [];
+    while (i < this.elements.length) {
+      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i].offsetTop + this.elements[i].itemHeight)) {
+        if (!this.elements[i].menu.hasClass('_active_')) {
+          _activateItem.call(this, i);
+        }
+      } else {
+        if (this.elements[i].menu.hasClass('_active_') && (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset < this.elements[i].offsetTop + this.elements[i].itemHeight) {
+          _deactivateItem.call(this, i);
+        }
+      }
+      _results.push(i++);
+    }
+    return _results;
+  };
+
+  _activate = function() {
+    var target;
+    if (this.options.target === 'body') {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        return _spy.call(_this, event);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this.options.noMobile) {
+          if (_this._windowWidth < 992) {
+            return _this.stop();
+          } else {
+            return _this.start();
+          }
+        }
+      };
+    })(this));
+  };
+
+  _beforestart = function() {
+    var deferred;
+    this.refresh();
+    if (this.beforeopen != null) {
+      try {
+        deferred = this.beforeopen.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _start.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _start.call(this);
+      }
+    } else {
+      return _start.call(this);
+    }
+  };
+
+  _start = function() {
+    _activate.call(this);
+    this.$el.addClass('_active_');
+    this.$el.trigger("started." + this._name);
+    if (this.onopen != null) {
+      try {
+        return this.onopen.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  _beforestop = function() {
+    var deferred;
+    if (this.beforeclose != null) {
+      try {
+        deferred = this.beforeclose.call(this.$el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _stop.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$el.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _stop.call(this);
+      }
+    } else {
+      return _stop.call(this);
+    }
+  };
+
+  _stop = function() {
+    var target;
+    if (this.options.target === 'body') {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    $(target).off("scroll." + this._name + "." + this._id);
+    this.$el.trigger("stopped." + this._name);
+    if (this.onstop != null) {
+      try {
+        return this.onstop.call(this.$el);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Scrollspy(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          } else {
+            console.error("Maxmertkit Affix. You passed into the " + _name + " something wrong.");
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Tabs, _activate, _beforeactive, _beforeunactive, _deactivate, _id, _instances, _name,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "tabs";
+
+  _instances = [];
+
+  _id = 0;
+
+  Tabs = (function(_super) {
+    __extends(Tabs, _super);
+
+    Tabs.prototype._name = _name;
+
+    Tabs.prototype._instances = _instances;
+
+    function Tabs(tab, options) {
+      var _options;
+      this.tab = tab;
+      this.options = options;
+      this.$tab = $(this.tab);
+      this._id = _id++;
+      _options = {
+        toggle: this.$tab.data('toggle') || 'tabs',
+        group: this.$tab.data('group') || null,
+        target: this.$tab.data('target') || null,
+        event: "click",
+        active: 0,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
+      this.$tab.on(this.options.event, (function(_this) {
+        return function() {
+          if (!_this.$tab.hasClass('_active_')) {
+            return _this.activate();
+          }
+        };
+      })(this));
+      this.$content = $(document).find(this.options.target);
+      this.$content.hide();
+      Tabs.__super__.constructor.call(this, this.$tab, this.options);
+    }
+
+    Tabs.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Tabs. You're trying to set unpropriate option.");
+        }
+        switch (key) {
+          case 'event':
+            this.$tab.off("" + this.options.event + "." + this._name);
+            this.options.event = value;
+            this.$tab.on("" + this.options.event + "." + this._name, (function(_this) {
+              return function() {
+                if (_this.$tab.hasClass('_active_')) {
+                  return _this.deactivate();
+                } else {
+                  return _this.activate();
+                }
+              };
+            })(this));
+            break;
+          case 'target':
+            this.options.target = value;
+            this.$content = $(document).find(this.options.target);
+            break;
+          default:
+            this.options[key] = value;
+            if (typeof value === 'function') {
+              this[key] = this.options[key];
+            }
+        }
+      }
+    };
+
+    Tabs.prototype._afterConstruct = function() {
+      var i;
+      i = 0;
+      while (i < this._instances && this._instances[i].group !== this.options.group) {
+        i++;
+      }
+      return this._instances[i].activate();
+    };
+
+    Tabs.prototype.destroy = function() {
+      this.$tab.off("." + this._name);
+      return Tabs.__super__.destroy.apply(this, arguments);
+    };
+
+    Tabs.prototype.activate = function() {
+      return _beforeactive.call(this);
+    };
+
+    Tabs.prototype.deactivate = function() {
+      if (this.$tab.hasClass('_active_')) {
+        return _beforeunactive.call(this);
+      }
+    };
+
+    Tabs.prototype.disable = function() {
+      return this.$tab.toggleClass('_disabled_');
+    };
+
+    return Tabs;
+
+  })(MaxmertkitHelpers);
+
+  _beforeactive = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.$tab);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var tab, _i, _len, _ref;
+    _ref = this._instances;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      tab = _ref[_i];
+      if (this._id !== tab._id && tab.options.group === this.options.group) {
+        tab.deactivate();
+      }
+    }
+    this.$tab.addClass('_active_');
+    this.$tab.trigger("activated." + this._name);
+    this.$content.show();
+    if (this.onactive != null) {
+      try {
+        return this.onactive.call(this.$tab);
+      } catch (_error) {}
+    }
+  };
+
+  _beforeunactive = function() {
+    var deferred;
+    if (this.beforeunactive != null) {
+      try {
+        deferred = this.beforeunactive.call(this.$tab);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            return _this.$tab.trigger("fail." + _this._name);
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    this.$tab.removeClass('_active_');
+    this.$tab.trigger("deactivated." + this._name);
+    this.$content.hide();
+    if (this.onunactive != null) {
+      try {
+        return this.onunactive.call(this.$tab);
+      } catch (_error) {}
+    }
+  };
+
+  $.fn[_name] = function(options) {
+    return this.each(function() {
+      if (!$.data(this, "kit-" + _name)) {
+        $.data(this, "kit-" + _name, new Tabs(this, options));
+      } else {
+        if (typeof options === "object") {
+          $.data(this, "kit-" + _name)._setOptions(options);
+        } else {
+          if (typeof options === "string" && options.charAt(0) !== "_") {
+            $.data(this, "kit-" + _name)[options];
+          } else {
+            console.error("Maxmertkit Tabs. You passed into the " + _name + " something wrong.");
+          }
+        }
+      }
+    });
+  };
+
+}).call(this);

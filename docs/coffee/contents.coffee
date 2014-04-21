@@ -269,3 +269,32 @@ exports.utilities = [
 		path: "orderCommon"
 	}
 ]
+
+
+
+exports.components = [
+	{
+		name: "button"
+		path: "buttonCommon"
+	}
+	{
+		name: "popup"
+		path: "popupCommon"
+	}
+	{
+		name: "tabs"
+		path: "tabsCommon"
+	}
+	{
+		name: "modal"
+		path: "modalCommon"
+	}
+	{
+		name: "scrollspy"
+		path: "scrollspyCommon"
+	}
+	{
+		name: "affix"
+		path: "affixCommon"
+	}
+]

@@ -19,8 +19,7 @@
 	</div>
 
 
-	<div hljs class="-col12 example">
-<a class="-btn" data-toggle="button">Button 1</a>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn" data-toggle="button">Button 1</a>
 <a class="-btn" data-toggle="button">Button 2</a>
 
 <div class="-group">
@@ -32,11 +31,10 @@
 	<a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a>
 	<a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a>
 </div>
-</div>
+</pre></div>
 	
-<div hljs class="-col12 example">
-$(document).find("[data-toggle='button']").button()
-</div>
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$(document).find("[data-toggle='button']").button()
+</pre></div>
 
 </div>
 
@@ -51,15 +49,13 @@ $(document).find("[data-toggle='button']").button()
 	</div>
 
 
-	<div hljs class="-col12 example">
-<div class="-group">
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-group">
 	<a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a>
 	<a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a>
 </div>
-</div>
+</pre></div>
 	
-<div hljs class="-col12 example">
-$('.btn-with-before').button
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-with-before').button
 	beforeactive: ->
 		d = $.Deferred()
 		@html 'Loading...'
@@ -75,7 +71,7 @@ $('.btn-with-before').button
 
 	onunactive: ->
 		@html 'Checkbox'
-</div>
+</pre></div>
 
 </div>
 
@@ -91,16 +87,14 @@ $('.btn-with-before').button
 	</div>
 
 
-	<div hljs class="-col12 example">
-<div class="-group">
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-group">
 	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 1</a>
 	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 2</a>
 	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 3</a>
 </div>
-</div>
+</pre></div>
 	
-<div hljs class="-col12 example">
-$('.radio-with-before').button
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.radio-with-before').button
 	beforeactive: ->
 		d = $.Deferred()
 		@html 'Loading...'
@@ -126,7 +120,7 @@ $('.radio-with-before').button
 	onunactive: ->
 		@removeClass '_disabled_'
 		@html 'Radio'
-</div>
+</pre></div>
 
 </div>
 
@@ -196,8 +190,7 @@ $('.radio-with-before').button
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before activate button. If it returns <code>deferred.promise()</code>, then button will not activate till <code>deferred.resolve()</code>, and woun't activate at all if <code>deferred.reject()</code>. You can just get data with $.ajax() instead of using deferred.</p>
-				<p hljs language="coffeescript">
-$('.btn-with-before').button
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-with-before').button
 	beforeactive: ->
 		d = $.Deferred()
 		@html 'Loading...'
@@ -213,7 +206,7 @@ $('.btn-with-before').button
 
 	onunactive: ->
 		@html 'Checkbox'
-</p>
+</pre></p>
 			</td>
 		</tr>
 

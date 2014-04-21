@@ -1,6 +1,7 @@
 LayoutBasic = require('../layouts/pages/basic').module
 LayoutWidgets = require('../layouts/pages/widgets').module
 LayoutUtilities = require('../layouts/pages/utilities').module
+LayoutComponents = require('../layouts/pages/components').module
 
 mainController =
 
@@ -15,6 +16,7 @@ exports.module = Marionette.AppRouter.extend
         'basic': 'basic'
         'widgets': 'widgets'
         'utilities': 'utilities'
+        'components': 'components'
         "*error": "error404"
 
     route: (route, name, callback) ->
@@ -54,12 +56,18 @@ exports.module = Marionette.AppRouter.extend
 
     widgets: ->
         Backbone.history.templates = 'widgets'
-        Backbone.history.color = '#b34c2c'
+        Backbone.history.color = '#3087aa'
         $.app.main.currentView.content.show new LayoutWidgets()
 
     utilities: ->
         Backbone.history.templates = 'utilities'
+        Backbone.history.color = '#972822'
         $.app.main.currentView.content.show new LayoutUtilities()
+
+    components: ->
+        Backbone.history.templates = 'components'
+        Backbone.history.color = '#25a800'
+        $.app.main.currentView.content.show new LayoutComponents()
 
     error404: ->
         $.app.commands.execute 'menu', 'activate'

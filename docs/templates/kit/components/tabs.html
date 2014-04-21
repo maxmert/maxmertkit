@@ -25,8 +25,7 @@
 	</div>
 
 
-	<div hljs class="-col12 example">
-<ul class="-tabs -primary-">
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-tabs -primary-">
 	<li data-toggle="tabs" data-group="tabs1" data-target="#content1"><a>Tab 1</a></li>
 	<li data-toggle="tabs" data-group="tabs1" data-target="#content2"><a>Tab 2</a></li>
 	<li data-toggle="tabs" data-group="tabs1" data-target="#content3"><a>Tab 3</a></li>
@@ -38,11 +37,10 @@
 	<div id="content3" class="-col12">Content for tab 3</div>
 	<div id="content4" class="-col12">Content for tab 4</div>
 </div>
-</div>
+</pre></div>
 	
-<div hljs class="-col12 example">
-$(document).find("[data-toggle='tabs']").tabs()
-</div>
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$(document).find("[data-toggle='tabs']").tabs()
+</pre></div>
 
 </div>
 
@@ -120,8 +118,7 @@ $(document).find("[data-toggle='tabs']").tabs()
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before activate tab. If it returns <code>deferred.promise()</code>, then tab will not activate till <code>deferred.resolve()</code>, and woun't activate at all if <code>deferred.reject()</code>. You can just get data with $.ajax() instead of using deferred.</p>
-				<p hljs language="coffeescript">
-$('.btn-with-before').tabs
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-with-before').tabs
 	beforeactive: ->
 		d = $.Deferred()
 		@find('a').html 'Loading...'
@@ -137,7 +134,7 @@ $('.btn-with-before').tabs
 
 	onunactive: ->
 		@find('a').html 'Checkbox'
-</p>
+</pre></p>
 			</td>
 		</tr>
 

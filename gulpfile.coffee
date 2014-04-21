@@ -4,6 +4,7 @@ coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 coffeelint = require 'gulp-coffeelint'
 uglify = require 'gulp-uglify'
+gzip = require 'gulp-gzip'
 watch = require 'gulp-watch'
 nodemon = require 'gulp-nodemon'
 sass = require 'gulp-ruby-sass'
@@ -23,6 +24,9 @@ templater = require 'gulp-jstemplater'
 browserify = require 'gulp-browserify'
 rename = require 'gulp-rename'
 jeditor = require 'gulp-json-editor'
+argv = require('yargs').argv
+gulpif = require 'gulp-if'
+moment = require 'moment'
 
 
 
@@ -308,23 +312,34 @@ gulp.task 'build', [ 'test' ], ->
 
 	runSequence [ 'kitCoffee', 'kitSass', 'clean' ],  ->
 		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+
+			.pipe( gulp.dest "#{path.build.js}" )
+
 			.pipe( bytediff.start() )
 			.pipe( uglify() )
 			.pipe( bytediff.stop() )
+			.pipe( gzip( append: no ) )
+			.pipe( rename( basename: "maxmertkit.min" ) )
 			.pipe( gulp.dest "#{path.build.js}" )
 
-			.pipe( rev() )
-			.pipe( gulp.dest "#{path.build.js}" )
+			.pipe( gulpif(argv.rev, rev()) )
+			.pipe( gulpif(argv.rev, gulp.dest("#{path.build.js}")) )
+
 
 
 		gulp.src( "#{path.docs.front.css}/main.css" )
-			.pipe( bytediff.start() )
-			.pipe( minifyCSS() )
-			.pipe( bytediff.stop() )
+			.pipe( rename( basename: "maxmertkit" ) )
 			.pipe( gulp.dest "#{path.build.css}" )
 
-			.pipe( rev() )
+			.pipe( bytediff.start() )
+			.pipe( minifyCSS() )
+			.pipe( gzip( append: no ) )
+			.pipe( bytediff.stop() )
+			.pipe( rename( basename: "maxmertkit.min" ) )
 			.pipe( gulp.dest "#{path.build.css}" )
+
+			.pipe( gulpif(argv.rev, rev()) )
+			.pipe( gulpif(argv.rev, gulp.dest("#{path.build.css}")) )
 
 
 
@@ -333,5 +348,5 @@ gulp.task 'build', [ 'test' ], ->
 
 
 		gulp.src( "./package.json" )
-			.pipe( jeditor( buildDate: new Date() ) )
+			.pipe( jeditor( buildDate: moment().format('MMMM Do YYYY, h:mm:ss a') ) )
 			.pipe( gulp.dest "." )

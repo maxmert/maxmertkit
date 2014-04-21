@@ -46,9 +46,8 @@
 
 
 
-	<div hljs class="-col12 example">
-
-</div>
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html">
+</pre></div>
 
 </div>
 
@@ -170,8 +169,7 @@
 			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then popup window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for popup window.</p>
-				<p hljs language="coffeescript">
-$('.btn-modal123').popup
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript"> $('.btn-modal123').popup
 	beforeopen: ->
 		d = $.Deferred()
 
@@ -194,7 +192,7 @@ $('.btn-modal123').popup
 		# End of your code
 
 		d.promise()
-</p>
+</pre></p>
 			</td>
 		</tr>
 

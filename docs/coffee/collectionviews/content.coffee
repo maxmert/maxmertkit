@@ -48,17 +48,23 @@ exports.module = Marionette.CollectionView.extend
     onRender: ->
         if $.app.main.currentView.content.currentView?
 
-            menu = $.app.main.currentView.content.currentView.sidebar.$el
-            if menu.data('kit-scrollspy')?
-                menu.data('kit-scrollspy').refresh()
+            @menu = $.app.main.currentView.content.currentView.sidebar.$el
+            if @menu.data('kit-scrollspy')?
+                @menu.data('kit-scrollspy').refresh()
             else
-                menu.scrollspy()
+                @menu.scrollspy()
 
     highlightCode: ->
         $elements = @$el.find('[hljs]')
         count = $elements.length
 
         $elements.each ( index, pre ) =>
-            html = $(pre).html()
-            $(pre).html safe_tags_replace(html)
-            if --count <= 0 then prettyPrint()
+            $pre = $(pre)
+            html = $pre.html()
+            
+            if not $pre.hasClass 'lang-coffeescript'
+                $(pre).html safe_tags_replace(html)
+            
+            if --count <= 0
+                prettyPrint()
+                if @menu? then @menu.data('kit-scrollspy').refresh()

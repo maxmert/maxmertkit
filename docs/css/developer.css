@@ -38,17 +38,17 @@ pre.prettyprint {
 .dev-mobile-menu li {
   margin-right: 2px !important; }
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic {
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components {
   min-height: 400px;
   position: relative;
   display: table;
   color: white; }
-  .dev-instructions .dev-version, .dev-instructions-utilities .dev-version, .dev-instructions-widgets .dev-version, .dev-instructions-basic .dev-version {
+  .dev-instructions .dev-version, .dev-instructions-utilities .dev-version, .dev-instructions-widgets .dev-version, .dev-instructions-basic .dev-version, .dev-instructions-components .dev-version {
     text-align: center;
     opacity: 0.4;
     font-weight: 100;
     font-size: 0.7em; }
-  .dev-instructions .dev-additional, .dev-instructions-utilities .dev-additional, .dev-instructions-widgets .dev-additional, .dev-instructions-basic .dev-additional {
+  .dev-instructions .dev-additional, .dev-instructions-utilities .dev-additional, .dev-instructions-widgets .dev-additional, .dev-instructions-basic .dev-additional, .dev-instructions-components .dev-additional {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -56,11 +56,11 @@ pre.prettyprint {
     text-align: center;
     font-size: 0.75em;
     font-weight: 100; }
-  .dev-instructions > .dev-instructions-holder, .dev-instructions-utilities > .dev-instructions-holder, .dev-instructions-widgets > .dev-instructions-holder, .dev-instructions-basic > .dev-instructions-holder {
+  .dev-instructions > .dev-instructions-holder, .dev-instructions-utilities > .dev-instructions-holder, .dev-instructions-widgets > .dev-instructions-holder, .dev-instructions-basic > .dev-instructions-holder, .dev-instructions-components > .dev-instructions-holder {
     display: table-cell;
     width: 100%;
     vertical-align: middle; }
-  .dev-instructions:before, .dev-instructions-utilities:before, .dev-instructions-widgets:before, .dev-instructions-basic:before {
+  .dev-instructions:before, .dev-instructions-utilities:before, .dev-instructions-widgets:before, .dev-instructions-basic:before, .dev-instructions-components:before {
     content: " ";
     top: 0;
     left: 0;
@@ -69,9 +69,9 @@ pre.prettyprint {
     background-image: url("/img/mainmenu.png");
     position: absolute;
     z-index: 0; }
-  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster {
+  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster, .dev-instructions-components .dev-font-lobster {
     font-family: "Lobster", cursive; }
-  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway {
+  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway, .dev-instructions-components .dev-font-raleway {
     font-family: "Raleway", sans-serif; }
 
 .dev-instructions-widgets {
@@ -85,6 +85,10 @@ pre.prettyprint {
 .dev-instructions-basic {
   background-image: -webkit-linear-gradient(#4b358c 0, #b30c83 100%);
   background-image: linear-gradient(to   , #b30c83 100%); }
+
+.dev-instructions-components {
+  background-image: -webkit-linear-gradient(#29b600 0, #9fbc00 100%);
+  background-image: linear-gradient(to   , #9fbc00 100%); }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;

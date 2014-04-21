@@ -63,7 +63,11 @@
     "gulp-rename": "^1.2.0",
     "coffeeify": "^0.6.0",
     "browserify": "^3.41.0",
-    "gulp-json-editor": "^2.0.2"
+    "gulp-json-editor": "^2.0.2",
+    "gulp-gzip": "0.0.7",
+    "yargs": "^1.2.1",
+    "gulp-if": "0.0.5",
+    "moment": "^2.6.0"
   },
-  "buildDate": "2014-04-18T11:25:09.101Z"
+  "buildDate": "April 19th 2014, 2:59:24 pm"
 }
