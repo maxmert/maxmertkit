@@ -1,28 +1,32 @@
-# exports.start = [
-# 	{
-# 		name: "download"
-# 		path: "dowloadCommon"
-# 	}
-# 	{
-# 		name: "structure"
-# 		path: "commonStructure"
-# 		include: [
-# 			{
-# 				name: 'common'
-# 				path: 'commonStructure'
-# 				invisible: yes
-# 			}
-# 			{
-# 				name: 'build'
-# 				path: 'structureBuild'
-# 			}
-# 			{
-# 				name: 'sources'
-# 				path: 'structureSources'
-# 			}
-# 		]
-# 	}
-# ]
+exports.start = [
+	{
+		name: "download"
+		path: "dowloadCommon"
+	}
+	{
+		name: "difference"
+		path: "differenceCommon"
+	}
+	{
+		name: "structure"
+		path: "commonStructure"
+		include: [
+			{
+				name: 'common'
+				path: 'commonStructure'
+				invisible: yes
+			}
+			{
+				name: 'build'
+				path: 'structureBuild'
+			}
+			{
+				name: 'sources'
+				path: 'structureSources'
+			}
+		]
+	}
+]
 
 
 exports.basic = [

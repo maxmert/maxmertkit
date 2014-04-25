@@ -5,6 +5,7 @@ ViewSocialButton = require( '../views/header/social' )
 exports.module = Marionette.Layout.extend
 
     template: $.app.templates.main
+    model: new Backbone.Model kit
 
     regions:
         menu: '#mainmenu'

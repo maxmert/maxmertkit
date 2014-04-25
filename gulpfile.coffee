@@ -48,6 +48,8 @@ path =
 	kit:
 		coffee: "coffee"
 		sass: "sass"
+		js: "js"
+		css: "css"
 		vendor:
 			bower: "js/bower"
 			libs: "js/libs"
@@ -106,6 +108,7 @@ gulp.task 'kitCoffee', ->
 		.pipe( concat 'maxmertkit.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( gulp.dest "#{path.kit.js}" )
 		# .pipe( livereload() )
 
 
@@ -123,6 +126,7 @@ gulp.task 'kitSass', ->
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
+		.pipe( gulp.dest "#{path.kit.css}" )
 		# .pipe( livereload() )
 
 

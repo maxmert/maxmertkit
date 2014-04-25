@@ -2,6 +2,12 @@
 @import "../../js/bower/neat/app/assets/stylesheets/neat"
 
 
+.dev_center_
+	text-align: center
+
+a[href]
+	color: #3498de
+
 
 .example-block
 	margin: 15px 0 35px
@@ -45,13 +51,17 @@ pre.prettyprint
 .dev-meta
 	opacity: .2
 
+	&.-error-
+		opacity: 1
+
 .dev-filetree
 	list-style: none
 	font-weight: 100
+	font-size: 90%
 	ul
 		list-style: none
 		margin-bottom: 10px
-	
+
 
 	li
 		&:before
@@ -66,6 +76,9 @@ pre.prettyprint
 		.dev-meta
 			margin-left: 15px
 
+		b.dev-meta
+			margin-left: 0
+
 
 .dev-mobile-menu
 	li
@@ -73,9 +86,16 @@ pre.prettyprint
 
 .dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start
 	min-height: 400px
+	height: 400px
+	width: 100%
 	position: relative
 	display: table
 	color: #fff
+
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 
 	.dev-version
 		text-align: center
@@ -117,19 +137,19 @@ pre.prettyprint
 		font-family: 'Raleway', sans-serif
 
 .dev-instructions-widgets
-	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
+	@include background-image(linear-gradient( to bottom, #187da9 0%, #2da7ab 100%))
 
 .dev-instructions-utilities
-	@include background-image(linear-gradient(#8f0e0a 0, #d26117 100%))
+	@include background-image(linear-gradient( to bottom, #8f0e0a 0%, #d26117 100%))
 
 .dev-instructions-basic
-	@include background-image(linear-gradient(#4b358c 0, #b30c83 100%))
+	@include background-image(linear-gradient( to bottom, #4b358c 0%, #b30c83 100%))
 
 .dev-instructions-components
-	@include background-image(linear-gradient(#29b600 0, #9fbc00 100%))
+	@include background-image(linear-gradient( to bottom, #29b600 0%, #9fbc00 100%))
 
 .dev-instructions-start
-	@include background-image(linear-gradient(#252525 0, #585858 100%))
+	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
 
 
 .example-block
@@ -207,3 +227,24 @@ pre.prettyprint
 	.popups-block
 		@include perspective(1300px)
 		@include perspective-origin(50% 50%)
+
+
+footer
+	border-top: 1px solid #eee
+	color: #777
+	font-size: 90%
+	padding: 50px 0
+
+	.dev-links
+		list-style: none
+		display: inline-block
+		margin: 0
+
+		li
+			display: inline-block
+			&:before
+				content: "\0020\2022\0020"
+				margin: 0 7px
+
+			&:first-child:before
+				display: none

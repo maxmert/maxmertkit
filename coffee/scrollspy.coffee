@@ -137,13 +137,13 @@ _activate = ->
 	$(target).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		_spy.call @, event
 
-	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
-		@_refreshSizes()
-		if @options.noMobile
-			if @_windowWidth < 992
-				@stop()
-			else
-				@start()
+	# $(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+	# 	@_refreshSizes()
+	# 	if @options.noMobile
+	# 		if @_windowWidth < 992
+	# 			@stop()
+	# 		else
+	# 			@start()
 
 # If you have beforeopen function
 # 	it will be called here

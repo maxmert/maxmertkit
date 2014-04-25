@@ -3,6 +3,12 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+.dev_center_ {
+  text-align: center; }
+
+a[href] {
+  color: #3498de; }
+
 .example-block {
   margin: 15px 0 35px;
   border: 1px solid #cccccc;
@@ -39,10 +45,13 @@ pre.prettyprint {
 
 .dev-meta {
   opacity: 0.2; }
+  .dev-meta.-error- {
+    opacity: 1; }
 
 .dev-filetree {
   list-style: none;
-  font-weight: 100; }
+  font-weight: 100;
+  font-size: 90%; }
   .dev-filetree ul {
     list-style: none;
     margin-bottom: 10px; }
@@ -54,15 +63,23 @@ pre.prettyprint {
     color: #cccccc; }
   .dev-filetree li .dev-meta {
     margin-left: 15px; }
+  .dev-filetree li b.dev-meta {
+    margin-left: 0; }
 
 .dev-mobile-menu li {
   margin-right: 2px !important; }
 
 .dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start {
   min-height: 400px;
+  height: 400px;
+  width: 100%;
   position: relative;
   display: table;
   color: white; }
+  .dev-instructions .-btn-bordered, .dev-instructions-utilities .-btn-bordered, .dev-instructions-widgets .-btn-bordered, .dev-instructions-basic .-btn-bordered, .dev-instructions-components .-btn-bordered, .dev-instructions-start .-btn-bordered {
+    color: white; }
+    .dev-instructions .-btn-bordered:hover, .dev-instructions .-btn-bordered:active, .dev-instructions-utilities .-btn-bordered:hover, .dev-instructions-utilities .-btn-bordered:active, .dev-instructions-widgets .-btn-bordered:hover, .dev-instructions-widgets .-btn-bordered:active, .dev-instructions-basic .-btn-bordered:hover, .dev-instructions-basic .-btn-bordered:active, .dev-instructions-components .-btn-bordered:hover, .dev-instructions-components .-btn-bordered:active, .dev-instructions-start .-btn-bordered:hover, .dev-instructions-start .-btn-bordered:active {
+      color: black; }
   .dev-instructions .dev-version, .dev-instructions-utilities .dev-version, .dev-instructions-widgets .dev-version, .dev-instructions-basic .dev-version, .dev-instructions-components .dev-version, .dev-instructions-start .dev-version {
     text-align: center;
     opacity: 0.4;
@@ -95,24 +112,24 @@ pre.prettyprint {
     font-family: "Raleway", sans-serif; }
 
 .dev-instructions-widgets {
-  background-image: -webkit-linear-gradient(#187da9 0, #2da7ab 100%);
-  background-image: linear-gradient(to   , #2da7ab 100%); }
+  background-image: -webkit-linear-gradient( top top, #187da9 0%, #2da7ab 100%);
+  background-image: linear-gradient(to bottom, #187da9 0%, #2da7ab 100%); }
 
 .dev-instructions-utilities {
-  background-image: -webkit-linear-gradient(#8f0e0a 0, #d26117 100%);
-  background-image: linear-gradient(to   , #d26117 100%); }
+  background-image: -webkit-linear-gradient( top top, #8f0e0a 0%, #d26117 100%);
+  background-image: linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%); }
 
 .dev-instructions-basic {
-  background-image: -webkit-linear-gradient(#4b358c 0, #b30c83 100%);
-  background-image: linear-gradient(to   , #b30c83 100%); }
+  background-image: -webkit-linear-gradient( top top, #4b358c 0%, #b30c83 100%);
+  background-image: linear-gradient(to bottom, #4b358c 0%, #b30c83 100%); }
 
 .dev-instructions-components {
-  background-image: -webkit-linear-gradient(#29b600 0, #9fbc00 100%);
-  background-image: linear-gradient(to   , #9fbc00 100%); }
+  background-image: -webkit-linear-gradient( top top, #29b600 0%, #9fbc00 100%);
+  background-image: linear-gradient(to bottom, #29b600 0%, #9fbc00 100%); }
 
 .dev-instructions-start {
-  background-image: -webkit-linear-gradient(#252525 0, #585858 100%);
-  background-image: linear-gradient(to   , #585858 100%); }
+  background-image: -webkit-linear-gradient( top top, #252525 0%, #585858 100%);
+  background-image: linear-gradient(to bottom, #252525 0%, #585858 100%); }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;
@@ -180,5 +197,22 @@ pre.prettyprint {
   -webkit-perspective-origin: 50% 50%;
   -moz-perspective-origin: 50% 50%;
   perspective-origin: 50% 50%; }
+
+footer {
+  border-top: 1px solid #eeeeee;
+  color: #777777;
+  font-size: 90%;
+  padding: 50px 0; }
+  footer .dev-links {
+    list-style: none;
+    display: inline-block;
+    margin: 0; }
+    footer .dev-links li {
+      display: inline-block; }
+      footer .dev-links li:before {
+        content: "\0020\2022\0020";
+        margin: 0 7px; }
+      footer .dev-links li:first-child:before {
+        display: none; }
 
 /*# sourceMappingURL=developer.sass.map */

@@ -1,21 +1,172 @@
-<h2>Prebuilded file structure</h2>
-
-<p>Everything is very easy here. Just include <b>min</b> files to your project.</p>
+<h2>Sources file structure</h2>
 
 <ul class="dev-filetree">
     <li><b>maxmertkit</b>/
         <ul>
-            <li><b>css</b>/
-                <ul class="">
-                    <li>maxmertkit.css</li>
-                    <li>maxmertkit.min.css <small class="dev-meta">gzipped builded version of maxmertkit, includes all themes and all sizes for each widget.</small></li>
+            <li><b>build</b> <small class="dev-meta">builded version of maxmertkit</small>
+                <ul>
+                    <li><b>css</b>
+                        <ul>
+                            <li>
+                                maxmertkit.css
+                            </li>
+                            <li>
+                                maxmertkit.min-xxxxxxxx.css <small class="dev-meta">minified, gzipped and revved version to clear user cache.</small>
+                            </li>
+                            <li>
+                                maxmertkit.min.css <small class="dev-meta">minified and gzipped. Use revved version to prevent users using cached css.</small>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><b>js</b>
+                        <ul>
+                            <li>
+                                maxmertkit.js
+                            </li>
+                            <li>
+                                maxmertkit.min-xxxxxxxx.js <small class="dev-meta">minified, gzipped and revved version to clear user cache.</small>
+                            </li>
+                            <li>
+                                maxmertkit.min.js <small class="dev-meta">minified and gzipped. Use revved version to prevent users using cached css.</small>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-            <li><b>js</b>/
-                <ul class="">
-                    <li>maxmertkit.js <small class="dev-meta">concatenated maxmertkit plugins.</small></li>
-                    <li>maxmertkit.min.js <small class="dev-meta">minified and gzipped.</small></li>
+
+            <li><b>coffee</b> <small class="dev-meta -error-">all maxmertkit coffee files</small>
+                <ul>
+                    <li>maxmertkit.coffee
+                         <small class="dev-meta">includes all main helpers using in every plugin. Prototype for all plugins.</small>
+                    </li>
+                    <li>affix.coffee</li>
+                    <li>button.coffee</li>
+                    <li>modal.coffee</li>
+                    <li>popup.coffee</li>
+                    <li>scrollspy.coffee</li>
+                    <li>tabs.coffee</li>
                 </ul>
+            </li>
+
+            <li><b>sass</b> <small class="dev-meta -error-">all maxmertkit sass files</small>
+                <ul>
+                    <li>
+                        <b>animations</b> <small class="dev-meta">all animations for all widgets stores here</small>
+                        <ul>
+                            <li>
+                                <b>pushes</b> <small class="dev-meta">only animations for pushes <b>(not using right not)</b></small>
+                            </li>
+                            <li>
+                                ...
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>common</b> <small class="dev-meta">global variables, reset, init, modifiers list, mixins and utilities stores here</small>
+                    </li>
+                    <li>
+                        <b>sizes</b> <small class="dev-meta">usable sizes, remeber that you need to include sizes for each widget separatelly</small>
+                    </li>
+                    <li>
+                        <b>themes</b> <small class="dev-meta">usable themes, remeber that you need to include themes for each widget separatelly</small>
+                    </li>
+                    <li>
+                        <b>widgets</b> <small class="dev-meta">all widgets are here</small>
+                        <ul>
+                            <li>
+                                _widget-name.sass <small class="dev-meta">import files from folder <b>widget-name</b>; there may be different types or parts of widget <b>widget-name</b>.</small>
+                            </li>
+                            <li>
+                                <b>widget-name</b> <small class="dev-meta">types or parts of widget <b>widget-name</b></small>
+                            </li>
+                            <li>
+                                ...
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        main.sass <small class="dev-meta">the only compiling file; imports all maxmertkit stuff</small>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <b>js</b>
+                <ul>
+                    <li>
+                        maxmertkit.js <small class="dev-meta"><b>not minified</b> maxmertkit js plugins</small>
+                    </li>
+                    <li>
+                        <b class="dev-meta">bower</b>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <b>css</b>
+                <ul>
+                    <li>
+                        main.css <small class="dev-meta"><b>not minified</b> css of the maxmertkit</small>
+                    </li>
+                </ul>
+            </li>
+
+            <li><b>docs</b>
+                <ul>
+                    <li><b>coffee</b> <small class="dev-meta">documentation app</small>
+                        <ul>
+                            <li>...</li>
+                            <li>contents.coffee
+                                 <small class="dev-meta">main menu and application contents</small>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><b>css</b> <small class="dev-meta">maxmertkit and developer css</small></li>
+                    <li><b>img</b> <small class="dev-meta">images needed for docs</small></li>
+                    <li><b>js</b> <small class="dev-meta">all js for documentation</small>
+                        <ul>
+                            <li><b>bower</b>
+                                <small class="dev-meta">bower libraries for documentation.</small>
+                            </li>
+                            <li><b>libs</b>
+                                <small class="dev-meta">not bowered libraries for documentation.</small>
+                            </li>
+                            <li>app.js <small class="dev-meta">main app.</small></li>
+                            <li>maxmertkit.js</li>
+                            <li>templates.js <small class="dev-meta">all compiled templates for docs.</small></li>
+                            <li>...</li>
+                        </ul>
+                    </li>
+
+                    <li><b>sass</b> <small class="dev-meta">developer sass, only for docs.</small></li>
+                    <li><b>server</b> <small class="dev-meta">server app on nodejs for docs.</small></li>
+                    <li><b>templates</b> <small class="dev-meta">templates for docs</small>
+                        <ul>
+                            <li><b>common</b> <small class="dev-meta">base templates for application</small></li>
+                            <li><b>kit</b> <small class="dev-meta -error-"><b>all documentation templates are here; if you want to fix text errors in docs, contribute and fix them here</b></small></li>
+                            <li>404.html</li>
+                            <li>main.html</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <b>test</b>
+            </li>
+
+            <li><b>development</b>
+                <ul>
+                    <li><b>report</b>
+                         <small class="dev-meta">JavaScript Source Analysis based on Plato.</small>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                todo.md <small class="dev-meta">all todos trough all maxmertkit js files</small>
             </li>
         </ul>
     </li>

@@ -56,10 +56,10 @@ exports.module = Marionette.AppRouter.extend
         Backbone.history.templates = 'basic'
         $.app.main.currentView.content.show new LayoutBasic()
 
-    widgets: ->
-        Backbone.history.color = '#44a4b6'
-        Backbone.history.templates = 'basic'
-        $.app.main.currentView.content.show new LayoutBasic()
+    # widgets: ->
+    #     Backbone.history.color = '#44a4b6'
+    #     Backbone.history.templates = 'basic'
+    #     $.app.main.currentView.content.show new LayoutBasic()
 
     widgets: ->
         Backbone.history.templates = 'widgets'

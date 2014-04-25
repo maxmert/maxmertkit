@@ -11,7 +11,7 @@
 
 	@include media(new-breakpoint(max-width $base-screen-middle 6))
 		.#{$row-class}, .#{$container-class}
-			&:not(.#{$mod-justify})
+			&:not(.#{$mod-justify}):not(.#{$mod-fixed})
 				@for $i from 1 through $column-quantity
 					& > .#{$column-class}#{$i}
 						@include span-columns(6)

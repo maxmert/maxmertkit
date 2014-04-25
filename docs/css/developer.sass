@@ -1,4 +1,3 @@
-@import "../js/bower/highlightjs-scss/styles/github"
 @import "../../js/bower/bourbon/dist/bourbon"
 @import "../../js/bower/neat/app/assets/stylesheets/neat"
 
@@ -10,8 +9,10 @@
 	border-radius: 5px
 
 
-pre code
-	background-color: rgba(#000, 0.03)
+pre.prettyprint
+	padding: 15px
+	background-color: #f7f7f7
+	border: 1px solid #cccccc
 
 .dev-logo
 	max-height: 18px
@@ -19,7 +20,7 @@ pre code
 	vertical-align: top
 
 .dev-sidebar-menu
-	margin-top: 20px
+	margin-top: 50px
 
 .dev-navbar
 	position: relative
@@ -36,14 +37,51 @@ pre code
 // 	background-color: #2da7ab !important
 
 .dev-main-content
-	margin: 30px auto
+	margin: 0px auto 30px
+
+	h1
+		margin-top: 50px
+
+.dev-meta
+	opacity: .2
+
+	&.-error-
+		opacity: 1
+
+.dev-filetree
+	list-style: none
+	font-weight: 100
+	font-size: 90%
+	ul
+		list-style: none
+		margin-bottom: 10px
+
+
+	li
+		&:before
+			content: "\02EB\0009"
+			color: #ccc
+		&:last-child:before
+			content: "\02EA\0009"
+			color: #ccc
+		// &:last-child:first-child:before
+		// 	content: "\0336\0009"
+
+		.dev-meta
+			margin-left: 15px
+
+		b.dev-meta
+			margin-left: 0
+
 
 .dev-mobile-menu
 	li
 		margin-right: 2px !important
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start
 	min-height: 400px
+	height: 400px
+	width: 100%
 	position: relative
 	display: table
 	color: #fff
@@ -88,13 +126,19 @@ pre code
 		font-family: 'Raleway', sans-serif
 
 .dev-instructions-widgets
-	@include background-image(linear-gradient(#187da9 0, #2da7ab 100%))
+	@include background-image(linear-gradient(to bottom, #187da9 0%, #2da7ab 100%))
 
 .dev-instructions-utilities
-	@include background-image(linear-gradient(#8f0e0a 0, #d26117 100%))
+	@include background-image(linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%))
 
 .dev-instructions-basic
-	@include background-image(linear-gradient(#4b358c 0, #b30c83 100%))
+	@include background-image(linear-gradient(to bottom, #4b358c 0%, #b30c83 100%))
+
+.dev-instructions-components
+	@include background-image(linear-gradient(to bottom, #29b600 0%, #9fbc00 100%))
+
+.dev-instructions-start
+	@include background-image(linear-gradient(to bottom, #252525 0%, #585858 100%))
 
 
 .example-block
@@ -128,17 +172,12 @@ pre code
 		border-top: 1px solid #ccc
 		background-color: rgba(0,0,0,.03)
 		margin-bottom: 0
+		overflow: hidden
 
 		pre
 			padding: 0
 			border: none
 			margin: 0
-
-			code
-				background-color: transparent
-				overflow: hidden
-				// text-overflow: ellipsis
-				// white-space: nowrap
 
 
 		&:first-child
@@ -162,7 +201,7 @@ pre code
 @include media(new-breakpoint(max-width 768px 6))
 	.example-block
 		.example
-			display: none
+			display: none !important
 
 
 .row-color

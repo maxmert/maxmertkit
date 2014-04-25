@@ -1,7 +1,7 @@
 {
   "name": "maxmertkit",
   "version": "1.0.0",
-  "description": "Maxmertkit webdevelopment framework",
+  "description": "Maxmertkit css framework",
   "homepage": "http://maxmert.com",
   "main": "gulpfile.js",
   "directories": {
@@ -12,7 +12,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxmert/maxmertkit.git"
+    "url": "https://github.com/maxmert/maxmertkit.git",
+    "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
   "keywords": ["maxmertkit", "maxmert", "framework", "html5", "css", "sass", "coffeescript"],
   "author": {

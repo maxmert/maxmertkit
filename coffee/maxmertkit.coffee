@@ -132,7 +132,7 @@ class MaxmertkitHelpers
 
 			return $(parent) if not style?
 
-			if /(relative)/.test(style['position']) or /(relative)/.test(parent.style['position'])
+			if /(relative)/.test(style['position']) or ( parent? and parent.style? and /(relative)/.test(parent.style['position']) )
 					return $(parent)
 
 		return $(document)
