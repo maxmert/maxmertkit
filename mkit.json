@@ -1,0 +1,559 @@
+{
+	"widgets": {
+		"alerts": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"badges": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"buttons": {
+			"bordered": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"common": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"forms": {
+			"inputs": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"fields": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"fieldsets": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"dropdowns": {
+			"common": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"groups": {
+			"inputs": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"addons": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"buttons": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"labels": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"nav": {
+			"pills": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"tabs": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"menu": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark",
+					"kit"
+				]
+			},
+			"bar": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"barFloat": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"listGroup": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"modal": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"shaders": {
+			"common": {
+				"sizes": null,
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark",
+					"kit"
+				]
+			}
+		},
+		"progress": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"spinners": {
+			"square": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"giant",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"fb": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"waves": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"tables": {
+			"common": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		},
+		"typography": {
+			"lists": {
+				"sizes": null,
+				"themes": null
+			},
+			"headings": {
+				"sizes": [
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			},
+			"code": {
+				"sizes": null,
+				"themes": null
+			}
+		},
+		"thumbnails": {
+			"common": {
+				"sizes": [
+					"tiny",
+					"small",
+					"minor",
+					"normal",
+					"major",
+					"big",
+					"huge",
+					"divine"
+				],
+				"themes": [
+					"default",
+					"primary",
+					"error",
+					"info",
+					"warning",
+					"dark"
+				]
+			}
+		}
+	}
+}
