@@ -20,3 +20,6 @@ npm-debug.log
 # Bower stuff.
 bower
 docs/js/bower
+
+# Maxmertkit stuff
+mkit.json
