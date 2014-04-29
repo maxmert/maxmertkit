@@ -1,0 +1,156 @@
+{
+	"alerts": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"badges": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"buttons": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"bordered": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"dropdowns": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"forms": {
+		"inputs": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"fields": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"fieldsets": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"groups": {
+		"common": {},
+		"buttons": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"inputs": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"addons": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"labels": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"modal": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"nav": {
+		"common": {},
+		"tabs": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"pills": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"menu": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"bar": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"barFloat": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"listGroup": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"progress": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"push": {
+		"common": {}
+	},
+	"shaders": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ],
+			"sizes": null
+		}
+	},
+	"spinners": {
+		"square": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
+		},
+		"fb": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"waves": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"tables": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"thumbnails": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
+	"typography": {
+		"body": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ]
+		},
+		"headings": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"lists": {
+			"themes": null,
+			"sizes": null
+		},
+		"code": {
+			"themes": null,
+			"sizes": null
+		}
+	}
+}
