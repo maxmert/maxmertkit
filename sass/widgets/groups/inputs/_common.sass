@@ -46,17 +46,17 @@
 
 			&.-#{$themeName}-
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"].-#{$themeName}-
+					@extend input[type="text"].-#{$themeName}- !optional
 
 				.#{$form-field-class}
-					@extend .#{$form-field-class}.-#{$themeName}-
+					@extend .#{$form-field-class}.-#{$themeName}- !optional
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
 			&._#{$sizeName}
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"]._#{$sizeName}
+					@extend input[type="text"]._#{$sizeName} !optional
 
 				.#{$form-field-class}
-					@extend .#{$form-field-class}._#{$sizeName}
+					@extend .#{$form-field-class}._#{$sizeName} !optional

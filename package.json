@@ -15,7 +15,15 @@
     "url": "https://github.com/maxmert/maxmertkit.git",
     "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
-  "keywords": ["maxmertkit", "maxmert", "framework", "html5", "css", "sass", "coffeescript"],
+  "keywords": [
+    "maxmertkit",
+    "maxmert",
+    "framework",
+    "html5",
+    "css",
+    "sass",
+    "coffeescript"
+  ],
   "author": {
     "name": "Vetrenko Maxim",
     "email": "me@maxmert.com"

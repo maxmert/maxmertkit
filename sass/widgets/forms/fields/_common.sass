@@ -38,7 +38,7 @@
 					@include forms-theme-field-setter($thm)
 
 					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"].-#{$themeName}-
+						@extend input[type="text"].-#{$themeName}- !optional
 
 
 			@each $sizeName in $sizes
@@ -47,7 +47,7 @@
 				// Change size only when class sets
 				&._#{$sizeName}
 					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"]._#{$sizeName}
+						@extend input[type="text"]._#{$sizeName} !optional
 
 
 		// To align fields and labels

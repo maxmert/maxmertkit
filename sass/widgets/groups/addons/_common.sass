@@ -88,11 +88,11 @@
 
 			&.-#{$themeName}-
 				.#{$group-addon-class}
-					@extend .#{$group-addon-class}.-#{$themeName}-
+					@extend .#{$group-addon-class}.-#{$themeName}- !optional
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
 			&._#{$sizeName}
 				.#{$group-addon-class}
-					@extend .#{$group-addon-class}._#{$sizeName}
+					@extend .#{$group-addon-class}._#{$sizeName} !optional

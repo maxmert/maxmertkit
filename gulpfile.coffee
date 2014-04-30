@@ -27,6 +27,7 @@ jeditor = require 'gulp-json-editor'
 argv = require('yargs').argv
 gulpif = require 'gulp-if'
 moment = require 'moment'
+mkit = require 'gulp-mkit'
 
 
 
@@ -128,6 +129,18 @@ gulp.task 'kitSass', ->
 		.pipe( gulp.dest "#{path.docs.front.css}" )
 		.pipe( gulp.dest "#{path.kit.css}" )
 		# .pipe( livereload() )
+
+
+gulp.task 'kitJson', ->
+
+	files = [
+		"./mkit.json"
+	]
+
+	gulp.src( files )
+		.pipe( plumber() )
+		.pipe( mkit() )
+		# .pipe( gulp.dest "." )
 
 
 
@@ -255,6 +268,7 @@ gulp.task 'test', ->
 gulp.task 'watch', ->
 
 	files =
+		kitJson: "./mkit.json"
 		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
 		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
 		kitVendor:
@@ -268,6 +282,7 @@ gulp.task 'watch', ->
 		docsSass: "#{path.docs.front.sass}/developer.sass"
 		docsTemplates: "#{path.docs.front.templates}/**/*.html"
 
+	gulp.watch files.kitJson, [ 'kitJson' ]
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
 	gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
@@ -289,7 +304,7 @@ gulp.task 'watch', ->
 		server.changed file.path
 
 
-gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
+gulp.task( 'default', [ 'kitVendor', 'kitJson', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
 	# gulp.tasks.nodemon.fn()
 	gulp.tasks.watch.fn()
 	gulp.tasks.kitTodo.fn()

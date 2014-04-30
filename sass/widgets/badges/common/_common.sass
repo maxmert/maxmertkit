@@ -35,7 +35,7 @@
 @include exports("badges/common")
 
 	.#{$badge-class}
-		@extend .#{$label-class}
+		@extend .#{$label-class} !optional
 
 		font-weight: $badge-font-weight
 		border-width: $badge-border-width
@@ -64,4 +64,4 @@
 
 		._#{$sizeName}
 			.#{$badge-class}
-				@extend .#{$badge-class}._#{$sizeName}
+				@extend .#{$badge-class}._#{$sizeName} !optional
