@@ -21,9 +21,14 @@ pre.prettyprint
 	border: 1px solid #cccccc
 
 .dev-logo
-	max-height: 18px
+	max-height: 30px
 	display: inline-block
-	vertical-align: top
+	vertical-align: middle
+	margin-top: -9px
+
+	img
+		@include size(30px)
+		margin-top: 5px
 
 .dev-sidebar-menu
 	margin-top: 50px
@@ -180,9 +185,10 @@ pre.prettyprint
 		position: absolute
 		z-index: -1
 		top: 0
-		left: 0
-		min-width: 100%
-		min-height: 100%
+		left: 50%
+		height: 400px
+		// width: 711px
+		margin-left: -355px
 	.-btn-bordered
 		color: #000
 		&:hover, &:active
