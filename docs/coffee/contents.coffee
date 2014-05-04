@@ -26,6 +26,25 @@ exports.start = [
 			}
 		]
 	}
+	{
+		name: "howto"
+		path: "commonHowto"
+		include: [
+			{
+				name: 'common'
+				path: 'commonHowto'
+				invisible: yes
+			}
+			{
+				name: 'install'
+				path: 'howtoInstall'
+			}
+			{
+				name: 'build'
+				path: 'howtoBuild'
+			}
+		]
+	}
 ]
 
 

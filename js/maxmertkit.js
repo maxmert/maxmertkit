@@ -403,9 +403,20 @@
   };
 
   _position = function() {
-    return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
+    $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
         return _setPosition.call(_this);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this._windowWidth < 992) {
+          _this.$el.css('position', 'relative');
+          return _this.$el.css('top', 'inherit');
+        } else {
+          return _setPosition.call(_this);
+        }
       };
     })(this));
   };

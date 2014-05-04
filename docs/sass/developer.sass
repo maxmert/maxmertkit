@@ -84,18 +84,12 @@ pre.prettyprint
 	li
 		margin-right: 2px !important
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start, .dev-instructions-index
 	min-height: 400px
 	height: 400px
 	width: 100%
 	position: relative
 	display: table
-	color: #fff
-
-	.-btn-bordered
-		color: #fff
-		&:hover, &:active
-			color: #000
 
 	.dev-version
 		text-align: center
@@ -137,19 +131,62 @@ pre.prettyprint
 		font-family: 'Raleway', sans-serif
 
 .dev-instructions-widgets
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 	@include background-image(linear-gradient( to bottom, #187da9 0%, #2da7ab 100%))
 
 .dev-instructions-utilities
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 	@include background-image(linear-gradient( to bottom, #8f0e0a 0%, #d26117 100%))
 
 .dev-instructions-basic
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 	@include background-image(linear-gradient( to bottom, #4b358c 0%, #b30c83 100%))
 
 .dev-instructions-components
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 	@include background-image(linear-gradient( to bottom, #29b600 0%, #9fbc00 100%))
 
 .dev-instructions-start
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
 	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
+	
+.dev-instructions-index
+	&:before
+		display: none
+	.dev-instructions-holder
+		position: relative
+		overflow: hidden
+	.dev-video-block
+		position: absolute
+		z-index: -1
+		top: 0
+		left: 0
+		min-width: 100%
+		min-height: 100%
+	.-btn-bordered
+		color: #000
+		&:hover, &:active
+			color: #000
 
 
 .example-block

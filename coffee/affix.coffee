@@ -107,13 +107,13 @@ _position = ->
 	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
 		_setPosition.call @
 
-	# $(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
-	# 	@_refreshSizes()
-	# 	if @_windowWidth < 992
-	# 		@$el.css 'position', 'relative'
-	# 		@$el.css 'top', 'inherit'
-	# 	else
-	# 		_setPosition.call @
+	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+		@_refreshSizes()
+		if @_windowWidth < 992
+			@$el.css 'position', 'relative'
+			@$el.css 'top', 'inherit'
+		else
+			_setPosition.call @
 
 
 # If you have beforeactive function

@@ -1,8 +1,10 @@
+LayoutIndex = require('../layouts/pages/index').module
 LayoutStart = require('../layouts/pages/start').module
 LayoutBasic = require('../layouts/pages/basic').module
 LayoutWidgets = require('../layouts/pages/widgets').module
 LayoutUtilities = require('../layouts/pages/utilities').module
 LayoutComponents = require('../layouts/pages/components').module
+LayoutChangelog = require('../layouts/pages/changelog').module
 
 mainController =
 
@@ -13,12 +15,13 @@ exports.module = Marionette.AppRouter.extend
     controller: mainController
 
     routes:
-        # '': 'index'
+        '': 'index'
         'start': 'start'
         'basic': 'basic'
         'widgets': 'widgets'
         'utilities': 'utilities'
         'components': 'components'
+        'changelog': 'changelog'
         "*error": "error404"
 
     route: (route, name, callback) ->
@@ -42,9 +45,9 @@ exports.module = Marionette.AppRouter.extend
 
     	this
 
-    # index: ->
-    #     Backbone.history.templates = 'index'
-    #     $.app.vent.trigger 'index.route'
+    index: ->
+        Backbone.history.templates = 'index'
+        $.app.main.currentView.content.show new LayoutIndex()
 
     start: ->
         Backbone.history.color = '#3f3f3f'
@@ -75,6 +78,11 @@ exports.module = Marionette.AppRouter.extend
         Backbone.history.templates = 'components'
         Backbone.history.color = '#25a800'
         $.app.main.currentView.content.show new LayoutComponents()
+
+    changelog: ->
+        Backbone.history.templates = 'changelog'
+        Backbone.history.color = '#25a800'
+        $.app.main.currentView.content.show new LayoutChangelog()
 
     error404: ->
         $.app.commands.execute 'menu', 'activate'

@@ -69,23 +69,18 @@ pre.prettyprint {
 .dev-mobile-menu li {
   margin-right: 2px !important; }
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start {
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start, .dev-instructions-index {
   min-height: 400px;
   height: 400px;
   width: 100%;
   position: relative;
-  display: table;
-  color: white; }
-  .dev-instructions .-btn-bordered, .dev-instructions-utilities .-btn-bordered, .dev-instructions-widgets .-btn-bordered, .dev-instructions-basic .-btn-bordered, .dev-instructions-components .-btn-bordered, .dev-instructions-start .-btn-bordered {
-    color: white; }
-    .dev-instructions .-btn-bordered:hover, .dev-instructions .-btn-bordered:active, .dev-instructions-utilities .-btn-bordered:hover, .dev-instructions-utilities .-btn-bordered:active, .dev-instructions-widgets .-btn-bordered:hover, .dev-instructions-widgets .-btn-bordered:active, .dev-instructions-basic .-btn-bordered:hover, .dev-instructions-basic .-btn-bordered:active, .dev-instructions-components .-btn-bordered:hover, .dev-instructions-components .-btn-bordered:active, .dev-instructions-start .-btn-bordered:hover, .dev-instructions-start .-btn-bordered:active {
-      color: black; }
-  .dev-instructions .dev-version, .dev-instructions-utilities .dev-version, .dev-instructions-widgets .dev-version, .dev-instructions-basic .dev-version, .dev-instructions-components .dev-version, .dev-instructions-start .dev-version {
+  display: table; }
+  .dev-instructions .dev-version, .dev-instructions-utilities .dev-version, .dev-instructions-widgets .dev-version, .dev-instructions-basic .dev-version, .dev-instructions-components .dev-version, .dev-instructions-start .dev-version, .dev-instructions-index .dev-version {
     text-align: center;
     opacity: 0.4;
     font-weight: 100;
     font-size: 0.7em; }
-  .dev-instructions .dev-additional, .dev-instructions-utilities .dev-additional, .dev-instructions-widgets .dev-additional, .dev-instructions-basic .dev-additional, .dev-instructions-components .dev-additional, .dev-instructions-start .dev-additional {
+  .dev-instructions .dev-additional, .dev-instructions-utilities .dev-additional, .dev-instructions-widgets .dev-additional, .dev-instructions-basic .dev-additional, .dev-instructions-components .dev-additional, .dev-instructions-start .dev-additional, .dev-instructions-index .dev-additional {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -93,11 +88,11 @@ pre.prettyprint {
     text-align: center;
     font-size: 0.75em;
     font-weight: 100; }
-  .dev-instructions > .dev-instructions-holder, .dev-instructions-utilities > .dev-instructions-holder, .dev-instructions-widgets > .dev-instructions-holder, .dev-instructions-basic > .dev-instructions-holder, .dev-instructions-components > .dev-instructions-holder, .dev-instructions-start > .dev-instructions-holder {
+  .dev-instructions > .dev-instructions-holder, .dev-instructions-utilities > .dev-instructions-holder, .dev-instructions-widgets > .dev-instructions-holder, .dev-instructions-basic > .dev-instructions-holder, .dev-instructions-components > .dev-instructions-holder, .dev-instructions-start > .dev-instructions-holder, .dev-instructions-index > .dev-instructions-holder {
     display: table-cell;
     width: 100%;
     vertical-align: middle; }
-  .dev-instructions:before, .dev-instructions-utilities:before, .dev-instructions-widgets:before, .dev-instructions-basic:before, .dev-instructions-components:before, .dev-instructions-start:before {
+  .dev-instructions:before, .dev-instructions-utilities:before, .dev-instructions-widgets:before, .dev-instructions-basic:before, .dev-instructions-components:before, .dev-instructions-start:before, .dev-instructions-index:before {
     content: " ";
     top: 0;
     left: 0;
@@ -106,30 +101,72 @@ pre.prettyprint {
     background-image: url("/img/mainmenu.png");
     position: absolute;
     z-index: 0; }
-  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster, .dev-instructions-components .dev-font-lobster, .dev-instructions-start .dev-font-lobster {
+  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster, .dev-instructions-components .dev-font-lobster, .dev-instructions-start .dev-font-lobster, .dev-instructions-index .dev-font-lobster {
     font-family: "Lobster", cursive; }
-  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway, .dev-instructions-components .dev-font-raleway, .dev-instructions-start .dev-font-raleway {
+  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway, .dev-instructions-components .dev-font-raleway, .dev-instructions-start .dev-font-raleway, .dev-instructions-index .dev-font-raleway {
     font-family: "Raleway", sans-serif; }
 
 .dev-instructions-widgets {
+  color: white;
   background-image: -webkit-linear-gradient( top , #187da9 0%, #2da7ab 100%);
   background-image: linear-gradient(to bottom, #187da9 0%, #2da7ab 100%); }
+  .dev-instructions-widgets .-btn-bordered {
+    color: white; }
+    .dev-instructions-widgets .-btn-bordered:hover, .dev-instructions-widgets .-btn-bordered:active {
+      color: black; }
 
 .dev-instructions-utilities {
+  color: white;
   background-image: -webkit-linear-gradient( top , #8f0e0a 0%, #d26117 100%);
   background-image: linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%); }
+  .dev-instructions-utilities .-btn-bordered {
+    color: white; }
+    .dev-instructions-utilities .-btn-bordered:hover, .dev-instructions-utilities .-btn-bordered:active {
+      color: black; }
 
 .dev-instructions-basic {
+  color: white;
   background-image: -webkit-linear-gradient( top , #4b358c 0%, #b30c83 100%);
   background-image: linear-gradient(to bottom, #4b358c 0%, #b30c83 100%); }
+  .dev-instructions-basic .-btn-bordered {
+    color: white; }
+    .dev-instructions-basic .-btn-bordered:hover, .dev-instructions-basic .-btn-bordered:active {
+      color: black; }
 
 .dev-instructions-components {
+  color: white;
   background-image: -webkit-linear-gradient( top , #29b600 0%, #9fbc00 100%);
   background-image: linear-gradient(to bottom, #29b600 0%, #9fbc00 100%); }
+  .dev-instructions-components .-btn-bordered {
+    color: white; }
+    .dev-instructions-components .-btn-bordered:hover, .dev-instructions-components .-btn-bordered:active {
+      color: black; }
 
 .dev-instructions-start {
+  color: white;
   background-image: -webkit-linear-gradient( top , #252525 0%, #585858 100%);
   background-image: linear-gradient(to bottom, #252525 0%, #585858 100%); }
+  .dev-instructions-start .-btn-bordered {
+    color: white; }
+    .dev-instructions-start .-btn-bordered:hover, .dev-instructions-start .-btn-bordered:active {
+      color: black; }
+
+.dev-instructions-index:before {
+  display: none; }
+.dev-instructions-index .dev-instructions-holder {
+  position: relative;
+  overflow: hidden; }
+.dev-instructions-index .dev-video-block {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%; }
+.dev-instructions-index .-btn-bordered {
+  color: black; }
+  .dev-instructions-index .-btn-bordered:hover, .dev-instructions-index .-btn-bordered:active {
+    color: black; }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;
