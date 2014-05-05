@@ -106,14 +106,16 @@ pre.prettyprint {
     background-image: url("/img/mainmenu.png");
     position: absolute;
     z-index: 0; }
-  .dev-instructions .dev-font-lobster, .dev-instructions-utilities .dev-font-lobster, .dev-instructions-widgets .dev-font-lobster, .dev-instructions-basic .dev-font-lobster, .dev-instructions-components .dev-font-lobster, .dev-instructions-start .dev-font-lobster, .dev-instructions-index .dev-font-lobster {
-    font-family: "Lobster", cursive; }
-  .dev-instructions .dev-font-raleway, .dev-instructions-utilities .dev-font-raleway, .dev-instructions-widgets .dev-font-raleway, .dev-instructions-basic .dev-font-raleway, .dev-instructions-components .dev-font-raleway, .dev-instructions-start .dev-font-raleway, .dev-instructions-index .dev-font-raleway {
-    font-family: "Raleway", sans-serif; }
+
+.dev-font-lobster {
+  font-family: "Lobster", cursive; }
+
+.dev-font-raleway {
+  font-family: "Raleway", sans-serif; }
 
 .dev-instructions-widgets {
   color: white;
-  background-image: -webkit-linear-gradient( top top, #187da9 0%, #2da7ab 100%);
+  background-image: -webkit-linear-gradient( top , #187da9 0%, #2da7ab 100%);
   background-image: linear-gradient(to bottom, #187da9 0%, #2da7ab 100%); }
   .dev-instructions-widgets .-btn-bordered {
     color: white; }
@@ -122,7 +124,7 @@ pre.prettyprint {
 
 .dev-instructions-utilities {
   color: white;
-  background-image: -webkit-linear-gradient( top top, #8f0e0a 0%, #d26117 100%);
+  background-image: -webkit-linear-gradient( top , #8f0e0a 0%, #d26117 100%);
   background-image: linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%); }
   .dev-instructions-utilities .-btn-bordered {
     color: white; }
@@ -131,7 +133,7 @@ pre.prettyprint {
 
 .dev-instructions-basic {
   color: white;
-  background-image: -webkit-linear-gradient( top top, #4b358c 0%, #b30c83 100%);
+  background-image: -webkit-linear-gradient( top , #4b358c 0%, #b30c83 100%);
   background-image: linear-gradient(to bottom, #4b358c 0%, #b30c83 100%); }
   .dev-instructions-basic .-btn-bordered {
     color: white; }
@@ -140,7 +142,7 @@ pre.prettyprint {
 
 .dev-instructions-components {
   color: white;
-  background-image: -webkit-linear-gradient( top top, #29b600 0%, #9fbc00 100%);
+  background-image: -webkit-linear-gradient( top , #29b600 0%, #9fbc00 100%);
   background-image: linear-gradient(to bottom, #29b600 0%, #9fbc00 100%); }
   .dev-instructions-components .-btn-bordered {
     color: white; }
@@ -149,7 +151,7 @@ pre.prettyprint {
 
 .dev-instructions-start {
   color: white;
-  background-image: -webkit-linear-gradient( top top, #252525 0%, #585858 100%);
+  background-image: -webkit-linear-gradient( top , #252525 0%, #585858 100%);
   background-image: linear-gradient(to bottom, #252525 0%, #585858 100%); }
   .dev-instructions-start .-btn-bordered {
     color: white; }
@@ -168,10 +170,21 @@ pre.prettyprint {
   left: 50%;
   height: 400px;
   margin-left: -355px; }
+  .dev-instructions-index .dev-video-block video {
+    background-color: white !important; }
 .dev-instructions-index .-btn-bordered {
   color: black; }
   .dev-instructions-index .-btn-bordered:hover, .dev-instructions-index .-btn-bordered:active {
     color: black; }
+
+.dev-series {
+  min-height: 400px;
+  padding: 200px 0; }
+  .dev-series h2 {
+    text-align: center;
+    margin-bottom: 30px; }
+  .dev-series .dev-series-body {
+    text-align: center; }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;

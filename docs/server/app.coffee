@@ -12,6 +12,7 @@ app.configure ->
 	app.engine 'html', require('hogan-express')
 	app.use errorHandler
 	app.locals.kit = JSON.stringify require('../../package.json')
+	app.locals.mkit = JSON.stringify require('../../mkit.json')
 
 
 
