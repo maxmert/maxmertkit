@@ -2,6 +2,12 @@
 @import "../../js/bower/neat/app/assets/stylesheets/neat"
 
 
+.dev_center_
+	text-align: center
+
+a[href]
+	color: #3498de
+
 
 .example-block
 	margin: 15px 0 35px
@@ -15,9 +21,14 @@ pre.prettyprint
 	border: 1px solid #cccccc
 
 .dev-logo
-	max-height: 18px
+	max-height: 30px
 	display: inline-block
-	vertical-align: top
+	vertical-align: middle
+	margin-top: -9px
+
+	img
+		@include size(30px)
+		margin-top: 5px
 
 .dev-sidebar-menu
 	margin-top: 50px
@@ -78,13 +89,12 @@ pre.prettyprint
 	li
 		margin-right: 2px !important
 
-.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start, .dev-instructions-index
 	min-height: 400px
 	height: 400px
 	width: 100%
 	position: relative
 	display: table
-	color: #fff
 
 	.dev-version
 		text-align: center
@@ -119,33 +129,123 @@ pre.prettyprint
 
 	// h1, h2, h3, h4, h5, h6
 
-	.dev-font-lobster
-		font-family: 'Lobster', cursive
+.dev-font-lobster
+	font-family: 'Lobster', cursive
 
-	.dev-font-raleway
-		font-family: 'Raleway', sans-serif
+.dev-font-raleway
+	font-family: 'Raleway', sans-serif
 
 .dev-instructions-widgets
-	@include background-image(linear-gradient(to bottom, #187da9 0%, #2da7ab 100%))
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #187da9 0%, #2da7ab 100%))
 
 .dev-instructions-utilities
-	@include background-image(linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%))
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #8f0e0a 0%, #d26117 100%))
 
 .dev-instructions-basic
-	@include background-image(linear-gradient(to bottom, #4b358c 0%, #b30c83 100%))
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #4b358c 0%, #b30c83 100%))
 
 .dev-instructions-components
-	@include background-image(linear-gradient(to bottom, #29b600 0%, #9fbc00 100%))
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #29b600 0%, #9fbc00 100%))
 
 .dev-instructions-start
-	@include background-image(linear-gradient(to bottom, #252525 0%, #585858 100%))
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
+	
+.dev-instructions-index
+	min-height: 600px
+	height: 600px
+	&:before
+		display: none
+	.dev-instructions-holder
+		position: relative
+		overflow: hidden
+	.dev-version
+		opacity: 1
+	.dev-video-block
+		position: absolute
+		z-index: -1
+		top: 0
+		left: 50%
+		height: 600px
+		// width: 711px
+		margin-left: -550px
+
+		video
+			background-color: #fff!important
+	.-btn-bordered
+		color: #000
+		&:hover, &:active
+			color: #000
 
 
-#series
-padding: 100px 0
-	.dev-series
+.dev-series
+	min-height: 400px
+	padding: 200px 0
+
+	h2
+		text-align: center
+		margin-bottom: 30px
+
+	.dev-series-body
 		text-align: center
 
+	.dev-plus
+		font-size: 48px
+		color: #eeeeee
+		text-align: center
+		padding: 10px 0
+	
+
+	.dev-card-holder
+		@include perspective(500px)
+		@include perspective-origin(50% 50%)
+
+	.dev-card
+		text-align: center
+		@include background-image(linear-gradient( to bottom, #eeeeee 0%, #fbfbfb 100%))
+		border-radius: 3px
+		padding: 30px 0
+		font-size: 20px
+		
+		&:before, &:after
+			bottom: 12px
+			width: 50%
+			height: 55%
+			max-width: 300px
+			max-height: 100px
+
+			box-shadow: 0 15px 10px rgba(black, .7)
+
+		&:before
+			left: 10px
+			@include rotate(-3deg)
+		&:after
+			right: 10px
+			@include rotate(3deg)
 
 .example-block
 	.example, .view
@@ -178,7 +278,6 @@ padding: 100px 0
 		border-top: 1px solid #ccc
 		background-color: rgba(0,0,0,.03)
 		margin-bottom: 0
-		overflow: hidden
 
 		pre
 			padding: 0
@@ -223,3 +322,24 @@ padding: 100px 0
 	.popups-block
 		@include perspective(1300px)
 		@include perspective-origin(50% 50%)
+
+
+footer
+	border-top: 1px solid #eee
+	color: #777
+	font-size: 90%
+	padding: 50px 0
+
+	.dev-links
+		list-style: none
+		display: inline-block
+		margin: 0
+
+		li
+			display: inline-block
+			&:before
+				content: "\0020\2022\0020"
+				margin: 0 7px
+
+			&:first-child:before
+				display: none

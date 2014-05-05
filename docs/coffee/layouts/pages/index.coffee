@@ -62,7 +62,7 @@ exports.module = Marionette.Layout.extend
     startTimer: ->
         @timer = setInterval =>
             @seriesModel.next()
-        , 1000
+        , 2000
 
     seriesReset: ->
         active = @seriesModel.get 'active'

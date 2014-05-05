@@ -176,19 +176,23 @@ pre.prettyprint
 	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
 	
 .dev-instructions-index
+	min-height: 600px
+	height: 600px
 	&:before
 		display: none
 	.dev-instructions-holder
 		position: relative
 		overflow: hidden
+	.dev-version
+		opacity: 1
 	.dev-video-block
 		position: absolute
 		z-index: -1
 		top: 0
 		left: 50%
-		height: 400px
+		height: 600px
 		// width: 711px
-		margin-left: -355px
+		margin-left: -550px
 
 		video
 			background-color: #fff!important
@@ -199,8 +203,9 @@ pre.prettyprint
 
 
 .dev-series
-	min-height: 400px
-	padding: 200px 0
+	// min-height: 400px
+	padding: 50px 0 300px
+	position: relative
 
 	h2
 		text-align: center
@@ -208,8 +213,35 @@ pre.prettyprint
 
 	.dev-series-body
 		text-align: center
-		// & > *
-		// 	@include transition (color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear)
+		position: absolute
+		left: 0
+		width: 100%
+		top: 250px
+
+
+	.dev-plus
+		font-size: 48px
+		color: #eeeeee
+		text-align: center
+		padding: 10px 0
+		margin-top: 40px
+	
+
+	.dev-card-holder
+		@include perspective(500px)
+		@include perspective-origin(50% 50%)
+		h4
+			color: #ccc
+
+	.dev-card
+		text-align: center
+		position: relative
+		// @include background-image(linear-gradient( to bottom, #f0f0f0 0%, #fbfbfb 100%))
+		border-radius: 3px
+		border: 2px solid #f0f0f0
+		padding: 30px 0
+		font-size: 20px
+		// font-family: "Lobster"
 
 .example-block
 	.example, .view
