@@ -45,6 +45,8 @@ pre.prettyprint {
 
 .dev-main-content {
   margin: 0px auto 30px; }
+  .dev-main-content section + section {
+    margin-top: 35px; }
   .dev-main-content h1 {
     margin-top: 50px; }
 
@@ -168,6 +170,8 @@ pre.prettyprint {
     overflow: hidden; }
   .dev-instructions-index .dev-version {
     opacity: 1; }
+  .dev-instructions-index .dev-logobig {
+    margin: 0; }
   .dev-instructions-index .dev-video-block {
     position: absolute;
     z-index: -1;
@@ -182,6 +186,16 @@ pre.prettyprint {
     .dev-instructions-index .-btn-bordered:hover, .dev-instructions-index .-btn-bordered:active {
       color: black; }
 
+.dev-instructions-description {
+  font-weight: 100;
+  opacity: 0.6; }
+
+.dev-description {
+  margin-top: 50px;
+  font-weight: 100; }
+  .dev-description h1, .dev-description h2, .dev-description h3, .dev-description h4, .dev-description h5, .dev-description h6 {
+    font-weight: 100; }
+
 .dev-series {
   padding: 50px 0 300px;
   position: relative; }
@@ -194,6 +208,9 @@ pre.prettyprint {
     left: 0;
     width: 100%;
     top: 250px; }
+    .dev-series .dev-series-body > * {
+      position: relative;
+      display: inline-block; }
   .dev-series .dev-plus {
     font-size: 48px;
     color: #eeeeee;
@@ -215,7 +232,10 @@ pre.prettyprint {
     border-radius: 3px;
     border: 2px solid #f0f0f0;
     padding: 30px 0;
-    font-size: 20px; }
+    font-size: 20px;
+    cursor: pointer; }
+    .dev-series .dev-card:hover {
+      border-color: #3598db; }
 
 .example-block .example, .example-block .view {
   padding: 15px !important;
@@ -267,7 +287,26 @@ pre.prettyprint {
 
 @media screen and (max-width: 768px) {
   .example-block .example {
-    display: none !important; } }
+    display: none !important; }
+
+  .dev-instructions-index {
+    min-height: inherit;
+    height: auto; }
+    .dev-instructions-index .dev-video-block {
+      display: none; }
+    .dev-instructions-index .dev-logobig {
+      display: none; }
+    .dev-instructions-index .dev-additional {
+      position: relative;
+      margin-top: 40px; }
+
+  .dev-series {
+    padding: 0; }
+    .dev-series .dev-series-body {
+      position: relative;
+      top: 0; }
+    .dev-series .dev-card {
+      font-size: 14px; } }
 .row-color {
   background-color: #d5e7f1;
   margin-bottom: 1px;
@@ -289,6 +328,8 @@ footer {
   color: #777777;
   font-size: 90%;
   padding: 50px 0; }
+  footer .-btn-bordered {
+    margin-bottom: 4px; }
   footer .dev-links {
     list-style: none;
     display: inline-block;

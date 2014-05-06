@@ -10,6 +10,7 @@
 #     ">": "&gt;"
 
 exports.module = Marionette.ItemView.extend
+    tagName: 'section'
     template: $.app.templates.common.partials
 
 

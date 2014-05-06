@@ -1,10 +1,10 @@
-<a href="#{{path}}" data-bypass>{{name}}</a>
+<a href="#{{path}}" data-bypass>{{#menu}}{{menu}}{{/menu}}{{^menu}}{{name}}{{/menu}}</a>
 {{#existIncludes}}
     <ul class="-list-group">
         {{#include}}
             {{^invisible}}
                 <li>
-                    <a data-bypass href="#{{path}}">{{name}}</a>
+                    <a data-bypass href="#{{path}}">{{#menu}}{{menu}}{{/menu}}{{^menu}}{{name}}{{/menu}}</a>
                 </li>
             {{/invisible}}
         {{/include}}

@@ -14666,10 +14666,6 @@ table, .-table {
       color: rgba(255, 255, 255, 0.65); }
     .-label.-dark-._unstyled_, .-dark-._unstyled_.-badge {
       color: black; }
-  .-label._tiny, ._tiny .-label, ._tiny .-badge, ._tiny.-badge {
-    font-size: 2px; }
-  .-label._small, ._small .-label, ._small .-badge, ._small.-badge {
-    font-size: 5px; }
   .-label._minor, ._minor .-label, ._minor .-badge, ._minor.-badge {
     font-size: 8px; }
   .-label._normal, ._normal .-label, ._normal .-badge, ._normal.-badge {
@@ -14747,10 +14743,6 @@ table, .-table {
       color: rgba(255, 255, 255, 0.65); }
     .-badge.-dark-._unstyled_ {
       color: black; }
-  .-badge._tiny, ._tiny .-badge {
-    font-size: 2px; }
-  .-badge._small, ._small .-badge {
-    font-size: 5px; }
   .-badge._minor, ._minor .-badge {
     font-size: 8px; }
   .-badge._normal, ._normal .-badge {
@@ -15724,6 +15716,21 @@ a.-btn, a.-btn-bordered {
       color: rgba(255, 255, 255, 0.65); }
     .-btn-bordered.-dark-._unstyled_ {
       color: black; }
+  .-btn-bordered.-kit- {
+    background-color: transparent;
+    border-color: #2e84a9;
+    color: #2e84a9; }
+    .-btn-bordered.-kit-:hover, .-btn-bordered.-kit-._hovered_ {
+      background-color: #2e84a9;
+      color: white; }
+    .-btn-bordered.-kit-:active, .-btn-bordered.-kit-._active_ {
+      background-color: #266e8d;
+      border-color: #266e8d;
+      color: white; }
+    .-btn-bordered.-kit-._disabled_, .-btn-bordered.-kit-[disabled], fieldset[disabled] .-btn-bordered.-kit- {
+      color: rgba(255, 255, 255, 0.65); }
+    .-btn-bordered.-kit-._unstyled_ {
+      color: #2e84a9; }
   .-btn-bordered._small {
     border-width: 1.5px;
     font-size: 7px; }
@@ -17142,8 +17149,6 @@ a.-btn, a.-btn-bordered {
     color: rgba(255, 255, 255, 0.65); }
   .-progress.-dark-._unstyled_ .-bar {
     color: black; }
-  .-progress._tiny .-bar {
-    font-size: 2px; }
   .-progress._small .-bar {
     font-size: 5px; }
   .-progress._minor .-bar {
@@ -17338,8 +17343,6 @@ a.-btn, a.-btn-bordered {
       color: rgba(255, 255, 255, 0.65); }
     .-alert.-dark-._unstyled_ {
       color: black; }
-  .-alert._tiny {
-    font-size: 3px; }
   .-alert._small {
     font-size: 7px; }
   .-alert._minor {

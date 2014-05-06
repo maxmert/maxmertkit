@@ -2,13 +2,13 @@
 	"alerts": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"badges": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"buttons": {
@@ -17,7 +17,7 @@
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"bordered": {
-			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ],
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
@@ -59,7 +59,7 @@
 	"labels": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"modal": {
@@ -98,7 +98,7 @@
 	"progress": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"push": {
@@ -113,15 +113,15 @@
 	"spinners": {
 		"square": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
+			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
 		},
 		"fb": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"waves": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"tables": {
@@ -133,7 +133,7 @@
 	"thumbnails": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "normal" ]
 		}
 	},
 	"typography": {

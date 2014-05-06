@@ -43,6 +43,16 @@ exports.start = [
 				name: 'build'
 				path: 'howtoBuild'
 			}
+			{
+				name: 'themeManage'
+				menu: 'add or edit themes'
+				path: 'howtoThemeManage'
+			}
+			{
+				name: 'sizeManage'
+				menu: 'add or edit sizes'
+				path: 'howtoSizeManage'
+			}
 		]
 	}
 ]

@@ -31,12 +31,14 @@ exports.module = Marionette.CollectionView.extend
 
                 for menuItem in key.include
                     result.push
+                        menu: menuItem.menu
                         name: menuItem.name
                         path: menuItem.path
                         value: inner[ menuItem.name ]
 
             else
                 result.push
+                    menu: key.menu
                     name: key.name
                     path: key.path
                     value: object[ key.name ]

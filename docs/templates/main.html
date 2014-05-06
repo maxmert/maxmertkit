@@ -3,7 +3,7 @@
 		<div class="-row">
 
 			<div class="-col1 _hidden-tablets_ _hidden-phones_">
-				<div class="-header"><a href="/" class="dev-logo"><img src="/img/logo.png"></a></div>
+				<div class="-header"><a href="/" class="dev-logo"><img itemprop="image" src="/img/logo.png"></a></div>
 			</div>
 			<nav id="mainmenu" class="-col6 _hidden-tablets_ _hidden-phones_"></nav>
 
@@ -35,8 +35,15 @@
 	<div class="-container">
 		<div class="-row">
 			<div class="-col6 -offset3">
-				<p class="_center_">Made for all good people by <a href="mailto:{{author.email}}">{{author.name}}</a>.</p>
-				<p class="_center_">Code licensed under <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+				<p class="_center_"><span itemprop="name">Maxmertkit</span> made for all good people by <a href="mailto:{{author.email}}"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{author.name}}</span></span></a>.</p>
+				<p class="_center_">
+					<a class="-btn-bordered _minor -info-" href="http://twitter.com/vmaxmert" data-bypass><i class="fa fa-twitter"></i> twitter</a>
+					<a class="-btn-bordered _minor -primary-" href="http://facebook.com/vetrenko.maxim" data-bypass><i class="fa fa-facebook"></i> facebook</a>
+					<a class="-btn-bordered _minor -dark-" href="http://github.com/maxmert" data-bypass><i class="fa fa-github"></i> github</a>
+					<a class="-btn-bordered _minor -error-" href="https://plus.google.com/+MaximVetrenko?rel=author" data-bypass><i class="fa fa-google"></i> google+</a>
+					<a class="-btn-bordered _minor -kit-" href="mailto:{{author.email}}" data-bypass><i class="fa fa-envelope-o"></i> email</a>
+				</p>
+				<p class="_center_">Code licensed under <a rel="license" href="https://github.com/maxmert/maxmertkit/blob/master/LICENSE" target="_blank" data-bypass>MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" data-bypass>CC BY 3.0</a>.</p>
 				<div class="dev_center_">
 					<ul class="dev-links">
 						<li>

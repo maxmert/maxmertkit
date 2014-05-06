@@ -50,6 +50,9 @@ pre.prettyprint
 .dev-main-content
 	margin: 0px auto 30px
 
+	section + section
+		margin-top: 35px
+
 	h1
 		margin-top: 50px
 
@@ -185,6 +188,8 @@ pre.prettyprint
 		overflow: hidden
 	.dev-version
 		opacity: 1
+	.dev-logobig
+		margin: 0
 	.dev-video-block
 		position: absolute
 		z-index: -1
@@ -201,6 +206,15 @@ pre.prettyprint
 		&:hover, &:active
 			color: #000
 
+.dev-instructions-description
+	font-weight: 100
+	opacity: .6
+
+.dev-description
+	margin-top: 50px
+	font-weight: 100
+	h1, h2, h3, h4, h5, h6
+		font-weight: 100
 
 .dev-series
 	// min-height: 400px
@@ -217,6 +231,10 @@ pre.prettyprint
 		left: 0
 		width: 100%
 		top: 250px
+
+		& > *
+			position: relative
+			display: inline-block
 
 
 	.dev-plus
@@ -241,6 +259,10 @@ pre.prettyprint
 		border: 2px solid #f0f0f0
 		padding: 30px 0
 		font-size: 20px
+		cursor: pointer
+
+		&:hover
+			border-color: #3598db
 		// font-family: "Lobster"
 
 .example-block
@@ -299,10 +321,30 @@ pre.prettyprint
 	left: 0
 	width: 100%
 
+
 @include media(new-breakpoint(max-width 768px 6))
 	.example-block
 		.example
 			display: none !important
+
+	.dev-instructions-index
+		min-height: inherit
+		height: auto
+		.dev-video-block
+			display: none
+		.dev-logobig
+			display: none
+		.dev-additional
+			position: relative
+			margin-top: 40px
+
+	.dev-series
+		padding: 0
+		.dev-series-body
+			position: relative
+			top: 0
+		.dev-card
+			font-size: 14px
 
 
 .row-color
@@ -325,6 +367,9 @@ footer
 	color: #777
 	font-size: 90%
 	padding: 50px 0
+
+	.-btn-bordered
+		margin-bottom: 4px
 
 	.dev-links
 		list-style: none
