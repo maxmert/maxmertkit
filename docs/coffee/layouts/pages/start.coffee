@@ -30,4 +30,8 @@ exports.module = Marionette.Layout.extend
 
         setTimeout =>
             @$el.find('.dev-version-spinner').replaceWith kit.version
+            @$el.find('.dev-version-href').each ->
+                href = $(@).attr 'href'
+                $(@).attr 'href', href.replace(/\{\{version\}\}/g, kit.version)
+
         ,1

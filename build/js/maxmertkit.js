@@ -174,7 +174,7 @@
         if (style == null) {
           return $(parent);
         }
-        if (/(relative)/.test(style['position']) || /(relative)/.test(parent.style['position'])) {
+        if (/(relative)/.test(style['position']) || ((parent != null) && (parent.style != null) && /(relative)/.test(parent.style['position']))) {
           return $(parent);
         }
       }
@@ -328,13 +328,17 @@
       this._id = _id++;
       _options = {
         spy: this.$el.data('spy') || 'affix',
-        offset: 5
+        offset: 5,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
       };
       this.options = this._merge(_options, this.options);
-      this.beforeopen = this.options.beforeopen;
-      this.onopen = this.options.onopen;
-      this.beforeclose = this.options.beforeclose;
-      this.onclose = this.options.onclose;
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
       this.start();
       Affix.__super__.constructor.call(this, this.$btn, this.options);
     }
@@ -419,9 +423,9 @@
 
   _beforestart = function() {
     var deferred;
-    if (this.beforeopen != null) {
+    if (this.beforeactive != null) {
       try {
-        deferred = this.beforeopen.call(this.$el);
+        deferred = this.beforeactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _start.call(_this);
@@ -444,18 +448,18 @@
     _position.call(this);
     this.$el.addClass('_active_');
     this.$el.trigger("started." + this._name);
-    if (this.onopen != null) {
+    if (this.onactive != null) {
       try {
-        return this.onopen.call(this.$el);
+        return this.onactive.call(this.$el);
       } catch (_error) {}
     }
   };
 
   _beforestop = function() {
     var deferred;
-    if (this.beforeclose != null) {
+    if (this.beforeunactive != null) {
       try {
-        deferred = this.beforeclose.call(this.$el);
+        deferred = this.beforeunactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _stop.call(_this);
@@ -477,9 +481,9 @@
     this.$el.removeClass('_active_');
     $(document).off("scroll." + this._name + "." + this._id);
     this.$el.trigger("stopped." + this._name);
-    if (this.onstop != null) {
+    if (this.onunactive != null) {
       try {
-        return this.onstop.call(this.$el);
+        return this.onunactive.call(this.$el);
       } catch (_error) {}
     }
   };
@@ -702,12 +706,20 @@
           if (typeof options === "string" && options.charAt(0) !== "_") {
             $.data(this, "kit-" + _name)[options];
           } else {
-            console.error("Maxmertkit Button. You passed into the " + _name + " something wrong.");
+            console.error("Maxmertkit Button. You passed into the " + _name + " something wrong.\n" + options);
           }
         }
       }
     });
   };
+
+  $(window).on('load', function() {
+    return $('[data-toggle="button"]').each(function() {
+      var $btn;
+      $btn = $(this);
+      return $btn.button($btn.data());
+    });
+  });
 
 }).call(this);
 
@@ -861,6 +873,7 @@
     setTimeout((function(_this) {
       return function() {
         _this.$el.addClass('_visible_ -start--');
+        _this.$el.find('.-dialog').addClass('_visible_ -start--');
         return _pushStart.call(_this);
       };
     })(this), 1);
@@ -897,10 +910,12 @@
 
   _close = function() {
     this.$el.addClass('-stop--');
+    this.$el.find('.-dialog').addClass('-stop--');
     _pushStop.call(this);
     setTimeout((function(_this) {
       return function() {
         _this.$el.removeClass('_visible_ -start-- -stop--');
+        _this.$el.find('.-dialog').removeClass('_visible_ -start-- -stop--');
         $('body').removeClass('_no-scroll_');
         if (_this.$push != null) {
           $('body').removeClass('_perspective_');
@@ -1273,7 +1288,7 @@
       _options = {
         spy: this.$el.data('spy') || 'scroll',
         target: this.$el.data('target') || 'body',
-        offset: 10,
+        offset: 0,
         elements: 'li a',
         elementsAttr: 'href',
         noMobile: this.$el.data("no-mobile") || true,
@@ -1383,21 +1398,9 @@
     } else {
       target = this.options.target;
     }
-    $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
+    return $(target).on("scroll." + this._name + "." + this._id, (function(_this) {
       return function(event) {
         return _spy.call(_this, event);
-      };
-    })(this));
-    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
-      return function(event) {
-        _this._refreshSizes();
-        if (_this.options.noMobile) {
-          if (_this._windowWidth < 992) {
-            return _this.stop();
-          } else {
-            return _this.start();
-          }
-        }
       };
     })(this));
   };
@@ -1405,9 +1408,9 @@
   _beforestart = function() {
     var deferred;
     this.refresh();
-    if (this.beforeopen != null) {
+    if (this.beforeactive != null) {
       try {
-        deferred = this.beforeopen.call(this.$el);
+        deferred = this.beforeactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _start.call(_this);
@@ -1429,18 +1432,18 @@
     _activate.call(this);
     this.$el.addClass('_active_');
     this.$el.trigger("started." + this._name);
-    if (this.onopen != null) {
+    if (this.onactive != null) {
       try {
-        return this.onopen.call(this.$el);
+        return this.onactive.call(this.$el);
       } catch (_error) {}
     }
   };
 
   _beforestop = function() {
     var deferred;
-    if (this.beforeclose != null) {
+    if (this.beforeunactive != null) {
       try {
-        deferred = this.beforeclose.call(this.$el);
+        deferred = this.beforeunactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _stop.call(_this);
@@ -1467,9 +1470,9 @@
     }
     $(target).off("scroll." + this._name + "." + this._id);
     this.$el.trigger("stopped." + this._name);
-    if (this.onstop != null) {
+    if (this.onunactive != null) {
       try {
-        return this.onstop.call(this.$el);
+        return this.onunactive.call(this.$el);
       } catch (_error) {}
     }
   };

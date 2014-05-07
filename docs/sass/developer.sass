@@ -177,7 +177,7 @@ pre.prettyprint
 		&:hover, &:active
 			color: #000
 	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
-	
+
 .dev-instructions-index
 	min-height: 600px
 	height: 600px
@@ -243,7 +243,7 @@ pre.prettyprint
 		text-align: center
 		padding: 10px 0
 		margin-top: 40px
-	
+
 
 	.dev-card-holder
 		@include perspective(500px)
@@ -264,6 +264,10 @@ pre.prettyprint
 		&:hover
 			border-color: #3598db
 		// font-family: "Lobster"
+
+.dev-changelog
+	section + section
+		padding-top: 10px
 
 .example-block
 	.example, .view

@@ -25,6 +25,15 @@ exports.module = Marionette.AppRouter.extend
         'components': 'components'
         'changelog': 'changelog'
         "*error": "error404"
+    initialize: ->
+        @bind 'all', @_trackPageview
+
+    _trackPageview: ->
+        url = Backbone.history.getFragment()
+        if !/^\//.test(url) then url = '/' + url
+        window._gaq?.push(['_trackPageview', url])
+        if window['GoogleAnalyticsObject']?
+            ga('send', 'pageview', url)
 
     route: (route, name, callback) ->
     	route = @_routeToRegExp(route)	unless _.isRegExp(route)

@@ -1,3 +1,4 @@
+packageJson = require('./package.json')
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 coffee = require 'gulp-coffee'
@@ -27,6 +28,7 @@ argv = require('yargs').argv
 gulpif = require 'gulp-if'
 moment = require 'moment'
 mkit = require 'gulp-mkit'
+zip = require 'gulp-zip'
 
 
 
@@ -57,6 +59,7 @@ path =
 	dev: "development"
 
 	build:
+		root: "build"
 		js: "build/js"
 		css: "build/css"
 
@@ -320,7 +323,7 @@ gulp.task( 'default', [ 'kitVendor', 'kitJson', 'kitCoffee', 'kitSass', 		'docsT
 # ====================== BUILD TASKS
 
 gulp.task 'clean', ->
-	gulp.src( ["#{path.build.js}", "#{path.build.css}" ], read: no)
+	gulp.src( ["#{path.build.root}" ], read: no)
 		.pipe( clean() )
 
 
@@ -365,3 +368,9 @@ gulp.task 'build', [ 'test' ], ->
 		gulp.src( "./package.json" )
 			.pipe( jeditor( buildDate: moment().format('MMMM Do YYYY, h:mm:ss a') ) )
 			.pipe( gulp.dest "." )
+
+
+gulp.task 'dist',  ->
+	gulp.src("#{path.build.root}/**/*")
+        .pipe(zip("maxmertkit-v#{packageJson.version}-build.zip"))
+        .pipe(gulp.dest('build'))
