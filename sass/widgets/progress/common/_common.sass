@@ -1,0 +1,167 @@
+@import "sizes"
+@import "themes"
+
+@mixin progress-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	.#{$progress-bar-class}
+		@include progress-bar-theme-setter( $theme )
+
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		.#{$progress-bar-class}
+			color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		.#{$progress-bar-class}
+			color: $color
+
+@mixin progress-bar-theme-setter( $theme )
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 5%)
+		border-color: lighten($border-color, 15%)
+		color: $color
+	@else
+		background-color: $background-color
+		border-color: $background-color
+		color: $white-color
+
+@mixin progress-size-setter( $size )
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	.#{$progress-bar-class}
+		font-size: floor($multiplier * $base-font-size * 0.8)
+
+// @mixin progress-theme-bar-setter($size)
+// 	@if nth($themes, $i) == "-default-"
+// 		background-color: nth($themes-background-light-colors, $i)
+// 		border-color: nth($themes-background-light-colors, $i)
+// 		color: nth($themes-colors, $i)
+// 	@else
+// 		background-color: nth($themes-background-colors, $i)
+// 		border-color: nth($themes-background-colors, $i)
+// 		color: nth($themes-white-colors, $i)
+//
+//
+// 	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+// 		color: rgba(nth($themes-white-colors, $i), .65)
+//
+// 	&.#{$mod-unstyled}
+// 		color: nth($themes-colors, $i)
+
+
+@include exports("progress/common")
+
+	.#{$progress-class}
+		display: block
+		border-radius: $progress-border-radius
+		box-shadow: inset 0 0 40px rgba(#000,.1)
+		padding: $progress-padding
+		background-color: $progress-background
+		position: relative
+
+		// @include clearfix
+
+		.#{$progress-bar-class}
+			display: inline-block
+			font-weight: $progress-font-weight
+			text-align: center
+			vertical-align: middle
+			border-width: $progress-border-width
+			border-style: $progress-border-style
+			border-radius: $progress-border-radius
+			border-color: transparent
+			outline: none
+			position: relative
+			box-shadow: inset 0 1px 0 rgba(#000,.1), inset 0 2px 0 rgba(#fff,.2), inset 0 -1px 0 rgba(#000,.1), inset 0 -2px 0 rgba(#fff,.2)
+
+			@include text-overflow
+
+			// Set default size
+			padding: $progress-bar-padding-vertical $progress-bar-padding-horizontal
+			font-size: $base-font-size
+			line-height: $base-line-height
+
+			&:first-child:not(:last-child)
+				border-radius: $progress-border-radius 0 0 $progress-border-radius
+
+			&:last-child:not(:first-child)
+				border-radius: 0 $progress-border-radius $progress-border-radius 0
+
+			&:not(:last-child):not(:first-child)
+				border-radius: 0
+
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include progress-theme-setter($thm)
+			&.-#{$themeName}-
+				@include progress-theme-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include progress-size-setter($sz)
+			&._#{$sizeName}
+				@include progress-size-setter($sz)
+
+		// @each $theme in $themes
+		// 	$i: index($themes, $theme)
+		//
+		// 	@if $theme == "-default-"
+		// 		@include progress-theme-setter($i)
+		//
+		// 	&.#{$theme}
+		// 		@include progress-theme-setter($i)
+		//
+		// @each $size in $base-sizes-names
+		// 	$i: index($base-sizes-names, $size)
+		// 	@if #{$size} == "_normal"
+		// 		.#{$progress-bar-class}
+		// 			font-size: floor(nth($base-sizes-values, $i) * $base-font-size / 2 * 0.75)
+		//
+		// 	&.#{$size}
+		// 		.#{$progress-bar-class}
+		// 			font-size: floor(nth($base-sizes-values, $i) * $base-font-size * 0.75)
+
+
+		.#{$progress-bar-class}
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include progress-bar-theme-setter($thm)
+				&.-#{$themeName}-
+					@include progress-bar-theme-setter($thm)
+			// @each $theme in $themes
+			// 	$i: index($themes, $theme)
+			//
+			// 	@if $theme == "-default-"
+			// 		@include progress-theme-bar-setter($i)
+			//
+			// 	&.#{$theme}
+			// 		@include progress-theme-bar-setter($i)
+
+
+
+	// To nest sizes from parents elements
+	// @each $size in $base-sizes-names
+	// 	$i: index($base-sizes-names, $size)
+
+	// 	.#{$size}
+	// 		.#{$progress-class}
+	// 			@extend .#{$progress-class}.#{$size}

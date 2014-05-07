@@ -1,0 +1,130 @@
+@import "sizes"
+@import "themes"
+
+@mixin buttons-theme-button-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+
+	@if $name == default
+		background-color: lighten($background-color, 10%)
+		border-color: darken($background-color, 3%)
+		color: $color
+	@else
+		background-color: $background-color
+		border-color: darken($background-color, 7%)
+		color: $white-color
+
+
+	&:hover, &.#{$mod-hovered}
+		@if $name == default
+			background-color: lighten($background-color, 13%)
+		@else
+			background-color: lighten($background-color, 5%)
+
+	&:active, &.#{$mod-active}
+		@if $name == default
+			background-color: lighten($background-color, 3%)
+			border-color: darken($background-color, 3%)
+		@else
+			background-color: darken($background-color, 13%)
+			border-color: darken($background-color, 13%)
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		color: $color
+
+
+
+@mixin button-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
+
+
+
+
+@include exports("buttons/basic")
+
+	.#{$button-class}
+
+		display: inline-block
+		margin: 0 //For input.btn
+		font-weight: $button-font-weight
+		text-align: center
+		text-decoration: none
+		vertical-align: middle
+		cursor: pointer
+		background-image: none // Took from bootstrap, Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+		border-width: $button-border-width
+		border-style: solid
+		border-color: transparent
+		white-space: nowrap
+		outline: none
+		position: relative
+
+		// Set default size
+		padding: $base-padding-vertical $base-padding-horizontal
+		font-size: $base-font-size
+		line-height: $base-line-height
+		border-radius: $button-border-radius
+
+		@include user-select(none)
+
+
+
+		&.#{$mod-vertical}
+			display: block
+			width: 100%
+
+			& + .#{$button-class}
+				margin-top: 5px
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include buttons-theme-button-setter($thm)
+			&.-#{$themeName}-
+				@include buttons-theme-button-setter($thm)
+
+
+
+		&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+			cursor: not-allowed
+			pointer-events: none // Future-proof disabling of clicks
+			opacity: .55
+			box-shadow: none
+			// opacity: 1 // iOS fix for unreadable disabled content
+
+		&.#{$mod-unstyled}
+			background-color: transparent !important
+			border: 1px solid transparent !important
+			box-shadow: none !important
+
+			text-decoration: underline
+
+			&:hover, &.#{$mod-hovered}, &:active, &.#{$mod-active}, &.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+				text-decoration: none
+
+			.fa
+				padding-right: 4px
+
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include button-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size / 2
+			&._#{$sizeName}
+				@include button-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size
+
+	a.#{$button-class}
+		font-weight: normal

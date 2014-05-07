@@ -1,0 +1,53 @@
+@import "../../buttons"
+
+@import "sizes"
+@import "themes"
+
+@include exports("groups/buttons")
+
+	.#{$group-class}
+
+		.#{$button-class}
+
+			vertical-align: top
+
+			&:not(:first-child), &:last-child
+				margin-left: -$button-border-width
+
+			&:not(:first-child):not(:last-child)
+				border-radius: 0
+
+			&:first-child:not(:last-child)
+				@include border-right-radius(0)
+
+			&:last-child:not(:first-child)
+				@include border-left-radius(0)
+
+		&.#{$mod-justify}
+			.#{$button-class}
+				display: table-cell
+				width: 1%
+
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width $base-screen-middle 6))
+				.#{$button-class}
+					display: table-cell
+					width: 1%
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			&.-#{$themeName}-
+				.#{$button-class}
+					@extend .#{$button-class}.-#{$themeName}- !optional
+
+					&:active, &.#{$mod-active}
+						box-shadow: inset 0 -15px 15px rgba(0,0,0,.1)
+
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+
+			&._#{$sizeName}
+				.#{$button-class}
+					@extend .#{$button-class}._#{$sizeName} !optional

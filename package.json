@@ -1,7 +1,8 @@
 {
   "name": "maxmertkit",
   "version": "1.0.0",
-  "description": "Maxmertkit webdevelopment framework",
+  "description": "Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development.",
+  "homepage": "http://maxmert.com",
   "main": "gulpfile.js",
   "directories": {
     "test": "test"
@@ -11,23 +12,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxmert/maxmertkit.git"
+    "url": "https://github.com/maxmert/maxmertkit.git",
+    "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
-  "keywords": [
-    "maxmertkit",
-    "maxmert",
-    "framework",
-    "html5",
-    "css",
-    "sass",
-    "coffeescript"
-  ],
-  "author": "maxmert",
+  "keywords": ["css", "sass", "js", "framework", "css-framework", "maxmert", "maxmertkit", "mobile-first", "responsive", "front-end", "web", "html5", "coffeescript"],
+  "author": {
+    "name": "Vetrenko Maxim",
+    "email": "me@maxmert.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/maxmert/maxmertkit/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.34.0",
+    "hogan-express": "^0.5.2"
+  },
   "devDependencies": {
     "gulp": "~3.5.2",
     "coffee-script": "~1.7.1",
@@ -42,7 +42,6 @@
     "gulp-livereload": "~1.2.0",
     "gulp-nodemon": "~1.0.0",
     "gulp-ruby-sass": "~0.3.1",
-    "gulp-plato": "~0.2.1",
     "gulp-size": "~0.2.0",
     "gulp-todo": "~0.1.6",
     "gulp-changed": "~0.3.0",
@@ -58,6 +57,19 @@
     "jsdom": "~0.10.5",
     "gulp-clean": "~0.2.4",
     "run-sequence": "~0.3.6",
-    "gulp-notify": "^1.2.5"
-  }
+    "gulp-notify": "^1.2.5",
+    "gulp-jstemplater": "0.0.3",
+    "gulp-browserify": "^0.5.0",
+    "gulp-rename": "^1.2.0",
+    "coffeeify": "^0.6.0",
+    "browserify": "^3.41.0",
+    "gulp-json-editor": "^2.0.2",
+    "gulp-gzip": "0.0.7",
+    "yargs": "^1.2.1",
+    "gulp-if": "0.0.5",
+    "moment": "^2.6.0",
+    "gulp-mkit": "0.0.0",
+    "gulp-zip": "^0.3.4"
+  },
+  "buildDate": "May 7th 2014, 6:08:21 pm"
 }

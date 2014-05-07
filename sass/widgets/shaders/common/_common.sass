@@ -1,0 +1,40 @@
+@import "sizes"
+@import "themes"
+
+
+@mixin shader-theme-setter( $theme )
+    $background-color: map-get( $theme, background-color)
+
+    background-color: $background-color
+
+
+@include exports("shaders/common")
+    .#{$shader-class}
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: $shader-z-index
+        display: block
+        visibility: hidden
+        @include transition( visibility 0.3s ease-in-out )
+
+        &.#{$mod-shaded}
+            opacity: 0.9
+
+        &.#{$mod-responsive}
+            position: fixed
+
+
+        @each $themeName in $themes
+            $thm: map-get( $base-themes, $themeName )
+
+            @if $themeName == default
+                @include shader-theme-setter($thm)
+            &.-#{$themeName}-
+                @include shader-theme-setter($thm)
+
+        &.#{$mod-active}
+            visibility: visible
+            @extend .#{$animation-start-class}

@@ -1,0 +1,55 @@
+@import "../../grid"
+@import "../inputs/common"
+
+@import "themes"
+@import "sizes"
+
+@mixin forms-theme-field-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		border-color: lighten($border-color, 20%)
+	@else
+		border-color: lighten($border-color, 30%)
+
+	select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+		&:active, &:focus
+			box-shadow: 0 0 15px rgba($background-color, 0.6)
+
+
+@include exports("forms/fields")
+	form
+		.#{$form-field-class}
+
+			border-width: $form-field-border-width
+			border-style: solid
+			border-radius: $form-field-border-radius
+
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include forms-theme-field-setter($thm)
+				&.-#{$themeName}-
+					@include forms-theme-field-setter($thm)
+
+					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+						@extend input[type="text"].-#{$themeName}- !optional
+
+
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+
+				// Change size only when class sets
+				&._#{$sizeName}
+					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+						@extend input[type="text"]._#{$sizeName} !optional
+
+
+		// To align fields and labels
+		label.#{$mod-horizontal}
+			padding: $base-padding-vertical + $form-field-border-width + 1 $base-padding-horizontal

@@ -1,6 +1,7 @@
 .sass-cache
 .sublime-workspace
 __
+.DS_Store
 **/.DS_Store
 nbproject
 manifest.mf
@@ -17,4 +18,8 @@ npm-debug.log
 
 
 # Bower stuff.
-docs/js/bower/
+bower
+docs/js/bower
+
+# Maxmertkit stuff
+mkit.json

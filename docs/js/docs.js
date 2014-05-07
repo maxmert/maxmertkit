@@ -1,255 +1,257 @@
-commercial = [
-	{
-		"name": "tiltimage",
-		"path": "tiltimage"
-	}
-]
+// commercial = [
+// 	{
+// 		"name": "tiltimage",
+// 		"path": "tiltimage"
+// 	}
+// ]
+//
+// exports.components = [
+// 	{
+// 		"name": "modal",
+// 		"path": "../components/modal"
+// 	},
+// 	{
+// 		"name": "popup",
+// 		"path": "../components/popup"
+// 	},
+// 	{
+// 		"name": "affix",
+// 		"path": "../components/affix"
+// 	},
+// 	{
+// 		"name": "button",
+// 		"path": "../components/button"
+// 	},
+// 	{
+// 		"name": "tabs",
+// 		"path": "../components/tabs"
+// 	},
+// 	{
+// 		"name": "scrollspy",
+// 		"path": "../components/scrollspy"
+// 	}
+// ]
+//
+// exports.widgets = [
+// 	{
+// 		"name": "dropdowns",
+// 		"path": "dropdowns"
+// 	},
+//
+// 	{
+// 		"name": "groups",
+// 		"path": "groups",
+//
+// 		"include": [
+// 			{
+// 				"name": "buttons",
+// 				"path": "groups/buttons"
+// 			},
+// 			{
+// 				"name": "inputs",
+// 				"path": "groups/inputs"
+// 			},
+// 			{
+// 				"name": "addons",
+// 				"path": "groups/addons"
+// 			}
+// 		]
+// 	},
+//
+// 	{
+// 		"name": "nav",
+// 		"path": "nav",
+//
+// 		"include": [
+// 			{
+// 				"name": "tabs",
+// 				"path": "nav/tabs"
+// 			},
+// 			{
+// 				"name": "pills",
+// 				"path": "nav/pills"
+// 			},
+// 			{
+// 				"name": "menu",
+// 				"path": "nav/menu"
+// 			},
+// 			{
+// 				"name": "list-group",
+// 				"path": "nav/list-group"
+// 			},
+// 			{
+// 				"name": "bar",
+// 				"path": "nav/bar"
+// 			}
+// 		]
+// 	},
+//
+// 	{
+// 		"name": "labels",
+// 		"path": "labels"
+// 	},
+//
+// 	{
+// 		"name": "badges",
+// 		"path": "badges"
+// 	},
+//
+// 	{
+// 		"name": "thumbnails",
+// 		"path": "thumbnails",
+//
+// 		"include": [
+// 			{
+// 				"name": "captions",
+// 				"path": "thumbnails/captions"
+// 			}
+// 		]
+// 	},
+//
+// 	{
+// 		"name": "alerts",
+// 		"path": "alerts"
+// 	},
+//
+// 	{
+// 		"name": "progress",
+// 		"path": "progress"
+// 	}
+// ]
 
-components = [
-	{
-		"name": "modal",
-		"path": "../components/modal"
-	},
-	{
-		"name": "popup",
-		"path": "../components/popup"
-	},
-	{
-		"name": "affix",
-		"path": "../components/affix"
-	},
-	{
-		"name": "button",
-		"path": "../components/button"
-	},
-	{
-		"name": "tabs",
-		"path": "../components/tabs"
-	},
-	{
-		"name": "scrollspy",
-		"path": "../components/scrollspy"
-	}
-]
 
-widgets = [
-	{
-		"name": "dropdowns",
-		"path": "dropdowns"
-	},
-
-	{
-		"name": "groups",
-		"path": "groups",
-
-		"include": [
-			{
-				"name": "buttons",
-				"path": "groups/buttons"
-			},
-			{
-				"name": "inputs",
-				"path": "groups/inputs"
-			},
-			{
-				"name": "addons",
-				"path": "groups/addons"
-			}
-		]
-	},
-
-	{
-		"name": "nav",
-		"path": "nav",
-
-		"include": [
-			{
-				"name": "tabs",
-				"path": "nav/tabs"
-			},
-			{
-				"name": "pills",
-				"path": "nav/pills"
-			},
-			{
-				"name": "menu",
-				"path": "nav/menu"
-			},
-			{
-				"name": "list-group",
-				"path": "nav/list-group"
-			},
-			{
-				"name": "bar",
-				"path": "nav/bar"
-			}
-		]
-	},
-
-	{
-		"name": "labels",
-		"path": "labels"
-	},
-
-	{
-		"name": "badges",
-		"path": "badges"
-	},
-
-	{
-		"name": "thumbnails",
-		"path": "thumbnails",
-
-		"include": [
-			{
-				"name": "captions",
-				"path": "thumbnails/captions"
-			}
-		]
-	},
-
-	{
-		"name": "alerts",
-		"path": "alerts"
-	},
-
-	{
-		"name": "progress",
-		"path": "progress"
-	}
-]
-
-
-main = [
+exports.widgets = [
 	{
 		"name": "typography",
-		"path": "typography",
+		"path": "common",
 
 		"include": [
 			{
 				"name": "headings",
-				"path": "typography/headings"
+				"path": "headings"
 			},
 			{
 				"name": "body",
-				"path": "typography/body"
+				"path": "body"
 			},
 			{
 				"name": "lists",
-				"path": "typography/lists"
+				"path": "lists"
 			},
 			{
 				"name": "code",
-				"path": "typography/code"
+				"path": "code"
 			}
 		]
 	},
 
 	{
 		"name": "grid",
-		"path": "grid",
+		"path": "common",
 
 		"include": [
 			{
 				"name": "container",
-				"path": "grid/container"
+				"path": "container"
 			},
 
 			{
 				"name": "row",
-				"path": "grid/row"
+				"path": "row"
 			},
 
 			{
 				"name": "columns",
-				"path": "grid/columns"
+				"path": "columns"
 			}
 		]
 	},
 
 	{
 		"name": "tables",
-		"path": "tables",
+		"path": "common",
 
 		"include": [
 			{
 				"name": "basic",
-				"path": "tables/basic"
+				"path": "basic"
 			},
 
 			{
 				"name": "striped",
-				"path": "tables/striped"
+				"path": "striped"
 			},
 
 			{
 				"name": "hovered",
-				"path": "tables/hovered"
+				"path": "hovered"
 			},
 
 			{
 				"name": "rows",
-				"path": "tables/rows"
+				"path": "rows"
 			},
 
 			{
 				"name": "cells",
-				"path": "tables/cells"
+				"path": "cells"
 			}
 		]
 	},
 
 	{
 		"name": "forms",
-		"path": "forms",
+		"path": "common",
 
 		"include": [
 			{
 				"name": "formgrid",
-				"path": "forms/grid"
+				"path": "grid"
 			},
 
 			{
 				"name": "fieldset",
-				"path": "forms/fieldset"
+				"path": "fieldset"
 			},
 
 			{
 				"name": "fields",
-				"path": "forms/fields"
+				"path": "fields"
 			}
 		]
 	},
 
 	{
 		"name": "buttons",
-		"path": "buttons",
+		"path": "common",
 
 		"include": [
 			{
 				"name": "themes",
-				"path": "buttons/themes"
+				"path": "themes"
 			},
 
 			{
 				"name": "sizes",
-				"path": "buttons/sizes"
+				"path": "sizes"
 			},
 
 			{
 				"name": "states",
-				"path": "buttons/states"
+				"path": "states"
 			},
 
 			{
 				"name": "blocks",
-				"path": "buttons/blocks"
+				"path": "blocks"
 			}
 		]
-	},
+	}
+]
 
+exports.utilities = [
 	{
 		"name": "responsive",
-		"path": "../utilities/responsive"
+		"path": "responsive"
 	}
 ]

@@ -1,0 +1,60 @@
+@import "../bar/common"
+
+@import "sizes"
+@import "themes"
+
+
+@mixin nav-theme-bar-float-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	background-color: transparent
+	border-color: transparent
+
+	&.#{$mod-shaded}
+		@if $name == default
+			background-color: lighten($background-color, 14%)
+			border-color: lighten($border-color, 23%)
+		@else
+			background-color: lighten($background-color, 35%)
+			border-color: $border-color
+
+
+	// @include media(new-breakpoint(max-width 992px 6))
+	// 	@if nth($themes, $i) != "-default-"
+	// 		background-color: lighten(nth($themes-background-light-colors, $i), 5%)
+	// 	@else
+	// 		background-color: lighten(nth($themes-background-light-colors, $i), 1%)
+
+
+
+@include exports("nav/bar-float")
+	.#{$nav-bar-float-class}
+		@extend .#{$nav-bar-class}
+
+		position: absolute
+		width: 100%
+		border-width: $nav-bar-float-border-width
+		border-radius: $nav-bar-float-border-radius
+
+		&.#{$mod-shaded}
+			position: fixed
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-bar-float-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bar-float-setter($thm)
+
+
+	// @include media(new-breakpoint(max-width 992px 6))
+	// 	.#{$nav-bar-float-class}
+	// 		position: relative !important
+	// 		top: 0 !important
+	// 		&.#{$mod-top}, &.#{$mod-bottom}
+	// 			position: relative !important

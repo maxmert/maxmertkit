@@ -2,15 +2,15 @@ _name = "modal"
 _instances = []
 
 class Modal extends MaxmertkitHelpers
-	
+
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @btn, @options ) ->
 		@$btn = $(@btn)
-		
+
 		_options =
 			target: @$btn.data('target')				# Targeted modal windows
 			toggle: @$btn.data('toggle') or 'modal'		# To automatically find elements which toggle modal windows
@@ -18,29 +18,29 @@ class Modal extends MaxmertkitHelpers
 			eventClose: "click.#{@_name}"				# Event on close elements to close modal
 			backdrop: @$btn.data('backdrop') or no	# Close modal on click on backdrop
 			push: @$btn.data('push') or no			# The selector of the container with whole content, except modal window, to use push animation
-			
+
 			beforeactive: ->
 			onactive: ->
 			beforeunactive: ->
 			onunactive: ->
-		
+
 		@options = @_merge _options, @options
-		
+
 		# Set modal window element
 		@$el = $(document).find @options.target
-		
+
 		# Set event on button to show modal window
 		@$btn.on @options.event, ( event ) =>
 			event.preventDefault()
 			@open()
 
 		# super @$el, @options
-		
+
 
 		@_setOptions @options
 
 
-		
+
 
 
 		# Find dismiss buttons inside modal window
@@ -52,9 +52,9 @@ class Modal extends MaxmertkitHelpers
 		super @$btn, @options
 
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
-			
+
 			if not @options[key]?
 				return console.error "Maxmertkit Modal. You're trying to set unpropriate option – #{key}"
 
@@ -73,12 +73,12 @@ class Modal extends MaxmertkitHelpers
 							@$push = $(document).find value
 
 
-			
+
 			@options[key] = value
 			if typeof value is 'function'
 				@[key] = @options[key]
 
-	
+
 	destroy: ->
 		@$btn.off ".#{@_name}"
 		super
@@ -110,7 +110,7 @@ _pushStop = ->
 		# After first showing it will not be smooth
 		if @$push[0]? and @$push[0].style? and @$push[0].style['-webkit-overflow-scrolling']?
 			@$push[0].style['-webkit-overflow-scrolling'] = 'auto'
-		
+
 
 
 _beforeopen = ->
@@ -120,7 +120,7 @@ _beforeopen = ->
 			deferred
 				.done =>
 					_open.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -138,6 +138,7 @@ _open = ->
 	@$el.css display: 'table'
 	setTimeout =>
 		@$el.addClass '_visible_ -start--'
+		@$el.find('.-dialog').addClass '_visible_ -start--'
 		_pushStart.call @
 	, 1
 	$('body').addClass '_no-scroll_'
@@ -158,7 +159,7 @@ _beforeclose = ->
 			deferred
 				.done =>
 					_close.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -172,9 +173,11 @@ _beforeclose = ->
 # and triggers onclose
 _close = ->
 	@$el.addClass '-stop--'
+	@$el.find('.-dialog').addClass '-stop--'
 	_pushStop.call @
 	setTimeout =>
 		@$el.removeClass '_visible_ -start-- -stop--'
+		@$el.find('.-dialog').removeClass '_visible_ -start-- -stop--'
 		$('body').removeClass '_no-scroll_'
 		if @$push?
 			$('body').removeClass '_perspective_'
@@ -185,7 +188,7 @@ _close = ->
 		try
 			@onclose.call @$btn
 
-			
+
 
 
 

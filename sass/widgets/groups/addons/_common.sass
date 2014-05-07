@@ -1,0 +1,98 @@
+@import "../../buttons"
+
+@import "sizes"
+@import "themes"
+
+
+@mixin groups-theme-addon-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	// $white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	// $background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($border-color, 23%)
+	@else
+		background-color: lighten($border-color, 35%)
+	&.#{$mod-unstyled}
+		color: $color
+
+@mixin groups-addon-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
+
+
+@include exports("groups/addons")
+	.#{$group-class}
+		.#{$group-addon-class}
+			display: inline-block
+			text-align: center
+			vertical-align: middle
+			border: 1px solid transparent
+			white-space: nowrap
+			outline: none
+			@include text-overflow
+
+			// Set default size
+			padding: $base-padding-vertical $base-padding-horizontal
+			font-size: $base-font-size
+			line-height: $base-line-height
+			border-radius: $button-border-radius
+
+			&:not(:first-child):not(:last-child)
+				border-radius: 0
+
+			&:first-child:not(:last-child)
+				@include border-right-radius(0)
+
+			&:last-child:not(:first-child)
+				@include border-left-radius(0)
+
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include groups-theme-addon-setter($thm)
+				&.-#{$themeName}-
+					@include groups-theme-addon-setter($thm)
+
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+				@if $sizeName == normal
+					@include groups-addon-size-setter($sz)
+					// font-size: $multilpyer * $base-font-size / 2
+				&._#{$sizeName}
+					@include groups-addon-size-setter($sz)
+
+
+
+	.#{$group-class}
+
+		&.#{$mod-justify}
+			.#{$group-addon-class}
+				display: table-cell
+				width: 1%
+
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width 992px 6))
+				.#{$group-addon-class}
+					display: table-cell
+					width: 1%
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			&.-#{$themeName}-
+				.#{$group-addon-class}
+					@extend .#{$group-addon-class}.-#{$themeName}- !optional
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+
+			&._#{$sizeName}
+				.#{$group-addon-class}
+					@extend .#{$group-addon-class}._#{$sizeName} !optional

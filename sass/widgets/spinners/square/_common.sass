@@ -1,0 +1,66 @@
+@import "variables"
+@import "sizes"
+@import "themes"
+
+
+@mixin spinner-square-theme-setter( $theme )
+    $name: map-get( $theme, name)
+    $color: map-get( $theme, color)
+
+    @if $name == default
+        background-color: #fff
+    @else
+        background-color: $color
+
+@mixin spinner-square-size-setter( $size )
+    $multiplier: map-get( $size, multiplier)
+
+    @include size( floor($spinner-square-size * $multiplier) )
+    &.#{$mod-responsive}
+        margin-top: - floor(( $spinner-square-size * $multiplier ) / 2)
+        margin-left: - floor(( $spinner-square-size * $multiplier ) / 2)
+
+
+
+@include keyframes(rotateplane)
+    0%
+        @include transform( perspective(120px) )
+    50%
+        @include transform( perspective(120px) rotateY(180deg) )
+    100%
+        @include transform( perspective(120px) rotateY(180deg) rotateX(180deg) )
+
+
+@include keyframes( rotateplane )
+    0%
+        @include transform( perspective(120px) rotateX(0deg) rotateY(0deg) )
+    50%
+        @include transform( perspective(120px) rotateX(-180.1deg) rotateY(0deg) )
+    100%
+        @include transform( perspective(120px) rotateX(-180deg) rotateY(-179.9deg) )
+
+@include exports("spinners/square/common")
+    .#{$spinner-square-class}
+        display: inline-block
+        vertical-align: middle
+        @include animation( rotateplane 1.2s infinite ease-in-out )
+
+        &.#{$mod-responsive}
+            position: absolute
+            top: 50%
+            left: 50%
+
+        @each $themeName in $themes
+            $thm: map-get( $base-themes, $themeName )
+
+            @if $themeName == default
+                @include spinner-square-theme-setter($thm)
+            &.-#{$themeName}-
+                @include spinner-square-theme-setter($thm)
+
+        @each $sizeName in $sizes
+            $sz: map-get( $base-sizes, $sizeName )
+            @if $sizeName == normal
+                @include spinner-square-size-setter($sz)
+            &._#{$sizeName}
+                @include spinner-square-size-setter($sz)

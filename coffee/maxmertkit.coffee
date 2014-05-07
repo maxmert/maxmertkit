@@ -129,12 +129,13 @@ class MaxmertkitHelpers
 			try
 				style = getComputedStyle parent
 
+
 			return $(parent) if not style?
 
-			if /(relative)/.test(style['position'])
-				return parent
+			if /(relative)/.test(style['position']) or ( parent? and parent.style? and /(relative)/.test(parent.style['position']) )
+					return $(parent)
 
-		return document.body
+		return $(document)
 
 	_getScrollParent: ( el ) ->
 		parent = el[0] or el
@@ -261,11 +262,13 @@ Adds support for the special browser events 'scrollstart' and 'scrollstop'.
 
 
 # Remove pointer events while scrolling
-$(window).on "scrollstart.kit", ( event ) ->
-	$('body').addClass '-no-pointer-events'
-
-$(window).on "scrollstop.kit", =>
-	$('body').removeClass '-no-pointer-events'
+# $(window).on "scrollstart.kit", ( event ) ->
+# 	if not $('body').hasClass '-no-pointer-events'
+# 		$('body').addClass '-no-pointer-events'
+#
+# $(window).on "scrollstop.kit", =>
+# 	if $('body').hasClass '-no-pointer-events'
+# 		$('body').removeClass '-no-pointer-events'
 
 
 

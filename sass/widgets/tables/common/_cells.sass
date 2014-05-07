@@ -1,0 +1,25 @@
+@mixin tables-theme-cell-setter($theme)
+	$name: map-get( $theme, name)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 12%)
+	@else
+		background-color: lighten($background-color, 25%)
+
+
+@include exports("tables/cells")
+
+	.#{$table-class}
+
+		& > thead, & > tbody, & > tfoot
+			& > tr
+				& > td
+					@each $themeName in $themes
+						$thm: map-get( $base-themes, $themeName )
+
+						&.-#{$themeName}-
+							@include tables-theme-cell-setter($thm)
+
+					&[disabled]
+						opacity: 0.5

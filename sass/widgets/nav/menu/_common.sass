@@ -1,0 +1,135 @@
+@import "../../dropdowns"
+
+@import "sizes"
+@import "themes"
+
+@mixin nav-theme-menu-setter($theme)
+	#{$nav-item}
+		@include nav-theme-menu-item-setter($theme)
+
+
+@mixin nav-theme-menu-item-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	&:hover, &.#{$mod-hovered}
+		& > a
+			background-color: lighten($background-color, 10%)
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+	&.#{$mod-active}, &:active
+		& > a
+			@if $name == default
+				color: $color
+				background-color: lighten($background-color, 5%)
+			@else
+				color: $white-color
+				background-color: $background-color
+
+
+	&.#{$mod-disabled}, &[disabled]
+		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+			background: transparent
+			color: rgba($color, .3)
+			pointer-events: none
+
+	&.#{$mod-invert}
+		& > a
+			color: $white-color
+
+
+@include exports("nav/menu")
+
+	.#{$nav-menu-class}
+		display: block
+
+		@include nav-setter
+
+		#{$nav-item}
+			float: left
+			margin-right: $nav-tabs-items-margin
+
+			a
+				padding: $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
+				border-radius: $nav-menu-items-border-radius
+				border-width: $nav-menu-items-border-width
+				border-style: solid
+				border-color: transparent
+				white-space: nowrap
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
+
+			.#{$dropdown-class}
+				@include perspective-origin( 50% 0%)
+				&.#{$mod-top}
+					top: inherit
+					bottom: 100%
+					@include perspective-origin( 50% 100% )
+				&.#{$mod-left}
+					left: inherit
+					right: 100%
+					top: 0
+					@include perspective-origin( 100% 50% )
+				&.#{$mod-right}
+					right: inherit
+					left: 100%
+					top: 0
+					@include perspective-origin( 0% 50% )
+				.#{$nav-menu-class}
+					#{$nav-item}
+						a
+							padding: $base-padding-vertical $nav-menu-items-padding-horizontal + $nav-addon-size * 3 $nav-menu-items-padding-vertical $nav-menu-items-padding-horizontal
+
+							.#{$addon-class}
+								position: absolute
+								right: $base-padding-horizontal
+
+
+
+			&.#{$mod-active}
+
+				& > a
+					cursor: inherit
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				&.-#{$themeName}-
+					@include nav-theme-menu-item-setter($thm)
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-menu-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-menu-setter($thm)
+
+
+
+		&.#{$mod-vertical}
+
+			#{$nav-item}
+				margin-right: 0
+				margin-bottom: $nav-tabs-items-margin
+				float: none
+
+		&.#{$mod-hovered}
+			#{$nav-item}:hover
+				& > .#{$dropdown-class}
+					display: block
+					@extend .#{$animation-start-class}

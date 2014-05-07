@@ -1,0 +1,9 @@
+$theme: (
+    name: dark,
+    color: #000,
+    white-color: #fff,
+    border-color: #000,
+    background-color: #000
+);
+
+$base-themes: map-merge($base-themes, (dark: $theme))!global;

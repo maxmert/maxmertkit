@@ -1,0 +1,290 @@
+@import "sizes"
+@import "themes"
+
+@mixin modal-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+
+	background-color: rgba($color, $modal-background-opacity)
+
+	@if $name == default
+		& > .#{$close-class}
+			polygon, path
+				fill: #fff
+			circle
+				stroke: #fff
+	@else
+		& > .#{$close-class}
+			polygon, path
+				fill: $white-color
+			circle
+				stroke: $white-color
+
+@mixin modal-header-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	background-color: $background-color
+	@if $name == default
+		color: $color
+		.#{$close-class}
+			polygon, path
+				fill: $color
+			circle
+				stroke: $color
+	@else
+		color: $white-color
+		.#{$close-class}
+			polygon, path
+				fill: $white-color
+			circle
+				stroke: $white-color
+
+	.#{$header-class}
+		background-color: darken($background-color, 5%)
+		border-bottom-color: darken($background-color, 7%)
+
+
+
+// color: nth($themes-white-colors, $i)
+
+// 	.#{$header-class-name}
+// 		background-color: nth($themes-background-colors, $i)
+// 		@if nth($themes, $i) == "-default-"
+// 			border-color: lighten(nth($themes-background-colors, $i), 5%)
+// 		@else
+// 			border-color: darken(nth($themes-background-colors, $i), 7%)
+// 			color: nth($themes-white-colors, $i)
+
+// 	.#{$arrow-class-name}
+// 		@include triangle($dropdown-arrow-size, nth($themes-background-colors, $i), up)
+
+// 	&.#{$mod-bottom}, &.#{$mod-top}
+// 		&:before
+// 			@include background-image(linear-gradient(to left, transparent 0%, nth($themes-background-colors, $i) 50%, transparent 100%))
+
+// 	&.#{$mod-left}, &.#{$mod-right}
+// 		&:before
+// 			@include background-image(linear-gradient(to bottom, transparent 0%, nth($themes-background-colors, $i) 50%, transparent 100%))
+
+// 	&.#{$mod-top}
+// 		.#{$arrow-class-name}
+// 			@include triangle($dropdown-arrow-size, nth($themes-background-colors, $i), down)
+
+// 	&.#{$mod-left}
+// 		.#{$arrow-class-name}
+// 			@include triangle($dropdown-arrow-size, nth($themes-background-colors, $i), right)
+
+// 	&.#{$mod-right}
+// 		.#{$arrow-class-name}
+// 			@include triangle($dropdown-arrow-size, nth($themes-background-colors, $i), left)
+
+
+@mixin modal-close-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	@include size( $modal-dialog-close-size * $multiplier )
+
+@mixin modal-header-close-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	@include size( $modal-dialog-close-size * $multiplier )
+	margin-top: - ( $modal-dialog-close-size * $multiplier ) / 2
+
+
+
+@include exports("modal/common")
+
+	.#{$modal-class}
+
+		position: fixed
+		top: 0
+		left: 0
+		display: none
+		width: 100%
+		height: 100%
+		z-index: -$modal-z-index
+		overflow-y: auto
+		// -webkit-transform: translateZ(0)
+
+		// @include transition-property (opacity)
+		// @include transition-duration($animations-fadein-duration)
+		// @include transition-timing-function($animations-fadein-timing-function)
+		// @include transition-delay($animations-fadein-delay)
+		// @include animation-play-state(paused)
+
+
+		& > .#{$close-class}
+			background-color: transparent
+			position: fixed
+			z-index: 1
+			top: $modal-dialog-padding-vertical
+			right: $modal-dialog-padding-horizontal
+			cursor: pointer
+
+			@include transition-property(transform)
+			@include transition-duration(0.6s)
+			@include transition-timing-function(cubic-bezier(.47,.01,.26,1.42))
+			@include transition-delay(0s)
+
+			@include transform(rotate(-270deg))
+
+			polygon, path
+				opacity: 0.4
+				@include transition(opacity 0.3s ease-out 0)
+
+			circle
+				stroke-width: 0
+				fill: transparent
+				@include transition(stroke-width 0.3s ease-out 0)
+
+
+			&:hover
+				circle
+					stroke-width: 50
+				polygon, path
+					opacity: 1
+
+				@include transform(rotate(0deg))
+
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+				@if $sizeName == normal
+					@include modal-close-size-setter($sz)
+				&._#{$sizeName}
+					@include modal-close-size-setter($sz)
+
+		.-arrow
+			position: fixed !important
+
+
+		.#{$modal-dialog-class}
+			// margin: $modal-padding-vertical auto
+			// position: absolute
+			float: none
+			// height: 100%
+
+			// margin-left: 50%
+			border-radius: $modal-dialog-border-radius
+			box-shadow: $modal-dialog-shadow
+			// visibility: hidden
+			// -webkit-font-smoothing: subpixel-antialiased
+			-webkit-backface-visibility: hidden
+			// -webkit-transform: translateZ(0) scale(1.0, 1.0)
+
+
+
+			@for $i from 1 through $column-quantity
+				&.#{$column-class}#{$i}
+					// $padding: get-padding-for-table-layout($columns, $container-columns)
+					margin-left: flex-grid($i,$column-quantity) / 2
+
+			.#{$header-class}
+				padding: $modal-dialog-padding-vertical $modal-dialog-padding-horizontal
+				border-radius: $modal-dialog-border-radius $modal-dialog-border-radius 0 0
+				position: relative
+				font-size: 115%
+				font-weight: bold
+				border-bottom-width: $modal-dialog-border-width
+				border-bottom-style: $modal-dialog-border-style
+				border-bottom-color: transparent
+
+				.#{$close-class}
+					position: absolute
+					z-index: 1
+					top: 50%
+					right: $modal-dialog-padding-horizontal
+					// margin-top: - $modal-dialog-close-size / 2
+					cursor: pointer
+
+					@include transition-property(transform)
+					@include transition-duration(0.5s)
+					@include transition-timing-function(cubic-bezier(.47,.01,.26,1.42))
+					@include transition-delay(0s)
+
+					@include transform(rotate(-270deg))
+
+					polygon, path
+						opacity: 0.4
+						@include transition(opacity 0.3s ease-out 0)
+
+					circle
+						stroke-width: 0
+						fill: transparent
+						@include transition(stroke-width 0.3s ease-out 0)
+
+
+
+
+					&:hover
+						circle
+							stroke-width: 50
+						polygon, path
+							opacity: 1
+
+						@include transform(rotate(0deg))
+
+					@each $sizeName in $sizes
+						$sz: map-get( $base-sizes, $sizeName )
+						@if $sizeName == normal
+							@include modal-header-close-size-setter($sz)
+						&._#{$sizeName}
+							@include modal-header-close-size-setter($sz)
+
+			.#{$content-class}
+				padding: $modal-dialog-padding-vertical $modal-dialog-padding-horizontal
+				// border-radius: $modal-dialog-border-radius $modal-dialog-border-radius 0 0
+				// position: relative
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include modal-header-theme-setter($thm)
+				&.-#{$themeName}-
+					@include modal-header-theme-setter($thm)
+
+		& > .-holder
+
+			display: table-cell
+			@include perspective(1300px)
+			@include perspective-origin(50% 50%)
+			vertical-align: middle
+			text-align: center
+
+			.#{$modal-dialog-class}
+				display: inline-block
+				margin: 0
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include modal-theme-setter($thm)
+			&.-#{$themeName}-
+				@include modal-theme-setter($thm)
+
+
+		&.#{$mod-visible}
+			// opacity: 1
+			z-index: $modal-z-index
+			// @extend .#{$animation-start-class}
+
+			// .#{$modal-dialog-class}
+
+
+
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$modal-class}
+			& > .#{$close-class}
+				top: 0
+				right: 0

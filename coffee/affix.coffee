@@ -3,10 +3,10 @@ _instances = []
 _id = 0
 
 class Affix extends MaxmertkitHelpers
-	
+
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @el, @options ) ->
@@ -14,21 +14,27 @@ class Affix extends MaxmertkitHelpers
 		@$el.parent().append '&nbsp;'	# To keep width
 
 		@_id = _id++
-		
+
 		_options =
 			# target: @$btn.data('target')				# Targeted affix windows
 			spy: @$el.data('spy') or 'affix'			# To automatically find affix elements and make them active
 			# positionVertical: 'top'						# 'top' or 'bottom'
 			offset:	5									# Vertical offset in pixels
-		
+
+			beforeactive: ->
+			onactive: ->
+			beforeunactive: ->
+			onunactive: ->
+
 		@options = @_merge _options, @options
 
 
-		# Reset default event functions 
-		@beforeopen = @options.beforeopen
-		@onopen = @options.onopen
-		@beforeclose = @options.beforeclose
-		@onclose = @options.onclose
+		# Reset default event functions
+		@beforeactive = @options.beforeactive
+		@onactive = @options.onactive
+		@beforeunactive = @options.beforeunactive
+		@onunactive = @options.onunactive
+
 
 		# Set affix window element
 		# @$el = $(document).find @options.target
@@ -39,9 +45,9 @@ class Affix extends MaxmertkitHelpers
 
 		super @$btn, @options
 
-	
+
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
 			if not @options[key]?
 				return console.error "Maxmertkit Affix. You're trying to set unpropriate option."
@@ -73,17 +79,15 @@ class Affix extends MaxmertkitHelpers
 
 # =============== Private methods
 
+_setPosition = ->
+	$scrollParent = @_getContainer @$el
 
-
-_position = ->
-	scrollParent = @_getContainer @$el
-	$scrollParent = $(scrollParent)
-	
 	if $scrollParent[0].firstElementChild.nodeName is "HTML" then offset = 0 else offset = $scrollParent.offset().top
 
-	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+
+	if @$el.parent()? and @$el.parent().offset() and not @_deviceMobile() and @_windowWidth > 992
 		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-			if offset + $scrollParent.height() - @$el.outerHeight() >= $(document).scrollTop()
+			if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
 				@$el.css
 					width: @$el.width()
 					position: 'fixed'
@@ -93,14 +97,26 @@ _position = ->
 				@$el.css
 					position: 'absolute'
 					top: 'auto'
-					bottom: 0
+					bottom: "-#{@options.offset}px"
 					width: @$el.width()
 		else
 			@$el.css 'position', 'relative'
 			@$el.css 'top', 'inherit'
 
+_position = ->
+	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
+		_setPosition.call @
 
-# If you have beforeopen function
+	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
+		@_refreshSizes()
+		if @_windowWidth < 992
+			@$el.css 'position', 'relative'
+			@$el.css 'top', 'inherit'
+		else
+			_setPosition.call @
+
+
+# If you have beforeactive function
 # 	it will be called here
 # if you don't
 # 	just open modal window
@@ -109,13 +125,13 @@ _beforestart = ->
 	# if @options.selfish
 	# 	@_selfish()
 
-	if @beforeopen?
+	if @beforeactive?
 		try
-			deferred = @beforeopen.call @$el
+			deferred = @beforeactive.call @$el
 			deferred
 				.done =>
 					_start.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -126,28 +142,29 @@ _beforestart = ->
 		_start.call @
 
 # Opens modal
-# and triggers onopen
+# and triggers onactive
 _start = ->
+	@_refreshSizes()
 	_position.call @
 	@$el.addClass '_active_'
 	@$el.trigger "started.#{@_name}"
-	if @onopen?
+	if @onactive?
 		try
-			@onopen.call @$el
+			@onactive.call @$el
 
 
-# If you have beforeclose function
+# If you have beforeunactive function
 # 	it will be called here
 # if you don't
 # 	just close modal window
 _beforestop = ->
-	if @beforeclose?
+	if @beforeunactive?
 		try
-			deferred = @beforeclose.call @$el
+			deferred = @beforeunactive.call @$el
 			deferred
 				.done =>
 					_stop.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -158,16 +175,16 @@ _beforestop = ->
 		_stop.call @
 
 # Closes modal
-# and triggers onstop
+# and triggers onunactive
 _stop = ->
 	@$el.removeClass '_active_'
 	$(document).off "scroll.#{@_name}.#{@_id}"
 	@$el.trigger "stopped.#{@_name}"
-	if @onstop?
+	if @onunactive?
 		try
-			@onstop.call @$el
+			@onunactive.call @$el
 
-			
+
 
 
 
@@ -180,5 +197,8 @@ $.fn[_name] = (options) ->
 			if typeof options is "object"
 				$.data(@, "kit-" + _name)._setOptions options
 			else
-				(if typeof options is "string" and options.charAt(0) isnt "_" then $.data(@, "kit-" + _name)[options] else console.error("Maxmertkit Affix. You passed into the #{_name} something wrong."))
+				if typeof options is "string" and options.charAt(0) isnt "_"
+					$.data(@, "kit-" + _name)[options]
+				# else
+				# 	console.error("Maxmertkit Affix. You passed into the #{_name} something wrong.")
 		return

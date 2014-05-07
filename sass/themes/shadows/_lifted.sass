@@ -3,7 +3,7 @@
 $shadow-lifted-class: "#{$shadow-class}-lifted-" !global
 
 @include exports("themes/shadows/lifted")
-	
+
 	.#{$shadow-lifted-class}
 
 		@include shadow-double
@@ -13,7 +13,7 @@ $shadow-lifted-class: "#{$shadow-class}-lifted-" !global
 			left: 10px
 			width: 46%
 			height: 20%
-			
+
 			box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5), 0 15px 10px rgba(0, 0, 0, 0.2)
 			@include transform( rotate(-2deg) )
 

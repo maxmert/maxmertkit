@@ -174,11 +174,11 @@
         if (style == null) {
           return $(parent);
         }
-        if (/(relative)/.test(style['position'])) {
-          return parent;
+        if (/(relative)/.test(style['position']) || ((parent != null) && (parent.style != null) && /(relative)/.test(parent.style['position']))) {
+          return $(parent);
         }
       }
-      return document.body;
+      return $(document);
     };
 
     MaxmertkitHelpers.prototype._getScrollParent = function(el) {
@@ -297,22 +297,12 @@
     };
   })();
 
-  $(window).on("scrollstart.kit", function(event) {
-    return $('body').addClass('-no-pointer-events');
-  });
-
-  $(window).on("scrollstop.kit", (function(_this) {
-    return function() {
-      return $('body').removeClass('-no-pointer-events');
-    };
-  })(this));
-
   window['MaxmertkitHelpers'] = MaxmertkitHelpers;
 
 }).call(this);
 
 (function() {
-  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _start, _stop,
+  var Affix, _beforestart, _beforestop, _id, _instances, _name, _position, _setPosition, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -338,13 +328,17 @@
       this._id = _id++;
       _options = {
         spy: this.$el.data('spy') || 'affix',
-        offset: 5
+        offset: 5,
+        beforeactive: function() {},
+        onactive: function() {},
+        beforeunactive: function() {},
+        onunactive: function() {}
       };
       this.options = this._merge(_options, this.options);
-      this.beforeopen = this.options.beforeopen;
-      this.onopen = this.options.onopen;
-      this.beforeclose = this.options.beforeclose;
-      this.onclose = this.options.onclose;
+      this.beforeactive = this.options.beforeactive;
+      this.onactive = this.options.onactive;
+      this.beforeunactive = this.options.beforeunactive;
+      this.onunactive = this.options.onunactive;
       this.start();
       Affix.__super__.constructor.call(this, this.$btn, this.options);
     }
@@ -376,36 +370,52 @@
 
   })(MaxmertkitHelpers);
 
-  _position = function() {
-    var $scrollParent, offset, scrollParent;
-    scrollParent = this._getContainer(this.$el);
-    $scrollParent = $(scrollParent);
+  _setPosition = function() {
+    var $scrollParent, offset;
+    $scrollParent = this._getContainer(this.$el);
     if ($scrollParent[0].firstElementChild.nodeName === "HTML") {
       offset = 0;
     } else {
       offset = $scrollParent.offset().top;
     }
-    return $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
-      return function(event) {
-        if (_this.$el.parent().offset().top - _this.options.offset <= $(document).scrollTop()) {
-          if (offset + $scrollParent.height() - _this.$el.outerHeight() >= $(document).scrollTop()) {
-            return _this.$el.css({
-              width: _this.$el.width(),
-              position: 'fixed',
-              top: "" + _this.options.offset + "px",
-              bottom: 'auto'
-            });
-          } else {
-            return _this.$el.css({
-              position: 'absolute',
-              top: 'auto',
-              bottom: 0,
-              width: _this.$el.width()
-            });
-          }
+    if ((this.$el.parent() != null) && this.$el.parent().offset() && !this._deviceMobile() && this._windowWidth > 992) {
+      if (this.$el.parent().offset().top - this.options.offset <= $(document).scrollTop()) {
+        if (this.$el.parent().offset().top + $scrollParent.outerHeight() - this.options.offset - this.$el.outerHeight() >= $(document).scrollTop()) {
+          return this.$el.css({
+            width: this.$el.width(),
+            position: 'fixed',
+            top: "" + this.options.offset + "px",
+            bottom: 'auto'
+          });
         } else {
+          return this.$el.css({
+            position: 'absolute',
+            top: 'auto',
+            bottom: "-" + this.options.offset + "px",
+            width: this.$el.width()
+          });
+        }
+      } else {
+        this.$el.css('position', 'relative');
+        return this.$el.css('top', 'inherit');
+      }
+    }
+  };
+
+  _position = function() {
+    $(document).on("scroll." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        return _setPosition.call(_this);
+      };
+    })(this));
+    return $(window).on("resize." + this._name + "." + this._id, (function(_this) {
+      return function(event) {
+        _this._refreshSizes();
+        if (_this._windowWidth < 992) {
           _this.$el.css('position', 'relative');
           return _this.$el.css('top', 'inherit');
+        } else {
+          return _setPosition.call(_this);
         }
       };
     })(this));
@@ -413,9 +423,9 @@
 
   _beforestart = function() {
     var deferred;
-    if (this.beforeopen != null) {
+    if (this.beforeactive != null) {
       try {
-        deferred = this.beforeopen.call(this.$el);
+        deferred = this.beforeactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _start.call(_this);
@@ -434,21 +444,22 @@
   };
 
   _start = function() {
+    this._refreshSizes();
     _position.call(this);
     this.$el.addClass('_active_');
     this.$el.trigger("started." + this._name);
-    if (this.onopen != null) {
+    if (this.onactive != null) {
       try {
-        return this.onopen.call(this.$el);
+        return this.onactive.call(this.$el);
       } catch (_error) {}
     }
   };
 
   _beforestop = function() {
     var deferred;
-    if (this.beforeclose != null) {
+    if (this.beforeunactive != null) {
       try {
-        deferred = this.beforeclose.call(this.$el);
+        deferred = this.beforeunactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _stop.call(_this);
@@ -470,9 +481,9 @@
     this.$el.removeClass('_active_');
     $(document).off("scroll." + this._name + "." + this._id);
     this.$el.trigger("stopped." + this._name);
-    if (this.onstop != null) {
+    if (this.onunactive != null) {
       try {
-        return this.onstop.call(this.$el);
+        return this.onunactive.call(this.$el);
       } catch (_error) {}
     }
   };
@@ -487,8 +498,6 @@
         } else {
           if (typeof options === "string" && options.charAt(0) !== "_") {
             $.data(this, "kit-" + _name)[options];
-          } else {
-            console.error("Maxmertkit Affix. You passed into the " + _name + " something wrong.");
           }
         }
       }
@@ -697,12 +706,20 @@
           if (typeof options === "string" && options.charAt(0) !== "_") {
             $.data(this, "kit-" + _name)[options];
           } else {
-            console.error("Maxmertkit Button. You passed into the " + _name + " something wrong.");
+            console.error("Maxmertkit Button. You passed into the " + _name + " something wrong.\n" + options);
           }
         }
       }
     });
   };
+
+  $(window).on('load', function() {
+    return $('[data-toggle="button"]').each(function() {
+      var $btn;
+      $btn = $(this);
+      return $btn.button($btn.data());
+    });
+  });
 
 }).call(this);
 
@@ -856,6 +873,7 @@
     setTimeout((function(_this) {
       return function() {
         _this.$el.addClass('_visible_ -start--');
+        _this.$el.find('.-dialog').addClass('_visible_ -start--');
         return _pushStart.call(_this);
       };
     })(this), 1);
@@ -892,10 +910,12 @@
 
   _close = function() {
     this.$el.addClass('-stop--');
+    this.$el.find('.-dialog').addClass('-stop--');
     _pushStop.call(this);
     setTimeout((function(_this) {
       return function() {
         _this.$el.removeClass('_visible_ -start-- -stop--');
+        _this.$el.find('.-dialog').removeClass('_visible_ -start-- -stop--');
         $('body').removeClass('_no-scroll_');
         if (_this.$push != null) {
           $('body').removeClass('_perspective_');
@@ -1242,7 +1262,7 @@
 }).call(this);
 
 (function() {
-  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _id, _instances, _name, _refresh, _spy, _start, _stop,
+  var Scrollspy, _activate, _activateItem, _beforestart, _beforestop, _deactivateItem, _id, _instances, _name, _refresh, _spy, _start, _stop,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -1268,9 +1288,10 @@
       _options = {
         spy: this.$el.data('spy') || 'scroll',
         target: this.$el.data('target') || 'body',
-        offset: 10,
+        offset: 0,
         elements: 'li a',
         elementsAttr: 'href',
+        noMobile: this.$el.data("no-mobile") || true,
         beforeactive: function() {},
         onactive: function() {},
         beforeunactive: function() {},
@@ -1290,7 +1311,7 @@
       for (key in options) {
         value = options[key];
         if (this.options[key] == null) {
-          return console.error("Maxmertkit Affix. You're trying to set unpropriate option.");
+          return console.error("Maxmertkit Scrollspy. You're trying to set unpropriate option.");
         }
         this.options[key] = value;
       }
@@ -1326,6 +1347,10 @@
     return this.elements[itemNumber].menu.addClass('_active_').parents('li').addClass('_active_');
   };
 
+  _deactivateItem = function(itemNumber) {
+    return this.elements[itemNumber].menu.removeClass('_active_');
+  };
+
   _refresh = function() {
     this.elements = [];
     return this.$el.find(this.options.elements).each((function(_this) {
@@ -1338,6 +1363,7 @@
             return _this.elements.push({
               menu: $(el).parent(),
               item: item.parent(),
+              itemHeight: item.parent().height(),
               offsetTop: item.position().top
             });
           }
@@ -1350,12 +1376,14 @@
     var i, _ref, _results;
     i = 0;
     _results = [];
-    while (i + 1 < this.elements.length) {
-      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i + 1].offsetTop)) {
-        _activateItem.call(this, i);
+    while (i < this.elements.length) {
+      if ((this.elements[i].offsetTop <= (_ref = (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset) && _ref <= this.elements[i].offsetTop + this.elements[i].itemHeight)) {
+        if (!this.elements[i].menu.hasClass('_active_')) {
+          _activateItem.call(this, i);
+        }
       } else {
-        if ((event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset > this.elements[i + 1].offsetTop) {
-          _activateItem.call(this, i + 1);
+        if (this.elements[i].menu.hasClass('_active_') && (event.currentTarget.scrollTop || event.currentTarget.scrollY) + this.options.offset < this.elements[i].offsetTop + this.elements[i].itemHeight) {
+          _deactivateItem.call(this, i);
         }
       }
       _results.push(i++);
@@ -1380,9 +1408,9 @@
   _beforestart = function() {
     var deferred;
     this.refresh();
-    if (this.beforeopen != null) {
+    if (this.beforeactive != null) {
       try {
-        deferred = this.beforeopen.call(this.$el);
+        deferred = this.beforeactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _start.call(_this);
@@ -1404,18 +1432,18 @@
     _activate.call(this);
     this.$el.addClass('_active_');
     this.$el.trigger("started." + this._name);
-    if (this.onopen != null) {
+    if (this.onactive != null) {
       try {
-        return this.onopen.call(this.$el);
+        return this.onactive.call(this.$el);
       } catch (_error) {}
     }
   };
 
   _beforestop = function() {
     var deferred;
-    if (this.beforeclose != null) {
+    if (this.beforeunactive != null) {
       try {
-        deferred = this.beforeclose.call(this.$el);
+        deferred = this.beforeunactive.call(this.$el);
         return deferred.done((function(_this) {
           return function() {
             return _stop.call(_this);
@@ -1434,11 +1462,17 @@
   };
 
   _stop = function() {
-    $(document).off("scroll." + this._name + "." + this._id);
+    var target;
+    if (this.options.target === 'body') {
+      target = window;
+    } else {
+      target = this.options.target;
+    }
+    $(target).off("scroll." + this._name + "." + this._id);
     this.$el.trigger("stopped." + this._name);
-    if (this.onstop != null) {
+    if (this.onunactive != null) {
       try {
-        return this.onstop.call(this.$el);
+        return this.onunactive.call(this.$el);
       } catch (_error) {}
     }
   };

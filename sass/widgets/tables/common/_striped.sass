@@ -1,0 +1,24 @@
+@mixin tables-theme-striped-setter($theme)
+	$name: map-get( $theme, name)
+	$background-color: map-get( $theme, background-color)
+
+	& > thead, & > tbody, & > tfoot
+		& > tr:nth-child(odd)
+			& > td
+				@if $name == default
+					background-color: lighten($background-color, 12%)
+				@else
+					background-color: lighten($background-color, 45%)
+
+@include exports("tables/striped")
+
+	.#{$table-class}
+
+		&.#{$mod-striped}
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include tables-theme-striped-setter($thm)
+				&.-#{$themeName}-
+					@include tables-theme-striped-setter($thm)

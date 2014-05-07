@@ -1,0 +1,137 @@
+<div id="main-content" class="-container">
+	<h1>Affix</h1>
+
+	<p>The subnavigation on the right is a live demo of the affix plugin.</p>
+
+	<blockquote class="-primary-">
+		To move your affix block inside some parent, just add <code>position: relative</code> to that parent.
+	</blockquote>
+
+
+
+
+	<div class="-row example-block">
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.affix-selector').affix()
+</pre></div>
+
+</div>
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>spy</td>
+			<td><i>@$el.data('spy') or 'affix'</i></td>
+			<td>
+				To automatically find affix elements and make them active.
+			</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td><i>5</i></td>
+			<td>
+				In <code>px</code>. Affix's block offset from top.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to affix element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the affix element <code>@data('kit-affix')</code> or <code>this.data('kit-affix')</code> in js.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>start</b></td>
+			<td></td>
+			<td>
+				<p>Activate affix</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>stop</b></td>
+			<td></td>
+			<td>
+				<p>Deativate affix</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before start affix. If it returns <code>deferred.promise()</code>, then affix will not start till <code>deferred.resolve()</code>, and woun't start at all if <code>deferred.reject()</code>. You can just get data with $.ajax() for your affix block.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.affix').affix
+	beforeactive: ->
+		d = $.Deferred()
+
+		console.log @
+		# The affix dom element will be in the log
+		# so you can add something like
+		@addClass '_do_something_'
+
+		console.log @data 'kit-affix'
+		# The instance of Affix class will in log
+
+		# Do something here before start affix
+		# in this case it will start after 2 seconds
+		setTimeout ->
+			d.resolve()
+		, 2000
+		# End of your code
+
+		d.promise()
+</pre></p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after affix started.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeunactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before affix stopped.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onunactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after affix stopped.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

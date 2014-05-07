@@ -1,0 +1,56 @@
+<h1>Difference</h1>
+
+<p>
+	<span class="_huge">
+		There are some basic differences with other frameworks.
+	</span>
+</p>
+
+<ol>
+    <li>
+    	<b>Auto build themes and sizes</b>. Just edit <code>mkit.json</code> to add or remove theme or size to any widget.
+    </li>
+    <li>
+        <b>Modularity</b>. Exclude any sass widget from maxmertkit and everything will work well.
+    </li>
+    <!-- <li>
+        <p><b>Any theme to any widget</b>. Look at the file structure of the maxmertkit. You will find out that each widget has folder with <code>_themes.sass</code> file inside. This file stores all themes you want to apply to this widget.</p>
+        <pre hljs class="prettyprint lang-sass">
+            $themes: ( default primary error info warning dark )
+        </pre>
+        <p>Change it and use with current widget only themes you want.</p>
+    </li>
+    <li>
+        <p><b>Any size to any widget</b>. Each widget has folder with <code>_sizes.sass</code> file inside. This file stores all sizes you want to apply to this widget.</p>
+        <pre hljs class="prettyprint lang-sass">
+            $sizes: ( small minor normal major big huge divine )
+        </pre>
+        <p>Change it and use with current widget only sizes you want.</p>
+    </li> -->
+    <li><b>Namespaces</b>.
+    	<ul>
+			<li><i>-widget</i> &mdash; widget, for example <code>-btn</code></li>
+			<li><i>-theme-</i> &mdash; theme, for example <code>-primary-</code></li>
+			<li><i>_size</i> &mdash; size, for example <code>_major</code></li>
+			<li><i>_modifier_</i> &mdash; modifier, for example <code>_active_</code></li>
+			<li><i>-animation--</i> &mdash; animation, for example <code>-fadein--</code></li>
+		</ul>
+		<br>
+		<p>From now you really can say what happen below</p>
+		
+		<pre hljs class="prettyprint lang-html"><ul class="-menu -primary-">
+	<li class="_active_">
+		<a>Menu item 1</a>
+		<div class="-drop -door--">
+			...
+		</div>
+	</li>
+	<li>
+		<a>Menu item 1</a>
+	</li>
+	<li class="_disabled_">
+		<a>Menu item 1</a>
+	</li>
+</ul></pre>
+    </li>
+</ol>

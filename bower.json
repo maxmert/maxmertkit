@@ -1,11 +1,15 @@
 {
   "name": "maxmertkit",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "authors": [
     "Maxmert <me@maxmert.com>"
   ],
-  "description": "Css-framework",
-  "main": "main.css",
+  "description": "Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development.",
+  "main": [
+    "sass/main.sass",
+    "build/css/maxmertkit.min.css",
+    "build/js/maxmertkit.min.js"
+  ],
   "keywords": [
     "css",
     "sass",
@@ -13,14 +17,19 @@
     "framework",
     "css-framework",
     "maxmert",
-    "maxmertkit"
+    "maxmertkit",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "web",
+    "html5",
+    "coffeescript"
   ],
-  "license": "MIT",
   "homepage": "www.maxmert.com",
   "ignore": [
-    "**/.*",
+    ".*",
     "node_modules",
-    "bower_components",
+    "bower",
     "docs/js/bower",
     "test",
     "tests"
@@ -28,8 +37,7 @@
   "dependencies": {
     "neat": "1.6.0",
     "jquery": "~2.0.3",
-    "bourbon": "4.0.0-rc.1",
-    "highlightjs-scss": "~7.3.0"
+    "bourbon": "4.0.0-rc.1"
   },
   "devDependencies": {}
 }

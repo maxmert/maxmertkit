@@ -1,16 +1,17 @@
+packageJson = require('./package.json')
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 coffeelint = require 'gulp-coffeelint'
 uglify = require 'gulp-uglify'
+gzip = require 'gulp-gzip'
 watch = require 'gulp-watch'
 nodemon = require 'gulp-nodemon'
 sass = require 'gulp-ruby-sass'
 size = require 'gulp-size'
 todo = require 'gulp-todo'
 cache = require 'gulp-cached'
-plato = require 'gulp-plato'
 plumber = require 'gulp-plumber'
 livereload = require 'gulp-livereload'
 rev = require 'gulp-rev'
@@ -19,6 +20,15 @@ bytediff = require 'gulp-bytediff'
 mocha = require 'gulp-mocha'
 clean = require 'gulp-clean'
 runSequence = require 'run-sequence'
+templater = require 'gulp-jstemplater'
+browserify = require 'gulp-browserify'
+rename = require 'gulp-rename'
+jeditor = require 'gulp-json-editor'
+argv = require('yargs').argv
+gulpif = require 'gulp-if'
+moment = require 'moment'
+mkit = require 'gulp-mkit'
+zip = require 'gulp-zip'
 
 
 
@@ -26,8 +36,10 @@ path =
 	docs:
 		front:
 			js: "docs/js"
+			sass: "docs/sass"
 			css: "docs/css"
 			coffee: "docs/coffee"
+			templates: "docs/templates"
 			vendor:
 				bower: "docs/js/bower"
 				libs: "docs/js/libs"
@@ -38,6 +50,8 @@ path =
 	kit:
 		coffee: "coffee"
 		sass: "sass"
+		js: "js"
+		css: "css"
 		vendor:
 			bower: "js/bower"
 			libs: "js/libs"
@@ -45,6 +59,7 @@ path =
 	dev: "development"
 
 	build:
+		root: "build"
 		js: "build/js"
 		css: "build/css"
 
@@ -90,12 +105,13 @@ gulp.task 'kitCoffee', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('kitCoffee') )
+		# .pipe( cache('kitCoffee') )
 		.pipe( coffeelint() )
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
 		.pipe( concat 'maxmertkit.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
+		.pipe( gulp.dest "#{path.kit.js}" )
 		# .pipe( livereload() )
 
 
@@ -109,11 +125,24 @@ gulp.task 'kitSass', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('kitSass') )
+		# .pipe( cache('kitSass') )
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
+		.pipe( gulp.dest "#{path.kit.css}" )
 		# .pipe( livereload() )
+
+
+gulp.task 'kitJson', ->
+
+	files = [
+		"./mkit.json"
+	]
+
+	gulp.src( files )
+		.pipe( plumber() )
+		.pipe( mkit() )
+		# .pipe( gulp.dest "." )
 
 
 
@@ -145,17 +174,17 @@ gulp.task 'kitTodo', ->
 gulp.task 'docsVendor', ->
 
 	files = [
-		"#{path.docs.front.vendor.bower}/angular/angular.js"
-		"#{path.docs.front.vendor.bower}/angular-route/angular-route.js"
+		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
+		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
+		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
+		"#{path.docs.front.vendor.bower}/marionette/lib/backbone.marionette.js"
+		"#{path.docs.front.vendor.bower}/backbone.wreqr/lib/backbone.wreqr.js"
+		"#{path.docs.front.vendor.bower}/mustache/mustache.js"
 		"#{path.docs.front.vendor.bower}/highlightjs/highlight.pack.js"
-		"#{path.docs.front.vendor.bower}/angular-highlightjs/angular-highlightjs.js"
-
-		"#{path.docs.front.vendor.libs}/scrollTo.angular.js"
-
 	]
 
 	gulp.src( files )
-		.pipe( cache('docsVendor') )
+		# .pipe( cache('docsVendor') )
 		.pipe( concat 'docsvendor.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
@@ -165,17 +194,28 @@ gulp.task 'docsVendor', ->
 
 gulp.task 'docsApp', ->
 
-	files = [
-		"#{path.docs.front.coffee}/app.coffee"
-	]
-
-	gulp.src( files )
-		.pipe( cache('docsApp') )
-		.pipe( coffeelint() )
-		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
+	gulp.src( "#{path.docs.front.coffee}/app.coffee", { read: false } )
+		.pipe( plumber() )
+		.pipe( browserify( transform: ['coffeeify'], extensions: ['.coffee'], debug: yes ) )
+		.pipe( rename('app.js') )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
 		# .pipe( livereload() )
+
+
+
+gulp.task 'docsTemplates', ->
+
+	files = [
+		"#{path.docs.front.templates}/**/*.html"
+	]
+
+	gulp.src( files )
+		# .pipe( cache('docsApp') )
+		.pipe( templater( "templates.js", {variable: "module", commonjs: yes} ) )
+		.pipe( size( showFiles: yes ) )
+		.pipe( gulp.dest "#{path.docs.front.js}" )
+
 
 
 # Compile all kit sass
@@ -183,12 +223,12 @@ gulp.task 'docsApp', ->
 gulp.task 'docsSass', ->
 
 	files = [
-		"#{path.kit.sass}/developer.sass"
+		"#{path.docs.front.sass}/developer.sass"
 	]
 
 	gulp.src( files )
 		.pipe( plumber() )
-		.pipe( cache('docsSass') )
+		# .pipe( cache('docsSass') )
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
@@ -230,6 +270,7 @@ gulp.task 'test', ->
 gulp.task 'watch', ->
 
 	files =
+		kitJson: "./mkit.json"
 		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
 		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
 		kitVendor:
@@ -239,29 +280,34 @@ gulp.task 'watch', ->
 		kitDocsVendor:
 			bower: "#{path.docs.front.vendor.bower}/**/*.js"
 			libs: "#{path.docs.front.vendor.libs}/**/*.js"
-		docsSass: "#{path.kit.sass}/developer.sass"
+		docsCoffee: "#{path.docs.front.coffee}/**/*.coffee"
+		docsSass: "#{path.docs.front.sass}/developer.sass"
+		docsTemplates: "#{path.docs.front.templates}/**/*.html"
 
+	gulp.watch files.kitJson, [ 'kitJson' ]
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
-	gulp.watch [ files.kitVendor.bower, files.kitVendor.libs ], [ 'kitVendor' ]
+	gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.kitSass, [ 'kitSass' ]
 
-	gulp.watch [ files.kitDocsVendor.bower, files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	gulp.watch [ files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
+	gulp.watch files.docsTemplates, [ 'docsTemplates', 'docsApp' ]
 
 
 	server = livereload()
 	gulp.watch( [
 		"#{path.docs.front.css}/**"
-		"#{path.docs.front.js}/**"
+		"#{path.docs.front.js}/*.js"
 		"docs/server/**/*.html"
 
 	] ).on 'change', ( file ) ->
 		server.changed file.path
 
 
-gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'docsApp', 'docsSass' ], ->
-	gulp.tasks.nodemon.fn()
+gulp.task( 'default', [ 'kitVendor', 'kitJson', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
+	# gulp.tasks.nodemon.fn()
 	gulp.tasks.watch.fn()
 	gulp.tasks.kitTodo.fn()
 )
@@ -277,7 +323,7 @@ gulp.task( 'default', [ 'kitVendor', 'kitCoffee', 'kitSass', 		'docsVendor', 'do
 # ====================== BUILD TASKS
 
 gulp.task 'clean', ->
-	gulp.src( ["#{path.build.js}", "#{path.build.css}" ], read: no)
+	gulp.src( ["#{path.build.root}" ], read: no)
 		.pipe( clean() )
 
 
@@ -287,25 +333,44 @@ gulp.task 'build', [ 'test' ], ->
 
 	runSequence [ 'kitCoffee', 'kitSass', 'clean' ],  ->
 		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
+
+			.pipe( gulp.dest "#{path.build.js}" )
+
 			.pipe( bytediff.start() )
 			.pipe( uglify() )
 			.pipe( bytediff.stop() )
+			.pipe( gzip( append: no ) )
+			.pipe( rename( basename: "maxmertkit.min" ) )
 			.pipe( gulp.dest "#{path.build.js}" )
 
-			.pipe( rev() )
-			.pipe( gulp.dest "#{path.build.js}" )
+			.pipe( gulpif(argv.rev, rev()) )
+			.pipe( gulpif(argv.rev, gulp.dest("#{path.build.js}")) )
+
 
 
 		gulp.src( "#{path.docs.front.css}/main.css" )
+			.pipe( rename( basename: "maxmertkit" ) )
+			.pipe( gulp.dest "#{path.build.css}" )
+
 			.pipe( bytediff.start() )
 			.pipe( minifyCSS() )
+			.pipe( gzip( append: no ) )
 			.pipe( bytediff.stop() )
+			.pipe( rename( basename: "maxmertkit.min" ) )
 			.pipe( gulp.dest "#{path.build.css}" )
 
-			.pipe( rev() )
-			.pipe( gulp.dest "#{path.build.css}" )
+			.pipe( gulpif(argv.rev, rev()) )
+			.pipe( gulpif(argv.rev, gulp.dest("#{path.build.css}")) )
 
 
 
-		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
-			.pipe( plato "#{path.dev}/report" )
+
+		gulp.src( "./package.json" )
+			.pipe( jeditor( buildDate: moment().format('MMMM Do YYYY, h:mm:ss a') ) )
+			.pipe( gulp.dest "." )
+
+
+gulp.task 'dist',  ->
+	gulp.src("#{path.build.root}/**/*")
+        .pipe(zip("maxmertkit-v#{packageJson.version}-build.zip"))
+        .pipe(gulp.dest('build'))

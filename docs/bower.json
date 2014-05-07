@@ -15,9 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular-highlightjs": "~0.1.3",
-    "angular": "1.2.12",
-    "highlightjs-scss": "~7.3.0",
-    "angular-route": "1.2.12"
+    "marionette": "~1.7.4",
+    "backbone.wreqr": "1.2.0",
+    "mustache": "~0.8.1",
+    "fontawesome": "~4.0.3",
+    "google-code-prettify": "~1.0.1",
+    "google-code-prettify-language-handlers": "~0.1.5"
   }
 }
