@@ -1,8 +1,8 @@
-# [Maxmertkit](http://maxmertkit.com)
+# [Maxmertkit](http://maxmert.com)
 
 Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development, created by [Vetrenko Maxim](http://twitter.com/vmaxmert), and maintained by the [core team](https://github.com/maxmert?tab=members) with the support and involvement of the community.
 
-To get started, check out <http://maxmertkit.com>!
+To get started, check out <http://maxmert.com>!
 
 ## Table of contents
 
@@ -24,7 +24,7 @@ Three quick start options are available:
 - Clone the repo: `git clone https://github.com/maxmert/maxmertkit.git`.
 - Install with [Bower](http://bower.io): `bower install maxmertkit`.
 
-Read the [Start page](http://maxmertkit.com/start/) for information on the framework contents, templates and examples, and more.
+Read the [Start page](http://maxmert.com/start/) for information on the framework contents, templates and examples, and more.
 
 ### What's included
 
@@ -53,7 +53,7 @@ Maxmertkit's documentation, included in this repo in the root directory, is run 
 
 ### Documentation for previous releases
 
-Documentation for v0.0.2 has been made available for the time being at <http://old.maxmertkit.com> while folks transition to Maxmertkit 1.0.0.
+Documentation for v0.0.2 has been made available for the time being at <http://old.maxmert.com> while folks transition to Maxmertkit 1.0.0.
 
 
 
