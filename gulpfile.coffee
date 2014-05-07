@@ -11,7 +11,6 @@ sass = require 'gulp-ruby-sass'
 size = require 'gulp-size'
 todo = require 'gulp-todo'
 cache = require 'gulp-cached'
-plato = require 'gulp-plato'
 plumber = require 'gulp-plumber'
 livereload = require 'gulp-livereload'
 rev = require 'gulp-rev'
@@ -361,9 +360,6 @@ gulp.task 'build', [ 'test' ], ->
 			.pipe( gulpif(argv.rev, gulp.dest("#{path.build.css}")) )
 
 
-
-		gulp.src( "#{path.docs.front.js}/maxmertkit.js" )
-			.pipe( plato "#{path.dev}/report" )
 
 
 		gulp.src( "./package.json" )

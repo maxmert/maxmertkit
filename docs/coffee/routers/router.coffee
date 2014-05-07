@@ -5,6 +5,7 @@ LayoutWidgets = require('../layouts/pages/widgets').module
 LayoutUtilities = require('../layouts/pages/utilities').module
 LayoutComponents = require('../layouts/pages/components').module
 LayoutChangelog = require('../layouts/pages/changelog').module
+Layout404 = require('../layouts/pages/404').module
 
 mainController =
 
@@ -96,3 +97,4 @@ exports.module = Marionette.AppRouter.extend
         @title.html("404 · Maxmertkit")
         $.app.commands.execute 'menu', 'activate'
         $.app.main.currentView.content.close()
+        $.app.main.currentView.content.show new Layout404()

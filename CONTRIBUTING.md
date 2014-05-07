@@ -1,6 +1,6 @@
-# Contributing to Bootstrap
+# Contributing to Maxmertkit
 
-Looking to contribute something to Bootstrap? **Here's how you can help.**
+Looking to contribute something to Maxmertkit? **Here's how you can help.**
 
 Please take a moment to review this document in order to make the contribution
 process easy and effective for everyone involved.
@@ -13,13 +13,13 @@ patches and features.
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/twbs/bootstrap/issues) is
+The [issue tracker](https://github.com/maxmert/maxmertkit/issues) is
 the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests)
 and [submitting pull requests](#pull-requests), but please respect the following
 restrictions:
 
 * Please **do not** use the issue tracker for personal support requests.  Stack
-  Overflow ([`twitter-bootstrap-3`](http://stackoverflow.com/questions/tagged/twitter-bootstrap-3) tag) or [IRC](https://github.com/twbs/bootstrap/blob/master/README.md#community) are better places to get help.
+  Overflow ([`twitter-maxmertkit-3`](http://stackoverflow.com/questions/tagged/maxmertkit-1) tag) or [IRC](https://github.com/maxmert/maxmertkit/blob/master/README.md#community) are better places to get help.
 
 * Please **do not** derail or troll issues. Keep the discussion on topic and
   respect the opinions of others.
@@ -83,9 +83,11 @@ provide as much detail and context as possible.
 
 ## Pull requests
 
-Good pull requests—patches, improvements, new features—are a fantastic
+Good pull requests—patches, text fixes, improvements, new features &mdash; are a fantastic
 help. They should remain focused in scope and avoid containing unrelated
 commits.
+
+**Do without asking** pull requests with fixes of documentation texts.
 
 **Please ask first** before embarking on any significant pull request (e.g.
 implementing features, refactoring code, porting to a different language),
@@ -104,11 +106,11 @@ included in the project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/bootstrap.git
+   git clone https://github.com/<your-username>/maxmertkit.git
    # Navigate to the newly cloned directory
-   cd bootstrap
+   cd maxmertkit
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/twbs/bootstrap.git
+   git remote add upstream https://github.com/maxmert/maxmertkit.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -154,8 +156,8 @@ license your work under the terms of the [MIT License](LICENSE.md).
 
 ### HTML
 
-- Two spaces for indentation, never tabs.
-- Double quotes only, never single quotes.
+- Tabs for indentation, never spaces.
+- Double quotes prefered.
 - Always use proper indentation.
 - Use tags and elements appropriate for an HTML5 doctype (e.g., self-closing tags).
 - Use CDNs and HTTPS for third-party JS when possible. We don't use protocol-relative URLs in this case because they break when viewing the page locally via `file://`.
@@ -163,34 +165,28 @@ license your work under the terms of the [MIT License](LICENSE.md).
 
 ### CSS
 
-- CSS changes must be done in `.less` files first, never just in the compiled `.css` files.
+- CSS changes must be done in `.sass` files first, never just in the compiled `.css` files.
 - Adhere to the [CSS property order](http://markdotto.com/2011/11/29/css-property-order/).
 - Multiple-line approach (one property and value per line).
-- Always a space after a property's colon (e.g., `display: block;` and not `display:block;`).
-- End all lines with a semi-colon.
-- For multiple, comma-separated selectors, place each selector on its own line.
+- Always a space after a property's colon (e.g., `display: block` and not `display:block`).
 - Don't add vendor prefixed properties to their unprefixed counterparts (e.g., only `box-sizing` and not also include `-webkit-box-sizing`), as this is done automagically at build time.
 - Attribute selectors, like `input[type="text"]` should always wrap the attribute's value in double quotes, for consistency and safety (see this [blog post on unquoted attribute values](http://mathiasbynens.be/notes/unquoted-attribute-values) that can lead to XSS attacks).
 - Attribute selectors should only be used where absolutely necessary (e.g., form controls) and should be avoided on custom components for performance and explicitness.
-- Series of classes for a component should include a base class (e.g., `.component`) and use the base class as a prefix for modifier and sub-components (e.g., `.component-lg`).
-- Avoid inheritance and over nesting—use single, explicit classes whenever possible.
-- When feasible, default color palettes should comply with [WCAG color contrast guidelines](http://www.w3.org/TR/WCAG20/#visual-audio-contrast).
 - Except in rare cases, don't remove default `:focus` styles (via e.g. `outline: none;`) without providing alternative styles. See [this A11Y Project post](http://a11yproject.com/posts/never-remove-css-outlines/) for more details.
 
-### JS
+### Coffeescript
 
-- No semicolons (in client-side JS)
-- 2 spaces (no tabs)
+- tabs (no spaces)
 - strict mode
 - "Attractive"
 
-### Checking coding style
 
-Run `grunt test` before committing to ensure your changes follow our coding standards.
+### Tests and checking coding style
+
+I really need your help in writing tests for js.
+You can run `gulp test` before committing to ensure your changes follow our coding standards.
 
 
 ## License
 
-By contributing your code, you agree to license your contribution under the [MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
-
-Prior to v3.1.0, Bootstrap was released under the Apache License v2.0.
+By contributing your code, you agree to license your contribution under the [MIT license](https://github.com/maxmert/maxmertkit/blob/master/LICENSE).
