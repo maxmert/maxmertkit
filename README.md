@@ -1,6 +1,6 @@
 # [Maxmertkit](http://maxmertkit.com)
 
-Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development, created by [Муекутлщ Ьфчшь](http://twitter.com/vmaxmert), and maintained by the [core team](https://github.com/maxmert?tab=members) with the support and involvement of the community.
+Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development, created by [Vetrenko Maxim](http://twitter.com/vmaxmert), and maintained by the [core team](https://github.com/maxmert?tab=members) with the support and involvement of the community.
 
 To get started, check out <http://maxmertkit.com>!
 
