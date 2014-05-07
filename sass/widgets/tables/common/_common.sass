@@ -1,0 +1,103 @@
+// MODIFIERS
+
+@mixin tables-theme-horizontal-setter($theme)
+	$border-color: map-get( $theme, border-color)
+
+	& > thead, & > tbody, & > tfoot
+		& > tr
+			& > td
+				border-top: 1px solid lighten($border-color, 20%)
+			& > th
+				border-bottom: 2px solid lighten($border-color, 20%)
+	& > tbody + tbody
+		border-top: 2px solid lighten($border-color, 20%)
+
+	& > thead + tbody
+		border-top: 2px solid lighten($border-color, 20%)
+
+
+@mixin tables-theme-vertical-setter($theme)
+	$border-color: map-get( $theme, border-color)
+
+	& > thead, & > tbody, & > tfoot
+		& > tr
+			& > td, & > th
+				border-right: 1px solid lighten($border-color, 20%)
+
+				&:last-child
+					border-right: none
+	& > tbody + tbody
+		border-top: 2px solid lighten($border-color, 20%)
+
+	& > thead + tbody
+		border-top: 2px solid lighten($border-color, 20%)
+
+
+
+@mixin tables-theme-wrap-setter($theme)
+	$border-color: map-get( $theme, border-color)
+
+	& > thead, & > tbody, & > tfoot
+		border: 1px solid lighten($border-color, 20%)
+
+
+
+
+
+@include exports("tables/basic")
+
+	table, .#{$table-class}
+		max-width: 100%
+
+		th
+			text-align: left
+			font-weight: bold
+
+
+	.#{$table-class}
+		width: 100%
+		margin-bottom: $base-line-height-comp
+
+		& > thead, & > tbody, & > tfoot
+			& > tr
+				& > th, & > td
+					padding: $table-cell-padding
+					line-height: $base-line-height
+					vertical-align: top
+
+
+
+		&.#{$mod-horizontal}
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include tables-theme-horizontal-setter($thm)
+				&.-#{$themeName}-
+					@include tables-theme-horizontal-setter($thm)
+
+
+
+		&.#{$mod-vertical}
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include tables-theme-vertical-setter($thm)
+				&.-#{$themeName}-
+					@include tables-theme-vertical-setter($thm)
+
+		&.#{$mod-bordered}
+			@extend .#{$table-class}.#{$mod-horizontal}
+			@extend .#{$table-class}.#{$mod-vertical}
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include tables-theme-wrap-setter($thm)
+				&.-#{$themeName}-
+					@include tables-theme-wrap-setter($thm)
+
+
+		&[disabled]
+			opacity: 0.5

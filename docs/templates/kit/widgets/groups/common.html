@@ -1,0 +1,51 @@
+<!-- ============ GROUPS -->
+<!-- ====================== -->
+
+<h1>Groups</h1>
+
+<p>Group a series of buttons together on a single line with the button group. Use class <code>-group</code> to create it.</p>
+
+<!-- ============ Variables -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$form-fieldset-border: 1px solid rgba(0,0,0,.2) !global
+$form-fieldset-padding-vertical: $base-line-height-comp !global
+$form-fieldset-padding-horizontal: $base-line-height-comp !global
+
+$form-legend-padding: 7px !global</pre></div>
+</p>
+
+<blockquote class="-warning-">
+	Use modifier <code>_responsive_</code> to make groups responsive.<br>
+	It means when screen resolution become less then <b>992px</b>, then all groups become justifyed.
+</blockquote>
+
+<h3>Responsive</h3>
+
+<p>Just make screen resolution less than <b>992px</b>.</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<div class="-group">
+			<span class="-addon">not responsive</span><a class="-btn"><i class="fa fa-align-left"></i></a><a class="-btn _active_"><i class="fa fa-align-center"></i></a><a class="-btn"><i class="fa fa-align-right"></i></a>
+		</div><br>
+		<div class="-group _responsive_">
+			<span class="-addon">it is responsive</span><a class="-btn"><i class="fa fa-align-left"></i></a><a class="-btn _active_"><i class="fa fa-align-center"></i></a><a class="-btn"><i class="fa fa-align-right"></i></a>
+		</div>
+	</div>
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-group">
+	<span class="-addon">not responsive</span>
+	<a class="-btn"><i class="fa fa-align-left"></i></a>
+	<a class="-btn _active_"><i class="fa fa-align-center"></i></a>
+	<a class="-btn"><i class="fa fa-align-right"></i></a>
+</div><br>
+<div class="-group _responsive_">
+	<span class="-addon">responsive</span>
+	<a class="-btn"><i class="fa fa-align-left"></i></a>
+	<a class="-btn _active_"><i class="fa fa-align-center"></i></a>
+	<a class="-btn"><i class="fa fa-align-right"></i></a>
+</div></pre></div>
+
+</div>

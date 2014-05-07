@@ -1,0 +1,26 @@
+@include exports("grid/container")
+
+	.#{$container-class}
+		@include outer-container
+
+		@include media(new-breakpoint(min-width $base-screen-huge 6))
+			&:not(.#{$mod-fixed})
+				$max-width: em($base-screen-huge) !global
+				@include outer-container
+
+
+		@include media(new-breakpoint(max-width $base-screen-huge 6))
+			&:not(.#{$mod-fixed})
+				$max-width: em($base-screen-small) !global
+				@include outer-container
+
+		@include media(new-breakpoint(max-width $base-screen-small 6))
+			&:not(.#{$mod-fixed})
+				$max-width: em($base-screen-tiny) !global
+				@include outer-container
+				padding: 0 10px
+
+		&.#{$mod-fixed}
+			$max-width: em($base-screen-middle) !global
+			width: $max-width
+			@include outer-container

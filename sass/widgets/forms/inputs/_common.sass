@@ -1,0 +1,141 @@
+@import "../../grid"
+
+@import "themes"
+@import "sizes"
+
+@mixin forms-input-setter
+	font-family: $form-input-font-family
+	font-size: $base-font-size
+	line-height: $base-line-height
+	padding: $base-padding-vertical $base-padding-horizontal
+	margin: 0
+	border-radius: $form-input-border-radius
+	@include box-sizing(border-box)
+	outline: none
+
+	width: 100%
+
+
+@mixin forms-theme-input-setter($theme)
+	$color: map-get( $theme, color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	border: 1px solid $border-color
+
+	&:active, &:focus
+		box-shadow: 0 0 10px rgba($background-color, 0.4)
+
+	@include placeholder
+		color: lighten($color, 25%)
+
+
+
+@mixin forms-theme-select-setter($theme)
+	$color: map-get( $theme, color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	border: 1px solid $border-color
+	background: rgba($background-color, .1) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat
+	background-position-x: 97%
+	background-position-y: center
+
+	&:active, &:focus
+		box-shadow: 0 0 10px rgba($background-color, 0.4)
+
+
+
+@mixin forms-input-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
+
+
+
+@include exports("forms/inputs")
+	form
+
+
+
+
+
+
+
+		.#{$row-class}
+			margin-bottom: $base-line-height-comp
+
+
+		select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+			-webkit-appearance: none
+			vertical-align: middle
+			@include forms-input-setter
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include forms-theme-input-setter($thm)
+				&.-#{$themeName}-
+					@include forms-theme-input-setter($thm)
+
+			@include placeholder
+				font-weight: 200
+
+
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+				@if $sizeName == normal
+					@include forms-input-size-setter($sz)
+				&._#{$sizeName}
+					@include forms-input-size-setter($sz)
+
+
+
+		input[type="radio"], input[type="checkbox"]
+			margin: 0
+			margin-top: 1px \9
+			line-height: normal
+			vertical-align: middle
+
+			& + label
+				width: auto
+				display: inline-block
+				vertical-align: middle
+				padding: 0
+
+
+		select
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				@if $themeName == default
+					@include forms-theme-select-setter($thm)
+				&.-#{$themeName}-
+					@include forms-theme-select-setter($thm)
+
+			border-radius: 0
+
+		label
+			display: block
+			@include forms-input-setter
+			border: 1px solid transparent
+			padding-left: 0
+			cursor: $form-label-cursor
+			font-weight: $form-label-font-weight
+
+			@each $sizeName in $sizes
+				$sz: map-get( $base-sizes, $sizeName )
+				@if $sizeName == normal
+					@include forms-input-size-setter($sz)
+				&._#{$sizeName}
+					@include forms-input-size-setter($sz)
+
+			@include text-overflow
+			white-space: normal
+
+
+	@include media(new-breakpoint(max-width 992px 6))
+		[class^="#{$column-class}"]
+			margin-bottom: $form-column-margin-bottom

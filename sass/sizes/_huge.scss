@@ -1,0 +1,6 @@
+$size: (
+    name: huge,
+    multiplier: 1.75
+);
+
+$base-sizes: map-merge($base-sizes, (huge: $size))!global;

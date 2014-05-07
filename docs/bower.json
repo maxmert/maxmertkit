@@ -1,0 +1,25 @@
+{
+  "name": "maxmertkit-docs",
+  "version": "0.0.0",
+  "authors": [
+    "Maxmert <me@maxmert.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "marionette": "~1.7.4",
+    "backbone.wreqr": "1.2.0",
+    "mustache": "~0.8.1",
+    "fontawesome": "~4.0.3",
+    "google-code-prettify": "~1.0.1",
+    "google-code-prettify-language-handlers": "~0.1.5"
+  }
+}

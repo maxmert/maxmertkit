@@ -1,0 +1,128 @@
+@import "sizes"
+@import "themes"
+
+@mixin nav-theme-tabs-setter($theme)
+	$background-color: map-get( $theme, background-color)
+
+	border-color: $background-color
+
+	#{$nav-item}
+		@include nav-theme-tab-setter($theme)
+
+
+
+@mixin nav-theme-tab-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	&:hover, &.#{$mod-hovered}
+		a
+			background-color: lighten( $background-color, 10% )
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+	&:active
+		a
+			background-color: lighten( $background-color, 8% )
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+
+	&.#{$mod-active}
+		a
+			border-color: $background-color
+			background-color: lighten( $background-color, 5% )
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+	&.#{$mod-disabled}, &[disabled]
+		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+			background: transparent
+			color: rgba($color,.3)
+			border-color: transparent
+			pointer-events: none
+
+
+
+@include exports("nav/tabs")
+	.#{$nav-tabs-class}
+		border-bottom-width: $nav-tabs-border-width
+		border-style: solid
+
+		@include nav-setter
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-tabs-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-tabs-setter($thm)
+
+		#{$nav-item}
+			float: left
+			margin-right: $nav-tabs-items-margin
+			bottom: -$nav-tabs-border-width
+
+			a
+				padding: $nav-tabs-items-padding-vertical $nav-tabs-items-padding-horizontal
+				border-radius: $nav-tabs-items-border-radius $nav-tabs-items-border-radius 0 0
+				border-width: $nav-tabs-border-width
+				border-style: solid
+				border-color: transparent
+				white-space: nowrap
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
+
+			&.#{$mod-active}
+				a
+					border-bottom-color: transparent
+					cursor: inherit
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				&.-#{$themeName}-
+					@include nav-theme-tab-setter($thm)
+
+
+
+		&.#{$mod-vertical}
+			border-bottom-width: 0
+			border-right-width: $nav-tabs-border-width
+
+			#{$nav-item}
+				right: -$nav-tabs-border-width
+				margin-right: 0
+				margin-bottom: $nav-tabs-items-margin
+				a
+					border-radius: $nav-tabs-items-border-radius 0 0 $nav-tabs-items-border-radius
+
+			&.#{$mod-right}
+				border-left-width: $nav-tabs-border-width
+				border-right-width: 0
+				#{$nav-item}
+					right: inherit
+					left: -$nav-tabs-border-width
+					a
+						border-radius: 0 $nav-tabs-items-border-radius $nav-tabs-items-border-radius 0
+
+			#{$nav-item}
+				float: none

@@ -1,0 +1,140 @@
+@mixin typography-inline-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	@if $name != default
+		color: $color
+
+
+@mixin typography-blockquote-theme-setter($theme)
+	$color: map-get( $theme, color)
+
+	border-color: $color
+	small
+		color: $color
+
+@mixin typography-hr-theme-setter($theme)
+	$color: map-get( $theme, color)
+	background-color: $color
+
+
+@mixin typography-inline-size-setter($size)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: $multiplier * $base-font-size
+
+
+
+@include exports("typography/body")
+
+	b
+		font-weight: $body-b-font-weight
+
+	i
+		font-style: $body-i-font-style
+
+	small
+		font-size: $body-small-font-size
+
+	p
+		margin: 0 0 $base-line-height-comp / 2
+		line-height: $base-line-height
+
+	b, i, small, p, span
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+
+			&._#{$sizeName}
+				@include typography-inline-size-setter($sz)
+				// font-size: $multilpyer * $base-font-size
+
+		// @each $size in $base-sizes-names
+		// 	$i: index($base-sizes-names, $size)
+		// 	&.#{$size}
+		// 		font-size: nth($base-sizes-values, $i) * 100%
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include typography-inline-theme-setter($thm)
+			&.-#{$themeName}-
+				@include typography-inline-theme-setter($thm)
+
+
+		&.#{$mod-left}
+			text-align: left
+
+		&.#{$mod-center}
+			text-align: center
+
+		&.#{$mod-right}
+			text-align: right
+
+		&.#{$mod-justify}
+			text-align: justify
+
+	em
+		@extend i
+
+	strong
+		@extend b
+
+	abbr[title]
+		cursor: help
+		border-bottom: 1px dotted
+
+		&.#{$abbr-initialism-class}
+			text-transform: uppercase
+			font-size: 80%
+
+	address
+		margin-bottom: $base-line-height-comp
+		line-height: $base-line-height
+
+	blockquote
+		padding: $base-line-height-comp / 2 $base-line-height-comp
+		margin: 0 0 $base-line-height-comp
+		line-height: $base-line-height-comp
+		font-size: $base-font-size * 1.25
+		text-align: left
+		border-left: 5px solid
+
+		small
+			font-size: $blockquote-small-font-size
+			&:before
+				content: '\2014 \00A0'
+
+		&.#{$mod-right}
+			text-align: right
+			border-left: none
+			border-right: 5px solid
+			small
+				&:before
+					content: ''
+				&:after
+					content: '\2014 \00A0'
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include typography-blockquote-theme-setter($thm)
+			&.-#{$themeName}-
+				@include typography-blockquote-theme-setter($thm)
+
+
+	hr
+		display: block
+		height: 1px
+		width: $hr-width
+		margin: $hr-margin-vertical $hr-margin-horizontal
+		border: none
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include typography-hr-theme-setter($thm)
+			&.-#{$themeName}-
+				@include typography-hr-theme-setter($thm)

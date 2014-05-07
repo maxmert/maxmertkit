@@ -1,0 +1,246 @@
+<!-- ============================== MENU ============================== -->
+
+<h2>Menu</h2>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div></div>
+</p>
+
+
+<!-- ============ DESCRIPTION -->
+<!-- ====================== -->
+<h3>Basic use</h3>
+<p>
+	Use menu class <code>-menu</code>.
+</p>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu">
+			<li><a>Menu 1</a></li>
+			<li><a>Menu 2</a></li>
+			<li><a>Menu 3</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu">
+	<li><a>Menu 1</a></li>
+	<li><a>Menu 2</a></li>
+	<li><a>Menu 3</a></li>
+</ul></pre></div>
+
+</div>
+
+
+<p>
+	Add themes.
+</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu -primary-">
+			<li><a>Menu 1</a></li>
+			<li><a>Menu 2</a></li>
+			<li><a>Menu 3</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu -primary-">
+	<li><a>Menu 1</a></li>
+	<li><a>Menu 2</a></li>
+	<li><a>Menu 3</a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<h3>Vertical menu</h3>
+
+<p>
+	To make it vertical add modifier <code>_vertical_</code>.
+</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu _vertical_">
+			<li><a>Menu 1</a></li>
+			<li><a>Menu 2</a></li>
+			<li><a>Menu 3</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu _vertical_">
+	<li><a>Menu 1</a></li>
+	<li><a>Menu 2</a></li>
+	<li><a>Menu 3</a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+<h3>Addon</h3>
+<p>
+	Use class <code>-addon</code> to add an additional information about this menu to the right.
+</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu -primary-">
+			<li><a>Menu 1 <i class="-addon fa fa-caret-down"></i></a></li>
+			<li><a>Menu 2 <i class="-addon">⌘M</i></a></li>
+			<li class="-warning-"><a>Menu 3 <i class="-addon fa fa-star"></i></a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu -primary-">
+	<li><a>Menu 1 <i class="-addon fa fa-caret-down"></i></a></li>
+	<li><a>Menu 2 <i class="-addon">⌘M</i></a></li>
+	<li class="-warning-"><a>Menu 3 <i class="-addon fa fa-star"></i></a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+
+
+
+<h3>Add submenus</h3>
+
+<p>
+	To add submenu just add widget <code>-drop</code> with <code>-menu</code> inside.
+</p>
+
+<blockquote class="-primary-">
+	To change dropdown position use position modifiers <code>_top_</code>, <code>_bottom_</code>, <code>_left_</code>, <code>_right_</code>. For more information look <a href="#dropdowns">dropdown section</a>.
+</blockquote>
+
+<p>Dropdown will be visible only if parent item is <code>_active_</code>. If you want to make it visible on <code>:hover</code>, add modifier <code>_hovered_</code> to the root <code>-menu</code>.</p>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu -primary-">
+			<li><a>No hovered</a></li>
+			<li><a>Menu 2</a></li>
+			<li>
+				<a>Menu 3 <i class="-addon fa fa-caret-down"></i></a>
+				<div class="-drop">
+					<ul class="-menu _vertical_">
+						<li><a>Menu with long name <i class="-addon">⌘M</i></a></li>
+						<li>
+							<a>Menu 2 <i class="-addon fa fa-caret-right"></i></a>
+							<div class="-drop _right_">
+								<ul class="-menu _vertical_">
+									<li><a>Menu 1</a></li>
+									<li><a>Menu 2</a></li>
+									<li>
+										<a>Menu 3</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a>Menu 3</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<br>
+		<ul class="-menu -primary- _hovered_">
+			<li><a>With hovered</a></li>
+			<li><a>Menu 2</a></li>
+			<li>
+				<a>Menu 3 <i class="-addon fa fa-caret-down"></i></a>
+				<div class="-drop -fadein--">
+					<ul class="-menu _vertical_">
+						<li><a>Menu with long name <i class="-addon">⌘M</i></a></li>
+						<li>
+							<a>Menu 2 <i class="-addon fa fa-caret-right"></i></a>
+							<div class="-drop _right_">
+								<ul class="-menu _vertical_">
+									<li><a>Menu 1</a></li>
+									<li><a>Menu 2</a></li>
+									<li>
+										<a>Menu 3</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a>Menu 3</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu -primary-">
+	<li><a>No hovered</a></li>
+	<li><a>Menu 2</a></li>
+	<li>
+		<a>Menu 3 <i class="-addon fa fa-caret-down"></i></a>
+		<div class="-drop">
+			<ul class="-menu _vertical_">
+				<li><a>Menu with long name <i class="-addon">⌘M</i></a></li>
+				<li>
+					<a>Menu 2 <i class="-addon fa fa-caret-right"></i></a>
+					<div class="-drop _right_">
+						<ul class="-menu _vertical_">
+							<li><a>Menu 1</a></li>
+							<li><a>Menu 2</a></li>
+							<li>
+								<a>Menu 3</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li><a>Menu 3</a></li>
+			</ul>
+		</div>
+	</li>
+</ul>
+
+<ul class="-menu -primary- _hovered_">
+	<li><a>With hovered</a></li>
+	<li><a>Menu 2</a></li>
+	<li>
+		<a>Menu 3 <i class="-addon fa fa-caret-down"></i></a>
+		<div class="-drop">
+			<ul class="-menu _vertical_">
+				<li><a>Menu with long name <i class="-addon">⌘M</i></a></li>
+				<li>
+					<a>Menu 2 <i class="-addon fa fa-caret-right"></i></a>
+					<div class="-drop _right_">
+						<ul class="-menu _vertical_">
+							<li><a>Menu 1</a></li>
+							<li><a>Menu 2</a></li>
+							<li>
+								<a>Menu 3</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li><a>Menu 3</a></li>
+			</ul>
+		</div>
+	</li>
+</ul></pre></div>
+
+</div>

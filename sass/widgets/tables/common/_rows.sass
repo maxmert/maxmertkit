@@ -1,0 +1,26 @@
+@mixin tables-theme-row-setter($theme)
+	$name: map-get( $theme, name)
+	$background-color: map-get( $theme, background-color)
+
+	& > td
+		@if $name == default
+			background-color: lighten($background-color, 12%)
+		@else
+			background-color: lighten($background-color, 25%)
+
+
+@include exports("tables/rows")
+
+	.#{$table-class}
+
+		& > thead, & > tbody, & > tfoot
+			& > tr
+
+				@each $themeName in $themes
+					$thm: map-get( $base-themes, $themeName )
+
+					&.-#{$themeName}-
+						@include tables-theme-row-setter($thm)
+
+				&[disabled]
+					opacity: 0.5

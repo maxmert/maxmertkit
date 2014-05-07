@@ -1,0 +1,97 @@
+@import "sizes"
+@import "themes"
+
+
+@mixin nav-theme-pills-setter($theme)
+	#{$nav-item}
+		@include nav-theme-pill-setter($theme)
+
+
+
+@mixin nav-theme-pill-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	&:hover, &.#{$mod-hovered}
+		a
+			background-color: lighten($background-color, 10%)
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+	&.#{$mod-active}, &:active
+		a
+			background-color: $background-color
+			@if $name == default
+				color: $color
+			@else
+				color: $white-color
+
+
+
+	&.#{$mod-disabled}, &[disabled]
+		a, :active &, .#{$mod-active} &, :hover &, .#{$mod-hovered} &
+			background: transparent
+			color: rgba($color, .3)
+			pointer-events: none
+
+
+
+@include exports("nav/pills")
+	.#{$nav-pills-class}
+		border: none
+
+		@include nav-setter
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-pills-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-pills-setter($thm)
+
+		#{$nav-item}
+			float: left
+			margin-right: $nav-tabs-items-margin
+
+			a
+				padding: $nav-pills-items-padding-vertical $nav-pills-items-padding-horizontal
+				border-radius: $nav-pills-items-border-radius
+				border-width: $nav-pills-border-width
+				border-style: solid
+				border-color: transparent
+				white-space: nowrap
+				outline: none
+				font-size: $base-font-size
+				line-height: $base-line-height
+				@include user-select(none)
+				cursor: pointer
+				text-decoration: none
+
+				$thm-color: map-get( $base-themes, default )
+				color: map-get( $thm-color, color)
+
+			&.#{$mod-active}
+				a
+					cursor: inherit
+
+			@include nav-setter
+
+			@each $themeName in $themes
+				$thm: map-get( $base-themes, $themeName )
+
+				&.-#{$themeName}-
+					@include nav-theme-pill-setter($thm)
+
+
+		&.#{$mod-vertical}
+
+			#{$nav-item}
+				margin-right: 0
+				margin-bottom: $nav-tabs-items-margin
+				float: none

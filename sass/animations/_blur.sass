@@ -1,0 +1,30 @@
+$animations-blur-class: "-blur--" !global
+
+$animations-blur-duration: 0.7s !global
+$animations-blur-timing-function: linear !global
+$animations-blur-delay: 0s !global
+
+
+
+@include exports("animations/blur")
+
+
+
+
+
+
+
+	.#{$animations-blur-class}
+		@include transition-property (filter)
+		@include transition-duration($animations-blur-duration)
+		@include transition-timing-function($animations-blur-timing-function)
+		@include transition-delay($animations-blur-delay)
+
+		&.#{$animation-start-class}
+			// opacity: 1
+			@include filter(blur(0px))
+
+
+		&.#{$animation-stop-class}
+			// opacity: 0
+			@include filter(blur(5px))

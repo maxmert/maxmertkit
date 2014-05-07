@@ -1,0 +1,48 @@
+$animations-corner-class: "-corner--" !global
+
+$animations-corner-duration: 0.5s !global
+$animations-corner-timing-function: ease-in-out !global
+$animations-corner-delay: 0s !global
+
+
+@include exports("animations/corner")
+
+
+	@include keyframes( cornerIn )
+		from
+			@include transform( translateY(50px) translateX(50px) )
+			opacity: 0
+		to
+			@include transform( translateY(0px) translateX(0px) )
+			opacity: 1
+
+
+	@include keyframes( cornerOut )
+		from
+			@include transform( translateY(0px) translateX(0px) )
+			opacity: 1
+		to
+			@include transform( translateY(50px) translateX(50px) )
+			opacity: 0
+
+
+	.#{$animations-corner-class}
+
+		// opacity: 0
+		// visibility: hidden
+		// @include transition( opacity $animations-corner-duration forwards $animations-corner-timing-function, visibility $animations-corner-duration forwards $animations-corner-timing-function )
+		
+		&.#{$animation-start-class}
+			// opacity: 1
+			// visibility: visible
+
+			// & > div
+			@include animation( cornerIn $animations-corner-duration forwards $animations-corner-timing-function )
+
+
+		&.#{$animation-stop-class}
+			// opacity: 0
+			// visibility: hidden
+
+			// & > div
+			@include animation( cornerOut $animations-corner-duration forwards $animations-corner-timing-function )

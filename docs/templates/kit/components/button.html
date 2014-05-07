@@ -1,0 +1,242 @@
+<div id="main-content" class="-container">
+	<h1>Button</h1>
+
+	<div class="-row example-block">
+
+	<div class="-col12 view">
+		<a class="-btn btn-simple" data-toggle="button">Button 1</a>
+		<a class="-btn btn-simple" data-toggle="button">Button 2</a>
+
+		<br>
+
+		<div class="-group">
+			<a class="-btn" data-toggle="button" data-type="radio" data-group="bbb">Radio 1</a><a class="-btn" data-toggle="button" data-type="radio" data-group="bbb">Radio 2</a>
+		</div>
+
+		<div class="-group">
+			<a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a><a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a>
+		</div>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><a class="-btn" data-toggle="button">Button 1</a>
+<a class="-btn" data-toggle="button">Button 2</a>
+
+<div class="-group">
+	<a class="-btn" data-toggle="button" data-type="radio" data-group="bbb">Radio 1</a>
+	<a class="-btn" data-toggle="button" data-type="radio" data-group="bbb">Radio 2</a>
+</div>
+
+<div class="-group">
+	<a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a>
+	<a class="-btn" data-toggle="button" data-type="checkbox" data-group="bbb1">Checkbox</a>
+</div>
+</pre></div>
+
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$(document).find("[data-toggle='button']").button()
+</pre></div>
+
+</div>
+
+
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<div class="-group">
+			<a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a><a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a>
+		</div>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-group">
+	<a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a>
+	<a class="-btn btn-with-before" data-toggle="button" data-type="checkbox" data-group="bbb3">Checkbox</a>
+</div>
+</pre></div>
+
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-with-before').button
+	beforeactive: ->
+		d = $.Deferred()
+		@html 'Loading...'
+		@addClass '_disabled_'
+		setTimeout ->
+			d.resolve()
+		,2000
+		d.promise()
+
+	onactive: ->
+		@removeClass '_disabled_'
+		@html 'Checked'
+
+	onunactive: ->
+		@html 'Checkbox'
+</pre></div>
+
+</div>
+
+
+
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<div class="-group">
+			<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 1</a><a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 2</a><a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2" button>Radio 3</a>
+		</div>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-group">
+	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 1</a>
+	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 2</a>
+	<a class="-btn radio-with-before" data-toggle="button" data-type="radio" data-group="bbb2">Radio 3</a>
+</div>
+</pre></div>
+
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.radio-with-before').button
+	beforeactive: ->
+		d = $.Deferred()
+		@html 'Loading...'
+		@addClass '_disabled_'
+		setTimeout ->
+			d.resolve()
+		,2000
+		d.promise()
+
+	onactive: ->
+		@removeClass '_disabled_'
+		@html 'Checked'
+
+	beforeunactive: ->
+		d = $.Deferred()
+		@html 'Unchecking...'
+		@addClass '_disabled_'
+		setTimeout ->
+			d.resolve()
+		,3000
+		d.promise()
+
+	onunactive: ->
+		@removeClass '_disabled_'
+		@html 'Radio'
+</pre></div>
+
+</div>
+
+
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>toggle</td>
+			<td><i>@$btn.data('toggle') or 'button'</i></td>
+			<td>
+				To find all buttons in the DOM and initialize them.
+			</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td><i>@$btn.data('type') or 'button'</i></td>
+			<td>
+				<code>button</code>, <code>radio</code>, <code>checkbox</code>. Define button's behaviour.
+			</td>
+		</tr>
+		<tr>
+			<td>group</td>
+			<td><i>none</i></td>
+			<td>
+				<code>String</code>. Uses for <code>type: radio</code>, just type any name for group of radiobuttons.
+			</td>
+		</tr>
+		<tr>
+			<td>event</td>
+			<td><i>"click"</i></td>
+			<td>
+				This event will be used to activate/deactivate button.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data('kit-button')</code> or <code>this.data('kit-button')</code> in js.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before activate button. If it returns <code>deferred.promise()</code>, then button will not activate till <code>deferred.resolve()</code>, and woun't activate at all if <code>deferred.reject()</code>. You can just get data with $.ajax() instead of using deferred.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-with-before').button
+	beforeactive: ->
+		d = $.Deferred()
+		@html 'Loading...'
+		@addClass '_disabled_'
+		setTimeout ->
+			d.resolve()
+		,2000
+		d.promise()
+
+	onactive: ->
+		@removeClass '_disabled_'
+		@html 'Checked'
+
+	onunactive: ->
+		@html 'Checkbox'
+</pre></p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after button activation.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before deactivate button.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onunactivate</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after deactivate button.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+</div>

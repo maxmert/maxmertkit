@@ -1,0 +1,125 @@
+<!-- ============================== PILLS ============================== -->
+
+<h2>Pills</h2>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$nav-pills-class: "-pills" !global
+$nav-pills-border-width: 1px !global
+$nav-pills-items-padding-vertical: $base-padding-vertical
+$nav-pills-items-padding-horizontal: $base-padding-horizontal
+$nav-pills-items-border-radius: 3px
+$nav-pills-items-margin-right: 1px</pre></div>
+</p>
+
+<h3>Basic use</h3>
+<p>
+	Use widget <code>-pills</code>.
+</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<ul class="-pills">
+			<li><a>Pill 1</a></li>
+			<li class="_active_"><a>Pill 2</a></li>
+			<li><a>Pill 3</a></li>
+			<li disabled><a>Pill 4</a></li>
+		</ul>
+		<br>
+		<ul class="-pills -primary-">
+			<li><a>Pill 1</a></li>
+			<li><a>Pill 2</a></li>
+			<li class="_active_"><a>Pill 3</a></li>
+			<li disabled><a>Pill 4</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-pills">
+	<li><a>Pill 1</a></li>
+	<li class="_active_"><a>Pill 2</a></li>
+	<li><a>Pill 3</a></li>
+	<li disabled><a>Pill 4</a></li>
+</ul>
+<ul class="-pills -primary-">
+	<li><a>Pill 1</a></li>
+	<li><a>Pill 2</a></li>
+	<li class="_active_"><a>Pill 3</a></li>
+	<li disabled><a>Pill 4</a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+<p>
+	Apply theme classes to item element <code>&lt;li&gt;</code>.
+</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<ul class="-pills">
+			<li><a>Pill 1</a></li>
+			<li class="_active_ -error-"><a>Pill 2</a></li>
+			<li><a>Pill 3</a></li>
+			<li disabled><a>Pill 4</a></li>
+		</ul>
+		<br>
+		<ul class="-pills -primary-">
+			<li><a>Pill 1</a></li>
+			<li class="-warning-"><a>Pill 2</a></li>
+			<li class="_active_"><a>Pill 3</a></li>
+			<li disabled><a>Pill 4</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-pills">
+	<li><a>Pill 1</a></li>
+	<li class="_active_ -error-"><a>Pill 2</a></li>
+	<li><a>Pill 3</a></li>
+	<li disabled><a>Pill 4</a></li>
+</ul>
+<ul class="-pills -primary-">
+	<li><a>Pill 1</a></li>
+	<li class="-warning-"><a>Pill 2</a></li>
+	<li class="_active_"><a>Pill 3</a></li>
+	<li disabled><a>Pill 4</a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+
+<h3>Vertical pills</h3>
+
+<p>
+	Use modifier <code>_vertical_</code>.
+</p>
+
+<div class="-row example-block">
+	
+	<div class="-col12 view">
+		<ul class="-pills _vertical_">
+			<li><a>Pill 1</a></li>
+			<li class="_active_"><a>Pill 2</a></li>
+			<li><a>Pill 3</a></li>
+			<li disabled><a>Pill 4</a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-pills _vertical_">
+	<li><a>Pill 1</a></li>
+	<li class="_active_"><a>Pill 2</a></li>
+	<li><a>Pill 3</a></li>
+	<li disabled><a>Pill 4</a></li>
+</ul></pre></div>
+
+</div>

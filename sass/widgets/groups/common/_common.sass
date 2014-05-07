@@ -1,0 +1,15 @@
+@include exports("groups/basic")
+
+	.#{$group-class}
+		display: inline-block
+		// margin-bottom: $group-justified-margin-bottom
+		vertical-align: middle
+
+		&.#{$mod-justify}
+			display: table
+			width: 100%
+
+		&.#{$mod-responsive}
+			@include media(new-breakpoint(max-width $base-screen-middle 6))
+				display: table
+				width: 100%

@@ -1,0 +1,30 @@
+$animations-fadein-class: "-fadein--" !global
+$animations-fadein-duration: 0.3s !global
+$animations-fadein-timing-function: ease-out !global
+$animations-fadein-delay: 0s !global
+
+
+
+@include exports("animations/fadein")
+
+	@include keyframes( fadeIn )
+		from
+			opacity: 0
+		to
+			opacity: 1
+
+
+	@include keyframes( fadeOut )
+		from
+			opacity: 1
+		to
+			opacity: 0
+
+
+	.#{$animations-fadein-class}
+
+		&.#{$animation-start-class}
+			@include animation( fadeIn $animations-fadein-duration forwards $animations-fadein-timing-function )
+
+		&.#{$animation-stop-class}
+			@include animation( fadeOut $animations-fadein-duration forwards $animations-fadein-timing-function )
