@@ -352,8 +352,8 @@ gulp.task 'build', [ 'test' ], ->
 			.pipe( rename( basename: "maxmertkit" ) )
 			.pipe( gulp.dest "#{path.build.css}" )
 
-			.pipe( bytediff.start() )
 			.pipe( minifyCSS() )
+			.pipe( bytediff.start() )
 			.pipe( gzip( append: no ) )
 			.pipe( bytediff.stop() )
 			.pipe( rename( basename: "maxmertkit.min" ) )
