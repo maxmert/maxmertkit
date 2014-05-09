@@ -69,6 +69,10 @@ exports.basic = [
 				invisible: yes
 			}
 			{
+				name: "rtl"
+				path: "typoRtl"
+			}
+			{
 				name: "headings"
 				path: "typoHeadings"
 			}
