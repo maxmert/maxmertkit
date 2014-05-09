@@ -1,0 +1,390 @@
+@import "../../js/bower/bourbon/dist/bourbon"
+@import "../../js/bower/neat/app/assets/stylesheets/neat"
+
+
+.dev_center_
+	text-align: center
+
+a[href]
+	color: #3498de
+
+
+.example-block
+	margin: 15px 0 35px
+	border: 1px solid #ccc
+	border-radius: 5px
+
+
+pre.prettyprint
+	padding: 15px
+	background-color: #f7f7f7
+	border: 1px solid #cccccc
+
+.dev-logo
+	max-height: 30px
+	display: inline-block
+	vertical-align: middle
+	margin-top: -9px
+
+	img
+		@include size(30px)
+		margin-top: 5px
+
+.dev-sidebar-menu
+	margin-top: 50px
+
+.dev-navbar
+	position: relative
+	border-width: 0!important
+	border-bottom-width: 1px!important
+	border-radius: 0!important
+	border-style: none!important
+
+.dev-menu-small a
+	opacity: 0.5
+	font-size: 0.9em !important
+
+// .dev-loader
+// 	background-color: #2da7ab !important
+
+.dev-main-content
+	margin: 0px auto 30px
+
+	section + section
+		margin-top: 35px
+
+	h1
+		margin-top: 50px
+
+.dev-meta
+	opacity: .2
+
+	&.-error-
+		opacity: 1
+
+.dev-filetree
+	list-style: none
+	font-weight: 100
+	font-size: 90%
+	ul
+		list-style: none
+		margin-bottom: 10px
+
+
+	li
+		&:before
+			content: "\02EB\0009"
+			color: #ccc
+		&:last-child:before
+			content: "\02EA\0009"
+			color: #ccc
+		// &:last-child:first-child:before
+		// 	content: "\0336\0009"
+
+		.dev-meta
+			margin-left: 15px
+
+		b.dev-meta
+			margin-left: 0
+
+
+.dev-mobile-menu
+	li
+		margin-right: 2px !important
+
+.dev-instructions, .dev-instructions-utilities, .dev-instructions-widgets, .dev-instructions-basic, .dev-instructions-components, .dev-instructions-start, .dev-instructions-index
+	min-height: 400px
+	height: 400px
+	width: 100%
+	position: relative
+	display: table
+
+	.dev-version
+		text-align: center
+		opacity: 0.4
+		font-weight: 100
+		font-size: 0.7em
+
+	.dev-additional
+		position: absolute
+		bottom: 10px
+		left: 0
+		width: 100%
+		text-align: center
+		font-size: .75em
+		font-weight: 100
+
+	& > .dev-instructions-holder
+		display: table-cell
+		width: 100%
+		vertical-align: middle
+
+
+	&:before
+		content: " "
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-image: url("/img/mainmenu.png")
+		position: absolute
+		z-index: 0
+
+	// h1, h2, h3, h4, h5, h6
+
+.dev-font-lobster
+	font-family: 'Lobster', cursive
+
+.dev-font-raleway
+	font-family: 'Raleway', sans-serif
+
+.dev-instructions-widgets
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #187da9 0%, #2da7ab 100%))
+
+.dev-instructions-utilities
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #8f0e0a 0%, #d26117 100%))
+
+.dev-instructions-basic
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #4b358c 0%, #b30c83 100%))
+
+.dev-instructions-components
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #29b600 0%, #9fbc00 100%))
+
+.dev-instructions-start
+	color: #fff
+	.-btn-bordered
+		color: #fff
+		&:hover, &:active
+			color: #000
+	@include background-image(linear-gradient( to bottom, #252525 0%, #585858 100%))
+
+.dev-instructions-index
+	min-height: 600px
+	height: 600px
+	&:before
+		display: none
+	.dev-instructions-holder
+		position: relative
+		overflow: hidden
+	.dev-version
+		opacity: 1
+	.dev-logobig
+		margin: 0
+	.dev-video-block
+		position: absolute
+		z-index: -1
+		top: 0
+		left: 50%
+		height: 600px
+		// width: 711px
+		margin-left: -550px
+
+		video
+			background-color: #fff!important
+	.-btn-bordered
+		color: #000
+		&:hover, &:active
+			color: #000
+
+.dev-instructions-description
+	font-weight: 100
+	opacity: .6
+
+.dev-description
+	margin-top: 50px
+	font-weight: 100
+	h1, h2, h3, h4, h5, h6
+		font-weight: 100
+
+.dev-series
+	// min-height: 400px
+	padding: 50px 0 300px
+	position: relative
+
+	h2
+		text-align: center
+		margin-bottom: 30px
+
+	.dev-series-body
+		text-align: center
+		position: absolute
+		left: 0
+		width: 100%
+		top: 250px
+
+		& > *
+			position: relative
+			display: inline-block
+
+
+	.dev-plus
+		font-size: 48px
+		color: #eeeeee
+		text-align: center
+		padding: 10px 0
+		margin-top: 40px
+
+
+	.dev-card-holder
+		@include perspective(500px)
+		@include perspective-origin(50% 50%)
+		h4
+			color: #ccc
+
+	.dev-card
+		text-align: center
+		position: relative
+		// @include background-image(linear-gradient( to bottom, #f0f0f0 0%, #fbfbfb 100%))
+		border-radius: 3px
+		border: 2px solid #f0f0f0
+		padding: 30px 0
+		font-size: 20px
+		cursor: pointer
+
+		&:hover
+			border-color: #3598db
+		// font-family: "Lobster"
+
+.dev-changelog
+	section + section
+		padding-top: 10px
+
+.example-block
+	.example, .view
+		padding: 15px!important
+		position: relative
+
+	.view
+		& > .-btn, & > .-group
+			margin-top: 5px
+			margin-bottom: 5px
+
+		& > .-group
+			.-btn
+				margin-top: 0
+				margin-bottom: 0
+
+		& > .-drop
+			display: inline-block
+
+		._dev-clear_
+			@include clearfix
+			position: relative
+			top: inherit
+			left: inherit
+			right: inherit
+
+	.example
+		border: none
+		border-radius: 0
+		border-top: 1px solid #ccc
+		background-color: rgba(0,0,0,.03)
+		margin-bottom: 0
+
+		pre
+			padding: 0
+			border: none
+			margin: 0
+
+
+		&:first-child
+			border-top: none
+
+._dev-invisibility_, ._dev-visibility_
+	padding: 10px 15px
+	border-radius: 5px
+
+._dev-invisibility_
+	background-color: #eeeeee
+	position: relative
+
+._dev-visibility_
+	position: absolute
+	background-color: #ffc43e
+	top: 0
+	left: 0
+	width: 100%
+
+
+@include media(new-breakpoint(max-width 768px 6))
+	.example-block
+		.example
+			display: none !important
+
+	.dev-instructions-index
+		min-height: inherit
+		height: auto
+		.dev-video-block
+			display: none
+		.dev-logobig
+			display: none
+		.dev-additional
+			position: relative
+			margin-top: 40px
+
+	.dev-series
+		padding: 0
+		.dev-series-body
+			position: relative
+			top: 0
+		.dev-card
+			font-size: 14px
+
+
+.row-color
+	background-color: #d5e7f1
+	margin-bottom: 1px
+	padding: 10px
+
+	.column-color
+		background-color: #baddf1
+		padding: 10px
+
+#popup
+	.popups-block
+		@include perspective(1300px)
+		@include perspective-origin(50% 50%)
+
+
+footer
+	border-top: 1px solid #eee
+	color: #777
+	font-size: 90%
+	padding: 50px 0
+
+	.-btn-bordered
+		margin-bottom: 4px
+
+	.dev-links
+		list-style: none
+		display: inline-block
+		margin: 0
+
+		li
+			display: inline-block
+			&:before
+				content: "\0020\2022\0020"
+				margin: 0 7px
+
+			&:first-child:before
+				display: none

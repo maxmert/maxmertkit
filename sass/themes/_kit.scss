@@ -1,0 +1,9 @@
+$theme: (
+    name: kit,
+    color: #2e84a9,
+    white-color: #fff,
+    border-color: #2e84a9,
+    background-color: #2e84a9
+);
+
+$base-themes: map-merge($base-themes, (kit: $theme))!global;

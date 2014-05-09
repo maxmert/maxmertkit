@@ -1,0 +1,108 @@
+<!-- ============ ALERTS -->
+<!-- ====================== -->
+
+<h1>Alerts</h1>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$alert-class: "-alert" !global
+$alert-border-radius: 3px !global
+$alert-border-width: 1px !global
+$alert-border-style: solid !global
+$alert-padding-vertical: $base-padding-vertical
+$alert-padding-horizontal: $base-padding-horizontal
+	</pre></div>
+</p>
+
+<p>
+	Use widget class <code>-alert</code>. Apply themes and sizes. You can apply <code>-shadow-...-</code> to add shadow to the alert.
+</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<div class="-alert -shadow-curve-">
+			<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+			Nothing important here.
+		</div>
+		<br>
+		<div class="-alert -primary- -shadow-lifted-">
+			<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+			Heads up! This alert needs your attention, but it's not super important.
+		</div>
+		<br>
+		<div class="-alert -error- -shadow-curve-">
+			<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+			Oh snap! Change a few things up and try submitting again.
+		</div>
+		<br>
+		<div class="-alert -warning- -shadow-lifted-">
+			<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+			Warning! Better check yourself, you're not looking too good.
+		</div>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-alert -shadow-curve-">
+	<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+	Nothing important here.
+</div>
+<div class="-alert -primary- -shadow-lifted-">
+	<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+	Heads up! This alert needs your attention, but it's not super important.
+</div>
+<div class="-alert -error- -shadow-curve-">
+	<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+	Oh snap! Change a few things up and try submitting again.
+</div>
+<div class="-alert -warning- -shadow-lifted-">
+	<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
+	Warning! Better check yourself, you're not looking too good.
+</div>
+</pre></div>
+
+</div>
+
+
+
+
+
+<h3>
+	Apply themes and sizes.
+</h3>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<div class="-alert -primary- -shadow-lifted-">
+			Heads up! This alert needs your attention, but it's not super important.
+		</div>
+		<br>
+		<div class="-alert _major -warning- -shadow-curve-">
+			Warning! Better check yourself, you're not looking too good.
+		</div>
+		<br>
+		<div class="-alert _big -error- -shadow-lifted-">
+			Oh snap! Change a few things up and try submitting again.
+		</div>
+		<br>
+		<div class="-alert _huge -shadow-curve-">
+			Nothing important here.
+		</div>
+		<br>
+		<div class="-alert _divine -primary- -shadow-lifted-">
+			Heads up! This alert needs your attention, but it's not super important.
+		</div>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-alert -primary- -shadow-lifted-">
+	Heads up! This alert needs your attention, but it's not super important.
+</div>
+<div class="-alert _major -primary- -shadow-curve-">...</div>
+<div class="-alert _big -primary- -shadow-lifted-">...</div>
+<div class="-alert _huge -primary- -shadow-curve-">...</div>
+<div class="-alert _divine -primary- -shadow-lifted-">...</div>
+</pre></div>
+
+</div>

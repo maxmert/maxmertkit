@@ -1,0 +1,67 @@
+@import "../../labels"
+
+@import "sizes"
+@import "themes"
+
+@mixin badges-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 10%)
+		border-color: lighten($background-color, 9%)
+		color: $color
+	@else
+		background-color: $background-color
+		border-color: $background-color
+		color: $white-color
+
+
+	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
+		color: rgba($white-color, .65)
+
+	&.#{$mod-unstyled}
+		color: $color
+
+@mixin badges-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	font-size: floor($multiplier * $base-font-size * 0.8)
+
+@include exports("badges/common")
+
+	.#{$badge-class}
+		@extend .#{$label-class} !optional
+
+		font-weight: $badge-font-weight
+		border-width: $badge-border-width
+		border-style: $badge-border-style
+		border-radius: $badge-border-radius
+		padding: $badge-padding-vertical $badge-padding-horizontal $badge-padding-vertical - 1 $badge-padding-horizontal - 1
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include badges-theme-setter($thm)
+			&.-#{$themeName}-
+				@include badges-theme-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include badges-size-setter($sz)
+			&._#{$sizeName}
+				@include badges-size-setter($sz)
+
+	// To nest sizes from parents elements
+	@each $sizeName in $sizes
+		$sz: map-get( $base-sizes, $sizeName )
+
+		._#{$sizeName}
+			.#{$badge-class}
+				@extend .#{$badge-class}._#{$sizeName} !optional

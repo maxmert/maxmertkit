@@ -1,0 +1,41 @@
+<h2>RTL (right to left) support</h2>
+
+<p>
+    There is a RTL support in maxmertkit. Just use <code>dir="rtl"</code> with block elements.
+</p>
+
+<blockquote cite="http://css-tricks.com/almanac/properties/d/direction/" class="-primary-">
+    For more information go to <a href="http://css-tricks.com/almanac/properties/d/direction/" data-bypass>css-tricks</a>.
+</blockquote>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <div dir="rtl">
+            This text will go right to left.
+        </div>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html">
+<div dir="rtl">
+    This text will go right to left.
+</div></pre></div>
+
+</div>
+
+
+
+<p>
+    To use inside inline elements use tag <code>bdo</code>:
+</p>
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <p><bdo dir="rtl">This text will go right to left.</bdo></p>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><p><bdo dir="rtl">This text will go right to left.</bdo></p></pre></div>
+
+</div>

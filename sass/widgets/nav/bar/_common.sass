@@ -1,0 +1,139 @@
+@import "../../buttons"
+@import "../../groups"
+@import "../menu/common"
+@import "../pills/common"
+
+@import "sizes"
+@import "themes"
+
+
+@mixin nav-theme-bar-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	@if $name == default
+		background-color: lighten($background-color, 14%)
+		border-color: lighten($border-color, 23%)
+	@else
+		background-color: lighten($background-color, 35%)
+		border-color: $border-color
+
+
+@include exports("nav/bar")
+	.#{$nav-bar-class}
+		display: block
+
+		border-width: $nav-bar-border-width
+		border-style: $nav-bar-style
+		border-color: transparent
+		border-radius: $nav-bar-border-radius
+		padding: 0 $nav-bar-padding-horizontal
+		position: relative
+
+		&:first-child
+			border-radius: $nav-bar-border-radius $nav-bar-border-radius 0 0
+
+		&:last-child
+			border-radius: 0 0 $nav-bar-border-radius $nav-bar-border-radius
+
+		&:not(:first-child):not(:last-child)
+			border-radius: 0
+
+		&:not(:first-child)
+			margin-top: -$nav-bar-border-width
+
+		&:only-child
+			border-radius: $nav-bar-border-radius
+
+		.#{$nav-menu-class}, .#{$nav-pills-class}
+			vertical-align: middle
+			display: inline-block
+
+
+		.#{$header-class}
+			$delta: $nav-bar-height - $nav-menu-items-padding-vertical * 2 - $base-line-height-comp
+			padding: $nav-menu-items-padding-vertical + $delta / 2 $nav-menu-items-padding-horizontal
+			line-height: $base-line-height-comp
+			font-weight: bold
+
+		.#{$nav-menu-class}
+			#{$nav-item}
+				a
+					$delta: $nav-bar-height - $nav-menu-items-padding-vertical * 2 - $base-line-height-comp
+					padding: $nav-menu-items-padding-vertical + $delta / 2 $nav-menu-items-padding-horizontal
+		.#{$nav-pills-class}
+			#{$nav-item}
+				a
+					$delta: $nav-bar-height - $nav-pills-items-padding-vertical * 2 - $base-line-height-comp
+					margin-top: $delta / 2
+					margin-bottom: $delta / 2
+
+
+		.#{$button-class}
+			$delta: $nav-bar-height - $base-padding-vertical * 2 - $base-line-height-comp
+			margin-top: $delta / 2
+			margin-bottom: $delta / 2
+
+		.#{$group-class}
+			$delta: $nav-bar-height - $base-padding-vertical * 2 - $base-line-height-comp
+			margin-top: $delta / 2
+			margin-bottom: $delta / 2
+			.#{$button-class}
+				margin-top: 0
+				margin-bottom: 0
+
+		.#{$nav-bar-toggle-class}
+			position: absolute
+			right: $nav-bar-padding-horizontal
+			top: 1px
+
+
+		&.#{$mod-top}, &.#{$mod-bottom}
+			position: absolute
+			z-index: $nav-bar-z-index
+			left: 0
+			right: 0
+
+		&.#{$mod-top}
+			top: 0
+			@include transform( translateY(0) )
+			@include transition (all 0.3s ease-out 0s)
+			&.#{$mod-hidden}
+				@include transform( translateY(-100%) )
+
+
+		&.#{$mod-bottom}
+			bottom: 0
+			@include transition (all 0.3s ease-out 0s)
+			@include transform( translateY(0) )
+			&.#{$mod-hidden}
+				@include transform( translateY(100%) )
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-bar-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bar-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+
+			&._#{$sizeName}
+				.#{$nav-menu-class}
+					@extend .#{$nav-menu-class}._#{$sizeName} !optional
+				.#{$nav-pills-class}
+					@extend .#{$nav-pills-class}._#{$sizeName} !optional
+				.#{$button-class}
+					@extend .#{$button-class}._#{$sizeName} !optional
+				.#{$group-class}
+					@extend .#{$group-class}._#{$sizeName} !optional
+
+
+	// ._no-scroll_
+	// 	.#{$nav-bar-class}
+	// 		@extend .#{$nav-bar-class}.#{$mod-top}.#{$mod-hidden}

@@ -1,38 +1,75 @@
 {
   "name": "maxmertkit",
-  "version": "0.0.3",
-  "description": "Maxmertkit webdevelopment framework",
-  "main": "docs/index.html",
+  "version": "1.0.1",
+  "description": "Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development.",
+  "homepage": "http://maxmert.com",
+  "main": "gulpfile.js",
   "directories": {
-    "doc": "docs"
+    "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxmert/maxmertkit-old.git"
+    "url": "https://github.com/maxmert/maxmertkit.git",
+    "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
-  "keywords": [
-    "maxmertkit",
-    "maxmert",
-    "framework",
-    "html5",
-    "css",
-    "sass",
-    "coffeescript"
-  ],
-  "author": "maxmert",
-  "license": "BSD-2-Clause",
+  "keywords": ["css", "sass", "js", "framework", "css-framework", "maxmert", "maxmertkit", "mobile-first", "responsive", "front-end", "web", "html5", "coffeescript"],
+  "author": {
+    "name": "Vetrenko Maxim",
+    "email": "me@maxmert.com"
+  },
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/maxmert/maxmertkit-old/issues"
+    "url": "https://github.com/maxmert/maxmertkit/issues"
   },
   "dependencies": {
-    "coffee-script-brunch": "~1.7.3",
-    "sass-brunch": "~1.7.2",
-    "hoganjs-brunch": "~1.1.1",
-    "javascript-brunch": "~1.7.1",
-    "auto-reload-brunch": "~1.7.1",
-    "express": "~3.4.8"
-  }
+    "request": "^2.34.0",
+    "hogan-express": "^0.5.2"
+  },
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "coffee-script": "~1.7.1",
+    "express": "~3.4.8",
+    "mocha": "~1.18.2",
+    "gulp-coffee": "~1.4.1",
+    "gulp-util": "~2.2.14",
+    "gulp-concat": "~2.1.7",
+    "gulp-coffeelint": "~0.3.2",
+    "gulp-uglify": "~0.2.1",
+    "gulp-watch": "~0.5.0",
+    "gulp-livereload": "~1.2.0",
+    "gulp-nodemon": "~1.0.0",
+    "gulp-ruby-sass": "~0.3.1",
+    "gulp-size": "~0.2.0",
+    "gulp-todo": "~0.1.6",
+    "gulp-changed": "~0.3.0",
+    "gulp-cached": "0.0.3",
+    "gulp-plumber": "~0.5.6",
+    "gulp-rev": "~0.3.2",
+    "gulp-rev-all": "~0.1.0",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-bytediff": "~0.1.8",
+    "chai": "~1.9.1",
+    "gulp-mocha": "~0.4.1",
+    "jquery": "~1.8.3",
+    "jsdom": "~0.10.5",
+    "gulp-clean": "~0.2.4",
+    "run-sequence": "~0.3.6",
+    "gulp-notify": "^1.2.5",
+    "gulp-jstemplater": "0.0.3",
+    "gulp-browserify": "^0.5.0",
+    "gulp-rename": "^1.2.0",
+    "coffeeify": "^0.6.0",
+    "browserify": "^3.41.0",
+    "gulp-json-editor": "^2.0.2",
+    "gulp-gzip": "0.0.7",
+    "yargs": "^1.2.1",
+    "gulp-if": "0.0.5",
+    "moment": "^2.6.0",
+    "gulp-mkit": "0.0.0",
+    "gulp-zip": "^0.3.4"
+  },
+  "buildDate": "May 9th 2014, 3:14:15 pm"
 }

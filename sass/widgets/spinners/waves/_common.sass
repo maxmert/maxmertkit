@@ -1,0 +1,83 @@
+// HTML EXAMPLE
+// <div class="-spinner-waves">
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+//   <div class="-addon"></div>
+// </div>
+
+@import "variables"
+@import "sizes"
+@import "themes"
+
+
+@mixin spinner-waves-theme-setter( $theme )
+    $name: map-get( $theme, name)
+    $color: map-get( $theme, color)
+
+    .#{$addon-class}
+        @if $name == default
+            background-color: #fff
+        @else
+            background-color: $color
+
+@mixin spinner-waves-size-setter( $size )
+    $multiplier: map-get( $size, multiplier)
+
+    .#{$addon-class}
+        height: floor( $spinner-waves-size / 10 * $multiplier )
+        width: floor( $spinner-waves-size * $multiplier )
+        margin-left: - ceil( $spinner-waves-size / 10 * $multiplier )
+
+    &.#{$mod-responsive}
+        margin-top: - floor(( $spinner-waves-size * $multiplier ) / 2)
+        margin-left: - floor(( $spinner-waves-size * $multiplier ) / 2)
+
+
+@include keyframes( riseSpinnerWaves )
+    50%
+        @include transform( rotate($spinner-waves-deg) )
+
+@include keyframes( fallSpinnerWaves )
+    50%
+        @include transform( rotate(-$spinner-waves-deg) )
+
+@include exports("spinners/waves/common")
+    .#{$spinner-waves-class}
+        display: inline-block
+        vertical-align: middle
+
+        .#{$addon-class}
+            display: inline-block
+            float: left
+
+            &:nth-child( n )
+                @include transform( rotate($spinner-waves-deg) )
+                @include animation( fallSpinnerWaves 2s infinite )
+
+            &:nth-child( 2n )
+                @include transform( rotate(-$spinner-waves-deg) )
+                @include animation( riseSpinnerWaves 2s infinite )
+
+
+
+        &.#{$mod-responsive}
+            position: absolute
+            top: 50%
+            left: 50%
+
+        @each $themeName in $themes
+            $thm: map-get( $base-themes, $themeName )
+
+            @if $themeName == default
+                @include spinner-waves-theme-setter($thm)
+            &.-#{$themeName}-
+                @include spinner-waves-theme-setter($thm)
+
+        @each $sizeName in $sizes
+            $sz: map-get( $base-sizes, $sizeName )
+            @if $sizeName == normal
+                @include spinner-waves-size-setter($sz)
+            &._#{$sizeName}
+                @include spinner-waves-size-setter($sz)

@@ -1,0 +1,36 @@
+@mixin text-overflow
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
+
+@mixin border-left-radius( $radius )
+	border-top-left-radius: $radius
+	border-bottom-left-radius: $radius
+
+@mixin border-right-radius( $radius )
+	border-top-right-radius: $radius
+	border-bottom-right-radius: $radius
+
+// @mixin base-theme-append( $theme-class, $theme-color, $theme-white-color, $theme-border-color, $theme-border-light-color, $theme-border-dark-color, $theme-background-color, $theme-background-light-color,  $theme-background-dark-color )
+// 	$themes: append($themes, $theme-class)!global
+// 	$themes-colors: append($themes-colors, $theme-color)!global
+// 	$themes-white-colors: append($themes-white-colors, $theme-white-color)!global
+// 	$themes-border-colors: append($themes-border-colors, $theme-border-color)!global
+// 	$themes-border-light-colors: append($themes-border-light-colors, $theme-border-light-color)!global
+// 	$themes-border-dark-colors: append($themes-border-dark-colors, $theme-border-dark-color)!global
+// 	$themes-background-colors: append($themes-background-colors, $theme-background-color)!global
+// 	$themes-background-light-colors: append($themes-background-light-colors, $theme-background-light-color)!global
+// 	$themes-background-dark-colors: append($themes-background-dark-colors, $theme-background-dark-color)!global
+
+@mixin responsive-visibility()
+	display: inline-block !important
+	table &
+		display: table
+	tr &
+		display: table-row !important
+	th &, td &
+		display: table-cell !important
+
+@mixin responsive-invisibility()
+	&, tr &, th &, td &
+		display: none !important

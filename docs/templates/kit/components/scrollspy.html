@@ -1,0 +1,192 @@
+<div id="main-content" class="-container">
+	<h1>Scrollspy</h1>
+
+
+	<div class="-row">
+		<div class="-col4">
+
+		</div>
+		<div class="-col4">
+
+		</div>
+		<div class="-col4">
+
+		</div>
+	</div>
+
+
+
+	<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu -primary-" data-spy="scroll" data-target="#scrollspy-target" scrollspy>
+			<li><a href="#menu-item1">Menu 1</a></li>
+			<li><a href="#menu-item2">Menu 2</a></li>
+			<li><a href="#menu-item3">Menu 3</a></li>
+		</ul>
+		<div id="scrollspy-target" style="height: 200px; overflow-y: scroll">
+			<div style="height: 1000px">
+				<h4 id="menu-item1">Menu 1</h4>
+				<p>
+					Japan Listeni/dʒəˈpæn/ (Japanese: 日本 Nippon or Nihon; formally 日本国 About this sound Nippon-koku or Nihon-koku, literally "the State of Japan") is an island nation in East Asia. Located in the Pacific Ocean, it lies to the east of the Sea of Japan, China, North Korea, South Korea and Russia, stretching from the Sea of Okhotsk in the north to the East China Sea and Taiwan in the south. The characters that make up Japan's name mean "sun-origin", which is why the country is sometimes referred to as the "Land of the Rising Sun". Japan is an archipelago of 6,852 islands, the four largest being Honshu, Hokkaido, Kyushu and Shikoku. Together, these four islands hold about 97 percent of the country's land area. Japan has the world's tenth-largest population, with more than 126 million people. Honshū's Greater Tokyo Area includes the de facto capital city of Tokyo and several surrounding prefectures. It is the largest metropolitan area in the world, with more than 30 million residents.
+				</p>
+
+				<h4 id="menu-item2">Menu 2</h4>
+				<p>
+					Japan Listeni/dʒəˈpæn/ (Japanese: 日本 Nippon or Nihon; formally 日本国 About this sound Nippon-koku or Nihon-koku, literally "the State of Japan") is an island nation in East Asia. Located in the Pacific Ocean, it lies to the east of the Sea of Japan, China, North Korea, South Korea and Russia, stretching from the Sea of Okhotsk in the north to the East China Sea and Taiwan in the south. The characters that make up Japan's name mean "sun-origin", which is why the country is sometimes referred to as the "Land of the Rising Sun". Japan is an archipelago of 6,852 islands, the four largest being Honshu, Hokkaido, Kyushu and Shikoku. Together, these four islands hold about 97 percent of the country's land area. Japan has the world's tenth-largest population, with more than 126 million people. Honshū's Greater Tokyo Area includes the de facto capital city of Tokyo and several surrounding prefectures. It is the largest metropolitan area in the world, with more than 30 million residents.
+				</p>
+
+				<h4 id="menu-item3">Menu 3</h4>
+				<p>
+					Japan Listeni/dʒəˈpæn/ (Japanese: 日本 Nippon or Nihon; formally 日本国 About this sound Nippon-koku or Nihon-koku, literally "the State of Japan") is an island nation in East Asia. Located in the Pacific Ocean, it lies to the east of the Sea of Japan, China, North Korea, South Korea and Russia, stretching from the Sea of Okhotsk in the north to the East China Sea and Taiwan in the south. The characters that make up Japan's name mean "sun-origin", which is why the country is sometimes referred to as the "Land of the Rising Sun". Japan is an archipelago of 6,852 islands, the four largest being Honshu, Hokkaido, Kyushu and Shikoku. Together, these four islands hold about 97 percent of the country's land area. Japan has the world's tenth-largest population, with more than 126 million people. Honshū's Greater Tokyo Area includes the de facto capital city of Tokyo and several surrounding prefectures. It is the largest metropolitan area in the world, with more than 30 million residents.
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html">
+</pre></div>
+
+</div>
+
+
+
+
+
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>spy</td>
+			<td><i>@$el.data('spy') or 'scroll'</i></td>
+			<td>
+				To automatically initialize this plugin without any javascript initialization.
+			</td>
+		</tr>
+		<tr>
+			<td>target</td>
+			<td><i>@$el.data('target') or 'body'</i></td>
+			<td>
+				Listen to event <code>scroll</code> of this element.
+			</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td><i>0</i></td>
+			<td>
+				Vertical offset of the element in text to fire the activation (for example activate menu when the header will be 10px above the top of the screen).
+			</td>
+		</tr>
+		<tr>
+			<td>elements</td>
+			<td><i>'li a'</i></td>
+			<td>
+				Selector to spy this element inside @$el.
+			</td>
+		</tr>
+		<tr>
+			<td>elementsAttr</td>
+			<td><i>href</i></td>
+			<td>
+				Attribute of each element with ID of the target.
+			</td>
+		</tr>
+		<tr>
+			<td>noMobile</td>
+			<td><i>@$el.data("no-mobile") or yes</i></td>
+			<td>
+				Deactivate spy on mobile devices.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get menu element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the menu element <code>@data('kit-scrollspy')</code> or <code>this.data('kit-scrollspy')</code> in js. To get scrollspy element do <code>@data('kit-scrollspy').$el</code>.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it before activate the spy. If it returns <code>deferred.promise()</code>, then spy will not start till <code>deferred.resolve()</code>, and woun't start if <code>deferred.reject()</code>.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript"> $('.spy-this-menu').scrollspy
+	beforeactive: ->
+		d = $.Deferred()
+
+		console.log @
+		# The spy will be in the log
+		# so you can add something like
+		@addClass '_disabled_'
+		# to disable the spying menu
+
+		console.log @data 'kit-scrollspy'
+		# The instance of Scrollspy class will in log
+		# so to get scrollspy element you need to do
+		@data('kit-scrollspy').$el.addClass '_disabled_'
+
+		# Do something here before activate scrollspy
+		# in this case it will start in 2 seconds
+		setTimeout ->
+			d.resolve()
+		, 2000
+		# End of your code
+
+		d.promise()
+</pre></p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Set a function to call it after scrollspy activates.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforeunactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function before finish scrollspy. Also working with <code>Deferred</code></p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>onunactive</b></td>
+			<td><i>undefined</i></td>
+			<td>
+				<p>Call this function after scrollspy finish.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>
