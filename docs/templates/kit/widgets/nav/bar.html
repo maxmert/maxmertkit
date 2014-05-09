@@ -6,7 +6,17 @@
 <!-- ====================== -->
 <p>
 	<h4>Global variables</h4>
-	<div></div>
+	<div><pre hljs class="prettyprint lang-sass">$nav-bar-class: "-navbar" !global
+$nav-bar-height: 50px !global
+$nav-bar-padding-horizontal: $base-padding-horizontal !global
+$nav-bar-border-width: 1px !global
+$nav-bar-style: solid !global
+$nav-bar-border-radius: 3px !global
+
+// It's only fo _top_ or _bottom_ navbars. Need to be over dropdowns.
+$nav-bar-z-index: $dropdown-z-index + 1
+
+$nav-bar-toggle-class: #{$nav-bar-class}-toggle</pre></div>
 </p>
 
 
@@ -18,7 +28,7 @@
 </p>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-navbar">
 			<div class="-row">
@@ -121,7 +131,7 @@
 </p>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-navbar">
 			<div class="-row">
@@ -183,7 +193,7 @@
 </p>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-navbar -primary-">
 			<div class="-row">
@@ -254,9 +264,9 @@
 </p>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
-		
+
 		<div class="-navbar _minor">
 			<div class="-row">
 				<div class="-col5">
@@ -390,7 +400,7 @@
 </blockquote>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-navbar _top_">
 			<div class="-group">
@@ -442,7 +452,7 @@
 </blockquote>
 
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-navbar -row">
 			<!-- Header is always visible. Dont set any visible/hidden modifiers. -->
@@ -468,19 +478,19 @@
 
 
 	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-navbar -row">
-	
+
 	<!-- Header is always visible. Dont set any visible/hidden modifiers. -->
 	<div class="-col3">
 		<div class="-header">Header here</div>
 
 		<!-- -navbar-toggle is absolute positioned element. Add it to the column with header. We want to show it only on phones and tablets. Don't forget to add javascript code to show menu on click. -->
 		<a class="-navbar-toggle _hidden-desktops_ _hidden-large-desktops_ -btn"><i class="fa fa-th-list"></i></a>
-	
+
 	</div>
 
 	<!-- We don't want to see this menu on tables and phones.  -->
 	<div class="-col9 _hidden-phones_ _hidden-tablets_">
-		
+
 		<div class="-group">
 			<a class="-btn"><i class="fa fa-th-large"></i></a>
 			<a class="-btn"><i class="fa fa-th"></i></a>

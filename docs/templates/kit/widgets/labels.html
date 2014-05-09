@@ -7,7 +7,13 @@
 <!-- ====================== -->
 <p>
 	<h4>Global variables</h4>
-	<div></div>
+	<div><pre hljs class="prettyprint lang-sass">$label-class: "-label" !global
+$label-font-weight: 300 !global
+$label-border-radius: 2px !global
+$label-border-width: 1px !global
+$label-border-style: solid !global
+$label-padding-vertical: $base-padding-vertical / 3
+$label-padding-horizontal: $base-padding-horizontal / 1.5</pre></div>
 </p>
 
 
@@ -19,7 +25,7 @@
 	Labels won't self collapse in <b>Internet Explorer 8</b> because it lacks support for the <code>:empty</code> selector.
 </blockquote>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<p>
 			<span class="-label">default</span>

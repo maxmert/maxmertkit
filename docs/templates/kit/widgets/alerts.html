@@ -7,14 +7,20 @@
 <!-- ====================== -->
 <p>
 	<h4>Global variables</h4>
-	<div></div>
+	<div><pre hljs class="prettyprint lang-sass">$alert-class: "-alert" !global
+$alert-border-radius: 3px !global
+$alert-border-width: 1px !global
+$alert-border-style: solid !global
+$alert-padding-vertical: $base-padding-vertical
+$alert-padding-horizontal: $base-padding-horizontal
+	</pre></div>
 </p>
 
 <p>
 	Use widget class <code>-alert</code>. Apply themes and sizes. You can apply <code>-shadow-...-</code> to add shadow to the alert.
 </p>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-alert -shadow-curve-">
 			<a class="-close -btn _unstyled_"><i class="fa fa-times"></i></a>
@@ -66,7 +72,7 @@
 	Apply themes and sizes.
 </h3>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<div class="-alert -primary- -shadow-lifted-">
 			Heads up! This alert needs your attention, but it's not super important.

@@ -7,7 +7,13 @@
 <!-- ====================== -->
 <p>
 	<h4>Global variables</h4>
-	<div></div>
+	<div><pre hljs class="prettyprint lang-sass">$badge-class: "-badge" !global
+$badge-font-weight: 600 !global
+$badge-border-radius: 50px !global
+$badge-border-width: 0px !global
+$badge-border-style: solid !global
+$badge-padding-vertical: floor($base-padding-vertical / 4)
+$badge-padding-horizontal: floor($base-padding-horizontal / 2)</pre></div>
 </p>
 
 
@@ -16,7 +22,7 @@
 	Use widget class <code>-badge</code>. Apply themes and sizes.
 </p>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<p>
 			<span class="-badge">324</span>
@@ -56,7 +62,7 @@
 	Badges won't self collapse in <b>Internet Explorer 8</b> because it lacks support for the <code>:empty</code> selector.
 </blockquote>
 <div class="-row example-block">
-	
+
 	<div class="-col12 view">
 		<a class="-btn">Inbox <span class="-badge -primary-">12</span></a>
 		<a class="-btn -primary-">Inbox <span class="-badge">12</span></a>
