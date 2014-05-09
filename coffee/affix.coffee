@@ -50,7 +50,10 @@ class Affix extends MaxmertkitHelpers
 
 		for key, value of options
 			if not @options[key]?
-				return console.error "Maxmertkit Affix. You're trying to set unpropriate option."
+				if key isnt "kit-#{_name}"
+					return console.error "Maxmertkit Affix. You're trying to set unpropriate option – #{key}"
+				else
+					return null
 
 			# switch key
 				# when 'target'

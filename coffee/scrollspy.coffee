@@ -49,7 +49,10 @@ class Scrollspy extends MaxmertkitHelpers
 
 		for key, value of options
 			if not @options[key]?
-				return console.error "Maxmertkit Scrollspy. You're trying to set unpropriate option."
+				if key isnt "kit-#{_name}"
+					return console.error "Maxmertkit Scrollspy. You're trying to set unpropriate option."
+				else
+					return null
 
 			# switch key
 				# when 'target'

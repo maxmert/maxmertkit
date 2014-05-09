@@ -51,12 +51,18 @@ class Modal extends MaxmertkitHelpers
 
 		super @$btn, @options
 
+		# Register events to close popups when modal closed
+		@reactor.registerEvent "close.modal"
+
 	_setOptions: ( options ) ->
 
 		for key, value of options
 
 			if not @options[key]?
-				return console.error "Maxmertkit Modal. You're trying to set unpropriate option – #{key}"
+				if key isnt "kit-#{_name}"
+					return console.error "Maxmertkit Modal. You're trying to set unpropriate option – #{key}"
+				else
+					return null
 
 			switch key
 
@@ -184,6 +190,7 @@ _close = ->
 		@$el.hide()
 	, 1000
 	@$el.trigger "closed.#{@_name}"
+	@reactor.dispatchEvent "close.modal"
 	if @onclose?
 		try
 			@onclose.call @$btn

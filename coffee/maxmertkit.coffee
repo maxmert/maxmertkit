@@ -1,3 +1,5 @@
+"use strict"
+
 _eventCallbacks = []
 _reactorEvents = []
 
@@ -25,7 +27,7 @@ class MaxmertkitReactor
 
 	registerEvent: ( eventName ) ->
 		event = new MaxmertkitEvent( eventName )
-		@events[ eventName ] = event
+		if not @events[ eventName ]? then @events[ eventName ] = event
 
 	dispatchEvent: ( eventName, eventArgs ) ->
 		for callback in @events[ eventName ].callbacks
@@ -125,15 +127,15 @@ class MaxmertkitHelpers
 		parent = el[0] or el
 
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
-		while parent = parent.parentNode
+		while parent? and parent = parent.parentNode
 			try
 				style = getComputedStyle parent
 
 
 			return $(parent) if not style?
-
-			if /(relative)/.test(style['position']) or ( parent? and parent.style? and /(relative)/.test(parent.style['position']) )
-					return $(parent)
+			# console.log /(relative|fixed)/.test(style['position'])
+			if /(relative|fixed)/.test(style['position']) or ( parent? and parent.style? and /(relative|fixed)/.test(parent.style['position']) )
+				return $(parent)
 
 		return $(document)
 

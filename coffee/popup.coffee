@@ -1,37 +1,40 @@
+"use strict"
+
 _name = "popup"
 _instances = []
 _id = 0
 
 class Popup extends MaxmertkitHelpers
-	
+
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @btn, @options ) ->
 		@$btn = $(@btn)
 
 		@_id = _id++
-		
+
 		_options =
 			target: @$btn.data('target')				# Targeted popup windows
 			toggle: @$btn.data('toggle') or 'popup'		# To automatically find elements which toggle popup windows
 			event: "click"								# Event on button to open popup
 			eventClose: "click"							# Event on close elements to close popup
-			positionVertical: 'top' 
+			positionVertical: 'top'
 			positionHorizontal: 'center'
 			offset:										# Offset in pixels
 				horizontal: 5
 				vertical: 5
 			closeUnfocus: no							# Close popup on click anywhere on document
+			closeResize: yes							# Close popup on resize window
 			selfish: yes								# Just 1 opened class instance, close others when open current
 			# container: 'body'
-		
+
 		@options = @_merge _options, @options
 
 
-		# Reset default event functions 
+		# Reset default event functions
 		@beforeopen = @options.beforeopen
 		@onopen = @options.onopen
 		@beforeclose = @options.beforeclose
@@ -39,7 +42,7 @@ class Popup extends MaxmertkitHelpers
 
 		# Set popup window element
 		@$el = $(document).find @options.target
-		
+
 		# Set event on button to show popup window
 		@$btn.on @options.event, =>
 			if not @$el.is ':visible'
@@ -60,11 +63,14 @@ class Popup extends MaxmertkitHelpers
 
 		# Close popup when we loose focus (click somewhere else)
 		if @options.closeUnfocus
-			$(document).on 'click', ( event ) =>
+			$(document).on "click.#{_name}", ( event ) =>
 				classes = '.' + @$el[0].className.split(' ').join('.')
 				if not $(event.target).closest(classes ).length and @$el.is(':visible') and not @$el.is(':animated') and $(event.target)[0] isnt @$btn[0]
 					@close()
-				
+
+		if @options.closeResize
+			$(window).on "resize.#{_name}", ( event ) =>
+				@close()
 
 
 		# set position classes
@@ -73,12 +79,20 @@ class Popup extends MaxmertkitHelpers
 
 		super @$btn, @options
 
-	
+		setTimeout =>
+			@reactor.addEventListener "close.modal", =>
+				@close()
+		,1
+
+
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
 			if not @options[key]?
-				return console.error "Maxmertkit Popup. You're trying to set unpropriate option."
+				if key isnt "kit-#{_name}"
+					return console.error "Maxmertkit Popup. You're trying to set unpropriate option – #{key}"
+				else
+					return null
 
 			switch key
 				when 'target'
@@ -116,7 +130,7 @@ class Popup extends MaxmertkitHelpers
 					@options.closeUnfocus = value
 
 					$(document).off "click.#{@_name}"
-					
+
 					# Close popup when we loose focus (click somewhere else)
 					if @options.closeUnfocus
 						$(document).on "click.#{@_name}", ( event ) =>
@@ -167,17 +181,18 @@ class Popup extends MaxmertkitHelpers
 
 _position = ->
 	# btnPosition = @$btn.offset()
-	scrollParent = @_getScrollParent @$el
-	scrollParentBtn = @_getScrollParent @$btn
+	scrollParent = @_getContainer @$el
+	scrollParentBtn = @_getContainer @$btn
 
 	# if @_equalNodes scrollParent, scrollParentBtn
 	positionBtn = @$btn.offset()
 	position = @$el.offset()
 
-	if scrollParent? and not scrollParent[0]? or scrollParent[0].activeElement.nodeName isnt 'BODY'
-		positionBtn.top = positionBtn.top - $(scrollParent).offset().top
-		positionBtn.left = positionBtn.left - $(scrollParent).offset().left
-	# scrollParent
+	if scrollParent? and (not scrollParent[0]? or (scrollParent[0].activeElement? and scrollParent[0].activeElement.nodeName isnt 'BODY') or (scrollParent[0].nodeName? and scrollParent[0].nodeName isnt 'BODY'))
+		offset = $(scrollParent).offset()
+		if offset?
+			positionBtn.top = positionBtn.top - offset.top
+			positionBtn.left = positionBtn.left - offset.left
 
 	sizeBtn =
 		width: @$btn.outerWidth()
@@ -188,12 +203,12 @@ _position = ->
 		height: @$el.outerHeight()
 
 	newTop = newLeft = 0
-	
+
 	switch @options.positionVertical
-		
+
 		when 'top'
 			newTop = positionBtn.top - size.height - @options.offset.vertical
-		
+
 		when 'bottom'
 			newTop = positionBtn.top + sizeBtn.height + @options.offset.vertical
 
@@ -201,7 +216,7 @@ _position = ->
 			newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2
 
 	switch @options.positionHorizontal
-		
+
 		when 'center' or 'middle'
 			newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2
 
@@ -233,7 +248,7 @@ _beforeopen = ->
 			deferred
 				.done =>
 					_open.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -265,7 +280,7 @@ _beforeclose = ->
 			deferred
 				.done =>
 					_close.call @
-					
+
 				.fail =>
 					@$el.trigger "fail.#{@_name}"
 
@@ -284,7 +299,7 @@ _close = ->
 		try
 			@onclose.call @$btn
 
-			
+
 
 
 

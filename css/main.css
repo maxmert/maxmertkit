@@ -17942,7 +17942,7 @@ a.-btn, a.-btn-bordered {
     .-modal > .-close._divine {
       height: 76px;
       width: 76px; }
-  .-modal .-arrow {
+  .-modal > .-arrow {
     position: fixed !important; }
   .-modal .-dialog {
     float: none;

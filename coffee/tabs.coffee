@@ -3,17 +3,17 @@ _instances = []
 _id = 0
 
 class Tabs extends MaxmertkitHelpers
-	
+
 	_name: _name
 	_instances: _instances
-	
+
 	# =============== Public methods
 
 	constructor: ( @tab, @options ) ->
 		@$tab = $(@tab)
 
 		@_id = _id++
-		
+
 		_options =
 			toggle: @$tab.data('toggle') or 'tabs'	# To automatically find tabss in DOM
 			group: @$tab.data('group') or null		# Some group name, like in radiotabss. Check if tabs is part of some group (like radiotabss or checkboxes)
@@ -24,17 +24,17 @@ class Tabs extends MaxmertkitHelpers
 			onactive: ->
 			beforeunactive: ->
 			onunactive: ->
-		
+
 		@options = @_merge _options, @options
 
 
-		# Reset default event functions 
+		# Reset default event functions
 		@beforeactive = @options.beforeactive
 		@onactive = @options.onactive
 		@beforeunactive = @options.beforeunactive
 		@onunactive = @options.onunactive
 
-		
+
 		# Set event on tabs to show tabs window
 		@$tab.on @options.event, =>
 			if not @$tab.hasClass '_active_'
@@ -45,13 +45,16 @@ class Tabs extends MaxmertkitHelpers
 
 		super @$tab, @options
 
-	
+
 	_setOptions: ( options ) ->
-		
+
 		for key, value of options
-			
+
 			if not @options[key]?
-				return console.error "Maxmertkit Tabs. You're trying to set unpropriate option."
+				if key isnt "kit-#{_name}"
+					return console.error "Maxmertkit Tabs. You're trying to set unpropriate option."
+				else
+					return null
 
 			switch key
 				when 'event'
@@ -120,7 +123,7 @@ _beforeactive = ->
 			deferred
 				.done =>
 					_activate.call @
-					
+
 				.fail =>
 					@$tab.trigger "fail.#{@_name}"
 
@@ -155,9 +158,9 @@ _beforeunactive = ->
 		try
 			deferred = @beforeunactive.call @$tab
 			deferred
-				.done =>					
+				.done =>
 					_deactivate.call @
-					
+
 				.fail =>
 					@$tab.trigger "fail.#{@_name}"
 
@@ -177,7 +180,7 @@ _deactivate = ->
 		try
 			@onunactive.call @$tab
 
-			
+
 
 
 
