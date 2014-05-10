@@ -344,8 +344,12 @@ gulp.task 'build', [ 'test' ], ->
 			.pipe( bytediff.start() )
 			.pipe( uglify() )
 			.pipe( bytediff.stop() )
-			.pipe( gzip( append: no ) )
+
 			.pipe( rename( basename: "maxmertkit.min" ) )
+			.pipe( gulp.dest "#{path.build.js}" )
+
+			.pipe( gzip( append: no ) )
+			.pipe( rename( basename: "maxmertkit.gzip" ) )
 			.pipe( gulp.dest "#{path.build.js}" )
 
 			.pipe( gulpif(argv.rev, rev()) )
@@ -359,9 +363,13 @@ gulp.task 'build', [ 'test' ], ->
 
 			.pipe( minifyCSS() )
 			.pipe( bytediff.start() )
+
+			.pipe( rename( basename: "maxmertkit.min" ) )
+			.pipe( gulp.dest "#{path.build.css}" )
+
 			.pipe( gzip( append: no ) )
 			.pipe( bytediff.stop() )
-			.pipe( rename( basename: "maxmertkit.min" ) )
+			.pipe( rename( basename: "maxmertkit.gzip" ) )
 			.pipe( gulp.dest "#{path.build.css}" )
 
 			.pipe( gulpif(argv.rev, rev()) )
