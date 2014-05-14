@@ -73,24 +73,24 @@ path =
 
 # Concatenate all vendors into one file
 # This vendor js is only for maxmertkit.js, no docs vendors here
-gulp.task 'kitVendor', ->
-
-	files = [
-		"#{path.kit.vendor.bower}/jquery/jquery.js"
-		# "#{path.kit.vendor.bower}/jquery.event.swipe/jquery.event.swipe.js"
-		"#{path.kit.vendor.bower}/threejs/build/three.js"
-		"#{path.kit.vendor.bower}/sparksjs/Sparks.js"
-		"#{path.kit.vendor.bower}/tweenjs/Tween.js"
-
-		"#{path.kit.vendor.libs}/threejs.mtlLoader.js"
-	]
-
-	gulp.src( files )
-		.pipe( cache('kitVendor') )
-		.pipe( concat 'vendor.js' )
-		.pipe( size( showFiles: yes ) )
-		.pipe( gulp.dest "#{path.docs.front.js}" )
-		# .pipe( livereload() )
+# gulp.task 'kitVendor', ->
+#
+# 	files = [
+# 		"#{path.kit.vendor.bower}/jquery/jquery.js"
+# 		# "#{path.kit.vendor.bower}/jquery.event.swipe/jquery.event.swipe.js"
+# 		"#{path.kit.vendor.bower}/threejs/build/three.js"
+# 		"#{path.kit.vendor.bower}/sparksjs/Sparks.js"
+# 		"#{path.kit.vendor.bower}/tweenjs/Tween.js"
+#
+# 		"#{path.kit.vendor.libs}/threejs.mtlLoader.js"
+# 	]
+#
+# 	gulp.src( files )
+# 		.pipe( cache('kitVendor') )
+# 		.pipe( concat 'vendor.js' )
+# 		.pipe( size( showFiles: yes ) )
+# 		.pipe( gulp.dest "#{path.docs.front.js}" )
+# 		# .pipe( livereload() )
 
 
 
@@ -100,12 +100,12 @@ gulp.task 'kitCoffee', ->
 
 	files = [
 		"#{path.kit.coffee}/maxmertkit.coffee"
-		"#{path.kit.coffee}/modal.coffee"
+		# "#{path.kit.coffee}/modal.coffee"
 		"#{path.kit.coffee}/affix.coffee"
-		"#{path.kit.coffee}/button.coffee"
-		"#{path.kit.coffee}/scrollspy.coffee"
-		"#{path.kit.coffee}/tabs.coffee"
-		"#{path.kit.coffee}/popup.coffee"
+		# "#{path.kit.coffee}/button.coffee"
+		# "#{path.kit.coffee}/scrollspy.coffee"
+		# "#{path.kit.coffee}/tabs.coffee"
+		# "#{path.kit.coffee}/popup.coffee"
 	]
 
 	gulp.src( files )
@@ -179,6 +179,7 @@ gulp.task 'kitTodo', ->
 gulp.task 'docsVendor', ->
 
 	files = [
+		"#{path.docs.front.vendor.bower}/jquery/dist/jquery.min.js"
 		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
 		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
 		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
@@ -258,7 +259,14 @@ gulp.task 'nodemon', ->
 # ================ TESTS TASKS
 
 gulp.task 'test', ->
-	gulp.src( "test/kit.coffee" )
+
+	files = [
+		"test/maxmertkit.coffee"
+		"test/affix.coffee"
+		"test/button.coffee"
+	]
+
+	gulp.src( files )
 		.pipe( mocha() )
 
 
@@ -278,9 +286,9 @@ gulp.task 'watch', ->
 		kitJson: "./mkit.json"
 		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
 		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
-		kitVendor:
-			bower: "#{path.kit.vendor.bower}/**/*.js"
-			libs: "#{path.kit.vendor.libs}/**/*.js"
+		# kitVendor:
+		# 	bower: "#{path.kit.vendor.bower}/**/*.js"
+		# 	libs: "#{path.kit.vendor.libs}/**/*.js"
 		kitSass: "#{path.kit.sass}/**/*.sass"
 		kitDocsVendor:
 			bower: "#{path.docs.front.vendor.bower}/**/*.js"
@@ -292,10 +300,10 @@ gulp.task 'watch', ->
 	gulp.watch files.kitJson, [ 'kitJson' ]
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
-	gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
+	# gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.kitSass, [ 'kitSass' ]
 
-	gulp.watch [ files.kitDocsVendor.libs ], [ 'kitVendor' ]
+	# gulp.watch [ files.kitDocsVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
 	gulp.watch files.docsTemplates, [ 'docsTemplates', 'docsApp' ]
@@ -311,7 +319,7 @@ gulp.task 'watch', ->
 		server.changed file.path
 
 
-gulp.task( 'default', [ 'kitVendor', 'kitJson', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
+gulp.task( 'default', [ 'kitJson', 'kitCoffee', 'kitSass', 		'docsTemplates', 'docsVendor', 'docsApp', 'docsSass', 'nodemon' ], ->
 	# gulp.tasks.nodemon.fn()
 	gulp.tasks.watch.fn()
 	gulp.tasks.kitTodo.fn()

@@ -2,58 +2,64 @@ _name = "affix"
 _instances = []
 _id = 0
 
+MaxmertkitHelpers = window['MaxmertkitHelpers']
+
 class Affix extends MaxmertkitHelpers
 
 	_name: _name
 	_instances: _instances
+	started: no
 
 	# =============== Public methods
 
 	constructor: ( @el, @options ) ->
-		@$el = $(@el)
-		@$el.parent().append '&nbsp;'	# To keep width
-
-		@_id = _id++
 
 		_options =
-			# target: @$btn.data('target')				# Targeted affix windows
-			spy: @$el.data('spy') or 'affix'			# To automatically find affix elements and make them active
-			# positionVertical: 'top'						# 'top' or 'bottom'
-			offset:	5									# Vertical offset in pixels
+			# string, type of user insteractive
+			spy: @el.getAttribute( 'data-spy' ) or _name
 
+			# px, vertical offset from the top
+			offset: @el.getAttribute( 'data-offset' ) or 5
+
+			# Events
 			beforeactive: ->
 			onactive: ->
-			beforeunactive: ->
-			onunactive: ->
+			failactive: ->
+			beforedeactive: ->
+			ondeactive: ->
+			faildeactive: ->
 
 		@options = @_merge _options, @options
 
+		super @el, @options
 
-		# Reset default event functions
-		@beforeactive = @options.beforeactive
-		@onactive = @options.onactive
-		@beforeunactive = @options.beforeunactive
-		@onunactive = @options.onunactive
+		# Get scroll container
+		@scroller = @_getScrollContainer()
+		@container = @_getContainer()
 
+		# Set global event
+		@reactor.registerEvent "initialize.#{_name}"
+		@reactor.registerEvent "start.#{_name}"
+		@reactor.registerEvent "stop.#{_name}"
 
-		# Set affix window element
-		# @$el = $(document).find @options.target
-
-		# _position.call @
+		@reactor.dispatchEvent "initialize.#{_name}"
 
 		@start()
 
-		super @$btn, @options
+
+	start: ->
+		if not @started
+			_beforeactivate.call @
+
+	stop: ->
+		if @started
+			_beforedeactivate.call @
 
 
 	_setOptions: ( options ) ->
-
 		for key, value of options
 			if not @options[key]?
-				if key isnt "kit-#{_name}"
-					return console.error "Maxmertkit Affix. You're trying to set unpropriate option – #{key}"
-				else
-					return null
+				return console.error "Maxmertkit Affix. You're trying to set unpropriate option – #{key}"
 
 			# switch key
 				# when 'target'
@@ -61,147 +67,103 @@ class Affix extends MaxmertkitHelpers
 				# 	@$el = $(document).find @options.target
 
 				# else
-			@options[key] = value
 
+			@options[key] = value
+			if typeof value is 'function' then @[key] = value
 
 
 	destroy: ->
-		# @$btn.off ".#{@_name}"
 		super
 
-	start: ->
-		_beforestart.call @
-
-	stop: ->
-		_beforestop.call @
 
 
 
+# ===============
+# PRIVATE METHODS
 
-
-
-# =============== Private methods
-
-_setPosition = ->
-	$scrollParent = @_getContainer @$el
-
-	if $scrollParent[0].firstElementChild.nodeName is "HTML" then offset = 0 else offset = $scrollParent.offset().top
-
-
-	if @$el.parent()? and @$el.parent().offset() and not @_deviceMobile() and @_windowWidth > 992
-		if @$el.parent().offset().top - @options.offset <= $(document).scrollTop()
-			if @$el.parent().offset().top + $scrollParent.outerHeight() - @options.offset - @$el.outerHeight()  >= $(document).scrollTop()
-				@$el.css
-					width: @$el.width()
-					position: 'fixed'
-					top: "#{@options.offset}px"
-					bottom: 'auto'
-			else
-				@$el.css
-					position: 'absolute'
-					top: 'auto'
-					bottom: "-#{@options.offset}px"
-					width: @$el.width()
-		else
-			@$el.css 'position', 'relative'
-			@$el.css 'top', 'inherit'
-
-_position = ->
-	$(document).on "scroll.#{@_name}.#{@_id}", ( event ) =>
-		_setPosition.call @
-
-	$(window).on "resize.#{@_name}.#{@_id}", ( event ) =>
-		@_refreshSizes()
-		if @_windowWidth < 992
-			@$el.css 'position', 'relative'
-			@$el.css 'top', 'inherit'
-		else
-			_setPosition.call @
-
-
-# If you have beforeactive function
-# 	it will be called here
-# if you don't
-# 	just open modal window
-_beforestart = ->
-	# If we need to close all other instances on Affix
-	# if @options.selfish
-	# 	@_selfish()
-
+_beforeactivate = ->
 	if @beforeactive?
 		try
-			deferred = @beforeactive.call @$el
+			deferred = @beforeactive.call @el
 			deferred
 				.done =>
-					_start.call @
+					_activate.call @
 
 				.fail =>
-					@$el.trigger "fail.#{@_name}"
+					@failactive?()
 
 		catch
-			_start.call @
+			_activate.call @
 
 	else
-		_start.call @
+		_activate.call @
 
-# Opens modal
-# and triggers onactive
-_start = ->
-	@_refreshSizes()
-	_position.call @
-	@$el.addClass '_active_'
-	@$el.trigger "started.#{@_name}"
-	if @onactive?
+_activate = ->
+	@_addEventListener @scroller, 'scroll', _setPosition.bind(@)
+	@_addClass '_active_'
+	@onactive?()
+	@reactor.dispatchEvent "start.#{_name}"
+	@started = yes
+
+_beforedeactivate = ->
+	if @beforedeactive?
 		try
-			@onactive.call @$el
-
-
-# If you have beforeunactive function
-# 	it will be called here
-# if you don't
-# 	just close modal window
-_beforestop = ->
-	if @beforeunactive?
-		try
-			deferred = @beforeunactive.call @$el
+			deferred = @beforedeactive.call @el
 			deferred
 				.done =>
-					_stop.call @
+					_deactivate.call @
 
 				.fail =>
-					@$el.trigger "fail.#{@_name}"
+					@faildeactive?()
 
 		catch
-			_stop.call @
+			_deactivate.call @
 
 	else
-		_stop.call @
+		_deactivate.call @
 
-# Closes modal
-# and triggers onunactive
-_stop = ->
-	@$el.removeClass '_active_'
-	$(document).off "scroll.#{@_name}.#{@_id}"
-	@$el.trigger "stopped.#{@_name}"
-	if @onunactive?
-		try
-			@onunactive.call @$el
+_deactivate = ->
+	@_removeEventListener @scroller, 'scroll', _setPosition.bind(@)
+	@_removeClass '_active_'
+	@reactor.dispatchEvent "stop.#{_name}"
+	@ondeactive?()
+	@started = no
 
 
-
-
-
-
-$.fn[_name] = (options) ->
-	@each ->
-		unless $.data(@, "kit-" + _name)
-			$.data @, "kit-" + _name, new Affix(@, options)
+_setPosition = ->
+	if @container.getBoundingClientRect().top - @options.offset <= document.body.scrollTop
+		if @container.getBoundingClientRect().top + @_outerHeight(@scroller) - @options.offset - @_outerHeight()  >= document.body.scrollTop
+			@el.style.width = @el.offsetWidth
+			@el.style.position = 'fixed'
+			@el.style.top = "#{@options.offset}px"
+			@el.style.bottom = 'auto'
 		else
-			if typeof options is "object"
-				$.data(@, "kit-" + _name)._setOptions options
-			else
-				if typeof options is "string" and options.charAt(0) isnt "_"
-					$.data(@, "kit-" + _name)[options]
-				# else
-				# 	console.error("Maxmertkit Affix. You passed into the #{_name} something wrong.")
-		return
+			@el.style.position = 'absolute'
+			@el.style.top = 'auto'
+			@el.style.bottom = "-#{@options.offset}px"
+			@el.style.width = @el.offsetWidth
+	else
+		@el.style.position = 'relative'
+		@el.style.top = 'inherit'
+
+
+
+window['Affix'] = Affix
+window['mkitAffix'] = ( options ) ->
+	result = null
+	if not @dataset? then @dataset = {}
+
+	unless @dataset['data-kit-affix']
+		result = new Affix @, options
+		@dataset['data-kit-affix'] = result
+
+	else
+		if typeof options is 'object'
+			@dataset['data-kit-affix']._setOptions options
+		else
+			if typeof options is "string" and options.charAt(0) isnt "_"
+				@dataset['data-kit-affix'][options]
+
+		result = @dataset['data-kit-affix']
+
+	return result

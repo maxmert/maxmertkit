@@ -47,7 +47,7 @@ pre.prettyprint {
   margin: 0px auto 30px; }
   .dev-main-content section + section {
     margin-top: 35px; }
-  .dev-main-content h1 {
+  .dev-main-content:not(.example-block) h1 {
     margin-top: 50px; }
 
 .dev-meta {
