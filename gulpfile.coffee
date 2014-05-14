@@ -264,6 +264,7 @@ gulp.task 'test', ->
 		"test/maxmertkit.coffee"
 		"test/affix.coffee"
 		"test/button.coffee"
+		"test/modal.coffee"
 	]
 
 	gulp.src( files )

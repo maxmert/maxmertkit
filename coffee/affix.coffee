@@ -15,10 +15,10 @@ class Affix extends MaxmertkitHelpers
 	constructor: ( @el, @options ) ->
 
 		_options =
-			# string, type of user insteractive
+			# String; type of user insteractive
 			spy: @el.getAttribute( 'data-spy' ) or _name
 
-			# px, vertical offset from the top
+			# Number; in px, vertical offset from the top
 			offset: @el.getAttribute( 'data-offset' ) or 5
 
 			# Events
@@ -30,6 +30,7 @@ class Affix extends MaxmertkitHelpers
 			faildeactive: ->
 
 		@options = @_merge _options, @options
+		@_setOptions @options
 
 		super @el, @options
 
@@ -46,6 +47,10 @@ class Affix extends MaxmertkitHelpers
 
 		@start()
 
+	destroy: ->
+		_deactivate.call @
+		@el.dataset["data-kit-#{@_name}"] = null
+		super
 
 	start: ->
 		if not @started
@@ -62,18 +67,13 @@ class Affix extends MaxmertkitHelpers
 				return console.error "Maxmertkit Affix. You're trying to set unpropriate option – #{key}"
 
 			# switch key
-				# when 'target'
-				# 	# Set affix window element
-				# 	@$el = $(document).find @options.target
+				# when 'keyhere'
+				# 	# DO something here
 
 				# else
 
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
-
-
-	destroy: ->
-		super
 
 
 
@@ -90,7 +90,7 @@ _beforeactivate = ->
 					_activate.call @
 
 				.fail =>
-					@failactive?()
+					@failactive?.call @el
 
 		catch
 			_activate.call @
@@ -101,7 +101,7 @@ _beforeactivate = ->
 _activate = ->
 	@_addEventListener @scroller, 'scroll', _setPosition.bind(@)
 	@_addClass '_active_'
-	@onactive?()
+	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
 	@started = yes
 
@@ -114,7 +114,7 @@ _beforedeactivate = ->
 					_deactivate.call @
 
 				.fail =>
-					@faildeactive?()
+					@faildeactive?.call @el
 
 		catch
 			_deactivate.call @
@@ -126,7 +126,7 @@ _deactivate = ->
 	@_removeEventListener @scroller, 'scroll', _setPosition.bind(@)
 	@_removeClass '_active_'
 	@reactor.dispatchEvent "stop.#{_name}"
-	@ondeactive?()
+	@ondeactive?.call @el
 	@started = no
 
 

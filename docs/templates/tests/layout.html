@@ -10,7 +10,41 @@
             <div id='affix'></div>
         </div>
         <div class='testing-buttons'>
-            <a id="test-button">Test button</a>
+            <a id="test-button" data-group="test-buttons1">Test button</a>
+            <a id="test-button2" data-group="test-buttons2">Test button</a>
+        </div>
+
+        <a href="" id="button-modal" data-target="#modal1">Open modal</a>
+
+        <div id="modal1" class="-modal -hugeinc-- ">
+        	<div class="-holder">
+        		<div class="-dialog -col6 -primary-">
+        			<div class="-header">
+        				<svg class="-close" data-dismiss="#modal1" x="0px" y="0px" viewBox="0 0 600 600">
+        					<circle cx="300" cy="300" r="260"></circle>
+        					<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "></polygon>
+        				</svg>
+        				Header
+
+        			</div>
+        			<div class="-content">
+
+        				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        				<p>
+        					<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-inmodal-demo">Open popup</a>
+        				</p>
+        				<p>
+        					<a class="-btn" data-dismiss="#modal1">Close</a>
+        				</p>
+        			</div>
+        		</div>
+        		<div id="popup-inmodal-demo" class="-drop -primary- -fadein-- _top_ _center_">
+        			<i class="-arrow"></i>
+        			<div class="-content">
+        				Flip horizontal popup
+        			</div>
+        		</div>
+        	</div>
         </div>
     </body>
 </html>

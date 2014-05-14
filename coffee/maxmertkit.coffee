@@ -65,7 +65,7 @@ class MaxmertkitHelpers
 
 	destroy: ->
 		@_popInstance()
-		@el.parentNode?.removeChild(@el)
+		# @el.parentNode?.removeChild(@el)
 		@_destroy @
 		yes
 
@@ -103,7 +103,7 @@ class MaxmertkitHelpers
 	_selfish: ->
 		for instance, index in @_instances
 			if @_id isnt instance._id
-				instance.close()
+				instance.close?() or instance.deactivate?()
 
 	_isMobile: ->
 		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent)

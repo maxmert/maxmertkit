@@ -55,6 +55,14 @@ describe "Maxmertkit Affix", ->
     it 'should save this instance', ->
         affix._instances.should.have.length 1
 
+    it 'should properly destroy class instance', ->
+        affix.destroy()
+        affix._instances.should.have.length 0
+        if el.dataset['data-kit-affix']? then throw new Error "Dataset should be empty after destroy"
+
+        affix = mkitAffix.call el, { offset: 15 }
+        affix._instances.should.have.length 1
+
     it 'should get parent container', ->
         affix._getContainer().tagName.should.be.equal 'DIV'
 
