@@ -1,3 +1,5 @@
+"use strict"
+
 _name = "button"
 _instances = []
 _id = 0

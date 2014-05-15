@@ -1,3 +1,5 @@
+"use strict"
+
 _name = "modal"
 _instances = []
 _id = 0
@@ -39,6 +41,9 @@ class Modal extends MaxmertkitHelpers
 			# Boolean; open modal after initialize
 			autoOpen: @el.getAttribute('data-autoopen') or no
 
+			# Boolean; close other instances of Modal when current is opening
+			selfish: yes
+
 
 			# Events
 			beforeactive: ->
@@ -49,21 +54,17 @@ class Modal extends MaxmertkitHelpers
 			faildeactive: ->
 
 		@options = @_merge _options, @options
-		@_setOptions @options
 
 		# Find modal element in DOM
 		@target = document.querySelector @options.target
 
-		# Add event to open modal element
-		@_addEventListener @el, @options.event, @clicker.bind( @ )
-
 		# Find and init closer element inside modal element in DOM
 		@closers = document.querySelectorAll "[data-dismiss='#{@options.target}']"
-		for closer in @closers
-			@_addEventListener closer, @options.eventClose, @close.bind( @ )
 
 		# Find dialog element inside target
 		@dialog = @target.querySelector @options.dialog
+
+		@_setOptions @options
 
 		super @el, @options
 
@@ -75,7 +76,7 @@ class Modal extends MaxmertkitHelpers
 		@reactor.dispatchEvent "initialize.#{_name}"
 
 		# Open modal if autoOpen setted
-		if options.autoOpen then @open()
+		if @options.autoOpen then @open()
 
 	destroy: ->
 		@_removeEventListener @el, @options.event, @clicker.bind( @ )
@@ -91,6 +92,15 @@ class Modal extends MaxmertkitHelpers
 				return console.error "Maxmertkit Modal. You're trying to set unpropriate option – #{key}"
 
 			switch key
+				when 'event'
+					@_removeEventListener @el, @options.event, @clicker.bind( @ )
+					@_addEventListener @el, value, @clicker.bind( @ )
+
+				when 'eventClose'
+					for closer in @closers
+						@_removeEventListener closer, @options.eventClose, @close.bind( @ )
+						@_addEventListener closer, value, @close.bind( @ )
+
 				when 'backdrop'
 					if @options.backdrop then @_removeEventListener @el, "click", _backdropClick.bind( @ )
 					if value then @_addEventListener @el, "click", _backdropClick.bind( @ )
@@ -121,9 +131,30 @@ class Modal extends MaxmertkitHelpers
 		if @enabled and @opened
 			_beforedeactivate.call @
 
+	disable: ->
+		@enabled = no
+
+	enable: ->
+		@enabled = yes
+
 
 # ===============
 # PRIVATE METHODS
+
+_pushStart = ->
+	if @push
+		@_addClass '-start--', @push
+		@_removeClass '-stop--', @push
+
+_pushStop = ->
+	if @push
+		@_addClass '-stop--', @push
+		@_removeClass '-start--', @push
+
+		# Fix mobile webkit render bug
+		# After first showing it will not be smooth
+		if @push and @push.style? and @push.style['-webkit-overflow-scrolling']?
+			@push.style['-webkit-overflow-scrolling'] = 'auto'
 
 _backdropClick = ( event ) ->
 	if @_hasClass('-modal', event.target) and @opened
@@ -133,9 +164,9 @@ _backdropClick = ( event ) ->
 # If you have beforeactive function
 # 	it will be called here
 # if you don't
-# 	just activate button
+# 	just open modal
 _beforeactivate = ->
-	# If we need to close all other instances on Button
+	# If we need to close all other instances on Modal
 	if @options.selfish
 		@_selfish()
 
@@ -165,29 +196,18 @@ _activate = ->
 	# setTimeout =>
 	@_addClass '_visible_ -start--', @target
 	@_addClass '_visible_ -start--', @dialog
-	# _pushStart.call @
+	_pushStart.call @
 	# , 1
 
 	@onactive?.call @el
 	@reactor.dispatchEvent "open.#{_name}"
 	@opened = yes
 
-	# If radiobutton deactivate others in the group
-	# if @options.type is 'radio'
-	# 	for button in @_instances
-	# 		if @_id isnt button._id and button.options.type is 'radio' and button.options.group is @options.group
-	# 			button.deactivate()
-	#
-	# @_addClass '_active_'
-	# @onactive?.call @el
-	# @reactor.dispatchEvent "active.#{_name}"
-	# @active = yes
-
 
 # If you have beforeunactive function
 # 	it will be called here
 # if you don't
-# 	just deactivate
+# 	just close
 _beforedeactivate = ->
 	if @beforedeactive?
 		try
@@ -206,10 +226,20 @@ _beforedeactivate = ->
 		_deactivate.call @
 
 _deactivate = ->
-	@_removeClass '_active_'
-	@reactor.dispatchEvent "deactive.#{_name}"
+	@_addClass '-stop--'
+	@_addClass '-stop--', @dialog
+	_pushStop.call @
+	setTimeout =>
+		@_removeClass '_visible_ -start-- -stop--'
+		@_removeClass '_visible_ -start-- -stop--', @dialog
+		@_removeClass '_no-scroll_', document.body
+		if @push then @_removeClass '_perspective_', document.body
+		@el.style.display = 'none'
+	, 1000
+
+	@reactor.dispatchEvent "close.#{_name}"
 	@ondeactive?.call @el
-	@active = no
+	@opened = no
 
 
 

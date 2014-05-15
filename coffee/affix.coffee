@@ -1,3 +1,5 @@
+"use strict"
+
 _name = "affix"
 _instances = []
 _id = 0

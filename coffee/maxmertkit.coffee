@@ -1,5 +1,6 @@
 "use strict"
 
+_eventHandlers = []
 _eventCallbacks = []
 _reactorEvents = []
 _id = 0
@@ -117,21 +118,57 @@ class MaxmertkitHelpers
 	# REMOVE JQUERY
 	# ========================================
 	# $(el).off(eventName, eventHandler);
-	_removeEventListener: (el, eventName, handler) ->
-		if el.removeEventListener
-			el.removeEventListener eventName, handler
-		else
-			el.detachEvent "on" + eventName, handler
-		return
+	# _removeEventListener: (el, eventName, handler) ->
+	# 	if el.removeEventListener
+	# 		el.removeEventListener eventName, handler, no
+	# 	else
+	# 		el.detachEvent "on" + eventName, handler
+	# 	return
+	#
+	# _addEventListener: (el, eventName, handler) ->
+	# 	if el.addEventListener
+	# 		el.addEventListener eventName, handler, no
+	# 	else
+	# 		el.attachEvent "on" + eventName, ->
+	# 			handler.call el
+	# 			return
+	#
+	# 	return
 
-	_addEventListener: (el, eventName, handler) ->
+	_addEventListener: (el, event, handler, capture = yes) ->
+
+		# _eventHandlers stores references to nodes
+		_eventHandlers[el] = {}	unless el of _eventHandlers
+
+		# each entry contains another entry for each event type
+		_eventHandlers[el][event] = []	unless event of _eventHandlers[el]
+
+		# capture reference
+		_eventHandlers[el][event].push [
+			handler
+			capture
+		]
 		if el.addEventListener
-			el.addEventListener eventName, handler
+			el.addEventListener event, handler, no
+			return
 		else
-			el.attachEvent "on" + eventName, ->
+			el.attachEvent "on" + event, ->
 				handler.call el
 				return
 
+	_removeEventListener: (el, event) ->
+		if el of _eventHandlers
+			handlers = _eventHandlers[el]
+			if event of handlers
+				eventHandlers = handlers[event]
+				i = eventHandlers.length
+
+				while i--
+					handler = eventHandlers[i]
+					if el.removeEventListener
+						el.removeEventListener event, handler[0], handler[1]
+					else
+						el.detachEvent "on" + event, handler[0]
 		return
 
 	_hasClass: ( className, el ) ->
@@ -154,6 +191,23 @@ class MaxmertkitHelpers
 			el.classList.remove(className)
 		else
 			el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ')
+
+	_closest: (selector, el) ->
+		el = el or @el
+		matchesSelector = el.matches or el.webkitMatchesSelector or el.mozMatchesSelector or el.msMatchesSelector
+		while el
+			if matchesSelector.bind(el)(selector)
+				return el
+			else
+				el = el.parentElement
+		false
+
+	_outerWidth: (el) ->
+		el = el or @el
+		height = el.offsetWidth
+		style = el.currentStyle or getComputedStyle(el)
+		height += parseInt(style.marginLeft) + parseInt(style.marginRight)
+		height
 
 	_outerHeight: (el) ->
 		el = el or @el
