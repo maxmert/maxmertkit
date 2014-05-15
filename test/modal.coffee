@@ -77,3 +77,8 @@ describe "Maxmertkit Modal", ->
         modal.opened.should.be.false
         fireEvent el, 'click'
         modal.opened.should.be.true
+
+    it 'should have closer element that closing modal propely', ->
+        modal.opened.should.be.true
+        fireEvent modal.closers[0], 'click'
+        modal.opened.should.be.false
