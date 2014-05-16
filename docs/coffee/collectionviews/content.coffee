@@ -54,7 +54,7 @@ exports.module = Marionette.CollectionView.extend
             if @menu.data('kit-scrollspy')?
                 @menu.data('kit-scrollspy').refresh()
             else
-                @menu.scrollspy()
+                window['mkitScrollspy'].call @menu[0]
 
     highlightCode: ->
         $elements = @$el.find('[hljs]')

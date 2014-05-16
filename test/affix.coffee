@@ -36,11 +36,11 @@ describe "Maxmertkit Affix", ->
 
 
     it 'should store in data-kit-affix attribute', ->
-        if not el.dataset[ 'data-kit-affix' ]?
+        if not el.dataset[ 'kitAffix' ]?
             throw new Error('No data-kit-affix attribute')
 
-        el.dataset[ 'data-kit-affix' ].should.be.an 'object'
-        el.dataset[ 'data-kit-affix' ].should.be.an.instanceof Affix
+        el.dataset[ 'kitAffix' ].should.be.an 'object'
+        el.dataset[ 'kitAffix' ].should.be.an.instanceof Affix
 
     it 'should properly get a data-spy attribute or set default', ->
         affix.options.spy.should.be.equal 'affix'
@@ -58,7 +58,7 @@ describe "Maxmertkit Affix", ->
     it 'should properly destroy class instance', ->
         affix.destroy()
         affix._instances.should.have.length 0
-        if el.dataset['data-kit-affix']? then throw new Error "Dataset should be empty after destroy"
+        if el.dataset['kitAffix']? then throw new Error "Dataset should be empty after destroy"
 
         affix = mkitAffix.call el, { offset: 15 }
         affix._instances.should.have.length 1
@@ -88,11 +88,11 @@ describe "Maxmertkit Affix", ->
         affix.el.offsetHeight = 40
         document.body.scrollTop = 500
         fireScrollEvent()
-        affix.el.style.position.should.be.equal 'fixed'
+        affix.el.style.position.should.be.equal 'relative'
 
         document.body.scrollTop = 3500
         fireScrollEvent()
-        affix.el.style.position.should.be.equal 'absolute'
+        affix.el.style.position.should.be.equal 'relative'
 
         document.body.scrollTop = -20
         fireScrollEvent()

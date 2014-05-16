@@ -204,10 +204,10 @@ class MaxmertkitHelpers
 
 	_outerWidth: (el) ->
 		el = el or @el
-		height = el.offsetWidth
+		width = el.offsetWidth
 		style = el.currentStyle or getComputedStyle(el)
-		height += parseInt(style.marginLeft) + parseInt(style.marginRight)
-		height
+		width += parseInt(style.marginLeft) + parseInt(style.marginRight)
+		width
 
 	_outerHeight: (el) ->
 		el = el or @el
@@ -225,8 +225,8 @@ class MaxmertkitHelpers
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
 		while parent? and parent = parent.parentNode
 			try
-				style = getComputedStyle parent
-
+				style = getComputedStyle(parent)
+			
 			return parent if not style?
 
 			if /(relative|fixed)/.test(style['position'])

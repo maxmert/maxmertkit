@@ -21,7 +21,7 @@ class Affix extends MaxmertkitHelpers
 			spy: @el.getAttribute( 'data-spy' ) or _name
 
 			# Number; in px, vertical offset from the top
-			offset: @el.getAttribute( 'data-offset' ) or 5
+			offset: @el.getAttribute( 'data-offset' ) or -25
 
 			# Events
 			beforeactive: ->
@@ -51,7 +51,7 @@ class Affix extends MaxmertkitHelpers
 
 	destroy: ->
 		_deactivate.call @
-		@el.dataset["data-kit-#{@_name}"] = null
+		@el.dataset["kitAffix"] = null
 		super
 
 	start: ->
@@ -133,10 +133,17 @@ _deactivate = ->
 
 
 _setPosition = ->
-	if @container.getBoundingClientRect().top - @options.offset <= document.body.scrollTop
-		if @container.getBoundingClientRect().top + @_outerHeight(@scroller) - @options.offset - @_outerHeight()  >= document.body.scrollTop
+	containerTop = @container.offsetTop
+
+	if containerTop - @options.offset <= document.body.scrollTop
+		if containerTop + @_outerHeight(@container) - @options.offset - @_outerHeight()  >= document.body.scrollTop
 			@el.style.width = @el.offsetWidth
 			@el.style.position = 'fixed'
+			top = @options.offset
+			try
+				style = @el.currentStyle or getComputedStyle(@el)
+			if style?
+				if style.marginTop? and style.marginTop isnt '' then top += parseInt(style.marginTop)
 			@el.style.top = "#{@options.offset}px"
 			@el.style.bottom = 'auto'
 		else
@@ -153,19 +160,28 @@ _setPosition = ->
 window['Affix'] = Affix
 window['mkitAffix'] = ( options ) ->
 	result = null
+
 	if not @dataset? then @dataset = {}
 
-	unless @dataset['data-kit-affix']
+	unless @dataset['kitAffix']
 		result = new Affix @, options
-		@dataset['data-kit-affix'] = result
+		@dataset['kitAffix'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-affix']._setOptions options
+			@dataset['kitAffix']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-affix'][options]
+				@dataset['kitAffix'][options]
 
-		result = @dataset['data-kit-affix']
+		result = @dataset['kitAffix']
 
 	return result
+
+
+# if $? and jQuery?
+# 	$.fn[_name] = window['mkitAffix']
+# 	$(window).on 'load', ->
+# 		$('[data-spy="affix"]').each ->
+# 			$btn = $(@)
+# 			$btn.affix($btn.data())

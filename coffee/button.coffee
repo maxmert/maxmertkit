@@ -192,6 +192,13 @@ window['mkitButton'] = ( options ) ->
 
 	return result
 
+# if $? and jQuery?
+# 	$.fn.button = window['mkitButton']
+# 	$(window).on 'load', ->
+# 		$('[data-target="button"]').each ->
+# 			$btn = $(@)
+# 			$btn.button($btn.data())
+
 
 # class Button extends MaxmertkitHelpers
 #

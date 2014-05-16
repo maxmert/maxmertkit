@@ -103,7 +103,7 @@ gulp.task 'kitCoffee', ->
 		# "#{path.kit.coffee}/modal.coffee"
 		"#{path.kit.coffee}/affix.coffee"
 		# "#{path.kit.coffee}/button.coffee"
-		# "#{path.kit.coffee}/scrollspy.coffee"
+		"#{path.kit.coffee}/scrollspy.coffee"
 		# "#{path.kit.coffee}/tabs.coffee"
 		# "#{path.kit.coffee}/popup.coffee"
 	]
@@ -267,6 +267,7 @@ gulp.task 'test', ->
 		"test/modal.coffee"
 		"test/popup.coffee"
 		"test/scrollspy.coffee"
+		"test/tabs.coffee"
 	]
 
 	gulp.src( files )

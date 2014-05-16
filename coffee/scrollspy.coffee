@@ -11,6 +11,7 @@ class Scrollspy extends MaxmertkitHelpers
 	_name: _name
 	_instances: _instances
 	started: no
+	active: -1
 
 	constructor: ( @el, @options ) ->
 
@@ -45,10 +46,22 @@ class Scrollspy extends MaxmertkitHelpers
 
 		# Get scrolling container with items inside
 		@target = document.querySelector @options.target
+		@scroller = @_getScrollContainer @target
+
+		@spy = _spy.bind(@)
 
 		@_setOptions @options
 
 		super @el, @options
+
+		# Set global event
+		@reactor.registerEvent "initialize.#{_name}"
+		@reactor.registerEvent "start.#{_name}"
+		@reactor.registerEvent "stop.#{_name}"
+
+		@reactor.dispatchEvent "initialize.#{_name}"
+
+		@start()
 
 	destroy: ->
 		_deactivate.call @
@@ -63,20 +76,110 @@ class Scrollspy extends MaxmertkitHelpers
 			switch key
 				when 'target'
 					# TODO: Reset events here
-					@target = document.querySelector @options.target
+					@_removeEventListener @scroller, 'scroll', @spy
+					@target = document.querySelector value
+					@scroller = @_getScrollContainer @target
+					@_addEventListener @scroller, 'scroll', @spy
 
 				when 'elements'
-					@elements = @refresh()
+					@refresh()
 
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
 
+	start: ->
+		if not @started
+			_beforeactivate.call @
+
+	stop: ->
+		if @started
+			_beforedeactivate.call @
+
+	refresh: ->
+		elements = @el.querySelectorAll(@options.elements)
+		@elements = []
+		for el in elements
+			targetEl = @target.querySelector(el.getAttribute( @options.elementsAttr ))
+			@elements.push
+				element: el
+				target: targetEl
+				height: targetEl.offsetHeight
+				top: targetEl.offsetTop
+
+
 
 # ===============
 # PRIVATE METHODS
+_activateItem = ( itemNumber ) ->
+	for el in @elements
+		@_removeClass '_active_', el.element
+		@_removeClass '_active_', el.element.parent
+
+	@_addClass '_active_', @elements[itemNumber].element
+	@_addClass '_active_', @elements[itemNumber].element.parent
+
+
+_deactivateItem = ( itemNumber ) ->
+	@_removeClass '_active_', @elements[itemNumber].element
+	@_removeClass '_active_', @elements[itemNumber].element.parent
+
+
+_spy = ( event ) ->
+	i = 0
+	while i < @elements.length
+		if (@elements[i].top <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i].top + @elements[i].height )
+			if not @_hasClass '_active_', @elements[i].element
+				_activateItem.call @, i
+		else
+			if @_hasClass('_active_', @elements[i].element) and (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset < @elements[i].top + @elements[i].height
+				_deactivateItem.call @, i
+		i++
+
+_beforeactivate = ->
+	if @beforeactive?
+		try
+			deferred = @beforeactive.call @el
+			deferred
+				.done =>
+					_activate.call @
+
+				.fail =>
+					@failactive?.call @el
+
+		catch
+			_activate.call @
+
+	else
+		_activate.call @
+
+_activate = ->
+	@_addEventListener @scroller, 'scroll', @spy
+	@onactive?.call @el
+	@reactor.dispatchEvent "start.#{_name}"
+	@started = yes
+
+_beforedeactivate = ->
+	if @beforedeactive?
+		try
+			deferred = @beforedeactive.call @el
+			deferred
+				.done =>
+					_deactivate.call @
+
+				.fail =>
+					@faildeactive?.call @el
+
+		catch
+			_deactivate.call @
+
+	else
+		_deactivate.call @
 
 _deactivate = ->
-
+	@_removeEventListener @scroller, 'scroll', @spy
+	@reactor.dispatchEvent "stop.#{_name}"
+	@ondeactive?.call @el
+	@started = no
 
 
 window['Scrollspy'] = Scrollspy
@@ -84,18 +187,18 @@ window['mkitScrollspy'] = ( options ) ->
 	result = null
 	if not @dataset? then @dataset = {}
 
-	unless @dataset['data-kit-scrollspy']
+	unless @dataset['kitScrollspy']
 		result = new Scrollspy @, options
-		@dataset['data-kit-scrollspy'] = result
+		@dataset['kitScrollspy'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-scrollspy']._setOptions options
+			@dataset['kitScrollspy']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-scrollspy'][options]
+				@dataset['kitScrollspy'][options]
 
-		result = @dataset['data-kit-scrollspy']
+		result = @dataset['kitScrollspy']
 
 	return result
 
