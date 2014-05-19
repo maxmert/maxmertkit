@@ -23,7 +23,9 @@ exports.module = Marionette.Layout.extend
         @content.show new CollectionViewContent()
         @socialContribute.show new ViewSocial.github()
 
-        @sidebar.currentView.$el.affix()
+        setTimeout =>
+            @sidebar.currentView.$el[0].affix( offset: -25 )
+        ,1
 
         $.app.commands.execute 'menu', 'activate', '#start'
         $.app.commands.execute 'loader', 'finish'

@@ -14256,6 +14256,22 @@ hr {
   hr.-dark- {
     background-color: black; }
 
+*[dir="ltr"] {
+  direction: ltr;
+  unicode-bidi: embed; }
+
+*[dir="rtl"] {
+  direction: rtl;
+  unicode-bidi: embed; }
+
+bdo[dir="ltr"] {
+  direction: ltr;
+  unicode-bidi: bidi-override; }
+
+bdo[dir="rtl"] {
+  direction: rtl;
+  unicode-bidi: bidi-override; }
+
 h1, .-h1 {
   font-size: 36px; }
 
@@ -17926,7 +17942,7 @@ a.-btn, a.-btn-bordered {
     .-modal > .-close._divine {
       height: 76px;
       width: 76px; }
-  .-modal .-arrow {
+  .-modal > .-arrow {
     position: fixed !important; }
   .-modal .-dialog {
     float: none;

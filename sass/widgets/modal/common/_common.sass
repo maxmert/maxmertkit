@@ -1,5 +1,6 @@
 @import "sizes"
 @import "themes"
+@import "../../dropdowns/common/_variables.sass"
 
 @mixin modal-theme-setter($theme)
 	$name: map-get( $theme, name)
@@ -114,6 +115,10 @@
 		height: 100%
 		z-index: -$modal-z-index
 		overflow-y: auto
+
+		// .#{$dropdown-class}
+		// 	z-index: $modal-z-index
+
 		// -webkit-transform: translateZ(0)
 
 		// @include transition-property (opacity)
@@ -163,7 +168,7 @@
 				&._#{$sizeName}
 					@include modal-close-size-setter($sz)
 
-		.-arrow
+		& > .-arrow
 			position: fixed !important
 
 

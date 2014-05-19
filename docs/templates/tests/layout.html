@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Main test layout</title>
+        <style type="text/css" media="screen">
+            body, html { height:2000px; }
+        </style>
+    </head>
+    <body>
+        <div id="container" style="position:relative; top:50px;">
+            <div id="affix"></div>
+        </div>
+        <div class="testing-buttons">
+            <a id="test-button" data-group="test-buttons1">Test button</a>
+            <a id="test-button2" data-group="test-buttons2">Test button</a>
+        </div>
+
+
+
+
+        <a href="" id="button-modal" data-target="#modal1">Open modal</a>
+        <a href="" id="button-modal2" data-target="#modal2">Open modal 2</a>
+
+        <div id="modal1" class="-modal -hugeinc-- ">
+        	<div class="-holder">
+        		<div class="-dialog -col6 -primary-">
+        			<div class="-header">
+        				<svg class="-close" data-dismiss="#modal1" x="0px" y="0px" viewbox="0 0 600 600">
+        					<circle cx="300" cy="300" r="260"></circle>
+        					<polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "></polygon>
+        				</svg>
+        				Header
+
+        			</div>
+        			<div class="-content">
+
+        				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        				<p>
+        					<a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-inmodal-demo">Open popup</a>
+        				</p>
+        				<p>
+        					<a class="-btn" data-dismiss="#modal1">Close</a>
+        				</p>
+        			</div>
+        		</div>
+        		<div id="popup-inmodal-demo" class="-drop -primary- -fadein-- _top_ _center_">
+        			<i class="-arrow"></i>
+        			<div class="-content">
+        				Flip horizontal popup
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <div id="modal2" class="-modal -hugeinc-- ">
+            <div class="-holder">
+                <div class="-dialog -col6 -primary-">
+                    <div class="-header">
+                        <svg class="-close" data-dismiss="#modal2" x="0px" y="0px" viewbox="0 0 600 600">
+                            <circle cx="300" cy="300" r="260"></circle>
+                            <polygon points="434.444,211.454 389.809,166.819 300.496,256.131 211.434,167.069 166.882,211.621 255.944,300.684 166.638,389.99 211.273,434.626 300.58,345.319 389.642,434.382 434.194,389.83 345.132,300.767 "></polygon>
+                        </svg>
+                        Header
+
+                    </div>
+                    <div class="-content">
+
+                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                        <p>
+                            <a class="-btn -primary- btn-popup-demo" data-toggle="popup" data-target="#popup-inmodal-demo2">Open popup</a>
+                        </p>
+                        <p>
+                            <a class="-btn" data-dismiss="#modal2">Close</a>
+                        </p>
+                    </div>
+                </div>
+                <div id="popup-inmodal-demo2" class="-drop -primary- -fadein-- _top_ _center_">
+                    <i class="-arrow"></i>
+                    <div class="-content">
+                        Flip horizontal popup
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="container-popup" style="position:relative; top:50px;">
+            <a href="" id="button-popup" data-target="#popup" style="position:relative; top:10px; width: 50px; height: 20px;">Open popup</a>
+
+            <div id="popup" class="-drop -error- -fliphorizontal-- _top_ _center_" style="position:relative; width: 200px; height: 500px;">
+            	<i class="-arrow"></i>
+            	<div class="-content">Set content here</div>
+            </div>
+        </div>
+
+        <div id="container-popup2" style="position:relative; top:50px;">
+            <a href="" id="button-popup2" data-target="#popup2" style="position:relative; top:10px; width: 50px; height: 20px;">Open popup</a>
+
+            <div id="popup2" class="-drop -error- -fliphorizontal-- _top_ _center_" style="position:relative; width: 200px; height: 500px;">
+                <i class="-arrow"></i>
+                <div class="-content">Set content here</div>
+            </div>
+        </div>
+
+
+
+        <ul id="scrollspy">
+            <li><a href="#spy1">Spy 1</a></li>
+            <li><a href="#spy2">Spy 2</a></li>
+            <li><a href="#spy3">Spy 3</a></li>
+            <li><a href="#spy4">Spy 4</a></li>
+        </ul>
+        <div id="spy1">
+            Spy 1
+        </div>
+        <div id="spy2">
+            Spy 2
+        </div>
+        <div id="spy3">
+            Spy 3
+        </div>
+        <div id="spy4">
+            Spy 4
+        </div>
+
+
+        <ul class="-tabs -primary-">
+        	<li id="tabs1" data-toggle="tabs" data-group="tabs1" data-target="#content1"><a>Tab 1</a></li>
+        	<li id="tabs2" data-toggle="tabs" data-group="tabs1" data-target="#content2"><a>Tab 2</a></li>
+        	<li id="tabs3" data-toggle="tabs" data-group="tabs1" data-target="#content3"><a>Tab 3</a></li>
+        	<li id="tabs4" data-toggle="tabs" data-group="tabs1" data-target="#content4"><a>Tab 4</a></li>
+        </ul>
+        <div class="-row">
+        	<div id="content1" class="-col12">Content for tab 1</div>
+        	<div id="content2" class="-col12">Content for tab 2</div>
+        	<div id="content3" class="-col12">Content for tab 3</div>
+        	<div id="content4" class="-col12">Content for tab 4</div>
+        </div>
+    </body>
+</html>
