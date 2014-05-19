@@ -22,5 +22,8 @@
     "google-code-prettify": "~1.0.1",
     "google-code-prettify-language-handlers": "~0.1.5",
     "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "json2": "*"
   }
 }

@@ -118,7 +118,7 @@ pre.prettyprint {
 
 .dev-instructions-widgets {
   color: white;
-  background-image: -webkit-linear-gradient( top , #187da9 0%, #2da7ab 100%);
+  background-image: -webkit-linear-gradient( top top, #187da9 0%, #2da7ab 100%);
   background-image: linear-gradient(to bottom, #187da9 0%, #2da7ab 100%); }
   .dev-instructions-widgets .-btn-bordered {
     color: white; }
@@ -127,7 +127,7 @@ pre.prettyprint {
 
 .dev-instructions-utilities {
   color: white;
-  background-image: -webkit-linear-gradient( top , #8f0e0a 0%, #d26117 100%);
+  background-image: -webkit-linear-gradient( top top, #8f0e0a 0%, #d26117 100%);
   background-image: linear-gradient(to bottom, #8f0e0a 0%, #d26117 100%); }
   .dev-instructions-utilities .-btn-bordered {
     color: white; }
@@ -136,7 +136,7 @@ pre.prettyprint {
 
 .dev-instructions-basic {
   color: white;
-  background-image: -webkit-linear-gradient( top , #4b358c 0%, #b30c83 100%);
+  background-image: -webkit-linear-gradient( top top, #4b358c 0%, #b30c83 100%);
   background-image: linear-gradient(to bottom, #4b358c 0%, #b30c83 100%); }
   .dev-instructions-basic .-btn-bordered {
     color: white; }
@@ -145,7 +145,7 @@ pre.prettyprint {
 
 .dev-instructions-components {
   color: white;
-  background-image: -webkit-linear-gradient( top , #29b600 0%, #9fbc00 100%);
+  background-image: -webkit-linear-gradient( top top, #29b600 0%, #9fbc00 100%);
   background-image: linear-gradient(to bottom, #29b600 0%, #9fbc00 100%); }
   .dev-instructions-components .-btn-bordered {
     color: white; }
@@ -154,7 +154,7 @@ pre.prettyprint {
 
 .dev-instructions-start {
   color: white;
-  background-image: -webkit-linear-gradient( top , #252525 0%, #585858 100%);
+  background-image: -webkit-linear-gradient( top top, #252525 0%, #585858 100%);
   background-image: linear-gradient(to bottom, #252525 0%, #585858 100%); }
   .dev-instructions-start .-btn-bordered {
     color: white; }

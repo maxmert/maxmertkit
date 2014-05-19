@@ -34,13 +34,13 @@ describe "Maxmertkit Popup", ->
         popup.options.toggle.should.be.equal 'popup'
         popup.options.event.should.be.equal 'click'
         popup.options.eventClose.should.be.equal 'click'
-        popup.options.dialog.should.be.equal '-content'
+        popup.options.dialog.should.be.equal '.-content'
         popup.options.autoOpen.should.be.false
-        popup.options.selfish.should.be.false
+        popup.options.selfish.should.be.true
         popup.options.position.vertical.should.be.equal 'top'
         popup.options.position.horizontal.should.be.equal 'center'
-        popup.options.offset.vertical.should.be.equal 5
-        popup.options.offset.horizontal.should.be.equal 5
+        popup.options.offset.vertical.should.be.equal 0
+        popup.options.offset.horizontal.should.be.equal 0
         popup.opened.should.be.false
         popup.enabled.should.be.true
 
@@ -94,31 +94,31 @@ describe "Maxmertkit Popup", ->
         popup.enabled.should.be.false
         popup.enable()
         popup.enabled.should.be.true
-
+    
     it 'shouldn\'t work when disabled', ->
         popup.opened.should.be.false
         popup.disable()
         fireEvent el, 'click'
         popup.opened.should.be.false
         popup.enable()
-
+    
     it 'should close ALL other instances of Modal when options.selfish is true', ->
         el2 = window.document.getElementById('button-popup2')
-
+    
         popup = mkitPopup.call el, {selfish: yes}
         popup2 = mkitPopup.call el2, {selfish: yes}
         popup2._instances.should.have.length 2
         popup2.options.selfish.should.be.true
         popup2.opened.should.be.false
-
+    
         fireEvent el, 'click'
         popup.opened.should.be.true
         popup2.opened.should.be.false
-
+    
         fireEvent el2, 'click'
         popup.opened.should.be.false
         popup2.opened.should.be.true
-
+    
     it 'should fire events', ->
         onactive = no
         beforeactive = no
@@ -126,7 +126,7 @@ describe "Maxmertkit Popup", ->
         ondeactive = no
         beforedeactive = no
         faildeactive = no
-
+    
         popup = mkitPopup.call el,
             beforeactive: ->
                 beforeactive = yes
@@ -140,17 +140,17 @@ describe "Maxmertkit Popup", ->
                 ondeactive = yes
             faildeactive: ->
                 faildeactive = yes
-
+    
         popup.open()
         popup.close()
-
+    
         onactive.should.be.true
         beforeactive.should.be.true
         failactive.should.be.false
         ondeactive.should.be.true
         beforedeactive.should.be.true
         faildeactive.should.be.false
-
+    
     it 'should removeEventListener and add new one if changing options.event', ->
         onactive = no
         beforeactive = no
@@ -158,7 +158,7 @@ describe "Maxmertkit Popup", ->
         ondeactive = no
         beforedeactive = no
         faildeactive = no
-
+    
         popup = mkitPopup.call el,
             beforeactive: ->
                 beforeactive = yes
@@ -172,28 +172,28 @@ describe "Maxmertkit Popup", ->
                 ondeactive = yes
             faildeactive: ->
                 faildeactive = yes
-
-
+    
+    
         # Test that new event will not fire
         fireEvent el, 'mouseover'
         fireEvent el, 'mouseover'
-
+    
         onactive.should.be.false
         beforeactive.should.be.false
         failactive.should.be.false
         ondeactive.should.be.false
         beforedeactive.should.be.false
         faildeactive.should.be.false
-
-
+    
+    
         popup = mkitPopup.call el,
             # Change event
             event: "mouseover"
-
+    
         # Test that new event will fire after setting it inside Button instance
         fireEvent el, 'mouseover'
         fireEvent el, 'mouseover'
-
+    
         onactive.should.be.true
         beforeactive.should.be.true
         failactive.should.be.false

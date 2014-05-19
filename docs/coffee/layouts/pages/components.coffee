@@ -98,10 +98,8 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						# Get popup class instance
 						popup = @data['kitPopup']
-						# Find content element inside popup
-						content = @querySelector '.-content'
 						# Set new content
-						content.innerHtml "Set content here"
+						popup.dialog.innerHTML = "Set content here"
 				
 					onactive: ->
 						# Add active class to the button
@@ -110,99 +108,110 @@ exports.module = Marionette.Layout.extend
 					ondeactive: ->
 						# Remove active class to the button
 						@data['kitPopup']._removeClass '_active_'
-			#
-			# $('.btn-popup-demo-left').popup
-			# 	positionVertical: 'middle'
-			# 	positionHorizontal: 'left'
-			# 	beforeopen: ->
-			# 		popup = @data('kit-popup')
-			# 		content = popup.$el.find '.-content'
-			# 		content.html "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-			#
-			# 	onopen: ->
-			# 		@addClass '_active_'
-			#
-			# 	onclose: ->
-			# 		@removeClass '_active_'
-			#
-			# $('.btn-popup-demo-right').popup
-			#     positionVertical: 'middle'
-			#     positionHorizontal: 'right'
-			#     beforeopen: ->
-			#         popup = @data('kit-popup')
-			#         content = popup.$el.find '.-content'
-			#         content.html "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-			#
-			#     onopen: ->
-			#         @addClass '_active_'
-			#
-			#     onclose: ->
-			#         @removeClass '_active_'
-			#
-			# $('.btn-popup-demo-bottom').popup
-			#     positionVertical: 'bottom'
-			#     positionHorizontal: 'center'
-			#     beforeopen: ->
-			#         popup = @data('kit-popup')
-			#         content = popup.$el.find '.-content'
-			#         content.html "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-			#
-			#     onopen: ->
-			#         @addClass '_active_'
-			#
-			#     onclose: ->
-			#         @removeClass '_active_'
-			#
-			# $('.btn-popup-demo-bottom-right').popup
-			#     positionVertical: 'bottom'
-			#     positionHorizontal: 'right'
-			#     beforeopen: ->
-			#         popup = @data('kit-popup')
-			#         content = popup.$el.find '.-content'
-			#         content.html "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-			#
-			#     onopen: ->
-			#         @addClass '_active_'
-			#
-			#     onclose: ->
-			#         @removeClass '_active_'
-			#
-			# $('.btn-popup-demo-top-left').popup
-			#     positionVertical: 'top'
-			#     positionHorizontal: 'left'
-			#     beforeopen: ->
-			#         popup = @data('kit-popup')
-			#         content = popup.$el.find '.-content'
-			#         content.html "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-			#
-			#     onopen: ->
-			#         @addClass '_active_'
-			#
-			#     onclose: ->
-			#         @removeClass '_active_'
-			#
-			#
-			#
-			#
-			#
-			# # TABS
-			# @$el.find("[data-toggle='tabs']").tabs()
-			#
-			#
+			
+			$('.btn-popup-demo-left').each (index, popup) ->
+				popup.popup
+					position:
+						vertical: 'middle'
+						horizontal: 'left'
+					beforeactive: ->
+						popup = @data['kitPopup']
+						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
+				
+					onactive: ->
+						@data['kitPopup']._addClass '_active_'
+				
+					ondeactive: ->
+						@data['kitPopup']._removeClass '_active_'
+			
+			$('.btn-popup-demo-right').each (index, popup) ->
+				popup.popup
+					position:
+						vertical: 'middle'
+						horizontal: 'right'
+					beforeactive: ->
+						popup = @data['kitPopup']
+						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
+				
+					onactive: ->
+						@data['kitPopup']._addClass '_active_'
+				
+					ondeactive: ->
+						@data['kitPopup']._removeClass '_active_'
+			
+			$('.btn-popup-demo-bottom').each (index, popup) ->
+				popup.popup
+					position:
+						vertical: 'bottom'
+						horizontal: 'center'
+					beforeactive: ->
+						popup = @data['kitPopup']
+						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
+				
+					onactive: ->
+						@data['kitPopup']._addClass '_active_'
+				
+					ondeactive: ->
+						@data['kitPopup']._removeClass '_active_'
+			
+			$('.btn-popup-demo-bottom-right').each (index, popup) ->
+				popup.popup
+					position:
+						vertical: 'bottom'
+						horizontal: 'right'
+					beforeactive: ->
+						popup = @data['kitPopup']
+						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
+				
+					onactive: ->
+						@data['kitPopup']._addClass '_active_'
+				
+					ondeactive: ->
+						@data['kitPopup']._removeClass '_active_'
+			
+			$('.btn-popup-demo-top-left').each (index, popup) ->
+				popup.popup
+					position:
+						vertical: 'top'
+						horizontal: 'left'
+					beforeactive: ->
+						popup = @data['kitPopup']
+						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
+				
+					onactive: ->
+						@data['kitPopup']._addClass '_active_'
+				
+					ondeactive: ->
+						@data['kitPopup']._removeClass '_active_'
+			
+			
+			
+			
+			
+			# TABS
+			@$el.find("[data-toggle='tabs']").each (index, tabs) ->
+				tabs.tabs()
+			
+			
 			# # MODALS
-			# $('.btn-modal-fast').modal()
-			# $('.btn-modal123').modal
-			# 	beforeopen: ->
-			# 		d = $.Deferred()
-			#
-			# 		setTimeout ->
-			# 			d.resolve()
-			# 		, 2000
-			#
-			# 		d.promise()
-			#
-			#
-			#
-			# # SCROLLSPY
-			# @$el.find('[data-spy="scroll"]').scrollspy()
+			$('.btn-modal-fast').each (index, modal) ->
+				modal.modal()
+			
+			$('.btn-modal123').each (index, modal) ->
+				modal.modal
+					beforeactive: ->
+						d = $.Deferred()
+				
+						setTimeout ->
+							d.resolve()
+						, 2000
+				
+						d.promise()
+			
+			
+			
+			# SCROLLSPY
+			@$el.find('[data-spy="scroll"]').each (index, scrollspy) ->
+				scrollspy.scrollspy
+					offset: 100
 		, 1

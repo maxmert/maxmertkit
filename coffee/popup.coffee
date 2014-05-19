@@ -24,7 +24,7 @@ class Popup extends MaxmertkitHelpers
 			target: @el.getAttribute( 'data-target' ) or null
 
 			# String; selector inside target for modal dialog
-			dialog: @el.getAttribute( 'data-dialog' ) or "-content"
+			dialog: @el.getAttribute( 'data-dialog' ) or ".-content"
 
 			# String; event to interact with button to open window
 			event: @el.getAttribute( 'data-event' ) or "click"
@@ -38,24 +38,24 @@ class Popup extends MaxmertkitHelpers
 
 			position:
 				# String; vertical position of target in regard to element
-				vertical:'top'
+				vertical: @el.getAttribute( 'data-position-vertical' ) or 'top'
 
 				# String; horizontal position of target in regard to element
-				horizontal: 'center'
+				horizontal: @el.getAttribute( 'data-position-horizontal' ) or 'center'
 
 			# Numbers; offset of target in regard to element
 			offset:
-				horizontal: 5
-				vertical: 5
+				horizontal: @el.getAttribute( 'data-offset-horizontal' ) or 0
+				vertical: @el.getAttribute( 'data-offset-vertical' ) or 0
 
 			# Boolean; close popup when unfocus the button or popup
-			closeOnUnfocus: no
+			closeOnUnfocus: @el.getAttribute( 'data-close-unfocus' ) or no
 
 			# Boolean; close popup when window resizing
-			closeOnResize: yes
+			closeOnResize: @el.getAttribute( 'data-close-resize' ) or yes
 
 			# Boolean; close other instances of Modal when current is opening
-			selfish: yes
+			selfish: @el.getAttribute( 'data-selfish' ) or yes
 
 
 			# Events
@@ -157,16 +157,15 @@ class Popup extends MaxmertkitHelpers
 	setPosition: ->
 		pos = @el.getBoundingClientRect()
 		scrollParentTarget = @_getContainer @target
-
 		btnOffset = @_getPosition()
-		
+
 		if scrollParentTarget? and ((scrollParentTarget.activeElement? and scrollParentTarget.activeElement.nodeName isnt 'BODY') or (scrollParentTarget.nodeName? and (scrollParentTarget.nodeName isnt 'BODY' and scrollParentTarget.nodeName isnt '#document')))
 			btnOffset.top = btnOffset.top - scrollParentTarget.offsetTop
 			btnOffset.left = btnOffset.left - scrollParentTarget.offsetLeft
 			# top: pos.top + document.body.scrollTop
 			# left: pos.left + document.body.scrollLeft
 
-		btnSize = 
+		btnSize =
 			width: @_outerWidth()
 			height: @_outerHeight()
 
@@ -201,7 +200,7 @@ class Popup extends MaxmertkitHelpers
 
 			when 'right'
 				newLeft = btnOffset.left + btnSize.width + @options.offset.horizontal
-		
+
 		@target.style.left = "#{newLeft}px"
 		@target.style.top = "#{newTop}px"
 

@@ -100,11 +100,11 @@ gulp.task 'kitCoffee', ->
 
 	files = [
 		"#{path.kit.coffee}/maxmertkit.coffee"
-		# "#{path.kit.coffee}/modal.coffee"
+		"#{path.kit.coffee}/modal.coffee"
 		"#{path.kit.coffee}/affix.coffee"
 		"#{path.kit.coffee}/button.coffee"
 		"#{path.kit.coffee}/scrollspy.coffee"
-		# "#{path.kit.coffee}/tabs.coffee"
+		"#{path.kit.coffee}/tabs.coffee"
 		"#{path.kit.coffee}/popup.coffee"
 	]
 

@@ -22,18 +22,18 @@ describe "Maxmertkit Modal", ->
             element.fireEvent("on#{ev}")
 
 
-    it 'should store in data-kit-modal attribute', ->
-        if not el.dataset[ 'data-kit-modal' ]?
-            throw new Error('No data-kit-modal attribute')
+    it 'should store in kitModal attribute', ->
+        if not el.data[ 'kitModal' ]?
+            throw new Error('No kitModal attribute')
 
-        el.dataset[ 'data-kit-modal' ].should.be.an 'object'
-        el.dataset[ 'data-kit-modal' ].should.be.an.instanceof Modal
+        el.data[ 'kitModal' ].should.be.an 'object'
+        el.data[ 'kitModal' ].should.be.an.instanceof Modal
 
     it 'should properly set defaults', ->
         modal.options.toggle.should.be.equal 'modal'
         modal.options.event.should.be.equal 'click'
         modal.options.eventClose.should.be.equal 'click'
-        modal.options.dialog.should.be.equal '-dialog'
+        modal.options.dialog.should.be.equal '.-dialog'
         modal.options.backdrop.should.be.false
         modal.options.push.should.be.false
         modal.options.autoOpen.should.be.false
@@ -54,7 +54,7 @@ describe "Maxmertkit Modal", ->
     it 'should properly destroy class instance', ->
         modal.destroy()
         modal._instances.should.have.length 0
-        if el.dataset['data-kit-modal']? then throw new Error "Dataset should be empty after destroy"
+        if el.data['kitModal']? then throw new Error "Dataset should be empty after destroy"
 
         modal = mkitModal.call el, {}
         modal._instances.should.have.length 1

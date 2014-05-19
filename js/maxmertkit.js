@@ -258,27 +258,46 @@
     };
 
     MaxmertkitHelpers.prototype._getPosition = function(el) {
-      var curleft, curtop;
+      var curleft, curtop, style;
       el = el || this.el;
       curleft = curtop = 0;
       if (el.offsetParent) {
         while (true) {
+
+          /* FIXME: Not sure if it needed to calculate with style margin */
+          try {
+            style = el.currentStyle || getComputedStyle(el);
+          } catch (_error) {}
+          if (style != null) {
+            if ((style.marginTop != null) && style.marginTop !== '') {
+              curtop -= parseInt(style.marginTop);
+            }
+          }
           curleft += el.offsetLeft;
           curtop += el.offsetTop;
           if (!(el = el.offsetParent)) {
             break;
           }
         }
-        return {
-          left: curleft,
-          top: curtop
-        };
       }
+      return {
+        left: curleft,
+        top: curtop
+      };
     };
 
     MaxmertkitHelpers.prototype._getContainer = function(el) {
       var parent, style;
       parent = el || this.el;
+      try {
+        style = getComputedStyle(parent);
+      } catch (_error) {}
+      if (style == null) {
+        return parent;
+      }
+      if (/(relative|fixed)/.test(style['position'])) {
+        return parent;
+      }
       while ((parent != null) && (parent = parent.parentNode)) {
         try {
           style = getComputedStyle(parent);
@@ -296,6 +315,15 @@
     MaxmertkitHelpers.prototype._getScrollContainer = function(el) {
       var parent, style;
       parent = el || this.el;
+      try {
+        style = getComputedStyle(parent);
+      } catch (_error) {}
+      if (style == null) {
+        return parent;
+      }
+      if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) && parent.nodeName !== 'BODY') {
+        return parent;
+      }
       while (parent = parent.parentNode) {
         try {
           style = getComputedStyle(parent);
@@ -353,6 +381,306 @@
   window['MaxmertkitReactor'] = MaxmertkitReactor;
 
   window['MaxmertkitEvent'] = MaxmertkitEvent;
+
+}).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Modal, _activate, _backdropClick, _beforeactivate, _beforedeactivate, _deactivate, _id, _instances, _name, _pushStart, _pushStop,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "modal";
+
+  _instances = [];
+
+  _id = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Modal = (function(_super) {
+    __extends(Modal, _super);
+
+    Modal.prototype._name = _name;
+
+    Modal.prototype._instances = _instances;
+
+    Modal.prototype.enabled = true;
+
+    Modal.prototype.opened = false;
+
+    function Modal(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        toggle: this.el.getAttribute('data-toggle') || _name,
+        target: this.el.getAttribute('data-target') || null,
+        dialog: this.el.getAttribute('data-dialog') || ".-dialog",
+        event: this.el.getAttribute('data-event') || "click",
+        eventClose: this.el.getAttribute('data-event-close') || "click",
+        backdrop: this.el.getAttribute('data-backdrop') || false,
+        push: this.el.getAttribute('data-push') || false,
+        autoOpen: this.el.getAttribute('data-autoopen') || false,
+        selfish: true,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.target = document.querySelector(this.options.target);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("open." + _name);
+      this.reactor.registerEvent("close." + _name);
+      this.dialog = this.target.querySelector(this.options.dialog);
+      this.closers = document.querySelectorAll("[data-dismiss='" + this.options.target + "']");
+      this.closerF = this.close.bind(this);
+      this.clickerF = this.clicker.bind(this);
+      this.backdropClickF = _backdropClick.bind(this);
+      this._setOptions(this.options);
+      Modal.__super__.constructor.call(this, this.el, this.options);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (this.options.autoOpen) {
+        this.open();
+      }
+    }
+
+    Modal.prototype.destroy = function() {
+      var closer, _i, _len, _ref;
+      this._removeEventListener(this.el, this.options.event, this.clickerF);
+      _ref = this.closers;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        closer = _ref[_i];
+        this._removeEventListener(closer, this.options.eventClose, this.closerF(this));
+      }
+      this.el.data["kitModal"] = null;
+      return Modal.__super__.destroy.apply(this, arguments);
+    };
+
+    Modal.prototype._setOptions = function(options) {
+      var closer, key, value, _i, _len, _ref;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Modal. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'event':
+            this._removeEventListener(this.el, this.options.event, this.clickerF);
+            this._addEventListener(this.el, value, this.clickerF);
+            break;
+          case 'eventClose':
+            _ref = this.closers;
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              closer = _ref[_i];
+              this._removeEventListener(closer, this.options.eventClose, this.closerF);
+              this._addEventListener(closer, value, this.closerF);
+            }
+            break;
+          case 'backdrop':
+            if (this.options.backdrop) {
+              this._removeEventListener(this.el, "click", this.backdropClickF);
+            }
+            if (value) {
+              this._addEventListener(this.el, "click", this.backdropClickF);
+            }
+            break;
+          case 'push':
+            if (value) {
+              this.push = document.querySelectorAll(value);
+            } else {
+              this.push = false;
+            }
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Modal.prototype.clicker = function() {
+      if (!this.opened) {
+        return this.open();
+      } else {
+        return this.close();
+      }
+    };
+
+    Modal.prototype.open = function() {
+      return this.activate();
+    };
+
+    Modal.prototype.close = function() {
+      return this.deactivate();
+    };
+
+    Modal.prototype.activate = function() {
+      if (this.enabled && !this.opened) {
+        return _beforeactivate.call(this);
+      }
+    };
+
+    Modal.prototype.deactivate = function() {
+      if (this.enabled && this.opened) {
+        return _beforedeactivate.call(this);
+      }
+    };
+
+    Modal.prototype.disable = function() {
+      return this.enabled = false;
+    };
+
+    Modal.prototype.enable = function() {
+      return this.enabled = true;
+    };
+
+    return Modal;
+
+  })(MaxmertkitHelpers);
+
+  _pushStart = function() {
+    if (this.push) {
+      this._addClass('-start--', this.push);
+      return this._removeClass('-stop--', this.push);
+    }
+  };
+
+  _pushStop = function() {
+    if (this.push) {
+      this._addClass('-stop--', this.push);
+      this._removeClass('-start--', this.push);
+      if (this.push && (this.push.style != null) && (this.push.style['-webkit-overflow-scrolling'] != null)) {
+        return this.push.style['-webkit-overflow-scrolling'] = 'auto';
+      }
+    }
+  };
+
+  _backdropClick = function(event) {
+    if (this._hasClass('-modal', event.target) && this.opened) {
+      return this.close();
+    }
+  };
+
+  _beforeactivate = function() {
+    var deferred;
+    if (this.options.selfish) {
+      this._selfish();
+    }
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var _ref;
+    if (this.push) {
+      this._addClass('_perspective_', document.body);
+    }
+    this._addClass('_no-scroll_', document.body);
+    this.target.style.display = 'table';
+    this._addClass('_visible_ -start--', this.target);
+    this._addClass('_visible_ -start--', this.dialog);
+    _pushStart.call(this);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("open." + _name);
+    return this.opened = true;
+  };
+
+  _beforedeactivate = function() {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    var _ref;
+    this._addClass('-stop--', this.target);
+    this._addClass('-stop--', this.dialog);
+    _pushStop.call(this);
+    setTimeout((function(_this) {
+      return function() {
+        _this._removeClass('_visible_ -start-- -stop--', _this.target);
+        _this._removeClass('_visible_ -start-- -stop--', _this.dialog);
+        _this._removeClass('_no-scroll_', document.body);
+        if (_this.push) {
+          _this._removeClass('_perspective_', document.body);
+        }
+        return _this.target.style.display = 'none';
+      };
+    })(this), 1000);
+    this.reactor.dispatchEvent("close." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    return this.opened = false;
+  };
+
+  window['Modal'] = Modal;
+
+  window['mkitModal'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitModal']) {
+      result = new Modal(this, options);
+      this.data['kitModal'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitModal']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitModal'][options];
+        }
+      }
+      result = this.data['kitModal'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.modal = window['mkitModal'];
+  }
 
 }).call(this);
 
@@ -484,6 +812,8 @@
 
   _activate = function() {
     var _ref;
+    this.HEIGHT = this._outerHeight();
+    this.CONTAINER_HEIGHT = this._outerHeight(this.container);
     this._addEventListener(this.scroller, 'scroll', this.onScroll);
     this._addClass('_active_');
     if ((_ref = this.onactive) != null) {
@@ -531,29 +861,37 @@
     var containerTop, style, top;
     containerTop = this.container.offsetTop;
     if (containerTop - this.options.offset <= _lastScrollY) {
-      if (containerTop + this._outerHeight(this.container) - this.options.offset - this._outerHeight() >= _lastScrollY) {
-        this.el.style.width = this.el.offsetWidth;
-        this.el.style.position = 'fixed';
-        top = this.options.offset;
-        try {
-          style = this.el.currentStyle || getComputedStyle(this.el);
-        } catch (_error) {}
-        if (style != null) {
-          if ((style.marginTop != null) && style.marginTop !== '') {
-            top += parseInt(style.marginTop);
+      if (containerTop + this.CONTAINER_HEIGHT - this.options.offset - this.HEIGHT >= _lastScrollY) {
+        if (this.el.style.position !== 'fixed') {
+          this.el.style.width = this.el.offsetWidth;
+          this.el.style.position = 'fixed';
+          top = this.options.offset;
+          try {
+            style = this.el.currentStyle || getComputedStyle(this.el);
+          } catch (_error) {}
+          if (style != null) {
+            if ((style.marginTop != null) && style.marginTop !== '') {
+              top += parseInt(style.marginTop);
+            }
+          }
+          this.el.style.top = "" + this.options.offset + "px";
+          this.el.style.bottom = 'auto';
+        }
+      } else {
+        if (this.el.style.position !== 'absolute') {
+          if (containerTop + this.CONTAINER_HEIGHT - this.options.offset - this.HEIGHT < _lastScrollY + this.HEIGHT) {
+            this.el.style.position = 'absolute';
+            this.el.style.top = 'auto';
+            this.el.style.bottom = "" + this.options.offset + "px";
+            this.el.style.width = this.el.offsetWidth;
           }
         }
-        this.el.style.top = "" + this.options.offset + "px";
-        this.el.style.bottom = 'auto';
-      } else {
-        this.el.style.position = 'absolute';
-        this.el.style.top = 'auto';
-        this.el.style.bottom = "-" + this.options.offset + "px";
-        this.el.style.width = this.el.offsetWidth;
       }
     } else {
-      this.el.style.position = 'relative';
-      this.el.style.top = 'inherit';
+      if (this.el.style.position !== 'relative') {
+        this.el.style.position = 'relative';
+        this.el.style.top = 'inherit';
+      }
     }
     return _ticking = false;
   };
@@ -978,10 +1316,10 @@
   };
 
   _spy = function(event) {
-    var i, _ref;
+    var i, _ref, _ref1;
     i = 0;
     while (i < this.elements.length) {
-      if ((this.elements[i].top <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.elements[i].top + this.elements[i].height)) {
+      if (((this.elements[i].top <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.elements[i].top + this.elements[i].height)) || (i < this.elements.length - 1 ? (this.elements[i].top <= (_ref1 = _lastScrollY + this.options.offset) && _ref1 <= this.elements[i + 1].top) : void 0)) {
         if (!this._hasClass('_active_', this.elements[i].element)) {
           _activateItem.call(this, i);
         }
@@ -1092,6 +1430,237 @@
 }).call(this);
 
 (function() {
+  var MaxmertkitHelpers, Tabs, _activate, _beforeactivate, _beforedeactivate, _clicker, _deactivate, _id, _initialActivate, _instances, _name,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "tabs";
+
+  _instances = [];
+
+  _id = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Tabs = (function(_super) {
+    __extends(Tabs, _super);
+
+    Tabs.prototype._name = _name;
+
+    Tabs.prototype._instances = _instances;
+
+    Tabs.prototype.enabled = true;
+
+    Tabs.prototype.active = false;
+
+    function Tabs(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        toggle: this.el.getAttribute('data-toggle') || _name,
+        target: this.el.getAttribute('data-target') || null,
+        group: this.el.getAttribute('data-group') || null,
+        event: this.el.getAttribute('data-event') || "click",
+        initial: this.el.getAttribute('data-initial') || 0,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.clicker = _clicker.bind(this);
+      this._setOptions(this.options);
+      Tabs.__super__.constructor.call(this, this.el, this.options);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("active." + _name);
+      this.reactor.registerEvent("deactive." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      _initialActivate.call(this, this.options.initial);
+    }
+
+    Tabs.prototype.destroy = function() {
+      this._removeEventListener(this.el, this.options.event, this.clicker);
+      this.el.data["kitTabs"] = null;
+      return Tabs.__super__.destroy.apply(this, arguments);
+    };
+
+    Tabs.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Tabs. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'event':
+            this._removeEventListener(this.el, this.options.event, this.clicker);
+            this._addEventListener(this.el, value, this.clicker);
+            break;
+          case 'target':
+            this.target = document.querySelector(value);
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Tabs.prototype.activate = function() {
+      if (this.enabled && !this.active) {
+        return _beforeactivate.call(this);
+      }
+    };
+
+    Tabs.prototype.deactivate = function() {
+      if (this.enabled) {
+        return _beforedeactivate.call(this);
+      }
+    };
+
+    Tabs.prototype.disable = function() {
+      return this.enabled = false;
+    };
+
+    Tabs.prototype.enable = function() {
+      return this.enabled = true;
+    };
+
+    return Tabs;
+
+  })(MaxmertkitHelpers);
+
+  _initialActivate = function(number) {
+    var index, tab, _i, _len, _ref, _results;
+    _ref = this._instances;
+    _results = [];
+    for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+      tab = _ref[index];
+      if (index === number) {
+        _results.push(tab.activate());
+      } else {
+        _results.push(tab.deactivate());
+      }
+    }
+    return _results;
+  };
+
+  _clicker = function() {
+    if (!this.active) {
+      return this.activate();
+    }
+  };
+
+  _beforeactivate = function() {
+    var deferred;
+    this._selfish();
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var tab, _i, _len, _ref, _ref1;
+    _ref = this._instances;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      tab = _ref[_i];
+      if (this._id !== tab._id && tab.options.group === this.options.group) {
+        tab.deactivate();
+      }
+    }
+    this._addClass('_active_');
+    this.target.style.display = '';
+    if ((_ref1 = this.onactive) != null) {
+      _ref1.call(this.el);
+    }
+    this.reactor.dispatchEvent("active." + _name);
+    return this.active = true;
+  };
+
+  _beforedeactivate = function() {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this);
+      }
+    } else {
+      return _deactivate.call(this);
+    }
+  };
+
+  _deactivate = function() {
+    var _ref;
+    this._removeClass('_active_');
+    this.target.style.display = 'none';
+    this.reactor.dispatchEvent("deactive." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    return this.active = false;
+  };
+
+  window['Tabs'] = Tabs;
+
+  window['mkitTabs'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitTabs']) {
+      result = new Tabs(this, options);
+      this.data['kitTabs'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitTabs']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitTabs'][options];
+        }
+      }
+      result = this.data['kitTabs'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.tabs = window['mkitTabs'];
+  }
+
+}).call(this);
+
+(function() {
   "use strict";
   var MaxmertkitHelpers, Popup, _activate, _beforeactivate, _beforedeactivate, _clicker, _closeUnfocus, _deactivate, _id, _instances, _name,
     __hasProp = {}.hasOwnProperty,
@@ -1123,21 +1692,21 @@
       _options = {
         toggle: this.el.getAttribute('data-toggle') || _name,
         target: this.el.getAttribute('data-target') || null,
-        dialog: this.el.getAttribute('data-dialog') || "-content",
+        dialog: this.el.getAttribute('data-dialog') || ".-content",
         event: this.el.getAttribute('data-event') || "click",
         eventClose: this.el.getAttribute('data-event-close') || "click",
         autoOpen: this.el.getAttribute('data-autoopen') || false,
         position: {
-          vertical: 'top',
-          horizontal: 'center'
+          vertical: this.el.getAttribute('data-position-vertical') || 'top',
+          horizontal: this.el.getAttribute('data-position-horizontal') || 'center'
         },
         offset: {
-          horizontal: 5,
-          vertical: 5
+          horizontal: this.el.getAttribute('data-offset-horizontal') || 0,
+          vertical: this.el.getAttribute('data-offset-vertical') || 0
         },
-        closeOnUnfocus: false,
-        closeOnResize: true,
-        selfish: true,
+        closeOnUnfocus: this.el.getAttribute('data-close-unfocus') || false,
+        closeOnResize: this.el.getAttribute('data-close-resize') || true,
+        selfish: this.el.getAttribute('data-selfish') || true,
         beforeactive: function() {},
         onactive: function() {},
         failactive: function() {},

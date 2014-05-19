@@ -31,12 +31,12 @@ describe "Maxmertkit Tabs", ->
 
 
 
-    it 'should store in data-kit-tabs attribute', ->
-        if not el.dataset[ 'data-kit-tabs' ]?
-            throw new Error('No data-kit-tabs attribute')
+    it 'should store in kitTabs attribute', ->
+        if not el.data[ 'kitTabs' ]?
+            throw new Error('No kitTabs attribute')
 
-        el.dataset[ 'data-kit-tabs' ].should.be.an 'object'
-        el.dataset[ 'data-kit-tabs' ].should.be.an.instanceof Tabs
+        el.data[ 'kitTabs' ].should.be.an 'object'
+        el.data[ 'kitTabs' ].should.be.an.instanceof Tabs
 
     it 'should properly set defaults', ->
         tabs.options.toggle.should.be.equal 'tabs'
@@ -56,7 +56,7 @@ describe "Maxmertkit Tabs", ->
     it 'should properly destroy class instance', ->
         tabs.destroy()
         tabs._instances.should.have.length 0
-        if el.dataset['data-kit-tabs']? then throw new Error "Dataset should be empty after destroy"
+        if el.data['kitTabs']? then throw new Error "Dataset should be empty after destroy"
 
         tabs = mkitTabs.call el, { group: 'tabs1' }
         tabs._instances.should.have.length 1
@@ -66,121 +66,143 @@ describe "Maxmertkit Tabs", ->
         tabs.reactor.events['active.tabs'].should.exist
         tabs.reactor.events['deactive.tabs'].should.exist
 
-    it 'should be deactivated', ->
+    it 'should be activated after initialize', ->
+        tabs.active.should.be.true
+    
+    it 'shouldn\'t work when disabled', ->
+        el2 = window.document.getElementById('tabs2')
+
+        tabs2 = mkitTabs.call el2
+        tabs2._instances.should.have.length 2
+        tabs2.active.should.be.false
+
+        tabs.active.should.be.true
+        tabs.disable()
+        tabs2.disable()
+        fireClickEvent el2
+        tabs.active.should.be.true
+        tabs.enable()
+        tabs2.enable()
+
+    it 'should properly work click event', ->
+        el2 = window.document.getElementById('tabs2')
+
+        tabs2 = mkitTabs.call el2
+        tabs2._instances.should.have.length 2
+        tabs2.active.should.be.false
+
+        tabs.active.should.be.true
+        fireClickEvent el2
         tabs.active.should.be.false
 
-    # it 'should properly work click event', ->
-    #     tabs.active.should.be.false
-    #     fireClickEvent el
-    #     tabs.active.should.be.true
+    it 'enabling and disabling should work properly', ->
+        tabs.enabled.should.be.true
+        tabs.disable()
+        tabs.enabled.should.be.false
+        tabs.enable()
+        tabs.enabled.should.be.true
 
-    # it 'enabling and disabling should work properly', ->
-    #     tabs.enabled.should.be.true
-    #     tabs.disable()
-    #     tabs.enabled.should.be.false
-    #     tabs.enable()
-    #     tabs.enabled.should.be.true
+    it 'should deactivate ALL other instances of Tabs when options.selfish is true', ->
+        el2 = window.document.getElementById('tabs2')
 
-    # it 'shouldn\'t work when disabled', ->
-    #     tabs.active.should.be.false
-    #     tabs.disable()
-    #     fireClickEvent el
-    #     tabs.active.should.be.false
-    #     tabs.enable()
+        tabs2 = mkitTabs.call el2
+        tabs2._instances.should.have.length 2
+        tabs2.active.should.be.true
 
-    # it 'should deactivate ALL other instances of Tabs when options.selfish is true', ->
-    #     el2 = window.document.getElementById('tabs2')
+        fireClickEvent el
+        tabs.active.should.be.true
+        tabs2.active.should.be.false
 
-    #     tabs2 = mkitTabs.call el2
-    #     tabs2._instances.should.have.length 2
-    #     tabs2.active.should.be.false
+        fireClickEvent el2
+        tabs.active.should.be.false
+        tabs2.active.should.be.true
 
-    #     fireClickEvent el
-    #     tabs.active.should.be.true
-    #     tabs2.active.should.be.false
+    it 'should fire events', ->
+        onactive = no
+        beforeactive = no
+        failactive = no
+        ondeactive = no
+        beforedeactive = no
+        faildeactive = no
 
-    #     fireClickEvent el2
-    #     tabs.active.should.be.false
-    #     tabs2.active.should.be.true
+        tabs = mkitTabs.call el,
+            beforeactive: ->
+                beforeactive = yes
+            onactive: ->
+                onactive = yes
+            failactive: ->
+                failactive = yes
+            beforedeactive: ->
+                beforedeactive = yes
+            ondeactive: ->
+                ondeactive = yes
+            faildeactive: ->
+                faildeactive = yes
 
-    # it 'should fire events', ->
-    #     onactive = no
-    #     beforeactive = no
-    #     failactive = no
-    #     ondeactive = no
-    #     beforedeactive = no
-    #     faildeactive = no
+        tabs.deactivate()
+        tabs.activate()
+        tabs.deactivate()
 
-    #     tabs = mkitTabs.call el,
-    #         beforeactive: ->
-    #             beforeactive = yes
-    #         onactive: ->
-    #             onactive = yes
-    #         failactive: ->
-    #             failactive = yes
-    #         beforedeactive: ->
-    #             beforedeactive = yes
-    #         ondeactive: ->
-    #             ondeactive = yes
-    #         faildeactive: ->
-    #             faildeactive = yes
+        onactive.should.be.true
+        beforeactive.should.be.true
+        failactive.should.be.false
+        ondeactive.should.be.true
+        beforedeactive.should.be.true
+        faildeactive.should.be.false
 
-    #     tabs.activate()
-    #     tabs.deactivate()
+    it 'should removeEventListener and add new one if changing options.event', ->
+        el2 = window.document.getElementById('tabs2')
 
-    #     onactive.should.be.true
-    #     beforeactive.should.be.true
-    #     failactive.should.be.false
-    #     ondeactive.should.be.true
-    #     beforedeactive.should.be.true
-    #     faildeactive.should.be.false
+        tabs2 = mkitTabs.call el2,
+            event: "mouseover"
+        tabs2._instances.should.have.length 2
+        tabs2.active.should.be.false
 
-    # it 'should removeEventListener and add new one if changing options.event', ->
-    #     onactive = no
-    #     beforeactive = no
-    #     failactive = no
-    #     ondeactive = no
-    #     beforedeactive = no
-    #     faildeactive = no
+        onactive = no
+        beforeactive = no
+        failactive = no
+        ondeactive = no
+        beforedeactive = no
+        faildeactive = no
 
-    #     tabs = mkitTabs.call el,
-    #         beforeactive: ->
-    #             beforeactive = yes
-    #         onactive: ->
-    #             onactive = yes
-    #         failactive: ->
-    #             failactive = yes
-    #         beforedeactive: ->
-    #             beforedeactive = yes
-    #         ondeactive: ->
-    #             ondeactive = yes
-    #         faildeactive: ->
-    #             faildeactive = yes
+        tabs = mkitTabs.call el,
+            beforeactive: ->
+                beforeactive = yes
+            onactive: ->
+                onactive = yes
+            failactive: ->
+                failactive = yes
+            beforedeactive: ->
+                beforedeactive = yes
+            ondeactive: ->
+                ondeactive = yes
+            faildeactive: ->
+                faildeactive = yes
 
 
-    #     # Test that new event will not fire
-    #     fireHoverEvent el
-    #     fireHoverEvent el
+        # Test that new event will not fire
+        fireHoverEvent el2
+        # fireHoverEvent el
 
-    #     onactive.should.be.false
-    #     beforeactive.should.be.false
-    #     failactive.should.be.false
-    #     ondeactive.should.be.false
-    #     beforedeactive.should.be.false
-    #     faildeactive.should.be.false
+        onactive.should.be.false
+        beforeactive.should.be.false
+        failactive.should.be.false
+        ondeactive.should.be.true
+        beforedeactive.should.be.true
+        faildeactive.should.be.false
 
 
-    #     tabs = mkitTabs.call el,
-    #         # Change event
-    #         event: "mouseover"
+        tabs = mkitTabs.call el,
+            # Change event
+            event: "mouseover"
 
-    #     # Test that new event will fire after setting it inside Tabs instance
-    #     fireHoverEvent el
-    #     fireHoverEvent el
+        # # Test that new event will fire after setting it inside Tabs instance
+        fireHoverEvent el
+        # # fireHoverEvent el
 
-    #     onactive.should.be.true
-    #     beforeactive.should.be.true
-    #     failactive.should.be.false
-    #     ondeactive.should.be.true
-    #     beforedeactive.should.be.true
-    #     faildeactive.should.be.false
+        onactive.should.be.true
+        beforeactive.should.be.true
+        failactive.should.be.false
+        ondeactive.should.be.true
+        beforedeactive.should.be.true
+        faildeactive.should.be.false

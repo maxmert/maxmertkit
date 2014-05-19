@@ -116,6 +116,8 @@ _beforeactivate = ->
 		_activate.call @
 
 _activate = ->
+	@HEIGHT = @_outerHeight()
+	@CONTAINER_HEIGHT = @_outerHeight(@container)
 	@_addEventListener @scroller, 'scroll', @onScroll
 	@_addClass '_active_'
 	@onactive?.call @el
@@ -151,24 +153,28 @@ _setPosition = ->
 	containerTop = @container.offsetTop
 	
 	if containerTop - @options.offset <= _lastScrollY
-		if containerTop + @_outerHeight(@container) - @options.offset - @_outerHeight()  >= _lastScrollY
-			@el.style.width = @el.offsetWidth
-			@el.style.position = 'fixed'
-			top = @options.offset
-			try
-				style = @el.currentStyle or getComputedStyle(@el)
-			if style?
-				if style.marginTop? and style.marginTop isnt '' then top += parseInt(style.marginTop)
-			@el.style.top = "#{@options.offset}px"
-			@el.style.bottom = 'auto'
+		if containerTop + @CONTAINER_HEIGHT - @options.offset - @HEIGHT  >= _lastScrollY
+			if @el.style.position isnt 'fixed'
+				@el.style.width = @el.offsetWidth
+				@el.style.position = 'fixed'
+				top = @options.offset
+				try
+					style = @el.currentStyle or getComputedStyle(@el)
+				if style?
+					if style.marginTop? and style.marginTop isnt '' then top += parseInt(style.marginTop)
+				@el.style.top = "#{@options.offset}px"
+				@el.style.bottom = 'auto'
 		else
-			@el.style.position = 'absolute'
-			@el.style.top = 'auto'
-			@el.style.bottom = "-#{@options.offset}px"
-			@el.style.width = @el.offsetWidth
+			if @el.style.position isnt 'absolute'
+				if containerTop + @CONTAINER_HEIGHT - @options.offset - @HEIGHT  < _lastScrollY + @HEIGHT
+					@el.style.position = 'absolute'
+					@el.style.top = 'auto'
+					@el.style.bottom = "#{@options.offset}px"
+					@el.style.width = @el.offsetWidth
 	else
-		@el.style.position = 'relative'
-		@el.style.top = 'inherit'
+		if @el.style.position isnt 'relative'
+			@el.style.position = 'relative'
+			@el.style.top = 'inherit'
 
 	_ticking = false
 

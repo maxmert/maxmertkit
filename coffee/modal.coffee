@@ -23,7 +23,7 @@ class Modal extends MaxmertkitHelpers
 			target: @el.getAttribute( 'data-target' ) or null
 
 			# String; selector inside target for modal dialog
-			dialog: @el.getAttribute( 'data-dialog' ) or "-dialog"
+			dialog: @el.getAttribute( 'data-dialog' ) or ".-dialog"
 
 			# String; event to interact with button to open window
 			event: @el.getAttribute( 'data-event' ) or "click"
@@ -58,20 +58,23 @@ class Modal extends MaxmertkitHelpers
 		# Find modal element in DOM
 		@target = document.querySelector @options.target
 
-		# Find and init closer element inside modal element in DOM
-		@closers = document.querySelectorAll "[data-dismiss='#{@options.target}']"
-
-		# Find dialog element inside target
-		@dialog = @target.querySelector @options.dialog
-
-		@_setOptions @options
-
-		super @el, @options
-
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
 		@reactor.registerEvent "open.#{_name}"
 		@reactor.registerEvent "close.#{_name}"
+		# Find dialog element inside target
+		@dialog = @target.querySelector @options.dialog
+
+		# Find and init closer element inside modal element in DOM
+		@closers = document.querySelectorAll "[data-dismiss='#{@options.target}']"
+		@closerF = @close.bind @
+		@clickerF = @clicker.bind @
+		@backdropClickF = _backdropClick.bind @
+		
+
+		@_setOptions @options
+
+		super @el, @options
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
@@ -79,10 +82,10 @@ class Modal extends MaxmertkitHelpers
 		if @options.autoOpen then @open()
 
 	destroy: ->
-		@_removeEventListener @el, @options.event, @clicker.bind( @ )
+		@_removeEventListener @el, @options.event, @clickerF
 		for closer in @closers
-			@_removeEventListener closer, @options.eventClose, @close.bind( @ )
-		@el.dataset["data-kit-#{@_name}"] = null
+			@_removeEventListener closer, @options.eventClose, @closerF( @ )
+		@el.data["kitModal"] = null
 		super
 
 
@@ -93,17 +96,17 @@ class Modal extends MaxmertkitHelpers
 
 			switch key
 				when 'event'
-					@_removeEventListener @el, @options.event, @clicker.bind( @ )
-					@_addEventListener @el, value, @clicker.bind( @ )
+					@_removeEventListener @el, @options.event, @clickerF
+					@_addEventListener @el, value, @clickerF
 
 				when 'eventClose'
 					for closer in @closers
-						@_removeEventListener closer, @options.eventClose, @close.bind( @ )
-						@_addEventListener closer, value, @close.bind( @ )
+						@_removeEventListener closer, @options.eventClose, @closerF
+						@_addEventListener closer, value, @closerF
 
 				when 'backdrop'
-					if @options.backdrop then @_removeEventListener @el, "click", _backdropClick.bind( @ )
-					if value then @_addEventListener @el, "click", _backdropClick.bind( @ )
+					if @options.backdrop then @_removeEventListener @el, "click", @backdropClickF
+					if value then @_addEventListener @el, "click", @backdropClickF
 
 				when 'push'
 					if value
@@ -192,7 +195,6 @@ _activate = ->
 	@_addClass '_no-scroll_', document.body
 
 	@target.style.display = 'table'
-
 	# setTimeout =>
 	@_addClass '_visible_ -start--', @target
 	@_addClass '_visible_ -start--', @dialog
@@ -226,15 +228,15 @@ _beforedeactivate = ->
 		_deactivate.call @
 
 _deactivate = ->
-	@_addClass '-stop--'
+	@_addClass '-stop--', @target
 	@_addClass '-stop--', @dialog
 	_pushStop.call @
 	setTimeout =>
-		@_removeClass '_visible_ -start-- -stop--'
+		@_removeClass '_visible_ -start-- -stop--', @target
 		@_removeClass '_visible_ -start-- -stop--', @dialog
 		@_removeClass '_no-scroll_', document.body
 		if @push then @_removeClass '_perspective_', document.body
-		@el.style.display = 'none'
+		@target.style.display = 'none'
 	, 1000
 
 	@reactor.dispatchEvent "close.#{_name}"
@@ -246,23 +248,24 @@ _deactivate = ->
 window['Modal'] = Modal
 window['mkitModal'] = ( options ) ->
 	result = null
-	if not @dataset? then @dataset = {}
+	if not @data? then @data = {}
 
-	unless @dataset['data-kit-modal']
+	unless @data['kitModal']
 		result = new Modal @, options
-		@dataset['data-kit-modal'] = result
+		@data['kitModal'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-modal']._setOptions options
+			@data['kitModal']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-modal'][options]
+				@data['kitModal'][options]
 
-		result = @dataset['data-kit-modal']
+		result = @data['kitModal']
 
 	return result
 
+if Element? then Element::modal = window['mkitModal']
 
 # 	constructor: ( @btn, @options ) ->
 # 		@$btn = $(@btn)

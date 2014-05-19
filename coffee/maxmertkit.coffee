@@ -236,15 +236,30 @@ class MaxmertkitHelpers
 		curleft = curtop = 0
 		if el.offsetParent
 			loop
+
+				### FIXME: Not sure if it needed to calculate with style margin ###
+				try
+					style = el.currentStyle or getComputedStyle(el)
+				if style?
+					if style.marginTop? and style.marginTop isnt '' then curtop -= parseInt(style.marginTop)
+					# if style.marginLeft? and style.marginLeft isnt '' then curleft -= parseInt(style.marginLeft)
 				curleft += el.offsetLeft
 				curtop += el.offsetTop
 				break unless el = el.offsetParent
 			
-			left: curleft,
-			top: curtop
+		left: curleft,
+		top: curtop
 
 	_getContainer: ( el ) ->
 		parent = el or @el
+
+		try
+			style = getComputedStyle(parent)
+
+		return parent if not style?
+
+		if /(relative|fixed)/.test(style['position'])
+			return parent
 
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
 		while parent? and parent = parent.parentNode
@@ -260,6 +275,14 @@ class MaxmertkitHelpers
 
 	_getScrollContainer: ( el ) ->
 		parent = el or @el
+
+		try
+			style = getComputedStyle parent
+
+		return parent if not style?
+
+		if /(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) and parent.nodeName isnt 'BODY'
+			return parent
 
 		# Return Document if there is not any parents with any style (usually if element is not deep in DOM)
 		while parent = parent.parentNode

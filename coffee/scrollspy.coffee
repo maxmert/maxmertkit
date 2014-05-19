@@ -49,7 +49,6 @@ class Scrollspy extends MaxmertkitHelpers
 		# Get scrolling container with items inside
 		@target = document.querySelector @options.target
 		@scroller = @_getScrollContainer @target
-
 		@spy = _spy.bind(@)
 		@onScroll = _onScroll.bind(@)
 
@@ -149,7 +148,7 @@ _deactivateItem = ( itemNumber ) ->
 _spy = ( event ) ->
 	i = 0
 	while i < @elements.length
-		if (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i].top + @elements[i].height )
+		if (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i].top + @elements[i].height ) or ( if i < @elements.length - 1 then (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i + 1].top ) )
 			if not @_hasClass '_active_', @elements[i].element
 				_activateItem.call @, i
 		else

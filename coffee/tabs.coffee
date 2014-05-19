@@ -26,8 +26,8 @@ class Tabs extends MaxmertkitHelpers
 			# String; event to interact with tabs
 			event: @el.getAttribute( 'data-event' ) or "click"
 
-			# Boolean; if yes, then deactivate ALL instances of class Tabs
-			selfish: no
+			# Number; number of the tab to activate after initializing, begining from 0
+			initial: @el.getAttribute( 'data-initial' ) or 0
 
 			# Events
 			beforeactive: ->
@@ -55,9 +55,11 @@ class Tabs extends MaxmertkitHelpers
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
+		_initialActivate.call @, @options.initial
+
 	destroy: ->
 		@_removeEventListener @el, @options.event, @clicker
-		@el.dataset["data-kit-#{@_name}"] = null
+		@el.data["kitTabs"] = null
 		super
 
 	_setOptions: ( options ) ->
@@ -83,7 +85,8 @@ class Tabs extends MaxmertkitHelpers
 			_beforeactivate.call @
 
 	deactivate: ->
-		if @enabled and @active
+		# Don't check @active to activate after initializing
+		if @enabled
 			_beforedeactivate.call @
 
 	disable: ->
@@ -97,11 +100,18 @@ class Tabs extends MaxmertkitHelpers
 # ===============
 # PRIVATE METHODS
 
+_initialActivate = ( number ) ->
+	for tab, index in @_instances
+		if index is number
+			tab.activate()
+		else
+			tab.deactivate()
+
 _clicker = ->
 	if not @active
 		@activate()
-	else
-		@deactivate()
+	# else
+	# 	@deactivate()
 
 # If you have beforeactive function
 # 	it will be called here
@@ -129,7 +139,7 @@ _beforeactivate = ->
 
 
 _activate = ->
-	# If radiobutton deactivate others in the group
+	# Close other tabs
 	for tab in @_instances
 		if @_id isnt tab._id and tab.options.group is @options.group
 			tab.deactivate()
@@ -175,22 +185,24 @@ _deactivate = ->
 window['Tabs'] = Tabs
 window['mkitTabs'] = ( options ) ->
 	result = null
-	if not @dataset? then @dataset = {}
+	if not @data? then @data = {}
 
-	unless @dataset['data-kit-tabs']
+	unless @data['kitTabs']
 		result = new Tabs @, options
-		@dataset['data-kit-tabs'] = result
+		@data['kitTabs'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-tabs']._setOptions options
+			@data['kitTabs']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-tabs'][options]
+				@data['kitTabs'][options]
 
-		result = @dataset['data-kit-tabs']
+		result = @data['kitTabs']
 
 	return result
+
+if Element? then Element::tabs = window['mkitTabs']
 
 # 	# =============== Public methods
 #
