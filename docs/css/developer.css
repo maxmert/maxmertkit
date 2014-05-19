@@ -51,6 +51,11 @@ pre.prettyprint {
   .dev-main-content:not(.example-block) h1 {
     margin-top: 50px; }
 
+.dev-roadmap-done {
+  opacity: 0.5; }
+  .dev-roadmap-done h3 {
+    text-decoration: line-through; }
+
 .dev-meta {
   opacity: 0.2; }
   .dev-meta.-error- {
