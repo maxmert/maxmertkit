@@ -71,28 +71,6 @@ path =
 
 # ====================== DEVELOPER TASKS
 
-# Concatenate all vendors into one file
-# This vendor js is only for maxmertkit.js, no docs vendors here
-# gulp.task 'kitVendor', ->
-#
-# 	files = [
-# 		"#{path.kit.vendor.bower}/jquery/jquery.js"
-# 		# "#{path.kit.vendor.bower}/jquery.event.swipe/jquery.event.swipe.js"
-# 		"#{path.kit.vendor.bower}/threejs/build/three.js"
-# 		"#{path.kit.vendor.bower}/sparksjs/Sparks.js"
-# 		"#{path.kit.vendor.bower}/tweenjs/Tween.js"
-#
-# 		"#{path.kit.vendor.libs}/threejs.mtlLoader.js"
-# 	]
-#
-# 	gulp.src( files )
-# 		.pipe( cache('kitVendor') )
-# 		.pipe( concat 'vendor.js' )
-# 		.pipe( size( showFiles: yes ) )
-# 		.pipe( gulp.dest "#{path.docs.front.js}" )
-# 		# .pipe( livereload() )
-
-
 
 # Compile all kit coffee files
 # No uglyfying
@@ -110,14 +88,12 @@ gulp.task 'kitCoffee', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		# .pipe( cache('kitCoffee') )
 		.pipe( coffeelint() )
 		.pipe( coffee( map: yes ).on( 'error', gutil.log ) )
 		.pipe( concat 'maxmertkit.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
 		.pipe( gulp.dest "#{path.kit.js}" )
-		# .pipe( livereload() )
 
 
 # Compile all kit sass
@@ -179,7 +155,6 @@ gulp.task 'kitTodo', ->
 gulp.task 'docsVendor', ->
 
 	files = [
-		# "#{path.docs.front.vendor.bower}/jquery/dist/jquery.min.js"
 		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
 		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
 		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
@@ -190,11 +165,9 @@ gulp.task 'docsVendor', ->
 	]
 
 	gulp.src( files )
-		# .pipe( cache('docsVendor') )
 		.pipe( concat 'docsvendor.js' )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		# .pipe( livereload() )
 
 
 
@@ -206,7 +179,6 @@ gulp.task 'docsApp', ->
 		.pipe( rename('app.js') )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
-		# .pipe( livereload() )
 
 
 
@@ -217,7 +189,6 @@ gulp.task 'docsTemplates', ->
 	]
 
 	gulp.src( files )
-		# .pipe( cache('docsApp') )
 		.pipe( templater( "templates.js", {variable: "module", commonjs: yes} ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.js}" )
@@ -234,11 +205,9 @@ gulp.task 'docsSass', ->
 
 	gulp.src( files )
 		.pipe( plumber() )
-		# .pipe( cache('docsSass') )
 		.pipe( sass( sourcemap: yes ) )
 		.pipe( size( showFiles: yes ) )
 		.pipe( gulp.dest "#{path.docs.front.css}" )
-		# .pipe( livereload() )
 
 
 
@@ -261,6 +230,7 @@ gulp.task 'nodemon', ->
 gulp.task 'test', ->
 
 	files = [
+		"test/kit.coffee"
 		"test/maxmertkit.coffee"
 		"test/affix.coffee"
 		"test/button.coffee"
@@ -290,9 +260,6 @@ gulp.task 'watch', ->
 		kitJson: "./mkit.json"
 		kitCoffee: "#{path.kit.coffee}/**/*.coffee"
 		kitTodo: "#{path.docs.front.js}/maxmertkit.js"
-		# kitVendor:
-		# 	bower: "#{path.kit.vendor.bower}/**/*.js"
-		# 	libs: "#{path.kit.vendor.libs}/**/*.js"
 		kitSass: "#{path.kit.sass}/**/*.sass"
 		kitDocsVendor:
 			bower: "#{path.docs.front.vendor.bower}/**/*.js"
@@ -304,10 +271,8 @@ gulp.task 'watch', ->
 	gulp.watch files.kitJson, [ 'kitJson' ]
 	gulp.watch files.kitCoffee, [ 'kitCoffee' ]
 	gulp.watch files.kitTodo, [ 'kitTodo' ]
-	# gulp.watch [ files.kitVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.kitSass, [ 'kitSass' ]
 
-	# gulp.watch [ files.kitDocsVendor.libs ], [ 'kitVendor' ]
 	gulp.watch files.docsCoffee, [ 'docsApp' ]
 	gulp.watch files.docsSass, [ 'docsSass' ]
 	gulp.watch files.docsTemplates, [ 'docsTemplates', 'docsApp' ]

@@ -88,8 +88,8 @@ class Affix extends MaxmertkitHelpers
 # ===============
 # PRIVATE METHODS
 
-_onScroll = ->
-	_lastScrollY = document.body.scrollTop
+_onScroll = ( event ) ->
+	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
 	_requestTick.call @
 
 _requestTick = ->

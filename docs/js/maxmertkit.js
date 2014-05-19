@@ -371,11 +371,6 @@
     }
   })();
 
-
-  /*
-  Adds support for the special browser events 'scrollstart' and 'scrollstop'.
-   */
-
   window['MaxmertkitHelpers'] = MaxmertkitHelpers;
 
   window['MaxmertkitReactor'] = MaxmertkitReactor;
@@ -775,8 +770,8 @@
 
   })(MaxmertkitHelpers);
 
-  _onScroll = function() {
-    _lastScrollY = document.body.scrollTop;
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
     return _requestTick.call(this);
   };
 
@@ -1270,8 +1265,8 @@
 
   })(MaxmertkitHelpers);
 
-  _onScroll = function() {
-    _lastScrollY = event.target.nodeName === '#document' ? event.target.body.scrollTop : event.target.scrollTop;
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
     return _requestTick.call(this);
   };
 
@@ -1430,6 +1425,7 @@
 }).call(this);
 
 (function() {
+  "use strict";
   var MaxmertkitHelpers, Tabs, _activate, _beforeactivate, _beforedeactivate, _clicker, _deactivate, _id, _initialActivate, _instances, _name,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
