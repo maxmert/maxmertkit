@@ -20,3 +20,7 @@ exports.module = Marionette.CollectionView.extend
 
     resetCollection: ->
         @collection.reset $.app.contents[ Backbone.history.templates ]
+
+    onBeforeClose: ->
+
+        @el.data['kitAffix'].destroy()

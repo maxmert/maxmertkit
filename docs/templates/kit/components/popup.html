@@ -9,7 +9,7 @@
 				Use widgets <code>-dropdown</code> or <code>-tooltip</code>
 			</p>
 			<p>
-				To set animation to the dialog window add animation name: <code>-fadein--</code>, <code>-fall--</code>, <code>-fliphorizontal--</code>, <code>-flopvertical--</code>, <code>-slidein--</code>, <code>-scalein--</code>, <code>-newspaper--</code>. To add <b>elastic effect</b> just add <code>-elastic--</code> to the animation class – <code>-fall-- -elastic--</code>
+				To set animation to the dialog window add animation name: <code>-fadein--</code>, <code>-fall--</code>, <code>-fliphorizontal--</code>, <code>-flopvertical--</code>, <code>-slidein--</code>, <code>-scalein--</code>, <code>-newspaper--</code>.
 			</p>
 		</div>
 		<div class="-col4">
@@ -21,23 +21,21 @@
 		<div class="-col4">
 			<h3>Coffescript</h3>
 			<p>Simple way:</p>
-			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup()</pre></p><p>More complicated:</p>
-			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
-	beforeopen: ->
+			<p><pre hljs class="prettyprint lang-coffeescript">el.popup()</pre></p><p>More complicated:</p>
+			<p><pre hljs class="prettyprint lang-coffeescript">el.popup
+	beforeactive: ->
 		# Get popup class instance
-		popup = @data('kit-popup')
-		# Find content element inside popup
-		content = popup.$el.find '.-content'
+		popup = @data['kitPopup']
 		# Set new content
-		content.html "Set content here"
+		popup.dialog.innerHTML = "Set content here"
 
-	onopen: ->
+	onactive: ->
 		# Add active class to the button
-		@addClass '_active_'
+		@_addClass '_active_'
 
-	onclose: ->
+	ondeactive: ->
 		# Remove active class to the button
-		@removeClass '_active_'</pre></p>
+		@_removeClass '_active_'</pre></p>
 		</div>
 	</div>
 
@@ -89,32 +87,31 @@
 ...
 </pre></div>
 
-<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-popup-demo').popup
-	beforeopen: ->
-		popup = @data('kit-popup')
-		content = popup.$el.find '.-content'
-		content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">document.querySelector('.btn-popup-demo').popup
+	beforeactive: ->
+		popup = @data['kitPopup']
+		popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
 
-	onopen: ->
-		@addClass '_active_'
+	onactive: ->
+		@_addClass '_active_'
 
-	onclose: ->
-		@removeClass '_active_'
+	ondeactive: ->
+		@_removeClass '_active_'
 
 
-$('.btn-popup-demo-left').popup
-	positionVertical: 'middle'
-	positionHorizontal: 'left'
-	beforeopen: ->
-		popup = @data('kit-popup')
-		content = popup.$el.find '.-content'
-		content.html "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
+document.querySelector('.btn-popup-demo-left').popup
+	position:
+		vertical: 'middle'
+		horizontal: 'left'
+	beforeactive: ->
+		popup = @data['kitPopup']
+		popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content<br>Random number #{Math.random()}"
 
-	onopen: ->
-		@addClass '_active_'
+	onactive: ->
+		@_addClass '_active_'
 
-	onclose: ->
-		@removeClass '_active_'
+	ondeactive: ->
+		@_removeClass '_active_'
 
 ...
 </pre></div>
@@ -136,64 +133,75 @@ $('.btn-popup-demo-left').popup
 	<tbody>
 		<tr>
 			<td>target</td>
-			<td><i>@$btn.data('target')</i></td>
+			<td><i> @el.getAttribute( 'data-target' ) or null</i></td>
 			<td>
-				Find element with this selector and work with it as a popup window. Changes button's data attributes
+				Find element with this selector and work with it as a popup window.
 			</td>
 		</tr>
 		<tr>
 			<td>toggle</td>
-			<td><i>@$btn.data('toggle') or 'popup'</i></td>
+			<td><i>@el.getAttribute( 'data-toggle' ) or 'popup'</i></td>
 			<td>
-				To automatically initialize this plugin without any javascript initialization. Changes button's data attributes. Just in case.
+				Set toggle type.
+			</td>
+		</tr>
+		<tr>
+			<td>dialog</td>
+			<td><i>@el.getAttribute( 'data-dialog' ) or ".-content"</i></td>
+			<td>
+				Selector to find dialog blog inside popup.
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
-			<td><i>click.#{@_name}</i></td>
+			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
 			<td>
-				This event will be used to open popup window; use namespaced events, for example <code>hover.popup</code> or <code>click.popup</code>
+				This event will be used to open popup.</code>
 			</td>
 		</tr>
 		<tr>
 			<td>eventClose</td>
-			<td><i>click.#{@_name}</i></td>
+			<td><i>@el.getAttribute( 'data-event-close' ) or "click"</i></td>
 			<td>
-				This event will be used to close window; use namespaced events, will be bind on elements with <code>data-dismiss="popup"</code> inside this popup window
+				Event for closer element to close popup. Closer element should be anywhere in the DOM with attribute <code>data-dismiss="target-selector"</code>.
 			</td>
 		</tr>
 		<tr>
-			<td>positionVertical</td>
-			<td><i>'top'</i></td>
+			<td>autoOpen</td>
+			<td><i>@el.getAttribute('data-autoopen') or no</i></td>
 			<td>
-				Popup position relative to the button.<br>
-				<code>'top'</code> / <code>'middle'</code> / <code>'bottom'</code>
+				Open popup after initialization.
 			</td>
 		</tr>
 		<tr>
-			<td>positionHorizontal</td>
-			<td><i>'center'</i></td>
+			<td>position</td>
+			<td><i>{
+				vertical: @el.getAttribute( 'data-position-vertical' ) or 'top',
+				horizontal: @el.getAttribute( 'data-position-horizontal' ) or 'center'
+			}</i></td>
 			<td>
 				Popup position relative to the button.<br>
-				<code>'left'</code> / <code>'center'</code> / <code>'right'</code>
+				vertical: <code>'top'</code> / <code>'middle'</code> / <code>'bottom'</code><br>
+				horizontal: <code>'left'</code> / <code>'center'</code> / <code>'right'</code>
 			</td>
 		</tr>
 		<tr>
 			<td>offset</td>
 			<td>
 				<i>
-					{horizontal:5, vertical:5}
+					horizontal: @el.getAttribute( 'data-offset-horizontal' ) or 0<br>
+					vertical: @el.getAttribute( 'data-offset-vertical' ) or 0
 				</i>
 			</td>
 			<td>
-				In <code>px</code>. Offset relative to <code>positionVertical</code> and <code>positionHorizontal</code>
+				In <code>px</code>. Offset relative to <code>position</code>.
 			</td>
 		</tr>
 		<tr>
 			<td>closeUnfocus</td>
 			<td>
 				<i>
-					false
+					@el.getAttribute( 'data-close-unfocus' ) or no
 				</i>
 			</td>
 			<td>
@@ -201,14 +209,25 @@ $('.btn-popup-demo-left').popup
 			</td>
 		</tr>
 		<tr>
-			<td>selfish</td>
+			<td>closeOnResize</td>
 			<td>
 				<i>
-					true
+					@el.getAttribute( 'data-close-resize' ) or yes
 				</i>
 			</td>
 			<td>
-				Close all popup windows when open this one.
+				Close popup when browser window resizing.
+			</td>
+		</tr>
+		<tr>
+			<td>selfish</td>
+			<td>
+				<i>
+					@el.getAttribute( 'data-selfish' ) or yes
+				</i>
+			</td>
+			<td>
+				Close all popups when opens this one.
 			</td>
 		</tr>
 	</tbody>
@@ -217,38 +236,85 @@ $('.btn-popup-demo-left').popup
 
 <h2>Methods</h2>
 
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>open</b></td>
+			<td>
+				<p>Open popup.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>close</b></td>
+			<td>
+				<p>Close popup.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>enable</b></td>
+			<td>
+				<p>Start listening to the events.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>disable</b></td>
+			<td>
+				<p>Stop listening to the events. Popup will stay in current status (opened or closed) and will not work anymore.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>setPosition</b></td>
+			<td>
+				<p>Refresh position of the popup relative to the button.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Events</h2>
+
 <blockquote class="-primary-">
-	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data('kit-popup')</code> or <code>this.data('kit-popup')</code> in js. To get popup window element do <code>@data('kit-popup').$el</code>.
+	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data['kitPopup']</code> or <code>this.data['kitPopup']</code> in js. To get popup window element do <code>@data['kitPopup'].target</code>.
 </blockquote>
 
 <table class="-table _horizontal_">
 	<thead>
 		<tr>
 			<th>Method</th>
-			<th>Default</th>
 			<th>Description</th>
 		</tr>
 	</thead>
-	<tbody>
 		<tr>
-			<td><b>beforeopen</b></td>
+			<td><b>beforeactive</b></td>
 			<td><i>undefined</i></td>
 			<td>
-				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then popup window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for popup window.</p>
-				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').popup
-	beforeopen: ->
+				<p>Set a function to call it before popup opens. If it returns <code>deferred.promise()</code>, then popup will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with ajax for popup.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">document.querySelector('.btn-popup').popup
+	beforeactive: ->
 		d = $.Deferred()
 
 		console.log @
-		# The button will be in the log
-		# so you can add something like
-		@addClass '_disabled_'
-		# to disable button while getting data for popup window
+		# The button element will be in the log
+		# so you can add or remove classes easily
+		# for example to disable button while getting data for popup window
 
-		console.log @data 'kit-popup'
+		console.log @data['kitPopup']
 		# The instance of Modal class will in log
 		# so to get popup window element you need to do
-		@data('kit-popup').$el.addClass '_disabled_'
+		popup = @data['kitPopup'].target
+
+		# To get popup element do
+		console.log popup.target
+
+		# To get popup dialog element do
+		console.log popup.dialog
 
 		# Do something here before open window
 		# in this case it will open popup window after 2 seconds
@@ -264,26 +330,37 @@ $('.btn-popup-demo-left').popup
 
 
 		<tr>
-			<td><b>onopen</b></td>
-			<td><i>undefined</i></td>
+			<td><b>onactive</b></td>
 			<td>
-				<p>Set a function to call it after popup window opens.</p>
+				<p>Set a function to call it after popup opens.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>beforeclose</b></td>
-			<td><i>undefined</i></td>
+			<td><b>failactive</b></td>
 			<td>
-				<p>Call this function before popup window closes.</p>
+				<p>Set a function to call it if activation failed.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>onclose</b></td>
-			<td><i>undefined</i></td>
+			<td><b>beforedeactive</b></td>
 			<td>
-				<p>Call this function after popup window closes.</p>
+				<p>Call this function before popup closes.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>ondeactive</b></td>
+			<td>
+				<p>Call this function after popup closes.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>faildeactive</b></td>
+			<td>
+				<p>Set a function to call it if deactivation failed.</p>
 			</td>
 		</tr>
 	</tbody>

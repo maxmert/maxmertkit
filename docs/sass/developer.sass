@@ -31,7 +31,8 @@ pre.prettyprint
 		margin-top: 5px
 
 .dev-sidebar-menu
-	margin-top: 50px
+	nav > .-list-group
+		margin-top: 50px
 
 .dev-navbar
 	position: relative
@@ -49,12 +50,23 @@ pre.prettyprint
 
 .dev-main-content
 	margin: 0px auto 30px
+	position: relative
 
 	section + section
 		margin-top: 35px
+	&:not(.example-block)
+		h1
+			margin-top: 50px
 
-	h1
-		margin-top: 50px
+.dev-roadmap-done
+	opacity: .5
+	h3
+		text-decoration: line-through
+
+.dev-donate-btn
+	opacity: 0.3
+	&:hover
+		opacity: 0.8
 
 .dev-meta
 	opacity: .2

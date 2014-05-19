@@ -96,6 +96,12 @@ widgets = [
         body: $.app.templates.common.pages.index.series.widgets.spinnerSquare
     }
     {
+        name: '-spinner-circle'
+        themes: mkit.spinners.circle.themes
+        sizes: mkit.spinners.circle.sizes
+        body: $.app.templates.common.pages.index.series.widgets.spinnerCircle
+    }
+    {
         name: '-spinner-fb'
         themes: mkit.spinners.fb.themes
         sizes: mkit.spinners.fb.sizes
@@ -158,7 +164,7 @@ exports.module = Marionette.Layout.extend
         active = @seriesModel.get 'active'
         themeActive = @seriesModel.get 'themeActive'
         sizeActive = @seriesModel.get 'sizeActive'
-        
+
         widgets = @seriesModel.get 'widgets'
         @seriesModel.set 'body', widgets[active].body
         @seriesModel.set 'name', widgets[active].name

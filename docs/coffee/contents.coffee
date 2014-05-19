@@ -196,6 +196,10 @@ exports.widgets = [
 				name: "blocks"
 				path: "buttonsBlocks"
 			}
+			{
+				name: "bordered"
+				path: "buttonsBordered"
+			}
 		]
 	}
 	{
@@ -299,6 +303,10 @@ exports.widgets = [
 			{
 				name: "square"
 				path: "spinnersSquare"
+			}
+			{
+				name: "circle"
+				path: "spinnersCircle"
 			}
 			{
 				name: "fb"

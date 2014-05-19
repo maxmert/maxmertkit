@@ -1,0 +1,74 @@
+@import "variables"
+@import "sizes"
+@import "themes"
+
+
+@mixin spinner-circle-theme-setter( $theme )
+    $name: map-get( $theme, name)
+    $color: map-get( $theme, color)
+
+    @if $name == default
+        border-top-color: rgba(255, 255, 255, 0.2)
+        border-right-color: rgba(255, 255, 255, 0.2)
+        border-bottom-color: rgba(255, 255, 255, 0.2)
+        border-left-color: solid #ffffff
+    @else
+        border-top-color: rgba($color, 0.2)
+        border-right-color: rgba($color, 0.2)
+        border-bottom-color: rgba($color, 0.2)
+        border-left-color: $color
+
+
+@mixin spinner-circle-size-setter( $size )
+    $multiplier: map-get( $size, multiplier)
+
+    @include size( floor($spinner-circle-size * $multiplier) )
+    border-width: floor($spinner-circle-size * $multiplier) / 10
+    &:after
+        @include size( floor($spinner-circle-size * $multiplier) )
+    &.#{$mod-responsive}
+        margin-top: - floor(( $spinner-circle-size * $multiplier ) / 2)
+        margin-left: - floor(( $spinner-circle-size * $multiplier ) / 2)
+
+
+
+@include keyframes(rotateInfinite)
+    0%
+        @include transform( rotate(0deg) )
+    100%
+        @include transform( rotate(360deg) )
+
+
+@include exports("spinners/circle/common")
+    .#{$spinner-circle-class}
+        display: inline-block
+        vertical-align: middle
+        position: relative
+        border-style: solid
+        border-radius: 50%
+        @include animation( rotateInfinite 0.9s infinite linear )
+
+
+        &:after
+            border-radius: 50%
+            content: ''
+
+        &.#{$mod-responsive}
+            position: absolute
+            top: 50%
+            left: 50%
+
+        @each $themeName in $themes
+            $thm: map-get( $base-themes, $themeName )
+
+            @if $themeName == default
+                @include spinner-circle-theme-setter($thm)
+            &.-#{$themeName}-
+                @include spinner-circle-theme-setter($thm)
+
+        @each $sizeName in $sizes
+            $sz: map-get( $base-sizes, $sizeName )
+            @if $sizeName == normal
+                @include spinner-circle-size-setter($sz)
+            &._#{$sizeName}
+                @include spinner-circle-size-setter($sz)
