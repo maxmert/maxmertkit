@@ -305,6 +305,10 @@ exports.widgets = [
 				path: "spinnersSquare"
 			}
 			{
+				name: "circle"
+				path: "spinnersCircle"
+			}
+			{
 				name: "fb"
 				path: "spinnersFb"
 			}

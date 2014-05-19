@@ -113,15 +113,19 @@
 	"spinners": {
 		"square": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
 		},
 		"fb": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"waves": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "tiny","small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"circle": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "giant", "divine" ]
 		}
 	},
 	"tables": {
