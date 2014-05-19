@@ -96,6 +96,12 @@ widgets = [
         body: $.app.templates.common.pages.index.series.widgets.spinnerSquare
     }
     {
+        name: '-spinner-circle'
+        themes: mkit.spinners.circle.themes
+        sizes: mkit.spinners.circle.sizes
+        body: $.app.templates.common.pages.index.series.widgets.spinnerCircle
+    }
+    {
         name: '-spinner-fb'
         themes: mkit.spinners.fb.themes
         sizes: mkit.spinners.fb.sizes
