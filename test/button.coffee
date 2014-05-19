@@ -31,12 +31,12 @@ describe "Maxmertkit Button", ->
 
 
 
-    it 'should store in data-kit-button attribute', ->
-        if not el.dataset[ 'data-kit-button' ]?
-            throw new Error('No data-kit-button attribute')
+    it 'should store in kitButton attribute', ->
+        if not el.data[ 'kitButton' ]?
+            throw new Error('No kitButton attribute')
 
-        el.dataset[ 'data-kit-button' ].should.be.an 'object'
-        el.dataset[ 'data-kit-button' ].should.be.an.instanceof Button
+        el.data[ 'kitButton' ].should.be.an 'object'
+        el.data[ 'kitButton' ].should.be.an.instanceof Button
 
     it 'should properly set defaults', ->
         button.options.toggle.should.be.equal 'button'
@@ -56,7 +56,7 @@ describe "Maxmertkit Button", ->
     it 'should properly destroy class instance', ->
         button.destroy()
         button._instances.should.have.length 0
-        if el.dataset['data-kit-button']? then throw new Error "Dataset should be empty after destroy"
+        if el.data['kitButton']? then throw new Error "Dataset should be empty after destroy"
 
         button = mkitButton.call el, { group: 'test-button' }
         button._instances.should.have.length 1

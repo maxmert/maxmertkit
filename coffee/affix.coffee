@@ -4,6 +4,9 @@ _name = "affix"
 _instances = []
 _id = 0
 
+_lastScrollY = 0
+_ticking = no
+
 MaxmertkitHelpers = window['MaxmertkitHelpers']
 
 class Affix extends MaxmertkitHelpers
@@ -21,7 +24,7 @@ class Affix extends MaxmertkitHelpers
 			spy: @el.getAttribute( 'data-spy' ) or _name
 
 			# Number; in px, vertical offset from the top
-			offset: @el.getAttribute( 'data-offset' ) or -25
+			offset: @el.getAttribute( 'data-offset' ) or 5
 
 			# Events
 			beforeactive: ->
@@ -39,6 +42,8 @@ class Affix extends MaxmertkitHelpers
 		# Get scroll container
 		@scroller = @_getScrollContainer()
 		@container = @_getContainer()
+		@onScroll = _onScroll.bind(@)
+		@setPosition = _setPosition.bind(@)
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
@@ -51,7 +56,7 @@ class Affix extends MaxmertkitHelpers
 
 	destroy: ->
 		_deactivate.call @
-		@el.dataset["kitAffix"] = null
+		@el.data["kitAffix"] = null
 		super
 
 	start: ->
@@ -83,6 +88,16 @@ class Affix extends MaxmertkitHelpers
 # ===============
 # PRIVATE METHODS
 
+_onScroll = ->
+	_lastScrollY = document.body.scrollTop
+	_requestTick.call @
+
+_requestTick = ->
+	if not _ticking
+		requestAnimationFrame(@setPosition)
+		_ticking = true
+
+
 _beforeactivate = ->
 	if @beforeactive?
 		try
@@ -101,7 +116,7 @@ _beforeactivate = ->
 		_activate.call @
 
 _activate = ->
-	@_addEventListener @scroller, 'scroll', _setPosition.bind(@)
+	@_addEventListener @scroller, 'scroll', @onScroll
 	@_addClass '_active_'
 	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
@@ -125,7 +140,7 @@ _beforedeactivate = ->
 		_deactivate.call @
 
 _deactivate = ->
-	@_removeEventListener @scroller, 'scroll', _setPosition.bind(@)
+	@_removeEventListener @scroller, 'scroll', @onScroll
 	@_removeClass '_active_'
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
@@ -134,9 +149,9 @@ _deactivate = ->
 
 _setPosition = ->
 	containerTop = @container.offsetTop
-
-	if containerTop - @options.offset <= document.body.scrollTop
-		if containerTop + @_outerHeight(@container) - @options.offset - @_outerHeight()  >= document.body.scrollTop
+	
+	if containerTop - @options.offset <= _lastScrollY
+		if containerTop + @_outerHeight(@container) - @options.offset - @_outerHeight()  >= _lastScrollY
 			@el.style.width = @el.offsetWidth
 			@el.style.position = 'fixed'
 			top = @options.offset
@@ -155,29 +170,32 @@ _setPosition = ->
 		@el.style.position = 'relative'
 		@el.style.top = 'inherit'
 
+	_ticking = false
+
 
 
 window['Affix'] = Affix
 window['mkitAffix'] = ( options ) ->
 	result = null
 
-	if not @dataset? then @dataset = {}
+	if not @data? then @data = {}
 
-	unless @dataset['kitAffix']
+	unless @data['kitAffix']
 		result = new Affix @, options
-		@dataset['kitAffix'] = result
+		@data['kitAffix'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['kitAffix']._setOptions options
+			@data['kitAffix']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['kitAffix'][options]
+				@data['kitAffix'][options]
 
-		result = @dataset['kitAffix']
+		result = @data['kitAffix']
 
 	return result
 
+if Element? then Element::affix = window['mkitAffix']
 
 # if $? and jQuery?
 # 	$.fn[_name] = window['mkitAffix']

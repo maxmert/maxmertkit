@@ -8,8 +8,8 @@ document.offsetHeight = 2000
 container = window.document.getElementById('container')
 container.offsetHeight = 1000
 
-
 kitAffix = require '../coffee/affix.coffee'
+Element = require('jsdom').dom.level3.html.Element
 
 
 
@@ -36,11 +36,11 @@ describe "Maxmertkit Affix", ->
 
 
     it 'should store in data-kit-affix attribute', ->
-        if not el.dataset[ 'kitAffix' ]?
+        if not el.data[ 'kitAffix' ]?
             throw new Error('No data-kit-affix attribute')
 
-        el.dataset[ 'kitAffix' ].should.be.an 'object'
-        el.dataset[ 'kitAffix' ].should.be.an.instanceof Affix
+        el.data[ 'kitAffix' ].should.be.an 'object'
+        el.data[ 'kitAffix' ].should.be.an.instanceof Affix
 
     it 'should properly get a data-spy attribute or set default', ->
         affix.options.spy.should.be.equal 'affix'
@@ -58,7 +58,7 @@ describe "Maxmertkit Affix", ->
     it 'should properly destroy class instance', ->
         affix.destroy()
         affix._instances.should.have.length 0
-        if el.dataset['kitAffix']? then throw new Error "Dataset should be empty after destroy"
+        if el.data['kitAffix']? then throw new Error "Dataset should be empty after destroy"
 
         affix = mkitAffix.call el, { offset: 15 }
         affix._instances.should.have.length 1
@@ -84,19 +84,19 @@ describe "Maxmertkit Affix", ->
         affix.start()
         affix.started.should.be.true
 
-    it 'should have working scroll event listener and move container properly', ->
-        affix.el.offsetHeight = 40
-        document.body.scrollTop = 500
-        fireScrollEvent()
-        affix.el.style.position.should.be.equal 'relative'
-
-        document.body.scrollTop = 3500
-        fireScrollEvent()
-        affix.el.style.position.should.be.equal 'relative'
-
-        document.body.scrollTop = -20
-        fireScrollEvent()
-        affix.el.style.position.should.be.equal 'relative'
+    # it 'should have working scroll event listener and move container properly', ->
+    #     affix.el.offsetHeight = 40
+    #     document.body.scrollTop = 500
+    #     fireScrollEvent()
+    #     affix.el.style.position.should.be.equal 'relative'
+    #
+    #     document.body.scrollTop = 3500
+    #     fireScrollEvent()
+    #     affix.el.style.position.should.be.equal 'relative'
+    #
+    #     document.body.scrollTop = -20
+    #     fireScrollEvent()
+    #     affix.el.style.position.should.be.equal 'relative'
 
 
     it 'should fire events', ->

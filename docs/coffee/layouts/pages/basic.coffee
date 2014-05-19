@@ -24,7 +24,7 @@ exports.module = Marionette.Layout.extend
         @socialContribute.show new ViewSocial.github()
 
         setTimeout =>
-            window['mkitAffix'].call @sidebar.currentView.$el[0]
+            @sidebar.currentView.$el[0].affix( offset: -25 )
         , 1
         $.app.commands.execute 'menu', 'activate', '#basic'
         $.app.commands.execute 'loader', 'finish'

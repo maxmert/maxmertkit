@@ -24,7 +24,7 @@ class Button extends MaxmertkitHelpers
 			type: @el.getAttribute( 'data-type' ) or _name
 
 			# String; name of the group, using when **type** is radio or checkbox
-			group: @el.getAttribute( 'data-group' ) or null
+			group: @el.getAttribute( 'data-group' ) or no
 
 			# String; event to interact with button
 			event: @el.getAttribute( 'data-event' ) or "click"
@@ -42,12 +42,15 @@ class Button extends MaxmertkitHelpers
 
 
 		@options = @_merge _options, @options
+
+		@clicker = _clicker.bind(@)
+
 		@_setOptions @options
 
 		super @el, @options
 
-		# Set event listener
-		@_addEventListener @el, @options.event, @clicker.bind( @ )
+		# # Set event listener
+		# @_addEventListener @el, @options.event, @clicker.bind( @ )
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
@@ -57,8 +60,8 @@ class Button extends MaxmertkitHelpers
 		@reactor.dispatchEvent "initialize.#{_name}"
 
 	destroy: ->
-		@_removeEventListener @el, @options.event, @clicker.bind( @ )
-		@el.dataset["data-kit-#{@_name}"] = null
+		@_removeEventListener @el, @options.event, @clicker
+		@el.data["kitButton"] = null
 		super
 
 	_setOptions: ( options ) ->
@@ -68,20 +71,13 @@ class Button extends MaxmertkitHelpers
 
 			switch key
 				when 'event'
-					if @options.event isnt value
-						@_removeEventListener @el, @options.event, @clicker.bind( @ )
+					@_removeEventListener @el, @options.event, @clicker
 
-						# Set new event on button
-						@_addEventListener @el, value, @clicker.bind( @ )
+					# Set new event on button
+					@_addEventListener @el, value, @clicker
 
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
-
-	clicker: ->
-		if not @active
-			@activate()
-		else
-			@deactivate()
 
 	activate: ->
 		if @enabled and not @active
@@ -101,6 +97,12 @@ class Button extends MaxmertkitHelpers
 
 # ===============
 # PRIVATE METHODS
+
+_clicker = ->
+	if not @active
+		@activate()
+	else
+		@deactivate()
 
 # If you have beforeactive function
 # 	it will be called here
@@ -175,22 +177,24 @@ _deactivate = ->
 window['Button'] = Button
 window['mkitButton'] = ( options ) ->
 	result = null
-	if not @dataset? then @dataset = {}
+	if not @data? then @data = {}
 
-	unless @dataset['data-kit-button']
+	unless @data['kitButton']
 		result = new Button @, options
-		@dataset['data-kit-button'] = result
+		@data['kitButton'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-button']._setOptions options
+			@data['kitButton']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-button'][options]
+				@data['kitButton'][options]
 
-		result = @dataset['data-kit-button']
+		result = @data['kitButton']
 
 	return result
+
+if Element? then Element::button = window['mkitButton']
 
 # if $? and jQuery?
 # 	$.fn.button = window['mkitButton']

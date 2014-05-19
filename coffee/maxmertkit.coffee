@@ -66,15 +66,18 @@ class MaxmertkitHelpers
 
 	destroy: ->
 		@_popInstance()
+
 		# @el.parentNode?.removeChild(@el)
 		@_destroy @
 		yes
 
 
-
-	_destroy: ( object ) ->
+	_delete: ( object ) ->
 		for key, value of object
 			delete object[key]
+
+	_destroy: ( object ) ->
+		@_delete object
 		object = null
 		yes
 
@@ -118,58 +121,59 @@ class MaxmertkitHelpers
 	# REMOVE JQUERY
 	# ========================================
 	# $(el).off(eventName, eventHandler);
-	# _removeEventListener: (el, eventName, handler) ->
-	# 	if el.removeEventListener
-	# 		el.removeEventListener eventName, handler, no
-	# 	else
-	# 		el.detachEvent "on" + eventName, handler
-	# 	return
-	#
-	# _addEventListener: (el, eventName, handler) ->
-	# 	if el.addEventListener
-	# 		el.addEventListener eventName, handler, no
-	# 	else
-	# 		el.attachEvent "on" + eventName, ->
-	# 			handler.call el
-	# 			return
-	#
-	# 	return
-
-	_addEventListener: (el, event, handler, capture = yes) ->
-
-		# _eventHandlers stores references to nodes
-		_eventHandlers[el] = {}	unless el of _eventHandlers
-
-		# each entry contains another entry for each event type
-		_eventHandlers[el][event] = []	unless event of _eventHandlers[el]
-
-		# capture reference
-		_eventHandlers[el][event].push [
-			handler
-			capture
-		]
-		if el.addEventListener
-			el.addEventListener event, handler, no
-			return
+	_removeEventListener: (el, eventName, handler) ->
+		if el.removeEventListener
+			el.removeEventListener eventName, handler, no
 		else
-			el.attachEvent "on" + event, ->
+			el.detachEvent "on" + eventName, handler
+		return
+
+	_addEventListener: (el, eventName, handler) ->
+		if el.addEventListener
+			el.addEventListener eventName, handler, no
+		else
+			el.attachEvent "on" + eventName, ->
 				handler.call el
 				return
 
-	_removeEventListener: (el, event) ->
-		if el of _eventHandlers
-			handlers = _eventHandlers[el]
-			if event of handlers
-				eventHandlers = handlers[event]
-				i = eventHandlers.length
-
-				while i--
-					handler = eventHandlers[i]
-					if el.removeEventListener
-						el.removeEventListener event, handler[0], handler[1]
-					else
-						el.detachEvent "on" + event, handler[0]
 		return
+
+	# _addEventListener: (el, event, handler, capture = yes) ->
+	#
+	# 	# _eventHandlers stores references to nodes
+	# 	_eventHandlers[el] = {}	unless el of _eventHandlers
+	#
+	# 	# each entry contains another entry for each event type
+	# 	_eventHandlers[el][event] = []	unless event of _eventHandlers[el]
+	#
+	# 	# capture reference
+	# 	_eventHandlers[el][event].push [
+	# 		handler
+	# 		capture
+	# 	]
+	# 	if el.addEventListener
+	# 		el.addEventListener event, handler, no
+	# 		return
+	# 	else
+	# 		el.attachEvent "on" + event, ->
+	# 			handler.call el
+	# 			return
+	#
+	# _removeEventListener: (el, event) ->
+	# 	console.log _eventHandlers
+	# 	if el of _eventHandlers
+	# 		handlers = _eventHandlers[el]
+	# 		if event of handlers
+	# 			eventHandlers = handlers[event]
+	# 			i = eventHandlers.length
+	#
+	# 			while i--
+	# 				handler = eventHandlers[i]
+	# 				if el.removeEventListener
+	# 					el.removeEventListener event, handler[0], handler[1]
+	# 				else
+	# 					el.detachEvent "on" + event, handler[0]
+	# 	return
 
 	_hasClass: ( className, el ) ->
 		el = el or @el
@@ -181,14 +185,19 @@ class MaxmertkitHelpers
 	_addClass: ( className, el ) ->
 		el = el or @el
 		if el.classList?
-			el.classList.add className
+			classes = className.split " "
+			for classin in classes
+				el.classList.add classin
 		else
 			el.className += ' ' + className
 
 	_removeClass: ( className, el ) ->
 		el = el or @el
+		
 		if el.classList
-			el.classList.remove(className)
+			classes = className.split " "
+			for classin in classes
+				el.classList.remove classin
 		else
 			el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ')
 
@@ -205,8 +214,11 @@ class MaxmertkitHelpers
 	_outerWidth: (el) ->
 		el = el or @el
 		width = el.offsetWidth
-		style = el.currentStyle or getComputedStyle(el)
-		width += parseInt(style.marginLeft) + parseInt(style.marginRight)
+		try
+			style = el.currentStyle or getComputedStyle(el)
+		if style
+			if style.marginLeft? and style.marginLeft isnt '' then width += parseInt(style.marginLeft)
+			if style.marginRight? and style.marginRight isnt '' then width += parseInt(style.marginRight)
 		width
 
 	_outerHeight: (el) ->
@@ -219,6 +231,18 @@ class MaxmertkitHelpers
 			if style.marginBottom? and style.marginBottom isnt '' then height += parseInt(style.marginBottom)
 		height
 
+	_getPosition: (el) ->
+		el = el or @el
+		curleft = curtop = 0
+		if el.offsetParent
+			loop
+				curleft += el.offsetLeft
+				curtop += el.offsetTop
+				break unless el = el.offsetParent
+			
+			left: curleft,
+			top: curtop
+
 	_getContainer: ( el ) ->
 		parent = el or @el
 
@@ -226,7 +250,7 @@ class MaxmertkitHelpers
 		while parent? and parent = parent.parentNode
 			try
 				style = getComputedStyle(parent)
-			
+
 			return parent if not style?
 
 			if /(relative|fixed)/.test(style['position'])
@@ -251,6 +275,41 @@ class MaxmertkitHelpers
 		return document
 
 
+
+
+
+# Initialize rAF
+# to improove scrolling events inside plugins
+(->
+	lastTime = 0
+	vendors = [
+		"ms"
+		"moz"
+		"webkit"
+		"o"
+	]
+	x = 0
+
+	while x < vendors.length and not window.requestAnimationFrame
+		window.requestAnimationFrame = window[vendors[x] + "RequestAnimationFrame"]
+		window.cancelAnimationFrame = window[vendors[x] + "CancelAnimationFrame"] or window[vendors[x] + "CancelRequestAnimationFrame"]
+		++x
+	unless window.requestAnimationFrame
+		window.requestAnimationFrame = (callback, element) ->
+			currTime = new Date().getTime()
+			timeToCall = Math.max(0, 16 - (currTime - lastTime))
+			id = window.setTimeout(->
+				callback currTime + timeToCall
+				return
+			, timeToCall)
+			lastTime = currTime + timeToCall
+			id
+	unless window.cancelAnimationFrame
+		window.cancelAnimationFrame = (id) ->
+			clearTimeout id
+			return
+	return
+)()
 
 
 

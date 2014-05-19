@@ -55,7 +55,7 @@ class Popup extends MaxmertkitHelpers
 			closeOnResize: yes
 
 			# Boolean; close other instances of Modal when current is opening
-			selfish: no
+			selfish: yes
 
 
 			# Events
@@ -77,6 +77,11 @@ class Popup extends MaxmertkitHelpers
 		# Find dialog element inside target
 		@dialog = @target.querySelector @options.dialog
 
+		# Initialize functions
+		@closeUnfocus = _closeUnfocus.bind @
+		@clicker = _clicker.bind @
+		@closer = @close.bind @
+
 		@_setOptions @options
 
 		super @el, @options
@@ -88,16 +93,16 @@ class Popup extends MaxmertkitHelpers
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
-		# Open modal if autoOpen setted
+		# Open popup if autoOpen setted
 		if @options.autoOpen then @open()
 
 	destroy: ->
-		@_removeEventListener @el, @options.event, @clicker.bind( @ )
-		@_removeEventListener document, @options.event, _closeUnfocus.bind( @ )
-		@_removeEventListener window, "resize", @close.bind( @ )
+		@_removeEventListener @el, @options.event, @clicker
+		@_removeEventListener document, @options.event, @closeUnfocus
+		@_removeEventListener window, "resize", @closer
 		for closer in @closers
-			@_removeEventListener closer, @options.eventClose, @close.bind( @ )
-		@el.dataset["data-kit-#{@_name}"] = null
+			@_removeEventListener closer, @options.eventClose, @closer
+		@el.data["kitPopup"] = null
 		super
 
 	_setOptions: ( options ) ->
@@ -107,36 +112,30 @@ class Popup extends MaxmertkitHelpers
 
 			switch key
 				when 'event'
-					@_removeEventListener @el, @options.event, @clicker.bind( @ )
-					@_addEventListener @el, value, @clicker.bind( @ )
+					@_removeEventListener @el, @options.event, @clicker
+					@_addEventListener @el, value, @clicker
 
 				when 'eventClose'
 					for closer in @closers
-						@_removeEventListener closer, @options.eventClose, @close.bind( @ )
-						@_addEventListener closer, value, @close.bind( @ )
+						@_removeEventListener closer, @options.eventClose, @closer
+						@_addEventListener closer, value, @closer
 
 				when 'position'
 					@_removeClass "_top_ _bottom_ _left_ _right_ _center_ _middle_", @target
 					@_addClass "_#{@options.position.vertical}_ _#{@options.position.horizontal}_", @target
 
 				when 'closeOnUnfocus'
-					@_removeEventListener document, @options.event, _closeUnfocus.bind( @ )
+					@_removeEventListener document, @options.event, @closeUnfocus
 					if value
-						@_addEventListener document, @options.event, _closeUnfocus.bind( @ )
+						@_addEventListener document, @options.event, @closeUnfocus
 
 				when 'closeOnResize'
-					@_removeEventListener window, "resize", @close.bind( @ )
+					@_removeEventListener window, "resize", @closer
 					if value
-						@_addEventListener window, "resize", @close.bind( @ )
+						@_addEventListener window, "resize", @closer
 
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
-
-	clicker: ->
-		if not @opened
-			@open()
-		else
-			@close()
 
 	open: -> @activate()
 	close: -> @deactivate()
@@ -156,53 +155,55 @@ class Popup extends MaxmertkitHelpers
 		@enabled = yes
 
 	setPosition: ->
-		# btnPosition = @$btn.offset()
-		scrollParent = @_getContainer @target
-		scrollParentBtn = @_getContainer()
-		# if @_equalNodes scrollParent, scrollParentBtn
-		positionBtn = @el.getBoundingClientRect()
-		position = @target.getBoundingClientRect()
+		pos = @el.getBoundingClientRect()
+		scrollParentTarget = @_getContainer @target
 
-		if scrollParent? and ((scrollParent.activeElement? and scrollParent.activeElement.nodeName isnt 'BODY') or (scrollParent.nodeName? and (scrollParent.nodeName isnt 'BODY' and scrollParent.nodeName isnt '#document')))
-			offset = scrollParent?.getBoundingClientRect()
-			if offset?
-				positionBtn.top = positionBtn.top - offset.top
-				positionBtn.left = positionBtn.left - offset.left
+		btnOffset = @_getPosition()
+		
+		if scrollParentTarget? and ((scrollParentTarget.activeElement? and scrollParentTarget.activeElement.nodeName isnt 'BODY') or (scrollParentTarget.nodeName? and (scrollParentTarget.nodeName isnt 'BODY' and scrollParentTarget.nodeName isnt '#document')))
+			btnOffset.top = btnOffset.top - scrollParentTarget.offsetTop
+			btnOffset.left = btnOffset.left - scrollParentTarget.offsetLeft
+			# top: pos.top + document.body.scrollTop
+			# left: pos.left + document.body.scrollLeft
 
-		sizeBtn =
+		btnSize = 
 			width: @_outerWidth()
 			height: @_outerHeight()
 
-		size =
+		@target.style.visibility = 'hidden'
+		@target.style.display = 'block'
+
+		targetSize =
 			width: @_outerWidth @target
 			height: @_outerHeight @target
 
-		newTop = newLeft = 0
+		@target.style.display = 'none'
+		@target.style.visibility = 'visible'
 
 		switch @options.position.vertical
 
 			when 'top'
-				newTop = positionBtn.top - size.height - @options.offset.vertical
+				newTop = btnOffset.top - targetSize.height - @options.offset.vertical
 
 			when 'bottom'
-				newTop = positionBtn.top + sizeBtn.height + @options.offset.vertical
+				newTop = btnOffset.top + btnSize.height + @options.offset.vertical
 
 			when 'middle' or 'center'
-				newTop = positionBtn.top + sizeBtn.height / 2 - size.height / 2
+				newTop = btnOffset.top + btnSize.height / 2 - targetSize.height / 2
 
 		switch @options.position.horizontal
 
 			when 'center' or 'middle'
-				newLeft = positionBtn.left + sizeBtn.width / 2 - size.width / 2
+				newLeft = btnOffset.left + btnSize.width / 2 - targetSize.width / 2
 
 			when 'left'
-				newLeft = positionBtn.left - size.width -  @options.offset.horizontal
+				newLeft = btnOffset.left - targetSize.width -  @options.offset.horizontal
 
 			when 'right'
-				newLeft = positionBtn.left + sizeBtn.width + @options.offset.horizontal
-
-		@target.style.left = newLeft
-		@target.style.top = newTop
+				newLeft = btnOffset.left + btnSize.width + @options.offset.horizontal
+		
+		@target.style.left = "#{newLeft}px"
+		@target.style.top = "#{newTop}px"
 
 		true
 
@@ -212,13 +213,17 @@ class Popup extends MaxmertkitHelpers
 # ===============
 # PRIVATE METHODS
 
+_clicker = ->
+	if not @opened
+		@open()
+	else
+		@close()
+
 _closeUnfocus = ( event ) ->
 	classes = '.' + @el.className.split(' ').join('.')
 	if not @_closest(classes, event.target)? and event.target isnt @el
 		@close()
 
-# ===============
-# PRIVATE METHODS
 
 # If you have beforeactive function
 # 	it will be called here
@@ -248,6 +253,7 @@ _beforeactivate = ->
 
 _activate = ->
 	@setPosition()
+	@target.style.display = ''
 	@_addClass '_active_', @target
 	@onactive?.call @el
 	@reactor.dispatchEvent "open.#{_name}"
@@ -276,7 +282,7 @@ _beforedeactivate = ->
 		_deactivate.call @
 
 _deactivate = ->
-	@_removeClass '_active_'
+	@_removeClass '_active_', @target
 	@reactor.dispatchEvent "close.#{_name}"
 	@ondeactive?.call @el
 	@opened = no
@@ -288,23 +294,25 @@ _deactivate = ->
 window['Popup'] = Popup
 window['mkitPopup'] = ( options ) ->
 	result = null
-	if not @dataset? then @dataset = {}
+	if not @data? then @data = {}
 
-	unless @dataset['data-kit-popup']
+	unless @data['kitPopup']
 		result = new Popup @, options
-		@dataset['data-kit-popup'] = result
+		@data['kitPopup'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['data-kit-popup']._setOptions options
+			@data['kitPopup']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['data-kit-popup'][options]
+				@data['kitPopup'][options]
 
-		result = @dataset['data-kit-popup']
+		result = @data['kitPopup']
 
 	return result
 
+
+if Element? then Element::popup = window['mkitPopup']
 
 # 	# =============== Public methods
 #

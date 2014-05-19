@@ -23,12 +23,12 @@ describe "Maxmertkit Popup", ->
 
 
 
-    it 'should store in data-kit-popup attribute', ->
-        if not el.dataset[ 'data-kit-popup' ]?
-            throw new Error('No data-kit-popup attribute')
+    it 'should store in kitPopup attribute', ->
+        if not el.data[ 'kitPopup' ]?
+            throw new Error('No kitPopup attribute')
 
-        el.dataset[ 'data-kit-popup' ].should.be.an 'object'
-        el.dataset[ 'data-kit-popup' ].should.be.an.instanceof Popup
+        el.data[ 'kitPopup' ].should.be.an 'object'
+        el.data[ 'kitPopup' ].should.be.an.instanceof Popup
 
     it 'should properly set defaults', ->
         popup.options.toggle.should.be.equal 'popup'
@@ -59,7 +59,7 @@ describe "Maxmertkit Popup", ->
     it 'should properly destroy class instance', ->
         popup.destroy()
         popup._instances.should.have.length 0
-        if el.dataset['data-kit-popup']? then throw new Error "Dataset should be empty after destroy"
+        if el.data['kitPopup']? then throw new Error "Dataset should be empty after destroy"
 
         popup = mkitPopup.call el
         popup._instances.should.have.length 1

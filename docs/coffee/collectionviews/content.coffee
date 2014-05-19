@@ -51,10 +51,17 @@ exports.module = Marionette.CollectionView.extend
         if $.app.main.currentView.content.currentView?
 
             @menu = $.app.main.currentView.content.currentView.sidebar.$el
-            if @menu.data('kit-scrollspy')?
-                @menu.data('kit-scrollspy').refresh()
-            else
-                window['mkitScrollspy'].call @menu[0]
+            setTimeout =>
+                if @menu[0].data? and @menu[0].data['kitScrollspy']?
+                    @menu[0].data['kitScrollspy'].refresh()
+                else
+                    @menu[0].scrollspy
+                        target: '.dev-main-content'
+                        offset: 15
+            , 100
+
+    onBeforeClose: ->
+        @menu[0].data['kitScrollspy'].destroy()
 
     highlightCode: ->
         $elements = @$el.find('[hljs]')
@@ -69,4 +76,5 @@ exports.module = Marionette.CollectionView.extend
 
             if --count <= 0
                 prettyPrint()
-                if @menu? and @menu.data('kit-scrollspy')? then @menu.data('kit-scrollspy').refresh()
+                if @menu? and @menu[0].data? and @menu[0].data['kitScrollspy']?
+                    @menu[0].data['kitScrollspy'].refresh()

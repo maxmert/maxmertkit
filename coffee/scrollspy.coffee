@@ -3,6 +3,8 @@
 _name = "scrollspy"
 _instances = []
 _id = 0
+_lastScrollY = 0
+_ticking = no
 
 MaxmertkitHelpers = window['MaxmertkitHelpers']
 
@@ -49,6 +51,7 @@ class Scrollspy extends MaxmertkitHelpers
 		@scroller = @_getScrollContainer @target
 
 		@spy = _spy.bind(@)
+		@onScroll = _onScroll.bind(@)
 
 		@_setOptions @options
 
@@ -65,7 +68,7 @@ class Scrollspy extends MaxmertkitHelpers
 
 	destroy: ->
 		_deactivate.call @
-		@el.dataset["data-kit-#{@_name}"] = null
+		@el.data["kitScrollspy"] = null
 		super
 
 	_setOptions: ( options ) ->
@@ -74,12 +77,12 @@ class Scrollspy extends MaxmertkitHelpers
 				return console.error "Maxmertkit Scrollspy. You're trying to set unpropriate option – #{key}"
 
 			switch key
-				when 'target'
-					# TODO: Reset events here
-					@_removeEventListener @scroller, 'scroll', @spy
-					@target = document.querySelector value
-					@scroller = @_getScrollContainer @target
-					@_addEventListener @scroller, 'scroll', @spy
+				# when 'target'
+				# 	# TODO: Reset events here
+				# 	@_removeEventListener @scroller, 'scroll', @onScroll
+				# 	@target = document.querySelector value
+				# 	@scroller = @_getScrollContainer @target
+				# 	@_addEventListener @scroller, 'scroll', @onScroll
 
 				when 'elements'
 					@refresh()
@@ -100,40 +103,61 @@ class Scrollspy extends MaxmertkitHelpers
 		@elements = []
 		for el in elements
 			targetEl = @target.querySelector(el.getAttribute( @options.elementsAttr ))
-			@elements.push
-				element: el
-				target: targetEl
-				height: targetEl.offsetHeight
-				top: targetEl.offsetTop
+			if targetEl?
+				offsetTop = targetEl.offsetTop
+				offsetTop += @target.offsetTop if @target.offsetTop?
+				@elements.push
+					element: el
+					target: targetEl
+					height: targetEl.offsetHeight
+					top: offsetTop
 
 
 
 # ===============
 # PRIVATE METHODS
+_onScroll = ->
+	_lastScrollY = if event.target.nodeName is '#document' then event.target.body.scrollTop else event.target.scrollTop
+	_requestTick.call @
+
+_requestTick = ->
+	if not _ticking
+		requestAnimationFrame(@spy)
+		_ticking = true
+
 _activateItem = ( itemNumber ) ->
 	for el in @elements
 		@_removeClass '_active_', el.element
-		@_removeClass '_active_', el.element.parent
+		parent = el.element.parentNode
+		@_removeClass '_active_', parent
+		while parent? and parent = parent.parentNode
+			if parent.nodeName is 'LI' then @_removeClass '_active_', parent
 
 	@_addClass '_active_', @elements[itemNumber].element
-	@_addClass '_active_', @elements[itemNumber].element.parent
+
+	parent = @elements[itemNumber].element.parentNode
+	@_addClass '_active_', parent
+	while parent? and parent = parent.parentNode
+		if parent.nodeName is 'LI' then @_addClass '_active_', parent
 
 
 _deactivateItem = ( itemNumber ) ->
 	@_removeClass '_active_', @elements[itemNumber].element
-	@_removeClass '_active_', @elements[itemNumber].element.parent
+	@_removeClass '_active_', @elements[itemNumber].element.parentNode
 
 
 _spy = ( event ) ->
 	i = 0
 	while i < @elements.length
-		if (@elements[i].top <= (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset <= @elements[i].top + @elements[i].height )
+		if (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i].top + @elements[i].height )
 			if not @_hasClass '_active_', @elements[i].element
 				_activateItem.call @, i
 		else
-			if @_hasClass('_active_', @elements[i].element) and (event.currentTarget.scrollTop or event.currentTarget.scrollY) + @options.offset < @elements[i].top + @elements[i].height
+			if @_hasClass('_active_', @elements[i].element) and _lastScrollY + @options.offset < @elements[i].top + @elements[i].height
 				_deactivateItem.call @, i
 		i++
+
+	_ticking = no
 
 _beforeactivate = ->
 	if @beforeactive?
@@ -153,7 +177,7 @@ _beforeactivate = ->
 		_activate.call @
 
 _activate = ->
-	@_addEventListener @scroller, 'scroll', @spy
+	@_addEventListener @scroller, 'scroll', @onScroll
 	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
 	@started = yes
@@ -176,7 +200,7 @@ _beforedeactivate = ->
 		_deactivate.call @
 
 _deactivate = ->
-	@_removeEventListener @scroller, 'scroll', @spy
+	@_removeEventListener @scroller, 'scroll', @onScroll
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
 	@started = no
@@ -185,23 +209,25 @@ _deactivate = ->
 window['Scrollspy'] = Scrollspy
 window['mkitScrollspy'] = ( options ) ->
 	result = null
-	if not @dataset? then @dataset = {}
 
-	unless @dataset['kitScrollspy']
+	if not @data? then @data = {}
+
+	unless @data['kitScrollspy']
 		result = new Scrollspy @, options
-		@dataset['kitScrollspy'] = result
+		@data['kitScrollspy'] = result
 
 	else
 		if typeof options is 'object'
-			@dataset['kitScrollspy']._setOptions options
+			@data['kitScrollspy']._setOptions options
 		else
 			if typeof options is "string" and options.charAt(0) isnt "_"
-				@dataset['kitScrollspy'][options]
+				@data['kitScrollspy'][options]
 
-		result = @dataset['kitScrollspy']
+		result = @data['kitScrollspy']
 
 	return result
 
+if Element? then Element::scrollspy = window['mkitScrollspy']
 
 	# =============== Public methods
 
