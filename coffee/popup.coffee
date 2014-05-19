@@ -20,20 +20,20 @@ class Popup extends MaxmertkitHelpers
 			# String; spy type, needed to autoinitialize modals by attribute data-toggle
 			toggle: @el.getAttribute( 'data-toggle' ) or _name
 
-			# String; selector of modal window element, searching globally in the DOM
+			# String; selector of popup element, searching globally in the DOM
 			target: @el.getAttribute( 'data-target' ) or null
 
-			# String; selector inside target for modal dialog
+			# String; selector inside target for popup dialog
 			dialog: @el.getAttribute( 'data-dialog' ) or ".-content"
 
-			# String; event to interact with button to open window
+			# String; event to interact with button to open popup
 			event: @el.getAttribute( 'data-event' ) or "click"
 
-			# String; event to interact with closer element to close window
+			# String; event to interact with closer element to close popup
 			# Closer element should be anywhere in the DOM with attribute data-dismiss="target-selector", it will automatically initialize
 			eventClose: @el.getAttribute( 'data-event-close' ) or "click"
 
-			# Boolean; open modal after initialize
+			# Boolean; open popup after initialize
 			autoOpen: @el.getAttribute('data-autoopen') or no
 
 			position:

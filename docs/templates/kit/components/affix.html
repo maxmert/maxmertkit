@@ -11,7 +11,7 @@
 
 
 	<div class="-row example-block">
-<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.affix-selector').affix()
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">document.querySelector("#affix-el").affix({ offset: -25 })
 </pre></div>
 
 </div>
@@ -30,14 +30,14 @@
 	<tbody>
 		<tr>
 			<td>spy</td>
-			<td><i>@$el.data('spy') or 'affix'</i></td>
+			<td><i>@el.getAttribute('data-spy') or 'affix'</i></td>
 			<td>
-				To automatically find affix elements and make them active.
+				Set type of spying
 			</td>
 		</tr>
 		<tr>
 			<td>offset</td>
-			<td><i>5</i></td>
+			<td><i>@el.getAttribute( 'data-offset' ) or 5</i></td>
 			<td>
 				In <code>px</code>. Affix's block offset from top.
 			</td>
@@ -48,22 +48,16 @@
 
 <h2>Methods</h2>
 
-<blockquote class="-primary-">
-	Inside each method to affix element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the affix element <code>@data('kit-affix')</code> or <code>this.data('kit-affix')</code> in js.
-</blockquote>
-
 <table class="-table _horizontal_">
 	<thead>
 		<tr>
 			<th>Method</th>
-			<th>Default</th>
 			<th>Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td><b>start</b></td>
-			<td></td>
 			<td>
 				<p>Activate affix</p>
 			</td>
@@ -71,27 +65,40 @@
 
 		<tr>
 			<td><b>stop</b></td>
-			<td></td>
 			<td>
 				<p>Deativate affix</p>
 			</td>
 		</tr>
+	</tbody>
+</table>
 
+
+<h2>Events</h2>
+
+<blockquote class="-primary-">
+	Inside each event function of affix element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the affix element <code>@data['kitAffix']</code> or <code>this.data['kitAffix']</code> in js.
+</blockquote>
+
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Event</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
 		<tr>
 			<td><b>beforeactive</b></td>
-			<td><i>undefined</i></td>
 			<td>
-				<p>Set a function to call it before start affix. If it returns <code>deferred.promise()</code>, then affix will not start till <code>deferred.resolve()</code>, and woun't start at all if <code>deferred.reject()</code>. You can just get data with $.ajax() for your affix block.</p>
-				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.affix').affix
+				<p>Set a function to call it before start affix. If it returns <code>deferred.promise()</code>, then affix will not start till <code>deferred.resolve()</code>, and woun't start at all if <code>deferred.reject()</code>. You can just get data with ajax for your affix block.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">el.affix
 	beforeactive: ->
 		d = $.Deferred()
 
 		console.log @
-		# The affix dom element will be in the log
-		# so you can add something like
-		@addClass '_do_something_'
+		# The affix DOM element will be in the log
 
-		console.log @data 'kit-affix'
+		console.log @data['kitAffix']
 		# The instance of Affix class will in log
 
 		# Do something here before start affix
@@ -109,25 +116,36 @@
 
 		<tr>
 			<td><b>onactive</b></td>
-			<td><i>undefined</i></td>
 			<td>
 				<p>Set a function to call it after affix started.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>beforeunactive</b></td>
-			<td><i>undefined</i></td>
+			<td><b>failactive</b></td>
+			<td>
+				<p>Set a function to call it if starting failed.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforedeactive</b></td>
 			<td>
 				<p>Call this function before affix stopped.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>onunactive</b></td>
-			<td><i>undefined</i></td>
+			<td><b>ondeactive</b></td>
 			<td>
 				<p>Call this function after affix stopped.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>faildeactive</b></td>
+			<td>
+				<p>Set a function to call it if stopping failed.</p>
 			</td>
 		</tr>
 	</tbody>

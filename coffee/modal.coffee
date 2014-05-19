@@ -42,7 +42,7 @@ class Modal extends MaxmertkitHelpers
 			autoOpen: @el.getAttribute('data-autoopen') or no
 
 			# Boolean; close other instances of Modal when current is opening
-			selfish: yes
+			selfish: @el.getAttribute('data-selfish') or yes
 
 
 			# Events

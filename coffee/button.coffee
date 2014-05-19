@@ -30,7 +30,7 @@ class Button extends MaxmertkitHelpers
 			event: @el.getAttribute( 'data-event' ) or "click"
 
 			# Boolean; if yes, then deactivate ALL instances of class Button
-			selfish: no
+			selfish: @el.getAttribute( 'data-selfish' ) or no
 
 			# Events
 			beforeactive: ->

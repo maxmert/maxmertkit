@@ -9,7 +9,7 @@
 				Use widget class <code>-modal</code> to add backdrop. Inside this backdrop add <code>-holder</code> to set dialog window in the center. Inside <code>-holder</code> add <code>-dialog</code> to create dialog window. Use <code>-header</code>, <code>-content</code> and <code>-footer</code> inside.
 			</p>
 			<p>
-				To set animation to the dialog window add animation name: <code>-fadein--</code>, <code>-fall--</code>, <code>-fliphorizontal--</code>, <code>-flopvertical--</code>, <code>-slidein--</code>, <code>-scalein--</code>, <code>-newspaper--</code>. To add <b>elastic effect</b> just add <code>-elastic--</code> to the animation class – <code>-fall-- -elastic--</code>
+				To set animation to the dialog window add animation name: <code>-fadein--</code>, <code>-fall--</code>, <code>-fliphorizontal--</code>, <code>-flopvertical--</code>, <code>-slidein--</code>, <code>-scalein--</code>, <code>-newspaper--</code>.
 			</p>
 		</div>
 		<div class="-col4">
@@ -21,12 +21,12 @@
 		<div class="-col4">
 			<h3>Coffescript</h3>
 			<p>Simple way:</p>
-			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal()</pre></p><p>More complicated:</p>
-			<p><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal
+			<p><pre hljs class="prettyprint lang-coffeescript">el.modal()</pre></p><p>More complicated:</p>
+			<p><pre hljs class="prettyprint lang-coffeescript">el.modal
 	target: '.modal123'
 	toggle: 'modal'
-	event: 'click.modal123'
-	eventClose: 'click.modal123'
+	event: 'click'
+	eventClose: 'click'
 	backdrop: yes</pre></p>
 		</div>
 	</div>
@@ -70,9 +70,9 @@
 	</div>
 </div>
 </div>
-<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal-fast').modal()
-$('.btn-modal123').modal
-	beforeopen: ->
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">doument.querySelector('.btn-modal-fast').modal()
+doument.querySelector('.btn-modal123').modal
+	beforeactive: ->
 		d = $.Deferred()
 
 		setTimeout ->
@@ -97,38 +97,66 @@ $('.btn-modal123').modal
 	</thead>
 	<tbody>
 		<tr>
-			<td>target</td>
-			<td><i>@$btn.data('target')</i></td>
+			<td>toggle</td>
+			<td><i>@el.getAttribute( 'data-toggle' ) or 'modal'</i></td>
 			<td>
-				Find element with this selector and work with it as a modal window. Changes button's data attributes
+				Set toggle type.
 			</td>
 		</tr>
 		<tr>
-			<td>toggle</td>
-			<td><i>@$btn.data('toggle') or 'modal'</i></td>
+			<td>target</td>
+			<td><i>@el.getAttribute( 'data-target' ) or null</i></td>
 			<td>
-				To automatically initialize this plugin without any javascript initialization. Changes button's data attributes. Just in case.
+				Find element with this selector and work with it as a modal window.
+			</td>
+		</tr>
+		<tr>
+			<td>dialog</td>
+			<td><i>@el.getAttribute( 'data-dialog' ) or ".-dialog"</i></td>
+			<td>
+				Selector to find dialog block inside target (modal window).
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
-			<td><i>click.#{@_name}</i></td>
+			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
 			<td>
-				This event will be used to open modal window; use namespaced events, for example <code>hover.modal</code> or <code>click.modal</code>
+				This event will be used to open modal window.</code>
 			</td>
 		</tr>
 		<tr>
 			<td>eventClose</td>
-			<td><i>click.#{@_name}</i></td>
+			<td><i>@el.getAttribute( 'data-event-close' ) or "click"</i></td>
 			<td>
-				This event will be used to close window; use namespaced events, will be bind on elements with <code>data-dismiss="modal"</code> inside this modal window
+				This event will be used to close window. Will listen on elements with <code>data-dismiss=".modal"</code> to close modal window with selector <code>.modal</code>.
 			</td>
 		</tr>
 		<tr>
 			<td>backdrop</td>
-			<td><i>no</i></td>
+			<td><i>@el.getAttribute('data-backdrop') or no</i></td>
 			<td>
-				Close modal window in click on the backdrop
+				Close modal window when clicked on the backdrop.
+			</td>
+		</tr>
+		<tr>
+			<td>push</td>
+			<td><i>@el.getAttribute('data-push') or no</i></td>
+			<td>
+				<b>NOT TESTED</b>. The selector of the container with WHOLE content, except modal window, to use push animation.
+			</td>
+		</tr>
+		<tr>
+			<td>autoOpen</td>
+			<td><i>@el.getAttribute('data-autoopen') or no</i></td>
+			<td>
+				Open modal after initialize.
+			</td>
+		</tr>
+		<tr>
+			<td>selfish</td>
+			<td><i>@el.getAttribute('data-selfish') or yes</i></td>
+			<td>
+				Close all Modal instances after current instance initialized.
 			</td>
 		</tr>
 	</tbody>
@@ -137,73 +165,124 @@ $('.btn-modal123').modal
 
 <h2>Methods</h2>
 
+<table class="-table _horizontal_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>open</b></td>
+			<td>
+				<p>Open modal window.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>close</b></td>
+			<td>
+				<p>Close modal window.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>enable</b></td>
+			<td>
+				<p>Start listening to the events.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>disable</b></td>
+			<td>
+				<p>Stop listening to the events. Modal window will stay in current status (opened or closed) and will not work anymore.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<h2>Events</h2>
 <blockquote class="-primary-">
-	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data('kit-modal')</code> or <code>this.data('kit-modal')</code> in js. To get modal window element do <code>@data('kit-modal').$el</code>.
+	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data['kitModal']</code> or <code>this.data['kitModal']</code> in js. To get modal window element do <code>@data['kitModal'].el</code>.
 </blockquote>
 
 <table class="-table _horizontal_">
 	<thead>
 		<tr>
 			<th>Method</th>
-			<th>Default</th>
 			<th>Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td><b>beforeopen</b></td>
-			<td><i>undefined</i></td>
+			<td><b>beforeactive</b></td>
 			<td>
-				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then modal window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with $.ajax() for modal window.</p>
-				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal123').modal
-	beforeopen: ->
-		d = $.Deferred()
+				<p>Set a function to call it before window opens. If it returns <code>deferred.promise()</code>, then modal window will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with ajax for modal window.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">modals = document.querySelectorAll("[data-toggle='modal']")
+for md in modals
+	md.modal
+		beforeopen: ->
+			d = $.Deferred()
 
-		console.log @
-		# The button will be in the log
-		# so you can add something like
-		@addClass '_disabled_'
-		# to disable button while getting data for modal window
+			console.log @
+			# The button will be in the log
+			# so you can add something like
 
-		console.log @data 'kit-modal'
-		# The instance of Modal class will in log
-		# so to get modal window element you need to do
-		@data('kit-modal').$el.addClass '_disabled_'
+			console.log @data['kitModal']
+			# The instance of Modal class will in log
+			# so to get modal window element you need to do
+			modal = @data['kitModal']
+			# From now you can access to the button by
+			console.log modal.el
+			# And to the modal window element by
+			console.log modal.target
 
-		# Do something here before open window
-		# in this case it will open modal window after 2 seconds
-		setTimeout ->
-			d.resolve()
-		, 2000
-		# End of your code
+			# Do something here before open window
+			# in this case it will open modal window after 2 seconds
+			setTimeout ->
+				d.resolve()
+			, 2000
+			# End of your code
 
-		d.promise()
+			d.promise()
 </pre></p>
 			</td>
 		</tr>
 
 
 		<tr>
-			<td><b>onopen</b></td>
-			<td><i>undefined</i></td>
+			<td><b>onactive</b></td>
 			<td>
 				<p>Set a function to call it after modal window opens.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>beforeclose</b></td>
-			<td><i>undefined</i></td>
+			<td><b>failactive</b></td>
+			<td>
+				<p>Set a function to call it if activation failed.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforedeactive</b></td>
 			<td>
 				<p>Call this function before modal window closes.</p>
 			</td>
 		</tr>
 
 		<tr>
-			<td><b>onclose</b></td>
-			<td><i>undefined</i></td>
+			<td><b>ondeactive</b></td>
 			<td>
 				<p>Call this function after modal window closes.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>faildeactive</b></td>
+			<td>
+				<p>Set a function to call it if activation failed.</p>
 			</td>
 		</tr>
 	</tbody>
@@ -277,8 +356,9 @@ $('.btn-modal123').modal
 </div>
 </pre></div>
 
-<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">$('.btn-modal-fast').modal()
-# Just once
+<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">modals = doument.querySelectorAll('.btn-modal-fast')
+for modal in modals
+	modal.modal()
 </pre></div>
 
 </div>
