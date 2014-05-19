@@ -196,6 +196,10 @@ exports.widgets = [
 				name: "blocks"
 				path: "buttonsBlocks"
 			}
+			{
+				name: "bordered"
+				path: "buttonsBordered"
+			}
 		]
 	}
 	{
