@@ -1,3 +1,13 @@
+getInternetExplorerVersion = ->
+	rv = -1 # Return value assumes failure.
+	if navigator.appName is "Microsoft Internet Explorer"
+		ua = navigator.userAgent
+		re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")
+		rv = parseFloat(RegExp.$1)	if re.exec(ua)?
+	else
+		rv = 0
+	rv
+
 Backbone.Marionette.Renderer.render = (template, data) ->
 	Mustache.to_html(template, data);
 
@@ -20,9 +30,14 @@ $.app.addInitializer ->
 	$.app.router.on 'route', ->
 		$.app.vent.trigger 'route'
 
-	Backbone.history.start
-		pushState: yes
-		silent: off
+	ver = getInternetExplorerVersion()
+	if ver >= 9.0 or ver is 0
+		Backbone.history.start
+			pushState: yes
+			silent: off
+
+	else
+		$('#app').html $.app.templates.upgradeBrowser
 
 	# Make all hrefs use Backbone history and router
 	$(document).on "click", "a:not([data-bypass])", (evt) ->

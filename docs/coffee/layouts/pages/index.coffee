@@ -158,7 +158,7 @@ exports.module = Marionette.Layout.extend
         active = @seriesModel.get 'active'
         themeActive = @seriesModel.get 'themeActive'
         sizeActive = @seriesModel.get 'sizeActive'
-        
+
         widgets = @seriesModel.get 'widgets'
         @seriesModel.set 'body', widgets[active].body
         @seriesModel.set 'name', widgets[active].name

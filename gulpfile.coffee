@@ -179,7 +179,7 @@ gulp.task 'kitTodo', ->
 gulp.task 'docsVendor', ->
 
 	files = [
-		"#{path.docs.front.vendor.bower}/jquery/dist/jquery.min.js"
+		# "#{path.docs.front.vendor.bower}/jquery/dist/jquery.min.js"
 		"#{path.docs.front.vendor.bower}/underscore/underscore.js"
 		"#{path.docs.front.vendor.bower}/backbone/backbone.js"
 		"#{path.docs.front.vendor.bower}/backbone.babysitter/lib/backbone.babysitter.js"
