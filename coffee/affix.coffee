@@ -26,6 +26,9 @@ class Affix extends MaxmertkitHelpers
 			# Number; in px, vertical offset from the top
 			offset: @el.getAttribute( 'data-offset' ) or 5
 
+			# Boolean; on spying on mobile devices
+			onMobile: @el.getAttribute( 'data-on-mobile' ) or no
+
 			# Events
 			beforeactive: ->
 			onactive: ->
