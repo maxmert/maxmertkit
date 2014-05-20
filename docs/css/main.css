@@ -14279,26 +14279,33 @@ bdo[dir="rtl"] {
   -moz-transition: background-size 0.2s ease;
   transition: background-size 0.2s ease;
   background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
-  background: linear-gradient(black, black) center 1.09em no-repeat;
+  background: linear-gradient(black, black) no-repeat scroll center 1.09em transparent;
+  background: -moz-linear-gradient(black, black) no-repeat scroll center 0.9em transparent;
   background-size: 85% 1px !important; }
   .-link-hang.-default-, b .-link-hang, strong .-link-hang, i .-link-hang, em .-link-hang, small .-link-hang, p .-link-hang, span .-link-hang, b.-default- .-link-hang, strong.-default- .-link-hang, i.-default- .-link-hang, em.-default- .-link-hang, small.-default- .-link-hang, p.-default- .-link-hang, span.-default- .-link-hang {
     background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
-    background: linear-gradient(black, black) center 1.09em no-repeat; }
+    background: linear-gradient(black, black) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(black, black) no-repeat scroll center 0.9em transparent; }
   .-link-hang.-primary-, b.-primary- .-link-hang, strong.-primary- .-link-hang, i.-primary- .-link-hang, em.-primary- .-link-hang, small.-primary- .-link-hang, p.-primary- .-link-hang, span.-primary- .-link-hang {
     background: -webkit-linear-gradient(#3598db, #3598db) center 1.09em no-repeat;
-    background: linear-gradient(#3598db, #3598db) center 1.09em no-repeat; }
+    background: linear-gradient(#3598db, #3598db) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(#3598db, #3598db) no-repeat scroll center 0.9em transparent; }
   .-link-hang.-error-, b.-error- .-link-hang, strong.-error- .-link-hang, i.-error- .-link-hang, em.-error- .-link-hang, small.-error- .-link-hang, p.-error- .-link-hang, span.-error- .-link-hang {
     background: -webkit-linear-gradient(#cd2c24, #cd2c24) center 1.09em no-repeat;
-    background: linear-gradient(#cd2c24, #cd2c24) center 1.09em no-repeat; }
+    background: linear-gradient(#cd2c24, #cd2c24) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(#cd2c24, #cd2c24) no-repeat scroll center 0.9em transparent; }
   .-link-hang.-info-, b.-info- .-link-hang, strong.-info- .-link-hang, i.-info- .-link-hang, em.-info- .-link-hang, small.-info- .-link-hang, p.-info- .-link-hang, span.-info- .-link-hang {
     background: -webkit-linear-gradient(#2fdcd5, #2fdcd5) center 1.09em no-repeat;
-    background: linear-gradient(#2fdcd5, #2fdcd5) center 1.09em no-repeat; }
+    background: linear-gradient(#2fdcd5, #2fdcd5) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(#2fdcd5, #2fdcd5) no-repeat scroll center 0.9em transparent; }
   .-link-hang.-warning-, b.-warning- .-link-hang, strong.-warning- .-link-hang, i.-warning- .-link-hang, em.-warning- .-link-hang, small.-warning- .-link-hang, p.-warning- .-link-hang, span.-warning- .-link-hang {
     background: -webkit-linear-gradient(#ffc43e, #ffc43e) center 1.09em no-repeat;
-    background: linear-gradient(#ffc43e, #ffc43e) center 1.09em no-repeat; }
+    background: linear-gradient(#ffc43e, #ffc43e) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(#ffc43e, #ffc43e) no-repeat scroll center 0.9em transparent; }
   .-link-hang.-dark-, b.-dark- .-link-hang, strong.-dark- .-link-hang, i.-dark- .-link-hang, em.-dark- .-link-hang, small.-dark- .-link-hang, p.-dark- .-link-hang, span.-dark- .-link-hang {
     background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
-    background: linear-gradient(black, black) center 1.09em no-repeat; }
+    background: linear-gradient(black, black) no-repeat scroll center 1.09em transparent;
+    background: -moz-linear-gradient(black, black) no-repeat scroll center 0.9em transparent; }
   .-link-hang._small, b._small .-link-hang, strong._small .-link-hang, i._small .-link-hang, em._small .-link-hang, small._small .-link-hang, p._small .-link-hang, span._small .-link-hang {
     background-size: 85% 0.5px !important; }
     .-link-hang._small:hover, b._small .-link-hang:hover, strong._small .-link-hang:hover, i._small .-link-hang:hover, em._small .-link-hang:hover, small._small .-link-hang:hover, p._small .-link-hang:hover, span._small .-link-hang:hover {
@@ -15284,10 +15291,10 @@ fieldset {
   .-drop .-content + .-content {
     border-top-color: #e6e6e6; }
   .-drop._bottom_:before, .-drop._top_:before {
-    background-image: -webkit-linear-gradient( right right, transparent 0%, #d9d9d9 50%, transparent 100%);
+    background-image: -webkit-linear-gradient( right , transparent 0%, #d9d9d9 50%, transparent 100%);
     background-image: linear-gradient(to left, transparent 0%, #d9d9d9 50%, transparent 100%); }
   .-drop._left_:before, .-drop._right_:before {
-    background-image: -webkit-linear-gradient( top top, transparent 0%, #d9d9d9 50%, transparent 100%);
+    background-image: -webkit-linear-gradient( top , transparent 0%, #d9d9d9 50%, transparent 100%);
     background-image: linear-gradient(to bottom, transparent 0%, #d9d9d9 50%, transparent 100%); }
   .-drop._bottom_ .-arrow {
     height: 0;
@@ -15322,10 +15329,10 @@ fieldset {
     .-drop.-default- .-content + .-content {
       border-top-color: #e6e6e6; }
     .-drop.-default-._bottom_:before, .-drop.-default-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, #d9d9d9 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, #d9d9d9 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #d9d9d9 50%, transparent 100%); }
     .-drop.-default-._left_:before, .-drop.-default-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, #d9d9d9 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, #d9d9d9 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, #d9d9d9 50%, transparent 100%); }
     .-drop.-default-._bottom_ .-arrow {
       height: 0;
@@ -15361,10 +15368,10 @@ fieldset {
     .-drop.-primary- .-content + .-content {
       border-top-color: #e2f0fa; }
     .-drop.-primary-._bottom_:before, .-drop.-primary-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, #3598db 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, #3598db 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #3598db 50%, transparent 100%); }
     .-drop.-primary-._left_:before, .-drop.-primary-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, #3598db 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, #3598db 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, #3598db 50%, transparent 100%); }
     .-drop.-primary-._bottom_ .-arrow {
       height: 0;
@@ -15400,10 +15407,10 @@ fieldset {
     .-drop.-error- .-content + .-content {
       border-top-color: #f5cac8; }
     .-drop.-error-._bottom_:before, .-drop.-error-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, #cd2c24 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, #cd2c24 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #cd2c24 50%, transparent 100%); }
     .-drop.-error-._left_:before, .-drop.-error-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, #cd2c24 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, #cd2c24 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, #cd2c24 50%, transparent 100%); }
     .-drop.-error-._bottom_ .-arrow {
       height: 0;
@@ -15439,10 +15446,10 @@ fieldset {
     .-drop.-info- .-content + .-content {
       border-top-color: #def9f8; }
     .-drop.-info-._bottom_:before, .-drop.-info-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, #2fdcd5 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, #2fdcd5 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #2fdcd5 50%, transparent 100%); }
     .-drop.-info-._left_:before, .-drop.-info-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, #2fdcd5 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, #2fdcd5 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, #2fdcd5 50%, transparent 100%); }
     .-drop.-info-._bottom_ .-arrow {
       height: 0;
@@ -15478,10 +15485,10 @@ fieldset {
     .-drop.-warning- .-content + .-content {
       border-top-color: white; }
     .-drop.-warning-._bottom_:before, .-drop.-warning-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, #ffc43e 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, #ffc43e 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #ffc43e 50%, transparent 100%); }
     .-drop.-warning-._left_:before, .-drop.-warning-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, #ffc43e 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, #ffc43e 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, #ffc43e 50%, transparent 100%); }
     .-drop.-warning-._bottom_ .-arrow {
       height: 0;
@@ -15517,10 +15524,10 @@ fieldset {
     .-drop.-dark- .-content + .-content {
       border-top-color: #666666; }
     .-drop.-dark-._bottom_:before, .-drop.-dark-._top_:before {
-      background-image: -webkit-linear-gradient( right right, transparent 0%, black 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( right , transparent 0%, black 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, black 50%, transparent 100%); }
     .-drop.-dark-._left_:before, .-drop.-dark-._right_:before {
-      background-image: -webkit-linear-gradient( top top, transparent 0%, black 50%, transparent 100%);
+      background-image: -webkit-linear-gradient( top , transparent 0%, black 50%, transparent 100%);
       background-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%); }
     .-drop.-dark-._bottom_ .-arrow {
       height: 0;
