@@ -5,7 +5,7 @@
 @import "sizes"
 @import "themes"
 
-@mixin buttons-theme-button-bordered-setter($theme)
+@mixin buttons-theme-button-ghost-setter($theme)
 	$name: map-get( $theme, name)
 	$color: map-get( $theme, color)
 	$white-color: map-get( $theme, white-color)
@@ -47,41 +47,41 @@
 
 
 
-@mixin button-bordered-size-setter($size)
+@mixin button-ghost-size-setter($size)
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	border-width: $multiplier * $button-bordered-border-width
+	border-width: $multiplier * $button-ghost-border-width
 	font-size: $multiplier * $base-font-size
 
 
 
 
-@include exports("buttons/bordered/common")
+@include exports("buttons/ghost/common")
 
-	.#{$button-bordered-class}
+	.#{$button-ghost-class}, .-btn-bordered
 		@extend .#{$button-class}
 
-		border-radius: $button-bordered-border-radius
+		border-radius: $button-ghost-border-radius
 
-		font-weight: $button-bordered-font-weight
+		font-weight: $button-ghost-font-weight
 
 		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
 			@if $themeName == default
-				@include buttons-theme-button-bordered-setter($thm)
+				@include buttons-theme-button-ghost-setter($thm)
 			&.-#{$themeName}-
-				@include buttons-theme-button-bordered-setter($thm)
+				@include buttons-theme-button-ghost-setter($thm)
 
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
-				@include button-bordered-size-setter($sz)
+				@include button-ghost-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size / 2
 			&._#{$sizeName}
-				@include button-bordered-size-setter($sz)
+				@include button-ghost-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size
 	//
 	// a.#{$button-class}

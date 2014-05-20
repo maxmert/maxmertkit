@@ -197,8 +197,8 @@ exports.widgets = [
 				path: "buttonsBlocks"
 			}
 			{
-				name: "bordered"
-				path: "buttonsBordered"
+				name: "ghost"
+				path: "buttonsGhost"
 			}
 		]
 	}
@@ -305,8 +305,8 @@ exports.widgets = [
 				path: "spinnersSquare"
 			}
 			{
-				name: "circle"
-				path: "spinnersCircle"
+				name: "ring"
+				path: "spinnersRing"
 			}
 			{
 				name: "fb"
