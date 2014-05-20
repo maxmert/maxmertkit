@@ -6,6 +6,7 @@ _id = 0
 
 _lastScrollY = 0
 _ticking = no
+_resizingTick = no
 
 MaxmertkitHelpers = window['MaxmertkitHelpers']
 
@@ -47,6 +48,10 @@ class Affix extends MaxmertkitHelpers
 		@container = @_getContainer()
 		@onScroll = _onScroll.bind(@)
 		@setPosition = _setPosition.bind(@)
+		@onResize = _onResize.bind(@)
+		@resizing = _resizing.bind(@)
+
+		@_addEventListener window, 'resize', @onResize
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
@@ -55,7 +60,7 @@ class Affix extends MaxmertkitHelpers
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
-		@start()
+		if (not (not @options.onMobile and _getWindowSize().width < 992)) then @start()
 
 	destroy: ->
 		_deactivate.call @
@@ -90,6 +95,45 @@ class Affix extends MaxmertkitHelpers
 
 # ===============
 # PRIVATE METHODS
+_onResize = ->
+	_requestResize.call @
+
+_requestResize = ->
+	if not _resizingTick
+		requestAnimationFrame(@resizing)
+		_resizingTick = true
+
+_resizing = ->
+	if not @options.onMobile
+		if _getWindowSize().width < 992
+			@stop()
+			_setPositionRelative.call @
+		else
+			@start()
+
+	_resizingTick = false
+
+_getWindowSize = ->
+	clientWidth = 0
+	clientHeight = 0
+	if typeof (window.innerWidth) is "number"
+		
+		#Non-IE
+		clientWidth = window.innerWidth
+		clientHeight = window.innerHeight
+	else if document.documentElement and (document.documentElement.clientWidth or document.documentElement.clientHeight)
+		
+		#IE 6+ in 'standards compliant mode'
+		clientWidth = document.documentElement.clientWidth
+		clientHeight = document.documentElement.clientHeight
+	else if document.body and (document.body.clientWidth or document.body.clientHeight)
+		
+		#IE 4 compatible
+		clientWidth = document.body.clientWidth
+		clientHeight = document.body.clientHeight
+	
+	width: clientWidth
+	height: clientHeight
 
 _onScroll = ( event ) ->
 	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
@@ -151,6 +195,26 @@ _deactivate = ->
 	@ondeactive?.call @el
 	@started = no
 
+_setPositionFixed = ->
+	@el.style.width = @el.offsetWidth
+	@el.style.position = 'fixed'
+	top = @options.offset
+	try
+		style = @el.currentStyle or getComputedStyle(@el)
+	if style?
+		if style.marginTop? and style.marginTop isnt '' then top += parseInt(style.marginTop)
+	@el.style.top = "#{@options.offset}px"
+	@el.style.bottom = 'auto'
+
+_setPositionRelative = ->
+	@el.style.position = 'relative'
+	@el.style.top = 'inherit'
+
+_setPositionAbsolute = ->
+	@el.style.position = 'absolute'
+	@el.style.top = 'auto'
+	@el.style.bottom = "#{@options.offset}px"
+	@el.style.width = @el.offsetWidth
 
 _setPosition = ->
 	containerTop = @container.offsetTop
@@ -158,26 +222,14 @@ _setPosition = ->
 	if containerTop - @options.offset <= _lastScrollY
 		if containerTop + @CONTAINER_HEIGHT - @options.offset - @HEIGHT  >= _lastScrollY
 			if @el.style.position isnt 'fixed'
-				@el.style.width = @el.offsetWidth
-				@el.style.position = 'fixed'
-				top = @options.offset
-				try
-					style = @el.currentStyle or getComputedStyle(@el)
-				if style?
-					if style.marginTop? and style.marginTop isnt '' then top += parseInt(style.marginTop)
-				@el.style.top = "#{@options.offset}px"
-				@el.style.bottom = 'auto'
+				_setPositionFixed.call @
 		else
 			if @el.style.position isnt 'absolute'
 				if containerTop + @CONTAINER_HEIGHT - @options.offset - @HEIGHT  < _lastScrollY + @HEIGHT
-					@el.style.position = 'absolute'
-					@el.style.top = 'auto'
-					@el.style.bottom = "#{@options.offset}px"
-					@el.style.width = @el.offsetWidth
+					_setPositionAbsolute.call @
 	else
 		if @el.style.position isnt 'relative'
-			@el.style.position = 'relative'
-			@el.style.top = 'inherit'
+			_setPositionRelative.call @
 
 	_ticking = false
 

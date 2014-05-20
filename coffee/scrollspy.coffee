@@ -59,6 +59,8 @@ class Scrollspy extends MaxmertkitHelpers
 
 		super @el, @options
 
+		@_addEventListener window, 'resize', @onResize
+
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
 		@reactor.registerEvent "start.#{_name}"
@@ -66,7 +68,7 @@ class Scrollspy extends MaxmertkitHelpers
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
-		@start()
+		if (not (not @options.onMobile and _getWindowSize().width < 992)) then @start()
 
 	destroy: ->
 		_deactivate.call @
@@ -122,7 +124,7 @@ _requestResize = ->
 _resizing = ->
 	@refresh()
 
-	if @options.onMobile
+	if not @options.onMobile
 		if _getWindowSize().width < 992
 			@stop()
 			_deactivateAllItems.call @
@@ -219,7 +221,6 @@ _beforeactivate = ->
 
 _activate = ->
 	@_addEventListener @scroller, 'scroll', @onScroll
-	@_addEventListener window, 'resize', @onResize
 	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
 	@started = yes
@@ -243,7 +244,6 @@ _beforedeactivate = ->
 
 _deactivate = ->
 	@_removeEventListener @scroller, 'scroll', @onScroll
-	@_removeEventListener window, 'resize', @onResize
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
 	@started = no
