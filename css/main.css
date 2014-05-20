@@ -15665,18 +15665,34 @@ fieldset {
       padding-right: 4px; }
   .-btn._small, ._small.-btn-ghost, ._small.-btn-bordered, .-group._small .-btn, .-group._small .-btn-ghost, .-group._small .-btn-bordered, .-navbar._small .-btn, ._small.-navbar-float .-btn, .-navbar._small .-btn-ghost, ._small.-navbar-float .-btn-ghost, .-navbar._small .-btn-bordered, ._small.-navbar-float .-btn-bordered {
     font-size: 7px; }
+    .-btn._small._round_, ._small._round_.-btn-ghost, ._small._round_.-btn-bordered, .-group._small ._round_.-btn, .-group._small ._round_.-btn-ghost, .-group._small ._round_.-btn-bordered, .-navbar._small ._round_.-btn, ._small.-navbar-float ._round_.-btn, .-navbar._small ._round_.-btn-ghost, ._small.-navbar-float ._round_.-btn-ghost, .-navbar._small ._round_.-btn-bordered, ._small.-navbar-float ._round_.-btn-bordered {
+      border-radius: 12px; }
   .-btn._minor, ._minor.-btn-ghost, ._minor.-btn-bordered, .-group._minor .-btn, .-group._minor .-btn-ghost, .-group._minor .-btn-bordered, .-navbar._minor .-btn, ._minor.-navbar-float .-btn, .-navbar._minor .-btn-ghost, ._minor.-navbar-float .-btn-ghost, .-navbar._minor .-btn-bordered, ._minor.-navbar-float .-btn-bordered {
     font-size: 10.5px; }
+    .-btn._minor._round_, ._minor._round_.-btn-ghost, ._minor._round_.-btn-bordered, .-group._minor ._round_.-btn, .-group._minor ._round_.-btn-ghost, .-group._minor ._round_.-btn-bordered, .-navbar._minor ._round_.-btn, ._minor.-navbar-float ._round_.-btn, .-navbar._minor ._round_.-btn-ghost, ._minor.-navbar-float ._round_.-btn-ghost, .-navbar._minor ._round_.-btn-bordered, ._minor.-navbar-float ._round_.-btn-bordered {
+      border-radius: 15.5px; }
+  .-btn._round_, ._round_.-btn-ghost, ._round_.-btn-bordered {
+    border-radius: 19px; }
   .-btn._normal, ._normal.-btn-ghost, ._normal.-btn-bordered, .-group._normal .-btn, .-group._normal .-btn-ghost, .-group._normal .-btn-bordered, .-navbar._normal .-btn, ._normal.-navbar-float .-btn, .-navbar._normal .-btn-ghost, ._normal.-navbar-float .-btn-ghost, .-navbar._normal .-btn-bordered, ._normal.-navbar-float .-btn-bordered {
     font-size: 14px; }
+    .-btn._normal._round_, ._normal._round_.-btn-ghost, ._normal._round_.-btn-bordered, .-group._normal ._round_.-btn, .-group._normal ._round_.-btn-ghost, .-group._normal ._round_.-btn-bordered, .-navbar._normal ._round_.-btn, ._normal.-navbar-float ._round_.-btn, .-navbar._normal ._round_.-btn-ghost, ._normal.-navbar-float ._round_.-btn-ghost, .-navbar._normal ._round_.-btn-bordered, ._normal.-navbar-float ._round_.-btn-bordered {
+      border-radius: 19px; }
   .-btn._major, ._major.-btn-ghost, ._major.-btn-bordered, .-group._major .-btn, .-group._major .-btn-ghost, .-group._major .-btn-bordered, .-navbar._major .-btn, ._major.-navbar-float .-btn, .-navbar._major .-btn-ghost, ._major.-navbar-float .-btn-ghost, .-navbar._major .-btn-bordered, ._major.-navbar-float .-btn-bordered {
     font-size: 17.5px; }
+    .-btn._major._round_, ._major._round_.-btn-ghost, ._major._round_.-btn-bordered, .-group._major ._round_.-btn, .-group._major ._round_.-btn-ghost, .-group._major ._round_.-btn-bordered, .-navbar._major ._round_.-btn, ._major.-navbar-float ._round_.-btn, .-navbar._major ._round_.-btn-ghost, ._major.-navbar-float ._round_.-btn-ghost, .-navbar._major ._round_.-btn-bordered, ._major.-navbar-float ._round_.-btn-bordered {
+      border-radius: 22.5px; }
   .-btn._big, ._big.-btn-ghost, ._big.-btn-bordered, .-group._big .-btn, .-group._big .-btn-ghost, .-group._big .-btn-bordered, .-navbar._big .-btn, ._big.-navbar-float .-btn, .-navbar._big .-btn-ghost, ._big.-navbar-float .-btn-ghost, .-navbar._big .-btn-bordered, ._big.-navbar-float .-btn-bordered {
     font-size: 21px; }
+    .-btn._big._round_, ._big._round_.-btn-ghost, ._big._round_.-btn-bordered, .-group._big ._round_.-btn, .-group._big ._round_.-btn-ghost, .-group._big ._round_.-btn-bordered, .-navbar._big ._round_.-btn, ._big.-navbar-float ._round_.-btn, .-navbar._big ._round_.-btn-ghost, ._big.-navbar-float ._round_.-btn-ghost, .-navbar._big ._round_.-btn-bordered, ._big.-navbar-float ._round_.-btn-bordered {
+      border-radius: 26px; }
   .-btn._huge, ._huge.-btn-ghost, ._huge.-btn-bordered, .-group._huge .-btn, .-group._huge .-btn-ghost, .-group._huge .-btn-bordered, .-navbar._huge .-btn, ._huge.-navbar-float .-btn, .-navbar._huge .-btn-ghost, ._huge.-navbar-float .-btn-ghost, .-navbar._huge .-btn-bordered, ._huge.-navbar-float .-btn-bordered {
     font-size: 24.5px; }
+    .-btn._huge._round_, ._huge._round_.-btn-ghost, ._huge._round_.-btn-bordered, .-group._huge ._round_.-btn, .-group._huge ._round_.-btn-ghost, .-group._huge ._round_.-btn-bordered, .-navbar._huge ._round_.-btn, ._huge.-navbar-float ._round_.-btn, .-navbar._huge ._round_.-btn-ghost, ._huge.-navbar-float ._round_.-btn-ghost, .-navbar._huge ._round_.-btn-bordered, ._huge.-navbar-float ._round_.-btn-bordered {
+      border-radius: 29.5px; }
   .-btn._divine, ._divine.-btn-ghost, ._divine.-btn-bordered, .-group._divine .-btn, .-group._divine .-btn-ghost, .-group._divine .-btn-bordered, .-navbar._divine .-btn, ._divine.-navbar-float .-btn, .-navbar._divine .-btn-ghost, ._divine.-navbar-float .-btn-ghost, .-navbar._divine .-btn-bordered, ._divine.-navbar-float .-btn-bordered {
     font-size: 28px; }
+    .-btn._divine._round_, ._divine._round_.-btn-ghost, ._divine._round_.-btn-bordered, .-group._divine ._round_.-btn, .-group._divine ._round_.-btn-ghost, .-group._divine ._round_.-btn-bordered, .-navbar._divine ._round_.-btn, ._divine.-navbar-float ._round_.-btn, .-navbar._divine ._round_.-btn-ghost, ._divine.-navbar-float ._round_.-btn-ghost, .-navbar._divine ._round_.-btn-bordered, ._divine.-navbar-float ._round_.-btn-bordered {
+      border-radius: 33px; }
 
 a.-btn, a.-btn-ghost, a.-btn-bordered {
   font-weight: normal; }
