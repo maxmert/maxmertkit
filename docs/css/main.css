@@ -15116,6 +15116,9 @@ fieldset {
     bottom: 100%;
     left: 50%;
     margin-left: -7px; }
+  .-drop .-content + .-content {
+    border-top-width: 1px;
+    border-top-style: solid; }
   .-drop:before {
     content: " ";
     display: block;
@@ -15278,6 +15281,8 @@ fieldset {
   .-drop .-header {
     background-color: #d9d9d9;
     border-color: silver; }
+  .-drop .-content + .-content {
+    border-top-color: #e6e6e6; }
   .-drop._bottom_:before, .-drop._top_:before {
     background-image: -webkit-linear-gradient( right right, transparent 0%, #d9d9d9 50%, transparent 100%);
     background-image: linear-gradient(to left, transparent 0%, #d9d9d9 50%, transparent 100%); }
@@ -15314,6 +15319,8 @@ fieldset {
     .-drop.-default- .-header {
       background-color: #d9d9d9;
       border-color: silver; }
+    .-drop.-default- .-content + .-content {
+      border-top-color: #e6e6e6; }
     .-drop.-default-._bottom_:before, .-drop.-default-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, #d9d9d9 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #d9d9d9 50%, transparent 100%); }
@@ -15351,6 +15358,8 @@ fieldset {
       background-color: #3598db;
       border-color: #2486c9;
       color: white; }
+    .-drop.-primary- .-content + .-content {
+      border-top-color: #e2f0fa; }
     .-drop.-primary-._bottom_:before, .-drop.-primary-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, #3598db 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #3598db 50%, transparent 100%); }
@@ -15388,6 +15397,8 @@ fieldset {
       background-color: #cd2c24;
       border-color: #af251f;
       color: white; }
+    .-drop.-error- .-content + .-content {
+      border-top-color: #f5cac8; }
     .-drop.-error-._bottom_:before, .-drop.-error-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, #cd2c24 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #cd2c24 50%, transparent 100%); }
@@ -15425,6 +15436,8 @@ fieldset {
       background-color: #2fdcd5;
       border-color: #21c6bf;
       color: white; }
+    .-drop.-info- .-content + .-content {
+      border-top-color: #def9f8; }
     .-drop.-info-._bottom_:before, .-drop.-info-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, #2fdcd5 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #2fdcd5 50%, transparent 100%); }
@@ -15462,6 +15475,8 @@ fieldset {
       background-color: #ffc43e;
       border-color: #ffb91a;
       color: white; }
+    .-drop.-warning- .-content + .-content {
+      border-top-color: white; }
     .-drop.-warning-._bottom_:before, .-drop.-warning-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, #ffc43e 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, #ffc43e 50%, transparent 100%); }
@@ -15499,6 +15514,8 @@ fieldset {
       background-color: black;
       border-color: black;
       color: white; }
+    .-drop.-dark- .-content + .-content {
+      border-top-color: #666666; }
     .-drop.-dark-._bottom_:before, .-drop.-dark-._top_:before {
       background-image: -webkit-linear-gradient( right right, transparent 0%, black 50%, transparent 100%);
       background-image: linear-gradient(to left, transparent 0%, black 50%, transparent 100%); }
