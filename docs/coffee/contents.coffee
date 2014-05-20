@@ -307,6 +307,17 @@ exports.widgets = [
 		]
 	}
 	{
+		name: "comments"
+		path: "commentsCommon"
+		include: [
+			{
+				name: "common"
+				path: "commentsCommon"
+				invisible: yes
+			}
+		]
+	}
+	{
 		name: "spinners"
 		path: "spinnersCommon"
 		include: [
