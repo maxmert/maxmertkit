@@ -6,6 +6,12 @@ ModelSeries = require( '../../models/pages/index/series' ).model
 
 widgets = [
     {
+        name: '-avatar'
+        themes: mkit.avatars.common.themes
+        sizes: mkit.avatars.common.sizes
+        body: $.app.templates.common.pages.index.series.widgets.avatar
+    }
+    {
         name: '-btn'
         themes: mkit.buttons.common.themes
         sizes: mkit.buttons.common.sizes

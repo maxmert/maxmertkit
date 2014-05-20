@@ -23,17 +23,17 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
+	.#{$thumbnail-class}
+		@include size( $avatar-size * $multiplier )
+		margin-right: $multiplier * $avatar-margin
+	
 	&.#{$mod-bordered}
 		.#{$thumbnail-class}
 			border-width: $avatar-border-width * $multiplier
 
-	.#{$thumbnail-class}
-		@include size( $avatar-size * $multiplier )
-		margin-right: $multiplier * $avatar-margin
-
 	&.#{$mod-round}
 		.#{$thumbnail-class}
-			border-radius: ( $avatar-size * $multiplier ) / 2
+			border-radius: ceil(( $avatar-size * $multiplier ) / 2)
 
 
 @include exports("avatars/common")
@@ -57,6 +57,7 @@
 			@include transform(translateZ(0))
 
 			img, [class^="-shadow"]
+				float: left
 				position: absolute
 				top: 0
 				left: 0
