@@ -296,6 +296,17 @@ exports.widgets = [
 		]
 	}
 	{
+		name: "avatars"
+		path: "avatarsCommon"
+		include: [
+			{
+				name: "common"
+				path: "avatarsCommon"
+				invisible: yes
+			}
+		]
+	}
+	{
 		name: "spinners"
 		path: "spinnersCommon"
 		include: [

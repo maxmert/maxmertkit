@@ -5,6 +5,12 @@
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
+	"avatars": {
+		"common": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		}
+	},
 	"badges": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
@@ -143,6 +149,18 @@
 	"typography": {
 		"body": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ]
+		},
+		"headings": {
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+		},
+		"lists": {
+			"themes": null,
+			"sizes": null
+		},
+		"code": {
+			"themes": null,
+			"sizes": null
 		}
 	}
 }

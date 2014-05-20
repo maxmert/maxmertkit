@@ -1,0 +1,114 @@
+@import "../../thumbnails/common/variables"
+@import "variables"
+@import "sizes"
+@import "themes"
+
+
+@mixin avatars-theme-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	&.#{$mod-bordered}
+		.#{$thumbnail-class}
+			@if $name == default
+				border-color: lighten($border-color, 10%)
+			@else
+				border-color: lighten($border-color, 3%)
+
+
+@mixin avatars-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	&.#{$mod-bordered}
+		.#{$thumbnail-class}
+			border-width: $avatar-border-width * $multiplier
+
+	.#{$thumbnail-class}
+		@include size( $avatar-size * $multiplier )
+		margin-right: $multiplier * 0.2em
+
+	&.#{$mod-round}
+		.#{$thumbnail-class}
+			border-radius: ( $avatar-size * $multiplier ) / 2
+
+
+@include exports("avatars/common")
+
+	.#{$avatar-class}
+
+		display: inline-block
+		
+		a
+			text-decoration: none
+
+		.#{$thumbnail-class}
+			position: relative
+			vertical-align: middle
+			display: inline-block
+			border-width: 0
+			border-style: $avatar-border-style
+			border-color: transparent
+			border-radius: $avatar-border-radius
+			overflow: hidden
+			@include transform(translateZ(0))
+
+			img, [class^="-shadow"]
+				position: absolute
+				top: 0
+				left: 0
+				min-width: 100%
+				min-height: 100%
+				background: transparent
+
+		&.#{$mod-top}
+			vertical-align: top
+
+		&.#{$mod-bottom}
+			vertical-align: bottom
+
+		&:hover
+			a
+				text-decoration: underline
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include avatars-theme-setter($thm)
+			&.-#{$themeName}-
+				@include avatars-theme-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include avatars-size-setter($sz)
+			&._#{$sizeName}
+				@include avatars-size-setter($sz)
+
+		&:empty
+			display: none
+
+	a.#{$avatar-class}
+		text-decoration: none
+
+		&:hover
+			text-decoration: underline
+
+	// Hide thumbnail, show only text
+	@include media(new-breakpoint(max-width 768px 6))
+		.#{$avatar-class}
+			.#{$thumbnail-class}
+				display: none
+
+
+	// To nest sizes from parents elements
+	// @each $size in $base-sizes-names
+	// 	$i: index($base-sizes-names, $size)
+
+	// 	.#{$size}
+	// 		.#{$avatar-class}
+	// 			@extend .#{$avatar-class}.#{$size}

@@ -1,0 +1,243 @@
+<h1>Avatars</h1>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+    <h4>Global variables</h4>
+    <div><pre hljs class="prettyprint lang-sass">$avatar-class: "-avatar" !global
+$avatar-border-radius: 3px !global
+$avatar-border-width: 4px !global
+$avatar-border-style: solid !global
+$avatar-size: 64px !global</pre></div>
+</p>
+
+<p>Include <code>-thumbnail</code> widget inside <code>-avatar</code>.</p>
+
+<blockquote class="-primary-">
+	The <code>-thumbnail</code> will be hidden on devices with resolution smaller than 768px.
+</blockquote>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <a href="#" class="-avatar">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><a href="#" class="-avatar">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a></pre></div>
+
+</div>
+
+<p>Add modifier <code>_round_</code> to make avatar rounded.</p>
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <a href="#" class="-avatar _round_">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><a href="#" class="-avatar _round_">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a></pre></div>
+
+</div>
+
+
+
+<h3>Sizes</h3>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <a href="#" class="-avatar _tiny">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="krystalfister">
+			</figure>@krystalfister
+		</a>
+
+		<a href="#" class="-avatar _small">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" alt="kolage">
+			</figure>@kolage
+		</a>
+
+		<a href="#" class="-avatar _minor">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/michzen/128.jpg" alt="michzen">
+			</figure>@michzen
+		</a>
+
+		<a href="#" class="-avatar _normal">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/axel/128.jpg" alt="axel">
+			</figure>@axel
+		</a>
+
+		<a href="#" class="-avatar _major">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/victorerixon/128.jpg" alt="victorerixon">
+			</figure>@victorerixon
+		</a>
+
+		<a href="#" class="-avatar _big">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/markgamzy/128.jpg" alt="markgamzy">
+			</figure>@markgamzy
+		</a>
+
+		<a href="#" class="-avatar _huge">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrjamesnoble/128.jpg" alt="mrjamesnoble">
+			</figure>@mrjamesnoble
+		</a>
+
+		<a href="#" class="-avatar _divine">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/liang/128.jpg" alt="liang">
+			</figure>@liang
+		</a>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><a href="#" class="-avatar _tiny">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="krystalfister">
+	</figure>@krystalfister
+</a>
+
+<a href="#" class="-avatar _small">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" alt="kolage">
+	</figure>@kolage
+</a>
+
+<a href="#" class="-avatar _minor">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/michzen/128.jpg" alt="michzen">
+	</figure>@michzen
+</a>
+
+<a href="#" class="-avatar _normal">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/axel/128.jpg" alt="axel">
+	</figure>@axel
+</a>
+
+<a href="#" class="-avatar _major">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/victorerixon/128.jpg" alt="victorerixon">
+	</figure>@victorerixon
+</a>
+
+<a href="#" class="-avatar _big">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/markgamzy/128.jpg" alt="markgamzy">
+	</figure>@markgamzy
+</a>
+
+<a href="#" class="-avatar _huge">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrjamesnoble/128.jpg" alt="mrjamesnoble">
+	</figure>@mrjamesnoble
+</a>
+
+<a href="#" class="-avatar _divine">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/liang/128.jpg" alt="liang">
+	</figure>@liang
+</a></pre></div>
+
+</div>
+
+
+
+
+<h3>Bordered and themes</h3>
+<p>Add modifier <code>_bordered_</code>.</p>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <a href="#" class="-avatar _bordered_">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>&nbsp;&nbsp;
+		<a href="#" class="-avatar _bordered_ -primary-">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>&nbsp;&nbsp;
+		<a href="#" class="-avatar _round_ _bordered_ -primary-">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><a href="#" class="-avatar _bordered_">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a>
+<a href="#" class="-avatar _bordered_ -primary-">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a>
+<a href="#" class="-avatar _round_ _bordered_ -primary-">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a></pre></div>
+
+</div>
+
+
+
+<h3>Position</h3>
+<p>Add modifiers <code>_top_</code> or <code>_bottom_</code>.</p>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+        <a href="#" class="-avatar _top_">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>&nbsp;&nbsp;
+		<a href="#" class="-avatar _bottom_">
+			<figure class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</figure>@Krystalfister
+		</a>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><a href="#" class="-avatar _top_">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a>
+<a href="#" class="-avatar _bottom_">
+	<figure class="-thumbnail">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+	</figure>@Krystalfister
+</a></pre></div>
+
+</div>
