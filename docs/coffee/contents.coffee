@@ -81,6 +81,10 @@ exports.basic = [
 				path: "typoBody"
 			}
 			{
+				name: "links"
+				path: "typoLinks"
+			}
+			{
 				name: "lists"
 				path: "typoLists"
 			}

@@ -43,7 +43,6 @@
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
-
 			&._#{$sizeName}
 				@include typography-inline-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size

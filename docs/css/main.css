@@ -14272,6 +14272,64 @@ bdo[dir="rtl"] {
   direction: rtl;
   unicode-bidi: bidi-override; }
 
+.-link-hang {
+  text-shadow: 0.1em 0 0 white, -0.1em 0 0 white;
+  text-decoration: none;
+  -webkit-transition: background-size 0.2s ease;
+  -moz-transition: background-size 0.2s ease;
+  transition: background-size 0.2s ease;
+  background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
+  background: linear-gradient(black, black) center 1.09em no-repeat;
+  background-size: 85% 1px !important; }
+  .-link-hang.-default-, b .-link-hang, strong .-link-hang, i .-link-hang, em .-link-hang, small .-link-hang, p .-link-hang, span .-link-hang, b.-default- .-link-hang, strong.-default- .-link-hang, i.-default- .-link-hang, em.-default- .-link-hang, small.-default- .-link-hang, p.-default- .-link-hang, span.-default- .-link-hang {
+    background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
+    background: linear-gradient(black, black) center 1.09em no-repeat; }
+  .-link-hang.-primary-, b.-primary- .-link-hang, strong.-primary- .-link-hang, i.-primary- .-link-hang, em.-primary- .-link-hang, small.-primary- .-link-hang, p.-primary- .-link-hang, span.-primary- .-link-hang {
+    background: -webkit-linear-gradient(#3598db, #3598db) center 1.09em no-repeat;
+    background: linear-gradient(#3598db, #3598db) center 1.09em no-repeat; }
+  .-link-hang.-error-, b.-error- .-link-hang, strong.-error- .-link-hang, i.-error- .-link-hang, em.-error- .-link-hang, small.-error- .-link-hang, p.-error- .-link-hang, span.-error- .-link-hang {
+    background: -webkit-linear-gradient(#cd2c24, #cd2c24) center 1.09em no-repeat;
+    background: linear-gradient(#cd2c24, #cd2c24) center 1.09em no-repeat; }
+  .-link-hang.-info-, b.-info- .-link-hang, strong.-info- .-link-hang, i.-info- .-link-hang, em.-info- .-link-hang, small.-info- .-link-hang, p.-info- .-link-hang, span.-info- .-link-hang {
+    background: -webkit-linear-gradient(#2fdcd5, #2fdcd5) center 1.09em no-repeat;
+    background: linear-gradient(#2fdcd5, #2fdcd5) center 1.09em no-repeat; }
+  .-link-hang.-warning-, b.-warning- .-link-hang, strong.-warning- .-link-hang, i.-warning- .-link-hang, em.-warning- .-link-hang, small.-warning- .-link-hang, p.-warning- .-link-hang, span.-warning- .-link-hang {
+    background: -webkit-linear-gradient(#ffc43e, #ffc43e) center 1.09em no-repeat;
+    background: linear-gradient(#ffc43e, #ffc43e) center 1.09em no-repeat; }
+  .-link-hang.-dark-, b.-dark- .-link-hang, strong.-dark- .-link-hang, i.-dark- .-link-hang, em.-dark- .-link-hang, small.-dark- .-link-hang, p.-dark- .-link-hang, span.-dark- .-link-hang {
+    background: -webkit-linear-gradient(black, black) center 1.09em no-repeat;
+    background: linear-gradient(black, black) center 1.09em no-repeat; }
+  .-link-hang._small, b._small .-link-hang, strong._small .-link-hang, i._small .-link-hang, em._small .-link-hang, small._small .-link-hang, p._small .-link-hang, span._small .-link-hang {
+    background-size: 85% 0.5px !important; }
+    .-link-hang._small:hover, b._small .-link-hang:hover, strong._small .-link-hang:hover, i._small .-link-hang:hover, em._small .-link-hang:hover, small._small .-link-hang:hover, p._small .-link-hang:hover, span._small .-link-hang:hover {
+      background-size: 95% 0.5px !important; }
+  .-link-hang._minor, b._minor .-link-hang, strong._minor .-link-hang, i._minor .-link-hang, em._minor .-link-hang, small._minor .-link-hang, p._minor .-link-hang, span._minor .-link-hang {
+    background-size: 85% 0.75px !important; }
+    .-link-hang._minor:hover, b._minor .-link-hang:hover, strong._minor .-link-hang:hover, i._minor .-link-hang:hover, em._minor .-link-hang:hover, small._minor .-link-hang:hover, p._minor .-link-hang:hover, span._minor .-link-hang:hover {
+      background-size: 95% 0.75px !important; }
+  .-link-hang:hover {
+    background-size: 95% 1px !important; }
+  .-link-hang._normal, b .-link-hang, strong .-link-hang, i .-link-hang, em .-link-hang, small .-link-hang, p .-link-hang, span .-link-hang, b._normal .-link-hang, strong._normal .-link-hang, i._normal .-link-hang, em._normal .-link-hang, small._normal .-link-hang, p._normal .-link-hang, span._normal .-link-hang {
+    background-size: 85% 1px !important; }
+    .-link-hang._normal:hover, b .-link-hang:hover, strong .-link-hang:hover, i .-link-hang:hover, em .-link-hang:hover, small .-link-hang:hover, p .-link-hang:hover, span .-link-hang:hover {
+      background-size: 95% 1px !important; }
+  .-link-hang._major, b._major .-link-hang, strong._major .-link-hang, i._major .-link-hang, em._major .-link-hang, small._major .-link-hang, p._major .-link-hang, span._major .-link-hang {
+    background-size: 85% 1.25px !important; }
+    .-link-hang._major:hover, b._major .-link-hang:hover, strong._major .-link-hang:hover, i._major .-link-hang:hover, em._major .-link-hang:hover, small._major .-link-hang:hover, p._major .-link-hang:hover, span._major .-link-hang:hover {
+      background-size: 95% 1.25px !important; }
+  .-link-hang._big, b._big .-link-hang, strong._big .-link-hang, i._big .-link-hang, em._big .-link-hang, small._big .-link-hang, p._big .-link-hang, span._big .-link-hang {
+    background-size: 85% 1.5px !important; }
+    .-link-hang._big:hover, b._big .-link-hang:hover, strong._big .-link-hang:hover, i._big .-link-hang:hover, em._big .-link-hang:hover, small._big .-link-hang:hover, p._big .-link-hang:hover, span._big .-link-hang:hover {
+      background-size: 95% 1.5px !important; }
+  .-link-hang._huge, b._huge .-link-hang, strong._huge .-link-hang, i._huge .-link-hang, em._huge .-link-hang, small._huge .-link-hang, p._huge .-link-hang, span._huge .-link-hang {
+    background-size: 85% 1.75px !important; }
+    .-link-hang._huge:hover, b._huge .-link-hang:hover, strong._huge .-link-hang:hover, i._huge .-link-hang:hover, em._huge .-link-hang:hover, small._huge .-link-hang:hover, p._huge .-link-hang:hover, span._huge .-link-hang:hover {
+      background-size: 95% 1.75px !important; }
+  .-link-hang._divine, b._divine .-link-hang, strong._divine .-link-hang, i._divine .-link-hang, em._divine .-link-hang, small._divine .-link-hang, p._divine .-link-hang, span._divine .-link-hang {
+    background-size: 85% 2px !important; }
+    .-link-hang._divine:hover, b._divine .-link-hang:hover, strong._divine .-link-hang:hover, i._divine .-link-hang:hover, em._divine .-link-hang:hover, small._divine .-link-hang:hover, p._divine .-link-hang:hover, span._divine .-link-hang:hover {
+      background-size: 95% 2px !important; }
+
 h1, .-h1 {
   font-size: 36px; }
 

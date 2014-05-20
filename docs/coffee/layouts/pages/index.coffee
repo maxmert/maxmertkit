@@ -12,9 +12,9 @@ widgets = [
         body: $.app.templates.common.pages.index.series.widgets.btn
     }
     {
-        name: '-btn-bordered'
-        themes: mkit.buttons.bordered.themes
-        sizes: mkit.buttons.bordered.sizes
+        name: '-btn-ghost'
+        themes: mkit.buttons.ghost.themes
+        sizes: mkit.buttons.ghost.sizes
         body: $.app.templates.common.pages.index.series.widgets.btn
     }
     {
@@ -96,10 +96,10 @@ widgets = [
         body: $.app.templates.common.pages.index.series.widgets.spinnerSquare
     }
     {
-        name: '-spinner-circle'
-        themes: mkit.spinners.circle.themes
-        sizes: mkit.spinners.circle.sizes
-        body: $.app.templates.common.pages.index.series.widgets.spinnerCircle
+        name: '-spinner-ring'
+        themes: mkit.spinners.ring.themes
+        sizes: mkit.spinners.ring.sizes
+        body: $.app.templates.common.pages.index.series.widgets.spinnerRing
     }
     {
         name: '-spinner-fb'

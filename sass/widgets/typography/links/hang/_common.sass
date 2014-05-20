@@ -1,0 +1,74 @@
+@import "variables"
+@import "sizes"
+@import "themes"
+
+@mixin typography-theme-link-hang-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	background: -webkit-linear-gradient($color, $color) center 1.09em no-repeat
+	background: linear-gradient($color, $color) center 1.09em no-repeat
+
+
+
+@mixin typography-size-link-hang-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	background-size: 85% $multiplier * $typo-link-hang-underline-height!important
+
+	&:hover
+		background-size: 95% $multiplier * $typo-link-hang-underline-height!important
+
+
+
+
+@include exports("typography/links/hang")
+
+	.#{$typo-link-hang-class}
+
+		// You should change this text-shadow for different backgrounds
+		text-shadow: .1em 0 0 #fff, -.1em 0 0 #fff
+		text-decoration: none
+		@include transition( background-size .2s ease )
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include typography-theme-link-hang-setter($thm)
+			&.-#{$themeName}-
+				@include typography-theme-link-hang-setter($thm)
+
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include typography-size-link-hang-setter($sz)
+			&._#{$sizeName}
+				@include typography-size-link-hang-setter($sz)
+	
+
+	// Change size and theme inside inline elements
+	b, i, small, p, span
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+			@if $themeName == default
+				.#{$typo-link-hang-class}
+					@extend .#{$typo-link-hang-class}.-#{$themeName}-
+			&.-#{$themeName}-
+				.#{$typo-link-hang-class}
+					@extend .#{$typo-link-hang-class}.-#{$themeName}-
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				.#{$typo-link-hang-class}
+					@extend .#{$typo-link-hang-class}._#{$sizeName}
+			&._#{$sizeName}
+				.#{$typo-link-hang-class}
+					@extend .#{$typo-link-hang-class}._#{$sizeName}

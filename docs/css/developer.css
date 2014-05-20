@@ -9,6 +9,9 @@
 a[href] {
   color: #3498de; }
 
+.dev-h-problems {
+  color: red; }
+
 .example-block {
   margin: 15px 0 35px;
   border: 1px solid #cccccc;
