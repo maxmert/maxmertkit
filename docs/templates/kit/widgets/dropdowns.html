@@ -176,9 +176,9 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 
 
 
-<h3>Headers.</h3>
+<h3>Headers and contents.</h3>
 <p>
-	Just add widget <code>-header</code> to the drop.
+	Just add widget <code>-header</code> to the drop. And add several <code>-content</code>s.
 </p>
 
 
@@ -193,6 +193,9 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 			<div class="-content">
 				Dropdown Top
 			</div>
+			<div class="-content">
+				Footer
+			</div>
 		</div>
 		<div class="-drop _bottom_ _dev-clear_">
 			<i class="-arrow"></i>
@@ -201,6 +204,9 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 			</div>
 			<div class="-content">
 				Dropdown Bottom
+			</div>
+			<div class="-content">
+				Footer
 			</div>
 		</div>
 		<div class="-drop -error- _right_ _dev-clear_">
@@ -224,7 +230,7 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 	</div>
 
 
-	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-drop -primary- _top_ _dev-clear_">
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-drop -primary- _top_">
 	<i class="-arrow"></i>
 	<div class="-header">
 		Header
@@ -232,9 +238,12 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 	<div class="-content">
 		Dropdown Top
 	</div>
+	<div class="-content">
+		Footer
+	</div>
 </div>
 
-<div class="-drop _bottom_ _dev-clear_">
+<div class="-drop _bottom_">
 	<i class="-arrow"></i>
 	<div class="-header">
 		Header
@@ -242,9 +251,12 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 	<div class="-content">
 		Dropdown Bottom
 	</div>
+	<div class="-content">
+		Footer
+	</div>
 </div>
 
-<div class="-drop -error- _right_ _dev-clear_">
+<div class="-drop -error- _right_">
 	<i class="-arrow"></i>
 	<div class="-header">
 		Header
@@ -254,7 +266,7 @@ $dropdown-shadow: 0 3px 10px rgba(#000, .1)</pre></div>
 	</div>
 </div>
 
-<div class="-drop -warning- _left_ _dev-clear_">
+<div class="-drop -warning- _left_">
 	<i class="-arrow"></i>
 	<div class="-header">
 		Header

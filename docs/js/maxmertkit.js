@@ -681,7 +681,7 @@
 
 (function() {
   "use strict";
-  var Affix, MaxmertkitHelpers, _activate, _beforeactivate, _beforedeactivate, _deactivate, _id, _instances, _lastScrollY, _name, _onScroll, _requestTick, _setPosition, _ticking,
+  var Affix, MaxmertkitHelpers, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _resizingTick, _setPosition, _setPositionAbsolute, _setPositionFixed, _setPositionRelative, _ticking,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -694,6 +694,8 @@
   _lastScrollY = 0;
 
   _ticking = false;
+
+  _resizingTick = false;
 
   MaxmertkitHelpers = window['MaxmertkitHelpers'];
 
@@ -713,6 +715,7 @@
       _options = {
         spy: this.el.getAttribute('data-spy') || _name,
         offset: this.el.getAttribute('data-offset') || 5,
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
         beforeactive: function() {},
         onactive: function() {},
         failactive: function() {},
@@ -727,11 +730,16 @@
       this.container = this._getContainer();
       this.onScroll = _onScroll.bind(this);
       this.setPosition = _setPosition.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._addEventListener(window, 'resize', this.onResize);
       this.reactor.registerEvent("initialize." + _name);
       this.reactor.registerEvent("start." + _name);
       this.reactor.registerEvent("stop." + _name);
       this.reactor.dispatchEvent("initialize." + _name);
-      this.start();
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start();
+      }
     }
 
     Affix.prototype.destroy = function() {
@@ -769,6 +777,49 @@
     return Affix;
 
   })(MaxmertkitHelpers);
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!_resizingTick) {
+      requestAnimationFrame(this.resizing);
+      return _resizingTick = true;
+    }
+  };
+
+  _resizing = function() {
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop();
+        _setPositionRelative.call(this);
+      } else {
+        this.start();
+      }
+    }
+    return _resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
 
   _onScroll = function(event) {
     _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
@@ -852,40 +903,53 @@
     return this.started = false;
   };
 
+  _setPositionFixed = function() {
+    var style, top;
+    this.el.style.width = this.el.offsetWidth;
+    this.el.style.position = 'fixed';
+    top = this.options.offset;
+    try {
+      style = this.el.currentStyle || getComputedStyle(this.el);
+    } catch (_error) {}
+    if (style != null) {
+      if ((style.marginTop != null) && style.marginTop !== '') {
+        top += parseInt(style.marginTop);
+      }
+    }
+    this.el.style.top = "" + this.options.offset + "px";
+    return this.el.style.bottom = 'auto';
+  };
+
+  _setPositionRelative = function() {
+    this.el.style.position = 'relative';
+    return this.el.style.top = 'inherit';
+  };
+
+  _setPositionAbsolute = function() {
+    this.el.style.position = 'absolute';
+    this.el.style.top = 'auto';
+    this.el.style.bottom = "" + this.options.offset + "px";
+    return this.el.style.width = this.el.offsetWidth;
+  };
+
   _setPosition = function() {
-    var containerTop, style, top;
+    var containerTop;
     containerTop = this.container.offsetTop;
     if (containerTop - this.options.offset <= _lastScrollY) {
       if (containerTop + this.CONTAINER_HEIGHT - this.options.offset - this.HEIGHT >= _lastScrollY) {
         if (this.el.style.position !== 'fixed') {
-          this.el.style.width = this.el.offsetWidth;
-          this.el.style.position = 'fixed';
-          top = this.options.offset;
-          try {
-            style = this.el.currentStyle || getComputedStyle(this.el);
-          } catch (_error) {}
-          if (style != null) {
-            if ((style.marginTop != null) && style.marginTop !== '') {
-              top += parseInt(style.marginTop);
-            }
-          }
-          this.el.style.top = "" + this.options.offset + "px";
-          this.el.style.bottom = 'auto';
+          _setPositionFixed.call(this);
         }
       } else {
         if (this.el.style.position !== 'absolute') {
           if (containerTop + this.CONTAINER_HEIGHT - this.options.offset - this.HEIGHT < _lastScrollY + this.HEIGHT) {
-            this.el.style.position = 'absolute';
-            this.el.style.top = 'auto';
-            this.el.style.bottom = "" + this.options.offset + "px";
-            this.el.style.width = this.el.offsetWidth;
+            _setPositionAbsolute.call(this);
           }
         }
       }
     } else {
       if (this.el.style.position !== 'relative') {
-        this.el.style.position = 'relative';
-        this.el.style.top = 'inherit';
+        _setPositionRelative.call(this);
       }
     }
     return _ticking = false;
@@ -1140,7 +1204,7 @@
 
 (function() {
   "use strict";
-  var MaxmertkitHelpers, Scrollspy, _activate, _activateItem, _beforeactivate, _beforedeactivate, _deactivate, _deactivateItem, _id, _instances, _lastScrollY, _name, _onScroll, _requestTick, _spy, _ticking,
+  var MaxmertkitHelpers, Scrollspy, _activate, _activateItem, _beforeactivate, _beforedeactivate, _deactivate, _deactivateAllItems, _deactivateItem, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _resizingTick, _spy, _ticking,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -1153,6 +1217,8 @@
   _lastScrollY = 0;
 
   _ticking = false;
+
+  _resizingTick = false;
 
   MaxmertkitHelpers = window['MaxmertkitHelpers'];
 
@@ -1190,13 +1256,18 @@
       this.scroller = this._getScrollContainer(this.target);
       this.spy = _spy.bind(this);
       this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
       this._setOptions(this.options);
       Scrollspy.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
       this.reactor.registerEvent("initialize." + _name);
       this.reactor.registerEvent("start." + _name);
       this.reactor.registerEvent("stop." + _name);
       this.reactor.dispatchEvent("initialize." + _name);
-      this.start();
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start();
+      }
     }
 
     Scrollspy.prototype.destroy = function() {
@@ -1265,6 +1336,50 @@
 
   })(MaxmertkitHelpers);
 
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!_resizingTick) {
+      requestAnimationFrame(this.resizing);
+      return _resizingTick = true;
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop();
+        _deactivateAllItems.call(this);
+      } else {
+        this.start();
+      }
+    }
+    return _resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
   _onScroll = function(event) {
     _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
     return _requestTick.call(this);
@@ -1308,6 +1423,17 @@
   _deactivateItem = function(itemNumber) {
     this._removeClass('_active_', this.elements[itemNumber].element);
     return this._removeClass('_active_', this.elements[itemNumber].element.parentNode);
+  };
+
+  _deactivateAllItems = function() {
+    var index, item, _i, _len, _ref, _results;
+    _ref = this.elements;
+    _results = [];
+    for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+      item = _ref[index];
+      _results.push(_deactivateItem.call(this, index));
+    }
+    return _results;
   };
 
   _spy = function(event) {

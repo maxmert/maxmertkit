@@ -1,6 +1,6 @@
 {
   "name": "maxmertkit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development.",
   "homepage": "http://maxmert.com",
   "main": "gulpfile.js",
@@ -73,5 +73,5 @@
     "wd": "^0.2.19",
     "chai-as-promised": "^4.1.1"
   },
-  "buildDate": "May 20th 2014, 3:23:16 am"
+  "buildDate": "May 20th 2014, 7:01:52 pm"
 }

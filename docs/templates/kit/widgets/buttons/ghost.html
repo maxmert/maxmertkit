@@ -1,0 +1,75 @@
+<!-- ============================== BUTTONS ============================== -->
+<h1>Ghost buttons</h1>
+
+
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$button-ghost-class: "#{$button-class}-ghost" !global
+$button-ghost-font-weight: 200 !global
+$button-ghost-min-font-size: 9px !global
+$button-ghost-border-radius: 3px !global
+$button-ghost-border-width: 3px !global</pre></div>
+</p>
+
+
+<!-- ============ DESCRIPTION -->
+<!-- ====================== -->
+<p>Use button class <code>-btn-ghost</code> to create great buttons.</p>
+
+<p>Use theme classes (you can include any theme, so themes class names can be different) <code>-primary-</code>, <code>-error-</code>, <code>-success-</code>, etc. with <code>&lt;button&gt;</code> or <code>&lt;input type="button"&gt;</code> to set theme.</p>
+
+<p>
+	As always to use font-awesome icons you need to:
+	<ul>
+		<li>add <code>&lt;link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"&gt;</code> to your <code>&lt;head&gt;</code> (but it's better to download and include it into you project);</li>
+		<li>use class <code>fa</code> for icons;</li>
+		<li>look at <a href="http://fortawesome.github.io/Font-Awesome/">font-awesome</a> page for documentation or use <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/">font-awesome cheatsheet</a>.</li>
+	</ul>
+</p>
+
+
+
+
+
+<!-- ============ BUTTON TAGS -->
+<!-- ====================== -->
+<h3>Button tags</h3>
+<p>
+	Use class <code>-btn-ghost</code> with <code>&lt;a&gt;</code>, <code>&lt;input&gt;</code> and <code>&lt;button&gt;</code>.
+</p>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<button class="-btn-ghost -primary-">Button</button>
+		<input type="button" class="-btn-ghost -primary-" value="Input">
+		<a class="-btn-ghost -primary-">Link</a>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><button class="-btn-ghost -primary-">Button</button>
+<input type="button" class="-btn-ghost -primary-" value="Input">
+<a class="-btn-ghost -primary-">Link</a></pre></div>
+
+</div>
+
+
+<h3>Rounded</h3>
+<p>Add <code>_round_</code> modifier to round button</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<button class="-btn-ghost -primary- _round_">Round button</button>
+		<input type="button" class="-btn-ghost -primary- _round_" value="Round input">
+		<a class="-btn-ghost -primary- _round_">Round link</a>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><button class="-btn-ghost -primary- _round_">Round button</button>
+<input type="button" class="-btn-ghost -primary- _round_" value="Round input">
+<a class="-btn-ghost -primary- _round_">Round link</a></pre></div>
+
+</div>

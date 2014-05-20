@@ -47,6 +47,9 @@
 
 	font-size: $multiplier * $base-font-size
 
+	&.#{$mod-round}
+		border-radius: $multiplier * $base-font-size + 5
+
 
 
 
@@ -76,7 +79,6 @@
 		border-radius: $button-border-radius
 
 		@include user-select(none)
-
 
 
 		&.#{$mod-vertical}

@@ -1,0 +1,77 @@
+<!-- ============ HEADINGS -->
+<!-- ====================== -->
+
+<h2>Links</h2>
+<p>Add beautiful underline to your links. Use <code>.-link-hang</code></p>
+
+<section>
+	<!-- ============ Variables -->
+	<p>
+		<h4>Global variables:</h4>
+		<div><pre hljs class="prettyprint lang-sass">$typo-link-hang-class: "-link-hang" !global
+	$typo-link-hang-underline-height: 1px !global</pre></div>
+	</p>
+
+	<p>
+		<blockquote class="-warning-"><b>Important!</b> If you use <code>-link-hang</code> with tag <code>&lt;a&gt;</code>, the color of tag will not be changed. You'll need to change it manually. I did it to not to break user's css.</blockquote>
+	</p>
+
+
+	<div class="-row example-block">
+		<div class="-col12 view">
+			<div class="-col6">
+				<span class="-link-hang -error- _huge">Hang Link is here</span>
+			</div>
+			<div class="-col6">
+				With tag <code>&lt;a&gt;</code> you'll need to change text color of the link manually:
+				<p class="_big"><a class="-link-hang -warning-" href="">Hang Link is here</a></p>
+			</div>
+		</div>
+		<div class="-col12 example">
+			<div class="-col6"><pre hljs class="prettyprint lang-html"><span class="-link-hang -error- _huge">Hang Link is here</span></pre></div>
+			<div class="-col6"><pre hljs class="prettyprint lang-html"><a class="-link-hang -warning-" href="">Hang Link is here</a></pre></div></div>
+	</div>
+</section>
+
+<section>
+	<h3>In block and inline tags</h3>
+
+	<p>Put <code>-link-hang</code> inside elements <code>b</code>, <code>i</code>, <code>small</code>, <code>p</code> and <code>span</code>. The styles will aply to the inner <code>-link-hang</code> automatically.</p>
+
+	<div class="-row example-block">
+		<div class="-col12 view">
+			<span class="_huge">There is <span class="-link-hang">Hang Link</span> inside this span.</span><br>
+			<p class="-info- _big">Info big paragraph with <span class="-link-hang">Hang Link</span> inside.</p>
+			<small class="-warning-">Warning small tag with <span class="-link-hang">Hang Link</span> inside </small>
+		</div>
+		<div class="-col12 example">
+			<pre hljs class="prettyprint lang-html"><span class="_huge">There is <span class="-link-hang">Hang Link</span> inside this span</span><br>
+<p class="-info- _big">Info big paragraph with <span class="-link-hang">Hang Link</span> inside.</p>
+<small class="-warning-">Warning small tag with <span class="-link-hang">Hang Link</span> inside </small></pre>
+	</div>
+</section>
+
+
+<section>
+	<h3 class="dev-h-problems">Problems</h3>
+	<p>
+		When you change the background, you can see the artifacts.
+	</p>
+
+	<div class="-row example-block">
+		<div class="-col12 view" style="background-color: #ccc">
+			<span class="_huge">There is <span class="-link-hang">Hang Link</span> inside this span.</span><br>
+		</div>
+	</div>
+
+	<p>To fix that, add <code>text-shadow: .1em 0 0 color-here, -.1em 0 0 color-here</code> to your <code>-link-hang</code> in the block with background.</p>
+	<div class="-row example-block">
+		<div class="-col12 view" style="background-color: #ccc">
+			<span class="_huge">There is <span class="-link-hang" style="text-shadow: .1em 0 0 #ccc, 0 0, -.1em 0 0 #ccc">Hang Link</span> inside this span.</span><br>
+		</div>
+		<div class="-col12 example">
+			<pre hljs class="prettyprint lang-html"><div style="background-color: #ccc">
+	<span class="_huge">There is <span class="-link-hang" style="text-shadow: .1em 0 0 #ccc, -.1em 0 0 #ccc">Hang Link</span> inside this span.</span>
+</div></pre>
+	</div>
+</section>

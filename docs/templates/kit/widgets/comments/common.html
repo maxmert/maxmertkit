@@ -1,0 +1,215 @@
+<h1>Comments</h1>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+    <h4>Global variables</h4>
+    <div><pre hljs class="prettyprint lang-sass">$comments-class: "-comments" !global
+$comments-item-margin-bottom: 25px !global</pre></div>
+</p>
+
+<p>Add <code>-comments</code> to the container. Use global class <code>-item</code> inside. Inside each <code>-item</code> add <code>-content</code> widget.</p>
+<p>Add <code>-avatar</code> inside <code>-content</code> blocks.</p>
+<blockquote class="-info-">Inside <code>-item</code>s you can add blocks with modifier <code>_hidden_</code>. Those blocks will appear only when user hover the comment.</blockquote>
+
+<div class="-row example-block">
+
+    <div class="-col12 view">
+       <ul class="-comments">
+			<li class="-item">
+				<a href="#" class="-avatar -content">
+					<div class="-thumbnail">
+						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/soffes/128.jpg" alt="soffes">
+					</div>
+				</a>
+				<div class="-content">
+					<div><a href class="-avatar">Soffes</a>&nbsp;&nbsp;<span class="-badge -error- _hidden_">12</span> </div>
+					You know what else is "arcane", 140 characters.
+					<div class="_hidden_">
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-chevron-up"></i></a><a class="-btn"><i class="fa fa-chevron-down"></i></a>
+						</div>
+
+						<a class="-btn _small -primary-"><i class="fa fa-reply"></i> Reply</a>
+
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-twitter"></i></a><a class="-btn"><i class="fa fa-facebook"></i></a><a class="-btn"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="-item -offset1">
+				<a href="#" class="-avatar -content">
+					<div class="-thumbnail">
+						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/markgamzy/128.jpg" alt="markgamzy">
+					</div>
+				</a>
+				<div class="-content">
+					<div><a href class="-avatar">Markgamzy</a>&nbsp;&nbsp;<span class="-badge -primary- _hidden_">165</span></div>
+					Maybe it is just their way to force users to use the original twitter client. In every other client the "feature" looks confusing and so we have to use the original client
+					<div class="_hidden_">
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-chevron-up"></i></a><a class="-btn"><i class="fa fa-chevron-down"></i></a>
+						</div>
+
+						<a class="-btn _small -primary-"><i class="fa fa-reply"></i> Reply</a>
+
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-twitter"></i></a><a class="-btn"><i class="fa fa-facebook"></i></a><a class="-btn"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="-item -offset1">
+				<a href="#" class="-avatar -content">
+					<div class="-thumbnail">
+						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/teclaro/128.jpg" alt="Teclaro">
+					</div>
+				</a>
+				<div class="-content">
+					<div><a href class="-avatar">Teclaro</a>&nbsp;&nbsp;<span class="-badge -dark- _hidden_">67</span></div>
+					In my opinion (and as a UI and UX designer), this is a step in the right direction. Even when viewing those examples above, the context isn't hindered when @ isn't present and makes the conversation more legible.
+					<div class="_hidden_">
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-chevron-up"></i></a><a class="-btn"><i class="fa fa-chevron-down"></i></a>
+						</div>
+
+						<a class="-btn _small -primary-"><i class="fa fa-reply"></i> Reply</a>
+
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-twitter"></i></a><a class="-btn"><i class="fa fa-facebook"></i></a><a class="-btn"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="-item -offset2">
+				<a href="#" class="-avatar -content">
+					<div class="-thumbnail">
+						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/edwellbrook/128.jpg" alt="Edwellbrook">
+					</div>
+				</a>
+				<div class="-content">
+					<div><a href class="-avatar">Edwellbrook</a>&nbsp;&nbsp;<span class="-badge -dark- _hidden_">67</span></div>
+					Sure they are thinking about removing @replies but the concept of replying will still exist. It's just the details of who you are replying to will be contained in metadata and not in the body of the tweet. This is good as it will free up more characters for the tweet. However I'm sure it will also lead to people being unsure of whether a tweet will be directed at one person or their whole timeline in the same way as people often mistakenly post a DM to their timeline.
+					<div class="_hidden_">
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-chevron-up"></i></a><a class="-btn"><i class="fa fa-chevron-down"></i></a>
+						</div>
+
+						<a class="-btn _small -primary-"><i class="fa fa-reply"></i> Reply</a>
+
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-twitter"></i></a><a class="-btn"><i class="fa fa-facebook"></i></a><a class="-btn"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="-item">
+				<a href="#" class="-avatar -content">
+					<div class="-thumbnail">
+						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+					</div>
+				</a>
+				<div class="-content">
+					<div><a href class="-avatar">Krystalfister</a>&nbsp;&nbsp;<span class="-badge -primary- _hidden_">167</span></div>
+					Maybe it is just their way to force users to use the original twitter client. In every other client the "feature" looks confusing and so we have to use the original client
+					<div class="_hidden_">
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-chevron-up"></i></a><a class="-btn"><i class="fa fa-chevron-down"></i></a>
+						</div>
+
+						<a class="-btn _small -primary-"><i class="fa fa-reply"></i> Reply</a>
+
+						<div class="-group _small">
+							<a class="-btn"><i class="fa fa-twitter"></i></a><a class="-btn"><i class="fa fa-facebook"></i></a><a class="-btn"><i class="fa fa-google-plus"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+    </div>
+
+
+    <div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-comments">
+	<li class="-item">
+		<a href="#" class="-avatar -content">
+			<div class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/soffes/128.jpg" alt="soffes">
+			</div>
+		</a>
+		<div class="-content">
+			<div><a class="-avatar">Soffes</a> <span class="-badge -error- _hidden_">12</span> </div>
+			Comment text here
+			<div class="_hidden_">
+				Buttons here
+			</div>
+		</div>
+	</li>
+
+	<li class="-item -offset1">
+		<a href="#" class="-avatar -content">
+			<div class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/markgamzy/128.jpg" alt="markgamzy">
+			</div>
+		</a>
+		<div class="-content">
+			<div><a class="-avatar">Markgamzy</a> <span class="-badge -primary- _hidden_">165</span></div>
+			Comment text here
+			<div class="_hidden_">
+				Buttons here
+			</div>
+		</div>
+	</li>
+
+	<li class="-item -offset1">
+		<a href="#" class="-avatar -content">
+			<div class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/teclaro/128.jpg" alt="Teclaro">
+			</div>
+		</a>
+		<div class="-content">
+			<div><a class="-avatar">Teclaro</a> <span class="-badge -dark- _hidden_">67</span></div>
+			Comment text here
+			<div class="_hidden_">
+				Buttons here
+			</div>
+		</div>
+	</li>
+
+	<li class="-item -offset2">
+		<a href="#" class="-avatar -content">
+			<div class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/edwellbrook/128.jpg" alt="Edwellbrook">
+			</div>
+		</a>
+		<div class="-content">
+			<div><a class="-avatar">Edwellbrook</a> <span class="-badge -dark- _hidden_">67</span></div>
+			Comment text here
+			<div class="_hidden_">
+				Buttons here
+			</div>
+		</div>
+	</li>
+
+	<li class="-item">
+		<a href="#" class="-avatar -content">
+			<div class="-thumbnail">
+				<img src="https://s3.amazonaws.com/uifaces/faces/twitter/krystalfister/128.jpg" alt="Krystalfister">
+			</div>
+		</a>
+		<div class="-content">
+			<div><a class="-avatar">Krystalfister</a> <span class="-badge -primary- _hidden_">167</span></div>
+			Comment text here
+			<div class="_hidden_">
+				Buttons here
+			</div>
+		</div>
+	</li>
+	</ul></pre></div>
+
+</div>
+

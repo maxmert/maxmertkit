@@ -5,6 +5,7 @@ _instances = []
 _id = 0
 _lastScrollY = 0
 _ticking = no
+_resizingTick = no
 
 MaxmertkitHelpers = window['MaxmertkitHelpers']
 
@@ -51,10 +52,14 @@ class Scrollspy extends MaxmertkitHelpers
 		@scroller = @_getScrollContainer @target
 		@spy = _spy.bind(@)
 		@onScroll = _onScroll.bind(@)
+		@onResize = _onResize.bind(@)
+		@resizing = _resizing.bind(@)
 
 		@_setOptions @options
 
 		super @el, @options
+
+		@_addEventListener window, 'resize', @onResize
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
@@ -63,7 +68,7 @@ class Scrollspy extends MaxmertkitHelpers
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
-		@start()
+		if (not (not @options.onMobile and _getWindowSize().width < 992)) then @start()
 
 	destroy: ->
 		_deactivate.call @
@@ -108,6 +113,48 @@ class Scrollspy extends MaxmertkitHelpers
 
 # ===============
 # PRIVATE METHODS
+_onResize = ->
+	_requestResize.call @
+
+_requestResize = ->
+	if not _resizingTick
+		requestAnimationFrame(@resizing)
+		_resizingTick = true
+
+_resizing = ->
+	@refresh()
+
+	if not @options.onMobile
+		if _getWindowSize().width < 992
+			@stop()
+			_deactivateAllItems.call @
+		else
+			@start()
+
+	_resizingTick = false
+
+_getWindowSize = ->
+	clientWidth = 0
+	clientHeight = 0
+	if typeof (window.innerWidth) is "number"
+		
+		#Non-IE
+		clientWidth = window.innerWidth
+		clientHeight = window.innerHeight
+	else if document.documentElement and (document.documentElement.clientWidth or document.documentElement.clientHeight)
+		
+		#IE 6+ in 'standards compliant mode'
+		clientWidth = document.documentElement.clientWidth
+		clientHeight = document.documentElement.clientHeight
+	else if document.body and (document.body.clientWidth or document.body.clientHeight)
+		
+		#IE 4 compatible
+		clientWidth = document.body.clientWidth
+		clientHeight = document.body.clientHeight
+	
+	width: clientWidth
+	height: clientHeight
+
 _onScroll = (event)  ->
 	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
 	_requestTick.call @
@@ -136,6 +183,10 @@ _activateItem = ( itemNumber ) ->
 _deactivateItem = ( itemNumber ) ->
 	@_removeClass '_active_', @elements[itemNumber].element
 	@_removeClass '_active_', @elements[itemNumber].element.parentNode
+
+_deactivateAllItems = ->
+	for item, index in @elements
+		_deactivateItem.call @, index
 
 
 _spy = ( event ) ->

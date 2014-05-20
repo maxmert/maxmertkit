@@ -31,6 +31,13 @@
 			border-color: darken($border-color, 7%)
 			color: $white-color
 
+	.#{$content-class} + .#{$content-class}
+		@if $name == default
+			border-top-color: lighten($color, 90%)
+		@else
+			border-top-color: lighten($color, 40%)
+
+
 
 	&.#{$mod-bottom}, &.#{$mod-top}
 		&:before
@@ -84,6 +91,10 @@
 			bottom: 100%
 			left: 50%
 			margin-left: -$dropdown-arrow-size / 2
+
+		.#{$content-class} + .#{$content-class}
+			border-top-width: 1px
+			border-top-style: solid
 
 		&:before
 			content: " "

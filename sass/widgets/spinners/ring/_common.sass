@@ -3,7 +3,7 @@
 @import "themes"
 
 
-@mixin spinner-circle-theme-setter( $theme )
+@mixin spinner-ring-theme-setter( $theme )
     $name: map-get( $theme, name)
     $color: map-get( $theme, color)
 
@@ -19,16 +19,16 @@
         border-left-color: $color
 
 
-@mixin spinner-circle-size-setter( $size )
+@mixin spinner-ring-size-setter( $size )
     $multiplier: map-get( $size, multiplier)
 
-    @include size( floor($spinner-circle-size * $multiplier) )
-    border-width: floor($spinner-circle-size * $multiplier) / 10
+    @include size( floor($spinner-ring-size * $multiplier) )
+    border-width: floor($spinner-ring-size * $multiplier) / 10
     &:after
-        @include size( floor($spinner-circle-size * $multiplier) )
+        @include size( floor($spinner-ring-size * $multiplier) )
     &.#{$mod-responsive}
-        margin-top: - floor(( $spinner-circle-size * $multiplier ) / 2)
-        margin-left: - floor(( $spinner-circle-size * $multiplier ) / 2)
+        margin-top: - floor(( $spinner-ring-size * $multiplier ) / 2)
+        margin-left: - floor(( $spinner-ring-size * $multiplier ) / 2)
 
 
 
@@ -39,8 +39,8 @@
         @include transform( rotate(360deg) )
 
 
-@include exports("spinners/circle/common")
-    .#{$spinner-circle-class}
+@include exports("spinners/ring/common")
+    .#{$spinner-ring-class}, .-spinner-circle
         display: inline-block
         vertical-align: middle
         position: relative
@@ -62,13 +62,13 @@
             $thm: map-get( $base-themes, $themeName )
 
             @if $themeName == default
-                @include spinner-circle-theme-setter($thm)
+                @include spinner-ring-theme-setter($thm)
             &.-#{$themeName}-
-                @include spinner-circle-theme-setter($thm)
+                @include spinner-ring-theme-setter($thm)
 
         @each $sizeName in $sizes
             $sz: map-get( $base-sizes, $sizeName )
             @if $sizeName == normal
-                @include spinner-circle-size-setter($sz)
+                @include spinner-ring-size-setter($sz)
             &._#{$sizeName}
-                @include spinner-circle-size-setter($sz)
+                @include spinner-ring-size-setter($sz)

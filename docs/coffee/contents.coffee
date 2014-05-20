@@ -81,6 +81,10 @@ exports.basic = [
 				path: "typoBody"
 			}
 			{
+				name: "links"
+				path: "typoLinks"
+			}
+			{
 				name: "lists"
 				path: "typoLists"
 			}
@@ -197,8 +201,8 @@ exports.widgets = [
 				path: "buttonsBlocks"
 			}
 			{
-				name: "bordered"
-				path: "buttonsBordered"
+				name: "ghost"
+				path: "buttonsGhost"
 			}
 		]
 	}
@@ -292,6 +296,28 @@ exports.widgets = [
 		]
 	}
 	{
+		name: "avatars"
+		path: "avatarsCommon"
+		include: [
+			{
+				name: "common"
+				path: "avatarsCommon"
+				invisible: yes
+			}
+		]
+	}
+	{
+		name: "comments"
+		path: "commentsCommon"
+		include: [
+			{
+				name: "common"
+				path: "commentsCommon"
+				invisible: yes
+			}
+		]
+	}
+	{
 		name: "spinners"
 		path: "spinnersCommon"
 		include: [
@@ -305,8 +331,8 @@ exports.widgets = [
 				path: "spinnersSquare"
 			}
 			{
-				name: "circle"
-				path: "spinnersCircle"
+				name: "ring"
+				path: "spinnersRing"
 			}
 			{
 				name: "fb"
