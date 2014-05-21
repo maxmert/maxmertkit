@@ -100,8 +100,10 @@ _onResize = ->
 
 _requestResize = ->
 	if not _resizingTick
-		requestAnimationFrame(@resizing)
-		_resizingTick = true
+		# If element is out there
+		if @resizing?
+			requestAnimationFrame(@resizing)
+			_resizingTick = true
 
 _resizing = ->
 	if not @options.onMobile
@@ -117,21 +119,21 @@ _getWindowSize = ->
 	clientWidth = 0
 	clientHeight = 0
 	if typeof (window.innerWidth) is "number"
-		
+
 		#Non-IE
 		clientWidth = window.innerWidth
 		clientHeight = window.innerHeight
 	else if document.documentElement and (document.documentElement.clientWidth or document.documentElement.clientHeight)
-		
+
 		#IE 6+ in 'standards compliant mode'
 		clientWidth = document.documentElement.clientWidth
 		clientHeight = document.documentElement.clientHeight
 	else if document.body and (document.body.clientWidth or document.body.clientHeight)
-		
+
 		#IE 4 compatible
 		clientWidth = document.body.clientWidth
 		clientHeight = document.body.clientHeight
-	
+
 	width: clientWidth
 	height: clientHeight
 
@@ -218,7 +220,7 @@ _setPositionAbsolute = ->
 
 _setPosition = ->
 	containerTop = @container.offsetTop
-	
+
 	if containerTop - @options.offset <= _lastScrollY
 		if containerTop + @CONTAINER_HEIGHT - @options.offset - @HEIGHT  >= _lastScrollY
 			if @el.style.position isnt 'fixed'

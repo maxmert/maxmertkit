@@ -784,8 +784,10 @@
 
   _requestResize = function() {
     if (!_resizingTick) {
-      requestAnimationFrame(this.resizing);
-      return _resizingTick = true;
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return _resizingTick = true;
+      }
     }
   };
 
@@ -1342,8 +1344,10 @@
 
   _requestResize = function() {
     if (!_resizingTick) {
-      requestAnimationFrame(this.resizing);
-      return _resizingTick = true;
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return _resizingTick = true;
+      }
     }
   };
 

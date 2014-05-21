@@ -283,7 +283,8 @@ pre.prettyprint {
   .example-block .example pre {
     padding: 0;
     border: none;
-    margin: 0; }
+    margin: 0;
+    overflow: auto; }
   .example-block .example:first-child {
     border-top: none; }
 
