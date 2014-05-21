@@ -84,54 +84,54 @@
 
 <h2>Properties</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Default</th>
-			<th>Description</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>spy</td>
 			<td><i>@el.getAttribute( 'data-spy' ) or 'scroll'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Set spying type.
 			</td>
 		</tr>
 		<tr>
 			<td>target</td>
 			<td><i>@el.getAttribute( 'data-target' ) or 'body'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Listen to event <code>scroll</code> of this element. All spying blocks are inside.
 			</td>
 		</tr>
 		<tr>
 			<td>offset</td>
 			<td><i>@el.getAttribute( 'data-offset' ) or 5</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Vertical offset of the element in text to fire the activation (for example activate menu when the header will be 5px above the top of the screen).
 			</td>
 		</tr>
 		<tr>
 			<td>elements</td>
 			<td><i>@el.getAttribute( 'data-elements' ) or 'li a'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Selector to spy those elements inside @ (spy, or menu in our case).
 			</td>
 		</tr>
 		<tr>
 			<td>elementsAttr</td>
 			<td><i>@el.getAttribute( 'data-elements-attr' ) or 'href'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Attribute of each element with ID of the target.
 			</td>
 		</tr>
 		<tr>
 			<td>onMobile</td>
 			<td><i>@el.getAttribute( 'data-on-mobile' ) or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Deactivate spy on mobile devices.
 			</td>
 		</tr>
@@ -141,7 +141,7 @@
 
 <h2>Methods</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -180,7 +180,7 @@
 	Inside each method to get menu element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the menu element <code>@data['kitScrollspy']</code> or <code>this.data['kitScrollspy']</code> in js. To get scrollspy element (menu) do <code>@data['kitScrollspy'].el</code>. To get scrollspy scroll block do <code>@data['kitScrollspy'].target</code>.
 </blockquote>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>

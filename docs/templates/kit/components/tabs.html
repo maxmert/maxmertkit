@@ -52,46 +52,47 @@ for tab in tabs
 
 <h2>Properties</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Description</th>
+			<th>Default</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>toggle</td>
 			<td><i>@el.getAttribute( 'data-toggle' ) or 'tabs'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Set toggle type.
 			</td>
 		</tr>
 		<tr>
 			<td>target</td>
 			<td><i>@el.getAttribute( 'data-target' ) or null</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Selector to find the content of that tab button.
 			</td>
 		</tr>
 		<tr>
 			<td>group</td>
 			<td><i>@el.getAttribute( 'data-group' ) or null</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Name of the tabs group. Uses to deactivate other tabs in the group, when one tab was activated.
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
 			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				This event will be used to activate/deactivate button.
 			</td>
 		</tr>
 		<tr>
 			<td>initial</td>
 			<td><i>@el.getAttribute( 'data-initial' ) or 0</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Number of the tab to activate after initialization.
 			</td>
 		</tr>
@@ -101,7 +102,7 @@ for tab in tabs
 
 <h2>Methods</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -142,7 +143,7 @@ for tab in tabs
 	Inside each method to get tab use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the tab element <code>@data['kitTabs']</code> or <code>this.data['kitTabs']</code> in js.
 </blockquote>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -159,11 +160,11 @@ for tab in tabs
 	tab.tabs
 		beforeactive: ->
 			d = $.Deferred()
-			
+
 			tab = @data['kitTabs']
 			tab.el.querySelector('a').innerHTML = 'Loading...'
 			tab._addClass '_disabled_'
-			
+
 			setTimeout ->
 				d.resolve()
 			,2000

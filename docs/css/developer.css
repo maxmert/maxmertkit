@@ -323,7 +323,11 @@ pre.prettyprint {
       position: relative;
       top: 0; }
     .dev-series .dev-card {
-      font-size: 14px; } }
+      font-size: 14px; }
+
+  iframe {
+    width: 100% !important;
+    height: auto; } }
 .row-color {
   background-color: #d5e7f1;
   margin-bottom: 1px;

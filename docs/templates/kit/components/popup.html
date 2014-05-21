@@ -122,54 +122,54 @@ document.querySelector('.btn-popup-demo-left').popup
 
 <h2>Properties</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Default</th>
-			<th>Description</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>target</td>
 			<td><i> @el.getAttribute( 'data-target' ) or null</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Find element with this selector and work with it as a popup window.
 			</td>
 		</tr>
 		<tr>
 			<td>toggle</td>
 			<td><i>@el.getAttribute( 'data-toggle' ) or 'popup'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Set toggle type.
 			</td>
 		</tr>
 		<tr>
 			<td>dialog</td>
 			<td><i>@el.getAttribute( 'data-dialog' ) or ".-content"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Selector to find dialog blog inside popup.
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
 			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				This event will be used to open popup.</code>
 			</td>
 		</tr>
 		<tr>
 			<td>eventClose</td>
 			<td><i>@el.getAttribute( 'data-event-close' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Event for closer element to close popup. Closer element should be anywhere in the DOM with attribute <code>data-dismiss="target-selector"</code>.
 			</td>
 		</tr>
 		<tr>
 			<td>autoOpen</td>
 			<td><i>@el.getAttribute('data-autoopen') or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Open popup after initialization.
 			</td>
 		</tr>
@@ -179,7 +179,7 @@ document.querySelector('.btn-popup-demo-left').popup
 				vertical: @el.getAttribute( 'data-position-vertical' ) or 'top',
 				horizontal: @el.getAttribute( 'data-position-horizontal' ) or 'center'
 			}</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Popup position relative to the button.<br>
 				vertical: <code>'top'</code> / <code>'middle'</code> / <code>'bottom'</code><br>
 				horizontal: <code>'left'</code> / <code>'center'</code> / <code>'right'</code>
@@ -193,7 +193,7 @@ document.querySelector('.btn-popup-demo-left').popup
 					vertical: @el.getAttribute( 'data-offset-vertical' ) or 0
 				</i>
 			</td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				In <code>px</code>. Offset relative to <code>position</code>.
 			</td>
 		</tr>
@@ -204,7 +204,7 @@ document.querySelector('.btn-popup-demo-left').popup
 					@el.getAttribute( 'data-close-unfocus' ) or no
 				</i>
 			</td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Close popup if click outside of it.
 			</td>
 		</tr>
@@ -215,7 +215,7 @@ document.querySelector('.btn-popup-demo-left').popup
 					@el.getAttribute( 'data-close-resize' ) or yes
 				</i>
 			</td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Close popup when browser window resizing.
 			</td>
 		</tr>
@@ -226,7 +226,7 @@ document.querySelector('.btn-popup-demo-left').popup
 					@el.getAttribute( 'data-selfish' ) or yes
 				</i>
 			</td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Close all popups when opens this one.
 			</td>
 		</tr>
@@ -236,7 +236,7 @@ document.querySelector('.btn-popup-demo-left').popup
 
 <h2>Methods</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -284,7 +284,7 @@ document.querySelector('.btn-popup-demo-left').popup
 	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data['kitPopup']</code> or <code>this.data['kitPopup']</code> in js. To get popup window element do <code>@data['kitPopup'].target</code>.
 </blockquote>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -294,7 +294,7 @@ document.querySelector('.btn-popup-demo-left').popup
 		<tr>
 			<td><b>beforeactive</b></td>
 			<td><i>undefined</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				<p>Set a function to call it before popup opens. If it returns <code>deferred.promise()</code>, then popup will not open till <code>deferred.resolve()</code>, and woun't open if <code>deferred.reject()</code>. You can just get data with ajax for popup.</p>
 				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">document.querySelector('.btn-popup').popup
 	beforeactive: ->
