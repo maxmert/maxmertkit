@@ -14614,6 +14614,9 @@ table, .-table {
   .-table[disabled] {
     opacity: 0.5; }
 
+@media screen and (max-width: 768px) {
+  .-table._responsive_ {
+    font-size: 0.9em; } }
 .-table._striped_ > thead > tr:nth-child(odd) > td, .-table._striped_ > tbody > tr:nth-child(odd) > td, .-table._striped_ > tfoot > tr:nth-child(odd) > td {
   background-color: #f8f8f8; }
 .-table._striped_.-default- > thead > tr:nth-child(odd) > td, .-table._striped_.-default- > tbody > tr:nth-child(odd) > td, .-table._striped_.-default- > tfoot > tr:nth-child(odd) > td {

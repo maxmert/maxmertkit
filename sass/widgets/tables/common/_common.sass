@@ -99,5 +99,10 @@
 					@include tables-theme-wrap-setter($thm)
 
 
+
 		&[disabled]
 			opacity: 0.5
+
+	@include media(new-breakpoint(max-width $base-screen-small 6))
+		.#{$table-class}.#{$mod-responsive}
+			font-size: 0.9em

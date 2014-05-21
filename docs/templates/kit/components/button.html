@@ -141,47 +141,47 @@ for btn in buttons
 
 <h2>Properties</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Default</th>
-			<th>Description</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>toggle</td>
 			<td><i>@el.getAttribute( 'data-toggle' ) or 'button'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Set toggle type of the element.
 			</td>
 		</tr>
 		<tr>
 			<td>type</td>
 			<td><i>@el.getAttribute( 'data-type' ) or 'button'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				<code>button</code>, <code>radio</code>, <code>checkbox</code>. Define button's behaviour. If <code>radio</code>, then will uncheck all buttons from it's group.
 			</td>
 		</tr>
 		<tr>
 			<td>group</td>
 			<td><i>@el.getAttribute( 'data-group' ) or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				<code>String</code>. Uses for <code>type: radio</code>, just type any name for group of radiobuttons or checkboxes.
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
 			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				This event will be used to activate/deactivate button.
 			</td>
 		</tr>
 		<tr>
 			<td>selfish</td>
 			<td><i>@el.getAttribute( 'data-selfish' ) or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Deactivate all instances of Button when current instance activated.
 			</td>
 		</tr>
@@ -191,7 +191,7 @@ for btn in buttons
 
 <h2>Methods</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -235,7 +235,7 @@ for btn in buttons
 </blockquote>
 
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Event</th>

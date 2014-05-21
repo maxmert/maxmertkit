@@ -71,7 +71,7 @@ exports.module = Marionette.Layout.extend
 						el = $(@)
 						el.removeClass '_disabled_'
 						el.html 'Checked'
-					
+
 					beforedeactive: ->
 						d = $.Deferred()
 						@$el = $(@)
@@ -81,7 +81,7 @@ exports.module = Marionette.Layout.extend
 							d.resolve()
 						,3000
 						d.promise()
-					
+
 					ondeactive: ->
 						@$el = $(@)
 						@$el.removeClass '_disabled_'
@@ -100,15 +100,15 @@ exports.module = Marionette.Layout.extend
 						popup = @data['kitPopup']
 						# Set new content
 						popup.dialog.innerHTML = "Set content here"
-				
+
 					onactive: ->
 						# Add active class to the button
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						# Remove active class to the button
 						@data['kitPopup']._removeClass '_active_'
-			
+
 			$('.btn-popup-demo-left').each (index, popup) ->
 				popup.popup
 					position:
@@ -117,13 +117,13 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						popup = @data['kitPopup']
 						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-				
+
 					onactive: ->
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						@data['kitPopup']._removeClass '_active_'
-			
+
 			$('.btn-popup-demo-right').each (index, popup) ->
 				popup.popup
 					position:
@@ -132,13 +132,13 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						popup = @data['kitPopup']
 						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-				
+
 					onactive: ->
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						@data['kitPopup']._removeClass '_active_'
-			
+
 			$('.btn-popup-demo-bottom').each (index, popup) ->
 				popup.popup
 					position:
@@ -147,13 +147,13 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						popup = @data['kitPopup']
 						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-				
+
 					onactive: ->
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						@data['kitPopup']._removeClass '_active_'
-			
+
 			$('.btn-popup-demo-bottom-right').each (index, popup) ->
 				popup.popup
 					position:
@@ -162,13 +162,13 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						popup = @data['kitPopup']
 						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-				
+
 					onactive: ->
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						@data['kitPopup']._removeClass '_active_'
-			
+
 			$('.btn-popup-demo-top-left').each (index, popup) ->
 				popup.popup
 					position:
@@ -177,39 +177,39 @@ exports.module = Marionette.Layout.extend
 					beforeactive: ->
 						popup = @data['kitPopup']
 						popup.dialog.innerHTML = "Popup #{popup._id} with dynamic content Random number #{Math.random()}"
-				
+
 					onactive: ->
 						@data['kitPopup']._addClass '_active_'
-				
+
 					ondeactive: ->
 						@data['kitPopup']._removeClass '_active_'
-			
-			
-			
-			
-			
+
+
+
+
+
 			# TABS
 			@$el.find("[data-toggle='tabs']").each (index, tabs) ->
 				tabs.tabs()
-			
-			
+
+
 			# # MODALS
 			$('.btn-modal-fast').each (index, modal) ->
 				modal.modal()
-			
+
 			$('.btn-modal123').each (index, modal) ->
 				modal.modal
 					beforeactive: ->
 						d = $.Deferred()
-				
+
 						setTimeout ->
 							d.resolve()
 						, 2000
-				
+
 						d.promise()
-			
-			
-			
+
+
+
 			# SCROLLSPY
 			@$el.find('[data-spy="scroll"]').each (index, scrollspy) ->
 				scrollspy.scrollspy
