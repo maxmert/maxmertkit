@@ -87,75 +87,75 @@ doument.querySelector('.btn-modal123').modal
 
 <h2>Properties</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Default</th>
-			<th>Description</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>toggle</td>
 			<td><i>@el.getAttribute( 'data-toggle' ) or 'modal'</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Set toggle type.
 			</td>
 		</tr>
 		<tr>
 			<td>target</td>
 			<td><i>@el.getAttribute( 'data-target' ) or null</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Find element with this selector and work with it as a modal window.
 			</td>
 		</tr>
 		<tr>
 			<td>dialog</td>
 			<td><i>@el.getAttribute( 'data-dialog' ) or ".-dialog"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Selector to find dialog block inside target (modal window).
 			</td>
 		</tr>
 		<tr>
 			<td>event</td>
 			<td><i>@el.getAttribute( 'data-event' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				This event will be used to open modal window.</code>
 			</td>
 		</tr>
 		<tr>
 			<td>eventClose</td>
 			<td><i>@el.getAttribute( 'data-event-close' ) or "click"</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				This event will be used to close window. Will listen on elements with <code>data-dismiss=".modal"</code> to close modal window with selector <code>.modal</code>.
 			</td>
 		</tr>
 		<tr>
 			<td>backdrop</td>
 			<td><i>@el.getAttribute('data-backdrop') or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Close modal window when clicked on the backdrop.
 			</td>
 		</tr>
 		<tr>
 			<td>push</td>
 			<td><i>@el.getAttribute('data-push') or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				<b>NOT TESTED</b>. The selector of the container with WHOLE content, except modal window, to use push animation.
 			</td>
 		</tr>
 		<tr>
 			<td>autoOpen</td>
 			<td><i>@el.getAttribute('data-autoopen') or no</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Open modal after initialize.
 			</td>
 		</tr>
 		<tr>
 			<td>selfish</td>
 			<td><i>@el.getAttribute('data-selfish') or yes</i></td>
-			<td>
+			<td class="_hidden-phones_ _hidden-tablets_">
 				Close all Modal instances after current instance initialized.
 			</td>
 		</tr>
@@ -165,7 +165,7 @@ doument.querySelector('.btn-modal123').modal
 
 <h2>Methods</h2>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
@@ -207,7 +207,7 @@ doument.querySelector('.btn-modal123').modal
 	Inside each method to get button use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the button element <code>@data['kitModal']</code> or <code>this.data['kitModal']</code> in js. To get modal window element do <code>@data['kitModal'].el</code>.
 </blockquote>
 
-<table class="-table _horizontal_">
+<table class="-table _horizontal_ _responsive_">
 	<thead>
 		<tr>
 			<th>Method</th>
