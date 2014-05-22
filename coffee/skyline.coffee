@@ -4,9 +4,6 @@ _name = "skyline"
 _instances = []
 _id = 0
 _lastScrollY = 0
-_ticking = no
-_resizingTick = no
-_spyParams = {}
 _windowSize = 0
 
 MaxmertkitHelpers = window['MaxmertkitHelpers']
@@ -30,13 +27,8 @@ class Skyline extends MaxmertkitHelpers
 			# Number; in px, vertical offset from the top
 			offset: @el.getAttribute( 'data-offset' ) or 5
 
-			delay: @el.getAttribute( 'data-delay' ) or 200
-
-			# String; selector of items inside element
-			# elements: @el.getAttribute( 'data-elements' ) or 'li a'
-
-			# String; selector of items inside target
-			# elementsAttr: @el.getAttribute( 'data-elements-attr' ) or 'href'
+			# Number or function, returning Number; in ms, delay before start animation
+			delay: @el.getAttribute( 'data-delay' ) or 300
 
 			# Boolean; on spying on mobile devices
 			onMobile: @el.getAttribute( 'data-on-mobile' ) or no
@@ -53,6 +45,8 @@ class Skyline extends MaxmertkitHelpers
 
 		# Get scrolling container with items inside
 		# @target = document.querySelector @options.target
+		@ticking = no
+		@resizingTick = no
 		@scroller = @_getScrollContainer @el
 		@spy = _spy.bind(@)
 		@onScroll = _onScroll.bind(@)
@@ -63,16 +57,19 @@ class Skyline extends MaxmertkitHelpers
 
 		super @el, @options
 
+		@_addEventListener @el, 'load', @refresh.bind @
 		@_addEventListener window, 'resize', @onResize
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
 		@reactor.registerEvent "start.#{_name}"
 		@reactor.registerEvent "stop.#{_name}"
+		@reactor.registerEvent "refresh.#{_name}"
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
-		if (not (not @options.onMobile and _getWindowSize().width < 992)) then @start()
+		if (not (not @options.onMobile and _getWindowSize().width < 992))
+			@start( @deactivate )
 
 	destroy: ->
 		_deactivate.call @
@@ -91,20 +88,25 @@ class Skyline extends MaxmertkitHelpers
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
 
-	start: ->
+	start: (cb) ->
 		if not @started
-			_beforeactivate.call @
+			_beforeactivate.call @, cb
 
 	stop: (cb) ->
 		if @started
 			_beforedeactivate.call @, cb
 
 	activate: ->
+		if typeof @options.delay is 'function'
+			delay = @options.delay()
+		else
+			delay = @options.delay
+
 		@timer = setTimeout =>
 			@_addClass '-start--'
 			@_removeClass '-stop--'
 			@active = yes
-		, @options.delay
+		, delay
 
 	deactivate: ->
 		if @timer?
@@ -116,22 +118,11 @@ class Skyline extends MaxmertkitHelpers
 
 	refresh: ->
 		_windowSize = _getWindowSize()
-		_spyParams = 
+		@spyParams = 
 			offset: @_getPosition @el
 			height: @_outerHeight()
-		
-		# elements = @el.querySelectorAll(@options.elements)
-		# @elements = []
-		# for el in elements
-		# 	targetEl = @target.querySelector(el.getAttribute( @options.elementsAttr ))
-		# 	if targetEl?
-		# 		offsetTop = targetEl.offsetTop
-		# 		offsetTop += @target.offsetTop if @target.offsetTop?
-		# 		@elements.push
-		# 			element: el
-		# 			target: targetEl
-		# 			height: targetEl.offsetHeight
-		# 			top: offsetTop
+
+		# @reactor.dispatchEvent "refresh.#{_name}"
 
 
 
@@ -141,11 +132,11 @@ _onResize = ->
 	_requestResize.call @
 
 _requestResize = ->
-	if not _resizingTick
+	if not @resizingTick
 		# If element is out there
 		if @resizing?
 			requestAnimationFrame(@resizing)
-			_resizingTick = true
+			@resizingTick = true
 
 _resizing = ->
 	@refresh()
@@ -156,7 +147,7 @@ _resizing = ->
 		else
 			@start()
 
-	_resizingTick = false
+	@resizingTick = false
 
 _getWindowSize = ->
 	clientWidth = 0
@@ -185,75 +176,45 @@ _onScroll = (event)  ->
 	_requestTick.call @
 
 _requestTick = ->
-	if not _ticking
+	if not @ticking
 		requestAnimationFrame(@spy)
-		_ticking = true
-
-# _activateItem = ( itemNumber ) ->
-# 	for el in @elements
-# 		@_removeClass '_active_', el.element
-# 		parent = el.element.parentNode
-# 		@_removeClass '_active_', parent
-# 		while parent? and parent = parent.parentNode
-# 			if parent.nodeName is 'LI' then @_removeClass '_active_', parent
-
-# 	@_addClass '_active_', @elements[itemNumber].element
-
-# 	parent = @elements[itemNumber].element.parentNode
-# 	@_addClass '_active_', parent
-# 	while parent? and parent = parent.parentNode
-# 		if parent.nodeName is 'LI' then @_addClass '_active_', parent
+		@ticking = true
 
 
-# _deactivateItem = ( itemNumber ) ->
-# 	@_removeClass '_active_', @elements[itemNumber].element
-# 	@_removeClass '_active_', @elements[itemNumber].element.parentNode
-
-# _deactivateAllItems = ->
-# 	for item, index in @elements
-# 		_deactivateItem.call @, index
-
-
-_spy = ( event ) ->
-	if _spyParams.offset.top - _windowSize.height <= _lastScrollY + @options.offset <= _spyParams.offset.top + _spyParams.height
+_spy = ->
+	if @spyParams.offset.top - _windowSize.height <= _lastScrollY + @options.offset <= @spyParams.offset.top + @spyParams.height
 		if not @active
 			@activate()
 	else
 		if @active
 			@deactivate()
-	# if (_spyParams.offset.top <= _lastScrollY + @options.offset <= _spyParams.offset.top + _spyParams.height ) or ( if i < @elements.length - 1 then (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i + 1].top ) )
-	# 	if not @_hasClass '_active_', @elements[i].element
-	# 		_activateItem.call @, i
-	# else
-	# 	if @_hasClass('_active_', @elements[i].element) and _lastScrollY + @options.offset < @elements[i].top + @elements[i].height
-	# 		_deactivateItem.call @, i
-	# i++
 
-	_ticking = no
+	@ticking = no
 
-_beforeactivate = ->
+_beforeactivate = (cb) ->
 	if @beforeactive?
 		try
 			deferred = @beforeactive.call @el
 			deferred
 				.done =>
-					_activate.call @
+					_activate.call @, cb
 
 				.fail =>
 					@failactive?.call @el
 
 		catch
-			_activate.call @
+			_activate.call @, cb
 
 	else
-		_activate.call @
+		_activate.call @, cb
 
-_activate = ->
+_activate = (cb) ->
 	@refresh()
 	@_addEventListener @scroller, 'scroll', @onScroll
 	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
 	@started = yes
+	cb.call @ if cb?
 
 _beforedeactivate = ( cb ) ->
 	if @beforedeactive?
@@ -277,7 +238,7 @@ _deactivate = ( cb ) ->
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
 	@started = no
-	cb() if cb?
+	cb.call @ if cb?
 
 
 window['Skyline'] = Skyline
@@ -288,7 +249,6 @@ window['mkitSkyline'] = ( options ) ->
 
 	unless @data['kitSkyline']
 		result = new Skyline @, options
-		console.log result
 		@data['kitSkyline'] = result
 
 	else

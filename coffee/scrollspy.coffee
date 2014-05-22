@@ -222,6 +222,7 @@ _beforeactivate = ->
 		_activate.call @
 
 _activate = ->
+	# @skylineId = @reactor.addEventListener "refresh.skyline", @refresh.bind(@)
 	@_addEventListener @scroller, 'scroll', @onScroll
 	@onactive?.call @el
 	@reactor.dispatchEvent "start.#{_name}"
@@ -246,6 +247,7 @@ _beforedeactivate = ->
 
 _deactivate = ->
 	@_removeEventListener @scroller, 'scroll', @onScroll
+	# @reactor.removeEventListener "refresh.skyline", @skylineId
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
 	@started = no

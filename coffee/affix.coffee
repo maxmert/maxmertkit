@@ -90,6 +90,10 @@ class Affix extends MaxmertkitHelpers
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
 
+	refresh: ->
+		@HEIGHT = @_outerHeight()
+		@CONTAINER_HEIGHT = @_outerHeight(@container)
+
 
 
 
@@ -111,6 +115,7 @@ _resizing = ->
 			@stop()
 			_setPositionRelative.call @
 		else
+			@refresh()
 			@start()
 
 	_resizingTick = false
@@ -165,8 +170,8 @@ _beforeactivate = ->
 		_activate.call @
 
 _activate = ->
-	@HEIGHT = @_outerHeight()
-	@CONTAINER_HEIGHT = @_outerHeight(@container)
+	@refresh()
+	# @skylineId = @reactor.addEventListener "refresh.skyline", @refresh.bind(@), yes
 	@_addEventListener @scroller, 'scroll', @onScroll
 	@_addClass '_active_'
 	@onactive?.call @el
@@ -192,6 +197,7 @@ _beforedeactivate = ->
 
 _deactivate = ->
 	@_removeEventListener @scroller, 'scroll', @onScroll
+	# @reactor.removeEventListener "refresh.skyline", @skylineId
 	@_removeClass '_active_'
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el

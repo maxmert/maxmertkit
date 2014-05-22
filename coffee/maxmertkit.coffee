@@ -3,6 +3,7 @@
 _eventHandlers = []
 _eventCallbacks = []
 _reactorEvents = []
+_eventCallbackId = 0
 _id = 0
 
 
@@ -15,8 +16,15 @@ class MaxmertkitEvent
 		@callbacks = new Array()
 
 
-	registerCallback: ( callback ) ->
-		@callbacks.push callback
+	registerCallback: ( callback, id ) ->
+		@callbacks.push 
+			id: id
+			callback: callback
+
+	removeCallback: ( id ) ->
+		for cb, index in @callbacks
+			console.log cb, index
+			if cb.id is id then @callbacks.splice(index, 1)
 
 
 # Reactor class
@@ -44,10 +52,34 @@ class MaxmertkitReactor
 
 	dispatchEvent: ( eventName, eventArgs ) ->
 		for callback in @events[ eventName ].callbacks
-			callback( eventArgs )
+			callback.callback( eventArgs )
 
-	addEventListener: ( eventName, callback ) ->
-		@events[ eventName ].registerCallback callback
+	removeEventListener: ( eventName, callbackId ) ->
+		if @events[ eventName ]?
+			@events[ eventName ].removeCallback callbackId
+
+	addEventListener: ( eventName, callback, immediately ) ->
+		eventId = _eventCallbackId++
+		if @events[ eventName ]?
+			@events[ eventName ].registerCallback callback, eventId
+		else
+			i = 0
+			timer = setInterval =>
+				if i < 10
+					if @events[ eventName ]?
+						# Do callback immediately once
+						callback() if immediately? and immediately
+						@events[ eventName ].registerCallback callback
+						clearInterval timer
+						timer = null
+					else
+						i++
+				else
+					clearInterval timer
+					timer = null
+			, 1000
+		
+		eventId
 
 
 
