@@ -84,6 +84,7 @@ gulp.task 'kitCoffee', ->
 		"#{path.kit.coffee}/scrollspy.coffee"
 		"#{path.kit.coffee}/tabs.coffee"
 		"#{path.kit.coffee}/popup.coffee"
+		"#{path.kit.coffee}/skyline.coffee"
 	]
 
 	gulp.src( files )

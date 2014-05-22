@@ -2109,3 +2109,308 @@
   }
 
 }).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Skyline, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _resizingTick, _spy, _spyParams, _ticking, _windowSize,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "skyline";
+
+  _instances = [];
+
+  _id = 0;
+
+  _lastScrollY = 0;
+
+  _ticking = false;
+
+  _resizingTick = false;
+
+  _spyParams = {};
+
+  _windowSize = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Skyline = (function(_super) {
+    __extends(Skyline, _super);
+
+    Skyline.prototype._name = _name;
+
+    Skyline.prototype._instances = _instances;
+
+    Skyline.prototype.started = false;
+
+    Skyline.prototype.active = false;
+
+    function Skyline(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        spy: this.el.getAttribute('data-spy') || _name,
+        offset: this.el.getAttribute('data-offset') || 5,
+        delay: this.el.getAttribute('data-delay') || 200,
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.scroller = this._getScrollContainer(this.el);
+      this.spy = _spy.bind(this);
+      this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._setOptions(this.options);
+      Skyline.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("start." + _name);
+      this.reactor.registerEvent("stop." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start();
+      }
+    }
+
+    Skyline.prototype.destroy = function() {
+      _deactivate.call(this);
+      this.el.data["kitSkyline"] = null;
+      return Skyline.__super__.destroy.apply(this, arguments);
+    };
+
+    Skyline.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Skyline. You're trying to set unpropriate option – " + key);
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Skyline.prototype.start = function() {
+      if (!this.started) {
+        return _beforeactivate.call(this);
+      }
+    };
+
+    Skyline.prototype.stop = function(cb) {
+      if (this.started) {
+        return _beforedeactivate.call(this, cb);
+      }
+    };
+
+    Skyline.prototype.activate = function() {
+      return this.timer = setTimeout((function(_this) {
+        return function() {
+          _this._addClass('-start--');
+          _this._removeClass('-stop--');
+          return _this.active = true;
+        };
+      })(this), this.options.delay);
+    };
+
+    Skyline.prototype.deactivate = function() {
+      if (this.timer != null) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this._removeClass('-start-- _active_');
+      this._addClass('-stop--');
+      return this.active = false;
+    };
+
+    Skyline.prototype.refresh = function() {
+      _windowSize = _getWindowSize();
+      return _spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
+    };
+
+    return Skyline;
+
+  })(MaxmertkitHelpers);
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!_resizingTick) {
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return _resizingTick = true;
+      }
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop(this.activate);
+      } else {
+        this.start();
+      }
+    }
+    return _resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
+    return _requestTick.call(this);
+  };
+
+  _requestTick = function() {
+    if (!_ticking) {
+      requestAnimationFrame(this.spy);
+      return _ticking = true;
+    }
+  };
+
+  _spy = function(event) {
+    var _ref;
+    if ((_spyParams.offset.top - _windowSize.height <= (_ref = _lastScrollY + this.options.offset) && _ref <= _spyParams.offset.top + _spyParams.height)) {
+      if (!this.active) {
+        this.activate();
+      }
+    } else {
+      if (this.active) {
+        this.deactivate();
+      }
+    }
+    return _ticking = false;
+  };
+
+  _beforeactivate = function() {
+    var deferred;
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.failactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this);
+      }
+    } else {
+      return _activate.call(this);
+    }
+  };
+
+  _activate = function() {
+    var _ref;
+    this.refresh();
+    this._addEventListener(this.scroller, 'scroll', this.onScroll);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("start." + _name);
+    return this.started = true;
+  };
+
+  _beforedeactivate = function(cb) {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this, cb);
+      }
+    } else {
+      return _deactivate.call(this, cb);
+    }
+  };
+
+  _deactivate = function(cb) {
+    var _ref;
+    this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this.reactor.dispatchEvent("stop." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    this.started = false;
+    if (cb != null) {
+      return cb();
+    }
+  };
+
+  window['Skyline'] = Skyline;
+
+  window['mkitSkyline'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitSkyline']) {
+      result = new Skyline(this, options);
+      console.log(result);
+      this.data['kitSkyline'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitSkyline']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitSkyline'][options];
+        }
+      }
+      result = this.data['kitSkyline'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.skyline = window['mkitSkyline'];
+  }
+
+}).call(this);
