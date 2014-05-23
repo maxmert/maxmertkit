@@ -15,18 +15,18 @@ To get started, check out <http://maxmert.com>!
  - [Contributing](#contributing)
  - [Community](#community)
  - [Versioning](#versioning)
- - [Authors](#authors)
+ - [Author](#author)
  - [Copyright and license](#copyright-and-license)
 
 ## Quick start
 
 Three quick start options are available:
 
-- [Download the latest release](https://github.com/maxmert/maxmertkit/archive/v1.0.0.zip).
+- [Download the latest release](https://github.com/maxmert/maxmertkit/releases/latest).
 - Clone the repo: `git clone https://github.com/maxmert/maxmertkit.git`.
 - Install with [Bower](http://bower.io): `bower install maxmertkit`.
 
-Read the [Start page](http://maxmert.com/start/) for information on the framework contents, templates and examples, and more.
+Read the [Start page](http://maxmert.com/start/) for information on the framework contents, howto videos, examples, and more.
 
 ### What's included
 
@@ -43,6 +43,8 @@ Have a bug, text error or a feature request? Please first read the [issue guidel
 Maxmertkit's documentation, included in this repo in the root directory, is run with [Nodejs](http://nodejs.org). The docs may be run locally.
 
 ### Running documentation locally
+
+**Go to [maxmert.com/start](maxmert.com/start) and watch HOWTO video**
 
 1. If necessary, [install Nodejs](http://nodejs.org), [install NPM](http://npmjs.org), [install Bower](http://bower.io).
 2. From the root `/maxmertkit` directory, run `npm install` in the command line.
@@ -67,7 +69,7 @@ Maxmertkit uses [Gulp](http://gulpjs.com/) with convenient methods for working w
 
 From the command line:
 
-1. Install `gulp` globally with `npm install -g gulp`.
+1. Install `gulp` globally with `npm install -g gulp` (maybe you'll need to run it with `sudo` – `sudo npm install -g gulp`).
 2. Read about running documentation locally.
 
 When completed, you'll be able to run the various Gulp commands provided from the command line.
@@ -76,11 +78,11 @@ When completed, you'll be able to run the various Gulp commands provided from th
 
 ### Available Gulp commands
 
-#### Build and watch - `gulp`
-Run `gulp` to run tests locally and compile the CSS and JavaScript into `/buil`. **Uses [Sass](http://sass-lang.org/) and [Coffeescript](http://coffeescript.org).**
+#### Build and watch (development) - `gulp`
+Run `gulp` to run buld and run documentation locally. It will compile **[coffeescript](http://coffeescript.org/)** and **[sass](http://sass-lang.com/)** into `/docs` and run **[nodemon](https://github.com/remy/nodemon)** server at port **3333**.
 
-#### Only compile CSS and JavaScript - `gulp build`
-`gulp build` creates the `/build` directory with compiled files. **Uses [Less](http://lesscss.org/) and [UglifyJS](http://lisperator.net/uglifyjs/).**
+#### Only compile CSS and JavaScript (production) - `gulp build`
+Run `gulp build` to clear the `/build` directory and recompile all **[coffeescript](http://coffeescript.org/)** and **[sass](http://sass-lang.com/)** files with gzip and standart version.
 
 #### Tests - `gulp test`
 
@@ -128,7 +130,7 @@ For more information on SemVer, please visit <http://semver.org/>.
 
 
 
-## Creators
+## Author
 
 **Vetrenko Maxim**
 
