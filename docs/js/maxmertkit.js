@@ -2109,3 +2109,350 @@
   }
 
 }).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Wall, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getTargetSize, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _spy, _windowSize,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "wall";
+
+  _instances = [];
+
+  _id = 0;
+
+  _lastScrollY = 0;
+
+  _windowSize = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Wall = (function(_super) {
+    __extends(Wall, _super);
+
+    Wall.prototype._name = _name;
+
+    Wall.prototype._instances = _instances;
+
+    Wall.prototype.started = false;
+
+    Wall.prototype.active = false;
+
+    function Wall(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        kind: this.el.getAttribute('data-kind') || _name,
+        target: this.el.getAttribute('data-target') || 'video',
+        speed: this.el.getAttribute('data-speed') || 0.2,
+        zoom: this.el.getAttribute('data-zoom') || false,
+        height: this.el.getAttribute('data-height') || '100%',
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.ticking = false;
+      this.resizingTick = false;
+      this.scroller = this._getScrollContainer(this.el);
+      this.spy = _spy.bind(this);
+      this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._setOptions(this.options);
+      Wall.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("start." + _name);
+      this.reactor.registerEvent("stop." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start(this.deactivate);
+      }
+    }
+
+    Wall.prototype.destroy = function() {
+      _deactivate.call(this);
+      this.el.data["kitWall"] = null;
+      return Wall.__super__.destroy.apply(this, arguments);
+    };
+
+    Wall.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Wall. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'target':
+            this.target = this.el.querySelector(this.options.target);
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Wall.prototype.start = function(cb) {
+      if (!this.started) {
+        return _beforeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.stop = function(cb) {
+      if (this.started) {
+        return _beforedeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.activate = function() {
+      var delay;
+      if (typeof this.options.delay === 'function') {
+        delay = this.options.delay();
+      } else {
+        delay = this.options.delay;
+      }
+      return this.timer = setTimeout((function(_this) {
+        return function() {
+          _this._addClass('-start--');
+          _this._removeClass('-stop--');
+          return _this.active = true;
+        };
+      })(this), delay);
+    };
+
+    Wall.prototype.deactivate = function() {
+      if (this.timer != null) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this._removeClass('-start-- _active_');
+      this._addClass('-stop--');
+      return this.active = false;
+    };
+
+    Wall.prototype.refresh = function() {
+      var percent, targetSize;
+      _windowSize = _getWindowSize();
+      this.spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
+      if (this.options.height[this.options.height.length - 1] === '%') {
+        percent = parseInt(this.options.height) / 100;
+        this.el.style.height = "" + (_windowSize.height * percent) + "px";
+      } else {
+        this.el.style.height = this.options.height;
+      }
+      if (_windowSize.width / _windowSize.height > 16 / 9) {
+        this.target.style.width = "100%";
+        this.target.style.height = "auto";
+      } else {
+        this.target.style.width = "auto";
+        this.target.style.height = "100%";
+      }
+      targetSize = _getTargetSize.call(this);
+      if (targetSize.width - _windowSize.width > 0) {
+        this.target.style.left = "-" + ((targetSize.width - _windowSize.width) / 2) + "px";
+      } else if (this.target.style.left !== '') {
+        this.target.style.left = '';
+      }
+      if (targetSize.height - _windowSize.height > 0) {
+        return this.target.style.top = "-" + ((targetSize.height - _windowSize.height) / 2) + "px";
+      } else if (this.target.style.top !== '') {
+        return this.target.style.top = '';
+      }
+    };
+
+    return Wall;
+
+  })(MaxmertkitHelpers);
+
+  _getTargetSize = function() {
+    return {
+      width: this._outerWidth(this.target),
+      height: this._outerHeight(this.target)
+    };
+  };
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!this.resizingTick) {
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return this.resizingTick = true;
+      }
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop(this.activate);
+      } else {
+        this.start();
+      }
+    }
+    return this.resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
+    return _requestTick.call(this);
+  };
+
+  _requestTick = function() {
+    if (!this.ticking) {
+      requestAnimationFrame(this.spy);
+      return this.ticking = true;
+    }
+  };
+
+  _spy = function() {
+    var _ref;
+    if ((this.spyParams.offset.top - _windowSize.height <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.spyParams.offset.top + this.spyParams.height)) {
+      if (!this.active) {
+        this.activate();
+      }
+    } else {
+      if (this.active) {
+        this.deactivate();
+      }
+    }
+    return this.ticking = false;
+  };
+
+  _beforeactivate = function(cb) {
+    var deferred;
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.failactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this, cb);
+      }
+    } else {
+      return _activate.call(this, cb);
+    }
+  };
+
+  _activate = function(cb) {
+    var _ref;
+    this.refresh();
+    this._addEventListener(this.scroller, 'scroll', this.onScroll);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("start." + _name);
+    this.started = true;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  _beforedeactivate = function(cb) {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this, cb);
+      }
+    } else {
+      return _deactivate.call(this, cb);
+    }
+  };
+
+  _deactivate = function(cb) {
+    var _ref;
+    this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this.reactor.dispatchEvent("stop." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    this.started = false;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  window['Wall'] = Wall;
+
+  window['mkitWall'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitWall']) {
+      result = new Wall(this, options);
+      this.data['kitWall'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitWall']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitWall'][options];
+        }
+      }
+      result = this.data['kitWall'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.wall = window['mkitWall'];
+  }
+
+}).call(this);

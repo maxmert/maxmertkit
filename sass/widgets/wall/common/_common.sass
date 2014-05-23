@@ -1,0 +1,20 @@
+@import "variables"
+
+@include exports("wall/common")
+	.#{$wall-class}
+		width: 100%
+		min-height: 480px
+		background-size: cover
+		overflow: visible
+
+		.#{$item-class}
+			overflow: hidden
+			width: 100%
+			height: 100%
+			position: relative
+
+			figure, video
+				position: absolute
+				height: auto
+				width: auto
+				@include user-select( none )
