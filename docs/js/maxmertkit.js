@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbackId, _eventCallbacks, _eventHandlers, _id, _reactor, _reactorEvents;
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, isInDOM, _eventCallbackId, _eventCallbacks, _eventHandlers, _id, _reactor, _reactorEvents;
 
   _eventHandlers = [];
 
@@ -12,15 +12,28 @@
 
   _id = 0;
 
+  isInDOM = function(el) {
+    var html;
+    html = document.body.parentNode;
+    while (el) {
+      if (el === html) {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    return false;
+  };
+
   MaxmertkitEvent = (function() {
     function MaxmertkitEvent(name) {
       this.name = name;
       this.callbacks = new Array();
     }
 
-    MaxmertkitEvent.prototype.registerCallback = function(callback, id) {
+    MaxmertkitEvent.prototype.registerCallback = function(callback, el, id) {
       return this.callbacks.push({
         id: id,
+        el: el,
         callback: callback
       });
     };
@@ -31,8 +44,7 @@
       _results = [];
       for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
         cb = _ref[index];
-        console.log(cb, index);
-        if (cb.id === id) {
+        if ((cb != null) && cb.id === id) {
           _results.push(this.callbacks.splice(index, 1));
         } else {
           _results.push(void 0);
@@ -59,12 +71,16 @@
     };
 
     MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
-      var callback, _i, _len, _ref, _results;
+      var callback, index, _i, _len, _ref, _results;
       _ref = this.events[eventName].callbacks;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        callback = _ref[_i];
-        _results.push(callback.callback(eventArgs));
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        callback = _ref[index];
+        if (isInDOM(callback.el)) {
+          _results.push(callback.callback(eventArgs));
+        } else {
+          _results.push(this.events[eventName].removeCallback(callback.id));
+        }
       }
       return _results;
     };
@@ -75,11 +91,11 @@
       }
     };
 
-    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback, immediately) {
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback, el, immediately) {
       var eventId, i, timer;
       eventId = _eventCallbackId++;
       if (this.events[eventName] != null) {
-        this.events[eventName].registerCallback(callback, eventId);
+        this.events[eventName].registerCallback(callback, el, eventId);
       } else {
         i = 0;
         timer = setInterval((function(_this) {
@@ -89,7 +105,7 @@
                 if ((immediately != null) && immediately) {
                   callback();
                 }
-                _this.events[eventName].registerCallback(callback);
+                _this.events[eventName].registerCallback(callback, el, eventId);
                 clearInterval(timer);
                 return timer = null;
               } else {
@@ -218,6 +234,8 @@
         });
       }
     };
+
+    MaxmertkitHelpers.prototype._isInDOM = isInDOM;
 
     MaxmertkitHelpers.prototype._hasClass = function(className, el) {
       el = el || this.el;
@@ -787,12 +805,10 @@
       this.resizing = _resizing.bind(this);
       this._setOptions(this.options);
       Skyline.__super__.constructor.call(this, this.el, this.options);
-      this._addEventListener(this.el, 'load', this.refresh.bind(this));
       this._addEventListener(window, 'resize', this.onResize);
       this.reactor.registerEvent("initialize." + _name);
       this.reactor.registerEvent("start." + _name);
       this.reactor.registerEvent("stop." + _name);
-      this.reactor.registerEvent("refresh." + _name);
       this.reactor.dispatchEvent("initialize." + _name);
       if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
         this.start(this.deactivate);

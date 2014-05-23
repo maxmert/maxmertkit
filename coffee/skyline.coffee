@@ -57,14 +57,12 @@ class Skyline extends MaxmertkitHelpers
 
 		super @el, @options
 
-		@_addEventListener @el, 'load', @refresh.bind @
 		@_addEventListener window, 'resize', @onResize
 
 		# Set global event
 		@reactor.registerEvent "initialize.#{_name}"
 		@reactor.registerEvent "start.#{_name}"
 		@reactor.registerEvent "stop.#{_name}"
-		@reactor.registerEvent "refresh.#{_name}"
 
 		@reactor.dispatchEvent "initialize.#{_name}"
 
@@ -121,8 +119,6 @@ class Skyline extends MaxmertkitHelpers
 		@spyParams = 
 			offset: @_getPosition @el
 			height: @_outerHeight()
-
-		# @reactor.dispatchEvent "refresh.#{_name}"
 
 
 

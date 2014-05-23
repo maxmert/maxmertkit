@@ -6,6 +6,14 @@ _reactorEvents = []
 _eventCallbackId = 0
 _id = 0
 
+isInDOM = (el) ->
+	html = document.body.parentNode
+	while el
+		return true  if el is html
+		el = el.parentNode
+
+	false
+
 
 # Event class
 # ============
@@ -16,15 +24,15 @@ class MaxmertkitEvent
 		@callbacks = new Array()
 
 
-	registerCallback: ( callback, id ) ->
+	registerCallback: ( callback, el, id ) ->
 		@callbacks.push 
 			id: id
+			el: el
 			callback: callback
 
 	removeCallback: ( id ) ->
 		for cb, index in @callbacks
-			console.log cb, index
-			if cb.id is id then @callbacks.splice(index, 1)
+			if cb? and cb.id is id then @callbacks.splice(index, 1)
 
 
 # Reactor class
@@ -51,17 +59,20 @@ class MaxmertkitReactor
 		if not @events[ eventName ]? then @events[ eventName ] = event
 
 	dispatchEvent: ( eventName, eventArgs ) ->
-		for callback in @events[ eventName ].callbacks
-			callback.callback( eventArgs )
+		for callback, index in @events[ eventName ].callbacks
+			if isInDOM callback.el
+				callback.callback( eventArgs )
+			else
+				@events[ eventName ].removeCallback callback.id
 
 	removeEventListener: ( eventName, callbackId ) ->
 		if @events[ eventName ]?
 			@events[ eventName ].removeCallback callbackId
 
-	addEventListener: ( eventName, callback, immediately ) ->
+	addEventListener: ( eventName, callback, el, immediately ) ->
 		eventId = _eventCallbackId++
 		if @events[ eventName ]?
-			@events[ eventName ].registerCallback callback, eventId
+			@events[ eventName ].registerCallback callback, el, eventId
 		else
 			i = 0
 			timer = setInterval =>
@@ -69,7 +80,7 @@ class MaxmertkitReactor
 					if @events[ eventName ]?
 						# Do callback immediately once
 						callback() if immediately? and immediately
-						@events[ eventName ].registerCallback callback
+						@events[ eventName ].registerCallback callback, el, eventId
 						clearInterval timer
 						timer = null
 					else
@@ -167,6 +178,8 @@ class MaxmertkitHelpers
 				return
 
 		return
+
+	_isInDOM: isInDOM
 
 	# _addEventListener: (el, event, handler, capture = yes) ->
 	#
