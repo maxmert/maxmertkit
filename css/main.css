@@ -18298,6 +18298,25 @@ a.-avatar {
 @media screen and (max-width: 768px) {
   .-comments .-item .-content._hidden_, .-comments .-item .-content ._hidden_ {
     opacity: 1; } }
+.-wall {
+  width: 100%;
+  min-height: 480px;
+  background-size: cover;
+  overflow: visible; }
+  .-wall .-item {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative; }
+    .-wall .-item figure, .-wall .-item video {
+      position: absolute;
+      height: auto;
+      width: auto;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+
 .-modal {
   position: fixed;
   top: 0;
