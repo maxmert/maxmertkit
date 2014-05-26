@@ -229,11 +229,11 @@
         style = el.currentStyle || getComputedStyle(el);
       } catch (_error) {}
       if (style) {
-        if ((style.marginLeft != null) && style.marginLeft !== '') {
-          width += parseInt(style.marginLeft);
+        if ((style.paddingLeft != null) && style.paddingLeft !== '') {
+          width += parseInt(style.paddingLeft);
         }
-        if ((style.marginRight != null) && style.marginRight !== '') {
-          width += parseInt(style.marginRight);
+        if ((style.paddingRight != null) && style.paddingRight !== '') {
+          width += parseInt(style.paddingRight);
         }
       }
       return width;
@@ -247,11 +247,11 @@
         style = el.currentStyle || getComputedStyle(el);
       } catch (_error) {}
       if (style != null) {
-        if ((style.marginTop != null) && style.marginTop !== '') {
-          height += parseInt(style.marginTop);
+        if ((style.paddingTop != null) && style.paddingTop !== '') {
+          height += parseInt(style.paddingTop);
         }
-        if ((style.marginBottom != null) && style.marginBottom !== '') {
-          height += parseInt(style.marginBottom);
+        if ((style.paddingBottom != null) && style.paddingBottom !== '') {
+          height += parseInt(style.paddingBottom);
         }
       }
       return height;
@@ -268,11 +268,6 @@
           try {
             style = el.currentStyle || getComputedStyle(el);
           } catch (_error) {}
-          if (style != null) {
-            if ((style.marginTop != null) && style.marginTop !== '') {
-              curtop -= parseInt(style.marginTop);
-            }
-          }
           curleft += el.offsetLeft;
           curtop += el.offsetTop;
           if (!(el = el.offsetParent)) {
@@ -345,6 +340,15 @@
       el.style.msTransform = transform;
       el.style.oTransform = transform;
       return el.style.transform = transform;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSOpacity = function(el, opacity) {
+      el = el || this.el;
+      el.style.webkitOpacity = opacity;
+      el.style.mozOpacity = opacity;
+      el.style.msOpacity = opacity;
+      el.style.oOpacity = opacity;
+      return el.style.opacity = opacity;
     };
 
     return MaxmertkitHelpers;
@@ -2154,8 +2158,10 @@
       this.options = options;
       _options = {
         kind: this.el.getAttribute('data-kind') || _name,
-        target: this.el.getAttribute('data-target') || 'video',
-        speed: this.el.getAttribute('data-speed') || 0.2,
+        target: this.el.getAttribute('data-target') || '.-thumbnail',
+        header: this.el.getAttribute('data-target') || '.-header',
+        headerFade: this.el.getAttribute('data-fade') || true,
+        speed: this.el.getAttribute('data-speed') || 0.7,
         zoom: this.el.getAttribute('data-zoom') || false,
         height: this.el.getAttribute('data-height') || '100%',
         onMobile: this.el.getAttribute('data-on-mobile') || false,
@@ -2203,6 +2209,10 @@
           case 'target':
             this.target = this.el.querySelector(this.options.target);
         }
+        switch (key) {
+          case 'header':
+            this.header = this.el.querySelector(this.options.header);
+        }
         this.options[key] = value;
         if (typeof value === 'function') {
           this[key] = value;
@@ -2223,26 +2233,12 @@
     };
 
     Wall.prototype.activate = function() {
-      var delay;
-      if (typeof this.options.delay === 'function') {
-        delay = this.options.delay();
-      } else {
-        delay = this.options.delay;
-      }
-      return this.timer = setTimeout((function(_this) {
-        return function() {
-          _this._addClass('-start--');
-          _this._removeClass('-stop--');
-          return _this.active = true;
-        };
-      })(this), delay);
+      this._addClass('-start--');
+      this._removeClass('-stop--');
+      return this.active = true;
     };
 
     Wall.prototype.deactivate = function() {
-      if (this.timer != null) {
-        clearTimeout(this.timer);
-        this.timer = null;
-      }
       this._removeClass('-start-- _active_');
       this._addClass('-stop--');
       return this.active = false;
@@ -2251,10 +2247,6 @@
     Wall.prototype.refresh = function() {
       var percent, targetSize;
       _windowSize = _getWindowSize();
-      this.spyParams = {
-        offset: this._getPosition(this.el),
-        height: this._outerHeight()
-      };
       if (this.options.height[this.options.height.length - 1] === '%') {
         percent = parseInt(this.options.height) / 100;
         this.el.style.height = "" + (_windowSize.height * percent) + "px";
@@ -2274,11 +2266,10 @@
       } else if (this.target.style.transform !== '') {
         this._setCSSTransform(this.target, "translateX(0)");
       }
-      if (targetSize.height - _windowSize.height > 0) {
-        return this._setCSSTransform(this.target, "translateY(-" + ((targetSize.height - _windowSize.height) / 2) + "px)");
-      } else if (this.target.style.transform !== '') {
-        return this._setCSSTransform(this.target, "translateY(0)");
-      }
+      return this.spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
     };
 
     return Wall;
@@ -2307,6 +2298,7 @@
 
   _resizing = function() {
     this.refresh();
+    this.spy();
     if (!this.options.onMobile) {
       if (_getWindowSize().width < 992) {
         this.stop(this.activate);
@@ -2350,14 +2342,31 @@
   };
 
   _spy = function() {
-    var _ref;
-    if ((this.spyParams.offset.top - _windowSize.height <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.spyParams.offset.top + this.spyParams.height)) {
-      if (!this.active) {
-        this.activate();
+    var current, max, percent, transform, _ref;
+    if ((this.spyParams.offset.top <= (_ref = _lastScrollY + _windowSize.height) && _ref <= this.spyParams.offset.top + this.spyParams.height + _windowSize.height)) {
+      max = this.spyParams.height;
+      current = _lastScrollY - this.spyParams.offset.top;
+      percent = (1 - current / max) / 2;
+      transform = "translateY(" + (current * this.options.speed) + "px)";
+      if (this.options.zoom) {
+        transform += " scale(" + (1 + percent) + ")";
       }
-    } else {
-      if (this.active) {
-        this.deactivate();
+      this._setCSSTransform(this.target, transform);
+      if (this.header != null) {
+        if (percent / 2 < 0.25) {
+          if (!(this._hasClass('_top_') || this._hasClass('_bottom_'))) {
+            this._setCSSTransform(this.header, "translateY(" + (current / 2) + "px)");
+          }
+          if (this._hasClass('_bottom_')) {
+            this._setCSSTransform(this.header, "translateY(" + (-current / 10) + "px)");
+          }
+          if (this._hasClass('_top_')) {
+            this._setCSSTransform(this.header, "translateY(" + (current / 1.1) + "px)");
+          }
+          if (this.options.headerFade) {
+            this._setCSSOpacity(this.header, percent * 2);
+          }
+        }
       }
     }
     return this.ticking = false;

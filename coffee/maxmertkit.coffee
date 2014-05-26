@@ -215,8 +215,8 @@ class MaxmertkitHelpers
 		try
 			style = el.currentStyle or getComputedStyle(el)
 		if style
-			if style.marginLeft? and style.marginLeft isnt '' then width += parseInt(style.marginLeft)
-			if style.marginRight? and style.marginRight isnt '' then width += parseInt(style.marginRight)
+			if style.paddingLeft? and style.paddingLeft isnt '' then width += parseInt(style.paddingLeft)
+			if style.paddingRight? and style.paddingRight isnt '' then width += parseInt(style.paddingRight)
 		width
 
 	_outerHeight: (el) ->
@@ -225,8 +225,8 @@ class MaxmertkitHelpers
 		try
 			style = el.currentStyle or getComputedStyle(el)
 		if style?
-			if style.marginTop? and style.marginTop isnt '' then height += parseInt(style.marginTop)
-			if style.marginBottom? and style.marginBottom isnt '' then height += parseInt(style.marginBottom)
+			if style.paddingTop? and style.paddingTop isnt '' then height += parseInt(style.paddingTop)
+			if style.paddingBottom? and style.paddingBottom isnt '' then height += parseInt(style.paddingBottom)
 		height
 
 	_getPosition: (el) ->
@@ -238,9 +238,9 @@ class MaxmertkitHelpers
 				### FIXME: Not sure if it needed to calculate with style margin ###
 				try
 					style = el.currentStyle or getComputedStyle(el)
-				if style?
-					if style.marginTop? and style.marginTop isnt '' then curtop -= parseInt(style.marginTop)
-					# if style.marginLeft? and style.marginLeft isnt '' then curleft -= parseInt(style.marginLeft)
+				# if style?
+				# 	if style.marginTop? and style.marginTop isnt '' then curtop -= parseInt(style.marginTop)
+				# 	if style.marginLeft? and style.marginLeft isnt '' then curleft -= parseInt(style.marginLeft)
 				curleft += el.offsetLeft
 				curtop += el.offsetTop
 				break unless el = el.offsetParent
@@ -303,6 +303,15 @@ class MaxmertkitHelpers
 		el.style.msTransform = transform
 		el.style.oTransform = transform
 		el.style.transform = transform
+
+	_setCSSOpacity: ( el, opacity ) ->
+		el = el or @el
+
+		el.style.webkitOpacity = opacity
+		el.style.mozOpacity = opacity
+		el.style.msOpacity = opacity
+		el.style.oOpacity = opacity
+		el.style.opacity = opacity
 
 
 # Initialize rAF

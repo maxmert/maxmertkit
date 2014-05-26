@@ -28,10 +28,13 @@ class Wall extends MaxmertkitHelpers
 			# offset: @el.getAttribute( 'data-offset' ) or 5
 
 			# String; selector for the scrolling background element. For example figure or video or #video-id
-			target: @el.getAttribute( 'data-target' ) or 'video'
+			target: @el.getAttribute( 'data-target' ) or '.-thumbnail'
+			
+			header: @el.getAttribute( 'data-target' ) or '.-header'
+			headerFade: @el.getAttribute( 'data-fade' ) or yes
 
 			# Number between 0 and 1; 0 – element stands, 1 – element scrolls as usual
-			speed: @el.getAttribute( 'data-speed' ) or 0.2
+			speed: @el.getAttribute( 'data-speed' ) or 0.7
 
 			zoom: @el.getAttribute( 'data-zoom' ) or no
 
@@ -91,6 +94,10 @@ class Wall extends MaxmertkitHelpers
 				when 'target'
 					@target = @el.querySelector @options.target
 
+			switch key
+				when 'header'
+					@header = @el.querySelector @options.header
+
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
 
@@ -103,30 +110,22 @@ class Wall extends MaxmertkitHelpers
 			_beforedeactivate.call @, cb
 
 	activate: ->
-		if typeof @options.delay is 'function'
-			delay = @options.delay()
-		else
-			delay = @options.delay
+		# if typeof @options.delay is 'function'
+		# 	delay = @options.delay()
+		# else
+		# 	delay = @options.delay
 
-		@timer = setTimeout =>
-			@_addClass '-start--'
-			@_removeClass '-stop--'
-			@active = yes
-		, delay
+		@_addClass '-start--'
+		@_removeClass '-stop--'
+		@active = yes
 
 	deactivate: ->
-		if @timer?
-			clearTimeout @timer
-			@timer = null
 		@_removeClass '-start-- _active_'
 		@_addClass '-stop--'
 		@active = no
 
 	refresh: ->
 		_windowSize = _getWindowSize()
-		@spyParams =
-			offset: @_getPosition @el
-			height: @_outerHeight()
 
 		if @options.height[@options.height.length - 1] is '%'
 			percent = parseInt(@options.height) / 100
@@ -145,7 +144,11 @@ class Wall extends MaxmertkitHelpers
 		targetSize = _getTargetSize.call @
 
 		if targetSize.width - _windowSize.width > 0 then @_setCSSTransform(@target, "translateX(-#{(targetSize.width - _windowSize.width)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateX(0)")
-		if targetSize.height - _windowSize.height > 0 then @_setCSSTransform(@target, "translateY(-#{(targetSize.height - _windowSize.height)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateY(0)")
+		# if targetSize.height - _windowSize.height > 0 then @_setCSSTransform(@target, "translateY(-#{(targetSize.height - _windowSize.height)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateY(0)")
+
+		@spyParams =
+			offset: @_getPosition @el
+			height: @_outerHeight()
 
 
 # ===============
@@ -166,6 +169,7 @@ _requestResize = ->
 
 _resizing = ->
 	@refresh()
+	@spy()
 
 	if not @options.onMobile
 		if _getWindowSize().width < 992
@@ -207,13 +211,39 @@ _requestTick = ->
 		@ticking = true
 
 
+
 _spy = ->
-	if @spyParams.offset.top - _windowSize.height <= _lastScrollY + @options.offset <= @spyParams.offset.top + @spyParams.height
-		if not @active
-			@activate()
-	else
-		if @active
-			@deactivate()
+	if @spyParams.offset.top <= _lastScrollY + _windowSize.height <= @spyParams.offset.top + @spyParams.height + _windowSize.height
+		# Is visible
+		max = @spyParams.height
+		current = _lastScrollY - @spyParams.offset.top
+		percent = (1 - current / max) / 2
+
+		transform = "translateY(#{current * @options.speed}px)"
+
+		if @options.zoom
+			transform += " scale(#{1 + percent})"
+		
+		@_setCSSTransform(@target, transform)
+
+		if @header?
+			if percent / 2 < 0.25
+				if not (@_hasClass('_top_') or @_hasClass('_bottom_'))
+					@_setCSSTransform(@header, "translateY(#{current / 2}px)")
+
+				if @_hasClass('_bottom_')
+					@_setCSSTransform(@header, "translateY(#{-current / 10}px)")
+
+				if @_hasClass('_top_')
+					@_setCSSTransform(@header, "translateY(#{current / 1.1}px)")
+					
+				@_setCSSOpacity(@header, percent * 2) if @options.headerFade
+
+		# if not @active
+			# @activate()
+	# else
+	# 	if @active
+	# 		@deactivate()
 
 	@ticking = no
 
