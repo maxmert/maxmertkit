@@ -124,10 +124,10 @@ class Wall extends MaxmertkitHelpers
 
 	refresh: ->
 		_windowSize = _getWindowSize()
-		@spyParams = 
+		@spyParams =
 			offset: @_getPosition @el
 			height: @_outerHeight()
-		
+
 		if @options.height[@options.height.length - 1] is '%'
 			percent = parseInt(@options.height) / 100
 			@el.style.height = "#{_windowSize.height * percent}px"
@@ -143,9 +143,9 @@ class Wall extends MaxmertkitHelpers
 			@target.style.height = "100%"
 
 		targetSize = _getTargetSize.call @
-		
-		if targetSize.width - _windowSize.width > 0 then @target.style.left = "-#{(targetSize.width - _windowSize.width)/2}px" else if @target.style.left isnt '' then @target.style.left = ''
-		if targetSize.height - _windowSize.height > 0 then @target.style.top = "-#{(targetSize.height - _windowSize.height)/2}px" else if @target.style.top isnt '' then @target.style.top = ''
+
+		if targetSize.width - _windowSize.width > 0 then @_setCSSTransform(@target, "translateX(-#{(targetSize.width - _windowSize.width)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateX(0)")
+		if targetSize.height - _windowSize.height > 0 then @_setCSSTransform(@target, "translateY(-#{(targetSize.height - _windowSize.height)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateY(0)")
 
 
 # ===============

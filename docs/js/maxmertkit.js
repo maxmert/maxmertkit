@@ -338,6 +338,15 @@
       return document;
     };
 
+    MaxmertkitHelpers.prototype._setCSSTransform = function(el, transform) {
+      el = el || this.el;
+      el.style.webkitTransform = transform;
+      el.style.mozTransform = transform;
+      el.style.msTransform = transform;
+      el.style.oTransform = transform;
+      return el.style.transform = transform;
+    };
+
     return MaxmertkitHelpers;
 
   })();
@@ -2261,14 +2270,14 @@
       }
       targetSize = _getTargetSize.call(this);
       if (targetSize.width - _windowSize.width > 0) {
-        this.target.style.left = "-" + ((targetSize.width - _windowSize.width) / 2) + "px";
-      } else if (this.target.style.left !== '') {
-        this.target.style.left = '';
+        this._setCSSTransform(this.target, "translateX(-" + ((targetSize.width - _windowSize.width) / 2) + "px)");
+      } else if (this.target.style.transform !== '') {
+        this._setCSSTransform(this.target, "translateX(0)");
       }
       if (targetSize.height - _windowSize.height > 0) {
-        return this.target.style.top = "-" + ((targetSize.height - _windowSize.height) / 2) + "px";
-      } else if (this.target.style.top !== '') {
-        return this.target.style.top = '';
+        return this._setCSSTransform(this.target, "translateY(-" + ((targetSize.height - _windowSize.height) / 2) + "px)");
+      } else if (this.target.style.transform !== '') {
+        return this._setCSSTransform(this.target, "translateY(0)");
       }
     };
 

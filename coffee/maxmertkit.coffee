@@ -118,7 +118,7 @@ class MaxmertkitHelpers
 
 	# REMOVE JQUERY
 	# ========================================
-	# 
+	#
 	_removeEventListener: (el, eventName, handler) ->
 		if el.removeEventListener
 			el.removeEventListener eventName, handler, no
@@ -191,7 +191,7 @@ class MaxmertkitHelpers
 
 	_removeClass: ( className, el ) ->
 		el = el or @el
-		
+
 		if el.classList
 			classes = className.split " "
 			for classin in classes
@@ -244,7 +244,7 @@ class MaxmertkitHelpers
 				curleft += el.offsetLeft
 				curtop += el.offsetTop
 				break unless el = el.offsetParent
-			
+
 		left: curleft,
 		top: curtop
 
@@ -294,6 +294,15 @@ class MaxmertkitHelpers
 				# if style['position'] isnt 'absolute' or style['position'] in ['relative', 'absolute', 'fixed']
 
 		return document
+
+	_setCSSTransform: ( el, transform ) ->
+		el = el or @el
+
+		el.style.webkitTransform = transform
+		el.style.mozTransform = transform
+		el.style.msTransform = transform
+		el.style.oTransform = transform
+		el.style.transform = transform
 
 
 # Initialize rAF
