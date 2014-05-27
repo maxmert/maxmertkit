@@ -2134,7 +2134,7 @@
 
 (function() {
   "use strict";
-  var MaxmertkitHelpers, Wall, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getTargetSize, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _spy, _windowSize,
+  var MaxmertkitHelpers, Wall, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getTargetSize, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _resizing, _spy, _windowSize,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -2184,7 +2184,6 @@
         faildeactive: function() {}
       };
       this.options = this._merge(_options, this.options);
-      this.ticking = false;
       this.resizingTick = false;
       this.scroller = this._getScrollContainer(this.el);
       this.spy = _spy.bind(this);
@@ -2356,13 +2355,6 @@
     return this.spy();
   };
 
-  _requestTick = function() {
-    if (!this.ticking) {
-      requestAnimationFrame(this.spy);
-      return this.ticking = true;
-    }
-  };
-
   _spy = function() {
     var current, max, percent, transform, _ref;
     if ((this.spyParams.offset.top <= (_ref = _lastScrollY + _windowSize.height) && _ref <= this.spyParams.offset.top + this.spyParams.height + _windowSize.height)) {
@@ -2391,14 +2383,13 @@
             this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 1.1)) + "px) translateZ(0)");
           }
           if (this.options.headerFade) {
-            this._setCSSOpacity(this.header, percent * 2.5);
+            return this._setCSSOpacity(this.header, percent * 2.5);
           }
         }
       }
 
       /* Extrimely slow */
     }
-    return this.ticking = false;
   };
 
   _beforeactivate = function(cb) {
@@ -2464,6 +2455,7 @@
   _deactivate = function(cb) {
     var _ref;
     this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this._removeEventListener(window, 'resize', this.onResize);
     this.reactor.dispatchEvent("stop." + _name);
     if ((_ref = this.ondeactive) != null) {
       _ref.call(this.el);

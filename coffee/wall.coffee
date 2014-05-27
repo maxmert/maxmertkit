@@ -23,7 +23,7 @@ class Wall extends MaxmertkitHelpers
 
 			# String; selector for the scrolling background element. For example figure or video or #video-id
 			target: @el.getAttribute( 'data-target' ) or '.-thumbnail'
-			
+
 			# String; selector for the header in scrolling element.
 			header: @el.getAttribute( 'data-target' ) or '.-header'
 
@@ -35,7 +35,7 @@ class Wall extends MaxmertkitHelpers
 
 			# Boolean; zoom element while scrolling
 			zoom: @el.getAttribute( 'data-zoom' ) or no
-			
+
 			### Extrimely slow ###
 			# Blur element while scrilling down
 			# blur: @el.getAttribute( 'data-blur' ) or yes
@@ -56,9 +56,6 @@ class Wall extends MaxmertkitHelpers
 
 		@options = @_merge _options, @options
 
-		# Get scrolling container with items inside
-		# @target = document.querySelector @options.target
-		@ticking = no
 		@resizingTick = no
 		@scroller = @_getScrollContainer @el
 		@spy = _spy.bind(@)
@@ -95,6 +92,7 @@ class Wall extends MaxmertkitHelpers
 			switch key
 				when 'target'
 					@target = @el.querySelector @options.target
+					# @targetObject = @target.querySelector('img')
 
 				when 'header'
 					@header = @el.querySelector @options.header
@@ -146,10 +144,10 @@ class Wall extends MaxmertkitHelpers
 				@header.style.height = "#{_windowSize.height * percent}px"
 			else
 				@header.style.height = @options.height
-			
+
 			@header.style.width = "#{_windowSize.width}px"
 
-		
+
 		if _windowSize.width / _windowSize.height > 16 / 9
 			@target.style.width = "100%"
 			@target.style.height = "auto"
@@ -161,7 +159,6 @@ class Wall extends MaxmertkitHelpers
 
 		if @targetSize.width - _windowSize.width > 0 then @_setCSSTransform(@target, "translateX(-#{(@targetSize.width - _windowSize.width)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateX(0)")
 		# if targetSize.height - _windowSize.height > 0 then @_setCSSTransform(@target, "translateY(-#{(targetSize.height - _windowSize.height)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateY(0)")
-		
 
 		@spyParams =
 			offset: @_getPosition @el
@@ -221,14 +218,8 @@ _getWindowSize = ->
 
 _onScroll = (event)  ->
 	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
+	# Dont use requestAnimationFrame because we need smooth parallax effect
 	@spy()
-	# _requestTick.call @
-
-_requestTick = ->
-	if not @ticking
-		requestAnimationFrame(@spy)
-		@ticking = true
-
 
 
 _spy = ->
@@ -257,16 +248,12 @@ _spy = ->
 
 				if @_hasClass('_top_')
 					@_setCSSTransform(@header, "translateY(#{Math.round(current / 1.1)}px) translateZ(0)")
-					
+
 				@_setCSSOpacity(@header, percent * 2.5) if @options.headerFade
 
 		### Extrimely slow ###
 		# if @options.blur
 		# 	@_setCSSOpacity(@noblur, percent * 2)
-
-		
-
-	@ticking = no
 
 _beforeactivate = (cb) ->
 	if @beforeactive?
@@ -312,6 +299,7 @@ _beforedeactivate = ( cb ) ->
 
 _deactivate = ( cb ) ->
 	@_removeEventListener @scroller, 'scroll', @onScroll
+	@_removeEventListener window, 'resize', @onResize
 	@reactor.dispatchEvent "stop.#{_name}"
 	@ondeactive?.call @el
 	@started = no
