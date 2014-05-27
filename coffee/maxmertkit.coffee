@@ -304,6 +304,15 @@ class MaxmertkitHelpers
 		el.style.oTransform = transform
 		el.style.transform = transform
 
+	_setCSSFilter: ( el, filter ) ->
+		el = el or @el
+
+		el.style.webkitFilter = filter
+		el.style.mozFilter = filter
+		el.style.msFilter = filter
+		el.style.oFilter = filter
+		el.style.filter = filter
+
 	_setCSSOpacity: ( el, opacity ) ->
 		el = el or @el
 

@@ -21,24 +21,26 @@ class Wall extends MaxmertkitHelpers
 			# String; type of user insteractive
 			kind: @el.getAttribute( 'data-kind' ) or _name
 
-			# String; selector of the scrolling block
-			# target: @el.getAttribute( 'data-target' ) or 'body'
-
-			# Number; in px, vertical offset from the top
-			# offset: @el.getAttribute( 'data-offset' ) or 5
-
 			# String; selector for the scrolling background element. For example figure or video or #video-id
 			target: @el.getAttribute( 'data-target' ) or '.-thumbnail'
 			
+			# String; selector for the header in scrolling element.
 			header: @el.getAttribute( 'data-target' ) or '.-header'
+
+			# Boolean; hide header while scrolling
 			headerFade: @el.getAttribute( 'data-fade' ) or yes
 
-			# Number between 0 and 1; 0 – element stands, 1 – element scrolls as usual
+			# Number between 0 and 1; 1 – element stands, 0 – element scrolls as usual
 			speed: @el.getAttribute( 'data-speed' ) or 0.7
 
+			# Boolean; zoom element while scrolling
 			zoom: @el.getAttribute( 'data-zoom' ) or no
+			
+			### Extrimely slow ###
+			# Blur element while scrilling down
+			# blur: @el.getAttribute( 'data-blur' ) or yes
 
-			# String; inside string should be measures like % or px
+			# String; height of the wall, inside should be measures like % or px
 			height: @el.getAttribute( 'data-height' ) or '100%'
 
 			# Boolean; on spying on mobile devices
@@ -94,9 +96,19 @@ class Wall extends MaxmertkitHelpers
 				when 'target'
 					@target = @el.querySelector @options.target
 
-			switch key
 				when 'header'
 					@header = @el.querySelector @options.header
+
+			### Extrimely slow ###
+				# when 'blur'
+				# 	if @blur? then @blur.parentNode.removeChild @blur
+				# 	if value
+				# 		target = @el.querySelector(@options.target)
+				# 		@noblur = target.querySelector('img')
+				# 		@blur = @noblur.cloneNode(true)
+				# 		@_setCSSFilter @blur, "blur(15px)"
+				# 		target.appendChild @blur
+
 
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
@@ -110,11 +122,6 @@ class Wall extends MaxmertkitHelpers
 			_beforedeactivate.call @, cb
 
 	activate: ->
-		# if typeof @options.delay is 'function'
-		# 	delay = @options.delay()
-		# else
-		# 	delay = @options.delay
-
 		@_addClass '-start--'
 		@_removeClass '-stop--'
 		@active = yes
@@ -127,13 +134,22 @@ class Wall extends MaxmertkitHelpers
 	refresh: ->
 		_windowSize = _getWindowSize()
 
-		if @options.height[@options.height.length - 1] is '%'
-			percent = parseInt(@options.height) / 100
-			@el.style.height = "#{_windowSize.height * percent}px"
+		if not @header?
+			if @options.height[@options.height.length - 1] is '%'
+				percent = parseInt(@options.height) / 100
+				@el.style.height = "#{_windowSize.height * percent}px"
+			else
+				@el.style.height = @options.height
 		else
-			@el.style.height = @options.height
+			if @options.height[@options.height.length - 1] is '%'
+				percent = parseInt(@options.height) / 100
+				@header.style.height = "#{_windowSize.height * percent}px"
+			else
+				@header.style.height = @options.height
+			
+			@header.style.width = "#{_windowSize.width}px"
 
-
+		
 		if _windowSize.width / _windowSize.height > 16 / 9
 			@target.style.width = "100%"
 			@target.style.height = "auto"
@@ -141,10 +157,11 @@ class Wall extends MaxmertkitHelpers
 			@target.style.width = "auto"
 			@target.style.height = "100%"
 
-		targetSize = _getTargetSize.call @
+		@targetSize = _getTargetSize.call @
 
-		if targetSize.width - _windowSize.width > 0 then @_setCSSTransform(@target, "translateX(-#{(targetSize.width - _windowSize.width)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateX(0)")
+		if @targetSize.width - _windowSize.width > 0 then @_setCSSTransform(@target, "translateX(-#{(@targetSize.width - _windowSize.width)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateX(0)")
 		# if targetSize.height - _windowSize.height > 0 then @_setCSSTransform(@target, "translateY(-#{(targetSize.height - _windowSize.height)/2}px)") else if @target.style.transform isnt '' then @_setCSSTransform(@target, "translateY(0)")
+		
 
 		@spyParams =
 			offset: @_getPosition @el
@@ -153,6 +170,7 @@ class Wall extends MaxmertkitHelpers
 
 # ===============
 # PRIVATE METHODS
+
 _getTargetSize = ->
 	width: @_outerWidth @target
 	height: @_outerHeight @target
@@ -203,7 +221,8 @@ _getWindowSize = ->
 
 _onScroll = (event)  ->
 	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
-	_requestTick.call @
+	@spy()
+	# _requestTick.call @
 
 _requestTick = ->
 	if not @ticking
@@ -219,31 +238,33 @@ _spy = ->
 		current = _lastScrollY - @spyParams.offset.top
 		percent = (1 - current / max) / 2
 
-		transform = "translateY(#{current * @options.speed}px)"
+		transform = "translateY(#{Math.round(current * @options.speed)}px) translateZ(0)"
+
+		if @targetSize.width - _windowSize.width > 0 then transform += " translateX(-#{(@targetSize.width - _windowSize.width)/2}px)" else if @target.style.transform isnt '' then transform += " translateX(0)"
 
 		if @options.zoom
 			transform += " scale(#{1 + percent})"
-		
+
 		@_setCSSTransform(@target, transform)
 
 		if @header?
 			if percent / 2 < 0.25
 				if not (@_hasClass('_top_') or @_hasClass('_bottom_'))
-					@_setCSSTransform(@header, "translateY(#{current / 2}px)")
+					@_setCSSTransform(@header, "translateY(#{Math.round(current / 2.5)}px) translateZ(0)")
 
 				if @_hasClass('_bottom_')
-					@_setCSSTransform(@header, "translateY(#{-current / 10}px)")
+					@_setCSSTransform(@header, "translateY(#{Math.round(-current / 10)}px) translateZ(0)")
 
 				if @_hasClass('_top_')
-					@_setCSSTransform(@header, "translateY(#{current / 1.1}px)")
+					@_setCSSTransform(@header, "translateY(#{Math.round(current / 1.1)}px) translateZ(0)")
 					
-				@_setCSSOpacity(@header, percent * 2) if @options.headerFade
+				@_setCSSOpacity(@header, percent * 2.5) if @options.headerFade
 
-		# if not @active
-			# @activate()
-	# else
-	# 	if @active
-	# 		@deactivate()
+		### Extrimely slow ###
+		# if @options.blur
+		# 	@_setCSSOpacity(@noblur, percent * 2)
+
+		
 
 	@ticking = no
 

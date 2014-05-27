@@ -6,15 +6,16 @@
 		min-height: 480px
 		background-size: cover
 		overflow: visible
-		display: table
+		display: block
 
 		.#{$item-class}
 			overflow: hidden
 			width: 100%
-			height: 100%
+			height: auto
 			position: relative
-			display: table-cell
+			display: block
 			vertical-align: middle
+			min-height: 100%
 
 			& > figure, & > video
 				top: 0
@@ -24,13 +25,23 @@
 				width: auto
 				@include user-select( none )
 
-			header, .#{$header-class}
+			.#{$content-class}
 				position: relative
+				padding-top: 25px
+				padding-bottom: 25px
+
+			header, .#{$header-class}
+				height: 100%
+				position: relative
+				display: table-cell
+				vertical-align: middle
 
 		&.#{$mod-top}
 			.#{$item-class}
-				vertical-align: top
+				header, .#{$header-class}
+					vertical-align: top
 
 		&.#{$mod-bottom}
 			.#{$item-class}
-				vertical-align: bottom
+				header, .#{$header-class}
+					vertical-align: bottom

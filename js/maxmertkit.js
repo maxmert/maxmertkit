@@ -342,6 +342,15 @@
       return el.style.transform = transform;
     };
 
+    MaxmertkitHelpers.prototype._setCSSFilter = function(el, filter) {
+      el = el || this.el;
+      el.style.webkitFilter = filter;
+      el.style.mozFilter = filter;
+      el.style.msFilter = filter;
+      el.style.oFilter = filter;
+      return el.style.filter = filter;
+    };
+
     MaxmertkitHelpers.prototype._setCSSOpacity = function(el, opacity) {
       el = el || this.el;
       el.style.webkitOpacity = opacity;
@@ -2163,6 +2172,8 @@
         headerFade: this.el.getAttribute('data-fade') || true,
         speed: this.el.getAttribute('data-speed') || 0.7,
         zoom: this.el.getAttribute('data-zoom') || false,
+
+        /* Extrimely slow */
         height: this.el.getAttribute('data-height') || '100%',
         onMobile: this.el.getAttribute('data-on-mobile') || false,
         beforeactive: function() {},
@@ -2208,11 +2219,12 @@
         switch (key) {
           case 'target':
             this.target = this.el.querySelector(this.options.target);
-        }
-        switch (key) {
+            break;
           case 'header':
             this.header = this.el.querySelector(this.options.header);
         }
+
+        /* Extrimely slow */
         this.options[key] = value;
         if (typeof value === 'function') {
           this[key] = value;
@@ -2245,13 +2257,23 @@
     };
 
     Wall.prototype.refresh = function() {
-      var percent, targetSize;
+      var percent;
       _windowSize = _getWindowSize();
-      if (this.options.height[this.options.height.length - 1] === '%') {
-        percent = parseInt(this.options.height) / 100;
-        this.el.style.height = "" + (_windowSize.height * percent) + "px";
+      if (this.header == null) {
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.el.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.el.style.height = this.options.height;
+        }
       } else {
-        this.el.style.height = this.options.height;
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.header.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.header.style.height = this.options.height;
+        }
+        this.header.style.width = "" + _windowSize.width + "px";
       }
       if (_windowSize.width / _windowSize.height > 16 / 9) {
         this.target.style.width = "100%";
@@ -2260,9 +2282,9 @@
         this.target.style.width = "auto";
         this.target.style.height = "100%";
       }
-      targetSize = _getTargetSize.call(this);
-      if (targetSize.width - _windowSize.width > 0) {
-        this._setCSSTransform(this.target, "translateX(-" + ((targetSize.width - _windowSize.width) / 2) + "px)");
+      this.targetSize = _getTargetSize.call(this);
+      if (this.targetSize.width - _windowSize.width > 0) {
+        this._setCSSTransform(this.target, "translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)");
       } else if (this.target.style.transform !== '') {
         this._setCSSTransform(this.target, "translateX(0)");
       }
@@ -2331,7 +2353,7 @@
 
   _onScroll = function(event) {
     _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
-    return _requestTick.call(this);
+    return this.spy();
   };
 
   _requestTick = function() {
@@ -2347,7 +2369,12 @@
       max = this.spyParams.height;
       current = _lastScrollY - this.spyParams.offset.top;
       percent = (1 - current / max) / 2;
-      transform = "translateY(" + (current * this.options.speed) + "px)";
+      transform = "translateY(" + (Math.round(current * this.options.speed)) + "px) translateZ(0)";
+      if (this.targetSize.width - _windowSize.width > 0) {
+        transform += " translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)";
+      } else if (this.target.style.transform !== '') {
+        transform += " translateX(0)";
+      }
       if (this.options.zoom) {
         transform += " scale(" + (1 + percent) + ")";
       }
@@ -2355,19 +2382,21 @@
       if (this.header != null) {
         if (percent / 2 < 0.25) {
           if (!(this._hasClass('_top_') || this._hasClass('_bottom_'))) {
-            this._setCSSTransform(this.header, "translateY(" + (current / 2) + "px)");
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 2.5)) + "px) translateZ(0)");
           }
           if (this._hasClass('_bottom_')) {
-            this._setCSSTransform(this.header, "translateY(" + (-current / 10) + "px)");
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(-current / 10)) + "px) translateZ(0)");
           }
           if (this._hasClass('_top_')) {
-            this._setCSSTransform(this.header, "translateY(" + (current / 1.1) + "px)");
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 1.1)) + "px) translateZ(0)");
           }
           if (this.options.headerFade) {
-            this._setCSSOpacity(this.header, percent * 2);
+            this._setCSSOpacity(this.header, percent * 2.5);
           }
         }
       }
+
+      /* Extrimely slow */
     }
     return this.ticking = false;
   };
