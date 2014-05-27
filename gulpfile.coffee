@@ -239,6 +239,7 @@ gulp.task 'test', ->
 		"test/popup.coffee"
 		"test/scrollspy.coffee"
 		"test/tabs.coffee"
+		"test/wall.coffee"
 	]
 
 	gulp.src( files )
