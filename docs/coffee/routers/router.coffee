@@ -5,6 +5,7 @@ LayoutWidgets = require('../layouts/pages/widgets').module
 LayoutUtilities = require('../layouts/pages/utilities').module
 LayoutComponents = require('../layouts/pages/components').module
 LayoutChangelog = require('../layouts/pages/changelog').module
+LayoutExamples = require('../layouts/pages/examples')
 Layout404 = require('../layouts/pages/404').module
 
 mainController =
@@ -24,6 +25,7 @@ exports.module = Marionette.AppRouter.extend
         'utilities': 'utilities'
         'components': 'components'
         'changelog': 'changelog'
+        'examples/blog': 'examplesBlog'
         "*error": "error404"
     initialize: ->
         @bind 'all', @_trackPageview
@@ -101,6 +103,12 @@ exports.module = Marionette.AppRouter.extend
         Backbone.history.templates = 'changelog'
         Backbone.history.color = '#25a800'
         $.app.main.currentView.content.show new LayoutChangelog()
+
+    examplesBlog: ->
+        @title.html("Changelog · Maxmertkit")
+        Backbone.history.templates = null
+        Backbone.history.color = '#25a800'
+        $.app.main.currentView.content.show new LayoutExamples.blog()
 
     error404: ->
         @title.html("404 · Maxmertkit")

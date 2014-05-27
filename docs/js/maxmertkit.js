@@ -229,11 +229,11 @@
         style = el.currentStyle || getComputedStyle(el);
       } catch (_error) {}
       if (style) {
-        if ((style.marginLeft != null) && style.marginLeft !== '') {
-          width += parseInt(style.marginLeft);
+        if ((style.paddingLeft != null) && style.paddingLeft !== '') {
+          width += parseInt(style.paddingLeft);
         }
-        if ((style.marginRight != null) && style.marginRight !== '') {
-          width += parseInt(style.marginRight);
+        if ((style.paddingRight != null) && style.paddingRight !== '') {
+          width += parseInt(style.paddingRight);
         }
       }
       return width;
@@ -247,11 +247,11 @@
         style = el.currentStyle || getComputedStyle(el);
       } catch (_error) {}
       if (style != null) {
-        if ((style.marginTop != null) && style.marginTop !== '') {
-          height += parseInt(style.marginTop);
+        if ((style.paddingTop != null) && style.paddingTop !== '') {
+          height += parseInt(style.paddingTop);
         }
-        if ((style.marginBottom != null) && style.marginBottom !== '') {
-          height += parseInt(style.marginBottom);
+        if ((style.paddingBottom != null) && style.paddingBottom !== '') {
+          height += parseInt(style.paddingBottom);
         }
       }
       return height;
@@ -268,11 +268,6 @@
           try {
             style = el.currentStyle || getComputedStyle(el);
           } catch (_error) {}
-          if (style != null) {
-            if ((style.marginTop != null) && style.marginTop !== '') {
-              curtop -= parseInt(style.marginTop);
-            }
-          }
           curleft += el.offsetLeft;
           curtop += el.offsetTop;
           if (!(el = el.offsetParent)) {
@@ -336,6 +331,33 @@
         }
       }
       return document;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSTransform = function(el, transform) {
+      el = el || this.el;
+      el.style.webkitTransform = transform;
+      el.style.mozTransform = transform;
+      el.style.msTransform = transform;
+      el.style.oTransform = transform;
+      return el.style.transform = transform;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSFilter = function(el, filter) {
+      el = el || this.el;
+      el.style.webkitFilter = filter;
+      el.style.mozFilter = filter;
+      el.style.msFilter = filter;
+      el.style.oFilter = filter;
+      return el.style.filter = filter;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSOpacity = function(el, opacity) {
+      el = el || this.el;
+      el.style.webkitOpacity = opacity;
+      el.style.mozOpacity = opacity;
+      el.style.msOpacity = opacity;
+      el.style.oOpacity = opacity;
+      return el.style.opacity = opacity;
     };
 
     return MaxmertkitHelpers;
@@ -2106,6 +2128,370 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.popup = window['mkitPopup'];
+  }
+
+}).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Wall, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getTargetSize, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _resizing, _spy, _windowSize,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "wall";
+
+  _instances = [];
+
+  _id = 0;
+
+  _lastScrollY = 0;
+
+  _windowSize = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Wall = (function(_super) {
+    __extends(Wall, _super);
+
+    Wall.prototype._name = _name;
+
+    Wall.prototype._instances = _instances;
+
+    Wall.prototype.started = false;
+
+    Wall.prototype.active = false;
+
+    function Wall(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        kind: this.el.getAttribute('data-kind') || _name,
+        target: this.el.getAttribute('data-target') || '.-thumbnail',
+        header: this.el.getAttribute('data-target') || '.-header',
+        headerFade: this.el.getAttribute('data-fade') || true,
+        speed: this.el.getAttribute('data-speed') || 0.7,
+        zoom: this.el.getAttribute('data-zoom') || false,
+
+        /* Extrimely slow */
+        height: this.el.getAttribute('data-height') || '100%',
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.resizingTick = false;
+      this.scroller = this._getScrollContainer(this.el);
+      this.spy = _spy.bind(this);
+      this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._setOptions(this.options);
+      Wall.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("start." + _name);
+      this.reactor.registerEvent("stop." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start(this.deactivate);
+      }
+    }
+
+    Wall.prototype.destroy = function() {
+      _deactivate.call(this);
+      this.el.data["kitWall"] = null;
+      return Wall.__super__.destroy.apply(this, arguments);
+    };
+
+    Wall.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Wall. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'target':
+            this.target = this.el.querySelector(this.options.target);
+            break;
+          case 'header':
+            this.header = this.el.querySelector(this.options.header);
+        }
+
+        /* Extrimely slow */
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Wall.prototype.start = function(cb) {
+      if (!this.started) {
+        return _beforeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.stop = function(cb) {
+      if (this.started) {
+        return _beforedeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.activate = function() {
+      this._addClass('-start--');
+      this._removeClass('-stop--');
+      return this.active = true;
+    };
+
+    Wall.prototype.deactivate = function() {
+      this._removeClass('-start-- _active_');
+      this._addClass('-stop--');
+      return this.active = false;
+    };
+
+    Wall.prototype.refresh = function() {
+      var percent;
+      _windowSize = _getWindowSize();
+      if (this.header == null) {
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.el.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.el.style.height = this.options.height;
+        }
+      } else {
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.header.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.header.style.height = this.options.height;
+        }
+        this.header.style.width = "" + _windowSize.width + "px";
+      }
+      if (_windowSize.width / _windowSize.height > 16 / 9) {
+        this.target.style.width = "100%";
+        this.target.style.height = "auto";
+      } else {
+        this.target.style.width = "auto";
+        this.target.style.height = "100%";
+      }
+      this.targetSize = _getTargetSize.call(this);
+      if (this.targetSize.width - _windowSize.width > 0) {
+        this._setCSSTransform(this.target, "translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)");
+      } else if (this.target.style.transform !== '') {
+        this._setCSSTransform(this.target, "translateX(0)");
+      }
+      return this.spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
+    };
+
+    return Wall;
+
+  })(MaxmertkitHelpers);
+
+  _getTargetSize = function() {
+    return {
+      width: this._outerWidth(this.target),
+      height: this._outerHeight(this.target)
+    };
+  };
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!this.resizingTick) {
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return this.resizingTick = true;
+      }
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    this.spy();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop(this.activate);
+      } else {
+        this.start();
+      }
+    }
+    return this.resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
+    return this.spy();
+  };
+
+  _spy = function() {
+    var current, max, percent, transform, _ref;
+    if ((this.spyParams.offset.top <= (_ref = _lastScrollY + _windowSize.height) && _ref <= this.spyParams.offset.top + this.spyParams.height + _windowSize.height)) {
+      max = this.spyParams.height;
+      current = _lastScrollY - this.spyParams.offset.top;
+      percent = (1 - current / max) / 2;
+      transform = "translateY(" + (Math.round(current * this.options.speed)) + "px) translateZ(0)";
+      if (this.targetSize.width - _windowSize.width > 0) {
+        transform += " translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)";
+      } else if (this.target.style.transform !== '') {
+        transform += " translateX(0)";
+      }
+      if (this.options.zoom) {
+        transform += " scale(" + (1 + percent) + ")";
+      }
+      this._setCSSTransform(this.target, transform);
+      if (this.header != null) {
+        if (percent / 2 < 0.25) {
+          if (!(this._hasClass('_top_') || this._hasClass('_bottom_'))) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 2.5)) + "px) translateZ(0)");
+          }
+          if (this._hasClass('_bottom_')) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(-current / 10)) + "px) translateZ(0)");
+          }
+          if (this._hasClass('_top_')) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 1.1)) + "px) translateZ(0)");
+          }
+          if (this.options.headerFade) {
+            return this._setCSSOpacity(this.header, percent * 2.5);
+          }
+        }
+      }
+
+      /* Extrimely slow */
+    }
+  };
+
+  _beforeactivate = function(cb) {
+    var deferred;
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.failactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this, cb);
+      }
+    } else {
+      return _activate.call(this, cb);
+    }
+  };
+
+  _activate = function(cb) {
+    var _ref;
+    this.refresh();
+    this._addEventListener(this.scroller, 'scroll', this.onScroll);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("start." + _name);
+    this.started = true;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  _beforedeactivate = function(cb) {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this, cb);
+      }
+    } else {
+      return _deactivate.call(this, cb);
+    }
+  };
+
+  _deactivate = function(cb) {
+    var _ref;
+    this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this._removeEventListener(window, 'resize', this.onResize);
+    this.reactor.dispatchEvent("stop." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    this.started = false;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  window['Wall'] = Wall;
+
+  window['mkitWall'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitWall']) {
+      result = new Wall(this, options);
+      this.data['kitWall'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitWall']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitWall'][options];
+        }
+      }
+      result = this.data['kitWall'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.wall = window['mkitWall'];
   }
 
 }).call(this);

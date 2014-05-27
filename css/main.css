@@ -18298,6 +18298,44 @@ a.-avatar {
 @media screen and (max-width: 768px) {
   .-comments .-item .-content._hidden_, .-comments .-item .-content ._hidden_ {
     opacity: 1; } }
+.-wall {
+  width: 100%;
+  min-height: 480px;
+  background-size: cover;
+  overflow: visible;
+  display: block; }
+  .-wall .-item {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: block;
+    vertical-align: middle;
+    min-height: 100%; }
+    .-wall .-item > figure, .-wall .-item > video {
+      top: 0;
+      left: 0;
+      position: absolute;
+      height: auto;
+      width: auto;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+    .-wall .-item .-content {
+      position: relative;
+      padding-top: 25px;
+      padding-bottom: 25px; }
+    .-wall .-item header, .-wall .-item .-header {
+      height: 100%;
+      position: relative;
+      display: table-cell;
+      vertical-align: middle; }
+  .-wall._top_ .-item header, .-wall._top_ .-item .-header {
+    vertical-align: top; }
+  .-wall._bottom_ .-item header, .-wall._bottom_ .-item .-header {
+    vertical-align: bottom; }
+
 .-modal {
   position: fixed;
   top: 0;
