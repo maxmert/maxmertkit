@@ -21,4 +21,7 @@ exports.blog = Marionette.Layout.extend
 		setTimeout =>
 			$('[data-kind="wall"]').each (index, wall) ->
 				wall.wall()
+
+			$('[data-kind="scrollspy"]').each (index, scrollspy) ->
+				scrollspy.scrollspy()
 		, 1

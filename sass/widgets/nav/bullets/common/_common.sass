@@ -1,0 +1,81 @@
+@import "variables"
+@import "sizes"
+@import "themes"
+
+@mixin nav-theme-bullets-item-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	#{$nav-bullets-item}
+		border-color: $border-color
+
+		&.#{$mod-active}
+			background-color: $border-color
+
+		color: $white-color
+
+	&.#{$mod-invert}
+		#{$nav-bullets-item}
+			border-color: $color
+
+			&.#{$mod-active}
+				background-color: $color
+
+			color: $color
+
+
+
+@include exports("nav/bullets/common")
+
+	.#{$nav-bullets-class}
+		position: fixed
+		top: 50%
+		z-index: 5
+		@include user-select(none)
+		@include transform( translateY(-50%) )
+
+		#{$nav-item}
+			display: block
+			margin-bottom: 10px
+			border-width: 1px
+			border-style: solid
+			cursor: pointer
+			opacity: .5
+			@include transition (all 0.2s ease-out 0s)
+			@include transform(rotate(-45deg))
+			position: relative
+
+			a
+				-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
+				@include transition (all 0.2s ease-out 0s)
+				position: absolute
+				pointer-events: none
+				opacity: 0
+				left: 100%
+				font-weight: 100
+				margin-left: 5px
+				margin-top: -1px
+				top: 0
+				white-space: nowrap
+				font-style: normal
+
+			&:hover
+				span
+					opacity: 1
+
+			&.#{$mod-active}
+				@include animation(bullets-rotate-from 1.0s ease-in)
+				@include transform(rotate(0deg))
+				opacity: 1
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-bullets-item-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bullets-item-setter($thm)

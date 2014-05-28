@@ -17179,6 +17179,133 @@ a.-btn, a.-btn-ghost, a.-btn-bordered {
     pointer-events: none;
     border-color: transparent; }
 
+.-bullets {
+  position: fixed;
+  top: 50%;
+  z-index: 5;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%); }
+  .-bullets li {
+    display: block;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    opacity: 0.5;
+    -webkit-transition: all 0.2s ease-out 0s;
+    -moz-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: relative; }
+    .-bullets li a {
+      -webkit-transform: translate3d(0px, 0px, 0px);
+      -webkit-transition: all 0.2s ease-out 0s;
+      -moz-transition: all 0.2s ease-out 0s;
+      transition: all 0.2s ease-out 0s;
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      left: 100%;
+      font-weight: 100;
+      margin-left: 5px;
+      margin-top: -1px;
+      top: 0;
+      white-space: nowrap;
+      font-style: normal; }
+    .-bullets li:hover span {
+      opacity: 1; }
+    .-bullets li._active_ {
+      -webkit-animation: bullets-rotate-from 1s ease-in;
+      -moz-animation: bullets-rotate-from 1s ease-in;
+      animation: bullets-rotate-from 1s ease-in;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      opacity: 1; }
+  .-bullets li {
+    border-color: #b3b3b3;
+    color: #cccccc; }
+    .-bullets li._active_ {
+      background-color: #b3b3b3; }
+  .-bullets._invert_ li {
+    border-color: black;
+    color: black; }
+    .-bullets._invert_ li._active_ {
+      background-color: black; }
+  .-bullets.-default- li {
+    border-color: #b3b3b3;
+    color: #cccccc; }
+    .-bullets.-default- li._active_ {
+      background-color: #b3b3b3; }
+  .-bullets.-default-._invert_ li {
+    border-color: black;
+    color: black; }
+    .-bullets.-default-._invert_ li._active_ {
+      background-color: black; }
+  .-bullets.-primary- li {
+    border-color: #3598db;
+    color: white; }
+    .-bullets.-primary- li._active_ {
+      background-color: #3598db; }
+  .-bullets.-primary-._invert_ li {
+    border-color: #3598db;
+    color: #3598db; }
+    .-bullets.-primary-._invert_ li._active_ {
+      background-color: #3598db; }
+  .-bullets.-error- li {
+    border-color: #cd2c24;
+    color: white; }
+    .-bullets.-error- li._active_ {
+      background-color: #cd2c24; }
+  .-bullets.-error-._invert_ li {
+    border-color: #cd2c24;
+    color: #cd2c24; }
+    .-bullets.-error-._invert_ li._active_ {
+      background-color: #cd2c24; }
+  .-bullets.-info- li {
+    border-color: #2fdcd5;
+    color: white; }
+    .-bullets.-info- li._active_ {
+      background-color: #2fdcd5; }
+  .-bullets.-info-._invert_ li {
+    border-color: #2fdcd5;
+    color: #2fdcd5; }
+    .-bullets.-info-._invert_ li._active_ {
+      background-color: #2fdcd5; }
+  .-bullets.-warning- li {
+    border-color: #ffc43e;
+    color: white; }
+    .-bullets.-warning- li._active_ {
+      background-color: #ffc43e; }
+  .-bullets.-warning-._invert_ li {
+    border-color: #ffc43e;
+    color: #ffc43e; }
+    .-bullets.-warning-._invert_ li._active_ {
+      background-color: #ffc43e; }
+  .-bullets.-dark- li {
+    border-color: black;
+    color: white; }
+    .-bullets.-dark- li._active_ {
+      background-color: black; }
+  .-bullets.-dark-._invert_ li {
+    border-color: black;
+    color: black; }
+    .-bullets.-dark-._invert_ li._active_ {
+      background-color: black; }
+
 .-progress {
   display: block;
   border-radius: 4px;
