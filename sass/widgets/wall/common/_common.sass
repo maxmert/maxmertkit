@@ -1,0 +1,47 @@
+@import "variables"
+
+@include exports("wall/common")
+	.#{$wall-class}
+		width: 100%
+		min-height: 480px
+		background-size: cover
+		overflow: visible
+		display: block
+
+		.#{$item-class}
+			overflow: hidden
+			width: 100%
+			height: auto
+			position: relative
+			display: block
+			vertical-align: middle
+			min-height: 100%
+
+			& > figure, & > video
+				top: 0
+				left: 0
+				position: absolute
+				height: auto
+				width: auto
+				@include user-select( none )
+
+			.#{$content-class}
+				position: relative
+				padding-top: 25px
+				padding-bottom: 25px
+
+			header, .#{$header-class}
+				height: 100%
+				position: relative
+				display: table-cell
+				vertical-align: middle
+
+		&.#{$mod-top}
+			.#{$item-class}
+				header, .#{$header-class}
+					vertical-align: top
+
+		&.#{$mod-bottom}
+			.#{$item-class}
+				header, .#{$header-class}
+					vertical-align: bottom

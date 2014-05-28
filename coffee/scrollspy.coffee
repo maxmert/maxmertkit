@@ -25,7 +25,7 @@ class Scrollspy extends MaxmertkitHelpers
 			# String; selector of the scrolling block
 			target: @el.getAttribute( 'data-target' ) or 'body'
 
-			# Number; in px, vertical offset from the top
+			# Number or string with percent; in px or %, vertical offset from the top ( 5 or "50%" or "5px" )
 			offset: @el.getAttribute( 'data-offset' ) or 5
 
 			# String; selector of items inside element
@@ -84,6 +84,10 @@ class Scrollspy extends MaxmertkitHelpers
 				when 'elements'
 					@refresh()
 
+				when 'offset'
+					if typeof value is 'string'
+						@offsetTop = if value[value.length - 1] is '%' then _getWindowSize().height * parseInt( value ) / 100 else parseInt( value )
+
 			@options[key] = value
 			if typeof value is 'function' then @[key] = value
 
@@ -96,6 +100,8 @@ class Scrollspy extends MaxmertkitHelpers
 			_beforedeactivate.call @
 
 	refresh: ->
+		@offsetTop = if @options.offset[@options.offset.length - 1] is '%' then _getWindowSize().height * parseInt( @options.offset ) / 100 else parseInt( @options.offset )
+
 		elements = @el.querySelectorAll(@options.elements)
 		@elements = []
 		for el in elements
@@ -175,6 +181,12 @@ _activateItem = ( itemNumber ) ->
 			if parent.nodeName is 'LI' then @_removeClass '_active_', parent
 
 	@_addClass '_active_', @elements[itemNumber].element
+	
+	# Add _invert_ modifier if scrollspy item has attribute data-invert
+	if @elements[itemNumber].element.getAttribute "data-invert"
+		@_addClass '_invert_'
+	else
+		@_removeClass '_invert_'
 
 	parent = @elements[itemNumber].element.parentNode
 	@_addClass '_active_', parent
@@ -194,11 +206,11 @@ _deactivateAllItems = ->
 _spy = ( event ) ->
 	i = 0
 	while i < @elements.length
-		if (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i].top + @elements[i].height ) or ( if i < @elements.length - 1 then (@elements[i].top <= _lastScrollY + @options.offset <= @elements[i + 1].top ) )
+		if (@elements[i].top <= _lastScrollY + @offsetTop <= @elements[i].top + @elements[i].height ) or ( if i < @elements.length - 1 then (@elements[i].top <= _lastScrollY + @offsetTop <= @elements[i + 1].top ) )
 			if not @_hasClass '_active_', @elements[i].element
 				_activateItem.call @, i
 		else
-			if @_hasClass('_active_', @elements[i].element) and _lastScrollY + @options.offset < @elements[i].top + @elements[i].height
+			if @_hasClass('_active_', @elements[i].element) and _lastScrollY + @offsetTop < @elements[i].top + @elements[i].height
 				_deactivateItem.call @, i
 		i++
 

@@ -1,0 +1,111 @@
+@import "variables"
+@import "sizes"
+@import "themes"
+
+@mixin nav-theme-bullets-item-setter($theme)
+	$name: map-get( $theme, name)
+	$color: map-get( $theme, color)
+	$white-color: map-get( $theme, white-color)
+	$border-color: map-get( $theme, border-color)
+	$background-color: map-get( $theme, background-color)
+
+	#{$nav-bullets-item}
+
+
+		color: $white-color
+
+		a
+			border-color: $border-color
+			color: $white-color
+		
+		&.#{$mod-active}
+			a
+				background-color: $border-color
+
+	&.#{$mod-invert} #{$nav-bullets-item}, #{$nav-bullets-item}.#{$mod-invert}
+
+
+		color: $color
+
+		a
+			border-color: $color
+			color: $color
+		
+		&.#{$mod-active}
+			a
+				background-color: $color
+
+@mixin nav-size-bullets-item-setter( $size )
+	$multiplier: map-get( $size, multiplier)
+
+	#{$nav-bullets-item}
+		a
+			@include size( $nav-bullets-item-size * $multiplier )
+			font-size: 0.8em * $multiplier
+
+
+
+@include exports("nav/bullets/common")
+
+	.#{$nav-bullets-class}
+		position: fixed
+		top: 50%
+		z-index: 5
+		@include user-select(none)
+		@include transform( translateY(-50%) )
+
+		#{$nav-item}
+			display: block
+			position: relative
+
+			a
+				display: inline-block
+				@include transition (all 0.2s ease-out 0s)
+				@include transform-origin( 50% 50% )
+				@include transform(rotate(45deg))
+				border-width: 1px
+				border-style: solid
+				cursor: pointer
+				opacity: .5
+				
+				small
+					-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
+					opacity: 0
+					left: 100%
+					font-weight: 100
+					margin-left: 5px
+					margin-top: -0.25em
+					position: absolute
+					top: 0
+					white-space: nowrap
+					font-style: normal
+					pointer-events: none
+
+			&:hover
+				small
+					opacity: 1
+
+			&.#{$mod-active}
+				a
+					// @include animation(bullets-rotate-from 1.0s ease-in)
+					@include transform(rotate(0deg))
+					opacity: 1
+
+					small
+						opacity: 1
+
+
+		@each $themeName in $themes
+			$thm: map-get( $base-themes, $themeName )
+
+			@if $themeName == default
+				@include nav-theme-bullets-item-setter($thm)
+			&.-#{$themeName}-
+				@include nav-theme-bullets-item-setter($thm)
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include nav-size-bullets-item-setter($sz)
+			&._#{$sizeName}
+				@include nav-size-bullets-item-setter($sz)
