@@ -1,5 +1,403 @@
 (function() {
+  "use strict";
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbacks, _eventHandlers, _id, _reactor, _reactorEvents;
 
+  _eventHandlers = [];
+
+  _eventCallbacks = [];
+
+  _reactorEvents = [];
+
+  _id = 0;
+
+  MaxmertkitEvent = (function() {
+    function MaxmertkitEvent(name) {
+      this.name = name;
+      this.callbacks = new Array();
+    }
+
+    MaxmertkitEvent.prototype.registerCallback = function(callback) {
+      return this.callbacks.push(callback);
+    };
+
+    return MaxmertkitEvent;
+
+  })();
+
+  MaxmertkitReactor = (function() {
+    function MaxmertkitReactor() {}
+
+    MaxmertkitReactor.prototype.events = _reactorEvents;
+
+    MaxmertkitReactor.prototype.registerEvent = function(eventName) {
+      var event;
+      event = new MaxmertkitEvent(eventName);
+      if (this.events[eventName] == null) {
+        return this.events[eventName] = event;
+      }
+    };
+
+    MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
+      var callback, _i, _len, _ref, _results;
+      _ref = this.events[eventName].callbacks;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        callback = _ref[_i];
+        _results.push(callback(eventArgs));
+      }
+      return _results;
+    };
+
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback) {
+      return this.events[eventName].registerCallback(callback);
+    };
+
+    return MaxmertkitReactor;
+
+  })();
+
+  _reactor = new MaxmertkitReactor();
+
+  MaxmertkitHelpers = (function() {
+    MaxmertkitHelpers.prototype._id = null;
+
+    MaxmertkitHelpers.prototype._instances = new Array();
+
+    MaxmertkitHelpers.prototype.reactor = _reactor;
+
+    function MaxmertkitHelpers(el, options) {
+      this.el = el;
+      this.options = options;
+      this._pushInstance();
+    }
+
+    MaxmertkitHelpers.prototype.destroy = function() {
+      this._popInstance();
+      this._destroy(this);
+      return true;
+    };
+
+    MaxmertkitHelpers.prototype._delete = function(object) {
+      var key, value, _results;
+      _results = [];
+      for (key in object) {
+        value = object[key];
+        _results.push(delete object[key]);
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._destroy = function(object) {
+      this._delete(object);
+      object = null;
+      return true;
+    };
+
+    MaxmertkitHelpers.prototype._pushInstance = function() {
+      this._id = _id++;
+      return this._instances.push(this);
+    };
+
+    MaxmertkitHelpers.prototype._popInstance = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        instance = _ref[index];
+        if ((instance != null ? instance._id : void 0) === this._id) {
+          this._instances.splice(index, 1);
+        }
+        _results.push(delete this);
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._setOptions = function(options) {
+      return console.warning("Maxmertkit Helpers. There is no standart setOptions function.");
+    };
+
+    MaxmertkitHelpers.prototype._extend = function(object, properties) {
+      var key, val;
+      for (key in properties) {
+        val = properties[key];
+        object[key] = val;
+      }
+      return object;
+    };
+
+    MaxmertkitHelpers.prototype._merge = function(options, overrides) {
+      return this._extend(this._extend({}, options), overrides);
+    };
+
+    MaxmertkitHelpers.prototype._selfish = function() {
+      var index, instance, _i, _len, _ref, _results;
+      _ref = this._instances;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        instance = _ref[index];
+        if (this._id !== instance._id) {
+          _results.push((typeof instance.close === "function" ? instance.close() : void 0) || (typeof instance.deactivate === "function" ? instance.deactivate() : void 0));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    MaxmertkitHelpers.prototype._isMobile = function() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
+    };
+
+    MaxmertkitHelpers.prototype._removeEventListener = function(el, eventName, handler) {
+      if (el.removeEventListener) {
+        el.removeEventListener(eventName, handler, false);
+      } else {
+        el.detachEvent("on" + eventName, handler);
+      }
+    };
+
+    MaxmertkitHelpers.prototype._addEventListener = function(el, eventName, handler) {
+      if (el.addEventListener) {
+        el.addEventListener(eventName, handler, false);
+      } else {
+        el.attachEvent("on" + eventName, function() {
+          handler.call(el);
+        });
+      }
+    };
+
+    MaxmertkitHelpers.prototype._hasClass = function(className, el) {
+      el = el || this.el;
+      if (el.classList) {
+        return el.classList.contains(className);
+      } else {
+        return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+      }
+    };
+
+    MaxmertkitHelpers.prototype._addClass = function(className, el) {
+      var classes, classin, _i, _len, _results;
+      el = el || this.el;
+      if (el.classList != null) {
+        classes = className.split(" ");
+        _results = [];
+        for (_i = 0, _len = classes.length; _i < _len; _i++) {
+          classin = classes[_i];
+          _results.push(el.classList.add(classin));
+        }
+        return _results;
+      } else {
+        return el.className += ' ' + className;
+      }
+    };
+
+    MaxmertkitHelpers.prototype._removeClass = function(className, el) {
+      var classes, classin, _i, _len, _results;
+      el = el || this.el;
+      if (el.classList) {
+        classes = className.split(" ");
+        _results = [];
+        for (_i = 0, _len = classes.length; _i < _len; _i++) {
+          classin = classes[_i];
+          _results.push(el.classList.remove(classin));
+        }
+        return _results;
+      } else {
+        return el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+      }
+    };
+
+    MaxmertkitHelpers.prototype._closest = function(selector, el) {
+      var matchesSelector;
+      el = el || this.el;
+      matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+      while (el) {
+        if (matchesSelector.bind(el)(selector)) {
+          return el;
+        } else {
+          el = el.parentElement;
+        }
+      }
+      return false;
+    };
+
+    MaxmertkitHelpers.prototype._outerWidth = function(el) {
+      var style, width;
+      el = el || this.el;
+      width = el.offsetWidth;
+      try {
+        style = el.currentStyle || getComputedStyle(el);
+      } catch (_error) {}
+      if (style) {
+        if ((style.paddingLeft != null) && style.paddingLeft !== '') {
+          width += parseInt(style.paddingLeft);
+        }
+        if ((style.paddingRight != null) && style.paddingRight !== '') {
+          width += parseInt(style.paddingRight);
+        }
+      }
+      return width;
+    };
+
+    MaxmertkitHelpers.prototype._outerHeight = function(el) {
+      var height, style;
+      el = el || this.el;
+      height = el.offsetHeight;
+      try {
+        style = el.currentStyle || getComputedStyle(el);
+      } catch (_error) {}
+      if (style != null) {
+        if ((style.paddingTop != null) && style.paddingTop !== '') {
+          height += parseInt(style.paddingTop);
+        }
+        if ((style.paddingBottom != null) && style.paddingBottom !== '') {
+          height += parseInt(style.paddingBottom);
+        }
+      }
+      return height;
+    };
+
+    MaxmertkitHelpers.prototype._getPosition = function(el) {
+      var curleft, curtop, style;
+      el = el || this.el;
+      curleft = curtop = 0;
+      if (el.offsetParent) {
+        while (true) {
+
+          /* FIXME: Not sure if it needed to calculate with style margin */
+          try {
+            style = el.currentStyle || getComputedStyle(el);
+          } catch (_error) {}
+          curleft += el.offsetLeft;
+          curtop += el.offsetTop;
+          if (!(el = el.offsetParent)) {
+            break;
+          }
+        }
+      }
+      return {
+        left: curleft,
+        top: curtop
+      };
+    };
+
+    MaxmertkitHelpers.prototype._getContainer = function(el) {
+      var parent, style;
+      parent = el || this.el;
+      try {
+        style = getComputedStyle(parent);
+      } catch (_error) {}
+      if (style == null) {
+        return parent;
+      }
+      if (/(relative|fixed)/.test(style['position'])) {
+        return parent;
+      }
+      while ((parent != null) && (parent = parent.parentNode)) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return parent;
+        }
+        if (/(relative|fixed)/.test(style['position'])) {
+          return parent;
+        }
+      }
+      return document;
+    };
+
+    MaxmertkitHelpers.prototype._getScrollContainer = function(el) {
+      var parent, style;
+      parent = el || this.el;
+      try {
+        style = getComputedStyle(parent);
+      } catch (_error) {}
+      if (style == null) {
+        return parent;
+      }
+      if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) && parent.nodeName !== 'BODY') {
+        return parent;
+      }
+      while (parent = parent.parentNode) {
+        try {
+          style = getComputedStyle(parent);
+        } catch (_error) {}
+        if (style == null) {
+          return parent;
+        }
+        if (/(auto|scroll)/.test(style['overflow'] + style['overflow-y'] + style['overflow-x']) && parent.nodeName !== 'BODY') {
+          return parent;
+        }
+      }
+      return document;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSTransform = function(el, transform) {
+      el = el || this.el;
+      el.style.webkitTransform = transform;
+      el.style.mozTransform = transform;
+      el.style.msTransform = transform;
+      el.style.oTransform = transform;
+      return el.style.transform = transform;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSFilter = function(el, filter) {
+      el = el || this.el;
+      el.style.webkitFilter = filter;
+      el.style.mozFilter = filter;
+      el.style.msFilter = filter;
+      el.style.oFilter = filter;
+      return el.style.filter = filter;
+    };
+
+    MaxmertkitHelpers.prototype._setCSSOpacity = function(el, opacity) {
+      el = el || this.el;
+      el.style.webkitOpacity = opacity;
+      el.style.mozOpacity = opacity;
+      el.style.msOpacity = opacity;
+      el.style.oOpacity = opacity;
+      return el.style.opacity = opacity;
+    };
+
+    return MaxmertkitHelpers;
+
+  })();
+
+  (function() {
+    var lastTime, vendors, x;
+    lastTime = 0;
+    vendors = ["ms", "moz", "webkit", "o"];
+    x = 0;
+    while (x < vendors.length && !window.requestAnimationFrame) {
+      window.requestAnimationFrame = window[vendors[x] + "RequestAnimationFrame"];
+      window.cancelAnimationFrame = window[vendors[x] + "CancelAnimationFrame"] || window[vendors[x] + "CancelRequestAnimationFrame"];
+      ++x;
+    }
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = function(callback, element) {
+        var currTime, id, timeToCall;
+        currTime = new Date().getTime();
+        timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        id = window.setTimeout(function() {
+          callback(currTime + timeToCall);
+        }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
+      };
+    }
+    if (!window.cancelAnimationFrame) {
+      window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+      };
+    }
+  })();
+
+  window['MaxmertkitHelpers'] = MaxmertkitHelpers;
+
+  window['MaxmertkitReactor'] = MaxmertkitReactor;
+
+  window['MaxmertkitEvent'] = MaxmertkitEvent;
 
 }).call(this);
 
@@ -912,6 +1310,11 @@
         switch (key) {
           case 'elements':
             this.refresh();
+            break;
+          case 'offset':
+            if (typeof value === 'string') {
+              this.offsetTop = value[value.length - 1] === '%' ? _getWindowSize().height * parseInt(value) / 100 : parseInt(value);
+            }
         }
         this.options[key] = value;
         if (typeof value === 'function') {
@@ -934,6 +1337,7 @@
 
     Scrollspy.prototype.refresh = function() {
       var el, elements, offsetTop, targetEl, _i, _len, _results;
+      this.offsetTop = this.options.offset[this.options.offset.length - 1] === '%' ? _getWindowSize().height * parseInt(this.options.offset) / 100 : parseInt(this.options.offset);
       elements = this.el.querySelectorAll(this.options.elements);
       this.elements = [];
       _results = [];
@@ -1035,6 +1439,11 @@
       }
     }
     this._addClass('_active_', this.elements[itemNumber].element);
+    if (this.elements[itemNumber].element.getAttribute("data-invert")) {
+      this._addClass('_invert_');
+    } else {
+      this._removeClass('_invert_');
+    }
     parent = this.elements[itemNumber].element.parentNode;
     this._addClass('_active_', parent);
     _results = [];
@@ -1068,12 +1477,12 @@
     var i, _ref, _ref1;
     i = 0;
     while (i < this.elements.length) {
-      if (((this.elements[i].top <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.elements[i].top + this.elements[i].height)) || (i < this.elements.length - 1 ? (this.elements[i].top <= (_ref1 = _lastScrollY + this.options.offset) && _ref1 <= this.elements[i + 1].top) : void 0)) {
+      if (((this.elements[i].top <= (_ref = _lastScrollY + this.offsetTop) && _ref <= this.elements[i].top + this.elements[i].height)) || (i < this.elements.length - 1 ? (this.elements[i].top <= (_ref1 = _lastScrollY + this.offsetTop) && _ref1 <= this.elements[i + 1].top) : void 0)) {
         if (!this._hasClass('_active_', this.elements[i].element)) {
           _activateItem.call(this, i);
         }
       } else {
-        if (this._hasClass('_active_', this.elements[i].element) && _lastScrollY + this.options.offset < this.elements[i].top + this.elements[i].height) {
+        if (this._hasClass('_active_', this.elements[i].element) && _lastScrollY + this.offsetTop < this.elements[i].top + this.elements[i].height) {
           _deactivateItem.call(this, i);
         }
       }
@@ -1730,6 +2139,371 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.popup = window['mkitPopup'];
+  }
+
+}).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Wall, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getTargetSize, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _resizing, _spy, _windowSize,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "wall";
+
+  _instances = [];
+
+  _id = 0;
+
+  _lastScrollY = 0;
+
+  _windowSize = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Wall = (function(_super) {
+    __extends(Wall, _super);
+
+    Wall.prototype._name = _name;
+
+    Wall.prototype._instances = _instances;
+
+    Wall.prototype.started = false;
+
+    Wall.prototype.active = false;
+
+    function Wall(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        kind: this.el.getAttribute('data-kind') || _name,
+        target: this.el.getAttribute('data-target') || '.-thumbnail',
+        header: this.el.getAttribute('data-target') || '.-header',
+        headerFade: this.el.getAttribute('data-fade') || true,
+        speed: this.el.getAttribute('data-speed') || 0.7,
+        zoom: this.el.getAttribute('data-zoom') || false,
+
+        /* Extrimely slow */
+        height: this.el.getAttribute('data-height') || '100%',
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.resizingTick = false;
+      this.scroller = this._getScrollContainer(this.el);
+      this.spy = _spy.bind(this);
+      this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._setOptions(this.options);
+      Wall.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("start." + _name);
+      this.reactor.registerEvent("stop." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start(this.deactivate);
+      }
+    }
+
+    Wall.prototype.destroy = function() {
+      _deactivate.call(this);
+      this.el.data["kitWall"] = null;
+      return Wall.__super__.destroy.apply(this, arguments);
+    };
+
+    Wall.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Wall. You're trying to set unpropriate option – " + key);
+        }
+        switch (key) {
+          case 'target':
+            this.target = this.el.querySelector(this.options.target);
+            this.targetObject = this.target.querySelector('img');
+            break;
+          case 'header':
+            this.header = this.el.querySelector(this.options.header);
+        }
+
+        /* Extrimely slow */
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Wall.prototype.start = function(cb) {
+      if (!this.started) {
+        return _beforeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.stop = function(cb) {
+      if (this.started) {
+        return _beforedeactivate.call(this, cb);
+      }
+    };
+
+    Wall.prototype.activate = function() {
+      this._addClass('-start--');
+      this._removeClass('-stop--');
+      return this.active = true;
+    };
+
+    Wall.prototype.deactivate = function() {
+      this._removeClass('-start-- _active_');
+      this._addClass('-stop--');
+      return this.active = false;
+    };
+
+    Wall.prototype.refresh = function() {
+      var percent;
+      _windowSize = _getWindowSize();
+      if (this.header == null) {
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.el.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.el.style.height = this.options.height;
+        }
+      } else {
+        if (this.options.height[this.options.height.length - 1] === '%') {
+          percent = parseInt(this.options.height) / 100;
+          this.header.style.height = "" + (_windowSize.height * percent) + "px";
+        } else {
+          this.header.style.height = this.options.height;
+        }
+        this.header.style.width = "" + _windowSize.width + "px";
+      }
+      if (_windowSize.width / _windowSize.height > 16 / 9) {
+        this.target.style.width = "100%";
+        this.target.style.height = "auto";
+      } else {
+        this.target.style.width = "auto";
+        this.target.style.height = "100%";
+      }
+      this.targetSize = _getTargetSize.call(this);
+      if (this.targetSize.width - _windowSize.width > 0) {
+        this._setCSSTransform(this.target, "translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)");
+      } else if (this.target.style.transform !== '') {
+        this._setCSSTransform(this.target, "translateX(0)");
+      }
+      return this.spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
+    };
+
+    return Wall;
+
+  })(MaxmertkitHelpers);
+
+  _getTargetSize = function() {
+    return {
+      width: this._outerWidth(this.target),
+      height: this._outerHeight(this.target)
+    };
+  };
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!this.resizingTick) {
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return this.resizingTick = true;
+      }
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    this.spy();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop(this.activate);
+      } else {
+        this.start();
+      }
+    }
+    return this.resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
+    return this.spy();
+  };
+
+  _spy = function() {
+    var current, max, percent, transform, _ref;
+    if ((this.spyParams.offset.top <= (_ref = _lastScrollY + _windowSize.height) && _ref <= this.spyParams.offset.top + this.spyParams.height + _windowSize.height)) {
+      max = this.spyParams.height;
+      current = _lastScrollY - this.spyParams.offset.top;
+      percent = (1 - current / max) / 2;
+      transform = "translateY(" + (Math.round(current * this.options.speed)) + "px) translateZ(0)";
+      if (this.targetSize.width - _windowSize.width > 0) {
+        transform += " translateX(-" + ((this.targetSize.width - _windowSize.width) / 2) + "px)";
+      } else if (this.target.style.transform !== '') {
+        transform += " translateX(0)";
+      }
+      if (this.options.zoom) {
+        transform += " scale(" + (1 + percent) + ")";
+      }
+      this._setCSSTransform(this.target, transform);
+      if (this.header != null) {
+        if (percent / 2 < 0.25) {
+          if (!(this._hasClass('_top_') || this._hasClass('_bottom_'))) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 2.5)) + "px) translateZ(0)");
+          }
+          if (this._hasClass('_bottom_')) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(-current / 10)) + "px) translateZ(0)");
+          }
+          if (this._hasClass('_top_')) {
+            this._setCSSTransform(this.header, "translateY(" + (Math.round(current / 1.1)) + "px) translateZ(0)");
+          }
+          if (this.options.headerFade) {
+            return this._setCSSOpacity(this.header, percent * 2.5);
+          }
+        }
+      }
+
+      /* Extrimely slow */
+    }
+  };
+
+  _beforeactivate = function(cb) {
+    var deferred;
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.failactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this, cb);
+      }
+    } else {
+      return _activate.call(this, cb);
+    }
+  };
+
+  _activate = function(cb) {
+    var _ref;
+    this.refresh();
+    this._addEventListener(this.scroller, 'scroll', this.onScroll);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("start." + _name);
+    this.started = true;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  _beforedeactivate = function(cb) {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this, cb);
+      }
+    } else {
+      return _deactivate.call(this, cb);
+    }
+  };
+
+  _deactivate = function(cb) {
+    var _ref;
+    this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this._removeEventListener(window, 'resize', this.onResize);
+    this.reactor.dispatchEvent("stop." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    this.started = false;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  window['Wall'] = Wall;
+
+  window['mkitWall'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitWall']) {
+      result = new Wall(this, options);
+      this.data['kitWall'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitWall']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitWall'][options];
+        }
+      }
+      result = this.data['kitWall'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.wall = window['mkitWall'];
   }
 
 }).call(this);

@@ -395,4 +395,8 @@ exports.components = [
 		name: "affix"
 		path: "affixCommon"
 	}
+	{
+		name: "wall"
+		path: "wallCommon"
+	}
 ]
