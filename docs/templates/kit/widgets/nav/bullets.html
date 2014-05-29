@@ -1,0 +1,119 @@
+<!-- ============================== NAVBAR ============================== -->
+
+<h2>Bullets</h2>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$nav-bullets-class: "-bullets" !global
+$nav-bullets-item: "li" !global
+$nav-bullets-item-size: 10px !global</pre></div>
+</p>
+
+
+<!-- ============ DESCRIPTION -->
+<!-- ====================== -->
+<h3>Basic use</h3>
+<p>
+	Use class <code>-bullets</code> with <code>&lt;ul&gt;</code>. And <code>&lt;small&gt;</code> for sign.
+</p>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-bullets">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+	</div>
+
+	<div class="-col12 view">
+		<ul class="-bullets -primary- _invert_ _huge">
+			<li><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+	</div>
+
+	<div class="-col12 view">
+		<ul class="-bullets -error- _invert_">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-bullets">
+	<li><a href="#navBullets"><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul>
+
+<ul class="-bullets -primary- _invert_ _huge">
+	<li><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul>
+
+<ul class="-bullets -error- _invert_">
+	<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+<p>
+	If you want to put your bullets inside some <code>position: relative</code> container, use modifier <code>_fixed_</code> and position modifiers <code>_left_</code>, <code>_center_</code>, <code>_right_</code> and <code>_top_</code>, <code>_middle_</code>, <code>_bottom_</code>.
+</p>
+
+<blockquote class="-warning-">
+	If you want to make your bullets <code>position: fixed</code> (for example like a <a href="/examples/blog">global navigation with parallax</a>), you'll need to add this style by your own or add <code>style="position: fixed;"</code> to bullets.
+</blockquote>
+
+<div class="-row example-block">
+
+	<div class="-col12 view" style="height: 300px;">
+		<ul class="-bullets _vertical_ _fixed_ _left_ _middle_">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+
+		<ul class="-bullets _vertical_ _fixed_ _right_ _middle_">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+
+		<ul class="-bullets _fixed_ _center_ _top_">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+
+		<ul class="-bullets _fixed_ _center_ _bottom_">
+			<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+			<li><a href="#navBullets"><small>Name 2</small></a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-bullets _vertical_ _fixed_ _left_ _middle_">
+	<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul>
+
+<ul class="-bullets _vertical_ _fixed_ _right_ _middle_">
+	<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul>
+
+<ul class="-bullets _fixed_ _center_ _top_">
+	<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul>
+
+<ul class="-bullets _fixed_ _center_ _bottom_">
+	<li class="_active_"><a href="#navBullets" ><small>Name 1</small></a></li>
+	<li><a href="#navBullets"><small>Name 2</small></a></li>
+</ul></pre></div>
+
+</div>

@@ -17180,20 +17180,13 @@ a.-btn, a.-btn-ghost, a.-btn-bordered {
     border-color: transparent; }
 
 .-bullets {
-  position: fixed;
-  top: 50%;
   z-index: 5;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%); }
+  user-select: none; }
   .-bullets li {
-    display: block;
+    display: inline-block;
     position: relative; }
     .-bullets li a {
       display: inline-block;
@@ -17215,19 +17208,7 @@ a.-btn, a.-btn-ghost, a.-btn-bordered {
       cursor: pointer;
       opacity: 0.5; }
       .-bullets li a small {
-        -webkit-transform: translate3d(0px, 0px, 0px);
-        opacity: 0;
-        left: 100%;
-        font-weight: 100;
-        margin-left: 5px;
-        margin-top: -0.25em;
-        position: absolute;
-        top: 0;
-        white-space: nowrap;
-        font-style: normal;
-        pointer-events: none; }
-    .-bullets li:hover small {
-      opacity: 1; }
+        display: none; }
     .-bullets li._active_ a {
       -webkit-transform: rotate(0deg);
       -moz-transform: rotate(0deg);
@@ -17235,8 +17216,63 @@ a.-btn, a.-btn-ghost, a.-btn-bordered {
       -o-transform: rotate(0deg);
       transform: rotate(0deg);
       opacity: 1; }
-      .-bullets li._active_ a small {
-        opacity: 1; }
+  .-bullets._vertical_ li {
+    display: block; }
+    .-bullets._vertical_ li a small {
+      display: inline-block;
+      -webkit-transform: translate3d(0px, 0px, 0px);
+      opacity: 0;
+      left: 100%;
+      font-weight: 100;
+      margin-left: 0.5em;
+      margin-top: -0.25em;
+      position: absolute;
+      top: 0;
+      white-space: nowrap;
+      font-style: normal;
+      pointer-events: none; }
+    .-bullets._vertical_ li a:hover small {
+      opacity: 1; }
+    .-bullets._vertical_ li._active_ a small {
+      opacity: 1; }
+  .-bullets._fixed_ {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%); }
+    .-bullets._fixed_._top_ {
+      bottom: inherit;
+      top: 25px; }
+    .-bullets._fixed_._middle_ {
+      bottom: inherit;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%); }
+    .-bullets._fixed_._left_ {
+      right: inherit;
+      left: 25px; }
+    .-bullets._fixed_._right_ {
+      left: inherit;
+      right: 25px; }
+      .-bullets._fixed_._right_ li a small {
+        left: inherit;
+        right: 100%;
+        margin-right: 0.5em; }
+    .-bullets._fixed_._center_ {
+      left: 50%;
+      right: inherit;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%); }
   .-bullets li {
     color: #cccccc; }
     .-bullets li a {
@@ -17335,38 +17371,78 @@ a.-btn, a.-btn-ghost, a.-btn-bordered {
       color: black; }
     .-bullets.-dark-._invert_ li._active_ a, .-bullets.-dark- li._invert_._active_ a {
       background-color: black; }
-  .-bullets._small li a {
-    height: 5px;
-    width: 5px;
-    font-size: 0.4em; }
-  .-bullets._minor li a {
-    height: 7.5px;
-    width: 7.5px;
-    font-size: 0.6em; }
-  .-bullets li a {
-    height: 10px;
-    width: 10px;
-    font-size: 0.8em; }
-  .-bullets._normal li a {
-    height: 10px;
-    width: 10px;
-    font-size: 0.8em; }
-  .-bullets._major li a {
-    height: 12.5px;
-    width: 12.5px;
-    font-size: 1em; }
-  .-bullets._big li a {
-    height: 15px;
-    width: 15px;
-    font-size: 1.2em; }
-  .-bullets._huge li a {
-    height: 17.5px;
-    width: 17.5px;
-    font-size: 1.4em; }
-  .-bullets._divine li a {
-    height: 20px;
-    width: 20px;
-    font-size: 1.6em; }
+  .-bullets._small li {
+    margin-right: 2px; }
+    .-bullets._small li a {
+      height: 5px;
+      width: 5px;
+      font-size: 0.4em; }
+  .-bullets._small._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 2px; }
+  .-bullets._minor li {
+    margin-right: 3px; }
+    .-bullets._minor li a {
+      height: 7.5px;
+      width: 7.5px;
+      font-size: 0.6em; }
+  .-bullets._minor._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 3px; }
+  .-bullets li {
+    margin-right: 4px; }
+    .-bullets li a {
+      height: 10px;
+      width: 10px;
+      font-size: 0.8em; }
+  .-bullets._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 4px; }
+  .-bullets._normal li {
+    margin-right: 4px; }
+    .-bullets._normal li a {
+      height: 10px;
+      width: 10px;
+      font-size: 0.8em; }
+  .-bullets._normal._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 4px; }
+  .-bullets._major li {
+    margin-right: 5px; }
+    .-bullets._major li a {
+      height: 12.5px;
+      width: 12.5px;
+      font-size: 1em; }
+  .-bullets._major._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 5px; }
+  .-bullets._big li {
+    margin-right: 6px; }
+    .-bullets._big li a {
+      height: 15px;
+      width: 15px;
+      font-size: 1.2em; }
+  .-bullets._big._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 6px; }
+  .-bullets._huge li {
+    margin-right: 7px; }
+    .-bullets._huge li a {
+      height: 17.5px;
+      width: 17.5px;
+      font-size: 1.4em; }
+  .-bullets._huge._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 7px; }
+  .-bullets._divine li {
+    margin-right: 8px; }
+    .-bullets._divine li a {
+      height: 20px;
+      width: 20px;
+      font-size: 1.6em; }
+  .-bullets._divine._vertical_ li {
+    margin-right: inherit;
+    margin-bottom: 8px; }
 
 .-progress {
   display: block;
