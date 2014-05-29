@@ -138,6 +138,7 @@ class Wall extends MaxmertkitHelpers
 			@header.style.width = "#{_windowSize.width}px"
 
 
+
 		if _windowSize.width / _windowSize.height > 16 / 9
 			@target.style.width = "100%"
 			@target.style.height = "auto"

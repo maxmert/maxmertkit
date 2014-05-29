@@ -155,6 +155,15 @@ exports.module = Marionette.Layout.extend
 
         setTimeout =>
             @$el.find('.dev-version-spinner').replaceWith kit.version
+
+            # Run walls
+            $('[data-kind="wall"]').each (index, wall) ->
+                wall.wall()
+
+            $('[data-spy="skyline"]').each (index, skyline) ->
+                skyline.skyline
+                    delay: ->
+                        2000 * Math.random()
         ,1
 
     stopTimer: ->
@@ -178,6 +187,13 @@ exports.module = Marionette.Layout.extend
         @seriesModel.set 'size', widgets[active].sizes[sizeActive]
 
         # @render()
+
+    onBeforeClose: ->
+        $('[data-kind="wall"]').each (index, wall) ->
+            wall.data['kitWall'].destroy()
+
+        $('[data-spy="skyline"]').each (index, skyline) ->
+            skyline.data['kitSkyline'].destroy()
 
     onClose: ->
         @stopTimer()

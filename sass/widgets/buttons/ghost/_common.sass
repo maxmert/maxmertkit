@@ -59,7 +59,7 @@
 
 @include exports("buttons/ghost/common")
 
-	.#{$button-ghost-class}, .-btn-bordered
+	.#{$button-ghost-class}, .-btn-bordered, a.#{$button-ghost-class}, a.-btn-bordered, a[href].#{$button-ghost-class}, a[href].-btn-bordered
 		@extend .#{$button-class}
 
 		border-radius: $button-ghost-border-radius
