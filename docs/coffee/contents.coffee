@@ -403,4 +403,8 @@ exports.components = [
 		name: "wall"
 		path: "wallCommon"
 	}
+	{
+		name: "skyline"
+		path: "skylineCommon"
+	}
 ]

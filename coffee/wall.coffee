@@ -25,7 +25,7 @@ class Wall extends MaxmertkitHelpers
 			target: @el.getAttribute( 'data-target' ) or '.-thumbnail'
 
 			# String; selector for the header in scrolling element.
-			header: @el.getAttribute( 'data-target' ) or '.-header'
+			header: @el.getAttribute( 'data-header' ) or '.-header'
 
 			# Boolean; hide header while scrolling
 			headerFade: @el.getAttribute( 'data-fade' ) or yes
@@ -119,16 +119,6 @@ class Wall extends MaxmertkitHelpers
 		if @started
 			_beforedeactivate.call @, cb
 
-	activate: ->
-		@_addClass '-start--'
-		@_removeClass '-stop--'
-		@active = yes
-
-	deactivate: ->
-		@_removeClass '-start-- _active_'
-		@_addClass '-stop--'
-		@active = no
-
 	refresh: ->
 		_windowSize = _getWindowSize()
 
@@ -184,7 +174,7 @@ _requestResize = ->
 
 _resizing = ->
 	@refresh()
-	@spy()
+	if @started then @spy()
 
 	if not @options.onMobile
 		if _getWindowSize().width < 992
@@ -219,7 +209,7 @@ _getWindowSize = ->
 _onScroll = (event)  ->
 	_lastScrollY = if event.target.nodeName is '#document' then (document.documentElement && document.documentElement.scrollTop) or event.target.body.scrollTop else event.target.scrollTop
 	# Dont use requestAnimationFrame because we need smooth parallax effect
-	@spy()
+	if @started then @spy()
 
 
 _spy = ->
