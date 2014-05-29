@@ -1,3 +1,4 @@
+@import "../../thumbnails/common/variables"
 @import "variables"
 
 @include exports("wall/common")
@@ -35,6 +36,13 @@
 				position: relative
 				display: table-cell
 				vertical-align: middle
+
+			.#{$thumbnail-class}
+				img
+					width: auto
+					height: auto
+					min-height: 100%
+					min-width: 100%
 
 		&.#{$mod-top}
 			.#{$item-class}

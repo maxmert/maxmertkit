@@ -1,1 +1,344 @@
-<h1>Wall</h1>
+	<h1>Wall</h1>
+
+
+	<div class="-row">
+		<p>Make a parallax effect with image or video background</p>
+	</div>
+
+
+	<div class="-row example-block">
+
+	<div class="-col12 view">
+		Look at the <a href="/examples/blog" target="_blank" data-bypass>example</a>. Walls with video and image backgrounds code below.
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-coffeescript">walls = document.querySelectorAll("[data-kind='wall']")
+for wl in walls
+	wl.wall()</pre></div>
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-wall" data-kind="wall">
+	<div class="-item">
+		<!-- Add a video background here with class="-thumbnail" -->
+		<video class="-thumbnail" muted="" preload="auto" autoplay="autoplay" loop="loop">
+			<source src="//secure-c.vimeocdn.com/p/video/yosemite_hd_ii_hd.webm" type="video/webm">
+			<source src="//secure-c.vimeocdn.com/p/video/yosemite_hd_ii_hd.mp4" type="video/mp4">
+		</video>
+
+		<!-- This is a header of the wall -->
+		<header class="-header">
+			<!-- Use grid system inside to beautiful view -->
+			<div class="-container">
+				<div class="-row">
+					<div class="-col8 -offset2">
+						<!-- Add content here -->
+						<h1>Yosemite</h1>
+						<h2><small>Time-lapse video project set in Yosemite National Park, 2014</small></h2>
+						<!-- You can add other widgets inside. Avatar in that case -->
+						<a class="-avatar _round_ _small">
+							<figure class="-thumbnail">
+								<img src="http://s1.wp.com/wp-content/themes/vip/timelife/images/life_logo.png">
+							</figure>The LIFE, Colin Delehanty
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+</div></pre></div>
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-wall" data-kind="wall">
+	<div class="-item">
+		<!-- Add an image background here with class="-thumbnail" -->
+		<figure class="-thumbnail" >
+			<img src="https://d262ilb51hltx0.cloudfront.net/fit/t/2000/1600/gradv/29/81/55/1*k6mNNRYpnYw4B0gnwt-spg.jpeg" alt="">
+		</figure>
+
+		<!-- This is a header of the wall -->
+		<header class="-header">
+			<!-- Use grid system inside to beautiful view -->
+			<div class="-container">
+				<div class="-row">
+					<div class="-col8 -offset2">
+						<!-- Add content here -->
+						<h1>Yosemite</h1>
+						<h2><small>Time-lapse video project set in Yosemite National Park, 2014</small></h2>
+						<!-- You can add other widgets inside. Avatar in that case -->
+						<a class="-avatar _round_ _small">
+							<figure class="-thumbnail">
+								<img src="http://s1.wp.com/wp-content/themes/vip/timelife/images/life_logo.png">
+							</figure>The LIFE, Colin Delehanty
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+</div></pre></div>
+
+</div>
+
+
+
+
+<blockquote class="-primary-">You can add a content after <code>&lt;header&gt;</code></blockquote>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		Look at the <a href="/examples/blog" target="_blank" data-bypass>example</a>. Walls with video and image backgrounds code below.
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-wall" data-kind="wall">
+	<div class="-item">
+		<!-- Add an image background here with class="-thumbnail" -->
+		<figure class="-thumbnail" >
+			<img src="https://d262ilb51hltx0.cloudfront.net/fit/t/2000/1600/gradv/29/81/55/1*k6mNNRYpnYw4B0gnwt-spg.jpeg" alt="">
+		</figure>
+
+		<!-- This is a header of the wall -->
+		<header class="-header">
+			<!-- Use grid system inside to beautiful view -->
+			<div class="-container">
+				<div class="-row">
+					<div class="-col8 -offset2">
+						<!-- Add content here -->
+						<h1>Yosemite</h1>
+						<h2><small>Time-lapse video project set in Yosemite National Park, 2014</small></h2>
+						<!-- You can add other widgets inside. Avatar in that case -->
+						<a class="-avatar _round_ _small">
+							<figure class="-thumbnail">
+								<img src="http://s1.wp.com/wp-content/themes/vip/timelife/images/life_logo.png">
+							</figure>The LIFE, Colin Delehanty
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- Add a -content after header. Add any content inside it. -->
+		<section class="-content">
+
+			<!-- You can use grid system inside -->
+			<div class="-container">
+				<div class="-row">
+					<div class="-col6 -offset3">
+						A lot of content here.
+					</div>
+				</div>
+			</div>
+
+		</section>
+	</div>
+</div></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<h2>Properties</h2>
+
+<table class="-table _horizontal_ _responsive_">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Default</th>
+			<th class="_hidden-phones_ _hidden-tablets_">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>kind</td>
+			<td><i>@el.getAttribute( 'data-kind' ) or 'wall'</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				Set walling type.
+			</td>
+		</tr>
+		<tr>
+			<td>target</td>
+			<td><i>@el.getAttribute( 'data-target' ) or '.-thumbnail'</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>String</b>. Selector for the scrolling background element. For example <code>&lt;figure&gt;</code> or <code>&lt;video&gt;</code> or <code>#video-id</code>.
+			</td>
+		</tr>
+		<tr>
+			<td>header</td>
+			<td><i>@el.getAttribute( 'data-header' ) or '.-header'</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>String</b>. Selector for the header inside wall.
+			</td>
+		</tr>
+		<tr>
+			<td>headerFade</td>
+			<td><i>@el.getAttribute( 'data-fade' ) or yes</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>Boolean</b>. Hide header while scrolling out.
+			</td>
+		</tr>
+		<tr>
+			<td>speed</td>
+			<td><i>@el.getAttribute( 'data-speed' ) or 0.7</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>Number between 0 and 1</b>. 1 – background element stands, 0 – element scrolls as usual.
+			</td>
+		</tr>
+		<tr>
+			<td>zoom</td>
+			<td><i>@el.getAttribute( 'data-zoom' ) or no</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>Boolean</b>. Zoom background element while scrolling.
+			</td>
+		</tr>
+		<tr>
+			<td>height</td>
+			<td><i>@el.getAttribute( 'data-height' ) or '100%'</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				<b>String or Number</b>. Height of the wall. Inside should be measures like % or px. If number than it will use px.
+			</td>
+		</tr>
+		<tr>
+			<td>onMobile</td>
+			<td><i>@el.getAttribute( 'data-on-mobile' ) or no</i></td>
+			<td class="_hidden-phones_ _hidden-tablets_">
+				Deactivate wall on mobile devices.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Methods</h2>
+
+<table class="-table _horizontal_ _responsive_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>start</b></td>
+			<td>
+				<p>Activate wall.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>stop</b></td>
+			<td>
+				<p>Deativate wall.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>refresh</b></td>
+			<td>
+				<p>Refresh all positions and sizes.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>destroy</b></td>
+			<td>
+				<p>Destroy current instance.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<h2>Events</h2>
+
+<blockquote class="-primary-">
+	Inside each method to get wall element use <code>@</code> or <code>this</code> in js. Class instance always stores in data attribute of the wall element <code>@data['kitWall']</code> or <code>this.data['kitWall']</code> in js. To get wall element do <code>@data['kitWall'].el</code>. To get wall background element do <code>@data['kitWall'].target</code>.
+</blockquote>
+
+<table class="-table _horizontal_ _responsive_">
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>beforeactive</b></td>
+			<td>
+				<p>Set a function to call it before activate the wall. If it returns <code>deferred.promise()</code>, then wall will not start till <code>deferred.resolve()</code>, and woun't start if <code>deferred.reject()</code>.</p>
+				<p language="coffeescript"><pre hljs class="prettyprint lang-coffeescript">document.querySelector('.wall').wall
+	beforeactive: ->
+		d = $.Deferred()
+
+		console.log @
+		# The wall will be in the log
+		# so you can, for example, add classes
+		# to disable the wall
+
+		console.log @data['kitWall']
+		# The instance of Wall class will in log
+		# so to get wall element you need to do
+		wall = @data['kitWall']
+		wall._addClass 'some-class'
+
+		# Do something here before activate wall
+		# in this case it will start in 2 seconds
+		setTimeout ->
+			d.resolve()
+		, 2000
+		# End of your code
+
+		d.promise()
+</pre></p>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td><b>onactive</b></td>
+			<td>
+				<p>Set a function to call it after wall started.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>failactive</b></td>
+			<td>
+				<p>Set a function to call it if starting failed.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>beforedeactive</b></td>
+			<td>
+				<p>Call this function before wall stopped.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>ondeactive</b></td>
+			<td>
+				<p>Call this function after wall stopped.</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td><b>faildeactive</b></td>
+			<td>
+				<p>Set a function to call it if stopping failed.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

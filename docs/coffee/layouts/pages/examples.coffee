@@ -25,3 +25,10 @@ exports.blog = Marionette.Layout.extend
 			$('[data-spy="scrollspy"]').each (index, scrollspy) ->
 				scrollspy.scrollspy( offset: "50%" )
 		, 1
+
+	onBeforeClose: ->
+		$('[data-kind="wall"]').each (index, wall) ->
+			wall.data['kitWall'].destroy()
+
+		$('[data-spy="scrollspy"]').each (index, spy) ->
+			spy.data['kitScrollspy'].destroy()

@@ -262,6 +262,10 @@ exports.widgets = [
 				name: "list-group"
 				path: "navListGroup"
 			}
+			{
+				name: "bullets"
+				path: "navBullets"
+			}
 		]
 	}
 	{
@@ -398,5 +402,9 @@ exports.components = [
 	{
 		name: "wall"
 		path: "wallCommon"
+	}
+	{
+		name: "skyline"
+		path: "skylineCommon"
 	}
 ]

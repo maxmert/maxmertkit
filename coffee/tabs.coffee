@@ -202,3 +202,8 @@ window['mkitTabs'] = ( options ) ->
 	return result
 
 if Element? then Element::tabs = window['mkitTabs']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitTabs'].call( @, options )

@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, _eventCallbacks, _eventHandlers, _id, _reactor, _reactorEvents;
+  var MaxmertkitEvent, MaxmertkitHelpers, MaxmertkitReactor, isInDOM, _eventCallbackId, _eventCallbacks, _eventHandlers, _id, _reactor, _reactorEvents;
 
   _eventHandlers = [];
 
@@ -8,7 +8,21 @@
 
   _reactorEvents = [];
 
+  _eventCallbackId = 0;
+
   _id = 0;
+
+  isInDOM = function(el) {
+    var html;
+    html = document.body.parentNode;
+    while (el) {
+      if (el === html) {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    return false;
+  };
 
   MaxmertkitEvent = (function() {
     function MaxmertkitEvent(name) {
@@ -16,8 +30,27 @@
       this.callbacks = new Array();
     }
 
-    MaxmertkitEvent.prototype.registerCallback = function(callback) {
-      return this.callbacks.push(callback);
+    MaxmertkitEvent.prototype.registerCallback = function(callback, el, id) {
+      return this.callbacks.push({
+        id: id,
+        el: el,
+        callback: callback
+      });
+    };
+
+    MaxmertkitEvent.prototype.removeCallback = function(id) {
+      var cb, index, _i, _len, _ref, _results;
+      _ref = this.callbacks;
+      _results = [];
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        cb = _ref[index];
+        if ((cb != null) && cb.id === id) {
+          _results.push(this.callbacks.splice(index, 1));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
     };
 
     return MaxmertkitEvent;
@@ -38,18 +71,54 @@
     };
 
     MaxmertkitReactor.prototype.dispatchEvent = function(eventName, eventArgs) {
-      var callback, _i, _len, _ref, _results;
+      var callback, index, _i, _len, _ref, _results;
       _ref = this.events[eventName].callbacks;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        callback = _ref[_i];
-        _results.push(callback(eventArgs));
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        callback = _ref[index];
+        if (isInDOM(callback.el)) {
+          _results.push(callback.callback(eventArgs));
+        } else {
+          _results.push(this.events[eventName].removeCallback(callback.id));
+        }
       }
       return _results;
     };
 
-    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback) {
-      return this.events[eventName].registerCallback(callback);
+    MaxmertkitReactor.prototype.removeEventListener = function(eventName, callbackId) {
+      if (this.events[eventName] != null) {
+        return this.events[eventName].removeCallback(callbackId);
+      }
+    };
+
+    MaxmertkitReactor.prototype.addEventListener = function(eventName, callback, el, immediately) {
+      var eventId, i, timer;
+      eventId = _eventCallbackId++;
+      if (this.events[eventName] != null) {
+        this.events[eventName].registerCallback(callback, el, eventId);
+      } else {
+        i = 0;
+        timer = setInterval((function(_this) {
+          return function() {
+            if (i < 10) {
+              if (_this.events[eventName] != null) {
+                if ((immediately != null) && immediately) {
+                  callback();
+                }
+                _this.events[eventName].registerCallback(callback, el, eventId);
+                clearInterval(timer);
+                return timer = null;
+              } else {
+                return i++;
+              }
+            } else {
+              clearInterval(timer);
+              return timer = null;
+            }
+          };
+        })(this), 1000);
+      }
+      return eventId;
     };
 
     return MaxmertkitReactor;
@@ -165,6 +234,8 @@
         });
       }
     };
+
+    MaxmertkitHelpers.prototype._isInDOM = isInDOM;
 
     MaxmertkitHelpers.prototype._hasClass = function(className, el) {
       el = el || this.el;
@@ -699,6 +770,331 @@
     Element.prototype.modal = window['mkitModal'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitModal'].call(this, options);
+      });
+    };
+  }
+
+}).call(this);
+
+(function() {
+  "use strict";
+  var MaxmertkitHelpers, Skyline, _activate, _beforeactivate, _beforedeactivate, _deactivate, _getWindowSize, _id, _instances, _lastScrollY, _name, _onResize, _onScroll, _requestResize, _requestTick, _resizing, _spy, _windowSize,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _name = "skyline";
+
+  _instances = [];
+
+  _id = 0;
+
+  _lastScrollY = 0;
+
+  _windowSize = 0;
+
+  MaxmertkitHelpers = window['MaxmertkitHelpers'];
+
+  Skyline = (function(_super) {
+    __extends(Skyline, _super);
+
+    Skyline.prototype._name = _name;
+
+    Skyline.prototype._instances = _instances;
+
+    Skyline.prototype.started = false;
+
+    Skyline.prototype.active = false;
+
+    function Skyline(el, options) {
+      var _options;
+      this.el = el;
+      this.options = options;
+      _options = {
+        spy: this.el.getAttribute('data-spy') || _name,
+        offset: this.el.getAttribute('data-offset') || 5,
+        delay: this.el.getAttribute('data-delay') || 300,
+        onMobile: this.el.getAttribute('data-on-mobile') || false,
+        beforeactive: function() {},
+        onactive: function() {},
+        failactive: function() {},
+        beforedeactive: function() {},
+        ondeactive: function() {},
+        faildeactive: function() {}
+      };
+      this.options = this._merge(_options, this.options);
+      this.ticking = false;
+      this.resizingTick = false;
+      this.scroller = this._getScrollContainer(this.el);
+      this.spy = _spy.bind(this);
+      this.onScroll = _onScroll.bind(this);
+      this.onResize = _onResize.bind(this);
+      this.resizing = _resizing.bind(this);
+      this._setOptions(this.options);
+      Skyline.__super__.constructor.call(this, this.el, this.options);
+      this._addEventListener(window, 'resize', this.onResize);
+      this.reactor.registerEvent("initialize." + _name);
+      this.reactor.registerEvent("start." + _name);
+      this.reactor.registerEvent("stop." + _name);
+      this.reactor.dispatchEvent("initialize." + _name);
+      if (!(!this.options.onMobile && _getWindowSize().width < 992)) {
+        this.start(this.deactivate);
+      }
+    }
+
+    Skyline.prototype.destroy = function() {
+      _deactivate.call(this);
+      this.el.data["kitSkyline"] = null;
+      return Skyline.__super__.destroy.apply(this, arguments);
+    };
+
+    Skyline.prototype._setOptions = function(options) {
+      var key, value;
+      for (key in options) {
+        value = options[key];
+        if (this.options[key] == null) {
+          return console.error("Maxmertkit Skyline. You're trying to set unpropriate option – " + key);
+        }
+        this.options[key] = value;
+        if (typeof value === 'function') {
+          this[key] = value;
+        }
+      }
+    };
+
+    Skyline.prototype.start = function(cb) {
+      if (!this.started) {
+        return _beforeactivate.call(this, cb);
+      }
+    };
+
+    Skyline.prototype.stop = function(cb) {
+      if (this.started) {
+        return _beforedeactivate.call(this, cb);
+      }
+    };
+
+    Skyline.prototype.activate = function() {
+      var delay;
+      if (typeof this.options.delay === 'function') {
+        delay = this.options.delay();
+      } else {
+        delay = this.options.delay;
+      }
+      return this.timer = setTimeout((function(_this) {
+        return function() {
+          _this._addClass('-start--');
+          _this._removeClass('-stop--');
+          return _this.active = true;
+        };
+      })(this), delay);
+    };
+
+    Skyline.prototype.deactivate = function() {
+      if (this.timer != null) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this._removeClass('-start-- _active_');
+      this._addClass('-stop--');
+      return this.active = false;
+    };
+
+    Skyline.prototype.refresh = function() {
+      _windowSize = _getWindowSize();
+      return this.spyParams = {
+        offset: this._getPosition(this.el),
+        height: this._outerHeight()
+      };
+    };
+
+    return Skyline;
+
+  })(MaxmertkitHelpers);
+
+  _onResize = function() {
+    return _requestResize.call(this);
+  };
+
+  _requestResize = function() {
+    if (!this.resizingTick) {
+      if (this.resizing != null) {
+        requestAnimationFrame(this.resizing);
+        return this.resizingTick = true;
+      }
+    }
+  };
+
+  _resizing = function() {
+    this.refresh();
+    if (!this.options.onMobile) {
+      if (_getWindowSize().width < 992) {
+        this.stop(this.activate);
+      } else {
+        this.start();
+      }
+    }
+    return this.resizingTick = false;
+  };
+
+  _getWindowSize = function() {
+    var clientHeight, clientWidth;
+    clientWidth = 0;
+    clientHeight = 0;
+    if (typeof window.innerWidth === "number") {
+      clientWidth = window.innerWidth;
+      clientHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+      clientWidth = document.documentElement.clientWidth;
+      clientHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+      clientWidth = document.body.clientWidth;
+      clientHeight = document.body.clientHeight;
+    }
+    return {
+      width: clientWidth,
+      height: clientHeight
+    };
+  };
+
+  _onScroll = function(event) {
+    _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
+    return _requestTick.call(this);
+  };
+
+  _requestTick = function() {
+    if (!this.ticking) {
+      requestAnimationFrame(this.spy);
+      return this.ticking = true;
+    }
+  };
+
+  _spy = function() {
+    var _ref;
+    if ((this.spyParams.offset.top - _windowSize.height <= (_ref = _lastScrollY + this.options.offset) && _ref <= this.spyParams.offset.top + this.spyParams.height)) {
+      if (!this.active) {
+        this.activate();
+      }
+    } else {
+      if (this.active) {
+        this.deactivate();
+      }
+    }
+    return this.ticking = false;
+  };
+
+  _beforeactivate = function(cb) {
+    var deferred;
+    if (this.beforeactive != null) {
+      try {
+        deferred = this.beforeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _activate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.failactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _activate.call(this, cb);
+      }
+    } else {
+      return _activate.call(this, cb);
+    }
+  };
+
+  _activate = function(cb) {
+    var _ref;
+    this.refresh();
+    this._addEventListener(this.scroller, 'scroll', this.onScroll);
+    if ((_ref = this.onactive) != null) {
+      _ref.call(this.el);
+    }
+    this.reactor.dispatchEvent("start." + _name);
+    this.started = true;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  _beforedeactivate = function(cb) {
+    var deferred;
+    if (this.beforedeactive != null) {
+      try {
+        deferred = this.beforedeactive.call(this.el);
+        return deferred.done((function(_this) {
+          return function() {
+            return _deactivate.call(_this, cb);
+          };
+        })(this)).fail((function(_this) {
+          return function() {
+            var _ref;
+            return (_ref = _this.faildeactive) != null ? _ref.call(_this.el) : void 0;
+          };
+        })(this));
+      } catch (_error) {
+        return _deactivate.call(this, cb);
+      }
+    } else {
+      return _deactivate.call(this, cb);
+    }
+  };
+
+  _deactivate = function(cb) {
+    var _ref;
+    this._removeEventListener(this.scroller, 'scroll', this.onScroll);
+    this.reactor.dispatchEvent("stop." + _name);
+    if ((_ref = this.ondeactive) != null) {
+      _ref.call(this.el);
+    }
+    this.started = false;
+    if (cb != null) {
+      return cb.call(this);
+    }
+  };
+
+  window['Skyline'] = Skyline;
+
+  window['mkitSkyline'] = function(options) {
+    var result;
+    result = null;
+    if (this.data == null) {
+      this.data = {};
+    }
+    if (!this.data['kitSkyline']) {
+      result = new Skyline(this, options);
+      this.data['kitSkyline'] = result;
+    } else {
+      if (typeof options === 'object') {
+        this.data['kitSkyline']._setOptions(options);
+      } else {
+        if (typeof options === "string" && options.charAt(0) !== "_") {
+          this.data['kitSkyline'][options];
+        }
+      }
+      result = this.data['kitSkyline'];
+    }
+    return result;
+  };
+
+  if (typeof Element !== "undefined" && Element !== null) {
+    Element.prototype.skyline = window['mkitSkyline'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitSkyline'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -796,6 +1192,11 @@
       }
     };
 
+    Affix.prototype.refresh = function() {
+      this.HEIGHT = this._outerHeight();
+      return this.CONTAINER_HEIGHT = this._outerHeight(this.container);
+    };
+
     return Affix;
 
   })(MaxmertkitHelpers);
@@ -819,6 +1220,7 @@
         this.stop();
         _setPositionRelative.call(this);
       } else {
+        this.refresh();
         this.start();
       }
     }
@@ -882,8 +1284,7 @@
 
   _activate = function() {
     var _ref;
-    this.HEIGHT = this._outerHeight();
-    this.CONTAINER_HEIGHT = this._outerHeight(this.container);
+    this.refresh();
     this._addEventListener(this.scroller, 'scroll', this.onScroll);
     this._addClass('_active_');
     if ((_ref = this.onactive) != null) {
@@ -1005,6 +1406,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.affix = window['mkitAffix'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitAffix'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -1222,6 +1631,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.button = window['mkitButton'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitButton'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -1585,6 +2002,14 @@
     Element.prototype.scrollspy = window['mkitScrollspy'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitScrollspy'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -1815,6 +2240,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.tabs = window['mkitTabs'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitTabs'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -2141,6 +2574,14 @@
     Element.prototype.popup = window['mkitPopup'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitPopup'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -2179,7 +2620,7 @@
       _options = {
         kind: this.el.getAttribute('data-kind') || _name,
         target: this.el.getAttribute('data-target') || '.-thumbnail',
-        header: this.el.getAttribute('data-target') || '.-header',
+        header: this.el.getAttribute('data-header') || '.-header',
         headerFade: this.el.getAttribute('data-fade') || true,
         speed: this.el.getAttribute('data-speed') || 0.7,
         zoom: this.el.getAttribute('data-zoom') || false,
@@ -2255,18 +2696,6 @@
       }
     };
 
-    Wall.prototype.activate = function() {
-      this._addClass('-start--');
-      this._removeClass('-stop--');
-      return this.active = true;
-    };
-
-    Wall.prototype.deactivate = function() {
-      this._removeClass('-start-- _active_');
-      this._addClass('-stop--');
-      return this.active = false;
-    };
-
     Wall.prototype.refresh = function() {
       var percent;
       _windowSize = _getWindowSize();
@@ -2331,7 +2760,9 @@
 
   _resizing = function() {
     this.refresh();
-    this.spy();
+    if (this.started) {
+      this.spy();
+    }
     if (!this.options.onMobile) {
       if (_getWindowSize().width < 992) {
         this.stop(this.activate);
@@ -2364,7 +2795,9 @@
 
   _onScroll = function(event) {
     _lastScrollY = event.target.nodeName === '#document' ? (document.documentElement && document.documentElement.scrollTop) || event.target.body.scrollTop : event.target.scrollTop;
-    return this.spy();
+    if (this.started) {
+      return this.spy();
+    }
   };
 
   _spy = function() {
@@ -2504,6 +2937,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.wall = window['mkitWall'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitWall'].call(this, options);
+      });
+    };
   }
 
 }).call(this);

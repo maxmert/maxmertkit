@@ -39,24 +39,27 @@
 	$multiplier: map-get( $size, multiplier)
 
 	#{$nav-bullets-item}
+		margin-right: $nav-bullets-item-margin * $multiplier
 		a
 			@include size( $nav-bullets-item-size * $multiplier )
 			font-size: 0.8em * $multiplier
 
+	&.#{$mod-vertical}
+		#{$nav-bullets-item}
+			margin-right: inherit
+			margin-bottom: $nav-bullets-item-margin * $multiplier
 
 
 @include exports("nav/bullets/common")
 
 	.#{$nav-bullets-class}
-		position: fixed
-		top: 50%
-		z-index: 5
+		z-index: $nav-bullets-zindex
 		@include user-select(none)
-		@include transform( translateY(-50%) )
 
-		#{$nav-item}
-			display: block
+		#{$nav-bullets-item}
+			display: inline-block
 			position: relative
+			
 
 			a
 				display: inline-block
@@ -69,21 +72,9 @@
 				opacity: .5
 				
 				small
-					-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
-					opacity: 0
-					left: 100%
-					font-weight: 100
-					margin-left: 5px
-					margin-top: -0.25em
-					position: absolute
-					top: 0
-					white-space: nowrap
-					font-style: normal
-					pointer-events: none
+					display: none
 
-			&:hover
-				small
-					opacity: 1
+			
 
 			&.#{$mod-active}
 				a
@@ -91,8 +82,79 @@
 					@include transform(rotate(0deg))
 					opacity: 1
 
+
+		&.#{$mod-vertical}
+			#{$nav-bullets-item}
+				display: block
+
+				a
 					small
-						opacity: 1
+						display: inline-block
+						-webkit-transform: translate3d(0px, 0px, 0px) // Hack for fonts
+						opacity: 0
+						left: 100%
+						font-weight: 100
+						margin-left: 0.5em
+						margin-top: -0.25em
+						position: absolute
+						top: 0
+						white-space: nowrap
+						font-style: normal
+						pointer-events: none
+
+					&:hover
+						small
+							opacity: 1
+
+				&.#{$mod-active}
+					a
+						small
+							opacity: 1
+
+		&.#{$mod-fixed}
+			position: absolute
+
+			bottom: $nav-bullets-margin
+			left: 50%
+			@include transform( translateX(-50%) )
+
+			&.#{$mod-top}
+				bottom: inherit
+				top: $nav-bullets-margin
+
+			&.#{$mod-middle}
+				bottom: inherit
+				top: 50%
+				@include transform( translateY(-50%) )
+
+
+			&.#{$mod-left}
+				right: inherit
+				left: $nav-bullets-margin
+
+			&.#{$mod-right}
+				left: inherit
+				right: $nav-bullets-margin
+
+				#{$nav-bullets-item}
+					a
+						small
+							left: inherit
+							right: 100%
+							margin-right: 0.5em
+
+			&.#{$mod-center}
+				left: 50%
+				right: inherit
+				@include transform( translateX(-50%) )
+		// 	position: relative
+		// 	top: auto
+
+		// 	#{$nav-item}
+		// 		display: inline-block
+		// 		a
+		// 			small
+		// 				display: none
 
 
 		@each $themeName in $themes

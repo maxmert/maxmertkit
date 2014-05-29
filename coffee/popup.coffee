@@ -310,3 +310,8 @@ window['mkitPopup'] = ( options ) ->
 
 
 if Element? then Element::popup = window['mkitPopup']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitPopup'].call( @, options )

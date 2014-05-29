@@ -32,6 +32,10 @@ pre.prettyprint {
     width: 30px;
     margin-top: 5px; }
 
+.dev-wall {
+  margin-top: 55px;
+  color: white; }
+
 .dev-sidebar-menu nav > .-list-group {
   margin-top: 50px; }
 
