@@ -15,7 +15,21 @@
     "url": "https://github.com/maxmert/maxmertkit.git",
     "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
-  "keywords": ["css", "sass", "js", "framework", "css-framework", "maxmert", "maxmertkit", "mobile-first", "responsive", "front-end", "web", "html5", "coffeescript"],
+  "keywords": [
+    "css",
+    "sass",
+    "js",
+    "framework",
+    "css-framework",
+    "maxmert",
+    "maxmertkit",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "web",
+    "html5",
+    "coffeescript"
+  ],
   "author": {
     "name": "Vetrenko Maxim",
     "email": "me@maxmert.com"
@@ -71,7 +85,8 @@
     "gulp-mkit": "0.0.0",
     "gulp-zip": "^0.3.4",
     "wd": "^0.2.19",
-    "chai-as-promised": "^4.1.1"
+    "chai-as-promised": "^4.1.1",
+    "gulp-install": "^0.1.5"
   },
   "buildDate": "May 20th 2014, 7:01:52 pm"
 }

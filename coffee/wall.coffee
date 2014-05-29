@@ -318,3 +318,8 @@ window['mkitWall'] = ( options ) ->
 	return result
 
 if Element? then Element::wall = window['mkitWall']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitWall'].call( @, options )

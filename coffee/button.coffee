@@ -191,9 +191,7 @@ window['mkitButton'] = ( options ) ->
 
 if Element? then Element::button = window['mkitButton']
 
-# if $? and jQuery?
-# 	$.fn.button = window['mkitButton']
-# 	$(window).on 'load', ->
-# 		$('[data-target="button"]').each ->
-# 			$btn = $(@)
-# 			$btn.button($btn.data())
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitButton'].call( @, options )

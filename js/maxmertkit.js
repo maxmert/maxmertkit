@@ -770,6 +770,14 @@
     Element.prototype.modal = window['mkitModal'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitModal'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -1077,6 +1085,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.skyline = window['mkitSkyline'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitSkyline'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -1392,6 +1408,14 @@
     Element.prototype.affix = window['mkitAffix'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitAffix'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -1607,6 +1631,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.button = window['mkitButton'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitButton'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -1970,6 +2002,14 @@
     Element.prototype.scrollspy = window['mkitScrollspy'];
   }
 
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitScrollspy'].call(this, options);
+      });
+    };
+  }
+
 }).call(this);
 
 (function() {
@@ -2200,6 +2240,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.tabs = window['mkitTabs'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitTabs'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -2524,6 +2572,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.popup = window['mkitPopup'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitPopup'].call(this, options);
+      });
+    };
   }
 
 }).call(this);
@@ -2881,6 +2937,14 @@
 
   if (typeof Element !== "undefined" && Element !== null) {
     Element.prototype.wall = window['mkitWall'];
+  }
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    $.fn[_name] = function(options) {
+      return this.each(function() {
+        return window['mkitWall'].call(this, options);
+      });
+    };
   }
 
 }).call(this);

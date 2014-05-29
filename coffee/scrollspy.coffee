@@ -285,3 +285,8 @@ window['mkitScrollspy'] = ( options ) ->
 	return result
 
 if Element? then Element::scrollspy = window['mkitScrollspy']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitScrollspy'].call( @, options )

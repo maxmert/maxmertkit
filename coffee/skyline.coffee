@@ -259,3 +259,8 @@ window['mkitSkyline'] = ( options ) ->
 	return result
 
 if Element? then Element::skyline = window['mkitSkyline']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitSkyline'].call( @, options )

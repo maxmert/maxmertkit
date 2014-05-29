@@ -264,9 +264,7 @@ window['mkitAffix'] = ( options ) ->
 
 if Element? then Element::affix = window['mkitAffix']
 
-# if $? and jQuery?
-# 	$.fn[_name] = window['mkitAffix']
-# 	$(window).on 'load', ->
-# 		$('[data-spy="affix"]').each ->
-# 			$btn = $(@)
-# 			$btn.affix($btn.data())
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitAffix'].call( @, options )

@@ -266,3 +266,8 @@ window['mkitModal'] = ( options ) ->
 	return result
 
 if Element? then Element::modal = window['mkitModal']
+
+if jQuery?
+	$.fn[_name] = (options) ->
+		@each ->
+			window['mkitModal'].call( @, options )
