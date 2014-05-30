@@ -14750,6 +14750,8 @@ table, .-table {
       color: rgba(255, 255, 255, 0.65); }
     .-label.-dark-._unstyled_, .-dark-._unstyled_.-badge {
       color: black; }
+  .-label._small, ._small .-label, ._small .-badge, ._small.-badge {
+    font-size: 5px; }
   .-label._minor, ._minor .-label, ._minor .-badge, ._minor.-badge {
     font-size: 8px; }
   .-label._normal, ._normal .-label, ._normal .-badge, ._normal.-badge {
@@ -14827,6 +14829,8 @@ table, .-table {
       color: rgba(255, 255, 255, 0.65); }
     .-badge.-dark-._unstyled_ {
       color: black; }
+  .-badge._small, ._small .-badge {
+    font-size: 5px; }
   .-badge._minor, ._minor .-badge {
     font-size: 8px; }
   .-badge._normal, ._normal .-badge {
@@ -16746,18 +16750,6 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
       pointer-events: none; }
     .-menu li.-dark-._invert_ > a {
       color: white; }
-    .-menu li.-kit-:hover > a, .-menu li.-kit-._hovered_ > a {
-      background-color: #3fa1cb;
-      color: white; }
-    .-menu li.-kit-._active_ > a, .-menu li.-kit-:active > a {
-      color: white;
-      background-color: #2e84a9; }
-    .-menu li.-kit-._disabled_ a, :active .-menu li.-kit-._disabled_, ._active_ .-menu li.-kit-._disabled_, :hover .-menu li.-kit-._disabled_, ._hovered_ .-menu li.-kit-._disabled_, .-menu li.-kit-[disabled] a, :active .-menu li.-kit-[disabled], ._active_ .-menu li.-kit-[disabled], :hover .-menu li.-kit-[disabled], ._hovered_ .-menu li.-kit-[disabled] {
-      background: transparent;
-      color: rgba(46, 132, 169, 0.3);
-      pointer-events: none; }
-    .-menu li.-kit-._invert_ > a {
-      color: white; }
   .-menu li:hover > a, .-menu li._hovered_ > a {
     background-color: #f3f3f3;
     color: black; }
@@ -16841,18 +16833,6 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     color: rgba(0, 0, 0, 0.3);
     pointer-events: none; }
   .-menu.-dark- li._invert_ > a {
-    color: white; }
-  .-menu.-kit- li:hover > a, .-menu.-kit- li._hovered_ > a {
-    background-color: #3fa1cb;
-    color: white; }
-  .-menu.-kit- li._active_ > a, .-menu.-kit- li:active > a {
-    color: white;
-    background-color: #2e84a9; }
-  .-menu.-kit- li._disabled_ a, :active .-menu.-kit- li._disabled_, ._active_ .-menu.-kit- li._disabled_, :hover .-menu.-kit- li._disabled_, ._hovered_ .-menu.-kit- li._disabled_, .-menu.-kit- li[disabled] a, :active .-menu.-kit- li[disabled], ._active_ .-menu.-kit- li[disabled], :hover .-menu.-kit- li[disabled], ._hovered_ .-menu.-kit- li[disabled] {
-    background: transparent;
-    color: rgba(46, 132, 169, 0.3);
-    pointer-events: none; }
-  .-menu.-kit- li._invert_ > a {
     color: white; }
   .-menu._vertical_ li {
     margin-right: 0;
@@ -17531,6 +17511,8 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     color: rgba(255, 255, 255, 0.65); }
   .-progress.-dark-._unstyled_ .-bar, .-dark-._unstyled_.-progress-slim .-bar {
     color: black; }
+  .-progress._tiny .-bar, ._tiny.-progress-slim .-bar {
+    font-size: 2px; }
   .-progress._small .-bar, ._small.-progress-slim .-bar {
     font-size: 5px; }
   .-progress._minor .-bar, ._minor.-progress-slim .-bar {
@@ -17594,22 +17576,20 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
       border-radius: 0 0px 0px 0; }
     .-progress-slim .-bar:not(:last-child):not(:first-child) {
       border-radius: 0; }
+  .-progress-slim._tiny .-bar {
+    height: 1.75px; }
   .-progress-slim._small .-bar {
-    height: 3px; }
+    height: 3.5px; }
   .-progress-slim._minor .-bar {
-    height: 5px; }
+    height: 5.25px; }
   .-progress-slim .-bar {
     height: 7px; }
   .-progress-slim._normal .-bar {
     height: 7px; }
   .-progress-slim._major .-bar {
-    height: 8px; }
+    height: 8.75px; }
   .-progress-slim._big .-bar {
-    height: 10px; }
-  .-progress-slim._huge .-bar {
-    height: 12px; }
-  .-progress-slim._divine .-bar {
-    height: 14px; }
+    height: 10.5px; }
 
 .-thumbnail {
   position: relative; }
@@ -18433,8 +18413,6 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     background-color: #ffc43e; }
   .-shader.-dark- {
     background-color: black; }
-  .-shader.-kit- {
-    background-color: #2e84a9; }
   .-shader._active_ {
     visibility: visible; }
 
@@ -18484,14 +18462,6 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     border-color: #ffc94d; }
   .-avatar.-dark-._bordered_ .-thumbnail {
     border-color: #080808; }
-  .-avatar._tiny .-thumbnail {
-    height: 16px;
-    width: 16px;
-    margin-right: 0.15em; }
-  .-avatar._tiny._bordered_ .-thumbnail {
-    border-width: 1px; }
-  .-avatar._tiny._round_ .-thumbnail {
-    border-radius: 8px; }
   .-avatar._small .-thumbnail {
     height: 32px;
     width: 32px;
@@ -18698,9 +18668,6 @@ a.-avatar {
         stroke-width: 50; }
       .-modal > .-close:hover polygon, .-modal > .-close:hover path {
         opacity: 1; }
-    .-modal > .-close._tiny {
-      height: 9.5px;
-      width: 9.5px; }
     .-modal > .-close._small {
       height: 19px;
       width: 19px; }
@@ -18811,10 +18778,6 @@ a.-avatar {
             stroke-width: 50; }
           .-modal .-dialog .-header .-close:hover polygon, .-modal .-dialog .-header .-close:hover path {
             opacity: 1; }
-        .-modal .-dialog .-header .-close._tiny {
-          height: 9.5px;
-          width: 9.5px;
-          margin-top: -4.75px; }
         .-modal .-dialog .-header .-close._small {
           height: 19px;
           width: 19px;

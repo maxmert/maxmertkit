@@ -23,7 +23,7 @@
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"ghost": {
-			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ],
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
@@ -111,11 +111,11 @@
 	"progress": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"slim": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big" ]
 		}
 	},
 	"push": {
