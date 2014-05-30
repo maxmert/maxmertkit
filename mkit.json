@@ -104,10 +104,8 @@
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"bullets": {
-			"common": {
-				"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-				"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
-			}
+			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"progress": {
