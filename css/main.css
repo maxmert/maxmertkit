@@ -17444,14 +17444,14 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     margin-right: inherit;
     margin-bottom: 8px; }
 
-.-progress {
+.-progress, .-progress-slim {
   display: block;
   border-radius: 4px;
   box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1);
   padding: 3px;
   background-color: white;
   position: relative; }
-  .-progress .-bar {
+  .-progress .-bar, .-progress-slim .-bar {
     display: inline-block;
     font-weight: 600;
     text-align: center;
@@ -17469,112 +17469,147 @@ a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered
     padding: 2px 8px;
     font-size: 14px;
     line-height: 1.42857; }
-    .-progress .-bar:first-child:not(:last-child) {
+    .-progress .-bar:first-child:not(:last-child), .-progress-slim .-bar:first-child:not(:last-child) {
       border-radius: 4px 0 0 4px; }
-    .-progress .-bar:last-child:not(:first-child) {
+    .-progress .-bar:last-child:not(:first-child), .-progress-slim .-bar:last-child:not(:first-child) {
       border-radius: 0 4px 4px 0; }
-    .-progress .-bar:not(:last-child):not(:first-child) {
+    .-progress .-bar:not(:last-child):not(:first-child), .-progress-slim .-bar:not(:last-child):not(:first-child) {
       border-radius: 0; }
-  .-progress .-bar {
+  .-progress .-bar, .-progress-slim .-bar {
     background-color: #e6e6e6;
     border-color: #d9d9d9;
     color: black; }
-  .-progress._disabled_ .-bar, .-progress[disabled] .-bar, fieldset[disabled] .-progress .-bar {
+  .-progress._disabled_ .-bar, ._disabled_.-progress-slim .-bar, .-progress[disabled] .-bar, [disabled].-progress-slim .-bar, fieldset[disabled] .-progress .-bar, fieldset[disabled] .-progress-slim .-bar {
     color: rgba(204, 204, 204, 0.65); }
-  .-progress._unstyled_ .-bar {
+  .-progress._unstyled_ .-bar, ._unstyled_.-progress-slim .-bar {
     color: black; }
-  .-progress.-default- .-bar {
+  .-progress.-default- .-bar, .-default-.-progress-slim .-bar {
     background-color: #e6e6e6;
     border-color: #d9d9d9;
     color: black; }
-  .-progress.-default-._disabled_ .-bar, .-progress.-default-[disabled] .-bar, fieldset[disabled] .-progress.-default- .-bar {
+  .-progress.-default-._disabled_ .-bar, .-default-._disabled_.-progress-slim .-bar, .-progress.-default-[disabled] .-bar, .-default-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-default- .-bar, fieldset[disabled] .-default-.-progress-slim .-bar {
     color: rgba(204, 204, 204, 0.65); }
-  .-progress.-default-._unstyled_ .-bar {
+  .-progress.-default-._unstyled_ .-bar, .-default-._unstyled_.-progress-slim .-bar {
     color: black; }
-  .-progress.-primary- .-bar {
+  .-progress.-primary- .-bar, .-primary-.-progress-slim .-bar {
     background-color: #3598db;
     border-color: #3598db;
     color: white; }
-  .-progress.-primary-._disabled_ .-bar, .-progress.-primary-[disabled] .-bar, fieldset[disabled] .-progress.-primary- .-bar {
+  .-progress.-primary-._disabled_ .-bar, .-primary-._disabled_.-progress-slim .-bar, .-progress.-primary-[disabled] .-bar, .-primary-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-primary- .-bar, fieldset[disabled] .-primary-.-progress-slim .-bar {
     color: rgba(255, 255, 255, 0.65); }
-  .-progress.-primary-._unstyled_ .-bar {
+  .-progress.-primary-._unstyled_ .-bar, .-primary-._unstyled_.-progress-slim .-bar {
     color: #3598db; }
-  .-progress.-error- .-bar {
+  .-progress.-error- .-bar, .-error-.-progress-slim .-bar {
     background-color: #cd2c24;
     border-color: #cd2c24;
     color: white; }
-  .-progress.-error-._disabled_ .-bar, .-progress.-error-[disabled] .-bar, fieldset[disabled] .-progress.-error- .-bar {
+  .-progress.-error-._disabled_ .-bar, .-error-._disabled_.-progress-slim .-bar, .-progress.-error-[disabled] .-bar, .-error-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-error- .-bar, fieldset[disabled] .-error-.-progress-slim .-bar {
     color: rgba(255, 255, 255, 0.65); }
-  .-progress.-error-._unstyled_ .-bar {
+  .-progress.-error-._unstyled_ .-bar, .-error-._unstyled_.-progress-slim .-bar {
     color: #cd2c24; }
-  .-progress.-info- .-bar {
+  .-progress.-info- .-bar, .-info-.-progress-slim .-bar {
     background-color: #2fdcd5;
     border-color: #2fdcd5;
     color: white; }
-  .-progress.-info-._disabled_ .-bar, .-progress.-info-[disabled] .-bar, fieldset[disabled] .-progress.-info- .-bar {
+  .-progress.-info-._disabled_ .-bar, .-info-._disabled_.-progress-slim .-bar, .-progress.-info-[disabled] .-bar, .-info-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-info- .-bar, fieldset[disabled] .-info-.-progress-slim .-bar {
     color: rgba(255, 255, 255, 0.65); }
-  .-progress.-info-._unstyled_ .-bar {
+  .-progress.-info-._unstyled_ .-bar, .-info-._unstyled_.-progress-slim .-bar {
     color: #2fdcd5; }
-  .-progress.-warning- .-bar {
+  .-progress.-warning- .-bar, .-warning-.-progress-slim .-bar {
     background-color: #ffc43e;
     border-color: #ffc43e;
     color: white; }
-  .-progress.-warning-._disabled_ .-bar, .-progress.-warning-[disabled] .-bar, fieldset[disabled] .-progress.-warning- .-bar {
+  .-progress.-warning-._disabled_ .-bar, .-warning-._disabled_.-progress-slim .-bar, .-progress.-warning-[disabled] .-bar, .-warning-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-warning- .-bar, fieldset[disabled] .-warning-.-progress-slim .-bar {
     color: rgba(255, 255, 255, 0.65); }
-  .-progress.-warning-._unstyled_ .-bar {
+  .-progress.-warning-._unstyled_ .-bar, .-warning-._unstyled_.-progress-slim .-bar {
     color: #ffc43e; }
-  .-progress.-dark- .-bar {
+  .-progress.-dark- .-bar, .-dark-.-progress-slim .-bar {
     background-color: black;
     border-color: black;
     color: white; }
-  .-progress.-dark-._disabled_ .-bar, .-progress.-dark-[disabled] .-bar, fieldset[disabled] .-progress.-dark- .-bar {
+  .-progress.-dark-._disabled_ .-bar, .-dark-._disabled_.-progress-slim .-bar, .-progress.-dark-[disabled] .-bar, .-dark-[disabled].-progress-slim .-bar, fieldset[disabled] .-progress.-dark- .-bar, fieldset[disabled] .-dark-.-progress-slim .-bar {
     color: rgba(255, 255, 255, 0.65); }
-  .-progress.-dark-._unstyled_ .-bar {
+  .-progress.-dark-._unstyled_ .-bar, .-dark-._unstyled_.-progress-slim .-bar {
     color: black; }
-  .-progress._small .-bar {
+  .-progress._small .-bar, ._small.-progress-slim .-bar {
     font-size: 5px; }
-  .-progress._minor .-bar {
+  .-progress._minor .-bar, ._minor.-progress-slim .-bar {
     font-size: 8px; }
-  .-progress .-bar {
+  .-progress .-bar, .-progress-slim .-bar {
     font-size: 11px; }
-  .-progress._normal .-bar {
+  .-progress._normal .-bar, ._normal.-progress-slim .-bar {
     font-size: 11px; }
-  .-progress._major .-bar {
+  .-progress._major .-bar, ._major.-progress-slim .-bar {
     font-size: 14px; }
-  .-progress._big .-bar {
+  .-progress._big .-bar, ._big.-progress-slim .-bar {
     font-size: 16px; }
-  .-progress._huge .-bar {
+  .-progress._huge .-bar, ._huge.-progress-slim .-bar {
     font-size: 19px; }
-  .-progress._divine .-bar {
+  .-progress._divine .-bar, ._divine.-progress-slim .-bar {
     font-size: 22px; }
-  .-progress .-bar {
+  .-progress .-bar, .-progress-slim .-bar {
     background-color: #e6e6e6;
     border-color: #d9d9d9;
     color: black; }
-    .-progress .-bar.-default- {
+    .-progress .-bar.-default-, .-progress-slim .-bar.-default- {
       background-color: #e6e6e6;
       border-color: #d9d9d9;
       color: black; }
-    .-progress .-bar.-primary- {
+    .-progress .-bar.-primary-, .-progress-slim .-bar.-primary- {
       background-color: #3598db;
       border-color: #3598db;
       color: white; }
-    .-progress .-bar.-error- {
+    .-progress .-bar.-error-, .-progress-slim .-bar.-error- {
       background-color: #cd2c24;
       border-color: #cd2c24;
       color: white; }
-    .-progress .-bar.-info- {
+    .-progress .-bar.-info-, .-progress-slim .-bar.-info- {
       background-color: #2fdcd5;
       border-color: #2fdcd5;
       color: white; }
-    .-progress .-bar.-warning- {
+    .-progress .-bar.-warning-, .-progress-slim .-bar.-warning- {
       background-color: #ffc43e;
       border-color: #ffc43e;
       color: white; }
-    .-progress .-bar.-dark- {
+    .-progress .-bar.-dark-, .-progress-slim .-bar.-dark- {
       background-color: black;
       border-color: black;
       color: white; }
+
+.-progress-slim {
+  background: transparent;
+  padding: 0;
+  box-shadow: none; }
+  .-progress-slim .-bar {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: none;
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 0px; }
+    .-progress-slim .-bar:first-child:not(:last-child) {
+      border-radius: 0px 0 0 0px; }
+    .-progress-slim .-bar:last-child:not(:first-child) {
+      border-radius: 0 0px 0px 0; }
+    .-progress-slim .-bar:not(:last-child):not(:first-child) {
+      border-radius: 0; }
+  .-progress-slim._small .-bar {
+    height: 3px; }
+  .-progress-slim._minor .-bar {
+    height: 5px; }
+  .-progress-slim .-bar {
+    height: 7px; }
+  .-progress-slim._normal .-bar {
+    height: 7px; }
+  .-progress-slim._major .-bar {
+    height: 8px; }
+  .-progress-slim._big .-bar {
+    height: 10px; }
+  .-progress-slim._huge .-bar {
+    height: 12px; }
+  .-progress-slim._divine .-bar {
+    height: 14px; }
 
 .-thumbnail {
   position: relative; }

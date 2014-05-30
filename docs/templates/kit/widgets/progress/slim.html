@@ -1,0 +1,69 @@
+<!-- ============ PROGRESS -->
+<!-- ====================== -->
+
+<h1>Slim</h1>
+
+<!-- ============ VARIABLES -->
+<!-- ====================== -->
+<p>
+	<h4>Global variables</h4>
+	<div><pre hljs class="prettyprint lang-sass">$progress-class: "-progress-slim" !global
+$progress-bar-class: "-bar" !global
+$progress-bar-padding-vertical: $base-padding-vertical / 3
+$progress-bar-padding-horizontal: $base-padding-horizontal / 1.5
+$progress-font-weight: 600 !global
+$progress-border-radius: 4px !global
+$progress-border-width: 0px !global
+$progress-border-style: solid !global
+$progress-padding: 3px !global
+$progress-background: #fff !global</pre></div>
+</p>
+
+
+
+<p>
+	Use widget class <code>-progress-slim</code>. Apply themes and sizes. Append <code>-bar</code> inside <code>-progress-slim</code>.
+</p>
+
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<div class="-progress-slim _tiny -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+		<div class="-progress-slim _small -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+		<div class="-progress-slim _minor -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+		<div class="-progress-slim -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+		<div class="-progress-slim _major -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+		<div class="-progress-slim _big -primary-">
+			<div class="-bar" style="width: 12%"></div><div class="-bar -warning-" style="width: 25%"></div><div class="-bar -error-" style="width: 5%"></div>
+		</div>
+		<br>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><div class="-progress-slim -primary-">
+	<div class="-bar" style="width: 12%"></div>
+	<div class="-bar -warning-" style="width: 25%"></div>
+	<div class="-bar -error-" style="width: 5%"></div>
+</div>
+
+<div class="-progress-slim _divine -primary-">
+	<div class="-bar" style="width: 12%"></div>
+</div>
+</pre></div>
+
+</div>
