@@ -18596,7 +18596,7 @@ a.-avatar {
       position: relative;
       display: table-cell;
       vertical-align: middle; }
-    .-wall .-item .-thumbnail img {
+    .-wall .-item > .-thumbnail img {
       width: auto;
       height: auto;
       min-height: 100%;

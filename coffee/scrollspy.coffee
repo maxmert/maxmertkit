@@ -239,6 +239,11 @@ _activate = ->
 	@reactor.dispatchEvent "start.#{_name}"
 	@started = yes
 
+	# Set just in case refresher
+	setTimeout =>
+		@refresh()
+	, 100
+
 _beforedeactivate = ->
 	if @beforedeactive?
 		try

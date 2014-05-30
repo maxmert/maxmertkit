@@ -212,6 +212,11 @@ _activate = (cb) ->
 	@started = yes
 	cb.call @ if cb?
 
+	# Set just in case refresher
+	setTimeout =>
+		@refresh()
+	, 100
+
 _beforedeactivate = ( cb ) ->
 	if @beforedeactive?
 		try
