@@ -1,6 +1,6 @@
 {
   "name": "maxmertkit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development.",
   "homepage": "http://maxmert.com",
   "main": "gulpfile.js",
@@ -15,21 +15,7 @@
     "url": "https://github.com/maxmert/maxmertkit.git",
     "releases": "https://github.com/maxmert/maxmertkit/releases"
   },
-  "keywords": [
-    "css",
-    "sass",
-    "js",
-    "framework",
-    "css-framework",
-    "maxmert",
-    "maxmertkit",
-    "mobile-first",
-    "responsive",
-    "front-end",
-    "web",
-    "html5",
-    "coffeescript"
-  ],
+  "keywords": ["css", "sass", "js", "framework", "css-framework", "maxmert", "maxmertkit", "mobile-first", "responsive", "front-end", "web", "html5", "coffeescript"],
   "author": {
     "name": "Vetrenko Maxim",
     "email": "me@maxmert.com"
@@ -88,5 +74,5 @@
     "chai-as-promised": "^4.1.1",
     "gulp-install": "^0.1.5"
   },
-  "buildDate": "May 20th 2014, 7:01:52 pm"
+  "buildDate": "June 1st 2014, 12:14:07 am"
 }
