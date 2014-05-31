@@ -279,6 +279,16 @@ exports.widgets = [
 	{
 		name: "progress"
 		path: "progressCommon"
+		include: [
+			{
+				name: "common"
+				path: "progressCommon"
+			}
+			{
+				name: "slim"
+				path: "progressSlim"
+			}
+		]
 	}
 	{
 		name: "alerts"

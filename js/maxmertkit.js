@@ -1019,8 +1019,13 @@
     this.reactor.dispatchEvent("start." + _name);
     this.started = true;
     if (cb != null) {
-      return cb.call(this);
+      cb.call(this);
     }
+    return setTimeout((function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this), 100);
   };
 
   _beforedeactivate = function(cb) {
@@ -1938,7 +1943,12 @@
       _ref.call(this.el);
     }
     this.reactor.dispatchEvent("start." + _name);
-    return this.started = true;
+    this.started = true;
+    return setTimeout((function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this), 100);
   };
 
   _beforedeactivate = function() {
@@ -2870,8 +2880,13 @@
     this.reactor.dispatchEvent("start." + _name);
     this.started = true;
     if (cb != null) {
-      return cb.call(this);
+      cb.call(this);
     }
+    return setTimeout((function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this), 100);
   };
 
   _beforedeactivate = function(cb) {

@@ -82,7 +82,7 @@
     "yargs": "^1.2.1",
     "gulp-if": "0.0.5",
     "moment": "^2.6.0",
-    "gulp-mkit": "0.0.0",
+    "gulp-mkit": "0.0.1",
     "gulp-zip": "^0.3.4",
     "wd": "^0.2.19",
     "chai-as-promised": "^4.1.1",

@@ -1,0 +1,48 @@
+@import "../common/common"
+@import "variables"
+@import "themes"
+@import "sizes"
+
+
+@mixin progress-slim-size-setter( $size )
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	.#{$progress-slim-bar-class}
+		height: $multiplier * $progress-slim-bar-height
+
+
+@include exports("progress/slim")
+
+	.#{$progress-slim-class}
+		@extend .#{$progress-class}
+		background: transparent
+		padding: 0
+		box-shadow: none
+		
+		.#{$progress-slim-bar-class}
+			text-indent: 100%
+			white-space: nowrap
+			overflow: hidden
+
+			box-shadow: none
+
+			border-width: $progress-slim-border-width
+			border-style: $progress-slim-border-style
+			border-radius: $progress-slim-border-radius
+
+			&:first-child:not(:last-child)
+				border-radius: $progress-slim-border-radius 0 0 $progress-slim-border-radius
+
+			&:last-child:not(:first-child)
+				border-radius: 0 $progress-slim-border-radius $progress-slim-border-radius 0
+
+			&:not(:last-child):not(:first-child)
+				border-radius: 0
+
+		@each $sizeName in $sizes
+			$sz: map-get( $base-sizes, $sizeName )
+			@if $sizeName == normal
+				@include progress-slim-size-setter($sz)
+			&._#{$sizeName}
+				@include progress-slim-size-setter($sz)
