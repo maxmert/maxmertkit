@@ -26,7 +26,7 @@ Three quick start options are available:
 - Clone the repo: `git clone https://github.com/maxmert/maxmertkit.git`.
 - Install with [Bower](http://bower.io): `bower install maxmertkit`.
 
-Read the [Start page](http://maxmert.com/start/) for information on the framework contents, howto videos, examples, and more.
+Read the [Start page](http://maxmert.com/start) for information on the framework contents, howto videos, examples, and more.
 
 ### What's included
 
