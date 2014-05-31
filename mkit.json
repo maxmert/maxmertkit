@@ -8,13 +8,13 @@
 	"avatars": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"badges": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"buttons": {
@@ -68,13 +68,13 @@
 	"labels": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"modal": {
 		"common": {
 			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
-			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
+			"sizes": [ "tiny", "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		}
 	},
 	"nav": {
@@ -88,7 +88,7 @@
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"menu": {
-			"themes": [ "default", "primary", "error", "info", "warning", "dark" ],
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ],
 			"sizes": [ "small", "minor", "normal", "major", "big", "huge", "divine" ]
 		},
 		"bar": {
@@ -123,7 +123,7 @@
 	},
 	"shaders": {
 		"common": {
-			"themes": [ "default", "primary", "error", "info", "warning", "dark" ]
+			"themes": [ "default", "primary", "error", "info", "warning", "dark", "kit" ]
 		}
 	},
 	"spinners": {
