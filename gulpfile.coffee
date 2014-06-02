@@ -312,6 +312,43 @@ gulp.task 'clean', ->
 		.pipe( clean() )
 
 
+gulp.task 'buildServer', ->
+
+	gutil.log gutil.colors.cyan '\n\n\nBuilding files for server. It can take a while. Please, be patient.\n\n'
+
+	jsfiles = [
+		"#{path.docs.front.js}/templates.js"
+		"#{path.docs.front.js}/docsvendor.js"
+		"#{path.docs.front.js}/bower/google-code-prettify/src/prettify.js"
+		"#{path.docs.front.js}/bower/google-code-prettify-language-handlers/lang-scss.js"
+		"#{path.build.js}/maxmertkit.min.js"
+		"#{path.docs.front.js}/app.js"
+	]
+	
+	gulp.src( jsfiles )
+		.pipe( concat 'kit.js' )
+		.pipe( bytediff.start() )
+		.pipe( uglify() )
+		.pipe( bytediff.stop() )
+		.pipe( gzip( append: no ) )
+		.pipe( gulp.dest "#{path.docs.front.js}/dist" )
+
+
+	cssfiles = [
+		"#{path.docs.front.css}/prettify.css"
+		"#{path.build.css}/maxmertkit.min.css"
+		"#{path.docs.front.css}/developer.css"
+	]
+
+	gulp.src( cssfiles )
+		.pipe( concat 'kit.css' )
+		.pipe( bytediff.start() )
+		.pipe( minifyCSS() )
+		.pipe( bytediff.stop() )
+		.pipe( gzip( append: no ) )
+		.pipe( gulp.dest "#{path.docs.front.css}/dist" )
+
+
 gulp.task 'build', [ 'test' ], ->
 
 	gutil.log gutil.colors.cyan '\n\n\nStarting building. It can take a while. Please, be patient.\n\n'

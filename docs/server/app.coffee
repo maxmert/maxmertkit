@@ -4,11 +4,21 @@ api = require './routes/api/0.1'
 express = require 'express'
 app = express()
 
-app.configure ->
+app.configure 'development', ->
 	app.set('port', process.env.PORT or 3333)
 	app.set 'view engine', 'html'
 	app.use express.static "#{__dirname}/../"
 	app.set 'views', "#{__dirname}/views"
+	app.engine 'html', require('hogan-express')
+	app.use errorHandler
+	app.locals.kit = JSON.stringify require('../../package.json')
+	app.locals.mkit = JSON.stringify require('../../mkit.json')
+
+app.configure 'production', ->
+	app.set('port', process.env.PORT or 3333)
+	app.set 'view engine', 'html'
+	app.use express.static "#{__dirname}/../"
+	app.set 'views', "#{__dirname}/viewsprod"
 	app.engine 'html', require('hogan-express')
 	app.use errorHandler
 	app.locals.kit = JSON.stringify require('../../package.json')

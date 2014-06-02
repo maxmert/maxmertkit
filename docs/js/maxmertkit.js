@@ -1296,7 +1296,12 @@
       _ref.call(this.el);
     }
     this.reactor.dispatchEvent("start." + _name);
-    return this.started = true;
+    this.started = true;
+    return setTimeout((function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this), 100);
   };
 
   _beforedeactivate = function() {
