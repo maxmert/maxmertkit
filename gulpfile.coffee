@@ -320,7 +320,7 @@ gulp.task 'buildServer', ->
 		"#{path.docs.front.js}/docsvendor.js"
 		"#{path.docs.front.js}/bower/google-code-prettify/src/prettify.js"
 		"#{path.docs.front.js}/bower/google-code-prettify-language-handlers/lang-scss.js"
-		"#{path.build.js}/maxmertkit.min.js"
+		"#{path.docs.front.js}/maxmertkit.js"
 		"#{path.docs.front.js}/app.js"
 	]
 	
