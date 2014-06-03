@@ -11,7 +11,7 @@ app.configure 'development', ->
 	app.set 'views', "#{__dirname}/views"
 	app.engine 'html', require('hogan-express')
 	app.use errorHandler
-	app.use(require('prerender-node').set('prerenderServiceUrl', 'http://prerender.maxmert.com'))
+	app.use(require('prerender-node').set('prerenderServiceUrl', 'http://127.0.0.1:3334'))
 	app.locals.kit = JSON.stringify require('../../package.json')
 	app.locals.mkit = JSON.stringify require('../../mkit.json')
 
@@ -21,7 +21,7 @@ app.configure 'production', ->
 	app.use express.static "#{__dirname}/../"
 	app.set 'views', "#{__dirname}/viewsprod"
 	app.engine 'html', require('hogan-express')
-	app.use(require('prerender-node').set('prerenderServiceUrl', 'http://prerender.maxmert.com'))
+	app.use(require('prerender-node').set('prerenderServiceUrl', 'http://127.0.0.1:3334'))
 	app.use errorHandler
 	app.locals.kit = JSON.stringify require('../../package.json')
 	app.locals.mkit = JSON.stringify require('../../mkit.json')
