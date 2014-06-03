@@ -401,6 +401,20 @@ class MaxmertkitHelpers
 	return
 )()
 
+# Initialize bind for non ES5
+Function::bind = Function::bind or (d) ->
+	a = Array::splice.call(arguments_, 1)
+	c = this
+	b = ->
+		e = a.concat(Array::splice.call(arguments_, 0))
+		return c.apply(d, e)  unless this instanceof b
+		c.apply this, e
+		return
+
+	b:: = c::
+	b
+
+
 window['MaxmertkitHelpers'] = MaxmertkitHelpers
 window['MaxmertkitReactor'] = MaxmertkitReactor
 window['MaxmertkitEvent'] = MaxmertkitEvent
