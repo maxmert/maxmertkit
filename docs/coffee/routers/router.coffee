@@ -11,6 +11,12 @@ Layout404 = require('../layouts/pages/404').module
 mainController =
 
 
+changeFragment = ( fragment ) ->
+	if fragment[0] is '!'
+		fragment.replace /\!\//g, ""
+	else
+		fragment
+
 
 exports.module = Marionette.AppRouter.extend
 
@@ -38,13 +44,16 @@ exports.module = Marionette.AppRouter.extend
 			ga('send', 'pageview', url)
 
 	route: (route, name, callback) ->
+		route = "(!/)" + route
 		route = @_routeToRegExp(route)	unless _.isRegExp(route)
 		if _.isFunction(name)
 			callback = name
 			name = ""
+		
 		callback = this[name]	unless callback
 		router = this
 		Backbone.history.route route, (fragment) =>
+			# if fragment[0] is '!' then fragment = fragment.replace /\!\//g, ""
 			args = router._extractParameters(route, fragment)
 			$.app.commands.execute 'loader', 'start', Backbone.history.color
 			setTimeout =>

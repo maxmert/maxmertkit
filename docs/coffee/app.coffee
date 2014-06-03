@@ -32,7 +32,7 @@ $.app.addInitializer ->
 
 	ver = getInternetExplorerVersion()
 	if ver >= 9.0 or ver is 0
-		pushState = window.location.href.search(/\#\//i) is -1
+		pushState = window.location.href.search(/\#\!/i) is -1
 		Backbone.history.start
 			pushState: pushState
 			silent: off
