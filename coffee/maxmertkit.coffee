@@ -403,10 +403,10 @@ class MaxmertkitHelpers
 
 # Initialize bind for non ES5
 Function::bind = Function::bind or (d) ->
-	a = Array::splice.call(arguments_, 1)
+	a = Array::splice.call(arguments, 1)
 	c = this
 	b = ->
-		e = a.concat(Array::splice.call(arguments_, 0))
+		e = a.concat(Array::splice.call(arguments, 0))
 		return c.apply(d, e)  unless this instanceof b
 		c.apply this, e
 		return

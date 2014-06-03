@@ -466,11 +466,11 @@
 
   Function.prototype.bind = Function.prototype.bind || function(d) {
     var a, b, c;
-    a = Array.prototype.splice.call(arguments_, 1);
+    a = Array.prototype.splice.call(arguments, 1);
     c = this;
     b = function() {
       var e;
-      e = a.concat(Array.prototype.splice.call(arguments_, 0));
+      e = a.concat(Array.prototype.splice.call(arguments, 0));
       if (!(this instanceof b)) {
         return c.apply(d, e);
       }
