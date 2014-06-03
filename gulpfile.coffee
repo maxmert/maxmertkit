@@ -317,7 +317,6 @@ gulp.task 'buildServer', ->
 	gutil.log gutil.colors.cyan '\n\n\nBuilding files for server. It can take a while. Please, be patient.\n\n'
 
 	jsfiles = [
-		"#{path.docs.front.js}/templates.js"
 		"#{path.docs.front.js}/docsvendor.js"
 		"#{path.docs.front.js}/bower/google-code-prettify/src/prettify.js"
 		"#{path.docs.front.js}/bower/google-code-prettify-language-handlers/lang-scss.js"
@@ -330,7 +329,6 @@ gulp.task 'buildServer', ->
 		.pipe( bytediff.start() )
 		.pipe( uglify() )
 		.pipe( bytediff.stop() )
-		.pipe( gzip( append: no ) )
 		.pipe( gulp.dest "#{path.docs.front.js}/dist" )
 
 
@@ -345,7 +343,6 @@ gulp.task 'buildServer', ->
 		.pipe( bytediff.start() )
 		.pipe( minifyCSS() )
 		.pipe( bytediff.stop() )
-		.pipe( gzip( append: no ) )
 		.pipe( gulp.dest "#{path.docs.front.css}/dist" )
 
 
