@@ -15724,6 +15724,12 @@ fieldset {
 a.-btn, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered {
   font-weight: normal; }
 
+input.-btn::-moz-focus-inner, input.-btn-ghost::-moz-focus-inner, input.-btn-bordered::-moz-focus-inner, button.-btn::-moz-focus-inner, button.-btn-ghost::-moz-focus-inner, button.-btn-bordered::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin-top: 1px;
+  margin-bottom: 1px; }
+
 .-btn-ghost, .-btn-bordered, a.-btn-ghost, a.-btn-bordered, a[href].-btn-ghost, a[href].-btn-bordered {
   border-radius: 3px;
   font-weight: 200;
