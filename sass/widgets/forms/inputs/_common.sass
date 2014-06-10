@@ -44,9 +44,7 @@
 	$background-color: map-get( $theme, background-color)
 
 	border: $form-input-border-width solid $border-color
-	background: rgba($background-color, .1) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat
-	background-position-x: 97%
-	background-position-y: center
+	background: rgba($background-color, .1) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat 97% center
 
 	&:active, &:focus
 		box-shadow: 0 0 10px rgba($background-color, 0.4)
@@ -60,7 +58,7 @@
 	$sizer: $multiplier * $base-font-size
 	font-size: $sizer
 	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2 // - $form-input-border-width * 2
-	line-height: $sizer
+	line-height: $sizer * $base-line-height - $form-input-border-width * 2
 	height: $line-height
 
 
@@ -68,15 +66,8 @@
 @include exports("forms/inputs")
 	form
 
-
-
-
-
-
-
 		.#{$row-class}
 			margin-bottom: $base-line-height-comp
-
 
 		select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
 
@@ -123,6 +114,15 @@
 
 
 		select
+			-webkit-appearance: none
+			-moz-appearance: none
+			-ms-appearance: none
+			text-indent: 1px
+			text-overflow: ''
+
+			&::-ms-expand
+				display: none
+
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 

@@ -49,6 +49,9 @@
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
+			@if $sizeName == normal
+				.#{$button-class}
+					@extend .#{$button-class}._#{$sizeName}
 			&._#{$sizeName}
 				.#{$button-class}
 					@extend .#{$button-class}._#{$sizeName} !optional
