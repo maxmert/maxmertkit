@@ -155,11 +155,11 @@ html, body {
 
   to {
     opacity: 0; } }
-.-fadein--.-start--, .-fadein--.-drop._active_, .-menu._hovered_ li:hover > .-fadein--.-drop, .-fadein--.-shader._active_ {
+.-fadein--.-start--, .-fadein--.-drop._active_, .-menu._hovered_ li:hover > .-fadein--.-drop, .-list-group li._active_ > .-fadein--.-list-group, .-fadein--.-shader._active_ {
   -webkit-animation: fadeIn 0.3s forwards ease-out;
   -moz-animation: fadeIn 0.3s forwards ease-out;
   animation: fadeIn 0.3s forwards ease-out; }
-.-fadein--.-stop-- {
+.-fadein--.-stop--, .-list-group li > .-fadein--.-list-group {
   -webkit-animation: fadeOut 0.3s forwards ease-out;
   -moz-animation: fadeOut 0.3s forwards ease-out;
   animation: fadeOut 0.3s forwards ease-out; }
@@ -3402,11 +3402,11 @@ html, body {
   -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%; }
-  .-fall--.-start--, .-fall--.-drop._active_, .-menu._hovered_ li:hover > .-fall--.-drop, .-fall--.-shader._active_ {
+  .-fall--.-start--, .-fall--.-drop._active_, .-menu._hovered_ li:hover > .-fall--.-drop, .-list-group li._active_ > .-fall--.-list-group, .-fall--.-shader._active_ {
     -webkit-animation: fallIn 2s forwards linear;
     -moz-animation: fallIn 2s forwards linear;
     animation: fallIn 2s forwards linear; }
-  .-fall--.-stop-- {
+  .-fall--.-stop--, .-list-group li > .-fall--.-list-group {
     -webkit-animation: fallOut 2s forwards linear;
     -moz-animation: fallOut 2s forwards linear;
     animation: fallOut 2s forwards linear; }
@@ -6643,11 +6643,11 @@ html, body {
     -ms-transform: rotateY(-90deg) rotateX(-20deg);
     -o-transform: rotateY(-90deg) rotateX(-20deg);
     transform: rotateY(-90deg) rotateX(-20deg); } }
-.-flipvertical--.-start--, .-flipvertical--.-drop._active_, .-menu._hovered_ li:hover > .-flipvertical--.-drop, .-flipvertical--.-shader._active_ {
+.-flipvertical--.-start--, .-flipvertical--.-drop._active_, .-menu._hovered_ li:hover > .-flipvertical--.-drop, .-list-group li._active_ > .-flipvertical--.-list-group, .-flipvertical--.-shader._active_ {
   -webkit-animation: flipIn 1.5s forwards linear;
   -moz-animation: flipIn 1.5s forwards linear;
   animation: flipIn 1.5s forwards linear; }
-.-flipvertical--.-stop-- {
+.-flipvertical--.-stop--, .-list-group li > .-flipvertical--.-list-group {
   -webkit-animation: flipOut 0.2s forwards linear;
   -moz-animation: flipOut 0.2s forwards linear;
   animation: flipOut 0.2s forwards linear; }
@@ -9884,11 +9884,11 @@ html, body {
     -ms-transform: rotateX(-70deg);
     -o-transform: rotateX(-70deg);
     transform: rotateX(-70deg); } }
-.-fliphorizontal--.-start--, .-fliphorizontal--.-drop._active_, .-menu._hovered_ li:hover > .-fliphorizontal--.-drop, .-fliphorizontal--.-shader._active_ {
+.-fliphorizontal--.-start--, .-fliphorizontal--.-drop._active_, .-menu._hovered_ li:hover > .-fliphorizontal--.-drop, .-list-group li._active_ > .-fliphorizontal--.-list-group, .-fliphorizontal--.-shader._active_ {
   -webkit-animation: flipHorizontalIn 1.5s forwards linear;
   -moz-animation: flipHorizontalIn 1.5s forwards linear;
   animation: flipHorizontalIn 1.5s forwards linear; }
-.-fliphorizontal--.-stop-- {
+.-fliphorizontal--.-stop--, .-list-group li > .-fliphorizontal--.-list-group {
   -webkit-animation: flipHorizontalOut 0.2s forwards linear;
   -moz-animation: flipHorizontalOut 0.2s forwards linear;
   animation: flipHorizontalOut 0.2s forwards linear; }
@@ -13125,11 +13125,11 @@ html, body {
     -ms-transform: rotate(720deg) scale(0);
     -o-transform: rotate(720deg) scale(0);
     transform: rotate(720deg) scale(0); } }
-.-newspaper--.-start--, .-newspaper--.-drop._active_, .-menu._hovered_ li:hover > .-newspaper--.-drop, .-newspaper--.-shader._active_ {
+.-newspaper--.-start--, .-newspaper--.-drop._active_, .-menu._hovered_ li:hover > .-newspaper--.-drop, .-list-group li._active_ > .-newspaper--.-list-group, .-newspaper--.-shader._active_ {
   -webkit-animation: newspaperIn 1.5s forwards linear;
   -moz-animation: newspaperIn 1.5s forwards linear;
   animation: newspaperIn 1.5s forwards linear; }
-.-newspaper--.-stop-- {
+.-newspaper--.-stop--, .-list-group li > .-newspaper--.-list-group {
   -webkit-animation: newspaperOut 0.2s forwards linear;
   -moz-animation: newspaperOut 0.2s forwards linear;
   animation: newspaperOut 0.2s forwards linear; }
@@ -13198,11 +13198,11 @@ html, body {
     -o-transform: translateY(25%) rotateX(-35deg);
     transform: translateY(25%) rotateX(-35deg);
     opacity: 0; } }
-.-hugeinc--.-start--, .-hugeinc--.-drop._active_, .-menu._hovered_ li:hover > .-hugeinc--.-drop, .-hugeinc--.-shader._active_ {
+.-hugeinc--.-start--, .-hugeinc--.-drop._active_, .-menu._hovered_ li:hover > .-hugeinc--.-drop, .-list-group li._active_ > .-hugeinc--.-list-group, .-hugeinc--.-shader._active_ {
   -webkit-animation: hugeincIn 0.5s forwards ease-in-out;
   -moz-animation: hugeincIn 0.5s forwards ease-in-out;
   animation: hugeincIn 0.5s forwards ease-in-out; }
-.-hugeinc--.-stop-- {
+.-hugeinc--.-stop--, .-list-group li > .-hugeinc--.-list-group {
   -webkit-animation: hugeincOut 0.5s forwards ease-in-out;
   -moz-animation: hugeincOut 0.5s forwards ease-in-out;
   animation: hugeincOut 0.5s forwards ease-in-out; }
@@ -13271,11 +13271,11 @@ html, body {
     -o-transform: translateY(50px) translateX(50px);
     transform: translateY(50px) translateX(50px);
     opacity: 0; } }
-.-corner--.-start--, .-corner--.-drop._active_, .-menu._hovered_ li:hover > .-corner--.-drop, .-corner--.-shader._active_ {
+.-corner--.-start--, .-corner--.-drop._active_, .-menu._hovered_ li:hover > .-corner--.-drop, .-list-group li._active_ > .-corner--.-list-group, .-corner--.-shader._active_ {
   -webkit-animation: cornerIn 0.5s forwards ease-in-out;
   -moz-animation: cornerIn 0.5s forwards ease-in-out;
   animation: cornerIn 0.5s forwards ease-in-out; }
-.-corner--.-stop-- {
+.-corner--.-stop--, .-list-group li > .-corner--.-list-group {
   -webkit-animation: cornerOut 0.5s forwards ease-in-out;
   -moz-animation: cornerOut 0.5s forwards ease-in-out;
   animation: cornerOut 0.5s forwards ease-in-out; }
@@ -13344,11 +13344,11 @@ html, body {
     -o-transform: translateY(-100%);
     transform: translateY(-100%);
     opacity: 0; } }
-.-slidedown--.-start--, .-slidedown--.-drop._active_, .-menu._hovered_ li:hover > .-slidedown--.-drop, .-slidedown--.-shader._active_ {
+.-slidedown--.-start--, .-slidedown--.-drop._active_, .-menu._hovered_ li:hover > .-slidedown--.-drop, .-list-group li._active_ > .-slidedown--.-list-group, .-slidedown--.-shader._active_ {
   -webkit-animation: slideDownIn 0.4s forwards ease-in-out;
   -moz-animation: slideDownIn 0.4s forwards ease-in-out;
   animation: slideDownIn 0.4s forwards ease-in-out; }
-.-slidedown--.-stop-- {
+.-slidedown--.-stop--, .-list-group li > .-slidedown--.-list-group {
   -webkit-animation: slideDownOut 0.4s forwards ease-in-out;
   -moz-animation: slideDownOut 0.4s forwards ease-in-out;
   animation: slideDownOut 0.4s forwards ease-in-out; }
@@ -13417,11 +13417,11 @@ html, body {
     -o-transform: scale(1.2);
     transform: scale(1.2);
     opacity: 0; } }
-.-scale--.-start--, .-scale--.-drop._active_, .-menu._hovered_ li:hover > .-scale--.-drop, .-scale--.-shader._active_ {
+.-scale--.-start--, .-scale--.-drop._active_, .-menu._hovered_ li:hover > .-scale--.-drop, .-list-group li._active_ > .-scale--.-list-group, .-scale--.-shader._active_ {
   -webkit-animation: scaleIn 0.4s forwards ease-in-out;
   -moz-animation: scaleIn 0.4s forwards ease-in-out;
   animation: scaleIn 0.4s forwards ease-in-out; }
-.-scale--.-stop-- {
+.-scale--.-stop--, .-list-group li > .-scale--.-list-group {
   -webkit-animation: scaleOut 0.4s forwards ease-in-out;
   -moz-animation: scaleOut 0.4s forwards ease-in-out;
   animation: scaleOut 0.4s forwards ease-in-out; }
@@ -13496,11 +13496,11 @@ html, body {
   -ms-transform-origin: 0% 50%;
   -o-transform-origin: 0% 50%;
   transform-origin: 0% 50%; }
-  .-door--.-start--, .-door--.-drop._active_, .-menu._hovered_ li:hover > .-door--.-drop, .-door--.-shader._active_ {
+  .-door--.-start--, .-door--.-drop._active_, .-menu._hovered_ li:hover > .-door--.-drop, .-list-group li._active_ > .-door--.-list-group, .-door--.-shader._active_ {
     -webkit-animation: doorIn 0.4s forwards ease-in-out;
     -moz-animation: doorIn 0.4s forwards ease-in-out;
     animation: doorIn 0.4s forwards ease-in-out; }
-  .-door--.-stop-- {
+  .-door--.-stop--, .-list-group li > .-door--.-list-group {
     -webkit-animation: doorOut 0.4s forwards ease-in-out;
     -moz-animation: doorOut 0.4s forwards ease-in-out;
     animation: doorOut 0.4s forwards ease-in-out; }
@@ -13518,13 +13518,13 @@ html, body {
   -webkit-transition-delay: 0s;
   -moz-transition-delay: 0s;
   transition-delay: 0s; }
-  .-push-blur--.-stop-- {
+  .-push-blur--.-stop--, .-list-group li > .-push-blur--.-list-group {
     -ms-filter: blur(0px);
     -webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -o-filter: blur(0px);
     filter: url(#blur3px); }
-  .-push-blur--.-start--, .-push-blur--.-drop._active_, .-menu._hovered_ li:hover > .-push-blur--.-drop, .-push-blur--.-shader._active_ {
+  .-push-blur--.-start--, .-push-blur--.-drop._active_, .-menu._hovered_ li:hover > .-push-blur--.-drop, .-list-group li._active_ > .-push-blur--.-list-group, .-push-blur--.-shader._active_ {
     -ms-filter: blur(5px);
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
@@ -13583,11 +13583,11 @@ html, body {
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
-.-push-scaleout--.-start--, .-push-scaleout--.-drop._active_, .-menu._hovered_ li:hover > .-push-scaleout--.-drop, .-push-scaleout--.-shader._active_ {
+.-push-scaleout--.-start--, .-push-scaleout--.-drop._active_, .-menu._hovered_ li:hover > .-push-scaleout--.-drop, .-list-group li._active_ > .-push-scaleout--.-list-group, .-push-scaleout--.-shader._active_ {
   -webkit-animation: pushScaleoutIn 0.4s forwards ease-in-out;
   -moz-animation: pushScaleoutIn 0.4s forwards ease-in-out;
   animation: pushScaleoutIn 0.4s forwards ease-in-out; }
-.-push-scaleout--.-stop-- {
+.-push-scaleout--.-stop--, .-list-group li > .-push-scaleout--.-list-group {
   -webkit-animation: pushScaleoutOut 0.4s forwards ease-in-out;
   -moz-animation: pushScaleoutOut 0.4s forwards ease-in-out;
   animation: pushScaleoutOut 0.4s forwards ease-in-out; }
@@ -13644,11 +13644,11 @@ html, body {
     -ms-transform: translateX(0);
     -o-transform: translateX(0);
     transform: translateX(0); } }
-.-push-right--.-start--, .-push-right--.-drop._active_, .-menu._hovered_ li:hover > .-push-right--.-drop, .-push-right--.-shader._active_ {
+.-push-right--.-start--, .-push-right--.-drop._active_, .-menu._hovered_ li:hover > .-push-right--.-drop, .-list-group li._active_ > .-push-right--.-list-group, .-push-right--.-shader._active_ {
   -webkit-animation: pushRightIn 0.4s forwards ease-in-out;
   -moz-animation: pushRightIn 0.4s forwards ease-in-out;
   animation: pushRightIn 0.4s forwards ease-in-out; }
-.-push-right--.-stop-- {
+.-push-right--.-stop--, .-list-group li > .-push-right--.-list-group {
   -webkit-animation: pushRightOut 0.4s forwards ease-in-out;
   -moz-animation: pushRightOut 0.4s forwards ease-in-out;
   animation: pushRightOut 0.4s forwards ease-in-out; }
@@ -13705,11 +13705,11 @@ html, body {
     -ms-transform: translateX(0);
     -o-transform: translateX(0);
     transform: translateX(0); } }
-.-push-left--.-start--, .-push-left--.-drop._active_, .-menu._hovered_ li:hover > .-push-left--.-drop, .-push-left--.-shader._active_ {
+.-push-left--.-start--, .-push-left--.-drop._active_, .-menu._hovered_ li:hover > .-push-left--.-drop, .-list-group li._active_ > .-push-left--.-list-group, .-push-left--.-shader._active_ {
   -webkit-animation: pushLeftIn 0.4s forwards ease-in-out;
   -moz-animation: pushLeftIn 0.4s forwards ease-in-out;
   animation: pushLeftIn 0.4s forwards ease-in-out; }
-.-push-left--.-stop-- {
+.-push-left--.-stop--, .-list-group li > .-push-left--.-list-group {
   -webkit-animation: pushLeftOut 0.4s forwards ease-in-out;
   -moz-animation: pushLeftOut 0.4s forwards ease-in-out;
   animation: pushLeftOut 0.4s forwards ease-in-out; }
@@ -13772,12 +13772,12 @@ html, body {
   -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%; }
-  .-push-doorright--.-start--, .-push-doorright--.-drop._active_, .-menu._hovered_ li:hover > .-push-doorright--.-drop, .-push-doorright--.-shader._active_ {
+  .-push-doorright--.-start--, .-push-doorright--.-drop._active_, .-menu._hovered_ li:hover > .-push-doorright--.-drop, .-list-group li._active_ > .-push-doorright--.-list-group, .-push-doorright--.-shader._active_ {
     z-index: -1;
     -webkit-animation: pushDoorRightIn 0.4s forwards ease-in-out;
     -moz-animation: pushDoorRightIn 0.4s forwards ease-in-out;
     animation: pushDoorRightIn 0.4s forwards ease-in-out; }
-  .-push-doorright--.-stop-- {
+  .-push-doorright--.-stop--, .-list-group li > .-push-doorright--.-list-group {
     -webkit-animation: pushDoorRightOut 0.4s forwards ease-in-out;
     -moz-animation: pushDoorRightOut 0.4s forwards ease-in-out;
     animation: pushDoorRightOut 0.4s forwards ease-in-out; }
@@ -13840,12 +13840,12 @@ html, body {
   -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%; }
-  .-push-doorleft--.-start--, .-push-doorleft--.-drop._active_, .-menu._hovered_ li:hover > .-push-doorleft--.-drop, .-push-doorleft--.-shader._active_ {
+  .-push-doorleft--.-start--, .-push-doorleft--.-drop._active_, .-menu._hovered_ li:hover > .-push-doorleft--.-drop, .-list-group li._active_ > .-push-doorleft--.-list-group, .-push-doorleft--.-shader._active_ {
     z-index: -1;
     -webkit-animation: pushDoorLeftIn 0.4s forwards ease-in-out;
     -moz-animation: pushDoorLeftIn 0.4s forwards ease-in-out;
     animation: pushDoorLeftIn 0.4s forwards ease-in-out; }
-  .-push-doorleft--.-stop-- {
+  .-push-doorleft--.-stop--, .-list-group li > .-push-doorleft--.-list-group {
     -webkit-animation: pushDoorLeftOut 0.4s forwards ease-in-out;
     -moz-animation: pushDoorLeftOut 0.4s forwards ease-in-out;
     animation: pushDoorLeftOut 0.4s forwards ease-in-out; }

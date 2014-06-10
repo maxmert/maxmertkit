@@ -69,6 +69,7 @@
 			& > .#{$nav-list-group-class}
 				display: none
 				padding-bottom: $nav-list-group-items-padding-vertical * 2
+				@extend .#{$animation-stop-class}
 
 
 
@@ -82,6 +83,7 @@
 
 				& > .#{$nav-list-group-class}
 					display: block
+					@extend .#{$animation-start-class}
 
 
 			#{$nav-item}
