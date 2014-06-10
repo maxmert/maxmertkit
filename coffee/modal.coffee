@@ -44,6 +44,9 @@ class Modal extends MaxmertkitHelpers
 			# Boolean; close other instances of Modal when current is opening
 			selfish: @el.getAttribute('data-selfish') or yes
 
+			# Boolean; hide scroll of the container element when modal window appears
+			hideScroll: @el.getAttribute('data-hide-scroll') or yes
+
 
 			# Events
 			beforeactive: ->
@@ -70,7 +73,7 @@ class Modal extends MaxmertkitHelpers
 		@closerF = @close.bind @
 		@clickerF = @clicker.bind @
 		@backdropClickF = _backdropClick.bind @
-		
+
 
 		@_setOptions @options
 
@@ -105,8 +108,8 @@ class Modal extends MaxmertkitHelpers
 						@_addEventListener closer, value, @closerF
 
 				when 'backdrop'
-					if @options.backdrop then @_removeEventListener @el, "click", @backdropClickF
-					if value then @_addEventListener @el, "click", @backdropClickF
+					if @options.backdrop then @_removeEventListener @target, "click", @backdropClickF
+					if value then @_addEventListener @target, "click", @backdropClickF
 
 				when 'push'
 					if value
@@ -160,7 +163,7 @@ _pushStop = ->
 			@push.style['-webkit-overflow-scrolling'] = 'auto'
 
 _backdropClick = ( event ) ->
-	if @_hasClass('-modal', event.target) and @opened
+	if @_hasClass('-holder', event.target) and @opened
 		@close()
 
 
@@ -192,7 +195,7 @@ _beforeactivate = ->
 
 _activate = ->
 	if @push then @_addClass '_perspective_', document.body
-	@_addClass '_no-scroll_', document.body
+	if @options.hideScroll then @_addClass '_no-scroll_', document.body
 
 	@target.style.display = 'table'
 	# setTimeout =>
@@ -234,7 +237,7 @@ _deactivate = ->
 	setTimeout =>
 		@_removeClass '_visible_ -start-- -stop--', @target
 		@_removeClass '_visible_ -start-- -stop--', @dialog
-		@_removeClass '_no-scroll_', document.body
+		if @options.hideScroll then @_removeClass '_no-scroll_', document.body
 		if @push then @_removeClass '_perspective_', document.body
 		@target.style.display = 'none'
 	, 1000

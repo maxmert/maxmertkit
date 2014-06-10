@@ -527,6 +527,7 @@
         push: this.el.getAttribute('data-push') || false,
         autoOpen: this.el.getAttribute('data-autoopen') || false,
         selfish: this.el.getAttribute('data-selfish') || true,
+        hideScroll: this.el.getAttribute('data-hide-scroll') || true,
         beforeactive: function() {},
         onactive: function() {},
         failactive: function() {},
@@ -586,10 +587,10 @@
             break;
           case 'backdrop':
             if (this.options.backdrop) {
-              this._removeEventListener(this.el, "click", this.backdropClickF);
+              this._removeEventListener(this.target, "click", this.backdropClickF);
             }
             if (value) {
-              this._addEventListener(this.el, "click", this.backdropClickF);
+              this._addEventListener(this.target, "click", this.backdropClickF);
             }
             break;
           case 'push':
@@ -664,7 +665,7 @@
   };
 
   _backdropClick = function(event) {
-    if (this._hasClass('-modal', event.target) && this.opened) {
+    if (this._hasClass('-holder', event.target) && this.opened) {
       return this.close();
     }
   };
@@ -700,7 +701,9 @@
     if (this.push) {
       this._addClass('_perspective_', document.body);
     }
-    this._addClass('_no-scroll_', document.body);
+    if (this.options.hideScroll) {
+      this._addClass('_no-scroll_', document.body);
+    }
     this.target.style.display = 'table';
     this._addClass('_visible_ -start--', this.target);
     this._addClass('_visible_ -start--', this.dialog);
@@ -744,7 +747,9 @@
       return function() {
         _this._removeClass('_visible_ -start-- -stop--', _this.target);
         _this._removeClass('_visible_ -start-- -stop--', _this.dialog);
-        _this._removeClass('_no-scroll_', document.body);
+        if (_this.options.hideScroll) {
+          _this._removeClass('_no-scroll_', document.body);
+        }
         if (_this.push) {
           _this._removeClass('_perspective_', document.body);
         }
