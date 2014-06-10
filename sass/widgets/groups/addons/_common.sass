@@ -23,7 +23,11 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	font-size: $multiplier * $base-font-size
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2
+	line-height: $sizer * $base-line-height
+	height: $line-height
 
 
 @include exports("groups/addons")

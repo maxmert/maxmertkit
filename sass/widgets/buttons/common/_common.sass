@@ -46,7 +46,11 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	font-size: $multiplier * $base-font-size
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2
+	line-height: $sizer * $base-line-height - $button-border-width * 2
+	height: $line-height
 
 	&.#{$mod-round}
 		border-radius: $multiplier * $base-font-size + 5
@@ -108,7 +112,7 @@
 
 		&.#{$mod-unstyled}
 			background-color: transparent !important
-			border: 1px solid transparent !important
+			border: $button-border-width solid transparent !important
 			box-shadow: none !important
 
 			text-decoration: underline
@@ -136,8 +140,8 @@
 		&::-moz-focus-inner
 			border: 0
 			padding: 0
-			margin-top: 1px
-			margin-bottom: 1px
+			margin-top: -3px
+			margin-bottom: -3px
 
 	// a.#{$button-class}
 	// 	&::-moz-focus-inner

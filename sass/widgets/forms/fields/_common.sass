@@ -27,6 +27,9 @@
 
 	$size: $multiplier * $base-font-size
 	font-size: $size
+	$line-height: $size * $base-line-height + $base-padding-vertical * 2 - $form-field-border-width * 2 // - $form-input-border-width * 2
+	line-height: $line-height
+	height: $line-height
 	// height: $base-line-height * $size + $size - $form-field-border-width * 2
 
 
@@ -54,9 +57,12 @@
 				$sz: map-get( $base-sizes, $sizeName )
 
 				// Change size only when class sets
+				@if $sizeName == normal
+					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+						@include forms-fields-size-setter($sz)
 				&._#{$sizeName}
 					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"]._#{$sizeName} !optional
+						// @extend input[type="text"]._#{$sizeName} !optional
 						@include forms-fields-size-setter($sz)
 
 

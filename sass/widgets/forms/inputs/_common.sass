@@ -57,10 +57,10 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	$size: $multiplier * $base-font-size
-	font-size: $size
-	$line-height: $size * $base-line-height + $base-padding-vertical * 2 + $form-input-border-width * 2
-	line-height: $line-height
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2 // - $form-input-border-width * 2
+	line-height: $sizer
 	height: $line-height
 
 
