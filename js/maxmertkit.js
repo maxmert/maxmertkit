@@ -293,52 +293,27 @@
     };
 
     MaxmertkitHelpers.prototype._outerWidth = function(el) {
-      var style, width;
+      var width;
       el = el || this.el;
       width = el.offsetWidth;
-      try {
-        style = el.currentStyle || getComputedStyle(el);
-      } catch (_error) {}
-      if (style) {
-        if ((style.paddingLeft != null) && style.paddingLeft !== '') {
-          width += parseInt(style.paddingLeft);
-        }
-        if ((style.paddingRight != null) && style.paddingRight !== '') {
-          width += parseInt(style.paddingRight);
-        }
-      }
       return width;
     };
 
     MaxmertkitHelpers.prototype._outerHeight = function(el) {
-      var height, style;
+      var height;
       el = el || this.el;
       height = el.offsetHeight;
-      try {
-        style = el.currentStyle || getComputedStyle(el);
-      } catch (_error) {}
-      if (style != null) {
-        if ((style.paddingTop != null) && style.paddingTop !== '') {
-          height += parseInt(style.paddingTop);
-        }
-        if ((style.paddingBottom != null) && style.paddingBottom !== '') {
-          height += parseInt(style.paddingBottom);
-        }
-      }
       return height;
     };
 
     MaxmertkitHelpers.prototype._getPosition = function(el) {
-      var curleft, curtop, style;
+      var curleft, curtop;
       el = el || this.el;
       curleft = curtop = 0;
+
+      /* FIXME: Not sure if it needed to calculate with style margin */
       if (el.offsetParent) {
         while (true) {
-
-          /* FIXME: Not sure if it needed to calculate with style margin */
-          try {
-            style = el.currentStyle || getComputedStyle(el);
-          } catch (_error) {}
           curleft += el.offsetLeft;
           curtop += el.offsetTop;
           if (!(el = el.offsetParent)) {
@@ -2446,7 +2421,7 @@
     };
 
     Popup.prototype.setPosition = function() {
-      var btnOffset, btnSize, newLeft, newTop, pos, scrollParentTarget, targetSize;
+      var arrow, arrowSize, btnOffset, btnSize, newLeft, newTop, pos, scrollParentTarget, targetSize;
       pos = this.el.getBoundingClientRect();
       scrollParentTarget = this._getContainer(this.target);
       btnOffset = this._getPosition();
@@ -2460,6 +2435,11 @@
       };
       this.target.style.visibility = 'hidden';
       this.target.style.display = 'block';
+      arrow = this.target.querySelector('.-arrow');
+      arrowSize = {
+        width: this._outerWidth(arrow),
+        height: this._outerHeight(arrow)
+      };
       targetSize = {
         width: this._outerWidth(this.target),
         height: this._outerHeight(this.target)
