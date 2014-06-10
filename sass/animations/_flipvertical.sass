@@ -1,4 +1,4 @@
-$animations-flipVertical-class: "-flipvertical--" !global
+$animations-flipVertical-class: "#{$pref-anim}flipvertical#{$post-anim}" !global
 
 $animations-flipVertical-duration: 1.5s !global
 $animations-flipVertical-timing-function: linear !global
@@ -621,7 +621,7 @@ $animations-flipVertical-delay: 0s !global
 
 
 	.#{$animations-flipVertical-class}
-		
+
 		&.#{$animation-start-class}
 			@include animation( flipIn $animations-flipVertical-duration forwards $animations-flipVertical-timing-function )
 

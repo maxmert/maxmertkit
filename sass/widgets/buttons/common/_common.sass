@@ -98,7 +98,7 @@
 
 			@if $themeName == default
 				@include buttons-theme-button-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include buttons-theme-button-setter($thm)
 
 
@@ -129,7 +129,7 @@
 			@if $sizeName == normal
 				@include button-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size / 2
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include button-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size
 

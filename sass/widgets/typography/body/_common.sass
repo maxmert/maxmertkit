@@ -47,7 +47,7 @@
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include typography-inline-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size
 
@@ -61,7 +61,7 @@
 
 			@if $themeName == default
 				@include typography-inline-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include typography-inline-theme-setter($thm)
 
 
@@ -123,7 +123,7 @@
 
 			@if $themeName == default
 				@include typography-blockquote-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include typography-blockquote-theme-setter($thm)
 
 
@@ -139,7 +139,7 @@
 
 			@if $themeName == default
 				@include typography-hr-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include typography-hr-theme-setter($thm)
 
 	*[dir="ltr"]

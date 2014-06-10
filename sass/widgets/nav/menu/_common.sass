@@ -115,7 +115,7 @@
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include nav-theme-menu-item-setter($thm)
 
 
@@ -124,7 +124,7 @@
 
 			@if $themeName == default
 				@include nav-theme-menu-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-menu-setter($thm)
 
 

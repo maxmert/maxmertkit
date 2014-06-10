@@ -67,12 +67,12 @@
 
             @if $themeName == default
                 @include spinner-fb-theme-setter($thm)
-            &.-#{$themeName}-
+            &.#{$pref-theme}#{$themeName}#{$post-theme}
                 @include spinner-fb-theme-setter($thm)
 
         @each $sizeName in $sizes
             $sz: map-get( $base-sizes, $sizeName )
             @if $sizeName == normal
                 @include spinner-fb-size-setter($sz)
-            &._#{$sizeName}
+            &.#{$pref-size}#{$sizeName}#{$post-size}
                 @include spinner-fb-size-setter($sz)

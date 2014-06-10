@@ -23,7 +23,7 @@
 				@each $themeName in $themes
 					$thm: map-get( $base-themes, $themeName )
 
-					&.-#{$themeName}-
+					&.#{$pref-theme}#{$themeName}#{$post-theme}
 						@include tables-theme-row-setter($thm)
 
 				&[disabled]

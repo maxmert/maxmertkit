@@ -1,4 +1,4 @@
-$animations-scalein-class: "-scalein--" !global
+$animations-scalein-class: "#{$pref-anim}scalein#{$post-anim}" !global
 
 $animations-scalein-duration: 0.2s !global
 $animations-scalein-elastic-duration: 0.8s !global
@@ -9,7 +9,7 @@ $animations-scalein-delay: 0s !global
 
 @include exports("animations/scalein")
 
-	
+
 	@-webkit-keyframes slide-keyframes
 		0%
 			-webkit-transform: scale(0.7)
@@ -625,7 +625,7 @@ $animations-scalein-delay: 0s !global
 			transform: scale(1)
 
 
-	
+
 	.#{$animations-scalein-class}
 		opacity: 0
 		visibility: hidden
@@ -636,7 +636,7 @@ $animations-scalein-delay: 0s !global
 		// @include animation-play-state(paused)
 
 		@include transform(scale(0.7))
-		
+
 
 
 		&.#{$animation-start-class}

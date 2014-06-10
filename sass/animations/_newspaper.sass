@@ -1,4 +1,4 @@
-$animations-newspaper-class: "-newspaper--" !global
+$animations-newspaper-class: "#{$pref-anim}newspaper#{$post-anim}" !global
 
 $animations-newspaper-duration: 1.5s !global
 $animations-newspaper-timing-function: linear !global
@@ -623,7 +623,7 @@ $animations-newspaper-delay: 0s !global
 
 
 	.#{$animations-newspaper-class}
-		
+
 		&.#{$animation-start-class}
 			@include animation( newspaperIn $animations-newspaper-duration forwards $animations-newspaper-timing-function )
 

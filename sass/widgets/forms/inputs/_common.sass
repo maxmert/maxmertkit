@@ -84,7 +84,7 @@
 
 				@if $themeName == default
 					@include forms-theme-input-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include forms-theme-input-setter($thm)
 
 			@include placeholder
@@ -95,7 +95,7 @@
 				$sz: map-get( $base-sizes, $sizeName )
 				@if $sizeName == normal
 					@include forms-input-size-setter($sz)
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include forms-input-size-setter($sz)
 
 
@@ -128,7 +128,7 @@
 
 				@if $themeName == default
 					@include forms-theme-select-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include forms-theme-select-setter($thm)
 
 			border-radius: 0
@@ -145,7 +145,7 @@
 				$sz: map-get( $base-sizes, $sizeName )
 				@if $sizeName == normal
 					@include forms-input-size-setter($sz)
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include forms-input-size-setter($sz)
 
 			@include text-overflow

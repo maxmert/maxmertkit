@@ -31,7 +31,7 @@
 
             @if $themeName == default
                 @include shader-theme-setter($thm)
-            &.-#{$themeName}-
+            &.#{$pref-theme}#{$themeName}#{$post-theme}
                 @include shader-theme-setter($thm)
 
         &.#{$mod-active}

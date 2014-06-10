@@ -1,4 +1,4 @@
-$animations-corner-class: "-corner--" !global
+$animations-corner-class: "#{$pref-anim}corner#{$post-anim}" !global
 
 $animations-corner-duration: 0.5s !global
 $animations-corner-timing-function: ease-in-out !global
@@ -31,7 +31,7 @@ $animations-corner-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-corner-duration forwards $animations-corner-timing-function, visibility $animations-corner-duration forwards $animations-corner-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

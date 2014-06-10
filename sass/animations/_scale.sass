@@ -1,4 +1,4 @@
-$animations-scale-class: "-scale--" !global
+$animations-scale-class: "#{$pref-anim}scale#{$post-anim}" !global
 
 $animations-scale-duration: 0.4s !global
 $animations-scale-timing-function: ease-in-out !global
@@ -31,7 +31,7 @@ $animations-scale-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-scale-duration forwards $animations-scale-timing-function, visibility $animations-scale-duration forwards $animations-scale-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

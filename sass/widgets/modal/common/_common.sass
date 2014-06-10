@@ -166,7 +166,7 @@
 				$sz: map-get( $base-sizes, $sizeName )
 				@if $sizeName == normal
 					@include modal-close-size-setter($sz)
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include modal-close-size-setter($sz)
 
 		& > .-arrow
@@ -243,7 +243,7 @@
 						$sz: map-get( $base-sizes, $sizeName )
 						@if $sizeName == normal
 							@include modal-header-close-size-setter($sz)
-						&._#{$sizeName}
+						&.#{$pref-size}#{$sizeName}#{$post-size}
 							@include modal-header-close-size-setter($sz)
 
 			.#{$content-class}
@@ -256,7 +256,7 @@
 
 				@if $themeName == default
 					@include modal-header-theme-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include modal-header-theme-setter($thm)
 
 		& > .-holder
@@ -276,7 +276,7 @@
 
 			@if $themeName == default
 				@include modal-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include modal-theme-setter($thm)
 
 

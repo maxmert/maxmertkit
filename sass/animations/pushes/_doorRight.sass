@@ -1,4 +1,4 @@
-$animations-pushDoorRight-class: "-push-doorright--" !global
+$animations-pushDoorRight-class: "#{$pref-anim}push-doorright#{$post-anim}" !global
 
 $animations-pushDoorRight-duration: 0.4s !global
 $animations-pushDoorRight-timing-function: ease-in-out !global
@@ -27,7 +27,7 @@ $animations-pushDoorRight-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-pushDoorRight-duration forwards $animations-pushDoorRight-timing-function, visibility $animations-pushDoorRight-duration forwards $animations-pushDoorRight-timing-function )
-		
+
 		@include transform-origin( 50% 50% )
 
 		&.#{$animation-start-class}

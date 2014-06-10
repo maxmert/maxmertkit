@@ -1,4 +1,4 @@
-$animations-flipHorizontal-class: "-fliphorizontal--" !global
+$animations-flipHorizontal-class: "#{$pref-anim}fliphorizontal#{$post-anim}" !global
 
 $animations-flipHorizontal-duration: 1.5s !global
 $animations-flipHorizontal-timing-function: linear !global
@@ -622,7 +622,7 @@ $animations-flipHorizontal-delay: 0s !global
 
 
 	.#{$animations-flipHorizontal-class}
-		
+
 		&.#{$animation-start-class}
 			@include animation( flipHorizontalIn $animations-flipHorizontal-duration forwards $animations-flipHorizontal-timing-function )
 

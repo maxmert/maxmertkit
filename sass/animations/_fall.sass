@@ -1,4 +1,4 @@
-$animations-fall-class: "-fall--" !global
+$animations-fall-class: "#{$pref-anim}fall#{$post-anim}" !global
 
 $animations-fall-duration: 2s !global
 $animations-fall-timing-function: linear !global
@@ -8,7 +8,7 @@ $animations-fall-delay: 0s !global
 
 @include exports("animations/fall")
 
-	
+
 
 	@include keyframes(fallIn)
 		0%
@@ -620,12 +620,12 @@ $animations-fall-delay: 0s !global
 		100%
 			opacity: 0
 			@include transform( translateZ(600px) rotateX(40deg) )
-	
+
 	.#{$animations-fall-class}
 		@include transform-origin( 50% 50% )
 
 		&.#{$animation-start-class}
 			@include animation( fallIn $animations-fall-duration forwards $animations-fall-timing-function )
-		
+
 		&.#{$animation-stop-class}
 			@include animation( fallOut $animations-fall-duration forwards $animations-fall-timing-function )

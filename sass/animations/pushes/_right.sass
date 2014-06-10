@@ -1,4 +1,4 @@
-$animations-pushRight-class: "-push-right--" !global
+$animations-pushRight-class: "#{$pref-anim}push-right#{$post-anim}" !global
 
 $animations-pushRight-duration: 0.4s !global
 $animations-pushRight-timing-function: ease-in-out !global
@@ -27,7 +27,7 @@ $animations-pushRight-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-pushRight-duration forwards $animations-pushRight-timing-function, visibility $animations-pushRight-duration forwards $animations-pushRight-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

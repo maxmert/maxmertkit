@@ -1,4 +1,4 @@
-$animations-slideDown-class: "-slidedown--" !global
+$animations-slideDown-class: "#{$pref-anim}slidedown#{$post-anim}" !global
 
 $animations-slideDown-duration: 0.4s !global
 $animations-slideDown-timing-function: ease-in-out !global
@@ -31,7 +31,7 @@ $animations-slideDown-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-slideDown-duration forwards $animations-slideDown-timing-function, visibility $animations-slideDown-duration forwards $animations-slideDown-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

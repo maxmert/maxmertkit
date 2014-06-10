@@ -247,5 +247,5 @@
 
 			@if $themeName == default
 				@include dropdowns-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include dropdowns-theme-setter($thm)

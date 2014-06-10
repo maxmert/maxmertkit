@@ -49,20 +49,20 @@
 
 			@if $themeName == default
 				@include badges-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include badges-theme-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include badges-size-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include badges-size-setter($sz)
 
 	// To nest sizes from parents elements
 	@each $sizeName in $sizes
 		$sz: map-get( $base-sizes, $sizeName )
 
-		._#{$sizeName}
+		.#{$pref-size}#{$sizeName}#{$post-size}
 			.#{$badge-class}
-				@extend .#{$badge-class}._#{$sizeName} !optional
+				@extend .#{$badge-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional

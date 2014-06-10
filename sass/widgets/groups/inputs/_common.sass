@@ -45,19 +45,19 @@
 		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"].-#{$themeName}- !optional
+					@extend input[type="text"].#{$pref-theme}#{$themeName}#{$post-theme} !optional
 
 				.#{$form-field-class}
-					@extend .#{$form-field-class}.-#{$themeName}- !optional
+					@extend .#{$form-field-class}.#{$pref-theme}#{$themeName}#{$post-theme} !optional
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-					@extend input[type="text"]._#{$sizeName} !optional
+					@extend input[type="text"].#{$pref-size}#{$sizeName}#{$post-size} !optional
 
 				.#{$form-field-class}
-					@extend .#{$form-field-class}._#{$sizeName} !optional
+					@extend .#{$form-field-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional

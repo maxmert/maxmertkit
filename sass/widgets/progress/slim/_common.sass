@@ -45,5 +45,5 @@
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include progress-slim-size-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include progress-slim-size-setter($sz)

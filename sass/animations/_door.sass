@@ -1,4 +1,4 @@
-$animations-door-class: "-door--" !global
+$animations-door-class: "#{$pref-anim}door#{$post-anim}" !global
 
 $animations-door-duration: 0.4s !global
 $animations-door-timing-function: ease-in-out !global
@@ -32,7 +32,7 @@ $animations-door-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-door-duration forwards $animations-door-timing-function, visibility $animations-door-duration forwards $animations-door-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

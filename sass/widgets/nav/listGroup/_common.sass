@@ -116,5 +116,5 @@
 
 			@if $themeName == default
 				@include nav-theme-list-group-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-list-group-setter($thm)

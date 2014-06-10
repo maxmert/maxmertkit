@@ -53,7 +53,7 @@
 
 			@if $themeName == default
 				@include nav-theme-pills-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-pills-setter($thm)
 
 		#{$nav-item}
@@ -86,7 +86,7 @@
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include nav-theme-pill-setter($thm)
 
 
