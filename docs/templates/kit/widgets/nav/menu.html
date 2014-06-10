@@ -126,6 +126,34 @@ $nav-menu-items-margin: 1px !global</pre></div>
 
 
 
+<h3>Add responsiveness</h3>
+
+<p>
+	To make menu responsive just add modifier <code>_responsive_</code>. Try to change window size to see effect. It will become vertical on small devices. But you still need manually configurate submenus position. Read about that below.
+</p>
+<div class="-row example-block">
+
+	<div class="-col12 view">
+		<ul class="-menu -primary- _responsive_">
+			<li><a>Menu 1 <i class="-addon fa fa-caret-down"></i></a></li>
+			<li><a>Menu 2 <i class="-addon">⌘M</i></a></li>
+			<li class="-warning-"><a>Menu 3 <i class="-addon fa fa-star"></i></a></li>
+		</ul>
+	</div>
+
+
+	<div class="-col12 example"><pre hljs class="prettyprint lang-html"><ul class="-menu -primary- _responsive_">
+	<li><a>Menu 1 <i class="-addon fa fa-caret-down"></i></a></li>
+	<li><a>Menu 2 <i class="-addon">⌘M</i></a></li>
+	<li class="-warning-"><a>Menu 3 <i class="-addon fa fa-star"></i></a></li>
+</ul></pre></div>
+
+</div>
+
+
+
+
+
 
 <h3>Add submenus</h3>
 
@@ -142,7 +170,7 @@ $nav-menu-items-margin: 1px !global</pre></div>
 <div class="-row example-block">
 
 	<div class="-col12 view">
-		<ul class="-menu -primary-">
+		<ul class="-menu -primary- _responsive_">
 			<li><a>No hovered</a></li>
 			<li><a>Menu 2</a></li>
 			<li>
@@ -168,7 +196,7 @@ $nav-menu-items-margin: 1px !global</pre></div>
 			</li>
 		</ul>
 		<br>
-		<ul class="-menu -primary- _hovered_">
+		<ul class="-menu -primary- _hovered_ _responsive_">
 			<li><a>With hovered</a></li>
 			<li><a>Menu 2</a></li>
 			<li>
@@ -202,7 +230,7 @@ $nav-menu-items-margin: 1px !global</pre></div>
 	<li>
 		<a>Menu 3 <i class="-addon fa fa-caret-down"></i></a>
 		<div class="-drop">
-			<ul class="-menu _vertical_">
+			<ul class="-menu _vertical_ _responsive_">
 				<li><a>Menu with long name <i class="-addon">⌘M</i></a></li>
 				<li>
 					<a>Menu 2 <i class="-addon fa fa-caret-right"></i></a>
@@ -222,7 +250,7 @@ $nav-menu-items-margin: 1px !global</pre></div>
 	</li>
 </ul>
 
-<ul class="-menu -primary- _hovered_">
+<ul class="-menu -primary- _hovered_ _responsive_">
 	<li><a>With hovered</a></li>
 	<li><a>Menu 2</a></li>
 	<li>

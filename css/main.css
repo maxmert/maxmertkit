@@ -16972,9 +16972,18 @@ input.-btn::-moz-focus-inner, input.-btn-ghost::-moz-focus-inner, input.-btn-bor
   .-menu._vertical_ li {
     margin-right: 0;
     margin-bottom: 1px;
-    float: none; }
+    float: none;
+    display: block;
+    width: auto; }
   .-menu._hovered_ li:hover > .-drop {
     display: block; }
+  @media screen and (max-width: 768px) {
+    .-menu._responsive_ li {
+      margin-right: 0;
+      margin-bottom: 1px;
+      float: none;
+      display: block;
+      width: auto; } }
 
 .-navbar, .-navbar-float {
   display: block;
