@@ -293,52 +293,27 @@
     };
 
     MaxmertkitHelpers.prototype._outerWidth = function(el) {
-      var style, width;
+      var width;
       el = el || this.el;
       width = el.offsetWidth;
-      try {
-        style = el.currentStyle || getComputedStyle(el);
-      } catch (_error) {}
-      if (style) {
-        if ((style.paddingLeft != null) && style.paddingLeft !== '') {
-          width += parseInt(style.paddingLeft);
-        }
-        if ((style.paddingRight != null) && style.paddingRight !== '') {
-          width += parseInt(style.paddingRight);
-        }
-      }
       return width;
     };
 
     MaxmertkitHelpers.prototype._outerHeight = function(el) {
-      var height, style;
+      var height;
       el = el || this.el;
       height = el.offsetHeight;
-      try {
-        style = el.currentStyle || getComputedStyle(el);
-      } catch (_error) {}
-      if (style != null) {
-        if ((style.paddingTop != null) && style.paddingTop !== '') {
-          height += parseInt(style.paddingTop);
-        }
-        if ((style.paddingBottom != null) && style.paddingBottom !== '') {
-          height += parseInt(style.paddingBottom);
-        }
-      }
       return height;
     };
 
     MaxmertkitHelpers.prototype._getPosition = function(el) {
-      var curleft, curtop, style;
+      var curleft, curtop;
       el = el || this.el;
       curleft = curtop = 0;
+
+      /* FIXME: Not sure if it needed to calculate with style margin */
       if (el.offsetParent) {
         while (true) {
-
-          /* FIXME: Not sure if it needed to calculate with style margin */
-          try {
-            style = el.currentStyle || getComputedStyle(el);
-          } catch (_error) {}
           curleft += el.offsetLeft;
           curtop += el.offsetTop;
           if (!(el = el.offsetParent)) {
@@ -527,6 +502,7 @@
         push: this.el.getAttribute('data-push') || false,
         autoOpen: this.el.getAttribute('data-autoopen') || false,
         selfish: this.el.getAttribute('data-selfish') || true,
+        hideScroll: this.el.getAttribute('data-hide-scroll') || true,
         beforeactive: function() {},
         onactive: function() {},
         failactive: function() {},
@@ -586,10 +562,10 @@
             break;
           case 'backdrop':
             if (this.options.backdrop) {
-              this._removeEventListener(this.el, "click", this.backdropClickF);
+              this._removeEventListener(this.target, "click", this.backdropClickF);
             }
             if (value) {
-              this._addEventListener(this.el, "click", this.backdropClickF);
+              this._addEventListener(this.target, "click", this.backdropClickF);
             }
             break;
           case 'push':
@@ -664,7 +640,7 @@
   };
 
   _backdropClick = function(event) {
-    if (this._hasClass('-modal', event.target) && this.opened) {
+    if (this._hasClass('-holder', event.target) && this.opened) {
       return this.close();
     }
   };
@@ -700,7 +676,9 @@
     if (this.push) {
       this._addClass('_perspective_', document.body);
     }
-    this._addClass('_no-scroll_', document.body);
+    if (this.options.hideScroll) {
+      this._addClass('_no-scroll_', document.body);
+    }
     this.target.style.display = 'table';
     this._addClass('_visible_ -start--', this.target);
     this._addClass('_visible_ -start--', this.dialog);
@@ -744,7 +722,9 @@
       return function() {
         _this._removeClass('_visible_ -start-- -stop--', _this.target);
         _this._removeClass('_visible_ -start-- -stop--', _this.dialog);
-        _this._removeClass('_no-scroll_', document.body);
+        if (_this.options.hideScroll) {
+          _this._removeClass('_no-scroll_', document.body);
+        }
         if (_this.push) {
           _this._removeClass('_perspective_', document.body);
         }
@@ -833,6 +813,7 @@
         spy: this.el.getAttribute('data-spy') || _name,
         offset: this.el.getAttribute('data-offset') || 5,
         delay: this.el.getAttribute('data-delay') || 300,
+        once: this.el.getAttribute('data-once') || false,
         onMobile: this.el.getAttribute('data-on-mobile') || false,
         beforeactive: function() {},
         onactive: function() {},
@@ -904,7 +885,10 @@
         return function() {
           _this._addClass('-start--');
           _this._removeClass('-stop--');
-          return _this.active = true;
+          _this.active = true;
+          if (_this.options.once) {
+            return _this.stop();
+          }
         };
       })(this), delay);
     };
@@ -2441,7 +2425,7 @@
     };
 
     Popup.prototype.setPosition = function() {
-      var btnOffset, btnSize, newLeft, newTop, pos, scrollParentTarget, targetSize;
+      var arrow, arrowSize, btnOffset, btnSize, newLeft, newTop, pos, scrollParentTarget, targetSize;
       pos = this.el.getBoundingClientRect();
       scrollParentTarget = this._getContainer(this.target);
       btnOffset = this._getPosition();
@@ -2455,6 +2439,11 @@
       };
       this.target.style.visibility = 'hidden';
       this.target.style.display = 'block';
+      arrow = this.target.querySelector('.-arrow');
+      arrowSize = {
+        width: this._outerWidth(arrow),
+        height: this._outerHeight(arrow)
+      };
       targetSize = {
         width: this._outerWidth(this.target),
         height: this._outerHeight(this.target)
