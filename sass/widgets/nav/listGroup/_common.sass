@@ -69,6 +69,7 @@
 			& > .#{$nav-list-group-class}
 				display: none
 				padding-bottom: $nav-list-group-items-padding-vertical * 2
+				@extend .#{$animation-stop-class}
 
 
 
@@ -82,6 +83,7 @@
 
 				& > .#{$nav-list-group-class}
 					display: block
+					@extend .#{$animation-start-class}
 
 
 			#{$nav-item}
@@ -114,5 +116,5 @@
 
 			@if $themeName == default
 				@include nav-theme-list-group-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-list-group-setter($thm)

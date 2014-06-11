@@ -1,4 +1,4 @@
-$animations-pushScaleout-class: "-push-scaleout--" !global
+$animations-pushScaleout-class: "#{$pref-anim}push-scaleout#{$post-anim}" !global
 
 $animations-pushScaleout-duration: 0.4s !global
 $animations-pushScaleout-timing-function: ease-in-out !global
@@ -27,7 +27,7 @@ $animations-pushScaleout-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-pushScaleout-duration forwards $animations-pushScaleout-timing-function, visibility $animations-pushScaleout-duration forwards $animations-pushScaleout-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

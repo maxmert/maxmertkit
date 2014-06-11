@@ -51,8 +51,14 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	border-width: $multiplier * $button-ghost-border-width
-	font-size: $multiplier * $base-font-size
+	$brdr: $multiplier * $button-ghost-border-width
+	border-width: $brdr
+
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2
+	line-height: $sizer * $base-line-height - $brdr * 2
+	height: $line-height
 
 
 
@@ -71,7 +77,7 @@
 
 			@if $themeName == default
 				@include buttons-theme-button-ghost-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include buttons-theme-button-ghost-setter($thm)
 
 
@@ -80,7 +86,7 @@
 			@if $sizeName == normal
 				@include button-ghost-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size / 2
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include button-ghost-size-setter($sz)
 				// font-size: $multilpyer * $base-font-size
 	//

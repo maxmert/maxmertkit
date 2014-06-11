@@ -118,21 +118,21 @@
 
 			@if $themeName == default
 				@include nav-theme-bar-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-bar-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				.#{$nav-menu-class}
-					@extend .#{$nav-menu-class}._#{$sizeName} !optional
+					@extend .#{$nav-menu-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional
 				.#{$nav-pills-class}
-					@extend .#{$nav-pills-class}._#{$sizeName} !optional
+					@extend .#{$nav-pills-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional
 				.#{$button-class}
-					@extend .#{$button-class}._#{$sizeName} !optional
+					@extend .#{$button-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional
 				.#{$group-class}
-					@extend .#{$group-class}._#{$sizeName} !optional
+					@extend .#{$group-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional
 
 
 	// ._no-scroll_

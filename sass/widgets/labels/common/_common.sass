@@ -61,14 +61,14 @@
 
 			@if $themeName == default
 				@include labels-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include labels-theme-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include labels-size-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include labels-size-setter($sz)
 
 		&:empty
@@ -79,6 +79,6 @@
 	@each $sizeName in $sizes
 		$sz: map-get( $base-sizes, $sizeName )
 
-		._#{$sizeName}
+		.#{$pref-size}#{$sizeName}#{$post-size}
 			.#{$label-class}
-				@extend .#{$label-class}._#{$sizeName} !optional
+				@extend .#{$label-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional

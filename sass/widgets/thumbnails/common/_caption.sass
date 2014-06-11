@@ -43,7 +43,7 @@
 
 			@if $themeName == default
 				@include thumbnails-theme-caption-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include thumbnails-theme-caption-setter($thm)
 
 

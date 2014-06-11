@@ -63,12 +63,12 @@
 
             @if $themeName == default
                 @include spinner-ring-theme-setter($thm)
-            &.-#{$themeName}-
+            &.#{$pref-theme}#{$themeName}#{$post-theme}
                 @include spinner-ring-theme-setter($thm)
 
         @each $sizeName in $sizes
             $sz: map-get( $base-sizes, $sizeName )
             @if $sizeName == normal
                 @include spinner-ring-size-setter($sz)
-            &._#{$sizeName}
+            &.#{$pref-size}#{$sizeName}#{$post-size}
                 @include spinner-ring-size-setter($sz)

@@ -1,4 +1,4 @@
-$animations-hugeinc-class: "-hugeinc--" !global
+$animations-hugeinc-class: "#{$pref-anim}hugeinc#{$post-anim}" !global
 
 $animations-hugeinc-duration: 0.5s !global
 $animations-hugeinc-timing-function: ease-in-out !global
@@ -31,7 +31,7 @@ $animations-hugeinc-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-hugeinc-duration forwards $animations-hugeinc-timing-function, visibility $animations-hugeinc-duration forwards $animations-hugeinc-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

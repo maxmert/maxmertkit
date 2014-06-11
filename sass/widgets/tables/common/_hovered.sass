@@ -23,5 +23,5 @@
 
 				@if $themeName == default
 					@include tables-theme-hovered-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include tables-theme-hovered-setter($thm)

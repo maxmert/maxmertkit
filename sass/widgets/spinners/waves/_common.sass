@@ -72,12 +72,12 @@
 
             @if $themeName == default
                 @include spinner-waves-theme-setter($thm)
-            &.-#{$themeName}-
+            &.#{$pref-theme}#{$themeName}#{$post-theme}
                 @include spinner-waves-theme-setter($thm)
 
         @each $sizeName in $sizes
             $sz: map-get( $base-sizes, $sizeName )
             @if $sizeName == normal
                 @include spinner-waves-size-setter($sz)
-            &._#{$sizeName}
+            &.#{$pref-size}#{$sizeName}#{$post-size}
                 @include spinner-waves-size-setter($sz)

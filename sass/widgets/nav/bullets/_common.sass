@@ -17,7 +17,7 @@
 		a
 			border-color: $border-color
 			color: $white-color
-		
+
 		&.#{$mod-active}
 			a
 				background-color: $border-color
@@ -30,7 +30,7 @@
 		a
 			border-color: $color
 			color: $color
-		
+
 		&.#{$mod-active}
 			a
 				background-color: $color
@@ -59,7 +59,7 @@
 		#{$nav-bullets-item}
 			display: inline-block
 			position: relative
-			
+
 
 			a
 				display: inline-block
@@ -70,11 +70,11 @@
 				border-style: solid
 				cursor: pointer
 				opacity: .5
-				
+
 				small
 					display: none
 
-			
+
 
 			&.#{$mod-active}
 				a
@@ -162,12 +162,12 @@
 
 			@if $themeName == default
 				@include nav-theme-bullets-item-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-bullets-item-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include nav-size-bullets-item-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include nav-size-bullets-item-setter($sz)

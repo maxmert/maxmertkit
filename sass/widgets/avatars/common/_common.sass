@@ -26,7 +26,7 @@
 	.#{$thumbnail-class}
 		@include size( $avatar-size * $multiplier )
 		margin-right: $multiplier * $avatar-margin
-	
+
 	&.#{$mod-bordered}
 		.#{$thumbnail-class}
 			border-width: $avatar-border-width * $multiplier
@@ -41,7 +41,7 @@
 	.#{$avatar-class}
 
 		display: inline-block
-		
+
 		a
 			text-decoration: none
 
@@ -80,14 +80,14 @@
 
 			@if $themeName == default
 				@include avatars-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include avatars-theme-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include avatars-size-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include avatars-size-setter($sz)
 
 		&:empty

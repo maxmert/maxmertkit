@@ -67,7 +67,7 @@
 
 			@if $themeName == default
 				@include nav-theme-tabs-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-tabs-setter($thm)
 
 		#{$nav-item}
@@ -100,7 +100,7 @@
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include nav-theme-tab-setter($thm)
 
 

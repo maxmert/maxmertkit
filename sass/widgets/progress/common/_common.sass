@@ -44,23 +44,6 @@
 	.#{$progress-bar-class}
 		font-size: floor($multiplier * $base-font-size * 0.8)
 
-// @mixin progress-theme-bar-setter($size)
-// 	@if nth($themes, $i) == "-default-"
-// 		background-color: nth($themes-background-light-colors, $i)
-// 		border-color: nth($themes-background-light-colors, $i)
-// 		color: nth($themes-colors, $i)
-// 	@else
-// 		background-color: nth($themes-background-colors, $i)
-// 		border-color: nth($themes-background-colors, $i)
-// 		color: nth($themes-white-colors, $i)
-//
-//
-// 	&.#{$mod-disabled}, &[disabled], fieldset[disabled] &
-// 		color: rgba(nth($themes-white-colors, $i), .65)
-//
-// 	&.#{$mod-unstyled}
-// 		color: nth($themes-colors, $i)
-
 
 @include exports("progress/common")
 
@@ -110,34 +93,17 @@
 
 			@if $themeName == default
 				@include progress-theme-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include progress-theme-setter($thm)
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include progress-size-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include progress-size-setter($sz)
 
-		// @each $theme in $themes
-		// 	$i: index($themes, $theme)
-		//
-		// 	@if $theme == "-default-"
-		// 		@include progress-theme-setter($i)
-		//
-		// 	&.#{$theme}
-		// 		@include progress-theme-setter($i)
-		//
-		// @each $size in $base-sizes-names
-		// 	$i: index($base-sizes-names, $size)
-		// 	@if #{$size} == "_normal"
-		// 		.#{$progress-bar-class}
-		// 			font-size: floor(nth($base-sizes-values, $i) * $base-font-size / 2 * 0.75)
-		//
-		// 	&.#{$size}
-		// 		.#{$progress-bar-class}
-		// 			font-size: floor(nth($base-sizes-values, $i) * $base-font-size * 0.75)
+
 
 
 		.#{$progress-bar-class}
@@ -146,23 +112,5 @@
 
 				@if $themeName == default
 					@include progress-bar-theme-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include progress-bar-theme-setter($thm)
-			// @each $theme in $themes
-			// 	$i: index($themes, $theme)
-			//
-			// 	@if $theme == "-default-"
-			// 		@include progress-theme-bar-setter($i)
-			//
-			// 	&.#{$theme}
-			// 		@include progress-theme-bar-setter($i)
-
-
-
-	// To nest sizes from parents elements
-	// @each $size in $base-sizes-names
-	// 	$i: index($base-sizes-names, $size)
-
-	// 	.#{$size}
-	// 		.#{$progress-class}
-	// 			@extend .#{$progress-class}.#{$size}

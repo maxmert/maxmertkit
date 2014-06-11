@@ -30,6 +30,9 @@ class Skyline extends MaxmertkitHelpers
 			# Number or function, returning Number; in ms, delay before start animation
 			delay: @el.getAttribute( 'data-delay' ) or 300
 
+			# Boolean; show only once and don't hide after that
+			once: @el.getAttribute( 'data-once' ) or no
+
 			# Boolean; on spying on mobile devices
 			onMobile: @el.getAttribute( 'data-on-mobile' ) or no
 
@@ -104,6 +107,7 @@ class Skyline extends MaxmertkitHelpers
 			@_addClass '-start--'
 			@_removeClass '-stop--'
 			@active = yes
+			if @options.once then @stop()
 		, delay
 
 	deactivate: ->
@@ -116,7 +120,7 @@ class Skyline extends MaxmertkitHelpers
 
 	refresh: ->
 		_windowSize = _getWindowSize()
-		@spyParams = 
+		@spyParams =
 			offset: @_getPosition @el
 			height: @_outerHeight()
 

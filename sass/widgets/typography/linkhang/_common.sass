@@ -41,7 +41,7 @@
 
 			@if $themeName == default
 				@include typography-theme-link-hang-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include typography-theme-link-hang-setter($thm)
 
 
@@ -49,9 +49,9 @@
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				@include typography-size-link-hang-setter($sz)
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include typography-size-link-hang-setter($sz)
-	
+
 
 	// Change size and theme inside inline elements
 	b, i, small, p, span
@@ -60,16 +60,16 @@
 			$thm: map-get( $base-themes, $themeName )
 			@if $themeName == default
 				.#{$typo-link-hang-class}
-					@extend .#{$typo-link-hang-class}.-#{$themeName}-
-			&.-#{$themeName}-
+					@extend .#{$typo-link-hang-class}.#{$pref-theme}#{$themeName}#{$post-theme}
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				.#{$typo-link-hang-class}
-					@extend .#{$typo-link-hang-class}.-#{$themeName}-
+					@extend .#{$typo-link-hang-class}.#{$pref-theme}#{$themeName}#{$post-theme}
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 			@if $sizeName == normal
 				.#{$typo-link-hang-class}
-					@extend .#{$typo-link-hang-class}._#{$sizeName}
-			&._#{$sizeName}
+					@extend .#{$typo-link-hang-class}.#{$pref-size}#{$sizeName}#{$post-size}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				.#{$typo-link-hang-class}
-					@extend .#{$typo-link-hang-class}._#{$sizeName}
+					@extend .#{$typo-link-hang-class}.#{$pref-size}#{$sizeName}#{$post-size}

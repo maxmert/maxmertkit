@@ -1,4 +1,4 @@
-$animations-pushLeft-class: "-push-left--" !global
+$animations-pushLeft-class: "#{$pref-anim}push-left#{$post-anim}" !global
 
 $animations-pushLeft-duration: 0.4s !global
 $animations-pushLeft-timing-function: ease-in-out !global
@@ -27,7 +27,7 @@ $animations-pushLeft-delay: 0s !global
 		// opacity: 0
 		// visibility: hidden
 		// @include transition( opacity $animations-pushLeft-duration forwards $animations-pushLeft-timing-function, visibility $animations-pushLeft-duration forwards $animations-pushLeft-timing-function )
-		
+
 		&.#{$animation-start-class}
 			// opacity: 1
 			// visibility: visible

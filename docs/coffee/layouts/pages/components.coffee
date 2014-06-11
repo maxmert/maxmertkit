@@ -211,9 +211,9 @@ exports.module = Marionette.Layout.extend
 
 
 			# SCROLLSPY
-			# @$el.find('[data-spy="scroll"]').each (index, scrollspy) ->
-			# 	scrollspy.scrollspy
-			# 		offset: 100
+			@$el.find('[data-spy="scroll"]').each (index, scrollspy) ->
+				scrollspy.scrollspy
+					offset: 100
 
 			# SKYLINE
 			@$el.find('[data-spy="skyline"]').each (index, skyline) ->

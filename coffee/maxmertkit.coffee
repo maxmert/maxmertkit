@@ -25,7 +25,7 @@ class MaxmertkitEvent
 
 
 	registerCallback: ( callback, el, id ) ->
-		@callbacks.push 
+		@callbacks.push
 			id: id
 			el: el
 			callback: callback
@@ -89,7 +89,7 @@ class MaxmertkitReactor
 					clearInterval timer
 					timer = null
 			, 1000
-		
+
 		eventId
 
 
@@ -257,38 +257,43 @@ class MaxmertkitHelpers
 	_outerWidth: (el) ->
 		el = el or @el
 		width = el.offsetWidth
-		try
-			style = el.currentStyle or getComputedStyle(el)
-		if style
-			if style.paddingLeft? and style.paddingLeft isnt '' then width += parseInt(style.paddingLeft)
-			if style.paddingRight? and style.paddingRight isnt '' then width += parseInt(style.paddingRight)
+		# try
+		# 	style = el.currentStyle or getComputedStyle(el)
+		# if style
+		# 	if style.paddingLeft? and style.paddingLeft isnt '' then width += parseInt(style.paddingLeft)
+		# 	if style.paddingRight? and style.paddingRight isnt '' then width += parseInt(style.paddingRight)
 		width
 
 	_outerHeight: (el) ->
 		el = el or @el
 		height = el.offsetHeight
-		try
-			style = el.currentStyle or getComputedStyle(el)
-		if style?
-			if style.paddingTop? and style.paddingTop isnt '' then height += parseInt(style.paddingTop)
-			if style.paddingBottom? and style.paddingBottom isnt '' then height += parseInt(style.paddingBottom)
+		# try
+		# 	style = el.currentStyle or getComputedStyle(el)
+		# if style?
+		# 	if style.paddingTop? and style.paddingTop isnt '' then height += parseInt(style.paddingTop)
+		# 	if style.paddingBottom? and style.paddingBottom isnt '' then height += parseInt(style.paddingBottom)
 		height
 
 	_getPosition: (el) ->
 		el = el or @el
 		curleft = curtop = 0
+
+		### FIXME: Not sure if it needed to calculate with style margin ###
+		# try
+		# 	style = el.currentStyle or getComputedStyle(el)
+		# if style?
+		# 	if style.marginTop? and style.marginTop isnt '' then curtop -= parseInt(style.marginTop)
+		# 	if style.marginBottom? and style.marginBottom isnt '' then curtop += parseInt(style.marginBottom)
+		# 	if style.marginLeft? and style.marginLeft isnt '' then curleft += parseInt(style.marginLeft)
+		# 	if style.marginRight? and style.marginRight isnt '' then curleft -= parseInt(style.marginRight)
+
 		if el.offsetParent
 			loop
 
-				### FIXME: Not sure if it needed to calculate with style margin ###
-				try
-					style = el.currentStyle or getComputedStyle(el)
-				# if style?
-				# 	if style.marginTop? and style.marginTop isnt '' then curtop -= parseInt(style.marginTop)
-				# 	if style.marginLeft? and style.marginLeft isnt '' then curleft -= parseInt(style.marginLeft)
 				curleft += el.offsetLeft
 				curtop += el.offsetTop
 				break unless el = el.offsetParent
+
 
 		left: curleft,
 		top: curtop

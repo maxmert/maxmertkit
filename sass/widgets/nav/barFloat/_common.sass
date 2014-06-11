@@ -49,7 +49,7 @@
 
 			@if $themeName == default
 				@include nav-theme-bar-float-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-bar-float-setter($thm)
 
 

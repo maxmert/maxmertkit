@@ -24,5 +24,5 @@
 
 				@if $themeName == default
 					@include tables-theme-striped-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include tables-theme-striped-setter($thm)

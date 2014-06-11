@@ -21,6 +21,18 @@
 			box-shadow: 0 0 15px rgba($background-color, 0.6)
 
 
+@mixin forms-fields-size-setter($size)
+	$name: map-get( $size, name)
+	$multiplier: map-get( $size, multiplier)
+
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2 - $form-field-border-width * 2 // - $form-input-border-width * 2
+	line-height: $sizer * $base-line-height - $form-input-border-width * 2
+	height: $line-height
+	// height: $base-line-height * $size + $size - $form-field-border-width * 2
+
+
 @include exports("forms/fields")
 	form
 		.#{$form-field-class}
@@ -29,26 +41,29 @@
 			border-style: solid
 			border-radius: $form-field-border-radius
 
-
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
 				@if $themeName == default
 					@include forms-theme-field-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include forms-theme-field-setter($thm)
 
 					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"].-#{$themeName}- !optional
+						@extend input[type="text"].#{$pref-theme}#{$themeName}#{$post-theme} !optional
 
 
 			@each $sizeName in $sizes
 				$sz: map-get( $base-sizes, $sizeName )
 
 				// Change size only when class sets
-				&._#{$sizeName}
+				@if $sizeName == normal
 					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
-						@extend input[type="text"]._#{$sizeName} !optional
+						@include forms-fields-size-setter($sz)
+				&.#{$pref-size}#{$sizeName}#{$post-size}
+					select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+						// @extend input[type="text"].#{$pref-size}#{$sizeName}#{$post-size} !optional
+						@include forms-fields-size-setter($sz)
 
 
 		// To align fields and labels

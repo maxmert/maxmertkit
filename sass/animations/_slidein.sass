@@ -1,4 +1,4 @@
-$animations-slidein-class: "-slidein--" !global
+$animations-slidein-class: "#{$pref-anim}slidein#{$post-anim}" !global
 
 $animations-slidein-duration: 0.2s !global
 $animations-slidein-timing-function: ease-out !global
@@ -7,9 +7,9 @@ $animations-slidein-delay: 0s !global
 
 
 @include exports("animations/slidein")
-	
 
-		
+
+
 	@-webkit-keyframes slidein-keyframes
 		0%
 			-webkit-transform: translateY(200px)

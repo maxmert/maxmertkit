@@ -44,6 +44,14 @@
 		& > a
 			color: $white-color
 
+@mixin nav-menu-vertical-setter
+	#{$nav-item}
+		margin-right: 0
+		margin-bottom: $nav-tabs-items-margin
+		float: none
+		display: block
+		width: auto
+
 
 @include exports("nav/menu")
 
@@ -101,14 +109,13 @@
 
 
 			&.#{$mod-active}
-
 				& > a
 					cursor: inherit
 
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include nav-theme-menu-item-setter($thm)
 
 
@@ -117,20 +124,22 @@
 
 			@if $themeName == default
 				@include nav-theme-menu-setter($thm)
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				@include nav-theme-menu-setter($thm)
 
 
 
 		&.#{$mod-vertical}
-
-			#{$nav-item}
-				margin-right: 0
-				margin-bottom: $nav-tabs-items-margin
-				float: none
+			@include nav-menu-vertical-setter
 
 		&.#{$mod-hovered}
 			#{$nav-item}:hover
 				& > .#{$dropdown-class}
 					display: block
 					@extend .#{$animation-start-class}
+
+
+
+		@include media(new-breakpoint(max-width $base-screen-small 6))
+			&.#{$mod-responsive}
+				@include nav-menu-vertical-setter

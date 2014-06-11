@@ -170,6 +170,11 @@ class Popup extends MaxmertkitHelpers
 		@target.style.visibility = 'hidden'
 		@target.style.display = 'block'
 
+		arrow = @target.querySelector '.-arrow'
+		arrowSize =
+			width: @_outerWidth arrow
+			height: @_outerHeight arrow
+
 		targetSize =
 			width: @_outerWidth @target
 			height: @_outerHeight @target

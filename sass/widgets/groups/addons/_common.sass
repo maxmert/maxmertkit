@@ -23,7 +23,11 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	font-size: $multiplier * $base-font-size
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2
+	line-height: $sizer * $base-line-height
+	height: $line-height
 
 
 @include exports("groups/addons")
@@ -58,7 +62,7 @@
 
 				@if $themeName == default
 					@include groups-theme-addon-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include groups-theme-addon-setter($thm)
 
 			@each $sizeName in $sizes
@@ -66,7 +70,7 @@
 				@if $sizeName == normal
 					@include groups-addon-size-setter($sz)
 					// font-size: $multilpyer * $base-font-size / 2
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include groups-addon-size-setter($sz)
 
 
@@ -87,13 +91,13 @@
 		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
 
-			&.-#{$themeName}-
+			&.#{$pref-theme}#{$themeName}#{$post-theme}
 				.#{$group-addon-class}
-					@extend .#{$group-addon-class}.-#{$themeName}- !optional
+					@extend .#{$group-addon-class}.#{$pref-theme}#{$themeName}#{$post-theme} !optional
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
 
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				.#{$group-addon-class}
-					@extend .#{$group-addon-class}._#{$sizeName} !optional
+					@extend .#{$group-addon-class}.#{$pref-size}#{$sizeName}#{$post-size} !optional

@@ -38,7 +38,7 @@
 
 		@each $sizeName in $sizes
 			$sz: map-get( $base-sizes, $sizeName )
-			&._#{$sizeName}
+			&.#{$pref-size}#{$sizeName}#{$post-size}
 				@include typography-heading-size-setter($sz)
 
 	h1, h2, h3

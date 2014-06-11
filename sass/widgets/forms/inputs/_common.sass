@@ -16,13 +16,19 @@
 
 	width: 100%
 
+	// &::-moz-focus-inner
+	// 	border: 0
+	// 	padding: 3px
+	// 	margin-top: 3px
+	// 	margin-bottom: 3px
+
 
 @mixin forms-theme-input-setter($theme)
 	$color: map-get( $theme, color)
 	$border-color: map-get( $theme, border-color)
 	$background-color: map-get( $theme, background-color)
 
-	border: 1px solid $border-color
+	border: $form-input-border-width solid $border-color
 
 	&:active, &:focus
 		box-shadow: 0 0 10px rgba($background-color, 0.4)
@@ -37,10 +43,8 @@
 	$border-color: map-get( $theme, border-color)
 	$background-color: map-get( $theme, background-color)
 
-	border: 1px solid $border-color
-	background: rgba($background-color, .1) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat
-	background-position-x: 97%
-	background-position-y: center
+	border: $form-input-border-width solid $border-color
+	background: rgba($background-color, .1) url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==') no-repeat 97% center
 
 	&:active, &:focus
 		box-shadow: 0 0 10px rgba($background-color, 0.4)
@@ -51,25 +55,27 @@
 	$name: map-get( $size, name)
 	$multiplier: map-get( $size, multiplier)
 
-	font-size: $multiplier * $base-font-size
+	$sizer: $multiplier * $base-font-size
+	font-size: $sizer
+	$line-height: $sizer * $base-line-height + $base-padding-vertical * 2 // - $form-input-border-width * 2
+	line-height: $sizer * $base-line-height - $form-input-border-width * 2
+	height: $line-height
 
 
 
 @include exports("forms/inputs")
 	form
 
-
-
-
-
-
-
 		.#{$row-class}
 			margin-bottom: $base-line-height-comp
 
-
 		select, input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
+
 			-webkit-appearance: none
+			-moz-appearance: none
+			-o-appearance: none
+			-ms-appearance: none
+			appearance: none
 			vertical-align: middle
 			@include forms-input-setter
 
@@ -78,7 +84,7 @@
 
 				@if $themeName == default
 					@include forms-theme-input-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include forms-theme-input-setter($thm)
 
 			@include placeholder
@@ -89,7 +95,7 @@
 				$sz: map-get( $base-sizes, $sizeName )
 				@if $sizeName == normal
 					@include forms-input-size-setter($sz)
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include forms-input-size-setter($sz)
 
 
@@ -108,12 +114,21 @@
 
 
 		select
+			-webkit-appearance: none
+			-moz-appearance: none
+			-ms-appearance: none
+			text-indent: 1px
+			text-overflow: ''
+
+			&::-ms-expand
+				display: none
+
 			@each $themeName in $themes
 				$thm: map-get( $base-themes, $themeName )
 
 				@if $themeName == default
 					@include forms-theme-select-setter($thm)
-				&.-#{$themeName}-
+				&.#{$pref-theme}#{$themeName}#{$post-theme}
 					@include forms-theme-select-setter($thm)
 
 			border-radius: 0
@@ -130,7 +145,7 @@
 				$sz: map-get( $base-sizes, $sizeName )
 				@if $sizeName == normal
 					@include forms-input-size-setter($sz)
-				&._#{$sizeName}
+				&.#{$pref-size}#{$sizeName}#{$post-size}
 					@include forms-input-size-setter($sz)
 
 			@include text-overflow

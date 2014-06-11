@@ -1,13 +1,15 @@
 $path-images: "/img/kit" !global
 $path-fonts: "/fonts" !global
 
+@import "convention"
+
 $base-font-family:			"Helvetica" !global
 
 $base-font-size: 			14px !global
 $base-line-height: 			1.428571429 !global
 $base-line-height-comp:		$base-font-size * $base-line-height
 
-$base-padding-vertical: 	6px !global
+$base-padding-vertical: 	8px !global
 $base-padding-horizontal: 	12px !global
 
 
@@ -39,12 +41,12 @@ $base-themes: () !global
 
 
 
-$item-class: "-item"  !global
-$content-class: "-content"  !global
-$header-class: "-header"  !global
-$arrow-class: "-arrow"  !global
-$addon-class: "-addon" !global
-$divider-class: "-divider" !global
-$caption-class: "-caption" !global
-$close-class: "-close" !global
-$thumbnail-class: "-thumbnail" !global
+$item-class: "#{$pref-widget}item#{$post-widget}"  !global
+$content-class: "#{$pref-widget}content#{$post-widget}"  !global
+$header-class: "#{$pref-widget}header#{$post-widget}"  !global
+$arrow-class: "#{$pref-widget}arrow#{$post-widget}"  !global
+$addon-class: "#{$pref-widget}addon#{$post-widget}" !global
+$divider-class: "#{$pref-widget}divider#{$post-widget}" !global
+$caption-class: "#{$pref-widget}caption#{$post-widget}" !global
+$close-class: "#{$pref-widget}close#{$post-widget}" !global
+$thumbnail-class: "#{$pref-widget}thumbnail#{$post-widget}" !global
