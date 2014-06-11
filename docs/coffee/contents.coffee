@@ -53,6 +53,11 @@ exports.start = [
 				menu: 'add or edit sizes'
 				path: 'howtoSizeManage'
 			}
+			{
+				name: 'editPrefixes'
+				menu: 'change name convention'
+				path: 'howtoChangeNameconvention'
+			}
 		]
 	}
 ]
