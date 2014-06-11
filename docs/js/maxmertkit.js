@@ -813,6 +813,7 @@
         spy: this.el.getAttribute('data-spy') || _name,
         offset: this.el.getAttribute('data-offset') || 5,
         delay: this.el.getAttribute('data-delay') || 300,
+        once: this.el.getAttribute('data-once') || false,
         onMobile: this.el.getAttribute('data-on-mobile') || false,
         beforeactive: function() {},
         onactive: function() {},
@@ -884,7 +885,10 @@
         return function() {
           _this._addClass('-start--');
           _this._removeClass('-stop--');
-          return _this.active = true;
+          _this.active = true;
+          if (_this.options.once) {
+            return _this.stop();
+          }
         };
       })(this), delay);
     };
