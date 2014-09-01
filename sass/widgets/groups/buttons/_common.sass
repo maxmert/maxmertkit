@@ -29,11 +29,17 @@
 				display: table-cell
 				width: 1%
 
+				&:not(:last-child)
+					border-right: none
+
 		&.#{$mod-responsive}
 			@include media(new-breakpoint(max-width $base-screen-middle 6))
 				.#{$button-class}
 					display: table-cell
 					width: 1%
+
+				&:not(:last-child)
+					border-right: none
 
 		@each $themeName in $themes
 			$thm: map-get( $base-themes, $themeName )
