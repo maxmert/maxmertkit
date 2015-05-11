@@ -1,5 +1,7 @@
 # [Maxmertkit](http://maxmert.com)
 
+[![Join the chat at https://gitter.im/maxmert/maxmertkit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/maxmert/maxmertkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/maxmert/maxmertkit.svg?branch=master)](https://travis-ci.org/maxmert/maxmertkit)
 
 Maxmertkit, powerful, most customizable and easiest for usage mobile first front-end framework for web-development, created by [Vetrenko Maxim](http://twitter.com/vmaxmert), and maintained by the [core team](https://github.com/maxmert?tab=members) with the support and involvement of the community.
