@@ -145,3 +145,7 @@ For more information on SemVer, please visit <http://semver.org/>.
 ## Copyright and license
 
 Code and documentation copyright 2012-2014 Maxmert. Code released under [the MIT license](LICENSE). Docs released under [Creative Commons](docs/LICENSE).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/maxmert/maxmertkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
