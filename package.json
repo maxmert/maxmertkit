@@ -55,7 +55,7 @@
     "gulp-bytediff": "~0.1.8",
     "chai": "~1.9.1",
     "gulp-mocha": "~0.4.1",
-    "jquery": "~1.8.3",
+    "jquery": "~3.4.1",
     "jsdom": "~0.10.5",
     "gulp-clean": "~0.2.4",
     "run-sequence": "~0.3.6",
